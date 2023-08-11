@@ -1,0 +1,75 @@
+Todo
+
+	add player standing state
+	add player moving state
+	
+	player collisions
+	physics
+	
+
+
+
+Idea Backlog 
+
+	add player jumping state
+	
+	update player tiles
+
+	
+	add player shooting state
+		
+	player projectiles
+	player shooting animation
+		contra run + shoot style?
+		
+		
+	
+		
+	better jump frame?
+	better run animation?
+	
+	enemy
+	enemy collisions	
+	game object library
+	
+	object manager
+		player + projectiles + enemies + interactables
+		
+	how to use banked roms?
+		
+	animated tiles
+	
+	automated on-demand/on-dirty conversion of gamedata to c on build 
+		
+	automatic building of level build function per map
+		loads all background and sprite tiles
+		places player
+	
+	
+	improve map scrolling performance
+
+	music
+	sound effects
+
+	
+Game Design Ideas	
+	
+	enemy types
+		popcorn
+		flying
+		running
+		bouncing
+		peek-a-boo
+		coming out of holes
+		throwing/shooting from afar
+		
+	upgrades
+		double jump
+		slide
+		familiar (doubles shooting shurikens)
+	
+	boss
+	
+Completed
+
+	DONE Make a todo.txt
