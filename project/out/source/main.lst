@@ -1,0 +1,980 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ISO C Compiler 
+                                      3 ; Version 4.3.0 #14184 (Linux)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mz80
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl ___SMS__SDSC_signature
+                                     12 	.globl ___SMS__SDSC_descr
+                                     13 	.globl ___SMS__SDSC_name
+                                     14 	.globl ___SMS__SDSC_author
+                                     15 	.globl ___SMS__SEGA_signature
+                                     16 	.globl _main
+                                     17 	.globl _Scroll_Update
+                                     18 	.globl _Scroll_InitTilemap
+                                     19 	.globl _buildColumn
+                                     20 	.globl _Player_Update
+                                     21 	.globl _Animation_DrawFrame
+                                     22 	.globl _SMS_VRAMmemsetW
+                                     23 	.globl _SMS_VRAMmemcpy
+                                     24 	.globl _SMS_getKeysHeld
+                                     25 	.globl _SMS_loadSpritePalette
+                                     26 	.globl _SMS_loadBGPalette
+                                     27 	.globl _SMS_copySpritestoSAT
+                                     28 	.globl _SMS_addSprite_f
+                                     29 	.globl _SMS_initSprites
+                                     30 	.globl _SMS_loadTileMapColumnatAddr
+                                     31 	.globl _SMS_waitForVBlank
+                                     32 	.globl _SMS_setBackdropColor
+                                     33 	.globl _SMS_setBGScrollX
+                                     34 	.globl _SMS_VDPturnOnFeature
+                                     35 	.globl _Scroll_speed
+                                     36 	.globl _Scroll_updateMapColumn
+                                     37 	.globl _Scroll_vdpHorizontalScroll
+                                     38 	.globl _ScrollManager_horizontalScroll
+                                     39 	.globl _globalPalette
+                                     40 	.globl _Scroll_column
+                                     41 	.globl _SMS_SRAM
+                                     42 	.globl _SRAM_bank_to_be_mapped_on_slot2
+                                     43 	.globl _ROM_bank_to_be_mapped_on_slot0
+                                     44 	.globl _ROM_bank_to_be_mapped_on_slot1
+                                     45 	.globl _ROM_bank_to_be_mapped_on_slot2
+                                     46 ;--------------------------------------------------------
+                                     47 ; special function registers
+                                     48 ;--------------------------------------------------------
+                                     49 ;--------------------------------------------------------
+                                     50 ; ram data
+                                     51 ;--------------------------------------------------------
+                                     52 	.area _DATA
+                           00FFFF    53 _ROM_bank_to_be_mapped_on_slot2	=	0xffff
+                           00FFFE    54 _ROM_bank_to_be_mapped_on_slot1	=	0xfffe
+                           00FFFD    55 _ROM_bank_to_be_mapped_on_slot0	=	0xfffd
+                           00FFFC    56 _SRAM_bank_to_be_mapped_on_slot2	=	0xfffc
+                           008000    57 _SMS_SRAM	=	0x8000
+      000000                         58 _Scroll_column::
+      000000                         59 	.ds 48
+                                     60 ;--------------------------------------------------------
+                                     61 ; ram data
+                                     62 ;--------------------------------------------------------
+                                     63 	.area _INITIALIZED
+      000000                         64 _globalPalette::
+      000000                         65 	.ds 16
+      000010                         66 _ScrollManager_horizontalScroll::
+      000010                         67 	.ds 2
+      000012                         68 _Scroll_vdpHorizontalScroll::
+      000012                         69 	.ds 1
+      000013                         70 _Scroll_updateMapColumn::
+      000013                         71 	.ds 1
+      000014                         72 _Scroll_speed::
+      000014                         73 	.ds 1
+                                     74 ;--------------------------------------------------------
+                                     75 ; absolute external ram data
+                                     76 ;--------------------------------------------------------
+                                     77 	.area _DABS (ABS)
+                                     78 ;--------------------------------------------------------
+                                     79 ; global & static initialisations
+                                     80 ;--------------------------------------------------------
+                                     81 	.area _HOME
+                                     82 	.area _GSINIT
+                                     83 	.area _GSFINAL
+                                     84 	.area _GSINIT
+                                     85 ;--------------------------------------------------------
+                                     86 ; Home
+                                     87 ;--------------------------------------------------------
+                                     88 	.area _HOME
+                                     89 	.area _HOME
+                                     90 ;--------------------------------------------------------
+                                     91 ; code
+                                     92 ;--------------------------------------------------------
+                                     93 	.area _CODE
+                                     94 ;source/main.c:15: void Animation_DrawFrame(const AnimationFrame* frame, short x, short y)
+                                     95 ;	---------------------------------
+                                     96 ; Function Animation_DrawFrame
+                                     97 ; ---------------------------------
+      000000                         98 _Animation_DrawFrame::
+      000000 DD E5            [15]   99 	push	ix
+      000002 DD 21 00 00      [14]  100 	ld	ix,#0
+      000006 DD 39            [15]  101 	add	ix,sp
+      000008 F5               [11]  102 	push	af
+      000009 F5               [11]  103 	push	af
+      00000A 3B               [ 6]  104 	dec	sp
+      00000B 4D               [ 4]  105 	ld	c, l
+      00000C 44               [ 4]  106 	ld	b, h
+      00000D DD 73 FD         [19]  107 	ld	-3 (ix), e
+      000010 DD 72 FE         [19]  108 	ld	-2 (ix), d
+                                    109 ;source/main.c:17: char loop = frame->numSprites;
+      000013 59               [ 4]  110 	ld	e, c
+      000014 50               [ 4]  111 	ld	d, b
+      000015 13               [ 6]  112 	inc	de
+      000016 13               [ 6]  113 	inc	de
+      000017 1A               [ 7]  114 	ld	a, (de)
+      000018 DD 77 FF         [19]  115 	ld	-1 (ix), a
+                                    116 ;source/main.c:18: const AnimationSprite* currentSprite = frame->sprites;
+      00001B 69               [ 4]  117 	ld	l, c
+      00001C 60               [ 4]  118 	ld	h, b
+      00001D 4E               [ 7]  119 	ld	c, (hl)
+      00001E 23               [ 6]  120 	inc	hl
+      00001F 46               [ 7]  121 	ld	b, (hl)
+                                    122 ;source/main.c:20: while (loop--)
+      000020                        123 00101$:
+      000020 DD 5E FF         [19]  124 	ld	e, -1 (ix)
+      000023 DD 35 FF         [23]  125 	dec	-1 (ix)
+      000026 7B               [ 4]  126 	ld	a, e
+      000027 B7               [ 4]  127 	or	a, a
+      000028 28 3C            [12]  128 	jr	Z, 00104$
+                                    129 ;source/main.c:22: SMS_addSprite(x + currentSprite->xOffset, y + currentSprite->yOffset, currentSprite->tileIndex);
+      00002A 0A               [ 7]  130 	ld	a, (bc)
+      00002B 5F               [ 4]  131 	ld	e, a
+      00002C 16 00            [ 7]  132 	ld	d, #0x00
+      00002E DD 6E FD         [19]  133 	ld	l, -3 (ix)
+                                    134 ;	spillPairReg hl
+                                    135 ;	spillPairReg hl
+      000031 DD 66 FE         [19]  136 	ld	h, -2 (ix)
+                                    137 ;	spillPairReg hl
+                                    138 ;	spillPairReg hl
+      000034 19               [11]  139 	add	hl, de
+                                    140 ;	spillPairReg hl
+                                    141 ;	spillPairReg hl
+      000035 55               [ 4]  142 	ld	d, l
+      000036 1E 00            [ 7]  143 	ld	e, #0x00
+      000038 69               [ 4]  144 	ld	l, c
+                                    145 ;	spillPairReg hl
+                                    146 ;	spillPairReg hl
+      000039 60               [ 4]  147 	ld	h, b
+                                    148 ;	spillPairReg hl
+                                    149 ;	spillPairReg hl
+      00003A 23               [ 6]  150 	inc	hl
+      00003B 23               [ 6]  151 	inc	hl
+      00003C 6E               [ 7]  152 	ld	l, (hl)
+                                    153 ;	spillPairReg hl
+                                    154 ;	spillPairReg hl
+                                    155 ;	spillPairReg hl
+      00003D 26 00            [ 7]  156 	ld	h, #0x00
+                                    157 ;	spillPairReg hl
+                                    158 ;	spillPairReg hl
+      00003F 7B               [ 4]  159 	ld	a, e
+      000040 B5               [ 4]  160 	or	a, l
+      000041 DD 77 FB         [19]  161 	ld	-5 (ix), a
+      000044 7A               [ 4]  162 	ld	a, d
+      000045 B4               [ 4]  163 	or	a, h
+      000046 DD 77 FC         [19]  164 	ld	-4 (ix), a
+      000049 69               [ 4]  165 	ld	l, c
+                                    166 ;	spillPairReg hl
+                                    167 ;	spillPairReg hl
+      00004A 60               [ 4]  168 	ld	h, b
+                                    169 ;	spillPairReg hl
+                                    170 ;	spillPairReg hl
+      00004B 23               [ 6]  171 	inc	hl
+      00004C 5E               [ 7]  172 	ld	e, (hl)
+      00004D 16 00            [ 7]  173 	ld	d, #0x00
+      00004F DD 6E 04         [19]  174 	ld	l, 4 (ix)
+                                    175 ;	spillPairReg hl
+                                    176 ;	spillPairReg hl
+      000052 DD 66 05         [19]  177 	ld	h, 5 (ix)
+                                    178 ;	spillPairReg hl
+                                    179 ;	spillPairReg hl
+      000055 19               [11]  180 	add	hl, de
+      000056 C5               [11]  181 	push	bc
+      000057 DD 5E FB         [19]  182 	ld	e, -5 (ix)
+      00005A DD 56 FC         [19]  183 	ld	d, -4 (ix)
+      00005D CDr00r00         [17]  184 	call	_SMS_addSprite_f
+      000060 C1               [10]  185 	pop	bc
+                                    186 ;source/main.c:23: currentSprite++;
+      000061 03               [ 6]  187 	inc	bc
+      000062 03               [ 6]  188 	inc	bc
+      000063 03               [ 6]  189 	inc	bc
+      000064 18 BA            [12]  190 	jr	00101$
+      000066                        191 00104$:
+                                    192 ;source/main.c:26: }
+      000066 DD F9            [10]  193 	ld	sp, ix
+      000068 DD E1            [14]  194 	pop	ix
+      00006A E1               [10]  195 	pop	hl
+      00006B F1               [10]  196 	pop	af
+      00006C E9               [ 4]  197 	jp	(hl)
+                                    198 ;source/main.c:38: void Player_Update(GameObject* gameObject)
+                                    199 ;	---------------------------------
+                                    200 ; Function Player_Update
+                                    201 ; ---------------------------------
+      00006D                        202 _Player_Update::
+      00006D DD E5            [15]  203 	push	ix
+      00006F DD 21 00 00      [14]  204 	ld	ix,#0
+      000073 DD 39            [15]  205 	add	ix,sp
+      000075 F5               [11]  206 	push	af
+      000076 F5               [11]  207 	push	af
+      000077 3B               [ 6]  208 	dec	sp
+                                    209 ;source/main.c:44: unsigned int buttonState = SMS_getKeysHeld();
+      000078 E5               [11]  210 	push	hl
+      000079 CDr00r00         [17]  211 	call	_SMS_getKeysHeld
+      00007C C1               [10]  212 	pop	bc
+      00007D DD 73 FE         [19]  213 	ld	-2 (ix), e
+      000080 DD 72 FF         [19]  214 	ld	-1 (ix), d
+                                    215 ;source/main.c:46: if (buttonState & PORT_A_KEY_LEFT)
+      000083 DD CB FE 56      [20]  216 	bit	2, -2 (ix)
+      000087 28 0B            [12]  217 	jr	Z, 00102$
+                                    218 ;source/main.c:47: gameObject->x--;
+      000089 69               [ 4]  219 	ld	l, c
+      00008A 60               [ 4]  220 	ld	h, b
+      00008B 5E               [ 7]  221 	ld	e, (hl)
+      00008C 23               [ 6]  222 	inc	hl
+      00008D 56               [ 7]  223 	ld	d, (hl)
+      00008E 1B               [ 6]  224 	dec	de
+      00008F 69               [ 4]  225 	ld	l, c
+      000090 60               [ 4]  226 	ld	h, b
+      000091 73               [ 7]  227 	ld	(hl), e
+      000092 23               [ 6]  228 	inc	hl
+      000093 72               [ 7]  229 	ld	(hl), d
+      000094                        230 00102$:
+                                    231 ;source/main.c:49: if (buttonState & PORT_A_KEY_RIGHT)
+      000094 DD CB FE 5E      [20]  232 	bit	3, -2 (ix)
+      000098 28 0B            [12]  233 	jr	Z, 00104$
+                                    234 ;source/main.c:50: gameObject->x++;
+      00009A 69               [ 4]  235 	ld	l, c
+      00009B 60               [ 4]  236 	ld	h, b
+      00009C 5E               [ 7]  237 	ld	e, (hl)
+      00009D 23               [ 6]  238 	inc	hl
+      00009E 56               [ 7]  239 	ld	d, (hl)
+      00009F 13               [ 6]  240 	inc	de
+      0000A0 69               [ 4]  241 	ld	l, c
+      0000A1 60               [ 4]  242 	ld	h, b
+      0000A2 73               [ 7]  243 	ld	(hl), e
+      0000A3 23               [ 6]  244 	inc	hl
+      0000A4 72               [ 7]  245 	ld	(hl), d
+      0000A5                        246 00104$:
+                                    247 ;source/main.c:53: gameObject->y--;
+      0000A5 69               [ 4]  248 	ld	l, c
+                                    249 ;	spillPairReg hl
+                                    250 ;	spillPairReg hl
+      0000A6 60               [ 4]  251 	ld	h, b
+                                    252 ;	spillPairReg hl
+                                    253 ;	spillPairReg hl
+      0000A7 23               [ 6]  254 	inc	hl
+      0000A8 23               [ 6]  255 	inc	hl
+                                    256 ;source/main.c:52: if (buttonState & PORT_A_KEY_UP)
+      0000A9 DD CB FE 46      [20]  257 	bit	0, -2 (ix)
+      0000AD 28 09            [12]  258 	jr	Z, 00106$
+                                    259 ;source/main.c:53: gameObject->y--;
+      0000AF 5E               [ 7]  260 	ld	e, (hl)
+      0000B0 23               [ 6]  261 	inc	hl
+      0000B1 56               [ 7]  262 	ld	d, (hl)
+      0000B2 2B               [ 6]  263 	dec	hl
+      0000B3 1B               [ 6]  264 	dec	de
+      0000B4 73               [ 7]  265 	ld	(hl), e
+      0000B5 23               [ 6]  266 	inc	hl
+      0000B6 72               [ 7]  267 	ld	(hl), d
+      0000B7 2B               [ 6]  268 	dec	hl
+      0000B8                        269 00106$:
+                                    270 ;source/main.c:55: if (buttonState & PORT_A_KEY_DOWN)
+      0000B8 DD CB FE 4E      [20]  271 	bit	1, -2 (ix)
+      0000BC 28 08            [12]  272 	jr	Z, 00108$
+                                    273 ;source/main.c:56: gameObject->y++;
+      0000BE 5E               [ 7]  274 	ld	e, (hl)
+      0000BF 23               [ 6]  275 	inc	hl
+      0000C0 56               [ 7]  276 	ld	d, (hl)
+      0000C1 2B               [ 6]  277 	dec	hl
+      0000C2 13               [ 6]  278 	inc	de
+      0000C3 73               [ 7]  279 	ld	(hl), e
+      0000C4 23               [ 6]  280 	inc	hl
+      0000C5 72               [ 7]  281 	ld	(hl), d
+      0000C6                        282 00108$:
+                                    283 ;source/main.c:58: if (gameObject->animationTime == gameObject->currentAnimationFrame->frameTime)
+      0000C6 21 0A 00         [10]  284 	ld	hl, #0x000a
+      0000C9 09               [11]  285 	add	hl, bc
+      0000CA E3               [19]  286 	ex	(sp), hl
+      0000CB E1               [10]  287 	pop	hl
+      0000CC E5               [11]  288 	push	hl
+      0000CD 5E               [ 7]  289 	ld	e, (hl)
+      0000CE 21 07 00         [10]  290 	ld	hl, #0x0007
+      0000D1 09               [11]  291 	add	hl, bc
+      0000D2 DD 75 FD         [19]  292 	ld	-3 (ix), l
+      0000D5 DD 74 FE         [19]  293 	ld	-2 (ix), h
+      0000D8 7E               [ 7]  294 	ld	a, (hl)
+      0000D9 23               [ 6]  295 	inc	hl
+      0000DA 66               [ 7]  296 	ld	h, (hl)
+                                    297 ;	spillPairReg hl
+      0000DB 6F               [ 4]  298 	ld	l, a
+                                    299 ;	spillPairReg hl
+                                    300 ;	spillPairReg hl
+      0000DC 23               [ 6]  301 	inc	hl
+      0000DD 23               [ 6]  302 	inc	hl
+      0000DE 23               [ 6]  303 	inc	hl
+      0000DF 7E               [ 7]  304 	ld	a, (hl)
+      0000E0 93               [ 4]  305 	sub	a, e
+      0000E1 20 3E            [12]  306 	jr	NZ, 00112$
+                                    307 ;source/main.c:60: gameObject->currentAnimationFrameIndex++;
+      0000E3 21 09 00         [10]  308 	ld	hl, #0x0009
+      0000E6 09               [11]  309 	add	hl, bc
+      0000E7 EB               [ 4]  310 	ex	de, hl
+      0000E8 1A               [ 7]  311 	ld	a, (de)
+      0000E9 3C               [ 4]  312 	inc	a
+      0000EA DD 77 FF         [19]  313 	ld	-1 (ix), a
+      0000ED 12               [ 7]  314 	ld	(de), a
+                                    315 ;source/main.c:62: if (gameObject->currentAnimationFrameIndex == gameObject->animation->numFrames)
+      0000EE 03               [ 6]  316 	inc	bc
+      0000EF 03               [ 6]  317 	inc	bc
+      0000F0 03               [ 6]  318 	inc	bc
+      0000F1 03               [ 6]  319 	inc	bc
+      0000F2 69               [ 4]  320 	ld	l, c
+      0000F3 60               [ 4]  321 	ld	h, b
+      0000F4 7E               [ 7]  322 	ld	a, (hl)
+      0000F5 23               [ 6]  323 	inc	hl
+      0000F6 66               [ 7]  324 	ld	h, (hl)
+                                    325 ;	spillPairReg hl
+      0000F7 6F               [ 4]  326 	ld	l, a
+                                    327 ;	spillPairReg hl
+                                    328 ;	spillPairReg hl
+      0000F8 23               [ 6]  329 	inc	hl
+      0000F9 23               [ 6]  330 	inc	hl
+      0000FA 23               [ 6]  331 	inc	hl
+      0000FB 23               [ 6]  332 	inc	hl
+                                    333 ;	spillPairReg hl
+      0000FC DD 7E FF         [19]  334 	ld	a,-1 (ix)
+      0000FF 96               [ 7]  335 	sub	a,(hl)
+      000100 20 02            [12]  336 	jr	NZ, 00110$
+                                    337 ;source/main.c:63: gameObject->currentAnimationFrameIndex = 0;
+      000102 AF               [ 4]  338 	xor	a, a
+      000103 12               [ 7]  339 	ld	(de), a
+      000104                        340 00110$:
+                                    341 ;source/main.c:65: gameObject->currentAnimationFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
+      000104 69               [ 4]  342 	ld	l, c
+      000105 60               [ 4]  343 	ld	h, b
+      000106 4E               [ 7]  344 	ld	c, (hl)
+      000107 23               [ 6]  345 	inc	hl
+      000108 66               [ 7]  346 	ld	h, (hl)
+                                    347 ;	spillPairReg hl
+      000109 69               [ 4]  348 	ld	l, c
+      00010A 4E               [ 7]  349 	ld	c, (hl)
+      00010B 23               [ 6]  350 	inc	hl
+      00010C 46               [ 7]  351 	ld	b, (hl)
+      00010D 1A               [ 7]  352 	ld	a, (de)
+      00010E 26 00            [ 7]  353 	ld	h, #0x00
+                                    354 ;	spillPairReg hl
+                                    355 ;	spillPairReg hl
+      000110 6F               [ 4]  356 	ld	l, a
+      000111 29               [11]  357 	add	hl, hl
+      000112 09               [11]  358 	add	hl, bc
+      000113 4E               [ 7]  359 	ld	c, (hl)
+      000114 23               [ 6]  360 	inc	hl
+      000115 46               [ 7]  361 	ld	b, (hl)
+      000116 D1               [10]  362 	pop	de
+      000117 E1               [10]  363 	pop	hl
+      000118 E5               [11]  364 	push	hl
+      000119 D5               [11]  365 	push	de
+      00011A 71               [ 7]  366 	ld	(hl), c
+      00011B 23               [ 6]  367 	inc	hl
+      00011C 70               [ 7]  368 	ld	(hl), b
+                                    369 ;source/main.c:66: gameObject->animationTime = 0;
+      00011D E1               [10]  370 	pop	hl
+      00011E 36 00            [10]  371 	ld	(hl), #0x00
+      000120 E5               [11]  372 	push	hl
+      000121                        373 00112$:
+                                    374 ;source/main.c:72: gameObject->animationTime++;
+      000121 E1               [10]  375 	pop	hl
+      000122 E5               [11]  376 	push	hl
+      000123 7E               [ 7]  377 	ld	a, (hl)
+      000124 3C               [ 4]  378 	inc	a
+      000125 E1               [10]  379 	pop	hl
+      000126 E5               [11]  380 	push	hl
+      000127 77               [ 7]  381 	ld	(hl), a
+                                    382 ;source/main.c:73: }
+      000128 DD F9            [10]  383 	ld	sp, ix
+      00012A DD E1            [14]  384 	pop	ix
+      00012C C9               [10]  385 	ret
+                                    386 ;source/main.c:86: void buildColumn(unsigned short tileColumn)
+                                    387 ;	---------------------------------
+                                    388 ; Function buildColumn
+                                    389 ; ---------------------------------
+      00012D                        390 _buildColumn::
+      00012D DD E5            [15]  391 	push	ix
+      00012F DD 21 00 00      [14]  392 	ld	ix,#0
+      000133 DD 39            [15]  393 	add	ix,sp
+      000135 FD 21 F8 FF      [14]  394 	ld	iy, #-8
+      000139 FD 39            [15]  395 	add	iy, sp
+      00013B FD F9            [10]  396 	ld	sp, iy
+                                    397 ;source/main.c:89: unsigned short metatileColumn = (tileColumn >> 1) % background_map.mapWidth;
+      00013D DD 75 FD         [19]  398 	ld	-3 (ix), l
+      000140 DD 74 FE         [19]  399 	ld	-2 (ix), h
+      000143 4D               [ 4]  400 	ld	c, l
+      000144 44               [ 4]  401 	ld	b, h
+      000145 CB 38            [ 8]  402 	srl	b
+      000147 CB 19            [ 8]  403 	rr	c
+      000149 3Ar04r00         [13]  404 	ld	a, (#(_background_map + 4) + 0)
+      00014C 5F               [ 4]  405 	ld	e, a
+      00014D 16 00            [ 7]  406 	ld	d, #0x00
+      00014F 69               [ 4]  407 	ld	l, c
+                                    408 ;	spillPairReg hl
+                                    409 ;	spillPairReg hl
+      000150 60               [ 4]  410 	ld	h, b
+                                    411 ;	spillPairReg hl
+                                    412 ;	spillPairReg hl
+      000151 CDr00r00         [17]  413 	call	__moduint
+      000154 33               [ 6]  414 	inc	sp
+      000155 33               [ 6]  415 	inc	sp
+      000156 D5               [11]  416 	push	de
+                                    417 ;source/main.c:92: unsigned char metatileOffset = tileColumn & 1;
+      000157 DD 7E FD         [19]  418 	ld	a, -3 (ix)
+      00015A E6 01            [ 7]  419 	and	a, #0x01
+      00015C DD 77 FA         [19]  420 	ld	-6 (ix), a
+                                    421 ;source/main.c:94: unsigned short* columnRunner = Scroll_column;
+      00015F DD 36 FBr00      [19]  422 	ld	-5 (ix), #<(_Scroll_column)
+      000163 DD 36 FCs00      [19]  423 	ld	-4 (ix), #>(_Scroll_column)
+                                    424 ;source/main.c:97: for (unsigned char loop = 0; loop < background_map.mapHeight; loop++)
+      000167 DD 36 FF 00      [19]  425 	ld	-1 (ix), #0x00
+      00016B                        426 00103$:
+      00016B 21r05r00         [10]  427 	ld	hl, #_background_map + 5
+      00016E DD 7E FF         [19]  428 	ld	a,-1 (ix)
+      000171 96               [ 7]  429 	sub	a,(hl)
+      000172 30 64            [12]  430 	jr	NC, 00105$
+                                    431 ;source/main.c:100: unsigned short metatile_index = (background_map.metatileMap[metatileColumn + (loop * background_map.mapWidth)] * 4) + metatileOffset;
+      000174 ED 4Br00r00      [20]  432 	ld	bc, (#_background_map + 0)
+      000178 3Ar04r00         [13]  433 	ld	a, (#(_background_map + 4) + 0)
+      00017B C5               [11]  434 	push	bc
+      00017C 5F               [ 4]  435 	ld	e, a
+      00017D DD 66 FF         [19]  436 	ld	h, -1 (ix)
+                                    437 ;	spillPairReg hl
+                                    438 ;	spillPairReg hl
+      000180 2E 00            [ 7]  439 	ld	l, #0x00
+      000182 55               [ 4]  440 	ld	d, l
+      000183 06 08            [ 7]  441 	ld	b, #0x08
+      000185                        442 00118$:
+      000185 29               [11]  443 	add	hl, hl
+      000186 30 01            [12]  444 	jr	NC, 00119$
+      000188 19               [11]  445 	add	hl, de
+      000189                        446 00119$:
+      000189 10 FA            [13]  447 	djnz	00118$
+      00018B C1               [10]  448 	pop	bc
+      00018C D1               [10]  449 	pop	de
+      00018D D5               [11]  450 	push	de
+      00018E 19               [11]  451 	add	hl, de
+      00018F 29               [11]  452 	add	hl, hl
+      000190 09               [11]  453 	add	hl, bc
+      000191 5E               [ 7]  454 	ld	e, (hl)
+      000192 23               [ 6]  455 	inc	hl
+      000193 56               [ 7]  456 	ld	d, (hl)
+      000194 EB               [ 4]  457 	ex	de, hl
+      000195 29               [11]  458 	add	hl, hl
+      000196 29               [11]  459 	add	hl, hl
+      000197 DD 4E FA         [19]  460 	ld	c, -6 (ix)
+      00019A 06 00            [ 7]  461 	ld	b, #0x00
+      00019C 09               [11]  462 	add	hl, bc
+      00019D EB               [ 4]  463 	ex	de, hl
+                                    464 ;source/main.c:103: *columnRunner = background_tileset.metatile_lut[metatile_index];
+      00019E ED 4Br02r00      [20]  465 	ld	bc, (#(_background_tileset + 2) + 0)
+      0001A2 6B               [ 4]  466 	ld	l, e
+      0001A3 62               [ 4]  467 	ld	h, d
+      0001A4 29               [11]  468 	add	hl, hl
+      0001A5 09               [11]  469 	add	hl, bc
+      0001A6 4E               [ 7]  470 	ld	c, (hl)
+      0001A7 23               [ 6]  471 	inc	hl
+      0001A8 46               [ 7]  472 	ld	b, (hl)
+      0001A9 DD 6E FB         [19]  473 	ld	l, -5 (ix)
+      0001AC DD 66 FC         [19]  474 	ld	h, -4 (ix)
+      0001AF 71               [ 7]  475 	ld	(hl), c
+      0001B0 23               [ 6]  476 	inc	hl
+      0001B1 70               [ 7]  477 	ld	(hl), b
+                                    478 ;source/main.c:104: columnRunner++;
+      0001B2 DD 4E FB         [19]  479 	ld	c, -5 (ix)
+      0001B5 DD 46 FC         [19]  480 	ld	b, -4 (ix)
+      0001B8 03               [ 6]  481 	inc	bc
+      0001B9 03               [ 6]  482 	inc	bc
+                                    483 ;source/main.c:107: *columnRunner = background_tileset.metatile_lut[metatile_index + 2];
+      0001BA 2Ar02r00         [16]  484 	ld	hl, (#(_background_tileset + 2) + 0)
+      0001BD 13               [ 6]  485 	inc	de
+      0001BE 13               [ 6]  486 	inc	de
+      0001BF EB               [ 4]  487 	ex	de, hl
+      0001C0 29               [11]  488 	add	hl, hl
+      0001C1 EB               [ 4]  489 	ex	de, hl
+      0001C2 19               [11]  490 	add	hl, de
+      0001C3 5E               [ 7]  491 	ld	e, (hl)
+      0001C4 23               [ 6]  492 	inc	hl
+      0001C5 56               [ 7]  493 	ld	d, (hl)
+      0001C6 69               [ 4]  494 	ld	l, c
+      0001C7 60               [ 4]  495 	ld	h, b
+      0001C8 73               [ 7]  496 	ld	(hl), e
+      0001C9 23               [ 6]  497 	inc	hl
+      0001CA 72               [ 7]  498 	ld	(hl), d
+                                    499 ;source/main.c:108: columnRunner++;
+      0001CB 03               [ 6]  500 	inc	bc
+      0001CC 03               [ 6]  501 	inc	bc
+      0001CD DD 71 FB         [19]  502 	ld	-5 (ix), c
+      0001D0 DD 70 FC         [19]  503 	ld	-4 (ix), b
+                                    504 ;source/main.c:97: for (unsigned char loop = 0; loop < background_map.mapHeight; loop++)
+      0001D3 DD 34 FF         [23]  505 	inc	-1 (ix)
+      0001D6 18 93            [12]  506 	jr	00103$
+      0001D8                        507 00105$:
+                                    508 ;source/main.c:110: }
+      0001D8 DD F9            [10]  509 	ld	sp, ix
+      0001DA DD E1            [14]  510 	pop	ix
+      0001DC C9               [10]  511 	ret
+                                    512 ;source/main.c:112: void Scroll_InitTilemap()
+                                    513 ;	---------------------------------
+                                    514 ; Function Scroll_InitTilemap
+                                    515 ; ---------------------------------
+      0001DD                        516 _Scroll_InitTilemap::
+                                    517 ;source/main.c:115: for (int loop = 1; loop < 32; loop++)
+      0001DD 01 01 00         [10]  518 	ld	bc, #0x0001
+      0001E0                        519 00103$:
+      0001E0 79               [ 4]  520 	ld	a, c
+      0001E1 D6 20            [ 7]  521 	sub	a, #0x20
+      0001E3 78               [ 4]  522 	ld	a, b
+      0001E4 17               [ 4]  523 	rla
+      0001E5 3F               [ 4]  524 	ccf
+      0001E6 1F               [ 4]  525 	rra
+      0001E7 DE 80            [ 7]  526 	sbc	a, #0x80
+      0001E9 30 1E            [12]  527 	jr	NC, 00101$
+                                    528 ;source/main.c:117: buildColumn(loop);
+      0001EB 69               [ 4]  529 	ld	l, c
+                                    530 ;	spillPairReg hl
+                                    531 ;	spillPairReg hl
+      0001EC 60               [ 4]  532 	ld	h, b
+                                    533 ;	spillPairReg hl
+                                    534 ;	spillPairReg hl
+      0001ED C5               [11]  535 	push	bc
+      0001EE CDr2Dr01         [17]  536 	call	_buildColumn
+      0001F1 C1               [10]  537 	pop	bc
+                                    538 ;source/main.c:118: SMS_loadTileMapColumn(loop, 0, Scroll_column, 24);
+      0001F2 69               [ 4]  539 	ld	l, c
+                                    540 ;	spillPairReg hl
+                                    541 ;	spillPairReg hl
+      0001F3 26 00            [ 7]  542 	ld	h, #0x00
+                                    543 ;	spillPairReg hl
+                                    544 ;	spillPairReg hl
+      0001F5 29               [11]  545 	add	hl, hl
+      0001F6 7C               [ 4]  546 	ld	a, h
+      0001F7 F6 78            [ 7]  547 	or	a, #0x78
+      0001F9 67               [ 4]  548 	ld	h, a
+                                    549 ;	spillPairReg hl
+                                    550 ;	spillPairReg hl
+      0001FA C5               [11]  551 	push	bc
+      0001FB 11 18 00         [10]  552 	ld	de, #0x0018
+      0001FE D5               [11]  553 	push	de
+      0001FF 11r00r00         [10]  554 	ld	de, #_Scroll_column
+      000202 CDr00r00         [17]  555 	call	_SMS_loadTileMapColumnatAddr
+      000205 C1               [10]  556 	pop	bc
+                                    557 ;source/main.c:115: for (int loop = 1; loop < 32; loop++)
+      000206 03               [ 6]  558 	inc	bc
+      000207 18 D7            [12]  559 	jr	00103$
+      000209                        560 00101$:
+                                    561 ;source/main.c:125: buildColumn(32);
+      000209 21 20 00         [10]  562 	ld	hl, #0x0020
+      00020C CDr2Dr01         [17]  563 	call	_buildColumn
+                                    564 ;source/main.c:126: SMS_loadTileMapColumn(0, 0, Scroll_column, 24);
+      00020F 21 18 00         [10]  565 	ld	hl, #0x0018
+      000212 E5               [11]  566 	push	hl
+      000213 11r00r00         [10]  567 	ld	de, #_Scroll_column
+      000216 21 00 78         [10]  568 	ld	hl, #0x7800
+      000219 CDr00r00         [17]  569 	call	_SMS_loadTileMapColumnatAddr
+                                    570 ;source/main.c:127: }
+      00021C C9               [10]  571 	ret
+                                    572 ;source/main.c:129: void Scroll_Update(GameObject* gameObject)
+                                    573 ;	---------------------------------
+                                    574 ; Function Scroll_Update
+                                    575 ; ---------------------------------
+      00021D                        576 _Scroll_Update::
+      00021D DD E5            [15]  577 	push	ix
+      00021F DD 21 00 00      [14]  578 	ld	ix,#0
+      000223 DD 39            [15]  579 	add	ix,sp
+      000225 F5               [11]  580 	push	af
+      000226 F5               [11]  581 	push	af
+                                    582 ;source/main.c:131: if (gameObject->x > ScrollManager_horizontalScroll + 128)
+      000227 7E               [ 7]  583 	ld	a, (hl)
+      000228 DD 77 FC         [19]  584 	ld	-4 (ix), a
+      00022B 23               [ 6]  585 	inc	hl
+      00022C 7E               [ 7]  586 	ld	a, (hl)
+      00022D DD 77 FD         [19]  587 	ld	-3 (ix), a
+      000230 2Ar10r00         [16]  588 	ld	hl, (_ScrollManager_horizontalScroll)
+      000233 DD 75 FE         [19]  589 	ld	-2 (ix), l
+      000236 DD 74 FF         [19]  590 	ld	-1 (ix), h
+      000239 11 80 00         [10]  591 	ld	de, #0x0080
+      00023C 19               [11]  592 	add	hl, de
+      00023D C1               [10]  593 	pop	bc
+      00023E C5               [11]  594 	push	bc
+      00023F AF               [ 4]  595 	xor	a, a
+      000240 ED 42            [15]  596 	sbc	hl, bc
+      000242 30 11            [12]  597 	jr	NC, 00102$
+                                    598 ;source/main.c:133: Scroll_speed = gameObject->x - (ScrollManager_horizontalScroll + 128);
+      000244 DD 4E FC         [19]  599 	ld	c, -4 (ix)
+      000247 3Ar10r00         [13]  600 	ld	a, (_ScrollManager_horizontalScroll+0)
+      00024A C6 80            [ 7]  601 	add	a, #0x80
+      00024C 47               [ 4]  602 	ld	b, a
+      00024D 21r14r00         [10]  603 	ld	hl, #_Scroll_speed
+      000250 79               [ 4]  604 	ld	a, c
+      000251 90               [ 4]  605 	sub	a, b
+      000252 77               [ 7]  606 	ld	(hl), a
+      000253 18 05            [12]  607 	jr	00103$
+      000255                        608 00102$:
+                                    609 ;source/main.c:137: Scroll_speed = 0;
+      000255 21r14r00         [10]  610 	ld	hl, #_Scroll_speed
+      000258 36 00            [10]  611 	ld	(hl), #0x00
+      00025A                        612 00103$:
+                                    613 ;source/main.c:141: ScrollManager_horizontalScroll += Scroll_speed; // scrolling towards the right into the map
+      00025A 3Ar14r00         [13]  614 	ld	a, (_Scroll_speed+0)
+      00025D 06 00            [ 7]  615 	ld	b, #0x00
+      00025F 4F               [ 4]  616 	ld	c, a
+      000260 DD 6E FE         [19]  617 	ld	l, -2 (ix)
+      000263 DD 66 FF         [19]  618 	ld	h, -1 (ix)
+      000266 09               [11]  619 	add	hl, bc
+      000267 22r10r00         [16]  620 	ld	(_ScrollManager_horizontalScroll), hl
+                                    621 ;source/main.c:142: Scroll_vdpHorizontalScroll -= Scroll_speed; // vdp scrolls backwards in comparison
+      00026A 21r14r00         [10]  622 	ld	hl, #_Scroll_speed
+      00026D D5               [11]  623 	push	de
+      00026E 11r12r00         [10]  624 	ld	de, #_Scroll_vdpHorizontalScroll
+      000271 1A               [ 7]  625 	ld	a, (de)
+      000272 96               [ 7]  626 	sub	a, (hl)
+      000273 12               [ 7]  627 	ld	(de), a
+      000274 D1               [10]  628 	pop	de
+                                    629 ;source/main.c:144: ScrollManager_horizontalScroll %= (background_map.mapWidth * 16); // clamp the scrolling to the pixel width of the map.
+      000275 3Ar04r00         [13]  630 	ld	a, (#(_background_map + 4) + 0)
+      000278 26 00            [ 7]  631 	ld	h, #0x00
+                                    632 ;	spillPairReg hl
+                                    633 ;	spillPairReg hl
+      00027A 6F               [ 4]  634 	ld	l, a
+                                    635 ;	spillPairReg hl
+                                    636 ;	spillPairReg hl
+      00027B 29               [11]  637 	add	hl, hl
+      00027C 29               [11]  638 	add	hl, hl
+      00027D 29               [11]  639 	add	hl, hl
+      00027E 29               [11]  640 	add	hl, hl
+      00027F EB               [ 4]  641 	ex	de,hl
+      000280 2Ar10r00         [16]  642 	ld	hl, (_ScrollManager_horizontalScroll)
+      000283 CDr00r00         [17]  643 	call	__moduint
+      000286 ED 53r10r00      [20]  644 	ld	(_ScrollManager_horizontalScroll), de
+                                    645 ;source/main.c:146: if (ScrollManager_horizontalScroll % 8 == 0 && Scroll_speed) // when we hit a 8 pixel boundary, prep a new column to display
+      00028A 2Ar10r00         [16]  646 	ld	hl, (_ScrollManager_horizontalScroll)
+      00028D 7D               [ 4]  647 	ld	a, l
+      00028E E6 07            [ 7]  648 	and	a, #0x07
+      000290 20 21            [12]  649 	jr	NZ, 00107$
+      000292 3Ar14r00         [13]  650 	ld	a, (_Scroll_speed+0)
+      000295 B7               [ 4]  651 	or	a, a
+      000296 28 1B            [12]  652 	jr	Z, 00107$
+                                    653 ;source/main.c:149: unsigned short tileColumn = (ScrollManager_horizontalScroll >> 3) + 32; 
+      000298 2Ar10r00         [16]  654 	ld	hl, (_ScrollManager_horizontalScroll)
+      00029B CB 3C            [ 8]  655 	srl	h
+      00029D CB 1D            [ 8]  656 	rr	l
+      00029F CB 3C            [ 8]  657 	srl	h
+      0002A1 CB 1D            [ 8]  658 	rr	l
+      0002A3 CB 3C            [ 8]  659 	srl	h
+      0002A5 CB 1D            [ 8]  660 	rr	l
+      0002A7 01 20 00         [10]  661 	ld	bc, #0x0020
+      0002AA 09               [11]  662 	add	hl, bc
+                                    663 ;source/main.c:150: buildColumn(tileColumn);
+      0002AB CDr2Dr01         [17]  664 	call	_buildColumn
+                                    665 ;source/main.c:152: Scroll_updateMapColumn = TRUE;
+      0002AE 21r13r00         [10]  666 	ld	hl, #_Scroll_updateMapColumn
+      0002B1 36 01            [10]  667 	ld	(hl), #0x01
+      0002B3                        668 00107$:
+                                    669 ;source/main.c:154: }
+      0002B3 DD F9            [10]  670 	ld	sp, ix
+      0002B5 DD E1            [14]  671 	pop	ix
+      0002B7 C9               [10]  672 	ret
+                                    673 ;source/main.c:156: void main(void)
+                                    674 ;	---------------------------------
+                                    675 ; Function main
+                                    676 ; ---------------------------------
+      0002B8                        677 _main::
+      0002B8 DD E5            [15]  678 	push	ix
+      0002BA DD 21 00 00      [14]  679 	ld	ix,#0
+      0002BE DD 39            [15]  680 	add	ix,sp
+      0002C0 21 F5 FF         [10]  681 	ld	hl, #-11
+      0002C3 39               [11]  682 	add	hl, sp
+      0002C4 F9               [ 6]  683 	ld	sp, hl
+                                    684 ;source/main.c:159: SMS_VRAMmemsetW(0, 0x0000, 16384);
+      0002C5 21 00 40         [10]  685 	ld	hl, #0x4000
+      0002C8 E5               [11]  686 	push	hl
+      0002C9 11 00 00         [10]  687 	ld	de, #0x0000
+      0002CC 65               [ 4]  688 	ld	h, l
+      0002CD CDr00r00         [17]  689 	call	_SMS_VRAMmemsetW
+                                    690 ;source/main.c:161: SMS_loadBGPalette(globalPalette);
+      0002D0 21r00r00         [10]  691 	ld	hl, #_globalPalette
+      0002D3 CDr00r00         [17]  692 	call	_SMS_loadBGPalette
+                                    693 ;source/main.c:162: SMS_loadSpritePalette(globalPalette);
+      0002D6 21r00r00         [10]  694 	ld	hl, #_globalPalette
+      0002D9 CDr00r00         [17]  695 	call	_SMS_loadSpritePalette
+                                    696 ;source/main.c:165: SMS_loadTiles(ninja_girl.tileData, 256, ninja_girl.totalTileCount * 32);
+      0002DC 3Ar08r00         [13]  697 	ld	a, (#_ninja_girl + 8)
+      0002DF 6F               [ 4]  698 	ld	l, a
+                                    699 ;	spillPairReg hl
+                                    700 ;	spillPairReg hl
+      0002E0 26 00            [ 7]  701 	ld	h, #0x00
+                                    702 ;	spillPairReg hl
+                                    703 ;	spillPairReg hl
+      0002E2 29               [11]  704 	add	hl, hl
+      0002E3 29               [11]  705 	add	hl, hl
+      0002E4 29               [11]  706 	add	hl, hl
+      0002E5 29               [11]  707 	add	hl, hl
+      0002E6 29               [11]  708 	add	hl, hl
+      0002E7 4D               [ 4]  709 	ld	c, l
+      0002E8 44               [ 4]  710 	ld	b, h
+      0002E9 ED 5Br02r00      [20]  711 	ld	de, (#_ninja_girl + 2)
+      0002ED C5               [11]  712 	push	bc
+      0002EE 21 00 60         [10]  713 	ld	hl, #0x6000
+      0002F1 CDr00r00         [17]  714 	call	_SMS_VRAMmemcpy
+                                    715 ;source/main.c:168: SMS_loadTiles(background_tileset.tiles, 0, background_tileset.numTiles * 32);
+      0002F4 3Ar04r00         [13]  716 	ld	a, (#_background_tileset + 4)
+      0002F7 6F               [ 4]  717 	ld	l, a
+                                    718 ;	spillPairReg hl
+                                    719 ;	spillPairReg hl
+      0002F8 26 00            [ 7]  720 	ld	h, #0x00
+                                    721 ;	spillPairReg hl
+                                    722 ;	spillPairReg hl
+      0002FA 29               [11]  723 	add	hl, hl
+      0002FB 29               [11]  724 	add	hl, hl
+      0002FC 29               [11]  725 	add	hl, hl
+      0002FD 29               [11]  726 	add	hl, hl
+      0002FE 29               [11]  727 	add	hl, hl
+      0002FF 4D               [ 4]  728 	ld	c, l
+      000300 44               [ 4]  729 	ld	b, h
+      000301 ED 5Br00r00      [20]  730 	ld	de, (#_background_tileset + 0)
+      000305 C5               [11]  731 	push	bc
+      000306 21 00 40         [10]  732 	ld	hl, #0x4000
+      000309 CDr00r00         [17]  733 	call	_SMS_VRAMmemcpy
+                                    734 ;source/main.c:170: Scroll_updateMapColumn = FALSE;
+      00030C 21r13r00         [10]  735 	ld	hl, #_Scroll_updateMapColumn
+      00030F 36 00            [10]  736 	ld	(hl), #0x00
+                                    737 ;source/main.c:172: SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
+      000311 21 20 00         [10]  738 	ld	hl, #0x0020
+      000314 CDr00r00         [17]  739 	call	_SMS_VDPturnOnFeature
+                                    740 ;source/main.c:173: Scroll_InitTilemap();
+      000317 CDrDDr01         [17]  741 	call	_Scroll_InitTilemap
+                                    742 ;source/main.c:177: player.x = 122;
+      00031A DD 36 F5 7A      [19]  743 	ld	-11 (ix), #0x7a
+      00031E DD 36 F6 00      [19]  744 	ld	-10 (ix), #0
+                                    745 ;source/main.c:178: player.y = 88;
+      000322 DD 36 F7 58      [19]  746 	ld	-9 (ix), #0x58
+      000326 AF               [ 4]  747 	xor	a, a
+      000327 DD 77 F8         [19]  748 	ld	-8 (ix), a
+                                    749 ;source/main.c:179: player.animation = &ninja_girl;
+      00032A DD 36 F9r00      [19]  750 	ld	-7 (ix), #<(_ninja_girl)
+      00032E DD 36 FAs00      [19]  751 	ld	-6 (ix), #>(_ninja_girl)
+                                    752 ;source/main.c:180: player.currentAnimationFrameIndex = 0;
+      000332 DD 36 FE 00      [19]  753 	ld	-2 (ix), #0x00
+                                    754 ;source/main.c:181: player.currentAnimationFrame = ninja_girl.frames[player.currentAnimationFrameIndex];
+      000336 2Ar00r00         [16]  755 	ld	hl, (#_ninja_girl + 0)
+      000339 4E               [ 7]  756 	ld	c, (hl)
+      00033A 23               [ 6]  757 	inc	hl
+      00033B 46               [ 7]  758 	ld	b, (hl)
+      00033C DD 71 FC         [19]  759 	ld	-4 (ix), c
+      00033F DD 70 FD         [19]  760 	ld	-3 (ix), b
+                                    761 ;source/main.c:182: player.animationTime = 0;
+      000342 DD 36 FF 00      [19]  762 	ld	-1 (ix), #0x00
+                                    763 ;source/main.c:183: player.animationVdpTileIndex = 0;
+      000346 DD 36 FB 00      [19]  764 	ld	-5 (ix), #0x00
+                                    765 ;source/main.c:187: SMS_displayOn();
+      00034A 21 40 01         [10]  766 	ld	hl, #0x0140
+      00034D CDr00r00         [17]  767 	call	_SMS_VDPturnOnFeature
+                                    768 ;source/main.c:188: SMS_waitForVBlank ();
+      000350 CDr00r00         [17]  769 	call	_SMS_waitForVBlank
+      000353                        770 00104$:
+                                    771 ;source/main.c:193: SMS_setBackdropColor(6);
+      000353 2E 06            [ 7]  772 	ld	l, #0x06
+                                    773 ;	spillPairReg hl
+                                    774 ;	spillPairReg hl
+      000355 CDr00r00         [17]  775 	call	_SMS_setBackdropColor
+                                    776 ;source/main.c:196: SMS_initSprites();
+      000358 CDr00r00         [17]  777 	call	_SMS_initSprites
+                                    778 ;source/main.c:197: SMS_setBackdropColor(7);
+      00035B 2E 07            [ 7]  779 	ld	l, #0x07
+                                    780 ;	spillPairReg hl
+                                    781 ;	spillPairReg hl
+      00035D CDr00r00         [17]  782 	call	_SMS_setBackdropColor
+                                    783 ;source/main.c:199: Player_Update(&player);
+      000360 21 00 00         [10]  784 	ld	hl, #0
+      000363 39               [11]  785 	add	hl, sp
+      000364 CDr6Dr00         [17]  786 	call	_Player_Update
+                                    787 ;source/main.c:200: SMS_setBackdropColor(8);
+      000367 2E 08            [ 7]  788 	ld	l, #0x08
+                                    789 ;	spillPairReg hl
+                                    790 ;	spillPairReg hl
+      000369 CDr00r00         [17]  791 	call	_SMS_setBackdropColor
+                                    792 ;source/main.c:202: Scroll_Update(&player);
+      00036C 21 00 00         [10]  793 	ld	hl, #0
+      00036F 39               [11]  794 	add	hl, sp
+      000370 CDr1Dr02         [17]  795 	call	_Scroll_Update
+                                    796 ;source/main.c:203: SMS_setBackdropColor(9);
+      000373 2E 09            [ 7]  797 	ld	l, #0x09
+                                    798 ;	spillPairReg hl
+                                    799 ;	spillPairReg hl
+      000375 CDr00r00         [17]  800 	call	_SMS_setBackdropColor
+                                    801 ;source/main.c:208: Animation_DrawFrame(player.currentAnimationFrame, player.x - ScrollManager_horizontalScroll, player.y);
+      000378 E1               [10]  802 	pop	hl
+      000379 C1               [10]  803 	pop	bc
+      00037A C5               [11]  804 	push	bc
+      00037B EB               [ 4]  805 	ex	de,hl
+      00037C D5               [11]  806 	push	de
+      00037D 21r10r00         [10]  807 	ld	hl, #_ScrollManager_horizontalScroll
+      000380 7B               [ 4]  808 	ld	a, e
+      000381 96               [ 7]  809 	sub	a, (hl)
+      000382 23               [ 6]  810 	inc	hl
+      000383 5F               [ 4]  811 	ld	e, a
+      000384 7A               [ 4]  812 	ld	a, d
+      000385 9E               [ 7]  813 	sbc	a, (hl)
+      000386 57               [ 4]  814 	ld	d, a
+      000387 DD 6E FC         [19]  815 	ld	l, -4 (ix)
+                                    816 ;	spillPairReg hl
+                                    817 ;	spillPairReg hl
+      00038A DD 66 FD         [19]  818 	ld	h, -3 (ix)
+                                    819 ;	spillPairReg hl
+                                    820 ;	spillPairReg hl
+      00038D C5               [11]  821 	push	bc
+      00038E CDr00r00         [17]  822 	call	_Animation_DrawFrame
+                                    823 ;source/main.c:209: SMS_setBackdropColor(0);
+      000391 2E 00            [ 7]  824 	ld	l, #0x00
+                                    825 ;	spillPairReg hl
+                                    826 ;	spillPairReg hl
+      000393 CDr00r00         [17]  827 	call	_SMS_setBackdropColor
+                                    828 ;source/main.c:214: SMS_waitForVBlank ();
+      000396 CDr00r00         [17]  829 	call	_SMS_waitForVBlank
+                                    830 ;source/main.c:215: SMS_setBackdropColor(11);
+      000399 2E 0B            [ 7]  831 	ld	l, #0x0b
+                                    832 ;	spillPairReg hl
+                                    833 ;	spillPairReg hl
+      00039B CDr00r00         [17]  834 	call	_SMS_setBackdropColor
+                                    835 ;source/main.c:216: SMS_setBGScrollX(Scroll_vdpHorizontalScroll);
+      00039E 3Ar12r00         [13]  836 	ld	a, (_Scroll_vdpHorizontalScroll+0)
+      0003A1 6F               [ 4]  837 	ld	l, a
+                                    838 ;	spillPairReg hl
+                                    839 ;	spillPairReg hl
+      0003A2 CDr00r00         [17]  840 	call	_SMS_setBGScrollX
+                                    841 ;source/main.c:218: if (Scroll_updateMapColumn)
+      0003A5 3Ar13r00         [13]  842 	ld	a, (_Scroll_updateMapColumn+0)
+      0003A8 B7               [ 4]  843 	or	a, a
+      0003A9 28 26            [12]  844 	jr	Z, 00102$
+                                    845 ;source/main.c:220: Scroll_updateMapColumn = FALSE;
+      0003AB 21r13r00         [10]  846 	ld	hl, #_Scroll_updateMapColumn
+      0003AE 36 00            [10]  847 	ld	(hl), #0x00
+                                    848 ;source/main.c:221: unsigned char scrollMapColumn = Scroll_vdpHorizontalScroll >> 3;
+      0003B0 3Ar12r00         [13]  849 	ld	a, (#_Scroll_vdpHorizontalScroll + 0)
+      0003B3 4F               [ 4]  850 	ld	c, a
+      0003B4 CB 39            [ 8]  851 	srl	c
+      0003B6 CB 39            [ 8]  852 	srl	c
+      0003B8 CB 39            [ 8]  853 	srl	c
+                                    854 ;source/main.c:222: SMS_loadTileMapColumn((32 - scrollMapColumn) & 31, 0, Scroll_column, 24);
+      0003BA 3E 20            [ 7]  855 	ld	a, #0x20
+      0003BC 91               [ 4]  856 	sub	a, c
+      0003BD E6 1F            [ 7]  857 	and	a, #0x1f
+      0003BF 26 00            [ 7]  858 	ld	h, #0x00
+                                    859 ;	spillPairReg hl
+                                    860 ;	spillPairReg hl
+      0003C1 6F               [ 4]  861 	ld	l, a
+      0003C2 29               [11]  862 	add	hl, hl
+      0003C3 7C               [ 4]  863 	ld	a, h
+      0003C4 F6 78            [ 7]  864 	or	a, #0x78
+      0003C6 67               [ 4]  865 	ld	h, a
+                                    866 ;	spillPairReg hl
+                                    867 ;	spillPairReg hl
+      0003C7 11 18 00         [10]  868 	ld	de, #0x0018
+      0003CA D5               [11]  869 	push	de
+      0003CB 11r00r00         [10]  870 	ld	de, #_Scroll_column
+      0003CE CDr00r00         [17]  871 	call	_SMS_loadTileMapColumnatAddr
+      0003D1                        872 00102$:
+                                    873 ;source/main.c:225: SMS_copySpritestoSAT();
+      0003D1 CDr00r00         [17]  874 	call	_SMS_copySpritestoSAT
+                                    875 ;source/main.c:226: SMS_setBackdropColor(0);
+      0003D4 2E 00            [ 7]  876 	ld	l, #0x00
+                                    877 ;	spillPairReg hl
+                                    878 ;	spillPairReg hl
+      0003D6 CDr00r00         [17]  879 	call	_SMS_setBackdropColor
+                                    880 ;source/main.c:228: }
+      0003D9 C3r53r03         [10]  881 	jp	00104$
+                                    882 	.area _CODE
+      0003DC                        883 __str_0:
+      0003DC 70 77                  884 	.ascii "pw"
+      0003DE 00                     885 	.db 0x00
+      0003DF                        886 __str_1:
+      0003DF 62 61 73 69 63 73 6D   887 	.ascii "basicsmsproject"
+             73 70 72 6F 6A 65 63
+             74
+      0003EE 00                     888 	.db 0x00
+      0003EF                        889 __str_2:
+      0003EF 41 20 62 61 73 69 63   890 	.ascii "A basic SMS example project with devkitSMS"
+             20 53 4D 53 20 65 78
+             61 6D 70 6C 65 20 70
+             72 6F 6A 65 63 74 20
+             77 69 74 68 20 64 65
+             76 6B 69 74 53 4D 53
+      000419 00                     891 	.db 0x00
+                                    892 	.area _INITIALIZER
+      000000                        893 __xinit__globalPalette:
+      000000 00                     894 	.db #0x00	; 0
+      000001 01                     895 	.db #0x01	; 1
+      000002 10                     896 	.db #0x10	; 16
+      000003 15                     897 	.db #0x15	; 21
+      000004 06                     898 	.db #0x06	; 6
+      000005 04                     899 	.db #0x04	; 4
+      000006 17                     900 	.db #0x17	; 23
+      000007 15                     901 	.db #0x15	; 21
+      000008 39                     902 	.db #0x39	; 57	'9'
+      000009 0B                     903 	.db #0x0b	; 11
+      00000A 2A                     904 	.db #0x2a	; 42
+      00000B 09                     905 	.db #0x09	; 9
+      00000C 2B                     906 	.db #0x2b	; 43
+      00000D 3D                     907 	.db #0x3d	; 61
+      00000E 1F                     908 	.db #0x1f	; 31
+      00000F 3F                     909 	.db #0x3f	; 63
+      000010                        910 __xinit__ScrollManager_horizontalScroll:
+      000010 00 00                  911 	.dw #0x0000
+      000012                        912 __xinit__Scroll_vdpHorizontalScroll:
+      000012 00                     913 	.db #0x00	; 0
+      000013                        914 __xinit__Scroll_updateMapColumn:
+      000013 00                     915 	.db #0x00	; 0
+      000014                        916 __xinit__Scroll_speed:
+      000014 00                     917 	.db #0x00	; 0
+                                    918 	.area _CABS (ABS)
+      007FF0                        919 	.org 0x7FF0
+      007FF0                        920 ___SMS__SEGA_signature:
+      007FF0 54                     921 	.db #0x54	; 84	'T'
+      007FF1 4D                     922 	.db #0x4d	; 77	'M'
+      007FF2 52                     923 	.db #0x52	; 82	'R'
+      007FF3 20                     924 	.db #0x20	; 32
+      007FF4 53                     925 	.db #0x53	; 83	'S'
+      007FF5 45                     926 	.db #0x45	; 69	'E'
+      007FF6 47                     927 	.db #0x47	; 71	'G'
+      007FF7 41                     928 	.db #0x41	; 65	'A'
+      007FF8 FF                     929 	.db #0xff	; 255
+      007FF9 FF                     930 	.db #0xff	; 255
+      007FFA FF                     931 	.db #0xff	; 255
+      007FFB FF                     932 	.db #0xff	; 255
+      007FFC 99                     933 	.db #0x99	; 153
+      007FFD 99                     934 	.db #0x99	; 153
+      007FFE 00                     935 	.db #0x00	; 0
+      007FFF 4C                     936 	.db #0x4c	; 76	'L'
+      007FDD                        937 	.org 0x7FDD
+      007FDD                        938 ___SMS__SDSC_author:
+      007FDD 70 77                  939 	.ascii "pw"
+      007FDF 00                     940 	.db 0x00
+      007FCD                        941 	.org 0x7FCD
+      007FCD                        942 ___SMS__SDSC_name:
+      007FCD 62 61 73 69 63 73 6D   943 	.ascii "basicsmsproject"
+             73 70 72 6F 6A 65 63
+             74
+      007FDC 00                     944 	.db 0x00
+      007FA2                        945 	.org 0x7FA2
+      007FA2                        946 ___SMS__SDSC_descr:
+      007FA2 41 20 62 61 73 69 63   947 	.ascii "A basic SMS example project with devkitSMS"
+             20 53 4D 53 20 65 78
+             61 6D 70 6C 65 20 70
+             72 6F 6A 65 63 74 20
+             77 69 74 68 20 64 65
+             76 6B 69 74 53 4D 53
+      007FCC 00                     948 	.db 0x00
+      007FE0                        949 	.org 0x7FE0
+      007FE0                        950 ___SMS__SDSC_signature:
+      007FE0 53                     951 	.db #0x53	; 83	'S'
+      007FE1 44                     952 	.db #0x44	; 68	'D'
+      007FE2 53                     953 	.db #0x53	; 83	'S'
+      007FE3 43                     954 	.db #0x43	; 67	'C'
+      007FE4 01                     955 	.db #0x01	; 1
+      007FE5 00                     956 	.db #0x00	; 0
+      007FE6 00                     957 	.db #0x00	; 0
+      007FE7 00                     958 	.db #0x00	; 0
+      007FE8 00                     959 	.db #0x00	; 0
+      007FE9 00                     960 	.db #0x00	; 0
+      007FEA DD                     961 	.db #0xdd	; 221
+      007FEB 7F                     962 	.db #0x7f	; 127
+      007FEC CD                     963 	.db #0xcd	; 205
+      007FED 7F                     964 	.db #0x7f	; 127
+      007FEE A2                     965 	.db #0xa2	; 162
+      007FEF 7F                     966 	.db #0x7f	; 127

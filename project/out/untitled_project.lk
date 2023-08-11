@@ -1,0 +1,15 @@
+-mjwx
+-i out/untitled_project.ihx
+-b _CODE = 0x0200
+-b _DATA = 0xc000
+-k /usr/local/bin/../share/sdcc/lib/z80
+-k /usr/local/share/sdcc/lib/z80
+-l ../../../devkitSMS-master/SMSlib/SMSlib.lib
+-l z80
+../../../devkitSMS-master/crt0/crt0_sms.rel
+out/source/background.rel
+out/source/background_tileset.rel
+out/source/main.rel
+out/source/ninja_girl.rel
+
+-e
