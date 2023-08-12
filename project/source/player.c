@@ -1,23 +1,25 @@
 #include "player.h"
 #include "SMSlib.h"
-#include "ninja_girl.h"
-
-GameObject player;
+#include "animation_helpers.h"
+#include "object_manager.h"
+#include "scroll_manager.h"
 
 void Player_Update(GameObject* player);
+void Player_Draw(GameObject* player);
 
-GameObject* Player_Create(const Animation* animation)
+GameObject* Player_Create(const SpawnInfo* spawnInfo)
 {
-	player.x = 122;
-	player.y = 88;
-	player.animation = animation;
-	player.currentAnimationFrameIndex = 0;
-	player.currentAnimationFrame = animation->frames[player.currentAnimationFrameIndex];
-	player.animationTime = 0;
-	player.animationVdpTileIndex = 0;	
-	player.Update = Player_Update;
+	ObjectManager_player.x = spawnInfo->startx;
+	ObjectManager_player.y = spawnInfo->starty;
+	ObjectManager_player.animation = spawnInfo->animation;
+	ObjectManager_player.animationVdpTileIndex = *spawnInfo->animationVdpTileIndexPtr;
+	ObjectManager_player.currentAnimationFrameIndex = 0;
+	ObjectManager_player.currentAnimationFrame = ObjectManager_player.animation->frames[ObjectManager_player.currentAnimationFrameIndex];
+	ObjectManager_player.animationTime = 0;
+	ObjectManager_player.Update = Player_Update;
+	ObjectManager_player.Draw = Player_Draw;
 
-	return &player;
+	return &ObjectManager_player;
 }
 
 void Player_Update(GameObject* player)
@@ -54,4 +56,11 @@ void Player_Update(GameObject* player)
 	player->animationTime++;
 }
 
+void Player_Draw(GameObject* player)
+{
+	Animation_DrawFrame(player->currentAnimationFrame, 
+						player->animationVdpTileIndex,
+						player->x - ScrollManager_horizontalScroll, 
+						player->y);
+}
 

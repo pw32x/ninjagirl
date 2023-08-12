@@ -8,57 +8,111 @@
     <Filter Include="SMSLib">
       <UniqueIdentifier>{c9ef1464-5305-434c-8b8a-e75277b516a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client">
+      <UniqueIdentifier>{7e514f1a-1922-4cf2-86c8-9b476208e207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{f15ba3f2-c6db-4320-81bf-15744409a7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\resources">
+      <UniqueIdentifier>{5f549717-d11c-474e-a27d-c397315ed6e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\objects">
+      <UniqueIdentifier>{d4a49bec-de3b-484e-8084-e2c58e3cd206}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\ninja_girl.c">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\animation_helpers.c">
+      <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\source\background.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\client\resources</Filter>
     </ClCompile>
     <ClCompile Include="..\source\background_tileset.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\client\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\global_palette.c">
+      <Filter>Source Files\client\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\level_manager.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\level001.c">
+      <Filter>Source Files\client\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\main.c">
+      <Filter>Source Files\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\ninja_girl.c">
+      <Filter>Source Files\client\resources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\object_manager.c">
+      <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\source\player.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\client\objects</Filter>
     </ClCompile>
     <ClCompile Include="..\source\scroll_manager.c">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vdptile_manager.c">
+      <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\animationtypes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\ninja_girl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\background.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\maptypes.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\background_tileset.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
       <Filter>SMSLib</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\objecttypes.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\source\animation_types.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\types.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="..\source\animation_helpers.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\background.h">
+      <Filter>Source Files\client\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\background_tileset.h">
+      <Filter>Source Files\client\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\global_palette.h">
+      <Filter>Source Files\client\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\level_manager.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\level_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\level001.h">
+      <Filter>Source Files\client\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\map_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\ninja_girl.h">
+      <Filter>Source Files\client\resources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\object_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\object_manager.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\player.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\client\objects</Filter>
     </ClInclude>
     <ClInclude Include="..\source\scroll_manager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\spawn_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vdptile_manager.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

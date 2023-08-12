@@ -2,7 +2,7 @@
 #define OBJECT_TYPES_INCLUDE_H
 
 #include "types.h"
-#include "animationtypes.h"
+#include "animation_types.h"
 
 typedef struct game_object
 {
@@ -14,6 +14,7 @@ typedef struct game_object
 	u8 currentAnimationFrameIndex;
 	u8 animationTime;
 	void (*Update)(struct game_object* gameObject);
+	void (*Draw)(struct game_object* gameObject);
 } GameObject;
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);

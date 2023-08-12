@@ -1,80 +1,36 @@
 #include <stdio.h>
 #include "SMSlib.h"
 #include "types.h"
-#include "objecttypes.h"
-#include "ninja_girl.h"
-#include "player.h"
+#include "level_manager.h"
+#include "object_manager.h"
 #include "scroll_manager.h"
-#include "background.h"
-#include "background_tileset.h"
 
-u8 globalPalette[16] = 
-{
- 0x00 , 0x01 , 0x10 , 0x15 , 0x06 , 0x04 , 0x17 , 0x15 , 0x39 , 0x0B , 0x2A , 0x09 , 0x2B , 0x3D , 0x1F , 0x3F
-};
-
-void Animation_DrawFrame(const AnimationFrame* frame, s16 x, s16 y)
-{
-	char loop = frame->numSprites;
-	const AnimationSprite* currentSprite = frame->sprites;
-
-	while (loop--)
-	{
-		SMS_addSprite(x + currentSprite->xOffset, y + currentSprite->yOffset, currentSprite->tileIndex);
-		currentSprite++;
-	}
-
-}
-
-
-
-void loadResources(void)
-{
-	SMS_loadBGPalette(globalPalette);
-	SMS_loadSpritePalette(globalPalette);
-  
-	// load tiles from Animation
-	SMS_loadTiles(ninja_girl.tileData, 256, ninja_girl.totalTileCount * 32);
-
-	// load tiles for background
-	SMS_loadTiles(background_tileset.tiles, 0, background_tileset.numTiles * 32);
-}
+// levels
+#include "level001.h"
 
 void main(void)
 {
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
 
-	loadResources();
-  
-	// init systems
-	ScrollManager_Init(&background_map, &background_tileset);
-	GameObject* player = Player_Create(&ninja_girl);
+	LevelManager_Init(&level001);
 
 	/* Turn on the display */
 	SMS_displayOn();
 	SMS_waitForVBlank ();
 
-	// infinite loop
+	// game loop
 	for(;;) 
 	{ 
-		// Game Loop
-		SMS_initSprites();
-	
-		// update systess
-		player->Update(player);		
-		ScrollManager_Update(player);
+		// update systems
+		ObjectManager_Update();
+		ScrollManager_Update(&ObjectManager_player);
 
-		// draw
-		Animation_DrawFrame(player->currentAnimationFrame, 
-							player->x - ScrollManager_horizontalScroll, 
-							player->y);
+		ObjectManager_Draw();
 
 		// VBLANK
 		SMS_waitForVBlank ();
-
 		ScrollManager_UpdateVDP();
-
 		SMS_copySpritestoSAT();
 	}
 }

@@ -24,6 +24,10 @@ Todo
 		
 		update makefile
 
+	create assert 
+		black screen?
+		print message
+			file/line
 
 
 Idea Backlog 

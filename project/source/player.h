@@ -1,8 +1,9 @@
 #ifndef PLAYER_INCLUDE_H
 #define PLAYER_INCLUDE_H
 
-#include "objecttypes.h"
+#include "object_types.h"
+#include "spawn_types.h"
 
-GameObject* Player_Create(const Animation* animation);
+GameObject* Player_Create(const SpawnInfo* spawnInfo);
 
 #endif

@@ -2,10 +2,10 @@
 #define SCROLL_MANAGER_INCLUDE_H
 
 #include "types.h"
-#include "maptypes.h"
-#include "objecttypes.h"
+#include "map_types.h"
+#include "object_types.h"
 
-void ScrollManager_Init(const Map* background, const Tileset* backgroundTileset);
+void ScrollManager_Init(const Map* backgroundMap);
 void ScrollManager_Update(GameObject* gameObject);
 void ScrollManager_UpdateVDP(void);
 

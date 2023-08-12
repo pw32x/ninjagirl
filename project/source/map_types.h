@@ -7,8 +7,8 @@ typedef struct
 {
     const u8* const tiles;
     const u16* const metatile_lut;
-    const u8 numTiles;
-    const u8 numMetatiles;
+    const u16 numTiles;
+    const u16 numMetatiles;
 } Tileset;
 
 typedef struct

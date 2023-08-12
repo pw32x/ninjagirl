@@ -1,6 +1,6 @@
 #include "scroll_manager.h"
 #include "SMSLib.h"
-#include "maptypes.h"
+#include "map_types.h"
 
 u16 ScrollManager_horizontalScroll = 0;
 u8 ScrollManager_vdpHorizontalScroll = 0;
@@ -18,10 +18,10 @@ const Tileset* ScrollManager_backgroundTileset;
 
 void ScrollManager_InitTilemap(void);
 
-void ScrollManager_Init(const Map* backgroundMap, const Tileset* backgroundTileset)
+void ScrollManager_Init(const Map* backgroundMap)
 {
 	ScrollManager_backgroundMap = backgroundMap;
-	ScrollManager_backgroundTileset = backgroundTileset;
+	ScrollManager_backgroundTileset = backgroundMap->tileset;
 	ScrollManager_updateMap = FALSE;
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
 	ScrollManager_InitTilemap();
