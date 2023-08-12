@@ -16,13 +16,16 @@
     <ClCompile Include="..\source\ninja_girl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\test_background.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\background.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\background_tileset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\player.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\scroll_manager.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -31,9 +34,6 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\ninja_girl.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\test_background.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\background.h">
@@ -47,6 +47,18 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
       <Filter>SMSLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\objecttypes.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\types.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\player.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\scroll_manager.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

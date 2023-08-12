@@ -1,33 +1,34 @@
 #ifndef ANIMATION_TYPES_INCLUDE_H
 #define ANIMATION_TYPES_INCLUDE_H
 
+#include "types.h"
 
 typedef struct
 {
-    char xOffset;
-    char yOffset;
-    unsigned char tileIndex;
+    s8 xOffset;
+    s8 yOffset;
+    u8 tileIndex;
 } AnimationSprite;
 
 typedef struct
 {
     const AnimationSprite* const sprites;
-    unsigned char numSprites;
-    unsigned char frameTime;
+    u8 numSprites;
+    u8 frameTime;
 } AnimationFrame;
 
 typedef struct
 {
     const AnimationFrame** const frames;
-    const unsigned char* const tileData;
+    const u8* const tileData;
 
-    unsigned char numFrames;
-    unsigned char pixelWidth;
-    unsigned char pixelHeight;
-    unsigned char maxTilesPerFrame;
+    u8 numFrames;
+    u8 pixelWidth;
+    u8 pixelHeight;
+    u8 maxTilesPerFrame;
 
-    unsigned char totalTileCount;
-	unsigned short totalAnimationTime;
+    u8 totalTileCount;
+	u16 totalAnimationTime;
 
 } Animation;
 

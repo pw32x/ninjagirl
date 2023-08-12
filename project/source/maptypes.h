@@ -1,20 +1,22 @@
 #ifndef MAP_TYPES_INCLUDE_H
 #define MAP_TYPES_INCLUDE_H
 
+#include "types.h"
+
 typedef struct
 {
-    const unsigned char* const tiles;
-    const unsigned short* const metatile_lut;
-    const char numTiles;
-    const char numMetatiles;
+    const u8* const tiles;
+    const u16* const metatile_lut;
+    const u8 numTiles;
+    const u8 numMetatiles;
 } Tileset;
 
 typedef struct
 {
-    const unsigned short* const metatileMap;
+    const u16* const metatileMap;
     const Tileset* const tileset;
-    unsigned char mapWidth;
-    unsigned char mapHeight;
+    u16 mapWidth;
+    u16 mapHeight;
 } Map;
 
 #endif

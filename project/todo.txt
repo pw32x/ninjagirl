@@ -1,11 +1,28 @@
 Todo
 
+	DONE create types.h file
+
+		convert to use types.h file
+		
+		is int 32 bits or 16?
+
+	DONE create objecttypes.h file
+	
+		GameObject
+
 	add player standing state
 	add player moving state
 	
 	player collisions
 	physics
 	
+	clipping
+	
+	split source files into folders
+		game
+		engine
+		
+		update makefile
 
 
 
@@ -15,6 +32,8 @@ Idea Backlog
 	
 	update player tiles
 
+	if press attack button near enough to an enemy, do a slash attack
+		
 	
 	add player shooting state
 		
@@ -22,8 +41,11 @@ Idea Backlog
 	player shooting animation
 		contra run + shoot style?
 		
-		
+	fire up/diagonal/down
+		round projectiles means fewer tiles taken, but not as cool
+		as shuriken		
 	
+	queue of vdp tile updates
 		
 	better jump frame?
 	better run animation?
@@ -34,6 +56,8 @@ Idea Backlog
 	
 	object manager
 		player + projectiles + enemies + interactables
+		
+		small arrays to handle different types. no generic system.
 		
 	how to use banked roms?
 		

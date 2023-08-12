@@ -126,7 +126,8 @@
     <ClCompile Include="..\source\background_tileset.c" />
     <ClCompile Include="..\source\main.c" />
     <ClCompile Include="..\source\ninja_girl.c" />
-    <ClCompile Include="..\source\test_background.c" />
+    <ClCompile Include="..\source\player.c" />
+    <ClCompile Include="..\source\scroll_manager.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
@@ -135,7 +136,10 @@
     <ClInclude Include="..\source\background_tileset.h" />
     <ClInclude Include="..\source\maptypes.h" />
     <ClInclude Include="..\source\ninja_girl.h" />
-    <ClInclude Include="..\source\test_background.h" />
+    <ClInclude Include="..\source\objecttypes.h" />
+    <ClInclude Include="..\source\player.h" />
+    <ClInclude Include="..\source\scroll_manager.h" />
+    <ClInclude Include="..\source\types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
