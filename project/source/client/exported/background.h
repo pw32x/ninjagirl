@@ -2,7 +2,7 @@
 #ifndef BACKGROUND_MAP_INCLUDE_H
 #define BACKGROUND_MAP_INCLUDE_H
 
-#include "map_types.h"
+#include "engine/map_types.h"
 
 extern const Map const background_map;
 

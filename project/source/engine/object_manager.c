@@ -1,6 +1,5 @@
 #include "object_manager.h"
 #include "SMSlib.h"
-#include "player.h"
 
 GameObject ObjectManager_player;
 

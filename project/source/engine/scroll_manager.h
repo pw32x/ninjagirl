@@ -1,9 +1,9 @@
 #ifndef SCROLL_MANAGER_INCLUDE_H
 #define SCROLL_MANAGER_INCLUDE_H
 
-#include "types.h"
-#include "map_types.h"
-#include "object_types.h"
+#include "engine/types.h"
+#include "engine/map_types.h"
+#include "engine/object_types.h"
 
 void ScrollManager_Init(const Map* backgroundMap);
 void ScrollManager_Update(GameObject* gameObject);

@@ -1,8 +1,8 @@
 #include "player.h"
 #include "SMSlib.h"
-#include "animation_helpers.h"
-#include "object_manager.h"
-#include "scroll_manager.h"
+#include "engine/animation_helpers.h"
+#include "engine/object_manager.h"
+#include "engine/scroll_manager.h"
 
 void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);

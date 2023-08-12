@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include "SMSlib.h"
-#include "types.h"
-#include "level_manager.h"
-#include "object_manager.h"
-#include "scroll_manager.h"
+#include "engine/types.h"
+#include "engine/level_manager.h"
+#include "engine/object_manager.h"
+#include "engine/scroll_manager.h"
 
 // levels
-#include "level001.h"
+#include "exported/level001.h"
 
 void main(void)
 {

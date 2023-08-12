@@ -14,17 +14,29 @@ CRT0=$(DEVKITSMS_BASE)/crt0/crt0_sms.rel
 SMSLIB_LIB=$(SMSLIB_BASE)/SMSlib.lib          # Use distributed lib
 #SMSLIB_LIB=$(SMSLIB_BASE)/src/SMSlib.lib      # Use locally compiled lib
 
-CFLAGS=-mz80 -I$(SMSLIB_INCDIR) --peep-file $(PEEP_RULES)
-LDFLAGS=-mz80 --no-std-crt0 --data-loc 0xC000
 
-FOLDER_TO_CREATE = $(SOURCE_OUTPUT_DIR)
+
+FOLDER_TO_CREATE  = $(SOURCE_OUTPUT_DIR) 
+FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/
+FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/exported 
+FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/generated 
+FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/objects
+FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/engine
 
 SOURCE_DIR = source
 OUTPUT_DIR = out
 
+CFLAGS=-mz80 -I$(SOURCE_DIR) -I$(SMSLIB_INCDIR) --peep-file $(PEEP_RULES)
+LDFLAGS=-mz80 --no-std-crt0 --data-loc 0xC000
+
 SOURCE_OUTPUT_DIR = $(OUTPUT_DIR)/$(SOURCE_DIR)
 
 CS    = $(wildcard $(SOURCE_DIR)/*.c)
+CS    += $(wildcard $(SOURCE_DIR)/client/*.c)
+CS    += $(wildcard $(SOURCE_DIR)/client/exported/*.c)
+CS    += $(wildcard $(SOURCE_DIR)/client/generated/*.c)
+CS    += $(wildcard $(SOURCE_DIR)/client/objects/*.c)
+CS    += $(wildcard $(SOURCE_DIR)/engine/*.c)
 
 OBJ = $(CS:.c=.rel)
 OBJS= $(addprefix $(OUTPUT_DIR)/, $(OBJ))
@@ -51,16 +63,14 @@ $(OUTPUT_DIR)/$(PROGNAME).sms: $(OUTPUT_DIR)/$(PROGNAME).ihx
 
 clean:
 
-	rm -f $(SOURCE_OUTPUT_DIR)/*.rel 	
-	rm -f $(SOURCE_OUTPUT_DIR)/*.asm 
-	rm -f $(SOURCE_OUTPUT_DIR)/*.sym 
-	rm -f $(SOURCE_OUTPUT_DIR)/*.lst 
-	rm -f $(OUTPUT_DIR)/*.ihx 
-	rm -f $(OUTPUT_DIR)/*.noi 
-	rm -f $(OUTPUT_DIR)/*.lk 
-	rm -f $(OUTPUT_DIR)/*.map 
-	rm -f $(OUTPUT_DIR)/*.sms 
-	rm -f $(OUTPUT_DIR)/*.gg
+	rm -f $(SOURCE_OUTPUT_DIR)/*.*
+	rm -f $(SOURCE_OUTPUT_DIR)/client/*.*
+	rm -f $(SOURCE_OUTPUT_DIR)/client/objects/*.*
+	rm -f $(SOURCE_OUTPUT_DIR)/client/exported/*.*
+	rm -f $(SOURCE_OUTPUT_DIR)/client/generated/*.*
+	rm -f $(SOURCE_OUTPUT_DIR)/engine/*.*
+	rm -f $(OUTPUT_DIR)/*.* 
+
 
 # When a linking error occurs, sdcc returns an error and make fails. However
 # a .ihx output file still gets created. This leads to make thinking that the .ihx

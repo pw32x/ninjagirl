@@ -1,7 +1,7 @@
 #ifndef MAP_TYPES_INCLUDE_H
 #define MAP_TYPES_INCLUDE_H
 
-#include "types.h"
+#include "engine/types.h"
 
 typedef struct
 {

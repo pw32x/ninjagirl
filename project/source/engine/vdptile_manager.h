@@ -1,9 +1,9 @@
 #ifndef VDP_TILE_MANAGER_INCLUDE_H
 #define VDP_TILE_MANAGER_INCLUDE_H
 
-#include "types.h"
-#include "animation_types.h"
-#include "map_types.h"
+#include "engine/types.h"
+#include "engine/animation_types.h"
+#include "engine/map_types.h"
 
 void VDPTileManager_Init(void);
 

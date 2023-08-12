@@ -32,6 +32,9 @@ Todo
 
 Idea Backlog 
 
+	try the SDCC Visual Studio project
+		maybe debugging works well?
+
 	add player jumping state
 	
 	update player tiles

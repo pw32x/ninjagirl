@@ -1,9 +1,9 @@
 #ifndef SPAWN_TYPES_INCLUDE_H
 #define SPAWN_TYPES_INCLUDE_H
 
-#include "types.h"
-#include "animation_types.h"
-#include "object_types.h"
+#include "engine/types.h"
+#include "engine/animation_types.h"
+#include "engine/object_types.h"
 
 typedef struct spawn_info
 {

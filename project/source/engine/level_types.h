@@ -1,8 +1,8 @@
 #ifndef LEVEL_TYPES_INCLUDE_H
 #define LEVEL_TYPES_INCLUDE_H
 
-#include "spawn_types.h"
-#include "map_types.h"
+#include "engine/spawn_types.h"
+#include "engine/map_types.h"
 
 typedef struct
 {

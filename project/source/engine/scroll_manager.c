@@ -1,6 +1,6 @@
 #include "scroll_manager.h"
 #include "SMSLib.h"
-#include "map_types.h"
+#include "engine/map_types.h"
 
 u16 ScrollManager_horizontalScroll = 0;
 u8 ScrollManager_vdpHorizontalScroll = 0;
