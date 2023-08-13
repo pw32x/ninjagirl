@@ -2,7 +2,7 @@
 #ifndef NINJA_GIRL_ANIMATION_INCLUDE_H
 #define NINJA_GIRL_ANIMATION_INCLUDE_H
 
-#include "engine/animation_types.h"
+#include "animation_types.h"
 
 extern const Animation ninja_girl;
 
