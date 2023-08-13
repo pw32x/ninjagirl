@@ -1,4 +1,1 @@
-cd ..
-powershell.exe /c C:\Windows\System32\wsl.exe make clean -f build/Makefile
-powershell.exe /c C:\Windows\System32\wsl.exe make -f build/Makefile
-
+..\tools\BuildMasterSystem\bin\Release\net5.0\BuildMasterSystem.exe config.bms rebuild

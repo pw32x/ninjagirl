@@ -125,5 +125,26 @@
     <None Include="..\build\Makefile">
       <Filter>build</Filter>
     </None>
+    <None Include="..\build\run.py">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\rebuild.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\build.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\clean.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\vs_clean.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\vs_rebuild.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\vs_build.bat">
+      <Filter>build</Filter>
+    </None>
   </ItemGroup>
 </Project>

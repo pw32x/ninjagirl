@@ -1,5 +1,23 @@
 Todo
 
+	run.py
+	
+		build
+			export animations
+			export maps
+		clean
+		rebuild
+
+	make the scroll manager logic a game object
+	
+	have a spawner object
+
+	place game objects on the map
+	
+	slopes?
+	
+	optimization pass
+
 	DONE create types.h file
 
 		convert to use types.h file
@@ -9,6 +27,8 @@ Todo
 	DONE create objecttypes.h file
 	
 		GameObject
+
+
 
 	add player standing state
 	add player moving state

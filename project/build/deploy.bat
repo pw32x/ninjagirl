@@ -1,1 +1,0 @@
-mega-usb.exe ..\out\untitled_project.sms
