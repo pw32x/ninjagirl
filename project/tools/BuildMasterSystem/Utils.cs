@@ -10,17 +10,17 @@ namespace BuildMasterSystem
 {
     class Utils
     {
-        public static void RunCommandLine(string powerShellCommand, string workingDirectory)
+        public static void RunCommandLine(string command, string commandParameters)
         {
             ProcessStartInfo psi = new ProcessStartInfo
             {
-                FileName = "powershell",
+                FileName = command,
+                Arguments = commandParameters,
                 RedirectStandardInput = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
                 CreateNoWindow = true,
-                WorkingDirectory = workingDirectory
             };
 
             Process process = new Process
@@ -34,7 +34,7 @@ namespace BuildMasterSystem
             {
                 if (sw.BaseStream.CanWrite)
                 {
-                    sw.WriteLine(powerShellCommand);
+                    sw.WriteLine("blah");
                 }
             }
 
@@ -43,14 +43,18 @@ namespace BuildMasterSystem
 
             process.WaitForExit();
 
-            Console.WriteLine("PowerShell Output:");
+            Console.WriteLine("Command Output:");
             Console.WriteLine(output);
 
             if (!string.IsNullOrEmpty(errors))
             {
-                Console.WriteLine("PowerShell Errors:");
+                Console.WriteLine("Command Errors:");
                 Console.WriteLine(errors);
             }
+
+            if (process.ExitCode != 0)
+                throw new Exception("RunCommandLine failed. Command: " + command + " parameters: " + commandParameters + "\n" + 
+                                    errors);
         }
     }
 }

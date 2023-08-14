@@ -4,7 +4,7 @@ namespace BuildMasterSystem
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             try
             {
@@ -14,7 +14,10 @@ namespace BuildMasterSystem
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                return -1;
             }
+
+            return 0;
         }
     }
 }

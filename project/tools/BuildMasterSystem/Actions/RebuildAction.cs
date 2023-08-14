@@ -8,12 +8,11 @@
 
         public void Perform(Config config)
         {
-            // This app calls powershell, which calls wsl. Yeah, not great probably.
-            string powerShellCommand = "powershell.exe /c C:\\Windows\\System32\\wsl.exe make clean -f build/Makefile ";
-            Utils.RunCommandLine(powerShellCommand, config.WorkingDirectory);
+            var cleanAction = new CleanAction();
+            cleanAction.Perform(config);
 
-            powerShellCommand = "powershell.exe /c C:\\Windows\\System32\\wsl.exe make -f build/Makefile ";
-            Utils.RunCommandLine(powerShellCommand, config.WorkingDirectory);
+            var buildAction = new BuildAction();
+            buildAction.Perform(config);
         }
     }
 }

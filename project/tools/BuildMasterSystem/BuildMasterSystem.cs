@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,6 +37,9 @@ namespace BuildMasterSystem
         {
             CollectActions();
             ProcessArgs(args);
+
+            Console.WriteLine("Setting working directory: " + Path.GetFullPath(m_config.WorkingDirectory));
+            Directory.SetCurrentDirectory(m_config.WorkingDirectory);
 
             Console.WriteLine("Running Action \"" + m_actionToPerform.Name + "\".");
 
