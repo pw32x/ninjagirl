@@ -1,7 +1,7 @@
 #ifndef ANIMATION_TYPES_INCLUDE_H
 #define ANIMATION_TYPES_INCLUDE_H
 
-#include "engine/types.h"
+#include "engine/base_types.h"
 
 typedef struct
 {

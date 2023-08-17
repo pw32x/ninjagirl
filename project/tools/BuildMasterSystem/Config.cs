@@ -32,7 +32,13 @@ namespace BuildMasterSystem
 
         Dictionary<string, string> m_settings = new Dictionary<string, string>();
 
-        public string GetSetting(string name) { return m_settings[name.ToLower()]; }
+        public string GetSetting(string name) 
+        { 
+            if (!m_settings.ContainsKey(name.ToLower()))
+                throw new Exception("There is no value in the config file for " + name);
+
+            return m_settings[name.ToLower()]; 
+        }
 
         public string ProjectName { get { return GetSetting("ProjectName"); }}
         public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); }}

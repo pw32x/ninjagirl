@@ -129,10 +129,14 @@
     <ClCompile Include="..\source\client\generated\background_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
+    <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\engine\animation_helpers.c" />
     <ClCompile Include="..\source\engine\level_manager.c" />
     <ClCompile Include="..\source\engine\object_manager.c" />
+    <ClCompile Include="..\source\engine\object_utils.c" />
     <ClCompile Include="..\source\engine\scroll_manager.c" />
+    <ClCompile Include="..\source\engine\scroll_utils.c" />
+    <ClCompile Include="..\source\engine\spawn_manager.c" />
     <ClCompile Include="..\source\engine\vdptile_manager.c" />
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +147,7 @@
     <ClInclude Include="..\source\client\exported\ninja_girl.h" />
     <ClInclude Include="..\source\client\generated\background_tileset.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
+    <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\engine\animation_helpers.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\level_manager.h" />
@@ -150,14 +155,18 @@
     <ClInclude Include="..\source\engine\map_types.h" />
     <ClInclude Include="..\source\engine\object_manager.h" />
     <ClInclude Include="..\source\engine\object_types.h" />
+    <ClInclude Include="..\source\engine\object_utils.h" />
     <ClInclude Include="..\source\engine\scroll_manager.h" />
+    <ClInclude Include="..\source\engine\scroll_utils.h" />
+    <ClInclude Include="..\source\engine\spawn_manager.h" />
     <ClInclude Include="..\source\engine\spawn_types.h" />
-    <ClInclude Include="..\source\engine\types.h" />
+    <ClInclude Include="..\source\engine\base_types.h" />
     <ClInclude Include="..\source\engine\vdptile_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\build.bat" />
     <None Include="..\build\clean.bat" />
+    <None Include="..\build\config.bms" />
     <None Include="..\build\Makefile" />
     <None Include="..\build\rebuild.bat" />
     <None Include="..\build\run.py" />

@@ -43,7 +43,7 @@ namespace BuildMasterSystem
 
             process.WaitForExit();
 
-            Console.WriteLine("Command Output:");
+            //Console.WriteLine("Command Output:");
             Console.WriteLine(output);
 
             if (!string.IsNullOrEmpty(errors))

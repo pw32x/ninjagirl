@@ -7,19 +7,17 @@
 void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);
 
-GameObject* Player_Create(const SpawnInfo* spawnInfo)
+void Player_Create(const SpawnInfo* spawnInfo)
 {
-	ObjectManager_player.x = spawnInfo->startx;
-	ObjectManager_player.y = spawnInfo->starty;
-	ObjectManager_player.animation = spawnInfo->animation;
+	ObjectManager_player.x = spawnInfo->startX;
+	ObjectManager_player.y = spawnInfo->startY;
+	ObjectManager_player.animation = (const Animation*)spawnInfo->payload;
 	ObjectManager_player.animationVdpTileIndex = *spawnInfo->animationVdpTileIndexPtr;
 	ObjectManager_player.currentAnimationFrameIndex = 0;
 	ObjectManager_player.currentAnimationFrame = ObjectManager_player.animation->frames[ObjectManager_player.currentAnimationFrameIndex];
 	ObjectManager_player.animationTime = 0;
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
-
-	return &ObjectManager_player;
 }
 
 void Player_Update(GameObject* player)

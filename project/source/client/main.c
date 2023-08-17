@@ -1,6 +1,5 @@
-#include <stdio.h>
 #include "SMSlib.h"
-#include "engine/types.h"
+#include "engine/base_types.h"
 #include "engine/level_manager.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
@@ -22,9 +21,7 @@ void main(void)
 	// game loop
 	for(;;) 
 	{ 
-		// update systems
 		ObjectManager_Update();
-		ScrollManager_Update(&ObjectManager_player);
 
 		ObjectManager_Draw();
 

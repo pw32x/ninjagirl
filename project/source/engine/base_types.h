@@ -1,5 +1,5 @@
-#ifndef TYPES_INCLUDE_H
-#define TYPES_INCLUDE_H
+#ifndef BASE_TYPES_INCLUDE_H
+#define BASE_TYPES_INCLUDE_H
 
 typedef char s8;
 typedef unsigned char byte;
@@ -13,5 +13,7 @@ typedef unsigned int u32;
 
 #define TRUE 1
 #define FALSE 0
+
+#define NULL 0
 
 #endif

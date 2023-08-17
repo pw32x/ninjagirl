@@ -11,7 +11,6 @@ typedef struct
 	const u16 levelSpawnsCount;
 	const u8* backgroundPalette;
 	const u8* spritePalette;
-	const Map* backgroundMap;
 } Level;
 
 #endif

@@ -1,34 +1,14 @@
 Todo
-
-	run.py
 	
-		build
-			export animations
-			export maps
-		clean
-		rebuild
-
 	make the scroll manager logic a game object
 	
 	have a spawner object
 
+	tilesets should contain their paletes
+
 	place game objects on the map
 	
-	slopes?
-	
 	optimization pass
-
-	DONE create types.h file
-
-		convert to use types.h file
-		
-		is int 32 bits or 16?
-
-	DONE create objecttypes.h file
-	
-		GameObject
-
-
 
 	add player standing state
 	add player moving state
@@ -38,12 +18,9 @@ Todo
 	
 	clipping
 	
-	split source files into folders
-		game
-		engine
-		
-		update makefile
 
+	slopes?
+	
 	create assert 
 		black screen?
 		print message
@@ -51,6 +28,15 @@ Todo
 
 
 Idea Backlog 
+
+	spawn info has id of object type instead of pointer to create function
+		automatic generation of gameobject_id.h from scanning header files
+
+	BMS backup action? 
+		
+			copy backup locations	
+
+
 
 	try the SDCC Visual Studio project
 		maybe debugging works well?
@@ -123,4 +109,43 @@ Game Design Ideas
 	
 Completed
 
+	DONE split source files into folders
+		game
+		engine
+		
+		update makefile
+
+
+
+	BuildMasterSystem
+	
+		DONE copy to daily folder action
+
+	BuildMasterSystem
+	
+		gg2c
+		
+			DONE add message when there's nothing to be done
+			DONE check if the file should be exported
+			
+		BMS
+						
+			DONE don't show the powershell output text?
+			DONE show the steps?
+			DONE add parameters to config about how to call make
+
+	
+
+	DONE create types.h file
+
+		convert to use types.h file
+		
+		is int 32 bits or 16?
+
+	DONE create objecttypes.h file
+	
+		GameObject	
+		
+		
 	DONE Make a todo.txt
+		

@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/spawn_types.h"
 
-GameObject* Player_Create(const SpawnInfo* spawnInfo);
+void Player_Create(const SpawnInfo* spawnInfo);
 
 #endif

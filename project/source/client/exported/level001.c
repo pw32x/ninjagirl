@@ -9,6 +9,7 @@
 
 // game objects
 #include "client/objects/player.h"
+#include "client/objects/right_scroller.h"
 
 // resources
 #include "client/exported/global_palette.h"
@@ -23,17 +24,20 @@ void Level001_Init(void)
 	ninja_girl_spriteVdpLocation = VDPTileManager_LoadAnimationTiles(&ninja_girl);
 }
 
-const SpawnInfo level001_spawns[1] = 
+const SpawnInfo level001_spawns[] = 
 {
-	{ 122, 88, &ninja_girl, &ninja_girl_spriteVdpLocation, Player_Create }
+	//{ 0, 0, NULL, NULL, SpawnManager_Create },
+	{ 0, 0, (const void*)&background_map, (u8*)NULL, RightScroller_Create },
+	{ 122, 88, (const void*)&ninja_girl, &ninja_girl_spriteVdpLocation, Player_Create }
 };
+
+//u16 level001_spawnsCount = sizeof(level001_spawns) / sizeof(level001_spawns[0]);
 
 const Level level001 =
 {
 	Level001_Init,
 	level001_spawns,
-	1, // spawns count
+	2,
 	globalPalette,
-	globalPalette,
-	&background_map
+	globalPalette
 };

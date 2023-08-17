@@ -1,7 +1,7 @@
 #ifndef OBJECT_TYPES_INCLUDE_H
 #define OBJECT_TYPES_INCLUDE_H
 
-#include "engine/types.h"
+#include "engine/base_types.h"
 #include "engine/animation_types.h"
 
 typedef struct game_object

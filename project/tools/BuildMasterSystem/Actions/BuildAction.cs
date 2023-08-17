@@ -10,6 +10,9 @@
         {
             Steps.ExportGameData(config);
             Steps.BuildCode(config);
+            //Steps.RenameRom(config);
+            Steps.CopyRom(config);
+            Steps.CopyToDailyFolder(config);
         }
     }
 }

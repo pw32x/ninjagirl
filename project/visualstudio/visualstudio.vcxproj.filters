@@ -64,6 +64,18 @@
     <ClCompile Include="..\source\client\exported\ninja_girl.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\spawn_manager.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\scroll_utils.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\right_scroller.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_utils.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -93,7 +105,7 @@
     <ClInclude Include="..\source\engine\spawn_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\types.h">
+    <ClInclude Include="..\source\engine\base_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\vdptile_manager.h">
@@ -120,6 +132,18 @@
     <ClInclude Include="..\source\client\exported\ninja_girl.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\engine\spawn_manager.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\scroll_utils.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\right_scroller.h">
+      <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_utils.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">
@@ -144,6 +168,9 @@
       <Filter>build</Filter>
     </None>
     <None Include="..\build\vs_build.bat">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\build\config.bms">
       <Filter>build</Filter>
     </None>
   </ItemGroup>
