@@ -7,10 +7,9 @@
 typedef struct
 {
 	void (*InitLevel)(void);
-	const SpawnInfo* levelSpawns;
-	const u16 levelSpawnsCount;
 	const u8* backgroundPalette;
 	const u8* spritePalette;
+	const SpawnInfo* bootstrapSpawnInfo;
 } Level;
 
 #endif

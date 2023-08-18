@@ -14,12 +14,13 @@ void LevelManager_Init(const Level* level)
 	SMS_loadBGPalette(level->backgroundPalette);
 	SMS_loadSpritePalette(level->spritePalette);
 	
-	const SpawnInfo* spawnsRunner = level->levelSpawns;
-	u16 spawnsCount = level->levelSpawnsCount;
 
-	for (u16 loop = 0; loop < spawnsCount; loop++)
+	// spawn the first object. If it's a spawner it'll take 
+	// control of the rest of the object spawning.
+
+	if (level->bootstrapSpawnInfo != NULL)
 	{
-		spawnsRunner->Object_Create(spawnsRunner);
-		spawnsRunner++;
+		const SpawnInfo* spawnInfo = level->bootstrapSpawnInfo;
+		spawnInfo->Object_Create(spawnInfo);
 	}
 }

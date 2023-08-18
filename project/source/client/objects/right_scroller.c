@@ -25,7 +25,6 @@ void RightScroller_Create(const SpawnInfo* spawnInfo)
 
 void RightScroll_Update(GameObject* gameObject)
 {
-
 	if (gameObject->x > ScrollManager_horizontalScroll + 128)
 	{
 		ScrollManager_speedX = gameObject->x - (ScrollManager_horizontalScroll + 128);

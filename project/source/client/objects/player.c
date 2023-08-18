@@ -12,7 +12,7 @@ void Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.x = spawnInfo->startX;
 	ObjectManager_player.y = spawnInfo->startY;
 	ObjectManager_player.animation = (const Animation*)spawnInfo->payload;
-	ObjectManager_player.animationVdpTileIndex = *spawnInfo->animationVdpTileIndexPtr;
+	ObjectManager_player.animationVdpTileIndex = *((u8*)spawnInfo->additionalPayload);
 	ObjectManager_player.currentAnimationFrameIndex = 0;
 	ObjectManager_player.currentAnimationFrame = ObjectManager_player.animation->frames[ObjectManager_player.currentAnimationFrameIndex];
 	ObjectManager_player.animationTime = 0;

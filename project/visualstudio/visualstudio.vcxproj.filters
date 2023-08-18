@@ -76,6 +76,9 @@
     <ClCompile Include="..\source\engine\object_utils.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\objects\everything_spawner.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\object_utils.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\everything_spawner.h">
+      <Filter>Source Files\client\objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,22 @@
 Todo
 	
-	make the scroll manager logic a game object
+	DONE have a spawner object
 	
-	have a spawner object
+	create a spawn right object
 
 	tilesets should contain their paletes
+	
+	automated creation of header file with object_type_ids
+		header file with #defines of GAMEOBJECT_PLAYER_ID
+		array of create functions in ROM
+		"last checked" compares against time stamps of all cpp files with GAME_OBJECT_CREATE tag 
+			if older than at least one of the animations, rebuild.
+	
+	automated creation of header file with VDPtileLocations (and animations?)
+		array of VDPTileLocations in ram
+		array of animations in rom
+		header file with #defines PLAYER_ANIMATION_ID
+		"last hecked"
 
 	place game objects on the map
 	

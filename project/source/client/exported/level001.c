@@ -10,6 +10,7 @@
 // game objects
 #include "client/objects/player.h"
 #include "client/objects/right_scroller.h"
+#include "client/objects/everything_spawner.h"
 
 // resources
 #include "client/exported/global_palette.h"
@@ -26,18 +27,25 @@ void Level001_Init(void)
 
 const SpawnInfo level001_spawns[] = 
 {
-	//{ 0, 0, NULL, NULL, SpawnManager_Create },
-	{ 0, 0, (const void*)&background_map, (u8*)NULL, RightScroller_Create },
-	{ 122, 88, (const void*)&ninja_girl, &ninja_girl_spriteVdpLocation, Player_Create }
+	{ 0, 0, (const void*)&background_map, NULL, RightScroller_Create },
+	{ 122, 88, (const void*)&ninja_girl, (u32)&ninja_girl_spriteVdpLocation, Player_Create }
 };
 
 //u16 level001_spawnsCount = sizeof(level001_spawns) / sizeof(level001_spawns[0]);
 
+const SpawnInfo level001BootStrapSpawnInfo =
+{
+	0, 
+	0, 
+	level001_spawns, 
+	2, 
+	EverythingSpawner_Create
+};
+
 const Level level001 =
 {
 	Level001_Init,
-	level001_spawns,
-	2,
 	globalPalette,
-	globalPalette
+	globalPalette,
+	&level001BootStrapSpawnInfo,
 };

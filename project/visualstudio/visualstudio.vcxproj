@@ -128,6 +128,7 @@
     <ClCompile Include="..\source\client\exported\ninja_girl.c" />
     <ClCompile Include="..\source\client\generated\background_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
+    <ClCompile Include="..\source\client\objects\everything_spawner.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\engine\animation_helpers.c" />
@@ -146,6 +147,7 @@
     <ClInclude Include="..\source\client\exported\level001.h" />
     <ClInclude Include="..\source\client\exported\ninja_girl.h" />
     <ClInclude Include="..\source\client\generated\background_tileset.h" />
+    <ClInclude Include="..\source\client\objects\everything_spawner.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\engine\animation_helpers.h" />
