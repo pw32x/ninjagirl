@@ -1,12 +1,14 @@
 #include "level_manager.h"
 #include "SMSlib.h"
-#include "animation_helpers.h"
-#include "scroll_manager.h"
-#include "vdptile_manager.h"
+#include "engine/animation_helpers.h"
+#include "engine/object_manager.h"
+#include "engine/scroll_manager.h"
+#include "engine/vdptile_manager.h"
 
 void LevelManager_Init(const Level* level)
 {
 	// init systems
+	ObjectManager_Init();
 	VDPTileManager_Init();
 
 	level->InitLevel();

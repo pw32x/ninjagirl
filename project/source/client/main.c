@@ -6,13 +6,16 @@
 
 // levels
 #include "exported/level001.h"
+#include "exported/level002.h"
+
+#define LEVEL_TO_RUN level002
 
 void main(void)
 {
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
 
-	LevelManager_Init(&level001);
+	LevelManager_Init(&LEVEL_TO_RUN);
 
 	/* Turn on the display */
 	SMS_displayOn();

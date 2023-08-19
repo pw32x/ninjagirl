@@ -1,0 +1,7 @@
+#ifndef BASE_DEFINES_INCLUDE_H
+#define BASE_DEFINES_INCLUDE_H
+
+#define SCREEN_WIDTH	256
+#define SCREEN_HEIGHT	192
+
+#endif

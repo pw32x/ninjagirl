@@ -11,6 +11,7 @@ typedef unsigned short u16;
 typedef int s32;
 typedef unsigned int u32;
 
+#define BOOL u8
 #define TRUE 1
 #define FALSE 0
 

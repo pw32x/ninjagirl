@@ -18,6 +18,8 @@ Todo
 		header file with #defines PLAYER_ANIMATION_ID
 		"last hecked"
 
+	work in points
+
 	place game objects on the map
 	
 	optimization pass
