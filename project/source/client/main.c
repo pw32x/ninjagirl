@@ -8,6 +8,8 @@
 #include "exported/level001.h"
 #include "exported/level002.h"
 
+#include "client/exported/global_palette.h"
+
 #define LEVEL_TO_RUN level002
 
 void main(void)
@@ -24,11 +26,8 @@ void main(void)
 	// game loop
 	for(;;) 
 	{ 
-		SMS_setBackdropColor(9);
 		ObjectManager_Update();
-		SMS_setBackdropColor(10);
-		//ObjectManager_Draw();
-		SMS_setBackdropColor(11);
+		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
 		ScrollManager_UpdateVDP();

@@ -10,6 +10,8 @@ Todo
 	
 	improve buildcolumn performance
 		do a bit every frame
+		
+		I already know how many tiles I have to update
 	
 	destroying an object should just set its update and draw functions to appropriate doNothing()
 

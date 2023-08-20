@@ -14,6 +14,7 @@
 
 void DrawUtils_Draw(void);
 void DrawUtils_DrawClipped(void);
+void DrawUtils_DrawClippedSides(void);
 
 extern char DrawUtils_spriteCounter;
 extern const AnimationSprite* DrawUtils_currentSprite;

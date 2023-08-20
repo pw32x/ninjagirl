@@ -5,4 +5,5 @@
 
 extern u8 globalPalette[16];
 
+
 #endif

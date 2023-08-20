@@ -58,11 +58,9 @@ void Enemy_Draw(GameObject* object)
 					object->animationVdpTileIndex);
 
 	if (ObjectManager_objectLeft < SCREEN_LEFT || 
-		ObjectManager_objectTop < SCREEN_TOP ||
-		ObjectManager_objectRight > SCREEN_RIGHT ||
-		ObjectManager_objectBottom > SCREEN_BOTTOM)
+		ObjectManager_objectRight > SCREEN_RIGHT)
 	{
-		DrawUtils_DrawClipped();
+		DrawUtils_DrawClippedSides();
 	}
 	else
 	{

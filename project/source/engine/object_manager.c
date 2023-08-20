@@ -1,6 +1,7 @@
 #include "object_manager.h"
 #include <string.h>
 #include "SMSlib.h"
+#include "engine/base_defines.h"
 #include "engine/scroll_manager.h"
 #include "engine/spawn_manager.h"
 #include "engine/object_utils.h"
@@ -56,6 +57,8 @@ void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject)
 
 void ObjectManager_Update(void)
 {
+	SMS_setBackdropColor(COLOR_RED);
+
 	ObjectManager_player.Update(&ObjectManager_player);
 	ScrollManager_Update(&ObjectManager_player);
 	SpawnManager_Update();
@@ -71,9 +74,13 @@ void ObjectManager_Update(void)
 
 	ObjectManager_player.Draw(&ObjectManager_player);
 
+
+
 	while (counter--)
 	{
+		SMS_setBackdropColor(COLOR_ORANGE);
 		objectSlotRunner->Update(objectSlotRunner);
+		SMS_setBackdropColor(COLOR_YELLOW);
 		objectSlotRunner->Draw(objectSlotRunner);
 		objectSlotRunner++;
 	}
