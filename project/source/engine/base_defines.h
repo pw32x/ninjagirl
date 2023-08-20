@@ -4,4 +4,12 @@
 #define SCREEN_WIDTH	256
 #define SCREEN_HEIGHT	192
 
+#define SCREEN_LEFT		8
+#define SCREEN_RIGHT	SCREEN_WIDTH
+#define SCREEN_TOP		0
+#define SCREEN_BOTTOM	SCREEN_HEIGHT
+
+#define TILE_WIDTH		8
+#define TILE_HEIGHT		8
+
 #endif

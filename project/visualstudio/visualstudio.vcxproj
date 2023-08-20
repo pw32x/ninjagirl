@@ -137,6 +137,7 @@
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\streaming_spawner.c" />
     <ClCompile Include="..\source\engine\animation_helpers.c" />
+    <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\level_manager.c" />
     <ClCompile Include="..\source\engine\object_manager.c" />
     <ClCompile Include="..\source\engine\object_utils.c" />
@@ -163,6 +164,7 @@
     <ClInclude Include="..\source\engine\animation_helpers.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />
+    <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\level_manager.h" />
     <ClInclude Include="..\source\engine\level_types.h" />
     <ClInclude Include="..\source\engine\map_types.h" />

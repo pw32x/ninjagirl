@@ -1,8 +1,11 @@
 #include "enemy.h"
 #include "SMSlib.h"
-#include "engine/animation_helpers.h"
+#include "engine/base_defines.h"
+#include "engine/draw_utils.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
+#include "engine/object_utils.h"
+
 
 void Enemy_Update(GameObject* object);
 void Enemy_Draw(GameObject* object);
@@ -26,25 +29,44 @@ void Enemy_Create(const SpawnInfo* spawnInfo)
 
 void Enemy_Update(GameObject* object)
 {
-	if (object->animationTime == object->currentAnimationFrame->frameTime)
-	{
-		object->currentAnimationFrameIndex++;
+	ObjectUtils_UpdateAnimation(object);
 
-		if (object->currentAnimationFrameIndex == object->animation->numFrames)
-			object->currentAnimationFrameIndex = 0;
+	ObjectManagerUtils_updateObjectScreenRect(object);
 
-		object->currentAnimationFrame = object->animation->frames[object->currentAnimationFrameIndex];
-		object->animationTime = 0;
-	}
+	//if (ObjectUtils_isLeftOfScreen(object))
+	//{
+	//	//ObjectManager_DestroyObject(object);
+	//}
 
-	object->animationTime++;
+	//if (!(playerLeft > right ||
+	//	  playerRight < left ||
+	//	  playerTop > bottom ||
+	//	  playerBottom < top))
+	//{
+	//	ObjectManager_DestroyObject(object);
+	//}
+
+	//object->Draw(object);
 }
 
 void Enemy_Draw(GameObject* object)
 {
-	Animation_DrawFrame(object->currentAnimationFrame, 
-						object->animationVdpTileIndex,
-						object->x - ScrollManager_horizontalScroll, 
-						object->y);
+	DRAWUTILS_SETUP(ObjectManager_objectLeft,
+					ObjectManager_objectTop,
+					object->currentAnimationFrame->numSprites, 
+					object->currentAnimationFrame->sprites,
+					object->animationVdpTileIndex);
+
+	if (ObjectManager_objectLeft < SCREEN_LEFT || 
+		ObjectManager_objectTop < SCREEN_TOP ||
+		ObjectManager_objectRight > SCREEN_RIGHT ||
+		ObjectManager_objectBottom > SCREEN_BOTTOM)
+	{
+		DrawUtils_DrawClipped();
+	}
+	else
+	{
+		DrawUtils_Draw();
+	}
 }
 

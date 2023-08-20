@@ -1,8 +1,9 @@
 #include "player.h"
 #include "SMSlib.h"
-#include "engine/animation_helpers.h"
+#include "engine/base_defines.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
+#include "engine/draw_utils.h"
 
 void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);
@@ -15,7 +16,7 @@ void Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.animationVdpTileIndex = *((u8*)spawnInfo->additionalPayload);
 	ObjectManager_player.currentAnimationFrameIndex = 0;
 	ObjectManager_player.currentAnimationFrame = ObjectManager_player.animation->frames[ObjectManager_player.currentAnimationFrameIndex];
-	ObjectManager_player.animationTime = 0;
+	ObjectManager_player.animationTime = ObjectManager_player.currentAnimationFrame->frameTime;
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
 }
@@ -54,11 +55,24 @@ void Player_Update(GameObject* player)
 	player->animationTime++;
 }
 
-void Player_Draw(GameObject* player)
+void Player_Draw(GameObject* object)
 {
-	Animation_DrawFrame(player->currentAnimationFrame, 
-						player->animationVdpTileIndex,
-						player->x - ScrollManager_horizontalScroll, 
-						player->y);
+	DRAWUTILS_SETUP(ObjectManager_playerLeft,
+					ObjectManager_playerTop,
+					object->currentAnimationFrame->numSprites, 
+					object->currentAnimationFrame->sprites,
+					object->animationVdpTileIndex);
+
+	if (ObjectManager_playerLeft < SCREEN_LEFT || 
+		ObjectManager_playerTop < SCREEN_TOP ||
+		ObjectManager_playerRight > SCREEN_RIGHT ||
+		ObjectManager_playerBottom > SCREEN_BOTTOM)
+	{
+		DrawUtils_DrawClipped();
+	}
+	else
+	{
+		DrawUtils_Draw();
+	}
 }
 

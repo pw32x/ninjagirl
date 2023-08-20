@@ -1,6 +1,5 @@
 #include "level_manager.h"
 #include "SMSlib.h"
-#include "engine/animation_helpers.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/vdptile_manager.h"

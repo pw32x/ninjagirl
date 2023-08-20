@@ -24,14 +24,16 @@ void main(void)
 	// game loop
 	for(;;) 
 	{ 
+		SMS_setBackdropColor(9);
 		ObjectManager_Update();
-
-		ObjectManager_Draw();
-
+		SMS_setBackdropColor(10);
+		//ObjectManager_Draw();
+		SMS_setBackdropColor(11);
 		// VBLANK
 		SMS_waitForVBlank ();
 		ScrollManager_UpdateVDP();
 		SMS_copySpritestoSAT();
+		SMS_setBackdropColor(0);
 	}
 }
 

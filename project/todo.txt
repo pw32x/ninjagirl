@@ -1,8 +1,17 @@
 Todo
+
+	DONE clean up changes to optimization
 	
-	DONE have a spawner object
+	move draw function to object update?
 	
-	create a spawn right object
+	destroy enemy when offscreen
+	
+	basic collisions
+	
+	improve buildcolumn performance
+		do a bit every frame
+	
+	destroying an object should just set its update and draw functions to appropriate doNothing()
 
 	tilesets should contain their paletes
 	
@@ -23,6 +32,14 @@ Todo
 	place game objects on the map
 	
 	optimization pass
+		object manager
+			no loops
+			no array
+				just five objects
+		scroll manager
+			unroll rool to fill buffer
+			or assembly?
+				ask chat gpt
 
 	add player standing state
 	add player moving state
@@ -123,6 +140,10 @@ Game Design Ideas
 	
 Completed
 
+	DONE have a spawner object
+	
+	DONE create a spawn right objects
+
 	DONE split source files into folders
 		game
 		engine
@@ -163,3 +184,8 @@ Completed
 		
 	DONE Make a todo.txt
 		
+	DONE destroy objects according to visibility criteria
+		totally to the left
+		offscreen
+
+	DONE clip sprite drawing		

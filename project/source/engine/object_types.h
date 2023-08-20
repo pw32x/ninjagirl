@@ -8,7 +8,6 @@ typedef struct game_object
 {
 	s16 x;
 	s16 y;
-	BOOL isAlive;
 	const Animation* animation;
 	u8 animationVdpTileIndex;
 	const AnimationFrame* currentAnimationFrame;

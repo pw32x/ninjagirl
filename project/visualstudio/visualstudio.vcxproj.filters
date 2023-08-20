@@ -94,6 +94,9 @@
     <ClCompile Include="..\source\client\exported\evil_eye.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\draw_utils.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\evil_eye.h">
       <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\draw_utils.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

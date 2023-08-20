@@ -6,4 +6,16 @@
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject);
 void ObjectUtils_doNothing(void);
 
+void ObjectUtils_UpdateAnimation(GameObject* gameObject);
+
+//void ObjectUtils_updateObjectScreenRect(GameObject* gameObject);
+//void ObjectUtils_updatePlayerScreenRect(GameObject* gameObject);
+
+/*
+BOOL ObjectUtils_alwaysVisible(GameObject* gameObject);
+BOOL ObjectUtils_isOnScreen(GameObject* gameObject);
+BOOL ObjectUtils_isRightOfLeftScreenEdge(GameObject* gameObject);
+BOOL ObjectUtils_isLeftOfScreen(GameObject* gameObject);
+*/
+
 #endif
