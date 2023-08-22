@@ -6,22 +6,6 @@
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject) { UNUSED(gameObject); }
 void ObjectUtils_doNothing(void) {}
 
-void ObjectUtils_UpdateAnimation(GameObject* gameObject)
-{
-	if (!gameObject->animationTime--)
-	{
-		gameObject->currentAnimationFrameIndex++;
-
-		if (gameObject->currentAnimationFrameIndex == gameObject->animation->numFrames)
-			gameObject->currentAnimationFrameIndex = 0;
-
-		gameObject->currentAnimationFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
-		gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
-	}
-
-	//gameObject->animationTime++;
-}
-
 /*
 BOOL ObjectUtils_alwaysVisible(GameObject* gameObject)
 {

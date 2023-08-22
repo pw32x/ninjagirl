@@ -5,6 +5,7 @@
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/object_utils.h"
+#include "engine/animation_utils.h"
 
 
 void Enemy_Update(GameObject* object);
@@ -18,18 +19,15 @@ void Enemy_Create(const SpawnInfo* spawnInfo)
 
 	object->x = spawnInfo->startX;
 	object->y = spawnInfo->startY;
-	object->animation = (const Animation*)spawnInfo->payload;
-	object->animationVdpTileIndex = *((u8*)spawnInfo->additionalPayload);
-	object->currentAnimationFrameIndex = 0;
-	object->currentAnimationFrame = object->animation->frames[object->currentAnimationFrameIndex];
-	object->animationTime = 0;
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
+
+	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 }
 
 void Enemy_Update(GameObject* object)
 {
-	ObjectUtils_UpdateAnimation(object);
+	AnimationUtils_updateAnimation(object);
 
 	ObjectManagerUtils_updateObjectScreenRect(object);
 

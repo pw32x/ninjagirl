@@ -40,9 +40,6 @@
     <ClCompile Include="..\source\engine\vdptile_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\engine\animation_helpers.c">
-      <Filter>Source Files\engine</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\main.c">
       <Filter>Source Files\client</Filter>
     </ClCompile>
@@ -97,6 +94,9 @@
     <ClCompile Include="..\source\engine\draw_utils.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\animation_utils.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -130,9 +130,6 @@
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\vdptile_manager.h">
-      <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\engine\animation_helpers.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\objects\player.h">
@@ -187,6 +184,9 @@
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\draw_utils.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\animation_utils.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

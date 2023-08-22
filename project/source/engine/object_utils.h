@@ -6,7 +6,6 @@
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject);
 void ObjectUtils_doNothing(void);
 
-void ObjectUtils_UpdateAnimation(GameObject* gameObject);
 
 //void ObjectUtils_updateObjectScreenRect(GameObject* gameObject);
 //void ObjectUtils_updatePlayerScreenRect(GameObject* gameObject);

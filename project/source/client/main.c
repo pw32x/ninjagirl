@@ -1,5 +1,6 @@
 #include "SMSlib.h"
 #include "engine/base_types.h"
+#include "engine/base_defines.h"
 #include "engine/level_manager.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"

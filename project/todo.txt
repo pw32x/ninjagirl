@@ -1,10 +1,12 @@
 Todo
 
-	DONE clean up changes to optimization
-	
-	move draw function to object update?
+	improve scroll performance
 	
 	destroy enemy when offscreen
+	
+	draw projectiles
+	
+	collisions with projectiles
 	
 	basic collisions
 	
@@ -191,3 +193,7 @@ Completed
 		offscreen
 
 	DONE clip sprite drawing		
+	
+	DONE clean up changes to optimization
+	
+	BLEH move draw function to object update?	
