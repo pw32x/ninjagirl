@@ -25,4 +25,11 @@ extern u8 ScrollManager_speedY;
 extern const Map* ScrollManager_backgroundMap;
 extern const Tileset* ScrollManager_backgroundTileset;
 
+extern u16 ScrollManager_mapWidth;
+extern u16 ScrollManager_mapWidthLimit;
+extern u16 ScrollManager_mapHeight;
+
+extern const u16* ScrollManager_metatileMap;
+extern const u16* ScrollManager_metatileLut;
+
 #endif

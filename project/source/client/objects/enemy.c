@@ -31,18 +31,18 @@ void Enemy_Update(GameObject* object)
 
 	ObjectManagerUtils_updateObjectScreenRect(object);
 
-	//if (ObjectUtils_isLeftOfScreen(object))
-	//{
-	//	//ObjectManager_DestroyObject(object);
-	//}
+	if (ObjectManager_objectRight < SCREEN_LEFT)
+	{
+		ObjectManager_DestroyObject(object);
+	}
 
-	//if (!(playerLeft > right ||
-	//	  playerRight < left ||
-	//	  playerTop > bottom ||
-	//	  playerBottom < top))
-	//{
-	//	ObjectManager_DestroyObject(object);
-	//}
+	if (!(ObjectManager_playerLeft > ObjectManager_objectRight ||
+		  ObjectManager_playerRight < ObjectManager_objectLeft ||
+		  ObjectManager_playerTop > ObjectManager_objectBottom ||
+		  ObjectManager_playerBottom < ObjectManager_objectTop))
+	{
+		ObjectManager_DestroyObject(object);
+	}
 
 	//object->Draw(object);
 }

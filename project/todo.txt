@@ -1,6 +1,6 @@
 Todo
 
-	improve scroll performance
+	DONE improve scroll performance
 	
 	destroy enemy when offscreen
 	
@@ -9,6 +9,9 @@ Todo
 	collisions with projectiles
 	
 	basic collisions
+	
+	gg2c, on export, sort sprites in a frame by X position
+		then clip by x position
 	
 	improve buildcolumn performance
 		do a bit every frame
