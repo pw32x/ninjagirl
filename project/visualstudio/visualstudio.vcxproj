@@ -133,6 +133,7 @@
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
     <ClCompile Include="..\source\client\objects\everything_spawner.c" />
+    <ClCompile Include="..\source\client\objects\kunai.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\streaming_spawner.c" />
@@ -158,6 +159,7 @@
     <ClInclude Include="..\source\client\generated\sprite_vdp_locations.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
     <ClInclude Include="..\source\client\objects\everything_spawner.h" />
+    <ClInclude Include="..\source\client\objects\kunai.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\streaming_spawner.h" />

@@ -8,46 +8,37 @@
 #include "engine/animation_utils.h"
 
 
-void Enemy_Update(GameObject* object);
-void Enemy_Draw(GameObject* object);
+void Kunai_Update(GameObject* object);
+void Kunai_Draw(GameObject* object);
 
-void Enemy_Create(const SpawnInfo* spawnInfo)
+void Kunai_Create(const SpawnInfo* spawnInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
+	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_PROJECTILE);
 	if (!object)
 		return;
 
 	object->x = spawnInfo->startX;
 	object->y = spawnInfo->startY;
-	object->Update = Enemy_Update;
-	object->Draw = Enemy_Draw;
+	object->Update = Kunai_Update;
+	object->Draw = Kunai_Draw;
 
 	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 }
 
-void Enemy_Update(GameObject* object)
+void Kunai_Update(GameObject* object)
 {
 	AnimationUtils_updateAnimation(object);
 
 	ObjectManagerUtils_updateObjectScreenRect(object);
 
-	if (ObjectManager_objectRight < SCREEN_LEFT)
+	if (ObjectManager_objectRight < SCREEN_LEFT ||
+		ObjectManager_objectLeft > SCREEN_RIGHT)
 	{
 		ObjectManager_DestroyObject(object);
 	}
-
-	if (!(ObjectManager_playerLeft > ObjectManager_objectRight ||
-		  ObjectManager_playerRight < ObjectManager_objectLeft ||
-		  ObjectManager_playerTop > ObjectManager_objectBottom ||
-		  ObjectManager_playerBottom < ObjectManager_objectTop))
-	{
-		ObjectManager_DestroyObject(object);
-	}
-
-	//object->Draw(object);
 }
 
-void Enemy_Draw(GameObject* object)
+void Kunai_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP(ObjectManager_objectLeft,
 					ObjectManager_objectTop,

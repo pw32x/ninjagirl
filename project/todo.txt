@@ -2,7 +2,7 @@ Todo
 
 	DONE improve scroll performance
 	
-	destroy enemy when offscreen
+	DONE destroy enemy when offscreen
 	
 	draw projectiles
 	

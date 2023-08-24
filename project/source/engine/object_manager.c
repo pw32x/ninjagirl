@@ -19,16 +19,30 @@ s16 ObjectManager_playerRight;
 s16 ObjectManager_playerBottom;
 
 
-#define NUM_OBJECT_SLOTS 5
-GameObject ObjectManager_slots[NUM_OBJECT_SLOTS];
+#define NUM_ENEMY_SLOTS 5
+GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
+
+#define NUM_PROJECTILE_SLOTS 3
+GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 
 void ObjectManager_Init(void)
 {
-	memset(ObjectManager_slots, 0, sizeof(ObjectManager_slots));
+	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
+	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
+
 
 	// update objects
-	GameObject* objectSlotRunner = ObjectManager_slots;
-	u8 counter = NUM_OBJECT_SLOTS;
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
+	u8 counter = NUM_ENEMY_SLOTS;
+
+	while (counter--)
+	{
+		ObjectManager_DestroyObject(objectSlotRunner);
+		objectSlotRunner++;
+	}
+
+	objectSlotRunner = ObjectManager_projectileSlots;
+	counter = NUM_PROJECTILE_SLOTS;
 
 	while (counter--)
 	{
@@ -67,15 +81,24 @@ void ObjectManager_Update(void)
 
 	SMS_initSprites();
 
-	// update objects
-	GameObject* objectSlotRunner = ObjectManager_slots;
-
-	u8 counter = NUM_OBJECT_SLOTS;
-
 	ObjectManager_player.Draw(&ObjectManager_player);
 
+	// update objects
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
 
+	u8 counter = NUM_ENEMY_SLOTS;
+	while (counter--)
+	{
+		SMS_setBackdropColor(COLOR_ORANGE);
+		objectSlotRunner->Update(objectSlotRunner);
+		SMS_setBackdropColor(COLOR_YELLOW);
+		objectSlotRunner->Draw(objectSlotRunner);
+		objectSlotRunner++;
+	}
 
+	objectSlotRunner = ObjectManager_projectileSlots;
+
+	counter = NUM_PROJECTILE_SLOTS;
 	while (counter--)
 	{
 		SMS_setBackdropColor(COLOR_ORANGE);
@@ -88,10 +111,20 @@ void ObjectManager_Update(void)
 
 void ObjectManager_Draw(void)
 {
-	// draw objects
-	GameObject* objectSlotRunner = ObjectManager_slots;
+	// enemies
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
 
-	u8 counter = NUM_OBJECT_SLOTS;
+	u8 counter = NUM_ENEMY_SLOTS;
+
+	while (counter--)
+	{
+		objectSlotRunner->Draw(objectSlotRunner);
+		objectSlotRunner++;
+	}
+
+	// projectiles
+	objectSlotRunner = ObjectManager_projectileSlots;
+	counter = NUM_PROJECTILE_SLOTS;
 
 	while (counter--)
 	{
@@ -100,11 +133,21 @@ void ObjectManager_Draw(void)
 	}
 }
 
-GameObject* ObjectManager_GetAvailableSlot(void)
+GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 {
-	GameObject* objectSlotRunner = ObjectManager_slots;
+	GameObject* objectSlotRunner;
+	u8 counter;
 
-	u8 counter = NUM_OBJECT_SLOTS;
+	if (objectType == OBJECTTYPE_ENEMY)
+	{
+		objectSlotRunner = ObjectManager_enemySlots;
+		counter = NUM_ENEMY_SLOTS;
+	}
+	else if (objectType == OBJECTTYPE_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_projectileSlots;
+		counter = NUM_PROJECTILE_SLOTS;	
+	}
 
 	while (counter--)
 	{

@@ -4,12 +4,16 @@
 #include "engine/spawn_types.h"
 #include "engine/object_types.h"
 
+#define OBJECTTYPE_PROJECTILE	0
+#define OBJECTTYPE_ENEMY		1
+
+
 void ObjectManager_Init(void);
 
 void ObjectManager_Update(void);
 void ObjectManager_Draw(void);
 
-GameObject* ObjectManager_GetAvailableSlot(void);
+GameObject* ObjectManager_GetAvailableSlot(u8 objectType);
 void ObjectManager_DestroyObject(GameObject* gameObject);
 
 extern GameObject ObjectManager_player;
