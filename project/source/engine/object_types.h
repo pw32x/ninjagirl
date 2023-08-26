@@ -6,15 +6,22 @@
 
 typedef struct game_object
 {
-	s16 x;
-	s16 y;
-	const Animation* animation;
-	u8 animationVdpTileIndex;
-	const AnimationFrame* currentAnimationFrame;
-	u8 currentAnimationFrameIndex;
-	u8 animationTime;
 	void (*Update)(struct game_object* gameObject);
 	void (*Draw)(struct game_object* gameObject);
+	const Animation* animation;
+	const AnimationFrame* currentAnimationFrame;
+	s16 x;
+	s16 y;
+	s16 speedx;
+	s16 speedy;
+	u8 animationVdpTileIndex;
+	u8 currentAnimationFrameIndex;
+	u8 animationTime;
+	u8 alive;
+	u8 objectId;
+	u8 data1;
+	u8 data2;
+	u8 data3;
 } GameObject;
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);

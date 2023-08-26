@@ -36,12 +36,12 @@ const SpawnInfo level002_spawns[] =
 {
 	{ 0, 0, (const void*)&background_map, NULL, RightScroller_Create },
 	{ 122, 88, (const void*)&ninja_girl, (u32)&ninja_girl_spriteVdpLocation, Player_Create },
-	{ 150, 88, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
-	{ 176, 88, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
-	//{ 192, 88, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
-	{ 8, 16, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
-	{ 120, 38, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
-	{ 220, 108, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
+	//{ 160, 170, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
+	//{ 176, 170, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
+	//{ 192, 170, (const void*)&kunai, (u32)&kunai_spriteVdpLocation, Kunai_Create },
+	{ 218, 0, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
+	{ 218, 32, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
+	{ 218, 64, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 420, 128, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 470, 148, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 500, 168, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
@@ -52,7 +52,7 @@ const SpawnInfo level002BootStrapSpawnInfo =
 	0, 
 	0, 
 	level002_spawns, 
-	10, 
+	8, 
 	StreamingSpawner_Create
 };
 

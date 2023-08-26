@@ -19,34 +19,32 @@ s16 ObjectManager_playerRight;
 s16 ObjectManager_playerBottom;
 
 
-#define NUM_ENEMY_SLOTS 5
-GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
-
 #define NUM_PROJECTILE_SLOTS 3
-GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
+#define NUM_ENEMY_SLOTS 5
+
+GameObject* ObjectManager_projectileSlots;
+GameObject* ObjectManager_enemySlots;
+
+#define NUM_SLOTS (NUM_PROJECTILE_SLOTS + NUM_ENEMY_SLOTS)
+GameObject ObjectManager_objectSlots[NUM_SLOTS];
+
+
+s16 ObjectManager_projectileRect[12];
 
 void ObjectManager_Init(void)
 {
-	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
-	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
+	memset(ObjectManager_objectSlots, 0, sizeof(ObjectManager_objectSlots));
 
+	ObjectManager_projectileSlots = ObjectManager_objectSlots;
+	ObjectManager_enemySlots = &ObjectManager_objectSlots[NUM_ENEMY_SLOTS];
 
-	// update objects
-	GameObject* objectSlotRunner = ObjectManager_enemySlots;
-	u8 counter = NUM_ENEMY_SLOTS;
-
-	while (counter--)
-	{
-		ObjectManager_DestroyObject(objectSlotRunner);
-		objectSlotRunner++;
-	}
-
-	objectSlotRunner = ObjectManager_projectileSlots;
-	counter = NUM_PROJECTILE_SLOTS;
+	// setup objects
+	GameObject* objectSlotRunner = ObjectManager_objectSlots;
+	u8 counter = NUM_SLOTS;
 
 	while (counter--)
 	{
-		ObjectManager_DestroyObject(objectSlotRunner);
+		objectSlotRunner->alive = FALSE;
 		objectSlotRunner++;
 	}
 }
@@ -65,7 +63,7 @@ void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject)
 	ObjectManager_objectLeft = gameObject->x - ScrollManager_horizontalScroll;
 	ObjectManager_objectTop = gameObject->y;
 	ObjectManager_objectRight = ObjectManager_objectLeft + gameObject->animation->pixelWidth;
-	ObjectManager_objectBottom = ObjectManager_objectTop + gameObject->animation->pixelWidth;
+	ObjectManager_objectBottom = ObjectManager_objectTop + gameObject->animation->pixelHeight;
 }
 
 
@@ -84,66 +82,32 @@ void ObjectManager_Update(void)
 	ObjectManager_player.Draw(&ObjectManager_player);
 
 	// update objects
-	GameObject* objectSlotRunner = ObjectManager_enemySlots;
-
-	u8 counter = NUM_ENEMY_SLOTS;
-	while (counter--)
-	{
-		SMS_setBackdropColor(COLOR_ORANGE);
-		objectSlotRunner->Update(objectSlotRunner);
-		SMS_setBackdropColor(COLOR_YELLOW);
-		objectSlotRunner->Draw(objectSlotRunner);
-		objectSlotRunner++;
-	}
-
-	objectSlotRunner = ObjectManager_projectileSlots;
-
-	counter = NUM_PROJECTILE_SLOTS;
-	while (counter--)
-	{
-		SMS_setBackdropColor(COLOR_ORANGE);
-		objectSlotRunner->Update(objectSlotRunner);
-		SMS_setBackdropColor(COLOR_YELLOW);
-		objectSlotRunner->Draw(objectSlotRunner);
-		objectSlotRunner++;
-	}
-}
-
-void ObjectManager_Draw(void)
-{
-	// enemies
-	GameObject* objectSlotRunner = ObjectManager_enemySlots;
-
-	u8 counter = NUM_ENEMY_SLOTS;
+	GameObject* objectSlotRunner = ObjectManager_objectSlots;
+	u8 counter = NUM_SLOTS;
 
 	while (counter--)
 	{
-		objectSlotRunner->Draw(objectSlotRunner);
-		objectSlotRunner++;
-	}
+		if (objectSlotRunner->alive)
+		{
+			SMS_setBackdropColor(COLOR_ORANGE);
+			objectSlotRunner->Update(objectSlotRunner);
 
-	// projectiles
-	objectSlotRunner = ObjectManager_projectileSlots;
-	counter = NUM_PROJECTILE_SLOTS;
-
-	while (counter--)
-	{
-		objectSlotRunner->Draw(objectSlotRunner);
+			if (objectSlotRunner->alive)
+			{
+				SMS_setBackdropColor(COLOR_YELLOW);
+				objectSlotRunner->Draw(objectSlotRunner);
+			}
+		}
 		objectSlotRunner++;
 	}
 }
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 {
-	GameObject* objectSlotRunner;
-	u8 counter;
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
+	u8 counter = NUM_ENEMY_SLOTS;
 
-	if (objectType == OBJECTTYPE_ENEMY)
-	{
-		objectSlotRunner = ObjectManager_enemySlots;
-		counter = NUM_ENEMY_SLOTS;
-	}
-	else if (objectType == OBJECTTYPE_PROJECTILE)
+	if (objectType == OBJECTTYPE_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
@@ -151,8 +115,10 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 
 	while (counter--)
 	{
-		if (objectSlotRunner->Update == ObjectUtils_gameObjectDoNothing)
+		if (!objectSlotRunner->alive)
 		{
+			objectSlotRunner->alive = TRUE;
+			objectSlotRunner->objectId = (NUM_PROJECTILE_SLOTS - 1) - counter;
 			return objectSlotRunner;
 		}
 
@@ -164,6 +130,5 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
-	gameObject->Update = ObjectUtils_gameObjectDoNothing;
-	gameObject->Draw = ObjectUtils_gameObjectDoNothing;
+	gameObject->alive = FALSE;
 }

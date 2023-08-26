@@ -12,7 +12,7 @@ typedef struct spawn_info
 	s16 startY;
 	const void* payload;
 	u32 additionalPayload;
-	void (*Object_Create)(const struct spawn_info* spawnInfo);
+	GameObject* (*Object_Create)(const struct spawn_info* spawnInfo);
 } SpawnInfo;
 
 #endif

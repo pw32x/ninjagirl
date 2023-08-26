@@ -7,10 +7,16 @@
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"
 
+#include "client/generated/sprite_vdp_locations.h"
+
+//kunai
+#include "client/objects/kunai.h"
+#include "client/exported/kunai.h"
+
 void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);
 
-void Player_Create(const SpawnInfo* spawnInfo)
+GameObject* Player_Create(const SpawnInfo* spawnInfo)
 {
 	ObjectManager_player.x = spawnInfo->startX;
 	ObjectManager_player.y = spawnInfo->startY;
@@ -18,6 +24,25 @@ void Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.Draw = Player_Draw;
 
 	AnimationUtils_setupAnimation(&ObjectManager_player, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+
+	return &ObjectManager_player;
+}
+
+void Player_FireWeapon(GameObject* player)
+{
+	SpawnInfo spawnInfo = 
+	{ 
+		ObjectManager_player.x, 
+		ObjectManager_player.y, 
+		(const void*)&kunai, 
+		(u32)&kunai_spriteVdpLocation, 
+		Kunai_Create 
+	};
+
+	GameObject* kunai = Kunai_Create(&spawnInfo);
+
+	kunai->speedx = 3;
+	kunai->speedy = 0;
 }
 
 void Player_Update(GameObject* player)
@@ -39,6 +64,11 @@ void Player_Update(GameObject* player)
 
 	if (buttonState & PORT_A_KEY_DOWN)
 		player->y++;
+
+	u32 buttonsPressed = SMS_getKeysPressed();
+
+	if (buttonsPressed & PORT_A_KEY_1)
+		Player_FireWeapon(player);
 
 	AnimationUtils_updateAnimation(player);
 }

@@ -125,6 +125,7 @@
     <ClCompile Include="..\source\client\exported\background.c" />
     <ClCompile Include="..\source\client\exported\evil_eye.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
+    <ClCompile Include="..\source\client\exported\kunai.c" />
     <ClCompile Include="..\source\client\exported\level001.c" />
     <ClCompile Include="..\source\client\exported\level002.c" />
     <ClCompile Include="..\source\client\exported\ninja_girl.c" />
@@ -152,6 +153,7 @@
     <ClInclude Include="..\source\client\exported\background.h" />
     <ClInclude Include="..\source\client\exported\evil_eye.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
+    <ClInclude Include="..\source\client\exported\kunai.h" />
     <ClInclude Include="..\source\client\exported\level001.h" />
     <ClInclude Include="..\source\client\exported\level002.h" />
     <ClInclude Include="..\source\client\exported\ninja_girl.h" />

@@ -9,7 +9,7 @@
 void RightScroll_Update(GameObject* gameObject);
 void RightScroll_UpdateVDP(void);
 
-void RightScroller_Create(const SpawnInfo* spawnInfo)
+GameObject* RightScroller_Create(const SpawnInfo* spawnInfo)
 {
 	ScrollManager_Update = RightScroll_Update;
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
@@ -30,6 +30,8 @@ void RightScroller_Create(const SpawnInfo* spawnInfo)
 	VDPTileManager_LoadBackgroundTileset(ScrollManager_backgroundTileset);
 
 	ScrollUtils_InitTilemap();
+
+	return NULL;
 }
 
 void RightScroll_Update(GameObject* gameObject)

@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/spawn_types.h"
 
-void StreamingSpawner_Create(const SpawnInfo* spawnInfo);
+GameObject* StreamingSpawner_Create(const SpawnInfo* spawnInfo);
 
 #endif

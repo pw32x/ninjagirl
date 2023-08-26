@@ -11,7 +11,6 @@
 void ObjectManager_Init(void);
 
 void ObjectManager_Update(void);
-void ObjectManager_Draw(void);
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType);
 void ObjectManager_DestroyObject(GameObject* gameObject);
@@ -35,5 +34,7 @@ extern s16 ObjectManager_objectBottom;
 
 void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject);
 
+
+extern s16 ObjectManager_projectileRect[12];
 
 #endif

@@ -10,7 +10,7 @@ u32 StreamingSpawner_counter;
 
 void StreamingSpawner_Update(void);
 
-void StreamingSpawner_Create(const SpawnInfo* spawnInfo)
+GameObject* StreamingSpawner_Create(const SpawnInfo* spawnInfo)
 {
 	StreamingSpawner_scrollX = 0;
 
@@ -25,6 +25,8 @@ void StreamingSpawner_Create(const SpawnInfo* spawnInfo)
 	}
 
 	SpawnManager_Update = StreamingSpawner_Update;
+
+	return NULL;
 }
 
 
