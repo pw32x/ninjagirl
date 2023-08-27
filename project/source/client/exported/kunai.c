@@ -151,50 +151,50 @@ unsigned char const kunaiTileData[512] = // 16tiles x 32 bytes
 
 const AnimationSprite kunaiFrame0Sprites[] = 
 {
-    { (s8)-7, (s8)-2, 0 },
-    { 1, (s8)-2, 1 },
+    { -7, -2, 0 },
+    { 1, -2, 1 },
 };
 
 const AnimationSprite kunaiFrame1Sprites[] = 
 {
-    { (s8)-7, (s8)-2, 2 },
-    { 1, (s8)-2, 3 },
+    { -7, -2, 2 },
+    { 1, -2, 3 },
 };
 
 const AnimationSprite kunaiFrame2Sprites[] = 
 {
-    { (s8)-3, (s8)-7, 4 },
-    { (s8)-2, 1, 5 },
+    { -3, -7, 4 },
+    { -2, 1, 5 },
 };
 
 const AnimationSprite kunaiFrame3Sprites[] = 
 {
-    { (s8)-3, (s8)-7, 6 },
-    { (s8)-3, 1, 7 },
+    { -3, -7, 6 },
+    { -3, 1, 7 },
 };
 
 const AnimationSprite kunaiFrame4Sprites[] = 
 {
-    { (s8)-2, (s8)-6, 8 },
-    { (s8)-4, 2, 9 },
+    { -2, -6, 8 },
+    { -4, 2, 9 },
 };
 
 const AnimationSprite kunaiFrame5Sprites[] = 
 {
-    { (s8)-4, (s8)-6, 10 },
-    { (s8)-1, 2, 11 },
+    { -4, -6, 10 },
+    { -1, 2, 11 },
 };
 
 const AnimationSprite kunaiFrame6Sprites[] = 
 {
-    { (s8)-4, (s8)-6, 12 },
+    { -4, -6, 12 },
     { 0, 2, 13 },
 };
 
 const AnimationSprite kunaiFrame7Sprites[] = 
 {
-    { (s8)-4, (s8)-6, 14 },
-    { (s8)-4, 2, 15 },
+    { -4, -6, 14 },
+    { -4, 2, 15 },
 };
 
 
