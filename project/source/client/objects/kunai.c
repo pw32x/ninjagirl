@@ -23,50 +23,30 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 
+	object->rectLeft = (s8)-4;
+	object->rectTop = (s8)-4;
+	object->rectRight = 4;
+	object->rectBottom = 4;
+
 	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	return object;
 }
 
-#define LEFT index
-#define TOP index + 1
-#define RIGHT index + 2
-#define BOTTOM index + 3
-
-s16 left;
-s16 top;
-s16 right;
-s16 bottom;
-
 void Kunai_Update(GameObject* object)
 {
-	const u8 index = object->objectId << 2;
-
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	left = object->x - ScrollManager_horizontalScroll;
-	top = object->y;
-	right = left + object->animation->pixelWidth;
-	bottom = top + object->animation->pixelHeight;
+	ObjectManagerUtils_updateObjectScreenRect(object);
 
-	if (left > SCREEN_RIGHT ||
-		top > SCREEN_BOTTOM ||
-		right < SCREEN_LEFT ||
-		bottom < SCREEN_TOP)
+	if (ObjectManager_objectLeft > SCREEN_RIGHT ||
+		ObjectManager_objectTop > SCREEN_BOTTOM ||
+		ObjectManager_objectRight < SCREEN_LEFT ||
+		ObjectManager_objectBottom < SCREEN_TOP)
 	{
-		left = 1000;
-		top = 1000;
-		right = 1000;
-		bottom = 1000;
-
 		object->alive = FALSE;
 	}
-
-	ObjectManager_projectileRect[LEFT] = left;
-	ObjectManager_projectileRect[TOP] = top;
-	ObjectManager_projectileRect[RIGHT] = right;
-	ObjectManager_projectileRect[BOTTOM] = bottom;
 
 	if (!object->alive)
 	{
@@ -78,8 +58,8 @@ void Kunai_Draw(GameObject* object)
 {
 	const u8 index = object->objectId << 2;
 
-	DRAWUTILS_SETUP(ObjectManager_projectileRect[LEFT],
-					ObjectManager_projectileRect[TOP],
+	DRAWUTILS_SETUP(ObjectManager_objectLeft,
+					ObjectManager_objectTop,
 					object->currentAnimationFrame->numSprites, 
 					object->currentAnimationFrame->sprites,
 					object->animationVdpTileIndex);

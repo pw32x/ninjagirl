@@ -8,10 +8,14 @@ void AnimationUtils_setupAnimation(GameObject* gameObject, const Animation* anim
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentAnimationFrame = animation->frames[0];
 	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
+	gameObject->pixelWidth = animation->pixelWidth;
+	gameObject->pixelHeight = animation->pixelHeight;
 }
 
 void AnimationUtils_updateAnimation(GameObject* gameObject)
 {
+	return;
+
 	if (!gameObject->animationTime--)
 	{
 		gameObject->currentAnimationFrameIndex++;

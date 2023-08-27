@@ -22,13 +22,14 @@ typedef struct
     const AnimationFrame** const frames;
     const u8* const tileData;
 
+	u16 totalAnimationTime;
+
     u8 numFrames;
     u8 pixelWidth;
     u8 pixelHeight;
-    u8 maxTilesPerFrame;
+    //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
-	u16 totalAnimationTime;
 
 } Animation;
 

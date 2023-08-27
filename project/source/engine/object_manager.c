@@ -29,14 +29,12 @@ GameObject* ObjectManager_enemySlots;
 GameObject ObjectManager_objectSlots[NUM_SLOTS];
 
 
-s16 ObjectManager_projectileRect[12];
-
 void ObjectManager_Init(void)
 {
 	memset(ObjectManager_objectSlots, 0, sizeof(ObjectManager_objectSlots));
 
 	ObjectManager_projectileSlots = ObjectManager_objectSlots;
-	ObjectManager_enemySlots = &ObjectManager_objectSlots[NUM_ENEMY_SLOTS];
+	ObjectManager_enemySlots = &ObjectManager_objectSlots[NUM_PROJECTILE_SLOTS];
 
 	// setup objects
 	GameObject* objectSlotRunner = ObjectManager_objectSlots;
@@ -53,8 +51,8 @@ void ObjectManagerUtils_updatePlayerScreenRect(void)
 {
 	ObjectManager_playerLeft = ObjectManager_player.x - ScrollManager_horizontalScroll;
 	ObjectManager_playerTop = ObjectManager_player.y;
-	ObjectManager_playerRight = ObjectManager_playerLeft + ObjectManager_player.animation->pixelWidth;
-	ObjectManager_playerBottom = ObjectManager_playerTop + ObjectManager_player.animation->pixelWidth;
+	ObjectManager_playerRight = ObjectManager_playerLeft + ObjectManager_player.pixelWidth;
+	ObjectManager_playerBottom = ObjectManager_playerTop + ObjectManager_player.pixelWidth;
 }
 
 
@@ -62,8 +60,8 @@ void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject)
 {
 	ObjectManager_objectLeft = gameObject->x - ScrollManager_horizontalScroll;
 	ObjectManager_objectTop = gameObject->y;
-	ObjectManager_objectRight = ObjectManager_objectLeft + gameObject->animation->pixelWidth;
-	ObjectManager_objectBottom = ObjectManager_objectTop + gameObject->animation->pixelHeight;
+	ObjectManager_objectRight = ObjectManager_objectLeft + gameObject->pixelWidth;
+	ObjectManager_objectBottom = ObjectManager_objectTop + gameObject->pixelHeight;
 }
 
 
@@ -118,7 +116,7 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 		if (!objectSlotRunner->alive)
 		{
 			objectSlotRunner->alive = TRUE;
-			objectSlotRunner->objectId = (NUM_PROJECTILE_SLOTS - 1) - counter;
+			//objectSlotRunner->objectId = (NUM_PROJECTILE_SLOTS - 1) - counter;
 			return objectSlotRunner;
 		}
 
@@ -131,4 +129,33 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
 	gameObject->alive = FALSE;
+}
+
+BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject)
+{
+	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
+	u8 counter = NUM_PROJECTILE_SLOTS;
+
+	s16 left = gameObject->x + gameObject->rectLeft;
+	s16 top = gameObject->y + gameObject->rectTop;
+	s16 right = gameObject->x + gameObject->rectRight;
+	s16 bottom = gameObject->y + gameObject->rectBottom;
+
+	while (counter--)
+	{
+		if (objectSlotRunner->alive &&
+			left < objectSlotRunner->x + objectSlotRunner->rectRight &&
+			right > objectSlotRunner->x + objectSlotRunner->rectLeft &&
+			top < objectSlotRunner->y + objectSlotRunner->rectBottom &&
+			bottom > objectSlotRunner->y + objectSlotRunner->rectTop
+			)
+		{
+			ObjectManager_DestroyObject(gameObject);
+			return TRUE;
+		}
+
+		objectSlotRunner++;
+	}
+
+	return FALSE;
 }

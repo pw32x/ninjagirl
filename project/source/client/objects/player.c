@@ -23,6 +23,11 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
 
+	ObjectManager_player.rectLeft = (s8)-8;
+	ObjectManager_player.rectTop = (s8)-12;
+	ObjectManager_player.rectRight = 8;
+	ObjectManager_player.rectBottom = 16;
+
 	AnimationUtils_setupAnimation(&ObjectManager_player, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	return &ObjectManager_player;
@@ -32,8 +37,8 @@ void Player_FireWeapon(GameObject* player)
 {
 	SpawnInfo spawnInfo = 
 	{ 
-		ObjectManager_player.x, 
-		ObjectManager_player.y, 
+		player->x, 
+		player->y, 
 		(const void*)&kunai, 
 		(u32)&kunai_spriteVdpLocation, 
 		Kunai_Create 

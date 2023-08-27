@@ -22,15 +22,15 @@ GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 
+	object->rectLeft = (s8)-14;
+	object->rectTop = (s8)-14;
+	object->rectRight = 14;
+	object->rectBottom = 14;
+
 	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	return object;
 }
-
-#define LEFT 0
-#define TOP 1
-#define RIGHT 2
-#define BOTTOM 3
 
 void Enemy_Update(GameObject* object)
 {
@@ -47,50 +47,21 @@ void Enemy_Update(GameObject* object)
 	{
 		goto destroy_object;
 	}
+	*/
 
 	// if offscreen die
 	if (ObjectManager_objectRight < SCREEN_LEFT)
-	{z
+	{
 		goto destroy_object;
 	}
-	*/
-
-	// projectile collisions
-	s16* ObjectManager_projectileRectRunner = ObjectManager_projectileRect;
-
-	//if (ObjectManager_objectLeft > ObjectManager_projectileRectRunner[RIGHT] &&
-	//	ObjectManager_objectTop > ObjectManager_projectileRectRunner[BOTTOM] &&
-	//	ObjectManager_objectRight < ObjectManager_projectileRectRunner[LEFT] &&
-	//	ObjectManager_objectBottom < ObjectManager_projectileRectRunner[TOP])
-
-
-	if (ObjectManager_objectLeft < ObjectManager_projectileRectRunner[RIGHT] &&
-		ObjectManager_objectRight > ObjectManager_projectileRectRunner[LEFT] &&
-		ObjectManager_objectTop < ObjectManager_projectileRectRunner[BOTTOM] &&
-		ObjectManager_objectBottom > ObjectManager_projectileRectRunner[TOP])
+	
+	if (ObjectManagerUtils_collidesWithProjectiles(object))
 	{
 		goto destroy_object;
 	}
 
-	ObjectManager_projectileRectRunner += 4;
-		
-	if (ObjectManager_objectLeft < ObjectManager_projectileRectRunner[RIGHT] &&
-		ObjectManager_objectRight > ObjectManager_projectileRectRunner[LEFT] &&
-		ObjectManager_objectTop < ObjectManager_projectileRectRunner[BOTTOM] &&
-		ObjectManager_objectBottom > ObjectManager_projectileRectRunner[TOP])
-	{
-		goto destroy_object;
-	}
 
-	ObjectManager_projectileRectRunner += 4;
-
-	if (ObjectManager_objectLeft > ObjectManager_projectileRectRunner[RIGHT] ||
-		ObjectManager_objectRight < ObjectManager_projectileRectRunner[LEFT] ||
-		ObjectManager_objectTop > ObjectManager_projectileRectRunner[BOTTOM] ||
-		ObjectManager_objectBottom < ObjectManager_projectileRectRunner[TOP])
-	{
-		return;
-	}
+	return;
 
 destroy_object:
 	ObjectManager_DestroyObject(object);

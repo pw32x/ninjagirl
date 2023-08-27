@@ -34,7 +34,6 @@ extern s16 ObjectManager_objectBottom;
 
 void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject);
 
-
-extern s16 ObjectManager_projectileRect[12];
+BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject);
 
 #endif

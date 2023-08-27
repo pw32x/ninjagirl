@@ -151,50 +151,50 @@ unsigned char const kunaiTileData[512] = // 16tiles x 32 bytes
 
 const AnimationSprite kunaiFrame0Sprites[] = 
 {
-    { 1, 6, 0 },
-    { 9, 6, 1 },
+    { (s8)-7, (s8)-2, 0 },
+    { 1, (s8)-2, 1 },
 };
 
 const AnimationSprite kunaiFrame1Sprites[] = 
 {
-    { 1, 6, 2 },
-    { 9, 6, 3 },
+    { (s8)-7, (s8)-2, 2 },
+    { 1, (s8)-2, 3 },
 };
 
 const AnimationSprite kunaiFrame2Sprites[] = 
 {
-    { 5, 1, 4 },
-    { 6, 9, 5 },
+    { (s8)-3, (s8)-7, 4 },
+    { (s8)-2, 1, 5 },
 };
 
 const AnimationSprite kunaiFrame3Sprites[] = 
 {
-    { 5, 1, 6 },
-    { 5, 9, 7 },
+    { (s8)-3, (s8)-7, 6 },
+    { (s8)-3, 1, 7 },
 };
 
 const AnimationSprite kunaiFrame4Sprites[] = 
 {
-    { 6, 2, 8 },
-    { 4, 10, 9 },
+    { (s8)-2, (s8)-6, 8 },
+    { (s8)-4, 2, 9 },
 };
 
 const AnimationSprite kunaiFrame5Sprites[] = 
 {
-    { 4, 2, 10 },
-    { 7, 10, 11 },
+    { (s8)-4, (s8)-6, 10 },
+    { (s8)-1, 2, 11 },
 };
 
 const AnimationSprite kunaiFrame6Sprites[] = 
 {
-    { 4, 2, 12 },
-    { 8, 10, 13 },
+    { (s8)-4, (s8)-6, 12 },
+    { 0, 2, 13 },
 };
 
 const AnimationSprite kunaiFrame7Sprites[] = 
 {
-    { 4, 2, 14 },
-    { 4, 10, 15 },
+    { (s8)-4, (s8)-6, 14 },
+    { (s8)-4, 2, 15 },
 };
 
 
@@ -269,9 +269,9 @@ const Animation kunai =
 {
     (const AnimationFrame** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
+    472, // the total time of the animation
     8, // number of frames
     16, // width in pixels
     16, // height in pixels
-    472, // the total time of the animation
     16, // the total amount of tiles in animation
 };

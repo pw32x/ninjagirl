@@ -151,29 +151,29 @@ unsigned char const ninja_girlTileData[512] = // 16tiles x 32 bytes
 
 const AnimationSprite ninja_girlFrame0Sprites[] = 
 {
-    { 4, 1, 0 },
-    { 12, 2, 1 },
-    { 4, 9, 2 },
-    { 12, 9, 3 },
-    { 4, 17, 4 },
-    { 12, 17, 5 },
-    { 20, 19, 6 },
-    { 5, 25, 7 },
-    { 13, 29, 8 },
+    { (s8)-8, (s8)-15, 0 },
+    { 0, (s8)-14, 1 },
+    { (s8)-8, (s8)-7, 2 },
+    { 0, (s8)-7, 3 },
+    { (s8)-8, 1, 4 },
+    { 0, 1, 5 },
+    { 8, 3, 6 },
+    { (s8)-7, 9, 7 },
+    { 1, 13, 8 },
 };
 
 const AnimationSprite ninja_girlFrame1Sprites[] = 
 {
-    { 4, 0, 0 },
-    { 12, 1, 1 },
-    { 4, 8, 2 },
-    { 12, 8, 9 },
-    { 3, 16, 10 },
-    { 11, 16, 11 },
-    { 19, 17, 12 },
-    { 2, 24, 13 },
-    { 10, 24, 14 },
-    { 18, 24, 15 },
+    { (s8)-8, (s8)-16, 0 },
+    { 0, (s8)-15, 1 },
+    { (s8)-8, (s8)-8, 2 },
+    { 0, (s8)-8, 9 },
+    { (s8)-9, 0, 10 },
+    { (s8)-1, 0, 11 },
+    { 7, 1, 12 },
+    { (s8)-10, 8, 13 },
+    { (s8)-2, 8, 14 },
+    { 6, 8, 15 },
 };
 
 
@@ -200,9 +200,9 @@ const Animation ninja_girl =
 {
     (const AnimationFrame** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
+    16, // the total time of the animation
     2, // number of frames
     24, // width in pixels
     32, // height in pixels
-    16, // the total time of the animation
     16, // the total amount of tiles in animation
 };
