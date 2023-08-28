@@ -23,8 +23,8 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 
-	object->rectLeft = (s8)-4;
-	object->rectTop = (s8)-4;
+	object->rectLeft = -4;
+	object->rectTop = -4;
 	object->rectRight = 4;
 	object->rectBottom = 4;
 
@@ -38,17 +38,10 @@ void Kunai_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	ObjectManagerUtils_updateObjectScreenRect(object);
-
-	if (ObjectManager_objectLeft > SCREEN_RIGHT ||
-		ObjectManager_objectTop > SCREEN_BOTTOM ||
-		ObjectManager_objectRight < SCREEN_LEFT ||
-		ObjectManager_objectBottom < SCREEN_TOP)
-	{
-		object->alive = FALSE;
-	}
-
-	if (!object->alive)
+	if (object->x > SCREEN_RIGHT ||
+		object->y > SCREEN_BOTTOM ||
+		object->x < SCREEN_LEFT ||
+		object->y < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
 	}
@@ -56,22 +49,13 @@ void Kunai_Update(GameObject* object)
 
 void Kunai_Draw(GameObject* object)
 {
-	const u8 index = object->objectId << 2;
-
-	DRAWUTILS_SETUP(ObjectManager_objectLeft,
-					ObjectManager_objectTop,
+	DRAWUTILS_SETUP(object->x - ScrollManager_horizontalScroll,
+					object->y,
 					object->currentAnimationFrame->numSprites, 
 					object->currentAnimationFrame->sprites,
 					object->animationVdpTileIndex);
 
-	if (ObjectManager_objectLeft < SCREEN_LEFT || 
-		ObjectManager_objectRight > SCREEN_RIGHT)
-	{
-		DrawUtils_DrawClippedSides();
-	}
-	else
-	{
-		DrawUtils_Draw();
-	}
+	// should never be clipped
+	DrawUtils_Draw();
 }
 

@@ -23,8 +23,8 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
 
-	ObjectManager_player.rectLeft = (s8)-8;
-	ObjectManager_player.rectTop = (s8)-12;
+	ObjectManager_player.rectLeft = -8;
+	ObjectManager_player.rectTop = -12;
 	ObjectManager_player.rectRight = 8;
 	ObjectManager_player.rectBottom = 16;
 
@@ -80,22 +80,13 @@ void Player_Update(GameObject* player)
 
 void Player_Draw(GameObject* object)
 {
-	DRAWUTILS_SETUP(ObjectManager_playerLeft,
-					ObjectManager_playerTop,
+	DRAWUTILS_SETUP(object->x - ScrollManager_horizontalScroll,
+					object->y,
 					object->currentAnimationFrame->numSprites, 
 					object->currentAnimationFrame->sprites,
 					object->animationVdpTileIndex);
 
-	if (ObjectManager_playerLeft < SCREEN_LEFT || 
-		ObjectManager_playerTop < SCREEN_TOP ||
-		ObjectManager_playerRight > SCREEN_RIGHT ||
-		ObjectManager_playerBottom > SCREEN_BOTTOM)
-	{
-		DrawUtils_DrawClipped();
-	}
-	else
-	{
-		DrawUtils_Draw();
-	}
+	// why would the player sprite ever be clipped?
+	DrawUtils_Draw();
 }
 

@@ -36,7 +36,7 @@ void Enemy_Update(GameObject* object)
 {
 	AnimationUtils_updateAnimation(object);
 
-	ObjectManagerUtils_updateObjectScreenRect(object);
+	//ObjectManagerUtils_updateObjectScreenRect(object);
 
 	/*
 	// player collision
@@ -50,15 +50,15 @@ void Enemy_Update(GameObject* object)
 	*/
 
 	// if offscreen die
-	if (ObjectManager_objectRight < SCREEN_LEFT)
+	if (object->x + 14 < SCREEN_LEFT)
 	{
 		goto destroy_object;
 	}
 	
-	if (ObjectManagerUtils_collidesWithProjectiles(object))
-	{
-		goto destroy_object;
-	}
+	//if (ObjectManagerUtils_collidesWithProjectiles(object))
+	//{
+	//	goto destroy_object;
+	//}
 
 
 	return;
@@ -69,14 +69,17 @@ destroy_object:
 
 void Enemy_Draw(GameObject* object)
 {
-	DRAWUTILS_SETUP(ObjectManager_objectLeft,
-					ObjectManager_objectTop,
+	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
+	s16 screenRight = screenLeft + 14;//object->rectRight;
+
+	DRAWUTILS_SETUP(screenLeft,
+					object->y,
 					object->currentAnimationFrame->numSprites, 
 					object->currentAnimationFrame->sprites,
 					object->animationVdpTileIndex);
 
-	if (ObjectManager_objectLeft < SCREEN_LEFT || 
-		ObjectManager_objectRight > SCREEN_RIGHT)
+	if (screenRight < SCREEN_LEFT || 
+		screenLeft > SCREEN_RIGHT)
 	{
 		DrawUtils_DrawClippedSides();
 	}

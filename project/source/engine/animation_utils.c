@@ -14,8 +14,6 @@ void AnimationUtils_setupAnimation(GameObject* gameObject, const Animation* anim
 
 void AnimationUtils_updateAnimation(GameObject* gameObject)
 {
-	return;
-
 	if (!gameObject->animationTime--)
 	{
 		gameObject->currentAnimationFrameIndex++;

@@ -30,7 +30,7 @@ typedef struct game_object
 	u8 objectId;
 	u8 pixelWidth;
 	u8 pixelHeight;
-	u8 data3;
+	u8 objectType;
 } GameObject;
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);
