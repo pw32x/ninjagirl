@@ -13,47 +13,51 @@ GameObject ObjectManager_player;
 //s16 ObjectManager_objectRight;
 //s16 ObjectManager_objectBottom;
 
-s16 ObjectManager_playerLeft;
-s16 ObjectManager_playerTop;
-s16 ObjectManager_playerRight;
-s16 ObjectManager_playerBottom;
+//s16 ObjectManager_playerLeft;
+//s16 ObjectManager_playerTop;
+//s16 ObjectManager_playerRight;
+//s16 ObjectManager_playerBottom;
 
 
 #define NUM_PROJECTILE_SLOTS 3
-#define NUM_ENEMY_SLOTS 5
+#define NUM_ENEMY_SLOTS 4
 
-GameObject* ObjectManager_projectileSlots;
-GameObject* ObjectManager_enemySlots;
-
-#define NUM_SLOTS (NUM_PROJECTILE_SLOTS + NUM_ENEMY_SLOTS)
-GameObject ObjectManager_objectSlots[NUM_SLOTS];
+GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
+GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
 
 GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
 u8 ObjectManager_activeProjectilesCount;
 
-GameObject* ObjectManager_activeEnemies[NUM_ENEMY_SLOTS];
-u8 ObjectManager_activeEnemiesCount;
+//GameObject* ObjectManager_activeEnemies[NUM_ENEMY_SLOTS];
+//u8 ObjectManager_activeEnemiesCount;
 
-GameObject** ObjectManager_currentEnemyTarget;
+u8 ObjectManager_currentEnemyIndex;
 
 void ObjectManager_Init(void)
 {
-	memset(ObjectManager_objectSlots, 0, sizeof(ObjectManager_objectSlots));
-
-	ObjectManager_projectileSlots = ObjectManager_objectSlots;
-	ObjectManager_enemySlots = &ObjectManager_objectSlots[NUM_PROJECTILE_SLOTS];
+	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
+	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
 
 	// setup objects
-	GameObject* objectSlotRunner = ObjectManager_objectSlots;
-	u8 counter = NUM_SLOTS;
-
-	ObjectManager_currentEnemyTarget = ObjectManager_activeEnemies;
+	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
+	u8 counter = NUM_PROJECTILE_SLOTS;
 
 	while (counter--)
 	{
-		objectSlotRunner->alive = FALSE;
+		ObjectManager_DestroyObject(objectSlotRunner);
 		objectSlotRunner++;
 	}
+
+	objectSlotRunner = ObjectManager_enemySlots;
+	counter = NUM_ENEMY_SLOTS;
+
+	while (counter--)
+	{
+		ObjectManager_DestroyObject(objectSlotRunner);
+		objectSlotRunner++;
+	}
+
+	ObjectManager_currentEnemyIndex = 0;
 }
 
 //void ObjectManagerUtils_updatePlayerScreenRect(void)
@@ -88,6 +92,7 @@ void ObjectManager_Update(void)
 
 	// update objects
 
+	/*
 	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
 	u8 counter = NUM_PROJECTILE_SLOTS;
 
@@ -107,37 +112,65 @@ void ObjectManager_Update(void)
 		}
 		objectSlotRunner++;
 	}
+	*/
+
+	ObjectManager_projectileSlots[0].Update(&ObjectManager_projectileSlots[0]);
+	ObjectManager_projectileSlots[1].Update(&ObjectManager_projectileSlots[1]);
+	ObjectManager_projectileSlots[2].Update(&ObjectManager_projectileSlots[2]);
 
 	SMS_setBackdropColor(COLOR_DARK_BLUE);
 
+	/*
 	if (ObjectManager_activeProjectilesCount && ObjectManager_activeEnemiesCount)
 	{
 		counter = NUM_ENEMY_SLOTS;
 
 		while (counter--)
 		{
-			if (ObjectManager_currentEnemyTarget < ObjectManager_activeEnemies + NUM_ENEMY_SLOTS - 1)
-				ObjectManager_currentEnemyTarget++;
-			else
-				ObjectManager_currentEnemyTarget = ObjectManager_activeEnemies;
+			++ObjectManager_currentEnemyIndex;
 
-			if ((*ObjectManager_currentEnemyTarget)->alive)
+			GameObject* enemy = ObjectManager_activeEnemies[ObjectManager_currentEnemyIndex & 3];
+
+			if (!enemy->alive)
+				continue;
+
+			if (ObjectManagerUtils_collidesWithProjectiles(enemy)) 
 			{
-				if (ObjectManagerUtils_collidesWithProjectiles(*ObjectManager_currentEnemyTarget))
-				{
-					ObjectManager_DestroyObject(*ObjectManager_currentEnemyTarget);
-				}
-
-				break;
+				ObjectManager_DestroyObject(enemy);
 			}
+
+			break;
 		}
 	}
+	*/
+
+	u8 counter = NUM_ENEMY_SLOTS;
+
+	while (counter--)
+	{
+		++ObjectManager_currentEnemyIndex;
+
+		GameObject* enemy = &ObjectManager_enemySlots[ObjectManager_currentEnemyIndex & 3];
+
+		if (!enemy->alive)
+			continue;
+
+		if (ObjectManagerUtils_collidesWithProjectiles(enemy)) 
+		{
+			ObjectManager_DestroyObject(enemy);
+		}
+
+		break;
+	}
+
+
 
 	SMS_setBackdropColor(COLOR_ORANGE);
 
-	objectSlotRunner = ObjectManager_enemySlots;
-	counter = NUM_ENEMY_SLOTS;
+	//objectSlotRunner = ObjectManager_enemySlots;
+	//counter = NUM_ENEMY_SLOTS;
 
+	/*
 	ObjectManager_activeEnemiesCount = 0;
 
 	while (counter--)
@@ -154,6 +187,12 @@ void ObjectManager_Update(void)
 		}
 		objectSlotRunner++;
 	}
+	*/
+
+	ObjectManager_enemySlots[0].Update(&ObjectManager_enemySlots[0]);
+	ObjectManager_enemySlots[1].Update(&ObjectManager_enemySlots[1]);
+	ObjectManager_enemySlots[2].Update(&ObjectManager_enemySlots[2]);
+	ObjectManager_enemySlots[3].Update(&ObjectManager_enemySlots[3]);
 
 	SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
@@ -161,6 +200,7 @@ void ObjectManager_Update(void)
 
 	SMS_setBackdropColor(COLOR_GRAY);
 
+	/*
 	GameObject** activeObjectRunner = ObjectManager_activeProjectiles;
 	counter = ObjectManager_activeProjectilesCount;
 	while (counter--)
@@ -168,7 +208,14 @@ void ObjectManager_Update(void)
 		(*activeObjectRunner)->Draw(*activeObjectRunner);
 		activeObjectRunner++;
 	}
+	*/
+
+	ObjectManager_projectileSlots[0].Draw(&ObjectManager_projectileSlots[0]);
+	ObjectManager_projectileSlots[1].Draw(&ObjectManager_projectileSlots[1]);
+	ObjectManager_projectileSlots[2].Draw(&ObjectManager_projectileSlots[2]);
+
 	SMS_setBackdropColor(COLOR_PINK);
+	/*
 	activeObjectRunner = ObjectManager_activeEnemies;
 	counter = ObjectManager_activeEnemiesCount;
 	while (counter--)
@@ -176,6 +223,12 @@ void ObjectManager_Update(void)
 		(*activeObjectRunner)->Draw(*activeObjectRunner);
 		activeObjectRunner++;
 	}
+	*/
+
+	ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
+	ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
+	ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
+	ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
 }
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
@@ -206,6 +259,8 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
+	gameObject->Update = ObjectUtils_gameObjectDoNothing;
+	gameObject->Draw = ObjectUtils_gameObjectDoNothing;
 	gameObject->alive = FALSE;
 }
 

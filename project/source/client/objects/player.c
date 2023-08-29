@@ -15,6 +15,7 @@
 
 void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);
+void Player_FireWeapon(GameObject* player);
 
 GameObject* Player_Create(const SpawnInfo* spawnInfo)
 {
@@ -29,6 +30,10 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.rectBottom = 16;
 
 	AnimationUtils_setupAnimation(&ObjectManager_player, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+
+	//Player_FireWeapon(&ObjectManager_player);
+	//Player_FireWeapon(&ObjectManager_player);
+	//Player_FireWeapon(&ObjectManager_player);
 
 	return &ObjectManager_player;
 }

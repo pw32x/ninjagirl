@@ -18,10 +18,10 @@ void ObjectManager_DestroyObject(GameObject* gameObject);
 extern GameObject ObjectManager_player;
 
 // per-frame player screen position
-extern s16 ObjectManager_playerLeft;
-extern s16 ObjectManager_playerTop;
-extern s16 ObjectManager_playerRight;
-extern s16 ObjectManager_playerBottom;
+//extern s16 ObjectManager_playerLeft;
+//extern s16 ObjectManager_playerTop;
+//extern s16 ObjectManager_playerRight;
+//extern s16 ObjectManager_playerBottom;
 
 //void ObjectManagerUtils_updatePlayerScreenRect(void);
 
