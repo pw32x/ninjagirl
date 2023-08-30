@@ -22,4 +22,6 @@ extern u8 DrawUtils_vdpTileIndex;
 extern s16 DrawUtils_screenX;
 extern s16 DrawUtils_screenY;
 
+extern u8 DrawUtils_spritesDrawn;
+
 #endif

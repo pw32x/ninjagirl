@@ -103,6 +103,9 @@
     <ClCompile Include="..\source\client\exported\kunai.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_sprite.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

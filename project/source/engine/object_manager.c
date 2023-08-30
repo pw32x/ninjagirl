@@ -5,6 +5,7 @@
 #include "engine/scroll_manager.h"
 #include "engine/spawn_manager.h"
 #include "engine/object_utils.h"
+#include "engine/draw_utils.h"
 
 GameObject ObjectManager_player;
 
@@ -196,6 +197,9 @@ void ObjectManager_Update(void)
 
 	SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
+
+	DrawUtils_spritesDrawn = 0;
+
 	ObjectManager_player.Draw(&ObjectManager_player);
 
 	SMS_setBackdropColor(COLOR_GRAY);
