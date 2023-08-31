@@ -20,6 +20,8 @@ void main(void)
 
 	LevelManager_Init(&LEVEL_TO_RUN);
 
+	SMS_setSpriteMode(SPRITEMODE_TALL);
+
 	/* Turn on the display */
 	SMS_displayOn();
 	SMS_waitForVBlank ();

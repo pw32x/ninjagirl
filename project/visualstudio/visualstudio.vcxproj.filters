@@ -106,6 +106,12 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_sprite.c">
       <Filter>SMSLib</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_twosprites.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_threesprites.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

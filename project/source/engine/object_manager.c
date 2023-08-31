@@ -21,7 +21,7 @@ GameObject ObjectManager_player;
 
 
 #define NUM_PROJECTILE_SLOTS 3
-#define NUM_ENEMY_SLOTS 4
+#define NUM_ENEMY_SLOTS 8
 
 GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
@@ -194,6 +194,10 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[1].Update(&ObjectManager_enemySlots[1]);
 	ObjectManager_enemySlots[2].Update(&ObjectManager_enemySlots[2]);
 	ObjectManager_enemySlots[3].Update(&ObjectManager_enemySlots[3]);
+	ObjectManager_enemySlots[4].Update(&ObjectManager_enemySlots[4]);
+	ObjectManager_enemySlots[5].Update(&ObjectManager_enemySlots[5]);
+	ObjectManager_enemySlots[6].Update(&ObjectManager_enemySlots[6]);
+	ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
 
 	SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
@@ -233,6 +237,10 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
 	ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
 	ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
+	ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
+	ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
+	ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
+	ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
 }
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
