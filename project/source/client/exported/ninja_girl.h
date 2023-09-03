@@ -4,7 +4,7 @@
 
 #include "animation_types.h"
 
-extern const Animation ninja_girl;
+extern const AnimationBatched ninja_girl;
 
 #endif
 

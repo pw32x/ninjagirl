@@ -29,7 +29,7 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.rectRight = 8;
 	ObjectManager_player.rectBottom = 16;
 
-	AnimationUtils_setupAnimation(&ObjectManager_player, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	//Player_FireWeapon(&ObjectManager_player);
 	//Player_FireWeapon(&ObjectManager_player);
@@ -85,13 +85,12 @@ void Player_Update(GameObject* player)
 
 void Player_Draw(GameObject* object)
 {
-	DRAWUTILS_SETUP(object->x - ScrollManager_horizontalScroll,
-					object->y,
-					object->currentAnimationFrame->numSprites, 
-					object->currentAnimationFrame->sprites,
-					object->animationVdpTileIndex);
+	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
+						  object->y,
+						  object->currentAnimationFrame->spriteBatch,
+						  object->animationVdpTileIndex);
 
 	// why would the player sprite ever be clipped?
-	DrawUtils_Draw();
+	DrawUtils_DrawBatched();
 }
 

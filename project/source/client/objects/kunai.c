@@ -28,7 +28,7 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 4;
 	object->rectBottom = 4;
 
-	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	AnimationUtils_setupAnimation(object, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	return object;
 }
@@ -49,13 +49,13 @@ void Kunai_Update(GameObject* object)
 
 void Kunai_Draw(GameObject* object)
 {
-	DRAWUTILS_SETUP(object->x - ScrollManager_horizontalScroll,
-					object->y,
-					object->currentAnimationFrame->numSprites, 
-					object->currentAnimationFrame->sprites,
-					object->animationVdpTileIndex);
+	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
+						  object->y,
+						  object->currentAnimationFrame->spriteBatch,
+						  object->animationVdpTileIndex);
+
 
 	// should never be clipped
-	DrawUtils_Draw();
+	DrawUtils_DrawBatched();
 }
 

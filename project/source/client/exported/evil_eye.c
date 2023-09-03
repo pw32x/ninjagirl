@@ -869,121 +869,85 @@ unsigned char const evil_eyeTileData[3072] = // 96tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const AnimationSprite evil_eyeFrame0Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame0SpriteBatched[] = 
 {
-    { -15, -16, 0 },
-    { -7, -16, 2 },
-    { 1, -16, 4 },
-    { 9, -16, 6 },
-    { -15, 0, 8 },
-    { -7, 0, 10 },
-    { 1, 0, 12 },
-    { 9, 0, 14 },
+    { 4, { -15, -16, 0 } },
+    { 4, { -15, 0, 8 } },
+    {0},
 };
 
-const AnimationSprite evil_eyeFrame1Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame1SpriteBatched[] = 
 {
-    { -15, -16, 16 },
-    { -7, -16, 18 },
-    { 1, -16, 20 },
-    { 9, -16, 22 },
-    { -15, 0, 24 },
-    { -7, 0, 26 },
-    { 1, 0, 28 },
-    { 9, 0, 30 },
+    { 4, { -15, -16, 16 } },
+    { 4, { -15, 0, 24 } },
+    {0},
 };
 
-const AnimationSprite evil_eyeFrame2Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame2SpriteBatched[] = 
 {
-    { -15, -15, 32 },
-    { -7, -15, 34 },
-    { 1, -15, 36 },
-    { 9, -15, 38 },
-    { -15, 1, 40 },
-    { -7, 1, 42 },
-    { 1, 1, 44 },
-    { 9, 1, 46 },
+    { 4, { -15, -15, 32 } },
+    { 4, { -15, 1, 40 } },
+    {0},
 };
 
-const AnimationSprite evil_eyeFrame3Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame3SpriteBatched[] = 
 {
-    { -15, -15, 48 },
-    { -7, -15, 50 },
-    { 1, -15, 52 },
-    { 9, -15, 54 },
-    { -15, 1, 56 },
-    { -7, 1, 58 },
-    { 1, 1, 60 },
-    { 9, 1, 62 },
+    { 4, { -15, -15, 48 } },
+    { 4, { -15, 1, 56 } },
+    {0},
 };
 
-const AnimationSprite evil_eyeFrame4Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame4SpriteBatched[] = 
 {
-    { -15, -15, 64 },
-    { -7, -15, 66 },
-    { 1, -15, 68 },
-    { 9, -15, 70 },
-    { -15, 1, 72 },
-    { -7, 1, 74 },
-    { 1, 1, 76 },
-    { 9, 1, 78 },
+    { 4, { -15, -15, 64 } },
+    { 4, { -15, 1, 72 } },
+    {0},
 };
 
-const AnimationSprite evil_eyeFrame5Sprites[] = 
+const AnimationSpriteBatched evil_eyeFrame5SpriteBatched[] = 
 {
-    { -15, -15, 80 },
-    { -7, -15, 82 },
-    { 1, -15, 84 },
-    { 9, -15, 86 },
-    { -15, 1, 88 },
-    { -7, 1, 90 },
-    { 1, 1, 92 },
-    { 9, 1, 94 },
+    { 4, { -15, -15, 80 } },
+    { 4, { -15, 1, 88 } },
+    {0},
 };
 
 
-const AnimationFrame evil_eyeFrame0 = 
+const AnimationFrameBatched evil_eyeFrame0 = 
 {
-    evil_eyeFrame0Sprites,
-    8, // number of sprites
+    evil_eyeFrame0SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame evil_eyeFrame1 = 
+const AnimationFrameBatched evil_eyeFrame1 = 
 {
-    evil_eyeFrame1Sprites,
-    8, // number of sprites
+    evil_eyeFrame1SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame evil_eyeFrame2 = 
+const AnimationFrameBatched evil_eyeFrame2 = 
 {
-    evil_eyeFrame2Sprites,
-    8, // number of sprites
+    evil_eyeFrame2SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame evil_eyeFrame3 = 
+const AnimationFrameBatched evil_eyeFrame3 = 
 {
-    evil_eyeFrame3Sprites,
-    8, // number of sprites
+    evil_eyeFrame3SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame evil_eyeFrame4 = 
+const AnimationFrameBatched evil_eyeFrame4 = 
 {
-    evil_eyeFrame4Sprites,
-    8, // number of sprites
+    evil_eyeFrame4SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame evil_eyeFrame5 = 
+const AnimationFrameBatched evil_eyeFrame5 = 
 {
-    evil_eyeFrame5Sprites,
-    8, // number of sprites
+    evil_eyeFrame5SpriteBatched,
     8, // frame time
 };
-const AnimationFrame* const evil_eyeFrames[6] = 
+const AnimationFrameBatched* const evil_eyeFrames[6] = 
 {
     &evil_eyeFrame0,
     &evil_eyeFrame1,
@@ -993,9 +957,9 @@ const AnimationFrame* const evil_eyeFrames[6] =
     &evil_eyeFrame5,
 };
 
-const Animation evil_eye = 
+const AnimationBatched evil_eye = 
 {
-    (const AnimationFrame** const)evil_eyeFrames,
+    (const AnimationFrameBatched** const)evil_eyeFrames,
     (unsigned char* const)evil_eyeTileData, // start of the sprite data
     48, // the total time of the animation
     6, // number of frames

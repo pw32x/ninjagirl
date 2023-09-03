@@ -33,4 +33,35 @@ typedef struct
 
 } Animation;
 
+
+
+typedef struct 
+{
+    u8 count;
+    AnimationSprite sprite;
+} AnimationSpriteBatched;
+
+typedef struct
+{
+    const AnimationSpriteBatched* const spriteBatch;
+    u8 frameTime;
+} AnimationFrameBatched;
+
+
+typedef struct
+{
+    const AnimationFrameBatched** const frames;
+    const u8* const tileData;
+
+	u16 totalAnimationTime;
+
+    u8 numFrames;
+    u8 pixelWidth;
+    u8 pixelHeight;
+    //u8 maxTilesPerFrame;
+
+    u8 totalTileCount;
+
+} AnimationBatched;
+
 #endif

@@ -4,11 +4,34 @@ Todo
 	
 	DONE destroy enemy when offscreen
 	
-	draw projectiles
+	DONE draw projectiles
 	
-	collisions with projectiles
+	DONE collisions with projectiles
 	
-	basic collisions
+	DONE basic collisions
+	
+	DONE use 8x16 tiles
+	
+	test out using the draw2 and draw3 sprite functions
+	
+	create a draw4 sprite function
+	
+		new sprite format
+			
+			function, x, y, tile
+			
+			
+			function 0
+				finished? 
+				
+			function1 
+				draw one tile
+			function 2
+				draw two tiles
+			function 3
+				draw three tiles
+			function 4
+				draw four tiles
 	
 	gg2c, on export, sort sprites in a frame by X position
 		then clip by x position

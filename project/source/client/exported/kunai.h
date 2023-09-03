@@ -4,7 +4,7 @@
 
 #include "animation_types.h"
 
-extern const Animation kunai;
+extern const AnimationBatched kunai;
 
 #endif
 

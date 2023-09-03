@@ -23,7 +23,7 @@
 void Level001_Init(void)
 {
 	// load sprite resources
-	ninja_girl_spriteVdpLocation = VDPTileManager_LoadAnimationTiles(&ninja_girl);
+	ninja_girl_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, ninja_girl.totalTileCount);
 }
 
 const SpawnInfo level001_spawns[] = 

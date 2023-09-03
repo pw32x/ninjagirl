@@ -185,105 +185,103 @@ unsigned char const kunaiTileData[640] = // 20tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const AnimationSprite kunaiFrame0Sprites[] = 
+const AnimationSpriteBatched kunaiFrame0SpriteBatched[] = 
 {
-    { -7, -2, 0 },
-    { 1, -2, 2 },
+    { 2, { -7, -2, 0 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame1Sprites[] = 
+const AnimationSpriteBatched kunaiFrame1SpriteBatched[] = 
 {
-    { -7, -2, 4 },
-    { 1, -2, 6 },
+    { 2, { -7, -2, 4 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame2Sprites[] = 
+const AnimationSpriteBatched kunaiFrame2SpriteBatched[] = 
 {
-    { -3, -7, 8 },
+    { 1, { -3, -7, 8 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame3Sprites[] = 
+const AnimationSpriteBatched kunaiFrame3SpriteBatched[] = 
 {
-    { -3, -7, 10 },
+    { 1, { -3, -7, 10 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame4Sprites[] = 
+const AnimationSpriteBatched kunaiFrame4SpriteBatched[] = 
 {
-    { -4, -6, 12 },
+    { 1, { -4, -6, 12 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame5Sprites[] = 
+const AnimationSpriteBatched kunaiFrame5SpriteBatched[] = 
 {
-    { -4, -6, 14 },
+    { 1, { -4, -6, 14 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame6Sprites[] = 
+const AnimationSpriteBatched kunaiFrame6SpriteBatched[] = 
 {
-    { -4, -6, 16 },
+    { 1, { -4, -6, 16 } },
+    {0},
 };
 
-const AnimationSprite kunaiFrame7Sprites[] = 
+const AnimationSpriteBatched kunaiFrame7SpriteBatched[] = 
 {
-    { -4, -6, 18 },
+    { 1, { -4, -6, 18 } },
+    {0},
 };
 
 
-const AnimationFrame kunaiFrame0 = 
+const AnimationFrameBatched kunaiFrame0 = 
 {
-    kunaiFrame0Sprites,
-    2, // number of sprites
+    kunaiFrame0SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame1 = 
+const AnimationFrameBatched kunaiFrame1 = 
 {
-    kunaiFrame1Sprites,
-    2, // number of sprites
+    kunaiFrame1SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame2 = 
+const AnimationFrameBatched kunaiFrame2 = 
 {
-    kunaiFrame2Sprites,
-    1, // number of sprites
+    kunaiFrame2SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame3 = 
+const AnimationFrameBatched kunaiFrame3 = 
 {
-    kunaiFrame3Sprites,
-    1, // number of sprites
+    kunaiFrame3SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame4 = 
+const AnimationFrameBatched kunaiFrame4 = 
 {
-    kunaiFrame4Sprites,
-    1, // number of sprites
+    kunaiFrame4SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame5 = 
+const AnimationFrameBatched kunaiFrame5 = 
 {
-    kunaiFrame5Sprites,
-    1, // number of sprites
+    kunaiFrame5SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame6 = 
+const AnimationFrameBatched kunaiFrame6 = 
 {
-    kunaiFrame6Sprites,
-    1, // number of sprites
+    kunaiFrame6SpriteBatched,
     59, // frame time
 };
 
-const AnimationFrame kunaiFrame7 = 
+const AnimationFrameBatched kunaiFrame7 = 
 {
-    kunaiFrame7Sprites,
-    1, // number of sprites
+    kunaiFrame7SpriteBatched,
     59, // frame time
 };
-const AnimationFrame* const kunaiFrames[8] = 
+const AnimationFrameBatched* const kunaiFrames[8] = 
 {
     &kunaiFrame0,
     &kunaiFrame1,
@@ -295,9 +293,9 @@ const AnimationFrame* const kunaiFrames[8] =
     &kunaiFrame7,
 };
 
-const Animation kunai = 
+const AnimationBatched kunai = 
 {
-    (const AnimationFrame** const)kunaiFrames,
+    (const AnimationFrameBatched** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
     472, // the total time of the animation
     8, // number of frames

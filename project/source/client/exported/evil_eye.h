@@ -4,7 +4,7 @@
 
 #include "animation_types.h"
 
-extern const Animation evil_eye;
+extern const AnimationBatched evil_eye;
 
 #endif
 

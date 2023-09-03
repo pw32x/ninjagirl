@@ -5,7 +5,10 @@
 
 struct game_object;
 
-void AnimationUtils_setupAnimation(struct game_object* gameObject, const Animation* animation, u8 vdpTileIndex);
+void AnimationUtils_setupAnimation(struct game_object* gameObject, 
+								   const AnimationBatched* animation, 
+								   u8 vdpTileIndex);
+
 void AnimationUtils_updateAnimation(struct game_object* gameObject);
 
 #endif

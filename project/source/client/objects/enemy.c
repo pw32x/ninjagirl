@@ -27,7 +27,7 @@ GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 14;
 	object->rectBottom = 14;
 
-	AnimationUtils_setupAnimation(object, (const Animation*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	AnimationUtils_setupAnimation(object, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
 	return object;
 }
@@ -72,11 +72,10 @@ void Enemy_Draw(GameObject* object)
 	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
 	s16 screenRight = screenLeft + 14;//object->rectRight;
 
-	DRAWUTILS_SETUP(screenLeft,
-					object->y,
-					object->currentAnimationFrame->numSprites, 
-					object->currentAnimationFrame->sprites,
-					object->animationVdpTileIndex);
+	DRAWUTILS_SETUP_BATCH(screenLeft,
+						  object->y,
+						  object->currentAnimationFrame->spriteBatch,
+						  object->animationVdpTileIndex);
 
 	if (screenRight < SCREEN_LEFT || 
 		screenLeft > SCREEN_RIGHT)
@@ -85,7 +84,8 @@ void Enemy_Draw(GameObject* object)
 	}
 	else
 	{
-		DrawUtils_Draw();
+		//DrawUtils_Draw();
+		DrawUtils_DrawBatched();
 	}
 }
 

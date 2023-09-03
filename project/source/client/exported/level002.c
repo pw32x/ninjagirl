@@ -27,9 +27,9 @@
 void Level002_Init(void)
 {
 	// load sprite resources
-	ninja_girl_spriteVdpLocation = VDPTileManager_LoadAnimationTiles(&ninja_girl);
-	kunai_spriteVdpLocation = VDPTileManager_LoadAnimationTiles(&kunai);	
-	evil_eye_spriteVdpLocation = VDPTileManager_LoadAnimationTiles(&evil_eye);
+	ninja_girl_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, ninja_girl.totalTileCount);
+	kunai_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(kunai.tileData, kunai.totalTileCount);	
+	evil_eye_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(evil_eye.tileData, evil_eye.totalTileCount);
 }
 
 const SpawnInfo level002_spawns[] = 

@@ -3,6 +3,8 @@
 
 #include "engine/animation_types.h"
 
+// unbatched sprites drawing functions
+
 #define DRAWUTILS_SETUP(x, y, count, sprite, vdpTileIndex)\
 {\
 	DrawUtils_screenX = x;\
@@ -16,8 +18,23 @@ void DrawUtils_Draw(void);
 void DrawUtils_DrawClipped(void);
 void DrawUtils_DrawClippedSides(void);
 
+
+// batched sprites drawing functions
+
+#define DRAWUTILS_SETUP_BATCH(x, y, spriteBatch, vdpTileIndex)\
+{\
+	DrawUtils_screenX = x;\
+	DrawUtils_screenY = y;\
+	DrawUtils_currentSpriteBatched = spriteBatch;\
+	DrawUtils_vdpTileIndex = vdpTileIndex;\
+} 
+
+void DrawUtils_DrawBatched(void);
+
+
 extern char DrawUtils_spriteCounter;
 extern const AnimationSprite* DrawUtils_currentSprite;
+extern const AnimationSpriteBatched* DrawUtils_currentSpriteBatched;
 extern u8 DrawUtils_vdpTileIndex;
 extern s16 DrawUtils_screenX;
 extern s16 DrawUtils_screenY;

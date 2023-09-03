@@ -12,20 +12,20 @@ void VDPTileManager_Init(void)
 	VDPTileManager_spriteTileLocation = SPRITE_TILES_START_INDEX;
 }
 
-u8 VDPTileManager_LoadAnimationTiles(const Animation* animation)
+u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, u8 tileCount)
 {
 	u16 currentSpriteTileLocaton = VDPTileManager_spriteTileLocation;
 
-	if (currentSpriteTileLocaton + animation->totalTileCount > MAX_TOTAL_TILES)
+	if (currentSpriteTileLocaton + tileCount > MAX_TOTAL_TILES)
 	{
 		while (1) {};
 	}
 
-	SMS_loadTiles(animation->tileData, 
+	SMS_loadTiles(tileData, 
 				  VDPTileManager_spriteTileLocation, 
-				  animation->totalTileCount * 32);
+				  tileCount * 32);
 
-	VDPTileManager_spriteTileLocation += animation->totalTileCount;
+	VDPTileManager_spriteTileLocation += tileCount;
 
 	return currentSpriteTileLocaton - 256;
 }

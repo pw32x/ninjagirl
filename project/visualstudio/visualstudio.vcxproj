@@ -122,6 +122,7 @@
   <ItemDefinitionGroup>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_sprite.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_threesprites.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_twosprites.c" />

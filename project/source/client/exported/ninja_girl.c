@@ -185,47 +185,41 @@ unsigned char const ninja_girlTileData[640] = // 20tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const AnimationSprite ninja_girlFrame0Sprites[] = 
+const AnimationSpriteBatched ninja_girlFrame0SpriteBatched[] = 
 {
-    { -8, -15, 0 },
-    { 0, -15, 2 },
-    { -8, 1, 4 },
-    { 0, 1, 6 },
-    { 8, 1, 8 },
+    { 2, { -8, -15, 0 } },
+    { 3, { -8, 1, 4 } },
+    {0},
 };
 
-const AnimationSprite ninja_girlFrame1Sprites[] = 
+const AnimationSpriteBatched ninja_girlFrame1SpriteBatched[] = 
 {
-    { -8, -16, 10 },
-    { 0, -16, 12 },
-    { -10, 0, 14 },
-    { -2, 0, 16 },
-    { 6, 0, 18 },
+    { 2, { -8, -16, 10 } },
+    { 3, { -10, 0, 14 } },
+    {0},
 };
 
 
-const AnimationFrame ninja_girlFrame0 = 
+const AnimationFrameBatched ninja_girlFrame0 = 
 {
-    ninja_girlFrame0Sprites,
-    5, // number of sprites
+    ninja_girlFrame0SpriteBatched,
     8, // frame time
 };
 
-const AnimationFrame ninja_girlFrame1 = 
+const AnimationFrameBatched ninja_girlFrame1 = 
 {
-    ninja_girlFrame1Sprites,
-    5, // number of sprites
+    ninja_girlFrame1SpriteBatched,
     8, // frame time
 };
-const AnimationFrame* const ninja_girlFrames[2] = 
+const AnimationFrameBatched* const ninja_girlFrames[2] = 
 {
     &ninja_girlFrame0,
     &ninja_girlFrame1,
 };
 
-const Animation ninja_girl = 
+const AnimationBatched ninja_girl = 
 {
-    (const AnimationFrame** const)ninja_girlFrames,
+    (const AnimationFrameBatched** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
     16, // the total time of the animation
     2, // number of frames

@@ -1,7 +1,9 @@
 #include "animation_utils.h"
 #include "engine/object_types.h"
 
-void AnimationUtils_setupAnimation(GameObject* gameObject, const Animation* animation, u8 vdpTileIndex)
+void AnimationUtils_setupAnimation(GameObject* gameObject, 
+								   const AnimationBatched* animation, 
+								   u8 vdpTileIndex)
 {
 	gameObject->animation = animation;
 	gameObject->animationVdpTileIndex = vdpTileIndex;
