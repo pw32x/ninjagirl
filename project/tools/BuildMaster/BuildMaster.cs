@@ -6,9 +6,9 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BuildMasterSystem
+namespace BuildMaster
 {
-    class BuildMasterSystem
+    class BuildMaster
     {
         Config m_config = new Config();
 
@@ -18,7 +18,7 @@ namespace BuildMasterSystem
         private void ProcessArgs(string[] args)
         {
             if (args.Length < 2)
-                throw new Exception("BuildMasterSystem config file and build action both need to be specified.");
+                throw new Exception("BuildMaster config file and build action both need to be specified.");
 
             m_config.Load(args[0]);
 
@@ -28,7 +28,7 @@ namespace BuildMasterSystem
         private IAction GetActionByName(string actionName)
         {
             if (!m_actions.ContainsKey(actionName))
-                throw new Exception("No action by that name exists in the BuildMasterSystem");
+                throw new Exception("No action by that name exists in the BuildMaster");
 
             return m_actions[actionName]; // calls the static Create function on the Action
         }

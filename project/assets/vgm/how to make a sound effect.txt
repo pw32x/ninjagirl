@@ -1,0 +1,25 @@
+how to make a sound effect
+
+	create a new song in Deflemask
+	
+	use SN3 or SN4 channels or both
+	
+	add an OFF note (using the Tab key) at the end of the effect
+	
+	reduce the rows with the - and + buttons to only have the notes that you play
+	
+	save the file
+	
+	save as vgm
+	
+	when saving the vgm, add it to the folder that matches the channels the effect plays on
+		
+		if effect plays on:
+		
+			SN3 -> channel2
+			SN4 -> channel3
+			both SN3 and SN4 -> channel23
+			
+			
+		Deflemask channels are 1,2,3,4 while PSGLib and its tools use 0,1,2,3
+		

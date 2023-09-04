@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BuildMasterSystem
+namespace BuildMaster
 {
     class Program
     {
@@ -8,8 +8,8 @@ namespace BuildMasterSystem
         {
             try
             {
-                var buildMasterSystem = new BuildMasterSystem();
-                buildMasterSystem.Run(args);
+                var buildMaster = new BuildMaster();
+                buildMaster.Run(args);
             }
             catch (Exception ex)
             {

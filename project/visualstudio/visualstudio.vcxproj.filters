@@ -26,6 +26,9 @@
     <Filter Include="Source Files\client\exported">
       <UniqueIdentifier>{5f549717-d11c-474e-a27d-c397315ed6e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="PSGLib">
+      <UniqueIdentifier>{37a64740-56bc-4f89-8097-10d88dee35e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -114,6 +117,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.c">
       <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.c">
+      <Filter>PSGLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\bank2.c">
+      <Filter>Source Files\client\generated</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,12 +222,15 @@
     <ClInclude Include="..\source\client\exported\kunai.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h">
+      <Filter>PSGLib</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\bank2.h">
+      <Filter>Source Files\client\generated</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">
-      <Filter>build</Filter>
-    </None>
-    <None Include="..\build\run.py">
       <Filter>build</Filter>
     </None>
     <None Include="..\build\rebuild.bat">
@@ -239,7 +251,7 @@
     <None Include="..\build\vs_build.bat">
       <Filter>build</Filter>
     </None>
-    <None Include="..\build\config.bms">
+    <None Include="..\build\config.bm">
       <Filter>build</Filter>
     </None>
   </ItemGroup>

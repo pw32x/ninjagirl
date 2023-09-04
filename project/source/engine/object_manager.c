@@ -9,6 +9,10 @@
 
 GameObject ObjectManager_player;
 
+// music and sfx
+#include "PSGlib.h"
+#include "client/generated/bank2.h"
+
 //s16 ObjectManager_objectLeft;
 //s16 ObjectManager_objectTop;
 //s16 ObjectManager_objectRight;
@@ -151,13 +155,14 @@ void ObjectManager_Update(void)
 	{
 		++ObjectManager_currentEnemyIndex;
 
-		GameObject* enemy = &ObjectManager_enemySlots[ObjectManager_currentEnemyIndex & 3];
+		GameObject* enemy = &ObjectManager_enemySlots[ObjectManager_currentEnemyIndex & 7];
 
 		if (!enemy->alive)
 			continue;
 
 		if (ObjectManagerUtils_collidesWithProjectiles(enemy)) 
 		{
+			PSGSFXPlay(hit_psg, SFX_CHANNEL3);
 			ObjectManager_DestroyObject(enemy);
 		}
 

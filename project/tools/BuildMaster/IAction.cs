@@ -1,4 +1,4 @@
-﻿namespace BuildMasterSystem
+﻿namespace BuildMaster
 {
     interface IAction
     {

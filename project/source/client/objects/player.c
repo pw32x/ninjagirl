@@ -9,6 +9,10 @@
 
 #include "client/generated/sprite_vdp_locations.h"
 
+// music and sfx
+#include "PSGlib.h"
+#include "client/generated/bank2.h"
+
 //kunai
 #include "client/objects/kunai.h"
 #include "client/exported/kunai.h"
@@ -53,6 +57,8 @@ void Player_FireWeapon(GameObject* player)
 
 	kunai->speedx = 3;
 	kunai->speedy = 0;
+
+	PSGSFXPlay(throw_psg, SFX_CHANNEL2);
 }
 
 void Player_Update(GameObject* player)

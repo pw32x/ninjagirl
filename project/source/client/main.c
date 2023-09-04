@@ -1,4 +1,6 @@
 #include "SMSlib.h"
+#include "PSGlib.h"
+
 #include "engine/base_types.h"
 #include "engine/base_defines.h"
 #include "engine/level_manager.h"
@@ -9,12 +11,25 @@
 #include "exported/level001.h"
 #include "exported/level002.h"
 
+// music
+#include "generated/bank2.h"
+
 #include "client/exported/global_palette.h"
 
 #define LEVEL_TO_RUN level002
 
+void PSGUpdate(void)
+{
+	PSGFrame();
+	PSGSFXFrame();
+}
+
 void main(void)
 {
+	SMS_setFrameInterruptHandler(PSGUpdate);
+
+	PSGPlay(song_psg);
+
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
 

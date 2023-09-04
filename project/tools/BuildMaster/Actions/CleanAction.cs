@@ -1,4 +1,4 @@
-﻿namespace BuildMasterSystem
+﻿namespace BuildMaster
 {
     class CleanAction : IAction
     {

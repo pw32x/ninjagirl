@@ -1,1 +1,1 @@
-..\tools\BuildMasterSystem\bin\Release\net5.0\BuildMasterSystem.exe config.bms clean
+..\tools\BuildMaster\bin\Release\net5.0\BuildMaster.exe config.bm clean

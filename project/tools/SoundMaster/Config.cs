@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
-namespace BuildMasterSystem
+namespace SoundMaster
 {
     class Config
     {
@@ -16,7 +16,7 @@ namespace BuildMasterSystem
                 
             xmlDocument.Load(path);
 
-            XmlNodeList settingsNodes = xmlDocument.SelectNodes("/BuildMasterSystem/Settings/Setting");
+            XmlNodeList settingsNodes = xmlDocument.SelectNodes("/SoundMaster/Settings/Setting");
 
             if (settingsNodes != null)
             {
@@ -40,7 +40,17 @@ namespace BuildMasterSystem
             return m_settings[name.ToLower()]; 
         }
 
-        public string ProjectName { get { return GetSetting("ProjectName"); }}
-        public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); }}
+        public string MusicDirectory { get { return GetSetting("MusicDirectory"); }}
+
+        public string Channel2SFXDirectory { get { return GetSetting("Channel2SFXDirectory"); }}
+        public string Channel3SFXDirectory { get { return GetSetting("Channel3SFXDirectory"); }}
+        public string Channel23SFXDirectory { get { return GetSetting("Channel23SFXDirectory"); }}
+
+        public string ExportDirectory { get { return GetSetting("ExportDirectory"); }}
+
+        public string TempDirectory { get { return GetSetting("TempDirectory"); }}
+
+        public string PSGToolPath { get { return GetSetting("PSGToolPath"); }}
+        public string Assets2BanksPath { get { return GetSetting("assets2banksPath"); }}
     }
 }

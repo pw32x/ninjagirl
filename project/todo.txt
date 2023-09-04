@@ -1,37 +1,11 @@
 Todo
 
-	DONE improve scroll performance
 	
-	DONE destroy enemy when offscreen
+
 	
-	DONE draw projectiles
+	sprite animations that draw into the background
 	
-	DONE collisions with projectiles
-	
-	DONE basic collisions
-	
-	DONE use 8x16 tiles
-	
-	test out using the draw2 and draw3 sprite functions
-	
-	create a draw4 sprite function
-	
-		new sprite format
-			
-			function, x, y, tile
-			
-			
-			function 0
-				finished? 
-				
-			function1 
-				draw one tile
-			function 2
-				draw two tiles
-			function 3
-				draw three tiles
-			function 4
-				draw four tiles
+	speed up animation update
 	
 	gg2c, on export, sort sprites in a frame by X position
 		then clip by x position
@@ -169,6 +143,118 @@ Game Design Ideas
 	boss
 	
 Completed
+
+
+	DONE vgm pipeline
+	
+	
+		batch exporter
+		
+			pass root folder
+			
+				list the files in 
+					root
+					channel2
+					channel3
+					channel23
+			
+			optional newer check: 
+			
+				for each psg, check if the dmf is newer
+					
+					if newer, stop
+	
+
+			processing
+			
+				create temp folder
+
+				for each psg use PSG tool and create to temp folder
+				
+				use assets2banks.exe to export to .c and .h files
+				
+					
+			
+				
+
+
+	DONE test out music and sound effects
+	
+	how to make a sound effect
+	
+		make the effect
+	
+			create a new song in Deflemask
+			
+			use SN3 or SN4 channels or both
+			
+			add an OFF note (using the Tab key) at the end of the effect
+			
+			use the rows
+			
+			save as vgm
+			
+			save file
+			
+		compress the vgm
+		
+			use PSGTool
+			
+				java -jar PSGTool.jar hit.vgm 3
+				
+				use 2 or 3 or 23 to indicate which channels the effect uses
+				
+				Mapping:
+				Deflemask -> PSGLib Channel
+				SN3		  -> 2
+				SN4		  -> 3
+				
+		convert to banks C header and source files 
+		
+			<path/>assets2banks.exe <source_path> [--allowsplitting]
+		
+			ex: 
+				C:\Dropbox\SegaMasterSystem\devkitSMS-master\assets2banks\Windows\assets2banks.exe psg --allowsplitting
+	
+
+			the current path is the destination path
+			
+		integration into the game code
+		
+			bring the banks*.h and .c files into the solution		
+
+	DONE improve scroll performance
+	
+	DONE destroy enemy when offscreen
+	
+	DONE draw projectiles
+	
+	DONE collisions with projectiles
+	
+	DONE basic collisions
+	
+	DONE use 8x16 tiles
+	
+	DONE test out using the draw2 and draw3 sprite functions
+	
+	DONE create a draw4 sprite function
+	
+		new sprite format
+			
+			function, x, y, tile
+			
+			
+			function 0
+				finished? 
+				
+			function1 
+				draw one tile
+			function 2
+				draw two tiles
+			function 3
+				draw three tiles
+			function 4
+				draw four tiles
 
 	DONE have a spawner object
 	

@@ -14,7 +14,9 @@ CRT0=$(DEVKITSMS_BASE)/crt0/crt0_sms.rel
 SMSLIB_LIB=$(SMSLIB_BASE)/SMSlib.lib          # Use distributed lib
 #SMSLIB_LIB=$(SMSLIB_BASE)/src/SMSlib.lib      # Use locally compiled lib
 
-
+PSGLIB_BASE=$(DEVKITSMS_BASE)/PSGlib
+PSGLIB_INCDIR=$(PSGLIB_BASE)/src
+PSGLIB_LIB=$(PSGLIB_BASE)/PSGlib.rel
 
 FOLDER_TO_CREATE  = $(SOURCE_OUTPUT_DIR) 
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/
@@ -26,7 +28,7 @@ FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/engine
 SOURCE_DIR = source
 OUTPUT_DIR = out
 
-CFLAGS=-mz80 -I$(SOURCE_DIR) -I$(SMSLIB_INCDIR) -I$(SOURCE_DIR)/engine --peep-file $(PEEP_RULES)
+CFLAGS=-mz80 -I$(SOURCE_DIR) -I$(SMSLIB_INCDIR) -I$(PSGLIB_INCDIR) -I$(SOURCE_DIR)/engine --peep-file $(PEEP_RULES)
 LDFLAGS=-mz80 --no-std-crt0 --data-loc 0xC000
 
 SOURCE_OUTPUT_DIR = $(OUTPUT_DIR)/$(SOURCE_DIR)
@@ -56,7 +58,7 @@ $(SOURCE_OUTPUT_DIR)/%.rel: $(SOURCE_DIR)/%.c $(SOURCE_DIR)/%.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(OUTPUT_DIR)/$(PROGNAME).ihx: $(OBJS)
-	$(CC) -o $@ $(LDFLAGS) $(CRT0) $(SMSLIB_LIB) $^
+	$(CC) -o $@ $(LDFLAGS) $(CRT0) $(SMSLIB_LIB) $(PSGLIB_LIB) $^
 
 $(OUTPUT_DIR)/$(PROGNAME).sms: $(OUTPUT_DIR)/$(PROGNAME).ihx
 	$(IHX2SMS) $< $@

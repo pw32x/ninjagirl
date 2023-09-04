@@ -1,1 +1,1 @@
-..\tools\BuildMasterSystem\bin\Release\net5.0\BuildMasterSystem.exe config.bms build
+..\tools\BuildMasterSystem\bin\Release\net5.0\BuildMasterSystem.exe config.bm build

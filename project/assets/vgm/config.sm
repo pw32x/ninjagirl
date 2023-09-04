@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<SoundMaster>
+    <Settings>
+	    <Setting name="MusicDirectory" value="." />  <!-- where your music vgms are --> 
+		<Setting name="Channel2SFXDirectory" value="sfxchannel2" /> <!-- where sfx vgms playing on channel 2 go -->
+		<Setting name="Channel3SFXDirectory" value="sfxchannel3" /> <!-- where sfx vgms playing on channel 3 go -->
+		<Setting name="Channel23SFXDirectory" value="sfxchannel23" /> <!-- where sfx vgms playing on channel 2 and 3 go -->
+		
+		<Setting name="TempDirectory" value="temp"/> <!-- where temporary files will go -->
+		
+		<Setting name="ExportDirectory" value="..\..\source\client\generated"/> <!-- where the .c and .h files will go -->
+
+		<Setting name="PSGToolPath" value="..\..\tools\thirdparty\PSGTool\PSGTool.jar"/> <!-- needed to convert vgm to psg -->
+		<Setting name="assets2banksPath" value="..\..\..\..\..\devkitSMS-master\assets2banks\Windows\assets2banks.exe"/> <!-- convert psg to .c/.h -->	
+		
+    </Settings>
+</SoundMaster>

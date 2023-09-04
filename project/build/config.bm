@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<BuildMasterSystem>
+<BuildMaster>
     <Settings>
         <Setting name="ProjectName" value="NinjaGirl"/>
-		<Setting name="WorkingDirectory" value=".."/>
+		<Setting name="WorkingDirectory" value=".."/> <!-- root of the project folder -->
 		<Setting name="romPath" value = "out" />
 		
 		<!-- paths are relative to the WorkingDirectory -->
@@ -20,4 +20,4 @@
 		<Setting name="gg2c.DestinationFolder" value="source\client\exported"/>
 
     </Settings>
-</BuildMasterSystem>
+</BuildMaster>
