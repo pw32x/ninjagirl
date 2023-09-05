@@ -27,8 +27,8 @@ void ScrollUtils_buildColumn(void)
 metatile_index = (*(metatileMapStart) << 2) + metatileOffset;\
 metatileMapStart += ScrollManager_mapWidth;\
 sum = ScrollManager_metatileLut + metatile_index;\
-*columnRunner = *(sum);\
-*(columnRunner + 1) = *(sum + 2);\
+*columnRunner = *(sum) + ScrollManager_tilesetVdpLocation;\
+*(columnRunner + 1) = *(sum + 2) + ScrollManager_tilesetVdpLocation;\
 columnRunner += 2
 
 	FILL_COLUMN();

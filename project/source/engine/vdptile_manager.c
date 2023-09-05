@@ -3,6 +3,7 @@
 #include "SMSLib.h"
 
 u16 VDPTileManager_spriteTileLocation;
+u16 VDPTileManager_backgroundTileLocation;
 
 #define MAX_TOTAL_TILES 512
 #define SPRITE_TILES_START_INDEX 256
@@ -10,6 +11,7 @@ u16 VDPTileManager_spriteTileLocation;
 void VDPTileManager_Init(void)
 {
 	VDPTileManager_spriteTileLocation = SPRITE_TILES_START_INDEX;
+	VDPTileManager_backgroundTileLocation = 0;
 }
 
 u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, u8 tileCount)
@@ -30,16 +32,14 @@ u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, u8 tileCount)
 	return currentSpriteTileLocaton - 256;
 }
 
-void VDPTileManager_LoadBackgroundTileset(const Tileset* tileset)
+u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData, u8 tileCount)
 {
-	u16 numTiles = tileset->numTiles;
-
-	if (numTiles > SPRITE_TILES_START_INDEX)
+	if (tileCount > SPRITE_TILES_START_INDEX)
 	{
 		// if no sprite tiles have been loaded yet, just move the start index
 		if (VDPTileManager_spriteTileLocation == SPRITE_TILES_START_INDEX)
 		{
-			VDPTileManager_spriteTileLocation = numTiles;
+			VDPTileManager_spriteTileLocation = tileCount;
 		}
 		else
 		{
@@ -49,6 +49,12 @@ void VDPTileManager_LoadBackgroundTileset(const Tileset* tileset)
 	}
 
 	// always starting at 0 for now
-	SMS_loadTiles(tileset->tiles, 0, numTiles * 32);
+	SMS_loadTiles(tileData, VDPTileManager_backgroundTileLocation, tileCount * 32);
+
+	u16 oldBackgroundTileLocation = VDPTileManager_backgroundTileLocation;
+
+	VDPTileManager_backgroundTileLocation += tileCount;
+
+	return oldBackgroundTileLocation;
 }
 

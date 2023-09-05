@@ -128,6 +128,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_threesprites.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_twosprites.c" />
     <ClCompile Include="..\source\client\exported\background.c" />
+    <ClCompile Include="..\source\client\exported\birdidle.c" />
     <ClCompile Include="..\source\client\exported\evil_eye.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
     <ClCompile Include="..\source\client\exported\kunai.c" />
@@ -158,6 +159,7 @@
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
     <ClInclude Include="..\source\client\exported\background.h" />
+    <ClInclude Include="..\source\client\exported\birdidle.h" />
     <ClInclude Include="..\source\client\exported\evil_eye.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
     <ClInclude Include="..\source\client\exported\kunai.h" />

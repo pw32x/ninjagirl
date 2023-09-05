@@ -22,6 +22,7 @@
 #include "client/exported/ninja_girl.h"
 #include "client/exported/kunai.h"
 #include "client/exported/evil_eye.h"
+#include "client/exported/birdidle.h"
 #include "client/exported/background.h"
 
 void Level002_Init(void)
@@ -30,6 +31,7 @@ void Level002_Init(void)
 	ninja_girl_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, ninja_girl.totalTileCount);
 	kunai_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(kunai.tileData, kunai.totalTileCount);	
 	evil_eye_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(evil_eye.tileData, evil_eye.totalTileCount);
+	birdidle_spriteVdpLocation = VDPTileManager_LoadBackgroundTileset(birdidle.tileData, birdidle.totalTileCount);
 }
 
 const SpawnInfo level002_spawns[] = 

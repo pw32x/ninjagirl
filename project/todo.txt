@@ -1,8 +1,5 @@
 Todo
 
-	
-
-	
 	sprite animations that draw into the background
 	
 	speed up animation update

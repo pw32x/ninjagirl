@@ -124,6 +124,9 @@
     <ClCompile Include="..\source\client\generated\bank2.c">
       <Filter>Source Files\client\generated</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\birdidle.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -227,6 +230,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\generated\bank2.h">
       <Filter>Source Files\client\generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\birdidle.h">
+      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
