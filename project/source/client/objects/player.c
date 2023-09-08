@@ -6,6 +6,7 @@
 #include "engine/draw_utils.h"
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"
+#include "engine/resource_manager.h"
 
 #include "client/generated/sprite_vdp_locations.h"
 
@@ -33,7 +34,11 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 	ObjectManager_player.rectRight = 8;
 	ObjectManager_player.rectBottom = 16;
 
-	AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+
+	ResourceManager_SetupResource(&ObjectManager_player, spawnInfo->payload, spawnInfo->additionalPayload);
+
+	//ObjectManager_player.animationVdpTileIndex = 0xff;
 
 	//Player_FireWeapon(&ObjectManager_player);
 	//Player_FireWeapon(&ObjectManager_player);
@@ -86,14 +91,14 @@ void Player_Update(GameObject* player)
 	if (buttonsPressed & PORT_A_KEY_1)
 		Player_FireWeapon(player);
 
-	AnimationUtils_updateAnimation(player);
+	player->UpdateAnimation(player);
 }
 
 void Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentAnimationFrame->spriteBatch,
+						  object->currentAnimationBatchedFrame->spriteBatch,
 						  object->animationVdpTileIndex);
 
 	// why would the player sprite ever be clipped?

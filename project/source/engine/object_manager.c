@@ -38,6 +38,11 @@ u8 ObjectManager_activeProjectilesCount;
 
 u8 ObjectManager_currentEnemyIndex;
 
+#define NUM_VDP_DRAW_ITEMS 8
+GameObject* ObjectManager_vdpDrawGameObjects[NUM_VDP_DRAW_ITEMS];
+ObjectFunctionType ObjectManager_vdpDrawFunctions[NUM_VDP_DRAW_ITEMS];
+u8 ObjectManager_numVdpDrawItems;
+
 void ObjectManager_Init(void)
 {
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
@@ -85,6 +90,8 @@ void ObjectManager_Init(void)
 
 void ObjectManager_Update(void)
 {
+	ObjectManager_numVdpDrawItems = 0;
+
 	SMS_setBackdropColor(COLOR_RED);
 
 	ObjectManager_player.Update(&ObjectManager_player);
@@ -308,4 +315,31 @@ BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject)
 	}
 
 	return FALSE;
+}
+
+
+
+void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDrawFunction)
+{
+	ObjectManager_vdpDrawGameObjects[ObjectManager_numVdpDrawItems] = gameObject;
+	ObjectManager_vdpDrawFunctions[ObjectManager_numVdpDrawItems] = vdpDrawFunction;
+
+	ObjectManager_numVdpDrawItems++;
+}
+
+void ObjectManager_VDPDraw(void)
+{
+	if (!ObjectManager_numVdpDrawItems)
+		return;
+
+	GameObject** gameObjectsRunner = ObjectManager_vdpDrawGameObjects;
+	ObjectFunctionType* vdpDrawFunctionsRunner = ObjectManager_vdpDrawFunctions;
+
+	while (ObjectManager_numVdpDrawItems--)
+	{
+		(*vdpDrawFunctionsRunner)(*gameObjectsRunner);
+
+		gameObjectsRunner++;
+		vdpDrawFunctionsRunner++;
+	}
 }

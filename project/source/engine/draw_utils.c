@@ -1,6 +1,8 @@
 #include "draw_utils.h"
 #include "SMSlib.h"
 #include "engine/base_defines.h"
+#include "engine/object_types.h"
+#include "engine/scroll_manager.h"
 
 u8 DrawUtils_spriteCounter;
 const AnimationSprite* DrawUtils_currentSprite;
@@ -411,3 +413,30 @@ void DrawUtils_DrawBatched(void)
 	}
 }
 
+const unsigned short birdidleTileMap0b[4 * 7] = 
+{
+    0x0000, 0x0001, 0x0002, 0x0000, 
+    0x0000, 0x0003, 0x0004, 0x0000, 
+    0x0000, 0x0005, 0x0006, 0x0007, 
+    0x0008, 0x0009, 0x000a, 0x000b, 
+    0x000c, 0x000d, 0x000e, 0x000f, 
+    0x0000, 0x0010, 0x0011, 0x0012, 
+    0x0000, 0x0013, 0x0014, 0x0015, 
+};
+
+extern const unsigned short birdidleTileMap0;
+extern const PlaneAnimation birdidle;
+
+void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject)
+{
+    const PlaneAnimation* planeAnimation = gameObject->planeAnimation;
+    const PlaneAnimationFrame* frame = gameObject->currentPlaneAnimationFrame;
+
+    s16 x = gameObject->x;
+
+    SMS_loadTileMapArea(x >> 3, 
+                        gameObject->y >> 3, 
+                        frame->frameTilemap, 
+                        planeAnimation->tileWidth, 
+                        planeAnimation->tileHeight);
+}

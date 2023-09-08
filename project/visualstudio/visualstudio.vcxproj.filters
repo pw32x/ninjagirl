@@ -127,6 +127,90 @@
     <ClCompile Include="..\source\client\exported\birdidle.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\objects\bird.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_readVRAM.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteAdv.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteClip.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STC0comp.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STMcomp.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_string.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_textrenderer.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE_aPLib.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy_brief.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_aPLib.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_autotext.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_common.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_deprecated.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_getTile.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_load1bppTiles.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapArea.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapColumn.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paddle.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteAdv.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteSub.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_PSGaiden.c">
+      <Filter>SMSLib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\resource_manager.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -233,6 +317,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\birdidle.h">
       <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\bird.h">
+      <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\resource_manager.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\resource_types.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

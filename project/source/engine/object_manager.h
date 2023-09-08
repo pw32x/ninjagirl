@@ -34,6 +34,9 @@ extern GameObject ObjectManager_player;
 
 //void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject);
 
+void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDrawFunction);
+void ObjectManager_VDPDraw(void);
+
 BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject);
 
 #endif

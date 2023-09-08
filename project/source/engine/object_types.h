@@ -8,8 +8,18 @@ typedef struct game_object
 {
 	void (*Update)(struct game_object* gameObject);
 	void (*Draw)(struct game_object* gameObject);
-	const AnimationBatched* animation;
-	const AnimationFrameBatched* currentAnimationFrame;
+	BOOL (*UpdateAnimation)(struct game_object* gameObject);
+	union
+	{
+		const AnimationBatched* animationBatched;
+		const PlaneAnimation* planeAnimation;
+	};
+
+	union
+	{
+		const AnimationFrameBatched* currentAnimationBatchedFrame;
+		const PlaneAnimationFrame* currentPlaneAnimationFrame;
+	};
 
 	s16 x;
 	s16 y;

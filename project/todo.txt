@@ -2,7 +2,18 @@ Todo
 
 	sprite animations that draw into the background
 	
+	animation type
+	
+		regular
+		batched
+		plane
+	
 	speed up animation update
+	
+	
+	compress map data
+	
+	multiple tile sets
 	
 	gg2c, on export, sort sprites in a frame by X position
 		then clip by x position

@@ -6,6 +6,7 @@
 #include "engine/level_manager.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
+#include "engine/resource_manager.h"
 
 // levels
 #include "exported/level001.h"
@@ -27,6 +28,8 @@ void PSGUpdate(void)
 void main(void)
 {
 	SMS_setFrameInterruptHandler(PSGUpdate);
+
+	ResourceManager_Init();
 
 	PSGPlay(song_psg);
 
@@ -50,7 +53,10 @@ void main(void)
 		SMS_waitForVBlank ();
 		ScrollManager_UpdateVDP();
 		SMS_copySpritestoSAT();
+		SMS_setBackdropColor(COLOR_WHITE);
+		ObjectManager_VDPDraw();
 		SMS_setBackdropColor(0);
+
 	}
 }
 

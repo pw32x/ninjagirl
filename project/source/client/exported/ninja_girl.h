@@ -3,6 +3,7 @@
 #define NINJA_GIRL_ANIMATION_INCLUDE_H
 
 #include "animation_types.h"
+#include "resource_types.h"
 
 extern const AnimationBatched ninja_girl;
 

@@ -295,6 +295,7 @@ const AnimationFrameBatched* const kunaiFrames[8] =
 
 const AnimationBatched kunai = 
 {
+    BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
     472, // the total time of the animation

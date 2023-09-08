@@ -3,6 +3,7 @@
 #define KUNAI_ANIMATION_INCLUDE_H
 
 #include "animation_types.h"
+#include "resource_types.h"
 
 extern const AnimationBatched kunai;
 

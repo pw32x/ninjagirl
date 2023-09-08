@@ -6,6 +6,7 @@
 #include "engine/vdptile_manager.h"
 #include "engine/object_types.h"
 #include "engine/animation_types.h"
+#include "engine/resource_manager.h"
 
 // exported
 #include "client/generated/sprite_vdp_locations.h"
@@ -16,6 +17,7 @@
 #include "client/objects/enemy.h"
 #include "client/objects/right_scroller.h"
 #include "client/objects/streaming_spawner.h"
+#include "client/objects/bird.h"
 
 // resources
 #include "client/exported/global_palette.h"
@@ -28,10 +30,10 @@
 void Level002_Init(void)
 {
 	// load sprite resources
-	ninja_girl_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, ninja_girl.totalTileCount);
-	kunai_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(kunai.tileData, kunai.totalTileCount);	
-	evil_eye_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(evil_eye.tileData, evil_eye.totalTileCount);
-	birdidle_spriteVdpLocation = VDPTileManager_LoadBackgroundTileset(birdidle.tileData, birdidle.totalTileCount);
+	ninja_girl_spriteVdpLocation = (u8)ResourceManager_LoadResource(&ninja_girl);
+	kunai_spriteVdpLocation = (u8)ResourceManager_LoadResource(&kunai);	
+	evil_eye_spriteVdpLocation = (u8)ResourceManager_LoadResource(&evil_eye);
+	birdidle_spriteVdpLocation = (u8)ResourceManager_LoadResource(&birdidle);
 }
 
 const SpawnInfo level002_spawns[] = 
@@ -41,9 +43,12 @@ const SpawnInfo level002_spawns[] =
 	{ 24, 16, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 24, 48, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 24, 80, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
+	{ 40, 80, (const void*)&birdidle, (u32)&birdidle_spriteVdpLocation, Bird_Create },
+	{ 160, 8, (const void*)&birdidle, (u32)&birdidle_spriteVdpLocation, Bird_Create },
 	{ 218, 112, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 218, 144, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
 	{ 218, 176, (const void*)&evil_eye, (u32)&evil_eye_spriteVdpLocation, Enemy_Create },
+	{ 218, 102, (const void*)&birdidle, (u32)&birdidle_spriteVdpLocation, Bird_Create },
 };
 
 const SpawnInfo level002BootStrapSpawnInfo =
@@ -51,7 +56,7 @@ const SpawnInfo level002BootStrapSpawnInfo =
 	0, 
 	0, 
 	level002_spawns, 
-	8, 
+	11, 
 	StreamingSpawner_Create
 };
 

@@ -3,6 +3,7 @@
 
 #include "engine/base_types.h"
 
+
 typedef struct
 {
     s8 xOffset;
@@ -19,6 +20,7 @@ typedef struct
 
 typedef struct
 {
+    u8 resourceType;
     const AnimationFrame** const frames;
     const u8* const tileData;
 
@@ -50,6 +52,7 @@ typedef struct
 
 typedef struct
 {
+    u8 resourceType;
     const AnimationFrameBatched** const frames;
     const u8* const tileData;
 
@@ -63,5 +66,24 @@ typedef struct
     u8 totalTileCount;
 
 } AnimationBatched;
+
+typedef struct plane_animation_frame
+{
+    const u16* frameTilemap;
+    u8 frameTime;
+    struct plane_animation_frame* nextFrame;
+} PlaneAnimationFrame;
+
+typedef struct
+{
+    u8 resourceType;
+    const PlaneAnimationFrame** frames;
+    u8 numFrames;
+    u8 tileWidth;
+    u8 tileHeight;
+    u8 totalTileCount;
+    const u8* const tileData;
+} PlaneAnimation;
+
 
 #endif

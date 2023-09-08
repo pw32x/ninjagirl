@@ -27,7 +27,8 @@ GameObject* RightScroller_Create(const SpawnInfo* spawnInfo)
 	ScrollManager_updateMapVDP = FALSE;
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
 
-	ScrollManager_tilesetVdpLocation = VDPTileManager_LoadBackgroundTileset(ScrollManager_backgroundTileset->tiles, ScrollManager_backgroundTileset->numTiles);
+	ScrollManager_tilesetVdpLocation = VDPTileManager_LoadBackgroundTileset(ScrollManager_backgroundTileset->tiles, 
+																			ScrollManager_backgroundTileset->numTiles);
 
 	ScrollUtils_InitTilemap();
 

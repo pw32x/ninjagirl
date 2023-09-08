@@ -3,8 +3,9 @@
 #define BIRDIDLE_ANIMATION_INCLUDE_H
 
 #include "animation_types.h"
+#include "resource_types.h"
 
-extern const AnimationBatched birdidle;
+extern const PlaneAnimation birdidle;
 
 #endif
 

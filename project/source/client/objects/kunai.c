@@ -5,7 +5,7 @@
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/object_utils.h"
-#include "engine/animation_utils.h"
+#include "engine/resource_manager.h"
 
 
 void Kunai_Update(GameObject* object);
@@ -28,7 +28,7 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 4;
 	object->rectBottom = 4;
 
-	AnimationUtils_setupAnimation(object, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
 
 	return object;
 }
@@ -51,7 +51,7 @@ void Kunai_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentAnimationFrame->spriteBatch,
+						  object->currentAnimationBatchedFrame->spriteBatch,
 						  object->animationVdpTileIndex);
 
 

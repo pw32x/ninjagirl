@@ -219,6 +219,7 @@ const AnimationFrameBatched* const ninja_girlFrames[2] =
 
 const AnimationBatched ninja_girl = 
 {
+    BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
     16, // the total time of the animation

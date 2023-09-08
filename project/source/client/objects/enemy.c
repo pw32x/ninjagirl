@@ -6,6 +6,7 @@
 #include "engine/scroll_manager.h"
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"
+#include "engine/resource_manager.h"
 
 
 void Enemy_Update(GameObject* object);
@@ -22,19 +23,19 @@ GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 
-	object->rectLeft = (s8)-14;
-	object->rectTop = (s8)-14;
+	object->rectLeft = -14;
+	object->rectTop = -14;
 	object->rectRight = 14;
 	object->rectBottom = 14;
 
-	AnimationUtils_setupAnimation(object, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
+	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
 
 	return object;
 }
 
 void Enemy_Update(GameObject* object)
 {
-	AnimationUtils_updateAnimation(object);
+	object->UpdateAnimation(object);
 
 	//ObjectManagerUtils_updateObjectScreenRect(object);
 
@@ -74,7 +75,7 @@ void Enemy_Draw(GameObject* object)
 
 	DRAWUTILS_SETUP_BATCH(screenLeft,
 						  object->y,
-						  object->currentAnimationFrame->spriteBatch,
+						  object->currentAnimationBatchedFrame->spriteBatch,
 						  object->animationVdpTileIndex);
 
 	if (screenRight < SCREEN_LEFT || 

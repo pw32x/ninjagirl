@@ -959,6 +959,7 @@ const AnimationFrameBatched* const evil_eyeFrames[6] =
 
 const AnimationBatched evil_eye = 
 {
+    BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)evil_eyeFrames,
     (unsigned char* const)evil_eyeTileData, // start of the sprite data
     48, // the total time of the animation
