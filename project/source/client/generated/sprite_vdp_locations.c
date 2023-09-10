@@ -7,3 +7,4 @@ u8 ninja_girl_spriteVdpLocation;
 u8 evil_eye_spriteVdpLocation;
 u8 kunai_spriteVdpLocation;
 u8 birdidle_spriteVdpLocation;
+u8 water_tiles_spriteVdpLocation;

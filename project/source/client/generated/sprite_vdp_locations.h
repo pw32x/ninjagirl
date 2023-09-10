@@ -8,5 +8,6 @@ extern u8 ninja_girl_spriteVdpLocation;
 extern u8 evil_eye_spriteVdpLocation;
 extern u8 kunai_spriteVdpLocation;
 extern u8 birdidle_spriteVdpLocation;
+extern u8 water_tiles_spriteVdpLocation;
 
 #endif

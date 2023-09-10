@@ -161,6 +161,7 @@
     <ClCompile Include="..\source\client\exported\level001.c" />
     <ClCompile Include="..\source\client\exported\level002.c" />
     <ClCompile Include="..\source\client\exported\ninja_girl.c" />
+    <ClCompile Include="..\source\client\exported\water_tiles.c" />
     <ClCompile Include="..\source\client\generated\background_tileset.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\sprite_vdp_locations.c" />
@@ -172,6 +173,7 @@
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\streaming_spawner.c" />
+    <ClCompile Include="..\source\client\objects\tile_animator.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\level_manager.c" />
@@ -194,6 +196,7 @@
     <ClInclude Include="..\source\client\exported\level001.h" />
     <ClInclude Include="..\source\client\exported\level002.h" />
     <ClInclude Include="..\source\client\exported\ninja_girl.h" />
+    <ClInclude Include="..\source\client\exported\water_tiles.h" />
     <ClInclude Include="..\source\client\generated\background_tileset.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
     <ClInclude Include="..\source\client\generated\sprite_vdp_locations.h" />
@@ -204,6 +207,7 @@
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\streaming_spawner.h" />
+    <ClInclude Include="..\source\client\objects\tile_animator.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\animation_utils.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />

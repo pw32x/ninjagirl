@@ -9,6 +9,8 @@ typedef struct
     const u16* const metatile_lut;
     const u16 numTiles;
     const u16 numMetatiles;
+    const u16* animatedTileIndexes;
+    u16 animatedTileIndexesCount;
 } Tileset;
 
 typedef struct

@@ -3,6 +3,23 @@
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
 
+BOOL AnimationUtils_updateAnimation(GameObject* gameObject)
+{
+	if (!gameObject->animationTime--)
+	{
+		gameObject->currentAnimationFrameIndex++;
+
+		if (gameObject->currentAnimationFrameIndex == gameObject->animation->numFrames)
+			gameObject->currentAnimationFrameIndex = 0;
+
+		gameObject->currentAnimationFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
+		gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 BOOL AnimationUtils_updateAnimationBatched(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
@@ -20,7 +37,7 @@ BOOL AnimationUtils_updateAnimationBatched(GameObject* gameObject)
 	return FALSE;
 }
 
-BOOL AnimationUtils_updatePlaneAnimation(struct game_object* gameObject)
+BOOL AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
@@ -47,8 +64,17 @@ u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
 	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, planeAnimation->totalTileCount);
 }
 
-u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation, u16 vdpTileIndex)
+u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation, u16 data)
 {
+	gameObject->animation = animation;
+	gameObject->animationVdpTileIndex = *((u8*)data);
+	gameObject->currentAnimationFrameIndex = 0;
+	gameObject->currentAnimationFrame = animation->frames[0];
+	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
+	gameObject->pixelWidth = animation->pixelWidth;
+	gameObject->pixelHeight = animation->pixelHeight;
+	gameObject->UpdateAnimation = AnimationUtils_updateAnimation;
+
 	return 0;
 }
 

@@ -11,12 +11,14 @@ typedef struct game_object
 	BOOL (*UpdateAnimation)(struct game_object* gameObject);
 	union
 	{
+		const Animation* animation;
 		const AnimationBatched* animationBatched;
 		const PlaneAnimation* planeAnimation;
 	};
 
 	union
 	{
+		const AnimationFrame* currentAnimationFrame;
 		const AnimationFrameBatched* currentAnimationBatchedFrame;
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;
 	};

@@ -1,0 +1,1 @@
+C:\Dropbox\SegaMasterSystem\projects\gal2tmx\bin\gal2tmx.exe background.gal C:\Dropbox\SegaMasterSystem\projects\ninjagirl\gamedata\maps C:\Dropbox\SegaMasterSystem\projects\ninjagirl\source\client\generated

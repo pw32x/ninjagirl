@@ -433,6 +433,6 @@ const PlaneAnimation birdidle =
     2, // number of frames
     4, // width of the total area of the frame in tiles
     7, // height of the total area of the frame in tiles
-    56, // the total number of tiles in the animation
+    41, // the total number of tiles in the animation
     birdidleTileData, // start of the tile data
 };

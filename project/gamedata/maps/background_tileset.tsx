@@ -561,19 +561,4 @@
       <property name = "" value = "" />
     </properties>
   </tile>
-  <tile id="112">
-    <properties>
-      <property name = "" value = "" />
-    </properties>
-  </tile>
-  <tile id="113">
-    <properties>
-      <property name = "" value = "" />
-    </properties>
-  </tile>
-  <tile id="114">
-    <properties>
-      <property name = "" value = "" />
-    </properties>
-  </tile>
 </tileset>
