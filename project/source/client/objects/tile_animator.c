@@ -25,32 +25,18 @@ GameObject* TileAnimator_Create(const SpawnInfo* spawnInfo)
 	object->Update = TileAnimator_Update;
 	object->Draw = TileAnimator_Draw;
 
-
 	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
-	/*
-	object->rectLeft = 0;
-	object->rectTop = 0;
-	object->rectRight = object->pixelWidth;
-	object->rectBottom = object->pixelHeight;
-	*/
-
-	object->animationTime = 8;
 
 	return object;
 }
 
-extern const Animation water_tiles;
-extern unsigned char const water_tilesTileData[];
-
-extern unsigned char const ninja_girlTileData[];
-
 void UpdateTiles(GameObject* object)
 {
-	//UNSAFE_SMS_load4Tiles(water_tilesTileData, 16);
-
 	u8 numTilesToUpdate = ScrollManager_backgroundTileset->animatedTileIndexesCount;
 	const u16* animatedTileIndexRunner = ScrollManager_backgroundTileset->animatedTileIndexes;
-	const u8* sourceTileRunner = water_tilesTileData + (object->currentAnimationFrameIndex * 32 * 4);
+
+	const u8* sourceTileRunner = object->animation->tileData + 
+								((object->currentAnimationFrameIndex << 5) * object->currentAnimationFrame->numSprites);
 
 	for (u8 loop = 0; loop < numTilesToUpdate; loop++)
 	{
@@ -71,22 +57,10 @@ void TileAnimator_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 		return;
 	}
-
-	if (object->UpdateAnimation(object))
-		ObjectManager_QueueVDPDraw(object, DrawUtils_DrawPlaneAnimationFrame);
 	*/
 
-	object->animationTime--;
-	if (!object->animationTime)
-	{
-		object->currentAnimationFrameIndex++;
-
-		if (object->currentAnimationFrameIndex == object->animationBatched->numFrames)
-			object->currentAnimationFrameIndex = 0;
-
+	if (object->UpdateAnimation(object))
 		ObjectManager_QueueVDPDraw(object, UpdateTiles);
-		object->animationTime = 8;
-	}
 }
 
 void TileAnimator_Draw(GameObject* object)

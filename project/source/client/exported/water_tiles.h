@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const AnimationBatched water_tiles;
+extern const Animation water_tiles;
 
 #endif
 

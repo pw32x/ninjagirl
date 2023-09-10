@@ -6,6 +6,7 @@
 
 struct game_object;
 
+BOOL AnimationUtils_updateAnimation(GameObject* gameObject);
 BOOL AnimationUtils_updateAnimationBatched(struct game_object* gameObject);
 BOOL AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 

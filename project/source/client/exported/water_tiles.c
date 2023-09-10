@@ -149,59 +149,67 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0x3f, 0x01, 0x3f, 0xff, 
 };
 
-const AnimationSpriteBatched water_tilesFrame0SpriteBatched[] = 
+const AnimationSprite water_tilesFrame0Sprites[] = 
 {
-    { 1, { 0, 0, 0 } },
-    { 1, { 0, 16, 2 } },
-    {0},
+    { -12, -16, 0 },
+    { -12, -8, 1 },
+    { -12, 0, 2 },
+    { -12, 8, 3 },
 };
 
-const AnimationSpriteBatched water_tilesFrame1SpriteBatched[] = 
+const AnimationSprite water_tilesFrame1Sprites[] = 
 {
-    { 1, { 0, 0, 4 } },
-    { 1, { 0, 16, 6 } },
-    {0},
+    { -12, -16, 4 },
+    { -12, -8, 5 },
+    { -12, 0, 6 },
+    { -12, 8, 7 },
 };
 
-const AnimationSpriteBatched water_tilesFrame2SpriteBatched[] = 
+const AnimationSprite water_tilesFrame2Sprites[] = 
 {
-    { 1, { 0, 0, 8 } },
-    { 1, { 0, 16, 10 } },
-    {0},
+    { -12, -16, 8 },
+    { -12, -8, 9 },
+    { -12, 0, 10 },
+    { -12, 8, 11 },
 };
 
-const AnimationSpriteBatched water_tilesFrame3SpriteBatched[] = 
+const AnimationSprite water_tilesFrame3Sprites[] = 
 {
-    { 1, { 0, 0, 12 } },
-    { 1, { 0, 16, 14 } },
-    {0},
+    { -12, -16, 12 },
+    { -12, -8, 13 },
+    { -12, 0, 14 },
+    { -12, 8, 15 },
 };
 
 
-const AnimationFrameBatched water_tilesFrame0 = 
+const AnimationFrame water_tilesFrame0 = 
 {
-    water_tilesFrame0SpriteBatched,
-    5, // frame time
+    water_tilesFrame0Sprites,
+    4, // number of sprites
+    8, // frame time
 };
 
-const AnimationFrameBatched water_tilesFrame1 = 
+const AnimationFrame water_tilesFrame1 = 
 {
-    water_tilesFrame1SpriteBatched,
-    5, // frame time
+    water_tilesFrame1Sprites,
+    4, // number of sprites
+    8, // frame time
 };
 
-const AnimationFrameBatched water_tilesFrame2 = 
+const AnimationFrame water_tilesFrame2 = 
 {
-    water_tilesFrame2SpriteBatched,
-    5, // frame time
+    water_tilesFrame2Sprites,
+    4, // number of sprites
+    8, // frame time
 };
 
-const AnimationFrameBatched water_tilesFrame3 = 
+const AnimationFrame water_tilesFrame3 = 
 {
-    water_tilesFrame3SpriteBatched,
-    5, // frame time
+    water_tilesFrame3Sprites,
+    4, // number of sprites
+    8, // frame time
 };
-const AnimationFrameBatched* const water_tilesFrames[4] = 
+const AnimationFrame* const water_tilesFrames[4] = 
 {
     &water_tilesFrame0,
     &water_tilesFrame1,
@@ -209,12 +217,12 @@ const AnimationFrameBatched* const water_tilesFrames[4] =
     &water_tilesFrame3,
 };
 
-const AnimationBatched water_tiles = 
+const Animation water_tiles = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrameBatched** const)water_tilesFrames,
+    REGULAR_ANIMATION_RESOURCE_TYPE, 
+    (const AnimationFrame** const)water_tilesFrames,
     (unsigned char* const)water_tilesTileData, // start of the sprite data
-    20, // the total time of the animation
+    32, // the total time of the animation
     4, // number of frames
     8, // width in pixels
     32, // height in pixels
