@@ -29,7 +29,6 @@ typedef struct game_object
 	s16 speedx;
 	s16 speedy;
 
-	u8 animationVdpTileIndex;
 	u8 currentAnimationFrameIndex;
 	u8 animationTime;
 	u8 alive;

@@ -7,6 +7,6 @@ struct game_object;
 
 void ResourceManager_Init(void);
 void* ResourceManager_LoadResource(const void* resource);
-void* ResourceManager_SetupResource(struct game_object* gameObject, const void* resource, u16 data);
+void* ResourceManager_SetupResource(struct game_object* gameObject, const void* resource);
 
 #endif

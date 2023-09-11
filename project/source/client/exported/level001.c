@@ -23,13 +23,15 @@
 void Level001_Init(void)
 {
 	// load sprite resources
-	ninja_girl_spriteVdpLocation = VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, ninja_girl.totalTileCount);
+	VDPTileManager_LoadSpriteTiles(ninja_girl.tileData, 
+								   ninja_girl.totalTileCount,
+								   ninja_girl.vdpLocation);
 }
 
 const SpawnInfo level001_spawns[] = 
 {
 	{ 0, 0, (const void*)&background_map, NULL, RightScroller_Create },
-	{ 122, 88, (const void*)&ninja_girl, (u32)&ninja_girl_spriteVdpLocation, Player_Create }
+	{ 122, 88, (const void*)&ninja_girl, NULL, Player_Create }
 };
 
 const SpawnInfo level001BootStrapSpawnInfo =

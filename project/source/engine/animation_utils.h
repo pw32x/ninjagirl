@@ -6,7 +6,7 @@
 
 struct game_object;
 
-BOOL AnimationUtils_updateAnimation(GameObject* gameObject);
+BOOL AnimationUtils_updateAnimation(struct game_object* gameObject);
 BOOL AnimationUtils_updateAnimationBatched(struct game_object* gameObject);
 BOOL AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 
@@ -14,8 +14,8 @@ u16 Load_AnimationResource(const Animation* animation);
 u16 Load_BatchedAnimationResource(const AnimationBatched* animationBatched);
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation);
 
-u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation, u16 vdpTileIndex);
-u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const AnimationBatched* animationBatched, u16 vdpTileIndex);
-u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation, u16 vdpTileIndex);
+u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation);
+u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const AnimationBatched* animationBatched);
+u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation);
 
 #endif

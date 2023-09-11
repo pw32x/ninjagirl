@@ -1,10 +1,6 @@
 Todo
 	
-	make tile_animation work correctly
-	
-	how to better specify how many tiles to update?
-	
-	how to animate multiple types of tiles?
+	DONE make tile_animation work correctly
 	
 	load resources as part of the spawn list
 	
@@ -20,6 +16,13 @@ Todo
 		action type
 		data
 			
+
+
+	how to better specify how many tiles to update?
+	
+	how to animate multiple types of tiles?
+
+		go back to how the Genesis worked?
 	
 	make gg2c not suck
 	make gal2tmx not suck	

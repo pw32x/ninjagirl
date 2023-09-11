@@ -293,6 +293,8 @@ const AnimationFrameBatched* const kunaiFrames[8] =
     &kunaiFrame7,
 };
 
+u8 kunaiVdpLocation;
+
 const AnimationBatched kunai = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
@@ -303,4 +305,5 @@ const AnimationBatched kunai =
     16, // width in pixels
     16, // height in pixels
     20, // the total amount of tiles in animation
+    &kunaiVdpLocation,
 };

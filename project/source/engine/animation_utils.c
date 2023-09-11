@@ -51,23 +51,28 @@ BOOL AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 
 u16 Load_AnimationResource(const Animation* animation)
 {
-	return VDPTileManager_LoadSpriteTiles(animation->tileData, animation->totalTileCount);
+	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
+										  animation->totalTileCount,
+										  animation->vdpLocation);
 }
 
 u16 Load_BatchedAnimationResource(const AnimationBatched* animationBatched)
 {
-	return VDPTileManager_LoadSpriteTiles(animationBatched->tileData, animationBatched->totalTileCount);
+	return VDPTileManager_LoadSpriteTiles(animationBatched->tileData, 
+										  animationBatched->totalTileCount,
+										  animationBatched->vdpLocation);
 }
 
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
 {
-	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, planeAnimation->totalTileCount);
+	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, 
+												planeAnimation->totalTileCount,
+												planeAnimation->vdpLocation);
 }
 
-u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation, u16 data)
+u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation)
 {
 	gameObject->animation = animation;
-	gameObject->animationVdpTileIndex = *((u8*)data);
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentAnimationFrame = animation->frames[0];
 	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
@@ -78,10 +83,9 @@ u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* ani
 	return 0;
 }
 
-u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const AnimationBatched* animationBatched, u16 data)
+u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const AnimationBatched* animationBatched)
 {
 	gameObject->animationBatched = animationBatched;
-	gameObject->animationVdpTileIndex = *((u8*)data);
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentAnimationBatchedFrame = animationBatched->frames[0];
 	gameObject->animationTime = gameObject->currentAnimationBatchedFrame->frameTime;
@@ -92,10 +96,9 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Animati
 	return 0;
 }
 
-u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation, u16 data)
+u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation)
 {
 	gameObject->planeAnimation = planeAnimation;
-	gameObject->animationVdpTileIndex = *((u8*)data);
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentPlaneAnimationFrame = planeAnimation->frames[0];
 	gameObject->animationTime = gameObject->currentPlaneAnimationFrame->frameTime;

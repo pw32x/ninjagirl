@@ -28,7 +28,7 @@ GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 14;
 	object->rectBottom = 14;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
+	ResourceManager_SetupResource(object, spawnInfo->payload);
 
 	return object;
 }
@@ -76,7 +76,7 @@ void Enemy_Draw(GameObject* object)
 	DRAWUTILS_SETUP_BATCH(screenLeft,
 						  object->y,
 						  object->currentAnimationBatchedFrame->spriteBatch,
-						  object->animationVdpTileIndex);
+						  *object->animationBatched->vdpLocation);
 
 	if (screenRight < SCREEN_LEFT || 
 		screenLeft > SCREEN_RIGHT)

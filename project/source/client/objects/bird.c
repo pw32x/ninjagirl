@@ -23,7 +23,7 @@ GameObject* Bird_Create(const SpawnInfo* spawnInfo)
 	object->Draw = Bird_Draw;
 
 
-	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
+	ResourceManager_SetupResource(object, spawnInfo->payload);
 
 	object->rectLeft = 0;
 	object->rectTop = 0;

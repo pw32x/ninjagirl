@@ -32,7 +32,7 @@ typedef struct
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
-
+    u8* vdpLocation;
 } Animation;
 
 
@@ -64,6 +64,7 @@ typedef struct
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
+    u8* vdpLocation;
 
 } AnimationBatched;
 
@@ -83,6 +84,7 @@ typedef struct
     u8 tileHeight;
     u8 totalTileCount;
     const u8* const tileData;
+    u16* vdpLocation;
 } PlaneAnimation;
 
 

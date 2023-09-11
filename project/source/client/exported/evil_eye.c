@@ -957,6 +957,8 @@ const AnimationFrameBatched* const evil_eyeFrames[6] =
     &evil_eyeFrame5,
 };
 
+u8 evil_eyeVdpLocation;
+
 const AnimationBatched evil_eye = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
@@ -967,4 +969,5 @@ const AnimationBatched evil_eye =
     32, // width in pixels
     32, // height in pixels
     96, // the total amount of tiles in animation
+    &evil_eyeVdpLocation,
 };

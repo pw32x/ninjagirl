@@ -28,7 +28,7 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 4;
 	object->rectBottom = 4;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
+	ResourceManager_SetupResource(object, spawnInfo->payload);
 
 	return object;
 }
@@ -52,7 +52,7 @@ void Kunai_Draw(GameObject* object)
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentAnimationBatchedFrame->spriteBatch,
-						  object->animationVdpTileIndex);
+						  *object->animationBatched->vdpLocation);
 
 
 	// should never be clipped

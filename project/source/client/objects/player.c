@@ -36,7 +36,7 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 
 	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
-	ResourceManager_SetupResource(&ObjectManager_player, spawnInfo->payload, spawnInfo->additionalPayload);
+	ResourceManager_SetupResource(&ObjectManager_player, spawnInfo->payload);
 
 	//ObjectManager_player.animationVdpTileIndex = 0xff;
 
@@ -54,7 +54,7 @@ void Player_FireWeapon(GameObject* player)
 		player->x, 
 		player->y, 
 		(const void*)&kunai, 
-		(u32)&kunai_spriteVdpLocation, 
+		NULL, 
 		Kunai_Create 
 	};
 
@@ -99,7 +99,7 @@ void Player_Draw(GameObject* object)
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentAnimationBatchedFrame->spriteBatch,
-						  object->animationVdpTileIndex);
+						  *object->animationBatched->vdpLocation);
 
 	// why would the player sprite ever be clipped?
 	DrawUtils_DrawBatched();

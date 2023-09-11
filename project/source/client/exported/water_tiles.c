@@ -217,6 +217,8 @@ const AnimationFrame* const water_tilesFrames[4] =
     &water_tilesFrame3,
 };
 
+u8 water_tilesVdpLocation;
+
 const Animation water_tiles = 
 {
     REGULAR_ANIMATION_RESOURCE_TYPE, 
@@ -227,4 +229,5 @@ const Animation water_tiles =
     8, // width in pixels
     32, // height in pixels
     16, // the total amount of tiles in animation
+    &water_tilesVdpLocation,
 };

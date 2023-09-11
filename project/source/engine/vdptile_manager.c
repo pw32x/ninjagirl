@@ -14,7 +14,9 @@ void VDPTileManager_Init(void)
 	VDPTileManager_backgroundTileLocation = 0;
 }
 
-u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, u8 tileCount)
+u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, 
+								  u8 tileCount,
+								  u8* vdpLocation)
 {
 	u16 currentSpriteTileLocaton = VDPTileManager_spriteTileLocation;
 
@@ -29,10 +31,14 @@ u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, u8 tileCount)
 
 	VDPTileManager_spriteTileLocation += tileCount;
 
-	return currentSpriteTileLocaton - 256;
+	*vdpLocation = currentSpriteTileLocaton - 256;
+
+	return *vdpLocation;
 }
 
-u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData, u16 tileCount)
+u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData, 
+										 u16 tileCount,
+										 u16* vdpLocation)
 {
 	//if (tileCount > SPRITE_TILES_START_INDEX)
 	//{
@@ -51,10 +57,10 @@ u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData, u16 tileCount)
 	// always starting at 0 for now
 	SMS_loadTiles(tileData, VDPTileManager_backgroundTileLocation, tileCount * 32);
 
-	u16 oldBackgroundTileLocation = VDPTileManager_backgroundTileLocation;
+	*vdpLocation = VDPTileManager_backgroundTileLocation;
 
 	VDPTileManager_backgroundTileLocation += tileCount;
 
-	return oldBackgroundTileLocation;
+	return *vdpLocation;
 }
 

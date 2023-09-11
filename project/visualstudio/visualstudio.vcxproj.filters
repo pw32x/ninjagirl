@@ -217,6 +217,9 @@
     <ClCompile Include="..\source\client\exported\water_tiles.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\map_types.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

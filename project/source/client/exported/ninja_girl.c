@@ -217,6 +217,8 @@ const AnimationFrameBatched* const ninja_girlFrames[2] =
     &ninja_girlFrame1,
 };
 
+u8 ninja_girlVdpLocation;
+
 const AnimationBatched ninja_girl = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
@@ -227,4 +229,5 @@ const AnimationBatched ninja_girl =
     24, // width in pixels
     32, // height in pixels
     20, // the total amount of tiles in animation
+    &ninja_girlVdpLocation,
 };

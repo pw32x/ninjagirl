@@ -1980,6 +1980,8 @@ const u16 background_tilesetAnimatedTileIndexes[] =
     120,
 };
 
+u16 background_tilesetVdpLocation;
+
 const Tileset background_tileset = 
 {
     background_tileset_tiles,
@@ -1988,5 +1990,6 @@ const Tileset background_tileset =
     120, // 16x16 metatiles count
     background_tilesetAnimatedTileIndexes, // animated tile indexes count
     4, // animated tile indexes count
+    &background_tilesetVdpLocation,
 };
 

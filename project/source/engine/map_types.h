@@ -11,14 +11,18 @@ typedef struct
     const u16 numMetatiles;
     const u16* animatedTileIndexes;
     u16 animatedTileIndexesCount;
+    u16* vdpLocation;
 } Tileset;
 
 typedef struct
 {
+    u8 resourceType;
     const u16* const metatileMap;
     const Tileset* const tileset;
     u16 mapWidth;
     u16 mapHeight;
 } Map;
+
+u16 Load_MapResource(const Map* map);
 
 #endif

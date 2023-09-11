@@ -177,6 +177,7 @@
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\level_manager.c" />
+    <ClCompile Include="..\source\engine\map_types.c" />
     <ClCompile Include="..\source\engine\object_manager.c" />
     <ClCompile Include="..\source\engine\object_utils.c" />
     <ClCompile Include="..\source\engine\resource_manager.c" />

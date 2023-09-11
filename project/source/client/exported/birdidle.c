@@ -425,6 +425,8 @@ const PlaneAnimationFrame* const birdidleFrames[2] =
 
 
 
+u16 birdidleVdpLocation;
+
 
 const PlaneAnimation birdidle = 
 {
@@ -435,4 +437,5 @@ const PlaneAnimation birdidle =
     7, // height of the total area of the frame in tiles
     41, // the total number of tiles in the animation
     birdidleTileData, // start of the tile data
+    &birdidleVdpLocation,
 };

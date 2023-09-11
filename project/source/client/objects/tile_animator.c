@@ -25,7 +25,7 @@ GameObject* TileAnimator_Create(const SpawnInfo* spawnInfo)
 	object->Update = TileAnimator_Update;
 	object->Draw = TileAnimator_Draw;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload, spawnInfo->additionalPayload);
+	ResourceManager_SetupResource(object, spawnInfo->payload);
 
 	return object;
 }
