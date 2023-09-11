@@ -12,6 +12,5 @@ typedef struct
 	void* data;
 } Command;
 
-#define NO_DATA 0xFFFF
 
 #endif

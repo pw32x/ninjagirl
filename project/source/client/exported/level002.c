@@ -11,12 +11,11 @@
 #include "engine/command_types.h"
 
 // game objects
-#include "client/objects/command_runner.h"
+#include "client/objects/commandrunner_rightscroll.h"
 #include "client/objects/player.h"
 #include "client/objects/kunai.h"
 #include "client/objects/enemy.h"
 #include "client/objects/right_scroller.h"
-#include "client/objects/streaming_spawner.h"
 #include "client/objects/bird.h"
 #include "client/objects/tile_animator.h"
 
@@ -43,7 +42,7 @@ const CreateInfo level002_createInfo012 = { 654, 102, (const void*)&birdidle };
 
 Command level002_commands[] = 
 {
-	{ 0, (CommandFunction)CommandRunner_Create, NULL },
+	{ 0, (CommandFunction)CommandRunner_RightScroll_Create, NULL },
 	{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
@@ -65,7 +64,7 @@ Command level002_commands[] =
 	{ 454, (CommandFunction)Enemy_Create, &level002_createInfo010 },
 	{ 554, (CommandFunction)Enemy_Create, &level002_createInfo011 },
 	{ 654, (CommandFunction)Bird_Create, &level002_createInfo012 },
-	{ 0, NO_DATA, NO_DATA}
+	{ 0, (CommandFunction)NULL, NULL}
 };
 
 const Level level002 =

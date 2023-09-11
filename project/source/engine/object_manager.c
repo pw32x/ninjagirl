@@ -3,7 +3,7 @@
 #include "SMSlib.h"
 #include "engine/base_defines.h"
 #include "engine/scroll_manager.h"
-#include "engine/spawn_manager.h"
+#include "engine/command_manager.h"
 #include "engine/object_utils.h"
 #include "engine/draw_utils.h"
 
@@ -96,7 +96,7 @@ void ObjectManager_Update(void)
 
 	ObjectManager_player.Update(&ObjectManager_player);
 	ScrollManager_Update(&ObjectManager_player);
-	SpawnManager_Update();
+	CommandManager_Update();
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 

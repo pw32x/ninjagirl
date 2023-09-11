@@ -1,41 +1,52 @@
 Todo
 	
-	convert everything_spawner to new command_runner
-	
-	rename spawn_types to command_types
-	
-	CreateInfo to ObjectCreateInfo ? 
-	
-	rename command_runner to rightscroll_command_runner;
 
 
-	effecs objects
+
+	add effects objects to object manager
 	
 		tile_animator
 		bird
 
-	how to better specify how many tiles to update?
-	
-	how to animate multiple types of tiles?
+	anti-flicker strategy
 
-		go back to how the Genesis worked?
-	
-	make gg2c not suck
-	make gal2tmx not suck	
-	
-	
-	compress map data
-	
-	multiple tile sets
-	
-	
 	game play?
 
 	
+	update player sprite tiles when moving
 	
+	that thing where I swap in and out parts of the background
+		the ground and the sky need to be separate tilesets
+		
+		build a map out of multiple tilesets
+		
+		ground/sky/animated
 	
-	gg2c, on export, sort sprites in a frame by X position
-		then clip by x position
+	animated tile shit
+
+		how to better specify how many tiles to update?
+		
+		how to animate multiple types of tiles?
+	
+			go back to how the Genesis worked?
+		
+		make gg2c not suck
+		make gal2tmx not suck	
+		
+		
+		compress map data
+		
+		multiple tile sets
+	1	
+	
+	clipping
+	
+		regular animations
+		
+		batched animations
+	
+		gg2c, on export, sort sprites in a frame by X position
+			then clip by x position
 	
 	improve buildcolumn performance
 		do a bit every frame
@@ -169,7 +180,19 @@ Game Design Ideas
 	
 	boss
 	
+effects
+
+	rain	
+	
 Completed
+
+	DONE convert everything_spawner to new command_runner
+	
+	DONE rename spawn_types to command_types
+	
+	DONE CreateInfo to ObjectCreateInfo ? 
+	
+	DONE rename command_runner to rightscroll_command_runner;
 
 	DONE make tile_animation work correctly
 	

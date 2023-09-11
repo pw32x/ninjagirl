@@ -46,4 +46,12 @@ typedef struct game_object
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);
 
+
+typedef struct create_info
+{
+	s16 startX;
+	s16 startY;
+	const void* resource;
+} CreateInfo;
+
 #endif

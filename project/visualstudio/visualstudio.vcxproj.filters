@@ -64,7 +64,7 @@
     <ClCompile Include="..\source\client\exported\ninja_girl.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\engine\spawn_manager.c">
+    <ClCompile Include="..\source\engine\command_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\source\engine\scroll_utils.c">
@@ -76,7 +76,7 @@
     <ClCompile Include="..\source\engine\object_utils.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\everything_spawner.c">
+    <ClCompile Include="..\source\client\objects\commandrunner_runall.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\level002.c">
@@ -214,8 +214,11 @@
     <ClCompile Include="..\source\engine\map_types.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\command_runner.c">
+    <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c">
       <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\command_types.c">
+      <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -243,9 +246,6 @@
     <ClInclude Include="..\source\engine\scroll_manager.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\spawn_types.h">
-      <Filter>Source Files\engine</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\base_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
@@ -270,7 +270,7 @@
     <ClInclude Include="..\source\client\exported\ninja_girl.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\spawn_manager.h">
+    <ClInclude Include="..\source\engine\command_manager.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\scroll_utils.h">
@@ -282,7 +282,7 @@
     <ClInclude Include="..\source\engine\object_utils.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\everything_spawner.h">
+    <ClInclude Include="..\source\client\objects\commandrunner_runall.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\base_defines.h">
@@ -336,7 +336,7 @@
     <ClInclude Include="..\source\engine\command_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\command_runner.h">
+    <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
   </ItemGroup>

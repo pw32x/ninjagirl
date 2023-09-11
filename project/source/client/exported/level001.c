@@ -11,7 +11,7 @@
 // game objects
 #include "client/objects/player.h"
 #include "client/objects/right_scroller.h"
-#include "client/objects/everything_spawner.h"
+#include "client/objects/commandrunner_runall.h"
 
 // resources
 #include "client/exported/global_palette.h"

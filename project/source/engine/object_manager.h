@@ -1,7 +1,6 @@
 #ifndef OBJECT_MANAGER_INCLUDE_H
 #define OBJECT_MANAGER_INCLUDE_H
 
-#include "engine/spawn_types.h"
 #include "engine/object_types.h"
 
 #define OBJECTTYPE_PROJECTILE	0
