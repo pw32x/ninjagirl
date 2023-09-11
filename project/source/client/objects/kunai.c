@@ -12,14 +12,14 @@ void Kunai_Update(GameObject* object);
 void Kunai_Draw(GameObject* object);
 
 
-GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
+GameObject* Kunai_Create(const CreateInfo* createInfo)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_PROJECTILE);
 	if (!object)
 		return NULL;
 
-	object->x = spawnInfo->startX;
-	object->y = spawnInfo->startY;
+	object->x = createInfo->startX;
+	object->y = createInfo->startY;
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 
@@ -28,7 +28,7 @@ GameObject* Kunai_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 4;
 	object->rectBottom = 4;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload);
+	ResourceManager_SetupResource(object, createInfo->resource);
 
 	return object;
 }

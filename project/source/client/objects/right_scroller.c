@@ -9,12 +9,12 @@
 void RightScroll_Update(GameObject* gameObject);
 void RightScroll_UpdateVDP(void);
 
-GameObject* RightScroller_Create(const SpawnInfo* spawnInfo)
+GameObject* RightScroller_Create(const Map* map)
 {
 	ScrollManager_Update = RightScroll_Update;
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
 	
-	ScrollManager_backgroundMap = (const Map*)spawnInfo->payload;
+	ScrollManager_backgroundMap = map;
 	ScrollManager_backgroundTileset = ScrollManager_backgroundMap->tileset;
 
 	ScrollManager_mapWidth = ScrollManager_backgroundMap->mapWidth;

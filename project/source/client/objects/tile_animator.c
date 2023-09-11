@@ -13,19 +13,16 @@
 void TileAnimator_Update(GameObject* object);
 void TileAnimator_Draw(GameObject* object);
 
-GameObject* TileAnimator_Create(const SpawnInfo* spawnInfo)
+GameObject* TileAnimator_Create(const Animation* animation)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
 	if (!object)
 		return NULL;
-	/*
-	object->x = spawnInfo->startX;
-	object->y = spawnInfo->startY;
-	*/
+
 	object->Update = TileAnimator_Update;
 	object->Draw = TileAnimator_Draw;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload);
+	ResourceManager_SetupResource(object, animation);
 
 	return object;
 }

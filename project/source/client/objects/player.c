@@ -8,8 +8,6 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 
-#include "client/generated/sprite_vdp_locations.h"
-
 // music and sfx
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
@@ -22,10 +20,10 @@ void Player_Update(GameObject* player);
 void Player_Draw(GameObject* player);
 void Player_FireWeapon(GameObject* player);
 
-GameObject* Player_Create(const SpawnInfo* spawnInfo)
+GameObject* Player_Create(const CreateInfo* createInfo)
 {
-	ObjectManager_player.x = spawnInfo->startX;
-	ObjectManager_player.y = spawnInfo->startY;
+	ObjectManager_player.x = createInfo->startX;
+	ObjectManager_player.y = createInfo->startY;
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
 
@@ -36,7 +34,7 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 
 	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
-	ResourceManager_SetupResource(&ObjectManager_player, spawnInfo->payload);
+	ResourceManager_SetupResource(&ObjectManager_player, createInfo->resource);
 
 	//ObjectManager_player.animationVdpTileIndex = 0xff;
 
@@ -49,16 +47,14 @@ GameObject* Player_Create(const SpawnInfo* spawnInfo)
 
 void Player_FireWeapon(GameObject* player)
 {
-	SpawnInfo spawnInfo = 
+	CreateInfo createInfo = 
 	{ 
 		player->x, 
 		player->y, 
 		(const void*)&kunai, 
-		NULL, 
-		Kunai_Create 
 	};
 
-	GameObject* kunai = Kunai_Create(&spawnInfo);
+	GameObject* kunai = Kunai_Create(&createInfo);
 
 	kunai->speedx = 3;
 	kunai->speedy = 0;

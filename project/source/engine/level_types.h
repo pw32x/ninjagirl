@@ -3,13 +3,11 @@
 
 #include "engine/spawn_types.h"
 #include "engine/map_types.h"
+#include "engine/command_types.h"
 
 typedef struct
 {
-	void (*InitLevel)(void);
-	const u8* backgroundPalette;
-	const u8* spritePalette;
-	const SpawnInfo* bootstrapSpawnInfo;
+	const Command* commands;
 } Level;
 
 #endif

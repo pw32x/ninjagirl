@@ -1,22 +1,18 @@
 Todo
 	
-	DONE make tile_animation work correctly
+	convert everything_spawner to new command_runner
 	
-	load resources as part of the spawn list
+	rename spawn_types to command_types
 	
-		background palette
-		sprite palette
-		map 
-		
-	spawn list format
-		byte blob
-			define in a file that gets exported
+	CreateInfo to ObjectCreateInfo ? 
 	
-		counter
-		action type
-		data
-			
+	rename command_runner to rightscroll_command_runner;
 
+
+	effecs objects
+	
+		tile_animator
+		bird
 
 	how to better specify how many tiles to update?
 	
@@ -28,11 +24,13 @@ Todo
 	make gal2tmx not suck	
 	
 	
-	
 	compress map data
 	
 	multiple tile sets
 	
+	
+	game play?
+
 	
 	
 	
@@ -172,6 +170,22 @@ Game Design Ideas
 	boss
 	
 Completed
+
+	DONE make tile_animation work correctly
+	
+	DONE load resources as part of the spawn list
+	
+		background palette
+		sprite palette
+		map 
+		
+	DONE spawn list format
+		byte blob
+			define in a file that gets exported
+	
+		counter
+		action type
+		data
 
 	DONE animated tiles	
 

@@ -11,19 +11,19 @@
 void Bird_Update(GameObject* object);
 void Bird_Draw(GameObject* object);
 
-GameObject* Bird_Create(const SpawnInfo* spawnInfo)
+GameObject* Bird_Create(const CreateInfo* createInfo)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
 	if (!object)
 		return NULL;
 
-	object->x = spawnInfo->startX;
-	object->y = spawnInfo->startY;
+	object->x = createInfo->startX;
+	object->y = createInfo->startY;
 	object->Update = Bird_Update;
 	object->Draw = Bird_Draw;
 
 
-	ResourceManager_SetupResource(object, spawnInfo->payload);
+	ResourceManager_SetupResource(object, createInfo->resource);
 
 	object->rectLeft = 0;
 	object->rectTop = 0;

@@ -3,6 +3,6 @@
 
 #include "level_types.h"
 
-extern const Level level001;
+//extern const Level level001;
 
 #endif

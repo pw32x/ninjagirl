@@ -1,5 +1,0 @@
-// MOVE ME TO EXPORTED ONCE THIS GETS AUTOMATICALLY GENERATED
-
-#include "sprite_vdp_locations.h"
-
-

@@ -15,4 +15,11 @@ typedef struct spawn_info
 	GameObject* (*Object_Create)(const struct spawn_info* spawnInfo);
 } SpawnInfo;
 
+typedef struct create_info
+{
+	s16 startX;
+	s16 startY;
+	const void* resource;
+} CreateInfo;
+
 #endif

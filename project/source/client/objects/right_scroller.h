@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/spawn_types.h"
 
-GameObject* RightScroller_Create(const SpawnInfo* spawnInfo);
+GameObject* RightScroller_Create(const Map* map);
 
 #endif

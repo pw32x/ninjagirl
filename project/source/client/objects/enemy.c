@@ -12,14 +12,14 @@
 void Enemy_Update(GameObject* object);
 void Enemy_Draw(GameObject* object);
 
-GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
+GameObject* Enemy_Create(const CreateInfo* createInfo)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
 	if (!object)
 		return NULL;
 
-	object->x = spawnInfo->startX;
-	object->y = spawnInfo->startY;
+	object->x = createInfo->startX;
+	object->y = createInfo->startY;
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 
@@ -28,7 +28,7 @@ GameObject* Enemy_Create(const SpawnInfo* spawnInfo)
 	object->rectRight = 14;
 	object->rectBottom = 14;
 
-	ResourceManager_SetupResource(object, spawnInfo->payload);
+	ResourceManager_SetupResource(object, createInfo->resource);
 
 	return object;
 }

@@ -7,8 +7,6 @@
 #include "engine/object_types.h"
 #include "engine/animation_types.h"
 
-// exported
-#include "client/generated/sprite_vdp_locations.h"
 
 // game objects
 #include "client/objects/player.h"
@@ -19,6 +17,7 @@
 #include "client/exported/global_palette.h"
 #include "client/exported/ninja_girl.h"
 #include "client/exported/background.h"
+/*
 
 void Level001_Init(void)
 {
@@ -50,3 +49,4 @@ const Level level001 =
 	globalPalette,
 	&level001BootStrapSpawnInfo,
 };
+*/

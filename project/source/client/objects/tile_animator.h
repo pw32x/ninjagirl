@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/spawn_types.h"
 
-GameObject* TileAnimator_Create(const SpawnInfo* spawnInfo);
+GameObject* TileAnimator_Create(const Animation* animation);
 
 #endif

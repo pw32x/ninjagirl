@@ -9,14 +9,9 @@
 #include "engine/resource_manager.h"
 
 // levels
-#include "exported/level001.h"
+//#include "exported/level001.h"
 #include "exported/level002.h"
-
-// music
-#include "generated/bank2.h"
-
-#include "client/exported/global_palette.h"
-
+	
 #define LEVEL_TO_RUN level002
 
 void PSGUpdate(void)
@@ -30,8 +25,6 @@ void main(void)
 	SMS_setFrameInterruptHandler(PSGUpdate);
 
 	ResourceManager_Init();
-
-	PSGPlay(song_psg);
 
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
