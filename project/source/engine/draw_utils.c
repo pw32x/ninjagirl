@@ -413,16 +413,66 @@ void DrawUtils_DrawBatched(void)
 	}
 }
 
-void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject)
+__sfr __at 0xBF VDPControlPort2;
+__sfr __at 0xBE VDPDataPort2;
+
+u8 x; 
+u8 y; 
+const u16* buffer; 
+u8 bufferWidth; 
+u8 bufferHeight; 
+u16 vdpOffset;
+
+void drawToPlane(void)
+{
+    u16 address = ((x << 1) + (y << 6)) + 0x3800;
+
+    while (bufferHeight--)
+    {
+        __asm di __endasm;
+        u8* add = (u8*)&address;
+        VDPControlPort2 = add[0];
+        VDPControlPort2 = add[1] | (1 << 6);
+        __asm ei __endasm;
+
+        u16 value;
+        u8* val;
+
+        switch (bufferWidth) // limited to 16 tiles
+        {
+        case 16: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 15: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 14: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 13: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 12: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 11: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 10: value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 9:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 8:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 7:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 6:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 5:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 4:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 3:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 2:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        case 1:  value = *buffer + vdpOffset; val = (u8*)&value; VDPDataPort2 = *val; VDPDataPort2 = *(val + 1); buffer++;
+        }
+
+        address += 64;
+    }
+}
+
+void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject) 
 {
     const PlaneAnimation* planeAnimation = gameObject->planeAnimation;
     const PlaneAnimationFrame* frame = gameObject->currentPlaneAnimationFrame;
 
-    s16 x = gameObject->x;
+    x                  = gameObject->x >> 3;
+    y                  = gameObject->y >> 3;
+    buffer             = frame->frameTilemap;
+    bufferWidth        = planeAnimation->tileWidth;
+    bufferHeight       = planeAnimation->tileHeight;
+    vdpOffset          = *planeAnimation->vdpLocation;
 
-    SMS_loadTileMapArea(x >> 3, 
-                        gameObject->y >> 3, 
-                        frame->frameTilemap, 
-                        planeAnimation->tileWidth, 
-                        planeAnimation->tileHeight);
+    drawToPlane();
 }

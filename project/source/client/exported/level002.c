@@ -33,8 +33,8 @@ const CreateInfo level002_createInfo003 = { 122, 88, (const void*)&ninja_girl };
 const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
 const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
 const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
-const CreateInfo level002_createInfo007 = { 142, 8, (const void*)&birdidle };
-const CreateInfo level002_createInfo008 = { 176, 8, (const void*)&birdidle };
+const CreateInfo level002_createInfo007 = { 64, 8, (const void*)&birdidle };
+const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&birdidle };
 const CreateInfo level002_createInfo009 = { 354, 112, (const void*)&evil_eye };
 const CreateInfo level002_createInfo010 = { 454, 144, (const void*)&evil_eye };
 const CreateInfo level002_createInfo011 = { 554, 176, (const void*)&evil_eye };
@@ -55,11 +55,11 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)RightScroller_Create, &background_map },
 	{ 0, (CommandFunction)TileAnimator_Create, &water_tiles },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
-	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
-	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },
-	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
-	{ 142, (CommandFunction)Bird_Create, &level002_createInfo007 },
-	{ 176, (CommandFunction)Bird_Create, &level002_createInfo008 },
+	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
+	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },
+	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
+	{ 64, (CommandFunction)Bird_Create, &level002_createInfo007 },
+	{ 128, (CommandFunction)Bird_Create, &level002_createInfo008 },
 	{ 354, (CommandFunction)Enemy_Create, &level002_createInfo009 },
 	{ 454, (CommandFunction)Enemy_Create, &level002_createInfo010 },
 	{ 554, (CommandFunction)Enemy_Create, &level002_createInfo011 },
