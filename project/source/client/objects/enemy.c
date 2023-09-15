@@ -8,9 +8,16 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 
+#include "client/exported/explosion.h"
+#include "client/objects/effect.h"
+
+// music and sfx
+#include "PSGlib.h"
+#include "client/generated/bank2.h"
 
 void Enemy_Update(GameObject* object);
 void Enemy_Draw(GameObject* object);
+void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* Enemy_Create(const CreateInfo* createInfo)
 {
@@ -22,11 +29,14 @@ GameObject* Enemy_Create(const CreateInfo* createInfo)
 	object->y = createInfo->startY;
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
+	object->HandleCollision = Enemy_HandleCollision;
 
 	object->rectLeft = -14;
 	object->rectTop = -14;
 	object->rectRight = 14;
 	object->rectBottom = 14;
+
+	object->health = 2;
 
 	ResourceManager_SetupResource(object, createInfo->resource);
 
@@ -90,3 +100,23 @@ void Enemy_Draw(GameObject* object)
 	}
 }
 
+void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
+{
+	gameObject->health -= other->damage;
+
+	if (gameObject->health <= 0)
+	{
+		ObjectManager_DestroyObject(gameObject);
+		
+		CreateInfo createInfo = 
+		{ 
+			gameObject->x, 
+			gameObject->y, 
+			(const void*)&explosion, 
+		};
+		
+		GameObject* effect = Effect_Create(&createInfo);
+		
+		PSGSFXPlay(hit_psg, SFX_CHANNEL3);
+	}
+}

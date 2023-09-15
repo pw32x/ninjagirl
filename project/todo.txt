@@ -1,8 +1,6 @@
 Todo
 	
 
-
-
 	add effects objects to object manager
 	
 		tile_animator
@@ -12,6 +10,7 @@ Todo
 
 	game play?
 
+	change all animations to have a pointer to the next animation
 	
 	update player sprite tiles when moving
 	

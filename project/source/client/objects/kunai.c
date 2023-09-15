@@ -1,4 +1,4 @@
-#include "enemy.h"
+#include "kunai.h"
 #include "SMSlib.h"
 #include "engine/base_defines.h"
 #include "engine/draw_utils.h"
@@ -6,11 +6,15 @@
 #include "engine/scroll_manager.h"
 #include "engine/object_utils.h"
 #include "engine/resource_manager.h"
+#include "engine/object_types.h"
+
+#include "client/exported/impact.h"
+#include "client/objects/effect.h"
 
 
 void Kunai_Update(GameObject* object);
 void Kunai_Draw(GameObject* object);
-
+void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Kunai_Create(const CreateInfo* createInfo)
 {
@@ -22,11 +26,14 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 	object->y = createInfo->startY;
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
+	object->HandleCollision = Kunai_HandleCollision;
 
 	object->rectLeft = -4;
 	object->rectTop = -4;
 	object->rectRight = 4;
 	object->rectBottom = 4;
+
+	object->damage = 1;
 
 	ResourceManager_SetupResource(object, createInfo->resource);
 
@@ -59,3 +66,21 @@ void Kunai_Draw(GameObject* object)
 	DrawUtils_DrawBatched();
 }
 
+void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
+{
+	target->HandleCollision(target, gameObject);
+
+	ObjectManager_DestroyObject(gameObject);
+
+	CreateInfo createInfo = 
+	{ 
+		gameObject->x, 
+		gameObject->y, 
+		(const void*)&impact, 
+	};
+
+	GameObject* effect = Effect_Create(&createInfo);
+
+	effect->speedx = gameObject->speedx >> 2;
+	effect->speedy = gameObject->speedy >> 2;
+}

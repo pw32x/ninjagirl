@@ -3,7 +3,7 @@
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
 
-BOOL AnimationUtils_updateAnimation(GameObject* gameObject)
+u8 AnimationUtils_updateAnimation(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
@@ -14,13 +14,13 @@ BOOL AnimationUtils_updateAnimation(GameObject* gameObject)
 
 		gameObject->currentAnimationFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
 		gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
-		return TRUE;
+		return ANIMATION_CHANGED_FRAME;
 	}
 
-	return FALSE;
+	return ANIMATION_NO_CHANGE;
 }
 
-BOOL AnimationUtils_updateAnimationBatched(GameObject* gameObject)
+u8 AnimationUtils_updateAnimationBatched(struct game_object* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
@@ -31,22 +31,41 @@ BOOL AnimationUtils_updateAnimationBatched(GameObject* gameObject)
 
 		gameObject->currentAnimationBatchedFrame = gameObject->animationBatched->frames[gameObject->currentAnimationFrameIndex];
 		gameObject->animationTime = gameObject->currentAnimationBatchedFrame->frameTime;
-		return TRUE;
+		return ANIMATION_CHANGED_FRAME;
 	}
 
-	return FALSE;
+	return ANIMATION_NO_CHANGE;
 }
 
-BOOL AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
+u8 AnimationUtils_updateAnimationBatched_noLoop(GameObject* gameObject)
+{
+	if (!gameObject->animationTime--)
+	{
+		gameObject->currentAnimationFrameIndex++;
+
+		if (gameObject->currentAnimationFrameIndex == gameObject->animationBatched->numFrames)
+		{
+			return ANIMATION_FINISHED;
+		}
+
+		gameObject->currentAnimationBatchedFrame = gameObject->animationBatched->frames[gameObject->currentAnimationFrameIndex];
+		gameObject->animationTime = gameObject->currentAnimationBatchedFrame->frameTime;
+		return ANIMATION_CHANGED_FRAME;
+	}
+
+	return ANIMATION_NO_CHANGE;
+}
+
+u8 AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
 		gameObject->currentPlaneAnimationFrame = gameObject->currentPlaneAnimationFrame->nextFrame;
 		gameObject->animationTime = gameObject->currentPlaneAnimationFrame->frameTime;
-		return TRUE;
+		return ANIMATION_CHANGED_FRAME;
 	}
 
-	return FALSE;
+	return ANIMATION_NO_CHANGE;
 }
 
 u16 Load_AnimationResource(const Animation* animation)

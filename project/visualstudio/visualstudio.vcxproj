@@ -156,7 +156,9 @@
     <ClCompile Include="..\source\client\exported\background.c" />
     <ClCompile Include="..\source\client\exported\birdidle.c" />
     <ClCompile Include="..\source\client\exported\evil_eye.c" />
+    <ClCompile Include="..\source\client\exported\explosion.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
+    <ClCompile Include="..\source\client\exported\impact.c" />
     <ClCompile Include="..\source\client\exported\kunai.c" />
     <ClCompile Include="..\source\client\exported\level001.c" />
     <ClCompile Include="..\source\client\exported\level002.c" />
@@ -167,6 +169,7 @@
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
+    <ClCompile Include="..\source\client\objects\effect.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_runall.c" />
     <ClCompile Include="..\source\client\objects\kunai.c" />
@@ -192,7 +195,9 @@
     <ClInclude Include="..\source\client\exported\background.h" />
     <ClInclude Include="..\source\client\exported\birdidle.h" />
     <ClInclude Include="..\source\client\exported\evil_eye.h" />
+    <ClInclude Include="..\source\client\exported\explosion.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
+    <ClInclude Include="..\source\client\exported\impact.h" />
     <ClInclude Include="..\source\client\exported\kunai.h" />
     <ClInclude Include="..\source\client\exported\level001.h" />
     <ClInclude Include="..\source\client\exported\level002.h" />
@@ -202,6 +207,7 @@
     <ClInclude Include="..\source\client\generated\bank2.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
+    <ClInclude Include="..\source\client\objects\effect.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_runall.h" />
     <ClInclude Include="..\source\client\objects\kunai.h" />

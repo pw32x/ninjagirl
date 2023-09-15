@@ -15,7 +15,7 @@ void TileAnimator_Draw(GameObject* object);
 
 GameObject* TileAnimator_Create(const Animation* animation)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
+	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
 	if (!object)
 		return NULL;
 

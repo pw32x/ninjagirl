@@ -5,6 +5,7 @@
 
 #define OBJECTTYPE_PROJECTILE	0
 #define OBJECTTYPE_ENEMY		1
+#define OBJECTTYPE_EFFECT		2
 
 
 void ObjectManager_Init(void);
@@ -35,7 +36,5 @@ extern GameObject ObjectManager_player;
 
 void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDrawFunction);
 void ObjectManager_VDPDraw(void);
-
-BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject);
 
 #endif

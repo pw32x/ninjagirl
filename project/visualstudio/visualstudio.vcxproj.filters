@@ -220,6 +220,15 @@
     <ClCompile Include="..\source\engine\command_types.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\explosion.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\impact.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\effect.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -337,6 +346,15 @@
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h">
+      <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\explosion.h">
+      <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\impact.h">
+      <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\effect.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,6 +5,7 @@
 
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject) { UNUSED(gameObject); }
 void ObjectUtils_doNothing(void) {}
+void ObjectUtils_HandleCollisionDoNothing(GameObject* gameObject, GameObject* other) { UNUSED(gameObject); UNUSED(other); }
 
 /*
 BOOL ObjectUtils_alwaysVisible(GameObject* gameObject)

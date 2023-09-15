@@ -13,7 +13,7 @@ void Bird_Draw(GameObject* object);
 
 GameObject* Bird_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
+	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
 	if (!object)
 		return NULL;
 

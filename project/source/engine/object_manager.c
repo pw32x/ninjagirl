@@ -9,10 +9,6 @@
 
 GameObject ObjectManager_player;
 
-// music and sfx
-#include "PSGlib.h"
-#include "client/generated/bank2.h"
-
 //s16 ObjectManager_objectLeft;
 //s16 ObjectManager_objectTop;
 //s16 ObjectManager_objectRight;
@@ -26,9 +22,12 @@ GameObject ObjectManager_player;
 
 #define NUM_PROJECTILE_SLOTS 3
 #define NUM_ENEMY_SLOTS 8
+#define NUM_EFFECT_SLOTS 8
 
 GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
+GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
+
 
 GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
 u8 ObjectManager_activeProjectilesCount;
@@ -43,10 +42,13 @@ GameObject* ObjectManager_vdpDrawGameObjects[NUM_VDP_DRAW_ITEMS];
 ObjectFunctionType ObjectManager_vdpDrawFunctions[NUM_VDP_DRAW_ITEMS];
 u8 ObjectManager_numVdpDrawItems;
 
+BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject);
+
 void ObjectManager_Init(void)
 {
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
 	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
+	memset(ObjectManager_effectSlots, 0,sizeof(ObjectManager_effectSlots));
 
 	// setup objects
 	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
@@ -68,6 +70,15 @@ void ObjectManager_Init(void)
 	}
 
 	ObjectManager_currentEnemyIndex = 0;
+
+	objectSlotRunner = ObjectManager_effectSlots;
+	counter = NUM_EFFECT_SLOTS;
+
+	while (counter--)
+	{
+		ObjectManager_DestroyObject(objectSlotRunner);
+		objectSlotRunner++;
+	}
 }
 
 //void ObjectManagerUtils_updatePlayerScreenRect(void)
@@ -146,7 +157,7 @@ void ObjectManager_Update(void)
 			if (!enemy->alive)
 				continue;
 
-			if (ObjectManagerUtils_collidesWithProjectiles(enemy)) 
+			if (ObjectManagerUtils_doProjectCollisionCheck(enemy)) 
 			{
 				ObjectManager_DestroyObject(enemy);
 			}
@@ -167,11 +178,7 @@ void ObjectManager_Update(void)
 		if (!enemy->alive)
 			continue;
 
-		if (ObjectManagerUtils_collidesWithProjectiles(enemy)) 
-		{
-			PSGSFXPlay(hit_psg, SFX_CHANNEL3);
-			ObjectManager_DestroyObject(enemy);
-		}
+		ObjectManagerUtils_doProjectCollisionCheck(enemy);
 
 		break;
 	}
@@ -211,6 +218,18 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[6].Update(&ObjectManager_enemySlots[6]);
 	ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
 
+
+	
+
+	ObjectManager_effectSlots[0].Update(&ObjectManager_effectSlots[0]);
+	ObjectManager_effectSlots[1].Update(&ObjectManager_effectSlots[1]);
+	ObjectManager_effectSlots[2].Update(&ObjectManager_effectSlots[2]);
+	ObjectManager_effectSlots[3].Update(&ObjectManager_effectSlots[3]);
+	ObjectManager_effectSlots[4].Update(&ObjectManager_effectSlots[4]);
+	ObjectManager_effectSlots[5].Update(&ObjectManager_effectSlots[5]);
+	ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
+	ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
+
 	SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 
@@ -245,6 +264,15 @@ void ObjectManager_Update(void)
 	}
 	*/
 
+	ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
+	ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
+	ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
+	ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
+	ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
+	ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
+	ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
+	ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
+
 	ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
 	ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
 	ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
@@ -253,6 +281,8 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
 	ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
 	ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
+
+
 }
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
@@ -265,13 +295,17 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
+	else if (objectType == OBJECTTYPE_EFFECT)
+	{
+		objectSlotRunner = ObjectManager_effectSlots;
+		counter = NUM_EFFECT_SLOTS;
+	}
 
 	while (counter--)
 	{
 		if (!objectSlotRunner->alive)
 		{
 			objectSlotRunner->alive = TRUE;
-			//objectSlotRunner->objectId = (NUM_PROJECTILE_SLOTS - 1) - counter;
 			return objectSlotRunner;
 		}
 
@@ -288,7 +322,7 @@ void ObjectManager_DestroyObject(GameObject* gameObject)
 	gameObject->alive = FALSE;
 }
 
-BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject)
+BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)
 {
 	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
 	u8 counter = NUM_PROJECTILE_SLOTS;
@@ -307,7 +341,7 @@ BOOL ObjectManagerUtils_collidesWithProjectiles(GameObject* gameObject)
 			bottom > objectSlotRunner->y + objectSlotRunner->rectTop
 			)
 		{
-			ObjectManager_DestroyObject(gameObject);
+			objectSlotRunner->HandleCollision(objectSlotRunner, gameObject);
 			return TRUE;
 		}
 

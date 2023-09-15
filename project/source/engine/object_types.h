@@ -9,6 +9,7 @@ typedef struct game_object
 	void (*Update)(struct game_object* gameObject);
 	void (*Draw)(struct game_object* gameObject);
 	BOOL (*UpdateAnimation)(struct game_object* gameObject);
+	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);
 	union
 	{
 		const Animation* animation;
@@ -32,6 +33,9 @@ typedef struct game_object
 	u8 currentAnimationFrameIndex;
 	u8 animationTime;
 	u8 alive;
+
+	s8 health;
+	s8 damage;
 
 	s8 rectLeft;
 	s8 rectTop;

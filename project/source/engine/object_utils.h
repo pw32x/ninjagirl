@@ -5,6 +5,7 @@
 
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject);
 void ObjectUtils_doNothing(void);
+void ObjectUtils_HandleCollisionDoNothing(GameObject* gameObject, GameObject* other);
 
 
 //void ObjectUtils_updateObjectScreenRect(GameObject* gameObject);
