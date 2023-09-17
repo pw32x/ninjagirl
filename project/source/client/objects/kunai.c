@@ -11,9 +11,12 @@
 #include "client/exported/impact.h"
 #include "client/objects/effect.h"
 
+// music and sfx
+#include "PSGlib.h"
+#include "client/generated/bank2.h"
 
 void Kunai_Update(GameObject* object);
-void Kunai_Draw(GameObject* object);
+BOOL Kunai_Draw(GameObject* object);
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Kunai_Create(const CreateInfo* createInfo)
@@ -35,7 +38,11 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 
 	object->damage = 1;
 
+	//object->data1 = 1;
+
 	ResourceManager_SetupResource(object, createInfo->resource);
+
+	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
 }
@@ -54,8 +61,13 @@ void Kunai_Update(GameObject* object)
 	}
 }
 
-void Kunai_Draw(GameObject* object)
+BOOL Kunai_Draw(GameObject* object)
 {
+	//object->data1 = !object->data1;
+	//
+	//if (!object->data1)
+	//	return FALSE;
+
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentAnimationBatchedFrame->spriteBatch,
@@ -64,6 +76,8 @@ void Kunai_Draw(GameObject* object)
 
 	// should never be clipped
 	DrawUtils_DrawBatched();
+
+	return TRUE;
 }
 
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)

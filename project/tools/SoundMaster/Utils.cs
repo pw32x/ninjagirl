@@ -19,6 +19,8 @@ namespace SoundMaster
                 CreateNoWindow = true,
             };
 
+             Console.WriteLine(commandParameters);
+
             Process process = new Process
             {
                 StartInfo = psi

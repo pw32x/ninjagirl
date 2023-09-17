@@ -11,7 +11,7 @@
 
 
 void TileAnimator_Update(GameObject* object);
-void TileAnimator_Draw(GameObject* object);
+BOOL TileAnimator_Draw(GameObject* object);
 
 GameObject* TileAnimator_Create(const Animation* animation)
 {
@@ -56,12 +56,12 @@ void TileAnimator_Update(GameObject* object)
 	}
 	*/
 
-	if (object->UpdateAnimation(object))
-		ObjectManager_QueueVDPDraw(object, UpdateTiles);
+	//if (object->UpdateAnimation(object))
+	//	ObjectManager_QueueVDPDraw(object, UpdateTiles);
 }
 
-void TileAnimator_Draw(GameObject* object)
+BOOL TileAnimator_Draw(GameObject* object)
 {
-	
+	return TRUE;
 }
 

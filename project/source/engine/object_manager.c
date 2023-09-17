@@ -44,8 +44,17 @@ u8 ObjectManager_numVdpDrawItems;
 
 BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject);
 
+//u8 ObjectManager_enemyIndex;
+//u8 ObjectManager_enemyCounter;
+//u8 ObjectManager_oldEnemyCounter;
+//
+//u8 ObjectManager_oldProjectileDrawCounter;
+
 void ObjectManager_Init(void)
 {
+	//ObjectManager_enemyIndex = 0;
+	//ObjectManager_oldProjectileDrawCounter = 0;
+
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
 	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
 	memset(ObjectManager_effectSlots, 0,sizeof(ObjectManager_effectSlots));
@@ -98,6 +107,7 @@ void ObjectManager_Init(void)
 //	ObjectManager_objectBottom = ObjectManager_objectTop + gameObject->pixelHeight;
 //}
 
+u8 projectileFlicker = 0;
 
 void ObjectManager_Update(void)
 {
@@ -273,6 +283,33 @@ void ObjectManager_Update(void)
 	ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
 	ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
 
+	/*
+
+	//ObjectManager_enemyCounter = NUM_ENEMY_SLOTS - 1;
+	//while (ObjectManager_enemyCounter--)
+	//{
+	//	GameObject* object = &ObjectManager_enemySlots[counter];
+	//	object->Draw(object);
+	//}
+
+	if (drawCounter && ObjectManager_oldProjectileDrawCounter)
+	{
+		ObjectManager_enemyCounter = ObjectManager_oldEnemyCounter;
+	}
+
+	ObjectManager_oldProjectileDrawCounter = drawCounter;
+
+	if (drawCounter > 1)
+	{
+		ObjectManager_enemyCounter = (++ObjectManager_enemyCounter) & 7; // increase and wrap
+	}
+	else
+	{
+		ObjectManager_oldEnemyCounter = ObjectManager_enemyCounter;
+		ObjectManager_enemyCounter = NUM_ENEMY_SLOTS;
+	}
+	*/
+
 	ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
 	ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
 	ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
@@ -281,8 +318,6 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
 	ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
 	ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
-
-
 }
 
 GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
@@ -318,7 +353,7 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
 	gameObject->Update = ObjectUtils_gameObjectDoNothing;
-	gameObject->Draw = ObjectUtils_gameObjectDoNothing;
+	gameObject->Draw = ObjectUtils_drawNothing;
 	gameObject->alive = FALSE;
 }
 

@@ -16,7 +16,7 @@
 #include "client/generated/bank2.h"
 
 void Enemy_Update(GameObject* object);
-void Enemy_Draw(GameObject* object);
+BOOL Enemy_Draw(GameObject* object);
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* Enemy_Create(const CreateInfo* createInfo)
@@ -36,7 +36,13 @@ GameObject* Enemy_Create(const CreateInfo* createInfo)
 	object->rectRight = 14;
 	object->rectBottom = 14;
 
-	object->health = 2;
+	object->health = 8;
+
+	//ObjectManager_enemyIndex = (ObjectManager_enemyIndex++) & 7;
+
+	//object->data1 = object - ObjectManager_enemySlots;
+	//
+	//object->x = object->data1 * 32;
 
 	ResourceManager_SetupResource(object, createInfo->resource);
 
@@ -78,8 +84,13 @@ destroy_object:
 	ObjectManager_DestroyObject(object);
 }
 
-void Enemy_Draw(GameObject* object)
+BOOL Enemy_Draw(GameObject* object)
 {
+	//if (object->data1 == ObjectManager_enemyCounter)
+	//{
+	//	return FALSE;
+	//}
+
 	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
 	s16 screenRight = screenLeft + 14;//object->rectRight;
 
@@ -98,6 +109,8 @@ void Enemy_Draw(GameObject* object)
 		//DrawUtils_Draw();
 		DrawUtils_DrawBatched();
 	}
+
+	return TRUE;
 }
 
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
@@ -116,7 +129,11 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 		};
 		
 		GameObject* effect = Effect_Create(&createInfo);
-		
-		PSGSFXPlay(hit_psg, SFX_CHANNEL3);
+
+		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
+	}
+	else
+	{
+		PSGSFXPlay(hit_psg, SFX_CHANNELS2AND3);
 	}
 }

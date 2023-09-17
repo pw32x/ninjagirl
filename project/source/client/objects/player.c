@@ -17,7 +17,7 @@
 #include "client/exported/kunai.h"
 
 void Player_Update(GameObject* player);
-void Player_Draw(GameObject* player);
+BOOL Player_Draw(GameObject* player);
 void Player_FireWeapon(GameObject* player);
 
 GameObject* Player_Create(const CreateInfo* createInfo)
@@ -58,8 +58,6 @@ void Player_FireWeapon(GameObject* player)
 
 	kunai->speedx = 3;
 	kunai->speedy = 0;
-
-	PSGSFXPlay(throw_psg, SFX_CHANNEL2);
 }
 
 void Player_Update(GameObject* player)
@@ -90,7 +88,7 @@ void Player_Update(GameObject* player)
 	player->UpdateAnimation(player);
 }
 
-void Player_Draw(GameObject* object)
+BOOL Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
@@ -99,5 +97,7 @@ void Player_Draw(GameObject* object)
 
 	// why would the player sprite ever be clipped?
 	DrawUtils_DrawBatched();
+
+	return TRUE;
 }
 

@@ -1,11 +1,5 @@
 Todo
 	
-
-	add effects objects to object manager
-	
-		tile_animator
-		bird
-
 	anti-flicker strategy
 
 	game play?
@@ -20,6 +14,8 @@ Todo
 		build a map out of multiple tilesets
 		
 		ground/sky/animated
+	
+	stream in animations
 	
 	animated tile shit
 
@@ -184,6 +180,15 @@ effects
 	rain	
 	
 Completed
+
+	DONE add impact sound effect
+	DONE add explosion sound effect
+	DONE better throw sound
+
+	DONE add effects objects to object manager
+	
+		tile_animator
+		bird
 
 	DONE convert everything_spawner to new command_runner
 	

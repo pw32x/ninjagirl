@@ -9,7 +9,7 @@
 #include "engine/animation_utils.h"
 
 void Effect_Update(GameObject* object);
-void Effect_Draw(GameObject* object);
+BOOL Effect_Draw(GameObject* object);
 
 GameObject* Effect_Create(const CreateInfo* createInfo)
 {
@@ -44,7 +44,7 @@ void Effect_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 }
 
-void Effect_Draw(GameObject* object)
+BOOL Effect_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
@@ -54,4 +54,6 @@ void Effect_Draw(GameObject* object)
 
 	// should never be clipped
 	DrawUtils_DrawBatched();
+
+	return TRUE;
 }

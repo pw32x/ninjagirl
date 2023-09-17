@@ -45,7 +45,7 @@ const CreateInfo level002_createInfo012 = { 254, 102, (const void*)&birdidle };
 Command level002_commands[] = 
 {
 	{ 0, (CommandFunction)CommandRunner_RightScroll_Create, NULL },
-	{ 0, (CommandFunction)PSGPlay, song_psg },
+	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &background_map },
