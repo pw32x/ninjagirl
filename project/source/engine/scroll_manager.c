@@ -16,6 +16,7 @@ u16 ScrollManager_mapHeight;
 
 const u16* ScrollManager_metatileMap;
 const u16* ScrollManager_metatileLut;
+const u8*  ScrollManager_terrainMap;
 
 u16 ScrollManager_tilesetVdpLocation;
 

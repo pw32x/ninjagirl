@@ -31,6 +31,7 @@ extern u16 ScrollManager_mapHeight;
 
 extern const u16* ScrollManager_metatileMap;
 extern const u16* ScrollManager_metatileLut;
+extern const u8*  ScrollManager_terrainMap;
 
 extern u16 ScrollManager_tilesetVdpLocation;
 

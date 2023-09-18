@@ -328,12 +328,12 @@
   </tile>
   <tile id="65">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="66">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="67">
@@ -393,7 +393,7 @@
   </tile>
   <tile id="78">
     <properties>
-      <property name = "" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="79">
@@ -498,27 +498,27 @@
   </tile>
   <tile id="99">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="100">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="101">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="102">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="103">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="104">

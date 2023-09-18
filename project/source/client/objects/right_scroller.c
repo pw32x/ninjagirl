@@ -37,6 +37,8 @@ GameObject* RightScroller_Create(const Map* map)
 
 void RightScroll_Update(GameObject* gameObject)
 {
+	return;
+
 	SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	ScrollManager_speedX = 0;

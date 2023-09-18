@@ -31,7 +31,7 @@
 #include "client/exported/impact.h"
 #include "client/generated/bank2.h" // music
 
-const CreateInfo level002_createInfo003 = { 122, 88, (const void*)&ninja_girl };
+const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girl };
 const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
 const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
 const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
@@ -53,7 +53,7 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunai },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &evil_eye },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosion },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
+	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &impact },
 	{ 0, (CommandFunction)RightScroller_Create, &background_map },
 	{ 0, (CommandFunction)TileAnimator_Create, &water_tiles },

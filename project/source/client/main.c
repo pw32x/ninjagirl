@@ -29,8 +29,11 @@ void main(void)
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
 
-	LevelManager_Init(&LEVEL_TO_RUN);
+	SMS_autoSetUpTextRenderer();
 
+
+	LevelManager_Init(&LEVEL_TO_RUN);
+		
 	SMS_setSpriteMode(SPRITEMODE_TALL);
 
 	/* Turn on the display */
