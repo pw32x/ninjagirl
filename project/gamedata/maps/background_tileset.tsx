@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="background_tileset" tilewidth="16" tileheight="16" tilecount="120">
-<image source="background_tileset_tsx.bmp" width="160" height="192" />
+<tileset name="background_tileset" tilewidth="16" tileheight="16" tilecount="110">
+<image source="background_tileset_tsx.bmp" width="160" height="176" />
   <tile id="0">
     <properties>
       <property name = "" value = "" />
@@ -8,17 +8,17 @@
   </tile>
   <tile id="1">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="2">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="3">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="4">
@@ -93,17 +93,17 @@
   </tile>
   <tile id="18">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="19">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="20">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="21">
@@ -148,17 +148,17 @@
   </tile>
   <tile id="29">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="30">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="31">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="32">
@@ -213,7 +213,7 @@
   </tile>
   <tile id="42">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="43">
@@ -328,12 +328,12 @@
   </tile>
   <tile id="65">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="66">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="67">
@@ -498,27 +498,27 @@
   </tile>
   <tile id="99">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="100">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="101">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="102">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="103">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="104">
@@ -543,20 +543,10 @@
   </tile>
   <tile id="108">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="109">
-    <properties>
-      <property name = "" value = "" />
-    </properties>
-  </tile>
-  <tile id="110">
-    <properties>
-      <property name = "" value = "" />
-    </properties>
-  </tile>
-  <tile id="111">
     <properties>
       <property name = "" value = "" />
     </properties>

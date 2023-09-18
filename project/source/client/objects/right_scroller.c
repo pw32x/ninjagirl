@@ -23,6 +23,7 @@ GameObject* RightScroller_Create(const Map* map)
 
 	ScrollManager_metatileMap = ScrollManager_backgroundMap->metatileMap;
 	ScrollManager_metatileLut = ScrollManager_backgroundTileset->metatile_lut;
+	ScrollManager_terrainMap = ScrollManager_backgroundMap->terrainMap;
 
 	ScrollManager_updateMapVDP = FALSE;
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);

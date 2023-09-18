@@ -18,6 +18,7 @@ typedef struct
 {
     u8 resourceType;
     const u16* const metatileMap;
+    const u8* const terrainMap;
     const Tileset* const tileset;
     u16 mapWidth;
     u16 mapHeight;

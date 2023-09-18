@@ -56,8 +56,8 @@ void TileAnimator_Update(GameObject* object)
 	}
 	*/
 
-	//if (object->UpdateAnimation(object))
-	//	ObjectManager_QueueVDPDraw(object, UpdateTiles);
+	if (object->UpdateAnimation(object))
+		ObjectManager_QueueVDPDraw(object, UpdateTiles);
 }
 
 BOOL TileAnimator_Draw(GameObject* object)

@@ -1,6 +1,5 @@
 Todo
 	
-	anti-flicker strategy
 
 	game play?
 
@@ -180,6 +179,9 @@ effects
 	rain	
 	
 Completed
+
+	BLEH anti-flicker strategy
+
 
 	DONE add impact sound effect
 	DONE add explosion sound effect
