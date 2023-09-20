@@ -68,6 +68,13 @@ u8 AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 	return ANIMATION_NO_CHANGE;
 }
 
+void AnimationUtils_setAnimationFrameBatched(struct game_object* gameObject, u8 animationFrameIndex)
+{
+	gameObject->currentAnimationFrameIndex = animationFrameIndex;
+	gameObject->currentAnimationBatchedFrame = gameObject->animationBatched->frames[animationFrameIndex]; 
+	gameObject->animationTime = gameObject->currentAnimationBatchedFrame->frameTime;
+}
+
 u16 Load_AnimationResource(const Animation* animation)
 {
 	return VDPTileManager_LoadSpriteTiles(animation->tileData, 

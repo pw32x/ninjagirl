@@ -46,16 +46,6 @@ void UpdateTiles(GameObject* object)
 
 void TileAnimator_Update(GameObject* object)
 {
-	/*
-	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
-
-	if (screenLeft < SCREEN_LEFT)
-	{
-		ObjectManager_DestroyObject(object);
-		return;
-	}
-	*/
-
 	if (object->UpdateAnimation(object))
 		ObjectManager_QueueVDPDraw(object, UpdateTiles);
 }

@@ -15,6 +15,8 @@ u8 AnimationUtils_updateAnimationBatched(struct game_object* gameObject);
 u8 AnimationUtils_updateAnimationBatched_noLoop(struct game_object* gameObject);
 u8 AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 
+void AnimationUtils_setAnimationFrameBatched(struct game_object* gameObject, u8 animationFrameIndex);
+
 u16 Load_AnimationResource(const Animation* animation);
 u16 Load_BatchedAnimationResource(const AnimationBatched* animationBatched);
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation);

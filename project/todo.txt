@@ -1,5 +1,9 @@
 Todo
 	
+	move player
+	
+	fix kunai disappearing early if we scrolled the level
+
 
 	game play?
 

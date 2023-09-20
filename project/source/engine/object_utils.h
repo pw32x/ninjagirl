@@ -5,7 +5,7 @@
 
 void ObjectUtils_gameObjectDoNothing(GameObject* gameObject);
 void ObjectUtils_doNothing(void);
-void ObjectUtils_HandleCollisionDoNothing(GameObject* gameObject, GameObject* other);
+void ObjectUtils_twoGameObjectsDoNothing(GameObject* gameObject, GameObject* other);
 
 BOOL ObjectUtils_drawNothing(GameObject* gameObject);
 

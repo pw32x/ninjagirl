@@ -32,9 +32,9 @@ void Effect_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	if (object->x > SCREEN_RIGHT ||
+	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
 		object->y > SCREEN_BOTTOM ||
-		object->x < SCREEN_LEFT ||
+		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||
 		object->y < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);

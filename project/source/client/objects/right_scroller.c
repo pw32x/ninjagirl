@@ -6,11 +6,17 @@
 #include "engine/vdptile_manager.h"
 #include "engine/base_defines.h"
 
-void RightScroll_Update(GameObject* gameObject);
+#include <stdio.h>
+
+void RightScroll_Update(GameObject* target);
 void RightScroll_UpdateVDP(void);
+
+u16 columnToUpdate;
 
 GameObject* RightScroller_Create(const Map* map)
 {
+	columnToUpdate = 0;
+
 	ScrollManager_Update = RightScroll_Update;
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
 	
@@ -32,20 +38,28 @@ GameObject* RightScroller_Create(const Map* map)
 
 	ScrollUtils_InitTilemap();
 
+	ScrollManager_updateMapVDP = FALSE;
+
 	return NULL;
 }
 
-void RightScroll_Update(GameObject* gameObject)
+
+extern s16 playerSpeedX;
+
+void RightScroll_Update(GameObject* target)
 {
-	return;
+	if (!playerSpeedX)
+		return;
 
 	SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	ScrollManager_speedX = 0;
 
-	if (gameObject->x > ScrollManager_horizontalScroll + 128)
+	u8 oldColumn = columnToUpdate;
+
+	if (target->x > ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH)
 	{
-		ScrollManager_speedX = gameObject->x - (ScrollManager_horizontalScroll + 128);
+		ScrollManager_speedX = target->x - (ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH);
 	}
 
 	// here we move the vdp scrolling and logical map scrolling to the same speed
@@ -60,14 +74,24 @@ void RightScroll_Update(GameObject* gameObject)
 
 	ScrollManager_vdpHorizontalScroll = -(ScrollManager_horizontalScroll & 255); // vdp scrolls backwards in comparison
 
-	if (ScrollManager_horizontalScroll % 8 == 0 && ScrollManager_speedX) // when we hit a 8 pixel boundary, prep a new column to display
+	columnToUpdate = ScrollManager_horizontalScroll >> 3;
+
+	u8 diff = columnToUpdate - oldColumn;
+
+	if (diff) // when we hit a new column, prep a new column to display
 	{
 		// figure out the column to update
-		ScrollUtils_mapColumnToBuild = (ScrollManager_horizontalScroll >> 3) + 32; 
-		ScrollUtils_buildColumn();
+		ScrollUtils_mapColumnToBuild = columnToUpdate + 32; 
+		ScrollUtils_buildColumn(ScrollManager_columnBuffer);
 
 		ScrollManager_updateMapVDP = TRUE;
 	}	
+
+
+	//char output[255];	
+	//sprintf(output, "%u %u    ", oldColumn, newColumn);
+	//SMS_printatXY(28, 0, output); 
+	
 
 	SMS_setBackdropColor(COLOR_RED);
 }
@@ -81,8 +105,7 @@ void RightScroll_UpdateVDP(void)
 	if (ScrollManager_updateMapVDP)
 	{
 		ScrollManager_updateMapVDP = FALSE;
-		u8 scrollMapColumn = ScrollManager_vdpHorizontalScroll >> 3;
-		SMS_loadTileMapColumn((32 - scrollMapColumn) & 31, 0, ScrollManager_buffer, 24);
+		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 24);
 	}
 
 	SMS_setBackdropColor(COLOR_DARK_GREY);

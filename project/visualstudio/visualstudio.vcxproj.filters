@@ -229,6 +229,9 @@
     <ClCompile Include="..\source\client\objects\effect.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\background2.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -356,6 +359,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\effect.h">
       <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\math_utils.h">
+      <Filter>Source Files\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\tile_types.h">
+      <Filter>Source Files\client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\background2.h">
+      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

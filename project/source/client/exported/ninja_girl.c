@@ -187,8 +187,8 @@ unsigned char const ninja_girlTileData[640] = // 20tiles x 32 bytes
 
 const AnimationSpriteBatched ninja_girlFrame0SpriteBatched[] = 
 {
-    { 2, { -8, -15, 0 } },
-    { 3, { -8, 1, 4 } },
+    { 2, { -7, -15, 0 } },
+    { 3, { -7, 1, 4 } },
     {0},
 };
 
@@ -203,13 +203,13 @@ const AnimationSpriteBatched ninja_girlFrame1SpriteBatched[] =
 const AnimationFrameBatched ninja_girlFrame0 = 
 {
     ninja_girlFrame0SpriteBatched,
-    8, // frame time
+    4, // frame time
 };
 
 const AnimationFrameBatched ninja_girlFrame1 = 
 {
     ninja_girlFrame1SpriteBatched,
-    8, // frame time
+    4, // frame time
 };
 const AnimationFrameBatched* const ninja_girlFrames[2] = 
 {
@@ -224,7 +224,7 @@ const AnimationBatched ninja_girl =
     BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
-    16, // the total time of the animation
+    8, // the total time of the animation
     2, // number of frames
     24, // width in pixels
     32, // height in pixels

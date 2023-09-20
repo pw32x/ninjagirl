@@ -8,6 +8,9 @@
 #include "engine/resource_manager.h"
 #include "engine/object_types.h"
 
+#include "client/math_utils.h"
+#include "client/tile_types.h"
+
 #include "client/exported/impact.h"
 #include "client/objects/effect.h"
 
@@ -52,12 +55,29 @@ void Kunai_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	if (object->x > SCREEN_RIGHT ||
+	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
 		object->y > SCREEN_BOTTOM ||
-		object->x < SCREEN_LEFT ||
+		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||
 		object->y < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
+	}
+
+	if (ScrollManager_terrainMap[P2B(object->x) + (P2B(object->y) * ScrollManager_mapWidth)] != TILE_EMPTY)
+	{
+		ObjectManager_DestroyObject(object);
+
+		CreateInfo createInfo = 
+		{ 
+			object->x, 
+			object->y, 
+			(const void*)&impact, 
+		};
+
+		GameObject* effect = Effect_Create(&createInfo);
+
+		effect->speedx = object->speedx >> 2;
+		effect->speedy = object->speedy >> 2;
 	}
 }
 

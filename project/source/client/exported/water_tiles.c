@@ -10,10 +10,10 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0xef, 0x00, 0xef, 0xff, 
     0xff, 0x00, 0xff, 0xff, 
     0x78, 0x00, 0x78, 0xff, 
-    0x17, 0x00, 0x17, 0xff, 
-    0xcf, 0x00, 0xcf, 0xff, 
+    0x97, 0x87, 0x97, 0xff, 
+    0x03, 0x00, 0x03, 0xff, 
 // tile: 1
-    0x80, 0x00, 0x80, 0xff, 
+    0x00, 0x00, 0x00, 0xff, 
     0x60, 0x00, 0x60, 0xff, 
     0xb8, 0x00, 0xb8, 0xff, 
     0xce, 0x80, 0xce, 0xff, 
@@ -83,9 +83,9 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0xdf, 0x00, 0xdf, 0xff, 
     0xff, 0x00, 0xff, 0xff, 
     0xe0, 0x00, 0xe0, 0xff, 
-    0xdf, 0x00, 0xdf, 0xff, 
+    0x5f, 0x1f, 0x5f, 0xff, 
 // tile: 9
-    0x3f, 0x1f, 0x3f, 0xff, 
+    0xbf, 0xbf, 0xbf, 0xff, 
     0xff, 0x1f, 0xff, 0xff, 
     0x7f, 0x07, 0x7f, 0xff, 
     0x3f, 0x01, 0x3f, 0xff, 
@@ -151,34 +151,34 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
 
 const AnimationSprite water_tilesFrame0Sprites[] = 
 {
-    { -12, -16, 0 },
-    { -12, -8, 1 },
-    { -12, 0, 2 },
-    { -12, 8, 3 },
+    { 0, 0, 0 },
+    { 0, 8, 1 },
+    { 0, 16, 2 },
+    { 0, 24, 3 },
 };
 
 const AnimationSprite water_tilesFrame1Sprites[] = 
 {
-    { -12, -16, 4 },
-    { -12, -8, 5 },
-    { -12, 0, 6 },
-    { -12, 8, 7 },
+    { 0, 0, 4 },
+    { 0, 8, 5 },
+    { 0, 16, 6 },
+    { 0, 24, 7 },
 };
 
 const AnimationSprite water_tilesFrame2Sprites[] = 
 {
-    { -12, -16, 8 },
-    { -12, -8, 9 },
-    { -12, 0, 10 },
-    { -12, 8, 11 },
+    { 0, 0, 8 },
+    { 0, 8, 9 },
+    { 0, 16, 10 },
+    { 0, 24, 11 },
 };
 
 const AnimationSprite water_tilesFrame3Sprites[] = 
 {
-    { -12, -16, 12 },
-    { -12, -8, 13 },
-    { -12, 0, 14 },
-    { -12, 8, 15 },
+    { 0, 0, 12 },
+    { 0, 8, 13 },
+    { 0, 16, 14 },
+    { 0, 24, 15 },
 };
 
 
