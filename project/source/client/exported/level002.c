@@ -25,8 +25,7 @@
 #include "client/exported/kunai.h"
 #include "client/exported/evil_eye.h"
 #include "client/exported/birdidle.h"
-#include "client/exported/background.h"
-#include "client/exported/background2.h"
+#include "client/exported/background3.h"
 #include "client/exported/water_tiles.h"
 #include "client/exported/explosion.h"
 #include "client/exported/impact.h"
@@ -49,14 +48,14 @@ Command level002_commands[] =
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &background2_map },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_map },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girl },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunai },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &evil_eye },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosion },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &impact },
-	{ 0, (CommandFunction)RightScroller_Create, &background2_map },
+	{ 0, (CommandFunction)RightScroller_Create, &background3_map },
 	{ 0, (CommandFunction)TileAnimator_Create, &water_tiles },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },

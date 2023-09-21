@@ -49,16 +49,7 @@
     <ClCompile Include="..\source\client\objects\player.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\generated\background_tileset.c">
-      <Filter>Source Files\client\generated</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\background.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\global_palette.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\level001.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\ninja_girl.c">
@@ -229,8 +220,11 @@
     <ClCompile Include="..\source\client\objects\effect.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\background2.c">
+    <ClCompile Include="..\source\client\exported\background3.c">
       <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\background3_tileset.c">
+      <Filter>Source Files\client\generated</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -267,16 +261,7 @@
     <ClInclude Include="..\source\client\objects\player.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\generated\background_tileset.h">
-      <Filter>Source Files\client\generated</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\background.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\global_palette.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\level001.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\exported\ninja_girl.h">
@@ -366,8 +351,11 @@
     <ClInclude Include="..\source\client\tile_types.h">
       <Filter>Source Files\client</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\background2.h">
+    <ClInclude Include="..\source\client\exported\background3.h">
       <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\background3_tileset.h">
+      <Filter>Source Files\client\generated</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

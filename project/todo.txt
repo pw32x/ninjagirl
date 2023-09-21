@@ -1,9 +1,15 @@
 Todo
+
+	DONE fix kunai disappearing early if we scrolled the level
+
 	
 	move player
 	
-	fix kunai disappearing early if we scrolled the level
-
+	collision check mid-way on player
+	
+	top-solid collisions
+	
+	
 
 	game play?
 

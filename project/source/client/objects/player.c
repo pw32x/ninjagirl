@@ -137,7 +137,7 @@ void Player_UpdateX(void)
 
 	u8 tileType = ScrollManager_terrainMap[blockX + (blockY * ScrollManager_mapWidth)];
 
-	if (tileType != TILE_EMPTY)
+	if (tileType == TILE_SOLID)
 	{
 		if (playerSpeedX < 0)
 			blockX++;
@@ -154,7 +154,7 @@ void Player_UpdateX(void)
 
 	tileType = ScrollManager_terrainMap[blockX + (blockY * ScrollManager_mapWidth)];
 
-	if (tileType != TILE_EMPTY)
+	if (tileType == TILE_SOLID)
 	{
 		if (playerSpeedX < 0)
 			blockX++;
@@ -189,7 +189,7 @@ void Player_UpdateY(void)
 
 		u8 tileType = ScrollManager_terrainMap[blockX1 + (blockY * ScrollManager_mapWidth)];
 
-		if (tileType != TILE_EMPTY)
+		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
 		{
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
@@ -199,7 +199,7 @@ void Player_UpdateY(void)
 
 		tileType = ScrollManager_terrainMap[blockX2 + (blockY * ScrollManager_mapWidth)];
 
-		if (tileType != TILE_EMPTY)
+		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
 		{
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
@@ -224,7 +224,7 @@ void Player_UpdateY(void)
 
 		u8 tileType = ScrollManager_terrainMap[blockX1 + (blockY * ScrollManager_mapWidth)];
 
-		if (tileType != TILE_EMPTY)
+		if (tileType == TILE_SOLID)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;
@@ -234,7 +234,7 @@ void Player_UpdateY(void)
 
 		tileType = ScrollManager_terrainMap[blockX2 + (blockY * ScrollManager_mapWidth)];
 
-		if (tileType != TILE_EMPTY)
+		if (tileType == TILE_SOLID)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;
