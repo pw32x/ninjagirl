@@ -7,8 +7,8 @@
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
+#include "engine/math_utils.h"
 
-#include "client/math_utils.h"
 #include "client/tile_types.h"
 
 // music and sfx
@@ -22,8 +22,8 @@
 
 #include <stdio.h>
 
-#define PLAYER_SPEED_X	48
-#define PLAYER_SPEED_Y	32
+#define PLAYER_SPEED_X	24
+#define PLAYER_SPEED_Y	16
 
 void Player_Update(GameObject* player);
 BOOL Player_Draw(GameObject* player);
@@ -42,8 +42,8 @@ u8 isPlayerMoving;
 
 
 
-#define PLAYER_GRAVITY	10
-#define JUMP_SPEED 200
+#define PLAYER_GRAVITY	5
+#define JUMP_SPEED 100
 
 #define PLAYER_STATE_STAND	0
 #define PLAYER_STATE_FALL	1
@@ -296,14 +296,18 @@ void Player_Update(GameObject* player)
 		playerSpeedY -= JUMP_SPEED;
 	}
 
-	s16 oldPlayerX = player->x;
-	s16 oldPlayerY = player->y;
-
 	Player_UpdateX();
 	Player_UpdateY();
 
 	player->x = V2P(playerX);
 	player->y = V2P(playerY);
+
+	//char output[255];
+	//sprintf(output, " %d, %d     ", player->x, playerX);
+	//SMS_printatXY(1, 0, output); 
+	//
+	//sprintf(output, "%d", ScrollManager_mapWidth);
+	//SMS_printatXY(1, 1, output); 
 
 	if (isPlayerOnGround && isPlayerMoving)
 	{

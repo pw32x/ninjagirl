@@ -8,7 +8,7 @@
 #include "engine/resource_manager.h"
 #include "engine/object_types.h"
 
-#include "client/math_utils.h"
+#include "engine/math_utils.h"
 #include "client/tile_types.h"
 
 #include "client/exported/impact.h"

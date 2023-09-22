@@ -3,6 +3,7 @@
 
 #include "engine/base_types.h"
 #include "engine/animation_types.h"
+#include "engine/math_utils.h"
 
 typedef struct game_object
 {

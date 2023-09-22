@@ -203,7 +203,6 @@
     <ClInclude Include="..\source\client\exported\water_tiles.h" />
     <ClInclude Include="..\source\client\generated\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
-    <ClInclude Include="..\source\client\math_utils.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\objects\effect.h" />
@@ -222,6 +221,7 @@
     <ClInclude Include="..\source\engine\level_manager.h" />
     <ClInclude Include="..\source\engine\level_types.h" />
     <ClInclude Include="..\source\engine\map_types.h" />
+    <ClInclude Include="..\source\engine\math_utils.h" />
     <ClInclude Include="..\source\engine\object_manager.h" />
     <ClInclude Include="..\source\engine\object_types.h" />
     <ClInclude Include="..\source\engine\object_utils.h" />
