@@ -44,14 +44,14 @@ void main(void)
 	for(;;) 
 	{ 
 		ObjectManager_Update();
-		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
+//		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
 		ScrollManager_UpdateVDP();
 		SMS_copySpritestoSAT();
-		SMS_setBackdropColor(COLOR_WHITE);
+		//SMS_setBackdropColor(COLOR_WHITE);
 		ObjectManager_VDPDraw();
-		SMS_setBackdropColor(0);
+		//SMS_setBackdropColor(0);
 
 	}
 }

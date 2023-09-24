@@ -113,7 +113,7 @@ void ObjectManager_Update(void)
 {
 	ObjectManager_numVdpDrawItems = 0;
 
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 
 	ObjectManager_player.Update(&ObjectManager_player);
 	ScrollManager_Update(&ObjectManager_player);
@@ -121,7 +121,7 @@ void ObjectManager_Update(void)
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 
-	SMS_setBackdropColor(COLOR_ORANGE);
+	//SMS_setBackdropColor(COLOR_ORANGE);
 
 	// update objects
 
@@ -151,7 +151,7 @@ void ObjectManager_Update(void)
 	ObjectManager_projectileSlots[1].Update(&ObjectManager_projectileSlots[1]);
 	ObjectManager_projectileSlots[2].Update(&ObjectManager_projectileSlots[2]);
 
-	SMS_setBackdropColor(COLOR_DARK_BLUE);
+	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
 	/*
 	if (ObjectManager_activeProjectilesCount && ObjectManager_activeEnemiesCount)
@@ -195,7 +195,7 @@ void ObjectManager_Update(void)
 
 
 
-	SMS_setBackdropColor(COLOR_ORANGE);
+	//SMS_setBackdropColor(COLOR_ORANGE);
 
 	//objectSlotRunner = ObjectManager_enemySlots;
 	//counter = NUM_ENEMY_SLOTS;
@@ -240,14 +240,14 @@ void ObjectManager_Update(void)
 	ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
 	ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
 
-	SMS_setBackdropColor(COLOR_YELLOW);
+	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 
 	DrawUtils_spritesDrawn = 0;
 
 	ObjectManager_player.Draw(&ObjectManager_player);
 
-	SMS_setBackdropColor(COLOR_GRAY);
+	//SMS_setBackdropColor(COLOR_GRAY);
 
 	/*
 	GameObject** activeObjectRunner = ObjectManager_activeProjectiles;
@@ -263,7 +263,7 @@ void ObjectManager_Update(void)
 	ObjectManager_projectileSlots[1].Draw(&ObjectManager_projectileSlots[1]);
 	ObjectManager_projectileSlots[2].Draw(&ObjectManager_projectileSlots[2]);
 
-	SMS_setBackdropColor(COLOR_PINK);
+	//SMS_setBackdropColor(COLOR_PINK);
 	/*
 	activeObjectRunner = ObjectManager_activeEnemies;
 	counter = ObjectManager_activeEnemiesCount;

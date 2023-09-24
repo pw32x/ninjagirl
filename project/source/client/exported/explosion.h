@@ -7,5 +7,7 @@
 
 extern const AnimationBatched explosion;
 
+// frame numbers for specific animations.
+
 #endif
 

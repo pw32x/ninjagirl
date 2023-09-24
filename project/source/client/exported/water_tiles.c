@@ -151,42 +151,47 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
 
 const AnimationSprite water_tilesFrame0Sprites[] = 
 {
-    { 0, 0, 0 },
-    { 0, 8, 1 },
-    { 0, 16, 2 },
-    { 0, 24, 3 },
+    { -12, -16, 0 },
+    { -12, -8, 1 },
+    { -12, 0, 2 },
+    { -12, 8, 3 },
 };
 
 const AnimationSprite water_tilesFrame1Sprites[] = 
 {
-    { 0, 0, 4 },
-    { 0, 8, 5 },
-    { 0, 16, 6 },
-    { 0, 24, 7 },
+    { -12, -16, 4 },
+    { -12, -8, 5 },
+    { -12, 0, 6 },
+    { -12, 8, 7 },
 };
 
 const AnimationSprite water_tilesFrame2Sprites[] = 
 {
-    { 0, 0, 8 },
-    { 0, 8, 9 },
-    { 0, 16, 10 },
-    { 0, 24, 11 },
+    { -12, -16, 8 },
+    { -12, -8, 9 },
+    { -12, 0, 10 },
+    { -12, 8, 11 },
 };
 
 const AnimationSprite water_tilesFrame3Sprites[] = 
 {
-    { 0, 0, 12 },
-    { 0, 8, 13 },
-    { 0, 16, 14 },
-    { 0, 24, 15 },
+    { -12, -16, 12 },
+    { -12, -8, 13 },
+    { -12, 0, 14 },
+    { -12, 8, 15 },
 };
 
+extern const AnimationFrame water_tilesFrame0;
+extern const AnimationFrame water_tilesFrame1;
+extern const AnimationFrame water_tilesFrame2;
+extern const AnimationFrame water_tilesFrame3;
 
 const AnimationFrame water_tilesFrame0 = 
 {
     water_tilesFrame0Sprites,
     4, // number of sprites
     8, // frame time
+    &water_tilesFrame1, // next frame
 };
 
 const AnimationFrame water_tilesFrame1 = 
@@ -194,6 +199,7 @@ const AnimationFrame water_tilesFrame1 =
     water_tilesFrame1Sprites,
     4, // number of sprites
     8, // frame time
+    &water_tilesFrame2, // next frame
 };
 
 const AnimationFrame water_tilesFrame2 = 
@@ -201,6 +207,7 @@ const AnimationFrame water_tilesFrame2 =
     water_tilesFrame2Sprites,
     4, // number of sprites
     8, // frame time
+    &water_tilesFrame3, // next frame
 };
 
 const AnimationFrame water_tilesFrame3 = 
@@ -208,6 +215,7 @@ const AnimationFrame water_tilesFrame3 =
     water_tilesFrame3Sprites,
     4, // number of sprites
     8, // frame time
+    &water_tilesFrame2, // next frame
 };
 const AnimationFrame* const water_tilesFrames[4] = 
 {
@@ -224,10 +232,10 @@ const Animation water_tiles =
     REGULAR_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrame** const)water_tilesFrames,
     (unsigned char* const)water_tilesTileData, // start of the sprite data
-    32, // the total time of the animation
     4, // number of frames
     8, // width in pixels
     32, // height in pixels
     16, // the total amount of tiles in animation
+    8, // the max amount of sprite tiles in a frame
     &water_tilesVdpLocation,
 };

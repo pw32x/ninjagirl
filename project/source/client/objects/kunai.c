@@ -7,6 +7,7 @@
 #include "engine/object_utils.h"
 #include "engine/resource_manager.h"
 #include "engine/object_types.h"
+#include "engine/animation_utils.h"
 
 #include "engine/math_utils.h"
 #include "client/tile_types.h"
@@ -30,6 +31,7 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 
 	object->x = createInfo->startX;
 	object->y = createInfo->startY;
+
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 	object->HandleCollision = Kunai_HandleCollision;
@@ -76,8 +78,8 @@ void Kunai_Update(GameObject* object)
 
 		GameObject* effect = Effect_Create(&createInfo);
 
-		effect->speedx = object->speedx >> 2;
-		effect->speedy = object->speedy >> 2;
+		//effect->speedx = object->speedx >> 2;
+		//effect->speedy = object->speedy >> 2;
 	}
 }
 

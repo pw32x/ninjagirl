@@ -7,12 +7,13 @@ u8 AnimationUtils_updateAnimation(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
-		gameObject->currentAnimationFrameIndex++;
+		gameObject->currentAnimationFrame = gameObject->currentAnimationFrame->nextFrame;
 
-		if (gameObject->currentAnimationFrameIndex == gameObject->animation->numFrames)
-			gameObject->currentAnimationFrameIndex = 0;
+		if (gameObject->currentAnimationFrame == NULL)
+		{
+			return ANIMATION_FINISHED;
+		}
 
-		gameObject->currentAnimationFrame = gameObject->animation->frames[gameObject->currentAnimationFrameIndex];
 		gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
 		return ANIMATION_CHANGED_FRAME;
 	}
@@ -24,12 +25,13 @@ u8 AnimationUtils_updateAnimationBatched(struct game_object* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
-		gameObject->currentAnimationFrameIndex++;
+		gameObject->currentAnimationBatchedFrame = gameObject->currentAnimationBatchedFrame->nextFrame;
 
-		if (gameObject->currentAnimationFrameIndex == gameObject->animationBatched->numFrames)
-			gameObject->currentAnimationFrameIndex = 0;
+		if (gameObject->currentAnimationBatchedFrame == NULL)
+		{
+			return ANIMATION_FINISHED;
+		}
 
-		gameObject->currentAnimationBatchedFrame = gameObject->animationBatched->frames[gameObject->currentAnimationFrameIndex];
 		gameObject->animationTime = gameObject->currentAnimationBatchedFrame->frameTime;
 		return ANIMATION_CHANGED_FRAME;
 	}

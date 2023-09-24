@@ -7,5 +7,7 @@
 
 extern const AnimationBatched evil_eye;
 
+// frame numbers for specific animations.
+
 #endif
 

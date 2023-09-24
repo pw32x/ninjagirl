@@ -51,7 +51,7 @@ void RightScroll_Update(GameObject* target)
 	if (!playerSpeedX)
 		return;
 
-	SMS_setBackdropColor(COLOR_DARK_GREEN);
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	ScrollManager_speedX = 0;
 
@@ -93,12 +93,12 @@ void RightScroll_Update(GameObject* target)
 	//SMS_printatXY(28, 0, output); 
 	
 
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 }
 
 void RightScroll_UpdateVDP(void)
 {
-	SMS_setBackdropColor(COLOR_DARK_BLUE);
+	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 	
@@ -108,5 +108,5 @@ void RightScroll_UpdateVDP(void)
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 24);
 	}
 
-	SMS_setBackdropColor(COLOR_DARK_GREY);
+	//SMS_setBackdropColor(COLOR_DARK_GREY);
 }

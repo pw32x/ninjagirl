@@ -7,5 +7,7 @@
 
 extern const AnimationBatched kunai;
 
+// frame numbers for specific animations.
+
 #endif
 

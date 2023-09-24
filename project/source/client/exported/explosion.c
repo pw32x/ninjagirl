@@ -386,23 +386,30 @@ const AnimationSpriteBatched explosionFrame2SpriteBatched[] =
     {0},
 };
 
+extern const AnimationFrameBatched explosionFrame0;
+extern const AnimationFrameBatched explosionFrame1;
+extern const AnimationFrameBatched explosionFrame2;
+
 
 const AnimationFrameBatched explosionFrame0 = 
 {
     explosionFrame0SpriteBatched,
     7, // frame time
+    &explosionFrame1, // next frame
 };
 
 const AnimationFrameBatched explosionFrame1 = 
 {
     explosionFrame1SpriteBatched,
     7, // frame time
+    &explosionFrame2, // next frame
 };
 
 const AnimationFrameBatched explosionFrame2 = 
 {
     explosionFrame2SpriteBatched,
     8, // frame time
+    &explosionFrame0, // next frame
 };
 const AnimationFrameBatched* const explosionFrames[3] = 
 {
@@ -418,10 +425,10 @@ const AnimationBatched explosion =
     BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)explosionFrames,
     (unsigned char* const)explosionTileData, // start of the sprite data
-    22, // the total time of the animation
     3, // number of frames
     32, // width in pixels
     32, // height in pixels
     40, // the total amount of tiles in animation
+    16, // the max amount of sprite tiles in a frame
     &explosionVdpLocation,
 };

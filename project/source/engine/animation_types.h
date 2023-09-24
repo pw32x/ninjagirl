@@ -11,11 +11,12 @@ typedef struct
     u8 tileIndex;
 } AnimationSprite;
 
-typedef struct
+typedef struct animation_frame
 {
     const AnimationSprite* const sprites;
     u8 numSprites;
     u8 frameTime;
+    struct animation_frame* nextFrame;
 } AnimationFrame;
 
 typedef struct
@@ -24,14 +25,13 @@ typedef struct
     const AnimationFrame** const frames;
     const u8* const tileData;
 
-	u16 totalAnimationTime;
-
     u8 numFrames;
     u8 pixelWidth;
     u8 pixelHeight;
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
+    u8 maxTilesInFrame;
     u8* vdpLocation;
 } Animation;
 
@@ -43,10 +43,11 @@ typedef struct
     AnimationSprite sprite;
 } AnimationSpriteBatched;
 
-typedef struct
+typedef struct animation_frame_batched
 {
     const AnimationSpriteBatched* const spriteBatch;
     u8 frameTime;
+    struct animation_frame_batched* nextFrame;
 } AnimationFrameBatched;
 
 
@@ -56,14 +57,15 @@ typedef struct
     const AnimationFrameBatched** const frames;
     const u8* const tileData;
 
-	u16 totalAnimationTime;
-
     u8 numFrames;
     u8 pixelWidth;
     u8 pixelHeight;
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
+
+    u8 maxTilesInFrame;
+
     u8* vdpLocation;
 
 } AnimationBatched;

@@ -89,17 +89,22 @@ const AnimationSpriteBatched impactFrame1SpriteBatched[] =
     {0},
 };
 
+extern const AnimationFrameBatched impactFrame0;
+extern const AnimationFrameBatched impactFrame1;
+
 
 const AnimationFrameBatched impactFrame0 = 
 {
     impactFrame0SpriteBatched,
     3, // frame time
+    &impactFrame1, // next frame
 };
 
 const AnimationFrameBatched impactFrame1 = 
 {
     impactFrame1SpriteBatched,
     4, // frame time
+    &impactFrame0, // next frame
 };
 const AnimationFrameBatched* const impactFrames[2] = 
 {
@@ -114,10 +119,10 @@ const AnimationBatched impact =
     BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)impactFrames,
     (unsigned char* const)impactTileData, // start of the sprite data
-    7, // the total time of the animation
     2, // number of frames
     16, // width in pixels
     16, // height in pixels
     8, // the total amount of tiles in animation
+    4, // the max amount of sprite tiles in a frame
     &impactVdpLocation,
 };

@@ -46,8 +46,46 @@ u8 isPlayerMoving;
 #define JUMP_SPEED 100
 
 #define PLAYER_STATE_STAND	0
-#define PLAYER_STATE_FALL	1
-#define PLAYER_STATE_JUMP	2
+#define PLAYER_STATE_RUN	1
+#define PLAYER_STATE_FALL	2
+#define PLAYER_STATE_JUMP	3
+
+void setPlayerState(u8 newState)
+{
+	if (playerState == newState)
+	{
+		//SMS_setBackdropColor(15);
+		return;
+	}
+
+	switch (newState)
+	{
+	case PLAYER_STATE_STAND:
+		SMS_setBackdropColor(newState);
+		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+												ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_RUN:
+		SMS_setBackdropColor(newState);
+		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+												ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_FALL:
+		SMS_setBackdropColor(newState);
+		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+												ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_JUMP:
+		SMS_setBackdropColor(newState);
+		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+												ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		break;
+	}
+
+	playerState = newState;
+
+
+}
 
 #define PLAYER_ANIMATION_FRAME_STAND 0
 #define PLAYER_ANIMATION_FRAME_JUMP 1
@@ -68,6 +106,8 @@ GameObject* Player_Create(const CreateInfo* createInfo)
 	ObjectManager_player.rectTop = -12;
 	ObjectManager_player.rectRight = 3;
 	ObjectManager_player.rectBottom = 16;
+
+	ObjectManager_player.flipped = FALSE;
 
 	playerSpeedX = 0;
 
@@ -97,8 +137,11 @@ void Player_FireWeapon(GameObject* player)
 
 	GameObject* kunai = Kunai_Create(&createInfo);
 
-	kunai->speedx = 3;
+	kunai->speedx = ObjectManager_player.flipped ? -3 : 3;
 	kunai->speedy = 0;
+
+	if (ObjectManager_player.flipped)
+		AnimationUtils_setAnimationFrameBatched(kunai, 1);
 }
 
 void Player_UpdateX(void)
@@ -180,6 +223,7 @@ void Player_UpdateY(void)
 	// falling
 	if (playerSpeedY > 0)
 	{
+
 		POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 
 		s16 blockY = V2B(ySensor);
@@ -194,6 +238,8 @@ void Player_UpdateY(void)
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
+
+			isPlayerMoving ? setPlayerState(PLAYER_STATE_RUN) : setPlayerState(PLAYER_STATE_STAND);
 			return;
 		}
 
@@ -204,16 +250,17 @@ void Player_UpdateY(void)
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
+
+			isPlayerMoving ? setPlayerState(PLAYER_STATE_RUN) : setPlayerState(PLAYER_STATE_STAND);
 			return;
 		}
 
 		isPlayerOnGround = FALSE;
-		playerState = PLAYER_STATE_FALL;
+		setPlayerState(PLAYER_STATE_FALL);
 	}
 	else if (playerSpeedY < 0) // jump up
 	{
 		isPlayerOnGround = FALSE;
-		playerState = PLAYER_STATE_JUMP;
 
 		POSITION ySensor = playerY + P2V(ObjectManager_player.rectTop);
 
@@ -228,7 +275,7 @@ void Player_UpdateY(void)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;
-			playerState = PLAYER_STATE_FALL;
+			setPlayerState(PLAYER_STATE_FALL);
 			return;
 		}
 
@@ -238,7 +285,7 @@ void Player_UpdateY(void)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;
-			playerState = PLAYER_STATE_FALL;
+			setPlayerState(PLAYER_STATE_FALL);
 			return;
 		}
 	}
@@ -266,17 +313,35 @@ void Player_Update(GameObject* player)
 
 	if (buttonState & PORT_A_KEY_LEFT)
 	{
+		ObjectManager_player.flipped = TRUE;
+
 		playerSpeedX = -PLAYER_SPEED_X;
 		isPlayerMoving = TRUE;
+
+		// if state is not run
+		// if on ground
+		//		setstate(run)
+		//			set animation
+
+		//if (isPlayerOnGround)
+		//	setPlayerState(PLAYER_STATE_RUN);
 	}
 	else if (buttonState & PORT_A_KEY_RIGHT)
 	{
+		ObjectManager_player.flipped = FALSE;
+
 		playerSpeedX = PLAYER_SPEED_X;
 		isPlayerMoving = TRUE;
+
+		//if (isPlayerOnGround)
+		//	setPlayerState(PLAYER_STATE_RUN);
 	}
 	else
 	{
 		playerSpeedX = 0;
+
+		//if (isPlayerOnGround)
+		//	setPlayerState(PLAYER_STATE_STAND);
 	}
 
 	//if (buttonState & PORT_A_KEY_UP)
@@ -294,6 +359,9 @@ void Player_Update(GameObject* player)
 	if (buttonsPressed & PORT_A_KEY_2  && isPlayerOnGround)
 	{
 		playerSpeedY -= JUMP_SPEED;
+
+		if (isPlayerOnGround && playerState != PLAYER_STATE_JUMP)
+			setPlayerState(PLAYER_STATE_JUMP);
 	}
 
 	Player_UpdateX();
@@ -309,6 +377,9 @@ void Player_Update(GameObject* player)
 	//sprintf(output, "%d", ScrollManager_mapWidth);
 	//SMS_printatXY(1, 1, output); 
 
+	ObjectManager_player.UpdateAnimation(&ObjectManager_player);
+
+	/*
 	if (isPlayerOnGround && isPlayerMoving)
 	{
 		ObjectManager_player.UpdateAnimation(&ObjectManager_player);
@@ -321,6 +392,7 @@ void Player_Update(GameObject* player)
 	{
 		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, PLAYER_ANIMATION_FRAME_JUMP);
 	}
+	*/
 
 	//char output[255];
 	//

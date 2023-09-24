@@ -911,41 +911,54 @@ const AnimationSpriteBatched evil_eyeFrame5SpriteBatched[] =
     {0},
 };
 
+extern const AnimationFrameBatched evil_eyeFrame0;
+extern const AnimationFrameBatched evil_eyeFrame1;
+extern const AnimationFrameBatched evil_eyeFrame2;
+extern const AnimationFrameBatched evil_eyeFrame3;
+extern const AnimationFrameBatched evil_eyeFrame4;
+extern const AnimationFrameBatched evil_eyeFrame5;
+
 
 const AnimationFrameBatched evil_eyeFrame0 = 
 {
     evil_eyeFrame0SpriteBatched,
     8, // frame time
+    &evil_eyeFrame1, // next frame
 };
 
 const AnimationFrameBatched evil_eyeFrame1 = 
 {
     evil_eyeFrame1SpriteBatched,
     8, // frame time
+    &evil_eyeFrame2, // next frame
 };
 
 const AnimationFrameBatched evil_eyeFrame2 = 
 {
     evil_eyeFrame2SpriteBatched,
     8, // frame time
+    &evil_eyeFrame3, // next frame
 };
 
 const AnimationFrameBatched evil_eyeFrame3 = 
 {
     evil_eyeFrame3SpriteBatched,
     8, // frame time
+    &evil_eyeFrame4, // next frame
 };
 
 const AnimationFrameBatched evil_eyeFrame4 = 
 {
     evil_eyeFrame4SpriteBatched,
     8, // frame time
+    &evil_eyeFrame5, // next frame
 };
 
 const AnimationFrameBatched evil_eyeFrame5 = 
 {
     evil_eyeFrame5SpriteBatched,
     8, // frame time
+    &evil_eyeFrame0, // next frame
 };
 const AnimationFrameBatched* const evil_eyeFrames[6] = 
 {
@@ -964,10 +977,10 @@ const AnimationBatched evil_eye =
     BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)evil_eyeFrames,
     (unsigned char* const)evil_eyeTileData, // start of the sprite data
-    48, // the total time of the animation
     6, // number of frames
     32, // width in pixels
     32, // height in pixels
     96, // the total amount of tiles in animation
+    16, // the max amount of sprite tiles in a frame
     &evil_eyeVdpLocation,
 };

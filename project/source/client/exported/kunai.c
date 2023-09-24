@@ -233,53 +233,70 @@ const AnimationSpriteBatched kunaiFrame7SpriteBatched[] =
     {0},
 };
 
+extern const AnimationFrameBatched kunaiFrame0;
+extern const AnimationFrameBatched kunaiFrame1;
+extern const AnimationFrameBatched kunaiFrame2;
+extern const AnimationFrameBatched kunaiFrame3;
+extern const AnimationFrameBatched kunaiFrame4;
+extern const AnimationFrameBatched kunaiFrame5;
+extern const AnimationFrameBatched kunaiFrame6;
+extern const AnimationFrameBatched kunaiFrame7;
+
 
 const AnimationFrameBatched kunaiFrame0 = 
 {
     kunaiFrame0SpriteBatched,
     59, // frame time
+    &kunaiFrame1, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame1 = 
 {
     kunaiFrame1SpriteBatched,
     59, // frame time
+    &kunaiFrame2, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame2 = 
 {
     kunaiFrame2SpriteBatched,
     59, // frame time
+    &kunaiFrame3, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame3 = 
 {
     kunaiFrame3SpriteBatched,
     59, // frame time
+    &kunaiFrame4, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame4 = 
 {
     kunaiFrame4SpriteBatched,
     59, // frame time
+    &kunaiFrame5, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame5 = 
 {
     kunaiFrame5SpriteBatched,
     59, // frame time
+    &kunaiFrame6, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame6 = 
 {
     kunaiFrame6SpriteBatched,
     59, // frame time
+    &kunaiFrame7, // next frame
 };
 
 const AnimationFrameBatched kunaiFrame7 = 
 {
     kunaiFrame7SpriteBatched,
     59, // frame time
+    &kunaiFrame0, // next frame
 };
 const AnimationFrameBatched* const kunaiFrames[8] = 
 {
@@ -300,10 +317,10 @@ const AnimationBatched kunai =
     BATCHED_ANIMATION_RESOURCE_TYPE, 
     (const AnimationFrameBatched** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
-    472, // the total time of the animation
     8, // number of frames
     16, // width in pixels
     16, // height in pixels
     20, // the total amount of tiles in animation
+    4, // the max amount of sprite tiles in a frame
     &kunaiVdpLocation,
 };

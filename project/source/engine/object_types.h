@@ -34,7 +34,10 @@ typedef struct game_object
 	u8 currentAnimationFrameIndex;
 	u8 animationTime;
 	u8 alive;
+	u8 flipped;
+
 	u8 data1;
+
 
 	u8 data2;
 	u8 data3;

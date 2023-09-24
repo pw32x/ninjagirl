@@ -8,6 +8,8 @@ Todo
 
 	
 	collision check mid-way on player	
+
+Turn left 
 	
 	
 	destructable collisions
@@ -141,6 +143,9 @@ Idea Backlog
 		option/familiar
 		stronger projectiles
 		health upgrade
+		extra kunai (start with two, get a third one)
+		hold to float down
+		
 
 	spawn info has id of object type instead of pointer to create function
 		automatic generation of gameobject_id.h from scanning header files
