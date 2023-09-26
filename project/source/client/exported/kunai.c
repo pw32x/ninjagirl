@@ -185,120 +185,120 @@ unsigned char const kunaiTileData[640] = // 20tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const AnimationSpriteBatched kunaiFrame0SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame0BatchedSprite[] = 
 {
     { 2, { -7, -2, 0 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame1SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame1BatchedSprite[] = 
 {
     { 2, { -7, -2, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame2SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame2BatchedSprite[] = 
 {
     { 1, { -3, -7, 8 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame3SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame3BatchedSprite[] = 
 {
     { 1, { -3, -7, 10 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame4SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame4BatchedSprite[] = 
 {
     { 1, { -4, -6, 12 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame5SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame5BatchedSprite[] = 
 {
     { 1, { -4, -6, 14 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame6SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame6BatchedSprite[] = 
 {
     { 1, { -4, -6, 16 } },
     {0},
 };
 
-const AnimationSpriteBatched kunaiFrame7SpriteBatched[] = 
+const BatchedAnimationSprite kunaiFrame7BatchedSprite[] = 
 {
     { 1, { -4, -6, 18 } },
     {0},
 };
 
-extern const AnimationFrameBatched kunaiFrame0;
-extern const AnimationFrameBatched kunaiFrame1;
-extern const AnimationFrameBatched kunaiFrame2;
-extern const AnimationFrameBatched kunaiFrame3;
-extern const AnimationFrameBatched kunaiFrame4;
-extern const AnimationFrameBatched kunaiFrame5;
-extern const AnimationFrameBatched kunaiFrame6;
-extern const AnimationFrameBatched kunaiFrame7;
+extern const BatchedAnimationFrame kunaiFrame0;
+extern const BatchedAnimationFrame kunaiFrame1;
+extern const BatchedAnimationFrame kunaiFrame2;
+extern const BatchedAnimationFrame kunaiFrame3;
+extern const BatchedAnimationFrame kunaiFrame4;
+extern const BatchedAnimationFrame kunaiFrame5;
+extern const BatchedAnimationFrame kunaiFrame6;
+extern const BatchedAnimationFrame kunaiFrame7;
 
 
-const AnimationFrameBatched kunaiFrame0 = 
+const BatchedAnimationFrame kunaiFrame0 = 
 {
-    kunaiFrame0SpriteBatched,
+    kunaiFrame0BatchedSprite,
     59, // frame time
     &kunaiFrame1, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame1 = 
+const BatchedAnimationFrame kunaiFrame1 = 
 {
-    kunaiFrame1SpriteBatched,
+    kunaiFrame1BatchedSprite,
     59, // frame time
     &kunaiFrame2, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame2 = 
+const BatchedAnimationFrame kunaiFrame2 = 
 {
-    kunaiFrame2SpriteBatched,
+    kunaiFrame2BatchedSprite,
     59, // frame time
     &kunaiFrame3, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame3 = 
+const BatchedAnimationFrame kunaiFrame3 = 
 {
-    kunaiFrame3SpriteBatched,
+    kunaiFrame3BatchedSprite,
     59, // frame time
     &kunaiFrame4, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame4 = 
+const BatchedAnimationFrame kunaiFrame4 = 
 {
-    kunaiFrame4SpriteBatched,
+    kunaiFrame4BatchedSprite,
     59, // frame time
     &kunaiFrame5, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame5 = 
+const BatchedAnimationFrame kunaiFrame5 = 
 {
-    kunaiFrame5SpriteBatched,
+    kunaiFrame5BatchedSprite,
     59, // frame time
     &kunaiFrame6, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame6 = 
+const BatchedAnimationFrame kunaiFrame6 = 
 {
-    kunaiFrame6SpriteBatched,
+    kunaiFrame6BatchedSprite,
     59, // frame time
     &kunaiFrame7, // next frame
 };
 
-const AnimationFrameBatched kunaiFrame7 = 
+const BatchedAnimationFrame kunaiFrame7 = 
 {
-    kunaiFrame7SpriteBatched,
+    kunaiFrame7BatchedSprite,
     59, // frame time
     &kunaiFrame0, // next frame
 };
-const AnimationFrameBatched* const kunaiFrames[8] = 
+const BatchedAnimationFrame* const kunaiFrames[8] = 
 {
     &kunaiFrame0,
     &kunaiFrame1,
@@ -312,10 +312,10 @@ const AnimationFrameBatched* const kunaiFrames[8] =
 
 u8 kunaiVdpLocation;
 
-const AnimationBatched kunai = 
+const BatchedAnimation kunai = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrameBatched** const)kunaiFrames,
+    (const BatchedAnimationFrame** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
     8, // number of frames
     16, // width in pixels

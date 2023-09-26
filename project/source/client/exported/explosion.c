@@ -365,53 +365,53 @@ unsigned char const explosionTileData[1280] = // 40tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const AnimationSpriteBatched explosionFrame0SpriteBatched[] = 
+const BatchedAnimationSprite explosionFrame0BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 2, { -8, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched explosionFrame1SpriteBatched[] = 
+const BatchedAnimationSprite explosionFrame1BatchedSprite[] = 
 {
     { 4, { -16, -16, 8 } },
     { 4, { -16, 0, 16 } },
     {0},
 };
 
-const AnimationSpriteBatched explosionFrame2SpriteBatched[] = 
+const BatchedAnimationSprite explosionFrame2BatchedSprite[] = 
 {
     { 4, { -16, -16, 24 } },
     { 4, { -16, 0, 32 } },
     {0},
 };
 
-extern const AnimationFrameBatched explosionFrame0;
-extern const AnimationFrameBatched explosionFrame1;
-extern const AnimationFrameBatched explosionFrame2;
+extern const BatchedAnimationFrame explosionFrame0;
+extern const BatchedAnimationFrame explosionFrame1;
+extern const BatchedAnimationFrame explosionFrame2;
 
 
-const AnimationFrameBatched explosionFrame0 = 
+const BatchedAnimationFrame explosionFrame0 = 
 {
-    explosionFrame0SpriteBatched,
+    explosionFrame0BatchedSprite,
     7, // frame time
     &explosionFrame1, // next frame
 };
 
-const AnimationFrameBatched explosionFrame1 = 
+const BatchedAnimationFrame explosionFrame1 = 
 {
-    explosionFrame1SpriteBatched,
+    explosionFrame1BatchedSprite,
     7, // frame time
     &explosionFrame2, // next frame
 };
 
-const AnimationFrameBatched explosionFrame2 = 
+const BatchedAnimationFrame explosionFrame2 = 
 {
-    explosionFrame2SpriteBatched,
+    explosionFrame2BatchedSprite,
     8, // frame time
     &explosionFrame0, // next frame
 };
-const AnimationFrameBatched* const explosionFrames[3] = 
+const BatchedAnimationFrame* const explosionFrames[3] = 
 {
     &explosionFrame0,
     &explosionFrame1,
@@ -420,10 +420,10 @@ const AnimationFrameBatched* const explosionFrames[3] =
 
 u8 explosionVdpLocation;
 
-const AnimationBatched explosion = 
+const BatchedAnimation explosion = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrameBatched** const)explosionFrames,
+    (const BatchedAnimationFrame** const)explosionFrames,
     (unsigned char* const)explosionTileData, // start of the sprite data
     3, // number of frames
     32, // width in pixels

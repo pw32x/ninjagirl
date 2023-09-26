@@ -6,7 +6,7 @@
 
 u8 DrawUtils_spriteCounter;
 const AnimationSprite* DrawUtils_currentSprite;
-const AnimationSpriteBatched* DrawUtils_currentSpriteBatched;
+const BatchedAnimationSprite* DrawUtils_currentBatchedSprite;
 u8 DrawUtils_vdpTileIndex;
 s16 DrawUtils_screenX;
 s16 DrawUtils_screenY;
@@ -400,7 +400,7 @@ void (*drawSprite[]) (unsigned int y, unsigned int x_tile) __naked __preserves_r
 
 void DrawUtils_DrawBatched(void)
 {
-	const AnimationSpriteBatched* runner = DrawUtils_currentSpriteBatched;
+	const BatchedAnimationSprite* runner = DrawUtils_currentBatchedSprite;
 
 	while (runner->count)
 	{

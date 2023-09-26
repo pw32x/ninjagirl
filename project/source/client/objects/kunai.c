@@ -92,8 +92,8 @@ BOOL Kunai_Draw(GameObject* object)
 
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentAnimationBatchedFrame->spriteBatch,
-						  *object->animationBatched->vdpLocation);
+						  object->currentBatchedAnimationFrame->batchedSprite,
+						  *object->batchedAnimation->vdpLocation);
 
 
 	// should never be clipped

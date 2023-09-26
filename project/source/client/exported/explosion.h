@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const AnimationBatched explosion;
+extern const BatchedAnimation explosion;
 
 // frame numbers for specific animations.
 

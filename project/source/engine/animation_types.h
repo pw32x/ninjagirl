@@ -37,19 +37,19 @@ typedef struct
 // streamed version
 
 
-typedef struct animation_frame_streamed
+typedef struct streamed_animation_frame
 {
     const AnimationSprite* const sprites;
     u8 numSprites;
     u8 tileIndex;
     u8 frameTime;
-    struct animation_frame_streamed* nextFrame;
-} AnimationFrameStreamed;
+    struct streamed_animation_frame* nextFrame;
+} StreamedAnimationFrame;
 
 typedef struct
 {
     u8 resourceType;
-    const AnimationFrameStreamed** const frames;
+    const StreamedAnimationFrame** const frames;
     const u8* const tileData;
 
     u8 numFrames;
@@ -58,7 +58,7 @@ typedef struct
     u8 totalTileCount;
     u8 maxTilesInFrame;
     u8* vdpLocation;
-} AnimationStreamed;
+} StreamedAnimation;
 
 // batched. a sprite call contains multiple sprites. for use with the SMS_add***AdjoiningSprites functions.
 
@@ -66,20 +66,20 @@ typedef struct
 {
     u8 count;
     AnimationSprite sprite;
-} AnimationSpriteBatched;
+} BatchedAnimationSprite;
 
-typedef struct animation_frame_batched
+typedef struct batched_animation_frame
 {
-    const AnimationSpriteBatched* const spriteBatch;
+    const BatchedAnimationSprite* const batchedSprite;
     u8 frameTime;
-    struct animation_frame_batched* nextFrame;
-} AnimationFrameBatched;
+    struct batched_animation_frame* nextFrame;
+} BatchedAnimationFrame;
 
 
 typedef struct
 {
     u8 resourceType;
-    const AnimationFrameBatched** const frames;
+    const BatchedAnimationFrame** const frames;
     const u8* const tileData;
 
     u8 numFrames;
@@ -90,25 +90,25 @@ typedef struct
     u8 totalTileCount;
     u8* vdpLocation;
 
-} AnimationBatched;
+} BatchedAnimation;
 
 
 
 // special "streamed" animation type that only upates one frame at a time to VDP
 
-typedef struct animation_frame_batched_streamed
+typedef struct streamed_batched_animation_frame
 {
-    const AnimationSpriteBatched* const spriteBatch;
+    const BatchedAnimationSprite* const batchedSprites;
     u8 tileIndex;
     u8 frameTime;
-    struct animation_frame_batched_streamed* nextFrame;
-} AnimationFrameBatchedStreamed;
+    struct streamed_batched_animation_frame* nextFrame;
+} StreamedBatchedAnimationFrame;
 
 
 typedef struct
 {
     u8 resourceType;
-    const AnimationFrameBatchedStreamed** const frames;
+    const StreamedBatchedAnimationFrame** const frames;
     const u8* const tileData;
 
     u8 numFrames;
@@ -118,7 +118,7 @@ typedef struct
     u8 totalTileCount;
     u8 maxTilesInFrame;
     u8* vdpLocation;
-} AnimationBatchedStreamed;
+} StreamedBatchedAnimation;
 
 
 // plane

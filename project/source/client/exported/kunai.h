@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const AnimationBatched kunai;
+extern const BatchedAnimation kunai;
 
 // frame numbers for specific animations.
 

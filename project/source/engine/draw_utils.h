@@ -23,11 +23,11 @@ void DrawUtils_DrawClippedSides(void);
 
 // batched sprites drawing functions
 
-#define DRAWUTILS_SETUP_BATCH(x, y, spriteBatch, vdpTileIndex)\
+#define DRAWUTILS_SETUP_BATCH(x, y, batchedSprite, vdpTileIndex)\
 {\
 	DrawUtils_screenX = x;\
 	DrawUtils_screenY = y;\
-	DrawUtils_currentSpriteBatched = spriteBatch;\
+	DrawUtils_currentBatchedSprite = batchedSprite;\
 	DrawUtils_vdpTileIndex = vdpTileIndex;\
 } 
 
@@ -36,7 +36,7 @@ void DrawUtils_DrawBatched(void);
 
 extern char DrawUtils_spriteCounter;
 extern const AnimationSprite* DrawUtils_currentSprite;
-extern const AnimationSpriteBatched* DrawUtils_currentSpriteBatched;
+extern const BatchedAnimationSprite* DrawUtils_currentBatchedSprite;
 extern u8 DrawUtils_vdpTileIndex;
 extern s16 DrawUtils_screenX;
 extern s16 DrawUtils_screenY;

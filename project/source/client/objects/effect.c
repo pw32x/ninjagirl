@@ -40,7 +40,7 @@ void Effect_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
-	if (AnimationUtils_updateAnimationBatched_noLoop(object) == ANIMATION_FINISHED)
+	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
 }
 
@@ -48,8 +48,8 @@ BOOL Effect_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentAnimationBatchedFrame->spriteBatch,
-						  *object->animationBatched->vdpLocation);
+						  object->currentBatchedAnimationFrame->batchedSprite,
+						  *object->batchedAnimation->vdpLocation);
 
 
 	// should never be clipped

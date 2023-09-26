@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const AnimationBatched impact;
+extern const BatchedAnimation impact;
 
 // frame numbers for specific animations.
 

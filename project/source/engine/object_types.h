@@ -14,18 +14,18 @@ typedef struct game_object
 	union
 	{
 		const Animation* animation;
-		const AnimationBatched* animationBatched;
-		const AnimationStreamed* animationStreamed;
-		const AnimationBatchedStreamed* animationBatchedStreamed;
+		const BatchedAnimation* batchedAnimation;
+		const StreamedAnimation* streamedAnimation;
+		const StreamedBatchedAnimation* streamedBatchedAnimation;
 		const PlaneAnimation* planeAnimation;
 	};
 
 	union
 	{
 		const AnimationFrame* currentAnimationFrame;
-		const AnimationFrameBatched* currentAnimationBatchedFrame;
-		const AnimationFrameStreamed* currentAnimationStreamedFrame;
-		const AnimationFrameBatchedStreamed* currentAnimationBatchedStreamedFrame;
+		const BatchedAnimationFrame* currentBatchedAnimationFrame;
+		const StreamedAnimationFrame* currentStreamedAnimationFrame;
+		const StreamedBatchedAnimationFrame* currentStreamedBatchedAnimationFrame;
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;
 	};
 

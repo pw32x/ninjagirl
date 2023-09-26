@@ -77,36 +77,36 @@ unsigned char const impactTileData[256] = // 8tiles x 32 bytes
     0x01, 0x00, 0x00, 0x01, 
 };
 
-const AnimationSpriteBatched impactFrame0SpriteBatched[] = 
+const BatchedAnimationSprite impactFrame0BatchedSprite[] = 
 {
     { 2, { -8, -8, 0 } },
     {0},
 };
 
-const AnimationSpriteBatched impactFrame1SpriteBatched[] = 
+const BatchedAnimationSprite impactFrame1BatchedSprite[] = 
 {
     { 2, { -8, -8, 4 } },
     {0},
 };
 
-extern const AnimationFrameBatched impactFrame0;
-extern const AnimationFrameBatched impactFrame1;
+extern const BatchedAnimationFrame impactFrame0;
+extern const BatchedAnimationFrame impactFrame1;
 
 
-const AnimationFrameBatched impactFrame0 = 
+const BatchedAnimationFrame impactFrame0 = 
 {
-    impactFrame0SpriteBatched,
+    impactFrame0BatchedSprite,
     3, // frame time
     &impactFrame1, // next frame
 };
 
-const AnimationFrameBatched impactFrame1 = 
+const BatchedAnimationFrame impactFrame1 = 
 {
-    impactFrame1SpriteBatched,
+    impactFrame1BatchedSprite,
     4, // frame time
     &impactFrame0, // next frame
 };
-const AnimationFrameBatched* const impactFrames[2] = 
+const BatchedAnimationFrame* const impactFrames[2] = 
 {
     &impactFrame0,
     &impactFrame1,
@@ -114,10 +114,10 @@ const AnimationFrameBatched* const impactFrames[2] =
 
 u8 impactVdpLocation;
 
-const AnimationBatched impact = 
+const BatchedAnimation impact = 
 {
     BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrameBatched** const)impactFrames,
+    (const BatchedAnimationFrame** const)impactFrames,
     (unsigned char* const)impactTileData, // start of the sprite data
     2, // number of frames
     16, // width in pixels

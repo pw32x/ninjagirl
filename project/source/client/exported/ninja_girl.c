@@ -851,168 +851,168 @@ unsigned char const ninja_girlTileData[3008] = // 94tiles x 32 bytes
     0x00, 0xc0, 0x00, 0x00, 
 };
 
-const AnimationSpriteBatched ninja_girlFrame0SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame0BatchedSprite[] = 
 {
     { 2, { -7, -15, 0 } },
     { 3, { -7, 1, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame1SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame1BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 3, { -10, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame2SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame2BatchedSprite[] = 
 {
     { 2, { -9, -15, 0 } },
     { 2, { -8, 1, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame3SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame3BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 3, { -9, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame4SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame4BatchedSprite[] = 
 {
     { 2, { -7, -15, 0 } },
     { 3, { -7, 1, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame5SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame5BatchedSprite[] = 
 {
     { 2, { -9, -15, 0 } },
     { 2, { -8, 1, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame6SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame6BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 3, { -10, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame7SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame7BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 3, { -8, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame8SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame8BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 3, { -7, 0, 4 } },
     {0},
 };
 
-const AnimationSpriteBatched ninja_girlFrame9SpriteBatched[] = 
+const BatchedAnimationSprite ninja_girlFrame9BatchedSprite[] = 
 {
     { 2, { -8, -16, 0 } },
     { 2, { -7, 0, 4 } },
     {0},
 };
 
-extern const AnimationFrameBatchedStreamed ninja_girlFrame0;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame1;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame2;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame3;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame4;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame5;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame6;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame7;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame8;
-extern const AnimationFrameBatchedStreamed ninja_girlFrame9;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame0;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame1;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame2;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame3;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame4;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame5;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame6;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame7;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame8;
+extern const StreamedBatchedAnimationFrame ninja_girlFrame9;
 
 
-const AnimationFrameBatchedStreamed ninja_girlFrame0 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame0 = 
 {
-    ninja_girlFrame0SpriteBatched,
+    ninja_girlFrame0BatchedSprite,
     0, // tile index
     4, // frame time
     &ninja_girlFrame1, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame1 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame1 = 
 {
-    ninja_girlFrame1SpriteBatched,
+    ninja_girlFrame1BatchedSprite,
     10, // tile index
     4, // frame time
     &ninja_girlFrame0, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame2 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame2 = 
 {
-    ninja_girlFrame2SpriteBatched,
+    ninja_girlFrame2BatchedSprite,
     20, // tile index
     4, // frame time
     &ninja_girlFrame3, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame3 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame3 = 
 {
-    ninja_girlFrame3SpriteBatched,
+    ninja_girlFrame3BatchedSprite,
     28, // tile index
     4, // frame time
     &ninja_girlFrame2, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame4 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame4 = 
 {
-    ninja_girlFrame4SpriteBatched,
+    ninja_girlFrame4BatchedSprite,
     38, // tile index
     4, // frame time
     &ninja_girlFrame4, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame5 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame5 = 
 {
-    ninja_girlFrame5SpriteBatched,
+    ninja_girlFrame5BatchedSprite,
     48, // tile index
     4, // frame time
     &ninja_girlFrame5, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame6 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame6 = 
 {
-    ninja_girlFrame6SpriteBatched,
+    ninja_girlFrame6BatchedSprite,
     56, // tile index
     4, // frame time
     &ninja_girlFrame6, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame7 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame7 = 
 {
-    ninja_girlFrame7SpriteBatched,
+    ninja_girlFrame7BatchedSprite,
     66, // tile index
     4, // frame time
     &ninja_girlFrame7, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame8 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame8 = 
 {
-    ninja_girlFrame8SpriteBatched,
+    ninja_girlFrame8BatchedSprite,
     76, // tile index
     4, // frame time
     &ninja_girlFrame8, // next frame
 };
 
-const AnimationFrameBatchedStreamed ninja_girlFrame9 = 
+const StreamedBatchedAnimationFrame ninja_girlFrame9 = 
 {
-    ninja_girlFrame9SpriteBatched,
+    ninja_girlFrame9BatchedSprite,
     86, // tile index
     4, // frame time
     &ninja_girlFrame9, // next frame
 };
-const AnimationFrameBatchedStreamed* const ninja_girlFrames[10] = 
+const StreamedBatchedAnimationFrame* const ninja_girlFrames[10] = 
 {
     &ninja_girlFrame0,
     &ninja_girlFrame1,
@@ -1028,10 +1028,10 @@ const AnimationFrameBatchedStreamed* const ninja_girlFrames[10] =
 
 u8 ninja_girlVdpLocation;
 
-const AnimationBatchedStreamed ninja_girl = 
+const StreamedBatchedAnimation ninja_girl = 
 {
-    BATCHED_STREAMED_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrameBatchedStreamed** const)ninja_girlFrames,
+    STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, 
+    (const StreamedBatchedAnimationFrame** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
     10, // number of frames
     24, // width in pixels

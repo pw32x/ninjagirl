@@ -96,8 +96,8 @@ BOOL Enemy_Draw(GameObject* object)
 
 	DRAWUTILS_SETUP_BATCH(screenLeft,
 						  object->y,
-						  object->currentAnimationBatchedFrame->spriteBatch,
-						  *object->animationBatched->vdpLocation);
+						  object->currentBatchedAnimationFrame->batchedSprite,
+						  *object->batchedAnimation->vdpLocation);
 
 	if (screenRight < SCREEN_LEFT || 
 		screenLeft > SCREEN_RIGHT)

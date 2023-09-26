@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const AnimationBatched evil_eye;
+extern const BatchedAnimation evil_eye;
 
 // frame numbers for specific animations.
 

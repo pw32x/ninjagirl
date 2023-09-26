@@ -62,22 +62,22 @@ void setPlayerState(u8 newState)
 	{
 	case PLAYER_STATE_STAND:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
 												ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
 												ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_FALL:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
 												ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, 
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
 												ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
 		break;
 	}
@@ -141,7 +141,7 @@ void Player_FireWeapon(GameObject* player)
 	kunai->speedy = 0;
 
 	if (ObjectManager_player.flipped)
-		AnimationUtils_setAnimationFrameBatched(kunai, 1);
+		AnimationUtils_setBatchedAnimationFrame(kunai, 1);
 }
 
 void Player_UpdateX(void)
@@ -386,20 +386,20 @@ void Player_Update(GameObject* player)
 	}
 	else if (isPlayerOnGround)
 	{
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, PLAYER_ANIMATION_FRAME_STAND);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, PLAYER_ANIMATION_FRAME_STAND);
 	}
 	else
 	{
-		AnimationUtils_setAnimationFrameBatched(&ObjectManager_player, PLAYER_ANIMATION_FRAME_JUMP);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, PLAYER_ANIMATION_FRAME_JUMP);
 	}
 	*/
 
 	//char output[255];
 	//
 	//u8 value =  ninja_girl.frames[0]->frameTime;
-	//AnimationFrameBatched* currentAnimationBatchedFrame = ninja_girl.frames[0];
+	//AnimationFrameBatched* currentBatchedAnimationFrame = ninja_girl.frames[0];
 	//
-	//sprintf(output, "%u %u %u %u    ", isPlayerOnGround, value, currentAnimationBatchedFrame->frameTime, player->currentAnimationBatchedFrame->frameTime);
+	//sprintf(output, "%u %u %u %u    ", isPlayerOnGround, value, currentBatchedAnimationFrame->frameTime, player->currentBatchedAnimationFrame->frameTime);
 	//SMS_printatXY(1, 0, output); 
 	//
 	//sprintf(output, "%d", ScrollManager_mapWidth);
@@ -411,8 +411,8 @@ BOOL Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentAnimationBatchedFrame->spriteBatch,
-						  *object->animationBatched->vdpLocation);
+						  object->currentBatchedAnimationFrame->batchedSprite,
+						  *object->batchedAnimation->vdpLocation);
 
 	// why would the player sprite ever be clipped?
 	DrawUtils_DrawBatched();
