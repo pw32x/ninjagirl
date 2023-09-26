@@ -429,6 +429,5 @@ const AnimationBatched explosion =
     32, // width in pixels
     32, // height in pixels
     40, // the total amount of tiles in animation
-    16, // the max amount of sprite tiles in a frame
     &explosionVdpLocation,
 };

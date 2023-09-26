@@ -11,6 +11,8 @@ ResourceManagerLoaderFunction ResourceManager_loadFunctions[NUM_RESOURCE_TYPES] 
 {
 	(ResourceManagerLoaderFunction)Load_AnimationResource,
 	(ResourceManagerLoaderFunction)Load_BatchedAnimationResource,
+	(ResourceManagerLoaderFunction)Load_AnimationStreamedResource,
+	(ResourceManagerLoaderFunction)Load_BatchedStreamedAnimationResource,
 	(ResourceManagerLoaderFunction)Load_PlaneAnimationResource,
 	(ResourceManagerLoaderFunction)Load_MapResource,
 };
@@ -21,6 +23,8 @@ ResourceManagerSetupFunction ResourceManager_setupFunctions[NUM_RESOURCE_TYPES] 
 {
 	(ResourceManagerSetupFunction)Setup_AnimationResource,
 	(ResourceManagerSetupFunction)Setup_BatchedAnimationResource,
+	(ResourceManagerSetupFunction)Setup_StreamedAnimationResource,
+	(ResourceManagerSetupFunction)Setup_StreamedBatchedAnimationResource,
 	(ResourceManagerSetupFunction)Setup_PlaneAnimationResource,
 	(ResourceManagerSetupFunction)NULL,
 };

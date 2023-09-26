@@ -58,6 +58,48 @@ u8 AnimationUtils_updateAnimationBatched_noLoop(GameObject* gameObject)
 	return ANIMATION_NO_CHANGE;
 }
 
+// streamed
+
+
+
+u8 AnimationUtils_updateAnimationStreamed(GameObject* gameObject)
+{
+	if (!gameObject->animationTime--)
+	{
+		gameObject->currentAnimationStreamedFrame = gameObject->currentAnimationStreamedFrame->nextFrame;
+
+		if (gameObject->currentAnimationStreamedFrame == NULL)
+		{
+			return ANIMATION_FINISHED;
+		}
+
+		gameObject->animationTime = gameObject->currentAnimationStreamedFrame->frameTime;
+		return ANIMATION_CHANGED_FRAME;
+	}
+
+	return ANIMATION_NO_CHANGE;
+}
+
+u8 AnimationUtils_updateAnimationBatchedStreamed(struct game_object* gameObject)
+{
+	if (!gameObject->animationTime--)
+	{
+		gameObject->currentAnimationBatchedStreamedFrame = gameObject->currentAnimationBatchedStreamedFrame->nextFrame;
+
+		if (gameObject->currentAnimationBatchedStreamedFrame == NULL)
+		{
+			return ANIMATION_FINISHED;
+		}
+
+		gameObject->animationTime = gameObject->currentAnimationBatchedStreamedFrame->frameTime;
+		return ANIMATION_CHANGED_FRAME;
+	}
+
+	return ANIMATION_NO_CHANGE;
+}
+
+// plane
+
 u8 AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 {
 	if (!gameObject->animationTime--)
@@ -91,6 +133,20 @@ u16 Load_BatchedAnimationResource(const AnimationBatched* animationBatched)
 										  animationBatched->vdpLocation);
 }
 
+u16 Load_AnimationStreamedResource(const AnimationStreamed* animationStreamed)
+{
+	return VDPTileManager_LoadSpriteTiles(animationStreamed->tileData, 
+										  animationStreamed->totalTileCount,
+										  animationStreamed->vdpLocation);
+}
+
+u16 Load_BatchedStreamedAnimationResource(const AnimationBatchedStreamed* animationBatchedStreamed)
+{
+	return VDPTileManager_LoadSpriteTiles(animationBatchedStreamed->tileData, 
+										  animationBatchedStreamed->totalTileCount,
+										  animationBatchedStreamed->vdpLocation);
+}
+
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
 {
 	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, 
@@ -120,6 +176,32 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Animati
 	gameObject->pixelWidth = animationBatched->pixelWidth;
 	gameObject->pixelHeight = animationBatched->pixelHeight;
 	gameObject->UpdateAnimation = AnimationUtils_updateAnimationBatched;
+
+	return 0;
+}
+
+u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const AnimationStreamed* animationStreamed)
+{
+	gameObject->animationStreamed = animationStreamed;
+	gameObject->currentAnimationFrameIndex = 0;
+	gameObject->currentAnimationStreamedFrame = animationStreamed->frames[0];
+	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
+	gameObject->pixelWidth = animationStreamed->pixelWidth;
+	gameObject->pixelHeight = animationStreamed->pixelHeight;
+	gameObject->UpdateAnimation = AnimationUtils_updateAnimationStreamed;
+
+	return 0;
+}
+
+u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const AnimationBatchedStreamed* animationBatchedStreamed)
+{
+	gameObject->animationBatchedStreamed = animationBatchedStreamed;
+	gameObject->currentAnimationFrameIndex = 0;
+	gameObject->currentAnimationBatchedStreamedFrame = animationBatchedStreamed->frames[0];
+	gameObject->animationTime = gameObject->currentAnimationBatchedStreamedFrame->frameTime;
+	gameObject->pixelWidth = animationBatchedStreamed->pixelWidth;
+	gameObject->pixelHeight = animationBatchedStreamed->pixelHeight;
+	gameObject->UpdateAnimation = AnimationUtils_updateAnimationBatchedStreamed;
 
 	return 0;
 }

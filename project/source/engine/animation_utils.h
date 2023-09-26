@@ -10,19 +10,38 @@ struct game_object;
 #define ANIMATION_CHANGED_FRAME		1
 #define ANIMATION_FINISHED			2
 
+
+// update
 u8 AnimationUtils_updateAnimation(struct game_object* gameObject);
 u8 AnimationUtils_updateAnimationBatched(struct game_object* gameObject);
 u8 AnimationUtils_updateAnimationBatched_noLoop(struct game_object* gameObject);
+
+u8 AnimationUtils_updateAnimationStreamed(struct game_object* gameObject);
+u8 AnimationUtils_updateAnimationBatchedStreamed(struct game_object* gameObject);
+
 u8 AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 
-void AnimationUtils_setAnimationFrameBatched(struct game_object* gameObject, u8 animationFrameIndex);
-
+// load 
 u16 Load_AnimationResource(const Animation* animation);
 u16 Load_BatchedAnimationResource(const AnimationBatched* animationBatched);
+
+u16 Load_AnimationStreamedResource(const AnimationStreamed* animationStreamed);
+u16 Load_BatchedStreamedAnimationResource(const AnimationBatchedStreamed* animationBatchedStreamed);
+
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation);
 
+// setup
 u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation);
 u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const AnimationBatched* animationBatched);
+
+u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const AnimationStreamed* animationStreamed);
+u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const AnimationBatchedStreamed* animationBatchedStreamed);
+
 u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation);
+
+
+// misc
+
+void AnimationUtils_setAnimationFrameBatched(struct game_object* gameObject, u8 animationFrameIndex);
 
 #endif

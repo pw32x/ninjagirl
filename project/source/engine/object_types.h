@@ -15,6 +15,8 @@ typedef struct game_object
 	{
 		const Animation* animation;
 		const AnimationBatched* animationBatched;
+		const AnimationStreamed* animationStreamed;
+		const AnimationBatchedStreamed* animationBatchedStreamed;
 		const PlaneAnimation* planeAnimation;
 	};
 
@@ -22,6 +24,8 @@ typedef struct game_object
 	{
 		const AnimationFrame* currentAnimationFrame;
 		const AnimationFrameBatched* currentAnimationBatchedFrame;
+		const AnimationFrameStreamed* currentAnimationStreamedFrame;
+		const AnimationFrameBatchedStreamed* currentAnimationBatchedStreamedFrame;
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;
 	};
 

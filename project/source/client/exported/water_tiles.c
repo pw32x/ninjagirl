@@ -236,6 +236,5 @@ const Animation water_tiles =
     8, // width in pixels
     32, // height in pixels
     16, // the total amount of tiles in animation
-    8, // the max amount of sprite tiles in a frame
     &water_tilesVdpLocation,
 };

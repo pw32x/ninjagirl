@@ -31,11 +31,36 @@ typedef struct
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
-    u8 maxTilesInFrame;
     u8* vdpLocation;
 } Animation;
 
+// streamed version
 
+
+typedef struct animation_frame_streamed
+{
+    const AnimationSprite* const sprites;
+    u8 numSprites;
+    u8 tileIndex;
+    u8 frameTime;
+    struct animation_frame_streamed* nextFrame;
+} AnimationFrameStreamed;
+
+typedef struct
+{
+    u8 resourceType;
+    const AnimationFrameStreamed** const frames;
+    const u8* const tileData;
+
+    u8 numFrames;
+    u8 pixelWidth;
+    u8 pixelHeight;
+    u8 totalTileCount;
+    u8 maxTilesInFrame;
+    u8* vdpLocation;
+} AnimationStreamed;
+
+// batched. a sprite call contains multiple sprites. for use with the SMS_add***AdjoiningSprites functions.
 
 typedef struct 
 {
@@ -63,12 +88,40 @@ typedef struct
     //u8 maxTilesPerFrame;
 
     u8 totalTileCount;
-
-    u8 maxTilesInFrame;
-
     u8* vdpLocation;
 
 } AnimationBatched;
+
+
+
+// special "streamed" animation type that only upates one frame at a time to VDP
+
+typedef struct animation_frame_batched_streamed
+{
+    const AnimationSpriteBatched* const spriteBatch;
+    u8 tileIndex;
+    u8 frameTime;
+    struct animation_frame_batched_streamed* nextFrame;
+} AnimationFrameBatchedStreamed;
+
+
+typedef struct
+{
+    u8 resourceType;
+    const AnimationFrameBatchedStreamed** const frames;
+    const u8* const tileData;
+
+    u8 numFrames;
+    u8 pixelWidth;
+    u8 pixelHeight;
+
+    u8 totalTileCount;
+    u8 maxTilesInFrame;
+    u8* vdpLocation;
+} AnimationBatchedStreamed;
+
+
+// plane
 
 typedef struct plane_animation_frame
 {
