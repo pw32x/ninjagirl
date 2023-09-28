@@ -10,8 +10,8 @@ typedef void* (*ResourceManagerLoaderFunction)(const void* resource);
 ResourceManagerLoaderFunction ResourceManager_loadFunctions[NUM_RESOURCE_TYPES] =
 {
 	(ResourceManagerLoaderFunction)Load_AnimationResource,
-	(ResourceManagerLoaderFunction)Load_BatchedAnimationResource,
 	(ResourceManagerLoaderFunction)Load_StreamedAnimationResource,
+	(ResourceManagerLoaderFunction)Load_BatchedAnimationResource,
 	(ResourceManagerLoaderFunction)Load_StreamedBatchedAnimationResource,
 	(ResourceManagerLoaderFunction)Load_PlaneAnimationResource,
 	(ResourceManagerLoaderFunction)Load_MapResource,
@@ -22,8 +22,8 @@ typedef void* (*ResourceManagerSetupFunction)(struct game_object* gameObject, co
 ResourceManagerSetupFunction ResourceManager_setupFunctions[NUM_RESOURCE_TYPES] =
 {
 	(ResourceManagerSetupFunction)Setup_AnimationResource,
-	(ResourceManagerSetupFunction)Setup_BatchedAnimationResource,
 	(ResourceManagerSetupFunction)Setup_StreamedAnimationResource,
+	(ResourceManagerSetupFunction)Setup_BatchedAnimationResource,
 	(ResourceManagerSetupFunction)Setup_StreamedBatchedAnimationResource,
 	(ResourceManagerSetupFunction)Setup_PlaneAnimationResource,
 	(ResourceManagerSetupFunction)NULL,

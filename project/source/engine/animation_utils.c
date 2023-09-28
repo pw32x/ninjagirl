@@ -135,16 +135,14 @@ u16 Load_BatchedAnimationResource(const BatchedAnimation* batchedAnimation)
 
 u16 Load_StreamedAnimationResource(const StreamedAnimation* streamedAnimation)
 {
-	return VDPTileManager_LoadSpriteTiles(streamedAnimation->tileData, 
-										  streamedAnimation->totalTileCount,
-										  streamedAnimation->vdpLocation);
+	return VDPTileManager_ReserveSpriteTilesArea(streamedAnimation->maxTilesInFrame,
+												 streamedAnimation->vdpLocation);
 }
 
 u16 Load_StreamedBatchedAnimationResource(const StreamedBatchedAnimation* streamedBatchedAnimation)
 {
-	return VDPTileManager_LoadSpriteTiles(streamedBatchedAnimation->tileData, 
-										  streamedBatchedAnimation->totalTileCount,
-										  streamedBatchedAnimation->vdpLocation);
+	return VDPTileManager_ReserveSpriteTilesArea(streamedBatchedAnimation->maxTilesInFrame,
+												 streamedBatchedAnimation->vdpLocation);
 }
 
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
