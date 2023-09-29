@@ -50,11 +50,38 @@ u8 isPlayerMoving;
 #define PLAYER_STATE_FALL	2
 #define PLAYER_STATE_JUMP	3
 
+u8 stateChanged;
+
+void setPlayerFlip(u8 facingLeft)
+{
+	switch (playerState)
+	{
+	case PLAYER_STATE_STAND:
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_RUN:
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_FALL:
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_JUMP:
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		break;
+	}
+}
+
 void setPlayerState(u8 newState)
 {
+	stateChanged = FALSE;
+
 	if (playerState == newState)
 	{
-		//SMS_setBackdropColor(15);
+		SMS_setBackdropColor(15);
 		return;
 	}
 
@@ -62,29 +89,28 @@ void setPlayerState(u8 newState)
 	{
 	case PLAYER_STATE_STAND:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_FALL:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		SMS_setBackdropColor(newState);
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
 		break;
 	}
 
 	playerState = newState;
-
-
+	stateChanged = TRUE;
 }
 
 #define PLAYER_ANIMATION_FRAME_STAND 0
@@ -122,6 +148,8 @@ GameObject* Player_Create(const CreateInfo* createInfo)
 	//Player_FireWeapon(&ObjectManager_player);
 
 	//SMS_setBGPaletteColor(1, 0xffff);
+
+	ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 
 	return &ObjectManager_player;
 }
@@ -298,16 +326,21 @@ void Player_UpdateY(void)
 	//SMS_printatXY(1, 1, output); 
 }
 
+#define NOT_MOVING		0
+#define MOVING_LEFT		1
+#define MOVING_RIGHT	2
+
 void Player_Update(GameObject* player)
 {
 	/*
 	gameObject->x++;
 	gameObject->x %= 255;
 */
+	u8 oldIsPlayerMoving = isPlayerMoving;
 	
-	isPlayerMoving = FALSE;
+	isPlayerMoving = NOT_MOVING;
 
-	u32 buttonState = SMS_getKeysHeld();
+	u32 buttonState = SMS_getKeysStatus();
 
 	u32 buttonsPressed = SMS_getKeysPressed();
 
@@ -315,8 +348,9 @@ void Player_Update(GameObject* player)
 	{
 		ObjectManager_player.flipped = TRUE;
 
+
 		playerSpeedX = -PLAYER_SPEED_X;
-		isPlayerMoving = TRUE;
+		isPlayerMoving = MOVING_LEFT;
 
 		// if state is not run
 		// if on ground
@@ -331,7 +365,7 @@ void Player_Update(GameObject* player)
 		ObjectManager_player.flipped = FALSE;
 
 		playerSpeedX = PLAYER_SPEED_X;
-		isPlayerMoving = TRUE;
+		isPlayerMoving = MOVING_RIGHT;
 
 		//if (isPlayerOnGround)
 		//	setPlayerState(PLAYER_STATE_RUN);
@@ -350,7 +384,8 @@ void Player_Update(GameObject* player)
 	//if (buttonState & PORT_A_KEY_DOWN)
 	//	playerY += PLAYER_SPEED_Y;
 	
-
+	if (oldIsPlayerMoving != isPlayerMoving)
+		setPlayerFlip(ObjectManager_player.flipped);
 
 
 	if (buttonsPressed & PORT_A_KEY_1)
@@ -377,7 +412,21 @@ void Player_Update(GameObject* player)
 	//sprintf(output, "%d", ScrollManager_mapWidth);
 	//SMS_printatXY(1, 1, output); 
 
-	ObjectManager_player.UpdateAnimation(&ObjectManager_player);
+	//char output[255];
+	//sprintf(output, 
+	//		" %d, %d, %d   ", 
+	//		ObjectManager_player.currentStreamedBatchedAnimationFrame->frameTime,
+	//		ObjectManager_player.currentStreamedBatchedAnimationFrame->tileIndex,
+	//		ObjectManager_player.animationTime);
+	//SMS_printatXY(1, 0, output); 
+
+	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) || 
+		stateChanged ||
+		oldIsPlayerMoving != isPlayerMoving)
+
+	{
+		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
+	}
 
 	/*
 	if (isPlayerOnGround && isPlayerMoving)
@@ -411,8 +460,8 @@ BOOL Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentBatchedAnimationFrame->batchedSprite,
-						  *object->batchedAnimation->vdpLocation);
+						  object->currentStreamedBatchedAnimationFrame->batchedSprites,
+						  *object->streamedBatchedAnimation->vdpLocation);
 
 	// why would the player sprite ever be clipped?
 	DrawUtils_DrawBatched();

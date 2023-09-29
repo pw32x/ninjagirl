@@ -119,6 +119,13 @@ void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 
 	gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
 }
 
+void AnimationUtils_setStreamedBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex)
+{
+	gameObject->currentAnimationFrameIndex = animationFrameIndex;
+	gameObject->currentStreamedBatchedAnimationFrame = gameObject->streamedBatchedAnimation->frames[animationFrameIndex]; 
+	gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
+}
+
 u16 Load_AnimationResource(const Animation* animation)
 {
 	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
@@ -215,4 +222,49 @@ u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnim
 	gameObject->UpdateAnimation = AnimationUtils_updatePlaneAnimation;
 
 	return 0;
+}
+
+// streaming
+
+void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
+{
+	const StreamedBatchedAnimationFrame* streamedBatchedAnimationFrame = gameObject->currentStreamedBatchedAnimationFrame;
+	const u8* tileData = gameObject->streamedBatchedAnimation->tileData;
+	u16 vdpIndex = *gameObject->streamedBatchedAnimation->vdpLocation + 256;
+
+	const BatchedAnimationSprite* runner = streamedBatchedAnimationFrame->batchedSprites;
+	u16 tileIndex = streamedBatchedAnimationFrame->tileIndex;
+
+	// assumes tiles are stored linearly, with no deduplication to make copying
+	// to vdp as simple as possible.
+
+	while (runner->count)
+	{
+		const AnimationSprite* sprite = &runner->sprite;
+
+		u8 tileCount = runner->count << 1;
+
+		switch (tileCount)
+		{
+		case 0:
+			return;
+		case 2:
+			UNSAFE_SMS_load2Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			break;
+		case 4:
+			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			break;
+		case 6:
+			UNSAFE_SMS_load2Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex + 2) << 5), vdpIndex + 2);
+			break;
+		case 8:
+			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex + 4) << 5), vdpIndex + 4);
+		}
+
+		vdpIndex += tileCount;
+
+		runner++;
+	}
 }

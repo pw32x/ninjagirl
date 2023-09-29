@@ -29,6 +29,9 @@
     <Filter Include="PSGLib">
       <UniqueIdentifier>{37a64740-56bc-4f89-8097-10d88dee35e0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SMSLib\crt0">
+      <UniqueIdentifier>{d2d27c6c-709c-47c4-a8a7-5d6b57f0f1be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -388,6 +391,9 @@
     </None>
     <None Include="..\build\config.bm">
       <Filter>build</Filter>
+    </None>
+    <None Include="..\..\..\..\devkitSMS-master\crt0\src\crt0_sms.s">
+      <Filter>SMSLib\crt0</Filter>
     </None>
   </ItemGroup>
 </Project>

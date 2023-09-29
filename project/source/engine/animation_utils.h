@@ -39,9 +39,13 @@ u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const
 
 u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation);
 
+// streaming
+
+void AnimationUtils_UpdateStreamedBatchedAnimationFrame(struct game_object* gameObject);
 
 // misc
 
 void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex);
+void AnimationUtils_setStreamedBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex);
 
 #endif

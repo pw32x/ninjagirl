@@ -16,7 +16,7 @@
 #include "client/objects/kunai.h"
 #include "client/objects/enemy.h"
 #include "client/objects/right_scroller.h"
-#include "client/objects/bird.h"
+//#include "client/objects/bird.h"
 #include "client/objects/tile_animator.h"
 #include "client/objects/tile_swapper.h"
 
@@ -24,8 +24,8 @@
 #include "client/exported/global_palette.h"
 #include "client/exported/ninja_girl.h"
 #include "client/exported/kunai.h"
-#include "client/exported/evil_eye.h"
-#include "client/exported/birdidle.h"
+//#include "client/exported/evil_eye.h"
+//#include "client/exported/birdidle.h"
 #include "client/exported/background3.h"
 #include "client/exported/water_tiles.h"
 #include "client/exported/explosion.h"
@@ -33,15 +33,15 @@
 #include "client/generated/bank2.h" // music
 
 const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girl };
-const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
-const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
-const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
-const CreateInfo level002_createInfo007 = { 64, 8, (const void*)&birdidle };
-const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&birdidle };
-const CreateInfo level002_createInfo009 = { 234, 112, (const void*)&evil_eye };
-const CreateInfo level002_createInfo010 = { 234, 144, (const void*)&evil_eye };
-const CreateInfo level002_createInfo011 = { 234, 176, (const void*)&evil_eye };
-const CreateInfo level002_createInfo012 = { 254, 102, (const void*)&birdidle };
+//const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo007 = { 64, 8, (const void*)&birdidle };
+//const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&birdidle };
+//const CreateInfo level002_createInfo009 = { 234, 112, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo010 = { 234, 144, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo011 = { 234, 176, (const void*)&evil_eye };
+//const CreateInfo level002_createInfo012 = { 254, 102, (const void*)&birdidle };
 
 Command level002_commands[] = 
 {

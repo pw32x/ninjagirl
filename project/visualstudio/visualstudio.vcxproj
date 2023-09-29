@@ -236,6 +236,7 @@
     <ClInclude Include="..\source\engine\vdptile_manager.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\..\..\devkitSMS-master\crt0\src\crt0_sms.s" />
     <None Include="..\build\build.bat" />
     <None Include="..\build\clean.bat" />
     <None Include="..\build\config.bm" />

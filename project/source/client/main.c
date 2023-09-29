@@ -48,9 +48,9 @@ void main(void)
 		// VBLANK
 		SMS_waitForVBlank ();
 		ScrollManager_UpdateVDP();
-		SMS_copySpritestoSAT();
 		//SMS_setBackdropColor(COLOR_WHITE);
 		ObjectManager_VDPDraw();
+		SMS_copySpritestoSAT();
 		//SMS_setBackdropColor(0);
 
 	}
