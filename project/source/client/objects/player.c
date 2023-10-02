@@ -52,25 +52,27 @@ u8 isPlayerMoving;
 
 u8 stateChanged;
 
-void setPlayerFlip(u8 facingLeft)
+void updatePlayerAnimation()
 {
+	u8 flipped = ObjectManager_player.flipped;
+
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+														flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+														flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_FALL:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+														flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+														flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
 		break;
 	}
 }
@@ -81,35 +83,12 @@ void setPlayerState(u8 newState)
 
 	if (playerState == newState)
 	{
-		SMS_setBackdropColor(15);
 		return;
 	}
 
-	switch (newState)
-	{
-	case PLAYER_STATE_STAND:
-		SMS_setBackdropColor(newState);
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
-		break;
-	case PLAYER_STATE_RUN:
-		SMS_setBackdropColor(newState);
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
-		break;
-	case PLAYER_STATE_FALL:
-		SMS_setBackdropColor(newState);
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
-		break;
-	case PLAYER_STATE_JUMP:
-		SMS_setBackdropColor(newState);
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														ObjectManager_player.flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
-		break;
-	}
-
 	playerState = newState;
+	updatePlayerAnimation();
+
 	stateChanged = TRUE;
 }
 
@@ -177,6 +156,7 @@ void Player_UpdateX(void)
 	s16 offset = 0;
 
 	POSITION projectedX = playerX + playerSpeedX;
+
 	POSITION xSensor = projectedX;
 
 	if (playerSpeedX > 0)
@@ -385,7 +365,7 @@ void Player_Update(GameObject* player)
 	//	playerY += PLAYER_SPEED_Y;
 	
 	if (oldIsPlayerMoving != isPlayerMoving)
-		setPlayerFlip(ObjectManager_player.flipped);
+		updatePlayerAnimation();
 
 
 	if (buttonsPressed & PORT_A_KEY_1)
@@ -423,7 +403,6 @@ void Player_Update(GameObject* player)
 	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) || 
 		stateChanged ||
 		oldIsPlayerMoving != isPlayerMoving)
-
 	{
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}

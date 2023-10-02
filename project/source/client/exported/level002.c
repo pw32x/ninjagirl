@@ -18,7 +18,6 @@
 #include "client/objects/right_scroller.h"
 //#include "client/objects/bird.h"
 #include "client/objects/tile_animator.h"
-#include "client/objects/tile_swapper.h"
 
 // resources
 #include "client/exported/global_palette.h"
@@ -58,7 +57,6 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &impact },
 	{ 0, (CommandFunction)RightScroller_Create, &background3_map },
 	{ 0, (CommandFunction)TileAnimator_Create, &water_tiles },
-	{ 0, (CommandFunction)TileSwapper_Create, &ninja_girl },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },

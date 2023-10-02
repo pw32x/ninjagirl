@@ -43,15 +43,19 @@ void main(void)
 	// game loop
 	for(;;) 
 	{ 
+		SMS_setBackdropColor(COLOR_DARK_GREEN);
 		ObjectManager_Update();
-//		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
+		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
-		ScrollManager_UpdateVDP();
-		//SMS_setBackdropColor(COLOR_WHITE);
-		ObjectManager_VDPDraw();
+		SMS_setBackdropColor(COLOR_DARK_GREY);
 		SMS_copySpritestoSAT();
-		//SMS_setBackdropColor(0);
+
+		ObjectManager_VDPDraw();
+
+		ScrollManager_UpdateVDP();
+
+		SMS_setBackdropColor(COLOR_BLACK);
 
 	}
 }

@@ -98,7 +98,7 @@ void RightScroll_Update(GameObject* target)
 
 void RightScroll_UpdateVDP(void)
 {
-	//SMS_setBackdropColor(COLOR_DARK_BLUE);
+	SMS_setBackdropColor(COLOR_DARK_BLUE);
 
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 	
@@ -107,6 +107,4 @@ void RightScroll_UpdateVDP(void)
 		ScrollManager_updateMapVDP = FALSE;
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 24);
 	}
-
-	//SMS_setBackdropColor(COLOR_DARK_GREY);
 }

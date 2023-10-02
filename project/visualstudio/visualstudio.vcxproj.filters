@@ -229,9 +229,6 @@
     <ClCompile Include="..\source\client\generated\background3_tileset.c">
       <Filter>Source Files\client\generated</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\tile_swapper.c">
-      <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -362,9 +359,6 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\math_utils.h">
       <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\objects\tile_swapper.h">
-      <Filter>Source Files\client\objects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

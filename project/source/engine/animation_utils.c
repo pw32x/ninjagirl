@@ -228,6 +228,8 @@ u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnim
 
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {
+	SMS_setBackdropColor(COLOR_ORANGE);
+
 	const StreamedBatchedAnimationFrame* streamedBatchedAnimationFrame = gameObject->currentStreamedBatchedAnimationFrame;
 	const u8* tileData = gameObject->streamedBatchedAnimation->tileData;
 	u16 vdpIndex = *gameObject->streamedBatchedAnimation->vdpLocation + 256;
@@ -244,23 +246,25 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 
 		u8 tileCount = runner->count << 1;
 
+		u16 tileOffset = tileData + ((tileIndex + runner->sprite.tileIndex) << 5);
+
 		switch (tileCount)
 		{
 		case 0:
 			return;
 		case 2:
-			UNSAFE_SMS_load2Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			UNSAFE_SMS_load2Tiles(tileOffset, vdpIndex);
 			break;
 		case 4:
-			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
+			UNSAFE_SMS_load4Tiles(tileOffset, vdpIndex);
 			break;
 		case 6:
-			UNSAFE_SMS_load2Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
-			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex + 2) << 5), vdpIndex + 2);
+			UNSAFE_SMS_load2Tiles(tileOffset, vdpIndex);
+			UNSAFE_SMS_load4Tiles(tileOffset + 64, vdpIndex + 2);
 			break;
 		case 8:
-			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex) << 5), vdpIndex);
-			UNSAFE_SMS_load4Tiles(tileData + ((tileIndex + runner->sprite.tileIndex + 4) << 5), vdpIndex + 4);
+			UNSAFE_SMS_load4Tiles(tileOffset, vdpIndex);
+			UNSAFE_SMS_load4Tiles(tileOffset + 128, vdpIndex + 4);
 		}
 
 		vdpIndex += tileCount;

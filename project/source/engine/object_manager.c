@@ -390,6 +390,9 @@ BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)
 
 void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDrawFunction)
 {
+	if (ObjectManager_numVdpDrawItems == NUM_VDP_DRAW_ITEMS)
+		while (1) {}
+
 	ObjectManager_vdpDrawGameObjects[ObjectManager_numVdpDrawItems] = gameObject;
 	ObjectManager_vdpDrawFunctions[ObjectManager_numVdpDrawItems] = vdpDrawFunction;
 
@@ -401,14 +404,17 @@ void ObjectManager_VDPDraw(void)
 	if (!ObjectManager_numVdpDrawItems)
 		return;
 
+	//SMS_setBackdropColor(COLOR_RED);
+
 	GameObject** gameObjectsRunner = ObjectManager_vdpDrawGameObjects;
 	ObjectFunctionType* vdpDrawFunctionsRunner = ObjectManager_vdpDrawFunctions;
 
 	while (ObjectManager_numVdpDrawItems--)
 	{
 		(*vdpDrawFunctionsRunner)(*gameObjectsRunner);
-
 		gameObjectsRunner++;
 		vdpDrawFunctionsRunner++;
 	}
+
+	//SMS_setBackdropColor(COLOR_BLACK);
 }
