@@ -229,6 +229,12 @@
     <ClCompile Include="..\source\client\generated\background3_tileset.c">
       <Filter>Source Files\client\generated</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\waterfall_tileset.c">
+      <Filter>Source Files\client\generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\waterfall.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -359,6 +365,12 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\math_utils.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\waterfall_tileset.h">
+      <Filter>Source Files\client\generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\waterfall.h">
+      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

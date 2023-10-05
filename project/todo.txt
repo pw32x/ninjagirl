@@ -1,11 +1,12 @@
 Todo
 
-	player is looping past 16k on the x coordinate
+	animated tiles
+		rework the tooling so that 
+			- water tiles are a separate tileset
+			- a map can contain multiple tilesets
+			- tilesets are stored/loaded contigously
 
-		32bit player pos -> 8 bit screen pos
-		
-		convert entities to do the same
-
+		upload animated tiles to vdp using UNSAFE_SMS_load4Tiles()
 	
 	collision check mid-way on player	
 
@@ -230,6 +231,15 @@ effects
 	rain	
 	
 Completed
+
+	NAH player is looping past 16k on the x coordinate
+
+		32bit player pos -> 8 bit screen pos
+		
+		convert entities to do the same
+
+	
+
 
 	DONE fix kunai disappearing early if we scrolled the level
 

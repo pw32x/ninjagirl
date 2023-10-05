@@ -1,7 +1,7 @@
-#include "water_tiles.h"
+#include "waterfall.h"
 
 
-unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
+unsigned char const waterfallTileData[512] = // 16tiles x 32 bytes
 {
 // tile: 0
     0xff, 0x00, 0xff, 0xff, 
@@ -10,7 +10,7 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0xef, 0x00, 0xef, 0xff, 
     0xff, 0x00, 0xff, 0xff, 
     0x78, 0x00, 0x78, 0xff, 
-    0x97, 0x87, 0x97, 0xff, 
+    0x97, 0x83, 0x97, 0xff, 
     0x03, 0x00, 0x03, 0xff, 
 // tile: 1
     0x00, 0x00, 0x00, 0xff, 
@@ -86,9 +86,9 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0x5f, 0x1f, 0x5f, 0xff, 
 // tile: 9
     0xbf, 0xbf, 0xbf, 0xff, 
-    0xff, 0x1f, 0xff, 0xff, 
-    0x7f, 0x07, 0x7f, 0xff, 
-    0x3f, 0x01, 0x3f, 0xff, 
+    0xff, 0x7f, 0xff, 0xff, 
+    0x7f, 0x0f, 0x7f, 0xff, 
+    0x3f, 0x03, 0x3f, 0xff, 
     0x0f, 0x00, 0x0f, 0xff, 
     0x03, 0x00, 0x03, 0xff, 
     0x00, 0x00, 0x00, 0xff, 
@@ -121,9 +121,9 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0x70, 0x00, 0x70, 0xff, 
     0x80, 0x00, 0x80, 0xff, 
 // tile: 13
-    0xf0, 0x80, 0xf0, 0xff, 
-    0xfc, 0xf0, 0xfc, 0xff, 
-    0xff, 0xfc, 0xff, 0xff, 
+    0xf8, 0x80, 0xf8, 0xff, 
+    0xff, 0xf8, 0xff, 0xff, 
+    0xff, 0xff, 0xff, 0xff, 
     0xff, 0xff, 0xff, 0xff, 
     0xff, 0x7f, 0xff, 0xff, 
     0xff, 0x1f, 0xff, 0xff, 
@@ -149,92 +149,55 @@ unsigned char const water_tilesTileData[512] = // 16tiles x 32 bytes
     0x3f, 0x01, 0x3f, 0xff, 
 };
 
-const AnimationSprite water_tilesFrame0Sprites[] = 
-{
-    { -12, -16, 0 },
-    { -12, -8, 1 },
-    { -12, 0, 2 },
-    { -12, 8, 3 },
-};
+extern const TileAnimationFrame waterfallFrame0;
+extern const TileAnimationFrame waterfallFrame1;
+extern const TileAnimationFrame waterfallFrame2;
+extern const TileAnimationFrame waterfallFrame3;
 
-const AnimationSprite water_tilesFrame1Sprites[] = 
+const TileAnimationFrame waterfallFrame0 = 
 {
-    { -12, -16, 4 },
-    { -12, -8, 5 },
-    { -12, 0, 6 },
-    { -12, 8, 7 },
-};
-
-const AnimationSprite water_tilesFrame2Sprites[] = 
-{
-    { -12, -16, 8 },
-    { -12, -8, 9 },
-    { -12, 0, 10 },
-    { -12, 8, 11 },
-};
-
-const AnimationSprite water_tilesFrame3Sprites[] = 
-{
-    { -12, -16, 12 },
-    { -12, -8, 13 },
-    { -12, 0, 14 },
-    { -12, 8, 15 },
-};
-
-extern const AnimationFrame water_tilesFrame0;
-extern const AnimationFrame water_tilesFrame1;
-extern const AnimationFrame water_tilesFrame2;
-extern const AnimationFrame water_tilesFrame3;
-
-const AnimationFrame water_tilesFrame0 = 
-{
-    water_tilesFrame0Sprites,
-    4, // number of sprites
+    0, // tile data index
     8, // frame time
-    &water_tilesFrame1, // next frame
+    &waterfallFrame1, // next frame
 };
 
-const AnimationFrame water_tilesFrame1 = 
+const TileAnimationFrame waterfallFrame1 = 
 {
-    water_tilesFrame1Sprites,
-    4, // number of sprites
+    4, // tile data index
     8, // frame time
-    &water_tilesFrame2, // next frame
+    &waterfallFrame2, // next frame
 };
 
-const AnimationFrame water_tilesFrame2 = 
+const TileAnimationFrame waterfallFrame2 = 
 {
-    water_tilesFrame2Sprites,
-    4, // number of sprites
+    8, // tile data index
     8, // frame time
-    &water_tilesFrame3, // next frame
+    &waterfallFrame3, // next frame
 };
 
-const AnimationFrame water_tilesFrame3 = 
+const TileAnimationFrame waterfallFrame3 = 
 {
-    water_tilesFrame3Sprites,
-    4, // number of sprites
+    12, // tile data index
     8, // frame time
-    &water_tilesFrame2, // next frame
+    &waterfallFrame2, // next frame
 };
-const AnimationFrame* const water_tilesFrames[4] = 
+const TileAnimationFrame* const waterfallFrames[4] = 
 {
-    &water_tilesFrame0,
-    &water_tilesFrame1,
-    &water_tilesFrame2,
-    &water_tilesFrame3,
+    &waterfallFrame0,
+    &waterfallFrame1,
+    &waterfallFrame2,
+    &waterfallFrame3,
 };
 
-u8 water_tilesVdpLocation;
+u8 waterfallVdpLocation;
 
-const Animation water_tiles = 
+const TileAnimation waterfall = 
 {
-    REGULAR_ANIMATION_RESOURCE_TYPE, 
-    (const AnimationFrame** const)water_tilesFrames,
-    (unsigned char* const)water_tilesTileData, // start of the sprite data
+    TILE_ANIMATION_RESOURCE_TYPE, 
+    (const TileAnimationFrame** const)waterfallFrames,
+    (unsigned char* const)waterfallTileData, // start of the sprite data
     4, // number of frames
-    8, // width in pixels
-    32, // height in pixels
+    4, // the max amount of sprite tiles in a frame
     16, // the total amount of tiles in animation
-    &water_tilesVdpLocation,
+    &waterfallVdpLocation,
 };

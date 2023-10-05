@@ -31,7 +31,7 @@ GameObject* TileAnimator_Create(const Animation* animation)
 void UpdateTiles(GameObject* object)
 {
 	SMS_setBackdropColor(COLOR_PINK);
-	
+	/*
 	
 	u8 numTilesToUpdate = ScrollManager_backgroundTileset->animatedTileIndexesCount;
 	const u16* animatedTileIndexRunner = ScrollManager_backgroundTileset->animatedTileIndexes;
@@ -46,7 +46,7 @@ void UpdateTiles(GameObject* object)
 		sourceTileRunner += 32;
 		animatedTileIndexRunner++;
 	}
-
+	*/
 
 /*
 	u8 numTilesToUpdate = 4;//ScrollManager_backgroundTileset->animatedTileIndexesCount;
@@ -82,7 +82,8 @@ void UpdateTiles(GameObject* object)
 
 void TileAnimator_Update(GameObject* object)
 {
-	if (object->UpdateAnimation(object))
+	//if (object->UpdateAnimation(object))
+	object->UpdateAnimation(object);
 	{
 		ObjectManager_QueueVDPDraw(object, UpdateTiles);
 	}

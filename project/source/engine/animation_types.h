@@ -142,5 +142,25 @@ typedef struct
     u16* vdpLocation;
 } PlaneAnimation;
 
+// tile animation
+
+typedef struct tile_animation_frame
+{
+    u8 tileDataIndex;
+    u8 frameTime;
+    struct tile_animation_frame* nextFrame;
+} TileAnimationFrame;
+
+typedef struct
+{
+    u8 resourceType;
+    const TileAnimationFrame** const frames;
+    const u8* const tileData;
+    u8 numFrames;
+    u8 tilesPerFrame;
+    u8 totalTileCount;
+    u8* vdpLocation;
+} TileAnimation;
+
 
 #endif

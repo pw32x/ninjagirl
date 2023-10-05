@@ -1,37 +1,36 @@
 #include "resource_manager.h"
 #include "resource_types.h"
 
+#include <string.h>
+
 #include "engine/base_types.h"
 #include "engine/animation_utils.h"
 #include "engine/map_types.h"
 
-typedef void* (*ResourceManagerLoaderFunction)(const void* resource);
+typedef void* (*LoadFunc)(const void* resource);
+typedef void* (*SetupFunc)(struct game_object* gameObject, const void* resource);
 
-ResourceManagerLoaderFunction ResourceManager_loadFunctions[NUM_RESOURCE_TYPES] =
-{
-	(ResourceManagerLoaderFunction)Load_AnimationResource,
-	(ResourceManagerLoaderFunction)Load_StreamedAnimationResource,
-	(ResourceManagerLoaderFunction)Load_BatchedAnimationResource,
-	(ResourceManagerLoaderFunction)Load_StreamedBatchedAnimationResource,
-	(ResourceManagerLoaderFunction)Load_PlaneAnimationResource,
-	(ResourceManagerLoaderFunction)Load_MapResource,
-};
-
-typedef void* (*ResourceManagerSetupFunction)(struct game_object* gameObject, const void* resource);
-
-ResourceManagerSetupFunction ResourceManager_setupFunctions[NUM_RESOURCE_TYPES] =
-{
-	(ResourceManagerSetupFunction)Setup_AnimationResource,
-	(ResourceManagerSetupFunction)Setup_StreamedAnimationResource,
-	(ResourceManagerSetupFunction)Setup_BatchedAnimationResource,
-	(ResourceManagerSetupFunction)Setup_StreamedBatchedAnimationResource,
-	(ResourceManagerSetupFunction)Setup_PlaneAnimationResource,
-	(ResourceManagerSetupFunction)NULL,
-};
+LoadFunc ResourceManager_loadFunctions[NUM_RESOURCE_TYPES];
+SetupFunc ResourceManager_setupFunctions[NUM_RESOURCE_TYPES];
 
 void ResourceManager_Init(void)
 {
+	memset(ResourceManager_loadFunctions, 0, sizeof(ResourceManager_loadFunctions));
+	memset(ResourceManager_setupFunctions, 0, sizeof(ResourceManager_setupFunctions));
 
+	ResourceManager_loadFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_AnimationResource;
+	ResourceManager_loadFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedAnimationResource;
+	ResourceManager_loadFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_BatchedAnimationResource;
+	ResourceManager_loadFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedBatchedAnimationResource;
+	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
+	ResourceManager_loadFunctions[MAP_RESOURCE_TYPE] = (LoadFunc)Load_MapResource;
+
+
+	ResourceManager_setupFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_AnimationResource;
+	ResourceManager_setupFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedAnimationResource;
+	ResourceManager_setupFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
+	ResourceManager_setupFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedBatchedAnimationResource;
+	ResourceManager_setupFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_PlaneAnimationResource;
 }
 
 void* ResourceManager_LoadResource(void* resource)
