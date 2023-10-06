@@ -1,5 +1,6 @@
 #include "tile_animator.h"
 #include "SMSlib.h"
+
 #include "engine/base_defines.h"
 #include "engine/draw_utils.h"
 #include "engine/object_manager.h"
@@ -12,18 +13,17 @@
 #include <stdio.h>
 
 void TileAnimator_Update(GameObject* object);
-BOOL TileAnimator_Draw(GameObject* object);
 
-GameObject* TileAnimator_Create(const Animation* animation)
+GameObject* TileAnimator_Create(const TileAnimation* tileAnimation)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
 	if (!object)
 		return NULL;
 
 	object->Update = TileAnimator_Update;
-	object->Draw = TileAnimator_Draw;
+	object->Draw = ObjectUtils_drawNothing;
 
-	ResourceManager_SetupResource(object, animation);
+	ResourceManager_SetupResource(object, tileAnimation);
 
 	return object;
 }
@@ -88,9 +88,3 @@ void TileAnimator_Update(GameObject* object)
 		ObjectManager_QueueVDPDraw(object, UpdateTiles);
 	}
 }
-
-BOOL TileAnimator_Draw(GameObject* object)
-{
-	return TRUE;
-}
-

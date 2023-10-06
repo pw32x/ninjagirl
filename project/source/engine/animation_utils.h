@@ -20,6 +20,7 @@ u8 AnimationUtils_updateStreamedAnimation(struct game_object* gameObject);
 u8 AnimationUtils_updateStreamedBatchedAnimation(struct game_object* gameObject);
 
 u8 AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
+u8 AnimationUtils_updateTileAnimation(struct game_object* gameObject);
 
 // load 
 u16 Load_AnimationResource(const Animation* animation);
@@ -29,6 +30,8 @@ u16 Load_StreamedAnimationResource(const StreamedAnimation* streamedAnimation);
 u16 Load_StreamedBatchedAnimationResource(const StreamedBatchedAnimation* streamedBatchedAnimation);
 
 u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation);
+u16 Load_TileAnimationResource(const TileAnimation* tileAnimation);
+
 
 // setup
 u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation);
@@ -38,6 +41,8 @@ u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const Stream
 u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const StreamedBatchedAnimation* streamedBatchedAnimation);
 
 u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation);
+
+u16 Setup_TileAnimationResource(struct game_object* gameObject, const TileAnimation* tileAnimation);
 
 // streaming
 

@@ -5,8 +5,14 @@
 
 struct game_object;
 
-void ResourceManager_Init(void);
+typedef void* (*OnResourceLoadedCallback)(const void* resource);
+
+void ResourceManager_Init(OnResourceLoadedCallback callback);
+
 void* ResourceManager_LoadResource(const void* resource);
 void* ResourceManager_SetupResource(struct game_object* gameObject, const void* resource);
+
+
+void ResourceManager_SetOnResourceLoadedCallback(OnResourceLoadedCallback callback);
 
 #endif

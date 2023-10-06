@@ -21,20 +21,22 @@ GameObject* RightScroller_Create(const Map* map)
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
 	
 	ScrollManager_backgroundMap = map;
-	ScrollManager_backgroundTileset = ScrollManager_backgroundMap->tileset;
+
+	ScrollManager_backgroundTileset = ScrollManager_backgroundMap->tilesets[0];
+	ScrollManager_metatileLut = ScrollManager_backgroundTileset->metatile_lut;
+	ScrollManager_tilesetVdpLocation = *ScrollManager_backgroundTileset->vdpLocation;
 
 	ScrollManager_mapWidth = ScrollManager_backgroundMap->mapWidth;
 	ScrollManager_mapWidthLimit = (ScrollManager_mapWidth << 4) - SCREEN_WIDTH;
 	ScrollManager_mapHeight = ScrollManager_backgroundMap->mapHeight;
 
 	ScrollManager_metatileMap = ScrollManager_backgroundMap->metatileMap;
-	ScrollManager_metatileLut = ScrollManager_backgroundTileset->metatile_lut;
 	ScrollManager_terrainMap = ScrollManager_backgroundMap->terrainMap;
 
 	ScrollManager_updateMapVDP = FALSE;
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
 
-	ScrollManager_tilesetVdpLocation = *ScrollManager_backgroundTileset->vdpLocation;
+
 
 	ScrollUtils_InitTilemap();
 

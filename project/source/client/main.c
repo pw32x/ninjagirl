@@ -8,6 +8,8 @@
 #include "engine/scroll_manager.h"
 #include "engine/resource_manager.h"
 
+#include "objects/on_resource_loaded_callback.h"
+
 // levels
 //#include "exported/level001.h"
 #include "exported/level002.h"
@@ -24,7 +26,7 @@ void main(void)
 {
 	SMS_setFrameInterruptHandler(PSGUpdate);
 
-	ResourceManager_Init();
+	ResourceManager_Init((OnResourceLoadedCallback)OnResourceLoaded);
 
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);

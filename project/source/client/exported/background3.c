@@ -45,13 +45,22 @@ const unsigned char const background3_metatile_map_terrain[560] =
 
 
 extern Tileset background3_tileset;
+extern AnimatedTileset waterfall_tileset;
+
+
+const void* background3_tilesets[2] = 
+{
+    &background3_tileset, // Tileset
+    &waterfall_tileset, // AnimatedTileset
+};
 
 const Map const background3_map = 
 {
     MAP_RESOURCE_TYPE,
     background3_metatile_map, // metatile index map data
     background3_metatile_map_terrain, // terrain
-    &background3_tileset, // 8x8 tileset
+    background3_tilesets, // tilesets used in the map
+    2, // number of tilesets used by this map
     40, // metatile map width
     14, // metatile map height
 };

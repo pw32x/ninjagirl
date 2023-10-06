@@ -56,7 +56,6 @@ Command level002_commands[] =
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &impact },
 	{ 0, (CommandFunction)RightScroller_Create, &background3_map },
-	{ 0, (CommandFunction)TileAnimator_Create, &water_tiles },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },

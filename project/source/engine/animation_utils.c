@@ -112,6 +112,18 @@ u8 AnimationUtils_updatePlaneAnimation(GameObject* gameObject)
 	return ANIMATION_NO_CHANGE;
 }
 
+u8 AnimationUtils_updateTileAnimation(GameObject* gameObject)
+{
+	if (!gameObject->animationTime--)
+	{
+		gameObject->currentTileAnimationFrame = gameObject->currentTileAnimationFrame->nextFrame;
+		gameObject->animationTime = gameObject->currentTileAnimationFrame->frameTime;
+		return ANIMATION_CHANGED_FRAME;
+	}
+
+	return ANIMATION_NO_CHANGE;
+}
+
 void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex)
 {
 	gameObject->currentAnimationFrameIndex = animationFrameIndex;
@@ -157,6 +169,13 @@ u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
 	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, 
 												planeAnimation->totalTileCount,
 												planeAnimation->vdpLocation);
+}
+
+u16 Load_TileAnimationResource(const TileAnimation* tileAnimation)
+{
+	return VDPTileManager_LoadBackgroundTileset(tileAnimation->tileData, 
+												tileAnimation->tilesPerFrame,
+												tileAnimation->vdpLocation);
 }
 
 u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation)
@@ -220,6 +239,17 @@ u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnim
 	gameObject->pixelWidth = planeAnimation->tileWidth * TILE_WIDTH;
 	gameObject->pixelHeight = planeAnimation->tileHeight * TILE_HEIGHT;
 	gameObject->UpdateAnimation = AnimationUtils_updatePlaneAnimation;
+
+	return 0;
+}
+
+u16 Setup_TileAnimationResource(struct game_object* gameObject, const TileAnimation* tileAnimation)
+{
+	gameObject->tileAnimation = tileAnimation;
+	gameObject->currentAnimationFrameIndex = 0;
+	gameObject->currentTileAnimationFrame = tileAnimation->frames[0];
+	gameObject->animationTime = gameObject->currentTileAnimationFrame->frameTime;
+	gameObject->UpdateAnimation = AnimationUtils_updateTileAnimation;
 
 	return 0;
 }

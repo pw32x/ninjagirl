@@ -27,11 +27,14 @@ typedef struct
     u8 resourceType;
     const u16* const metatileMap;
     const u8* const terrainMap;
-    const Tileset* const tileset;
+    const Tileset** const tilesets;
+    u8 numTilesets;
     u16 mapWidth;
     u16 mapHeight;
 } Map;
 
 u16 Load_MapResource(const Map* map);
+u16 Load_TilesetResource(const Tileset* tileset);
+u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset);
 
 #endif

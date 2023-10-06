@@ -3,6 +3,6 @@
 
 #include "engine/object_types.h"
 
-GameObject* TileAnimator_Create(const Animation* animation);
+GameObject* TileAnimator_Create(const TileAnimation* tileAnimation);
 
 #endif
