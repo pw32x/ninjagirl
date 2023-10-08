@@ -26,6 +26,7 @@ u16 Load_TilesetResource(const Tileset* tileset)
 										 tileset->vdpLocation);
 
 	ScrollManager_metatileLuts[ScrollManager_numTilesets] = tileset->metatile_lut;
+	ScrollManager_tilesets[ScrollManager_numTilesets] = tileset;
 	ScrollManager_tilesetVdpLocations[ScrollManager_numTilesets] = *tileset->vdpLocation;
 	ScrollManager_numTilesets++;
 
@@ -36,8 +37,8 @@ u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset)
 {
 	ResourceManager_LoadResource((void*)animatedTileset->tileAnimation);
 
-
 	ScrollManager_metatileLuts[ScrollManager_numTilesets] = animatedTileset->metatile_lut;
+	ScrollManager_tilesets[ScrollManager_numTilesets] = (Tileset*)animatedTileset;
 	ScrollManager_tilesetVdpLocations[ScrollManager_numTilesets] = *animatedTileset->tileAnimation->vdpLocation;
 	ScrollManager_numTilesets++;
 

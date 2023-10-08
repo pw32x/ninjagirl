@@ -189,6 +189,7 @@
     <ClCompile Include="..\source\engine\scroll_manager.c" />
     <ClCompile Include="..\source\engine\scroll_utils.c" />
     <ClCompile Include="..\source\engine\command_manager.c" />
+    <ClCompile Include="..\source\engine\terrain_manager.c" />
     <ClCompile Include="..\source\engine\vdptile_manager.c" />
   </ItemGroup>
   <ItemGroup>
@@ -237,6 +238,7 @@
     <ClInclude Include="..\source\engine\scroll_utils.h" />
     <ClInclude Include="..\source\engine\command_manager.h" />
     <ClInclude Include="..\source\engine\base_types.h" />
+    <ClInclude Include="..\source\engine\terrain_manager.h" />
     <ClInclude Include="..\source\engine\vdptile_manager.h" />
   </ItemGroup>
   <ItemGroup>

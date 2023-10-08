@@ -8,6 +8,7 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 #include "engine/math_utils.h"
+#include "engine/terrain_manager.h"
 
 #include "client/tile_types.h"
 
@@ -186,9 +187,9 @@ void Player_UpdateX(void)
 	if (blockY < 0)
 		goto update_x;
 
-	u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX, blockY, ScrollManager_mapWidth);
+	u16 tileType = GET_TERRAIN(blockX, blockY);
 
-	if (tileType == TILE_SOLID)
+	if (tileType == TERRAIN_SOLID)
 	{
 		if (playerSpeedX < 0)
 			blockX++;
@@ -203,9 +204,9 @@ void Player_UpdateX(void)
 	if (blockY < 0)
 		goto update_x;
 
-	tileType = GET_TILE_TYPE(ScrollManager_map, blockX, blockY, ScrollManager_mapWidth);
+	tileType = GET_TERRAIN(blockX, blockY);
 
-	if (tileType == TILE_SOLID)
+	if (tileType == TERRAIN_SOLID)
 	{
 		if (playerSpeedX < 0)
 			blockX++;
@@ -238,9 +239,9 @@ void Player_UpdateY(void)
 		if (blockY < 0)
 			return;
 
-		u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX1, blockY, ScrollManager_mapWidth);
+		u16 tileType = GET_TERRAIN(blockX1, blockY);
 
-		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
+		if (tileType == TERRAIN_SOLID || tileType == TERRAIN_TOPSOLID)
 		{
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
@@ -251,9 +252,9 @@ void Player_UpdateY(void)
 			return;
 		}
 
-		tileType = GET_TILE_TYPE(ScrollManager_map, blockX2, blockY, ScrollManager_mapWidth);
+		tileType = GET_TERRAIN(blockX2, blockY);
 
-		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
+		if (tileType == TERRAIN_SOLID || tileType == TERRAIN_TOPSOLID)
 		{
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
@@ -277,9 +278,9 @@ void Player_UpdateY(void)
 		if (blockY < 0)
 			return;
 
-		u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX1, blockY, ScrollManager_mapWidth);
+		u16 tileType = GET_TERRAIN(blockX1, blockY);
 
-		if (tileType == TILE_SOLID)
+		if (tileType == TERRAIN_SOLID)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;
@@ -287,9 +288,9 @@ void Player_UpdateY(void)
 			return;
 		}
 
-		tileType = GET_TILE_TYPE(ScrollManager_map, blockX2, blockY, ScrollManager_mapWidth);
+		tileType = GET_TERRAIN(blockX2, blockY);
 
-		if (tileType == TILE_SOLID)
+		if (tileType == TERRAIN_SOLID)
 		{
 			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 			playerSpeedY = 0;

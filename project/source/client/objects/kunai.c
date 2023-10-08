@@ -8,6 +8,7 @@
 #include "engine/resource_manager.h"
 #include "engine/object_types.h"
 #include "engine/animation_utils.h"
+#include "engine/terrain_manager.h"
 
 #include "engine/math_utils.h"
 #include "client/tile_types.h"
@@ -65,8 +66,18 @@ void Kunai_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
-	if (GET_TILE_TYPE(ScrollManager_map, P2B(object->x), P2B(object->y), ScrollManager_mapWidth) == TILE_SOLID)
+	s16 blockX = P2B(object->x);
+	s16 blockY = P2B(object->y);
+
+	if (GET_TERRAIN(blockX, blockY) == TERRAIN_SOLID)
 	{
+		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
+
+		if (ScrollManager_tilesets[tilesetIndex]->breakable)
+		{
+			SET_TERRAIN_VALUE(blockX, blockY, TERRAIN_EMPTY);
+		}
+
 		ObjectManager_DestroyObject(object);
 
 		CreateInfo createInfo = 

@@ -1,16 +1,16 @@
 Todo
 
-	collision map too much? use the map instead?
+	DONE Turn left 
+
+	DONE collision map too much? use the map instead?
 		use bigger bit flags?
+
+	destructable tiles
+		collide with buffer and not the map
+		don't destroy a 16x16 tile if it's not entirely on screen
 
 	collision check mid-way on player	
 
-Turn left 
-	
-	
-	destructable collisions
-		collide with buffer and not the map
-		don't destroy a 16x16 tile if it's not entirely on screen
 
 	thingie that contains items
 		lamp?

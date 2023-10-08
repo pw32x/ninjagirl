@@ -5,6 +5,7 @@
 #include "engine/map_types.h"
 #include "engine/vdptile_manager.h"
 #include "engine/base_defines.h"
+#include "engine/terrain_manager.h"
 
 #include <stdio.h>
 
@@ -13,9 +14,12 @@ void RightScroll_UpdateVDP(void);
 
 u16 columnToUpdate;
 
+u8 terrainColumnToUpdate;
+
 GameObject* RightScroller_Create(const Map* map)
 {
 	columnToUpdate = 0;
+	terrainColumnToUpdate = 0;
 
 	ScrollManager_Update = RightScroll_Update;
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
@@ -32,6 +36,7 @@ GameObject* RightScroller_Create(const Map* map)
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
 
 	ScrollUtils_InitTilemap();
+	TerrainManager_Init();
 
 	ScrollManager_updateMapVDP = FALSE;
 
@@ -48,9 +53,12 @@ void RightScroll_Update(GameObject* target)
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
+	// tile map
+
 	ScrollManager_speedX = 0;
 
 	u8 oldColumn = columnToUpdate;
+	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
 	if (target->x > ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH)
 	{
@@ -70,10 +78,11 @@ void RightScroll_Update(GameObject* target)
 	ScrollManager_vdpHorizontalScroll = -(ScrollManager_horizontalScroll & 255); // vdp scrolls backwards in comparison
 
 	columnToUpdate = ScrollManager_horizontalScroll >> 3;
+	terrainColumnToUpdate = ScrollManager_horizontalScroll >> 4;
 
-	u8 diff = columnToUpdate - oldColumn;
+	u8 tileDiff = columnToUpdate - oldColumn;
 
-	if (diff) // when we hit a new column, prep a new column to display
+	if (tileDiff) // when we hit a new column, prep a new column to display
 	{
 		// figure out the column to update
 		ScrollUtils_mapColumnToBuild = columnToUpdate + 32; 
@@ -82,11 +91,19 @@ void RightScroll_Update(GameObject* target)
 		ScrollManager_updateMapVDP = TRUE;
 	}	
 
+	// terrain
+
+	u8 terrainDiff = terrainColumnToUpdate - oldTerrainColumnToUpdate;
+
 
 	//char output[255];	
-	//sprintf(output, "%u %u    ", oldColumn, newColumn);
-	//SMS_printatXY(28, 0, output); 
-	
+	//sprintf(output, "%d, %d     ", terrainColumnToUpdate, terrainColumnToUpdate & 15);
+	//SMS_printatXY(1, 0, output); 
+
+	if (terrainDiff)
+	{
+		TerrainManager_UpdateTerrain(terrainColumnToUpdate + 15);
+	}
 
 	//SMS_setBackdropColor(COLOR_RED);
 }
