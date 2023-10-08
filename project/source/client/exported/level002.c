@@ -26,7 +26,6 @@
 //#include "client/exported/evil_eye.h"
 //#include "client/exported/birdidle.h"
 #include "client/exported/background3.h"
-#include "client/exported/water_tiles.h"
 #include "client/exported/explosion.h"
 #include "client/exported/impact.h"
 #include "client/generated/bank2.h" // music

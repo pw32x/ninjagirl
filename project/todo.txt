@@ -1,12 +1,19 @@
 Todo
 
-	animated tiles
+	DONE animated tiles
 		rework the tooling so that 
 			- water tiles are a separate tileset
 			- a map can contain multiple tilesets
 			- tilesets are stored/loaded contigously
 
 		upload animated tiles to vdp using UNSAFE_SMS_load4Tiles()
+		
+	post animated tiles rework		
+	
+		test loading 4 tilesets
+	
+		how to tell the map that an animated tileset uses X number of tiles?
+		
 	
 	collision check mid-way on player	
 

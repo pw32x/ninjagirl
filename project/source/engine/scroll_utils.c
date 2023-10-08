@@ -21,15 +21,40 @@ void ScrollUtils_buildColumn(u8* buffer)
 	u8 loop =  ScrollManager_mapHeight;
 
 	const u16* sum;
+	u16 metatile_raw;
 	u16 metatile_index;
+	u8 tileset_index;
+	const u16* metatileLut;
+	u8 vdpLocation;
+	u16 metatileMapItem;
+
+/*
+#define FILL_COLUMN()\
+metatileMapItem = *metatileMapStart;\
+tileset_index = (metatileMapItem >> 9) & 0x03;\  
+vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
+metatileLut = ScrollManager_metatileLuts[tileset_index];\
+metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
+metatileMapStart += ScrollManager_mapWidth;\
+sum = metatileLut + metatile_index;\
+*columnRunner = *(sum) + vdpLocation;\
+*(columnRunner + 1) = *(sum + 2) + vdpLocation;\
+columnRunner += 2
+
+*/
 
 #define FILL_COLUMN()\
-metatile_index = (*(metatileMapStart) << 2) + metatileOffset;\
+metatileMapItem = *metatileMapStart;\
+tileset_index = (metatileMapItem >> 9) & 0x03;\
+vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
+metatileLut = ScrollManager_metatileLuts[tileset_index];\
+metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
 metatileMapStart += ScrollManager_mapWidth;\
-sum = ScrollManager_metatileLut + metatile_index;\
-*columnRunner = *(sum) + ScrollManager_tilesetVdpLocation;\
-*(columnRunner + 1) = *(sum + 2) + ScrollManager_tilesetVdpLocation;\
+sum = metatileLut + metatile_index;\
+*columnRunner = *(sum) + vdpLocation;\
+*(columnRunner + 1) = *(sum + 2) + vdpLocation;\
 columnRunner += 2
+
 
 	FILL_COLUMN();
 	FILL_COLUMN();

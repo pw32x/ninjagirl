@@ -146,7 +146,7 @@ typedef struct
 
 typedef struct tile_animation_frame
 {
-    u8 tileDataIndex;
+    u8 tileIndex;
     u8 frameTime;
     struct tile_animation_frame* nextFrame;
 } TileAnimationFrame;

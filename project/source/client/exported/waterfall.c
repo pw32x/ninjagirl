@@ -179,7 +179,7 @@ const TileAnimationFrame waterfallFrame3 =
 {
     12, // tile data index
     8, // frame time
-    &waterfallFrame2, // next frame
+    &waterfallFrame0, // next frame
 };
 const TileAnimationFrame* const waterfallFrames[4] = 
 {

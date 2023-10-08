@@ -7,7 +7,5 @@
 
 extern const BatchedAnimation impact;
 
-// frame numbers for specific animations.
-
 #endif
 

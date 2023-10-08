@@ -202,9 +202,6 @@
     <ClCompile Include="..\source\client\objects\tile_animator.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\water_tiles.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\engine\map_types.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -338,9 +335,6 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\tile_animator.h">
       <Filter>Source Files\client\objects</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\water_tiles.h">
-      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\command_types.h">
       <Filter>Source Files\engine</Filter>

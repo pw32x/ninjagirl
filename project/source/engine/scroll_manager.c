@@ -8,14 +8,20 @@ void (*ScrollManager_Update)(GameObject* target) = ObjectUtils_gameObjectDoNothi
 void (*ScrollManager_UpdateVDP)(void) = ObjectUtils_doNothing;
 
 const Map* ScrollManager_backgroundMap;
+
 const Tileset* ScrollManager_backgroundTileset;
+const u16* ScrollManager_metatileLut;
+
+const u16* ScrollManager_metatileLuts[MAX_TILESETS];
+u16 ScrollManager_tilesetVdpLocations[MAX_TILESETS];
+u8 ScrollManager_numTilesets;
 
 u16 ScrollManager_mapWidth;
 u16 ScrollManager_mapWidthLimit;
 u16 ScrollManager_mapHeight;
 
 const u16* ScrollManager_metatileMap;
-const u16* ScrollManager_metatileLut;
+
 const u8*  ScrollManager_terrainMap;
 
 u16 ScrollManager_tilesetVdpLocation;
