@@ -165,6 +165,7 @@
     <ClCompile Include="..\source\client\exported\waterfall.c" />
     <ClCompile Include="..\source\client\generated\background3_tileset.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
+    <ClCompile Include="..\source\client\generated\breakable_rock_tileset.c" />
     <ClCompile Include="..\source\client\generated\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
@@ -205,6 +206,7 @@
     <ClInclude Include="..\source\client\exported\waterfall.h" />
     <ClInclude Include="..\source\client\generated\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
+    <ClInclude Include="..\source\client\generated\breakable_rock_tileset.h" />
     <ClInclude Include="..\source\client\generated\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />

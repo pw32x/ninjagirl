@@ -65,7 +65,7 @@ void Kunai_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
-	if (ScrollManager_terrainMap[P2B(object->x) + (P2B(object->y) * ScrollManager_mapWidth)] == TILE_SOLID)
+	if (GET_TILE_TYPE(ScrollManager_map, P2B(object->x), P2B(object->y), ScrollManager_mapWidth) == TILE_SOLID)
 	{
 		ObjectManager_DestroyObject(object);
 

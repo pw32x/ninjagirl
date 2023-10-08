@@ -24,8 +24,6 @@ extern u8 ScrollManager_speedY;
 
 extern const Map* ScrollManager_backgroundMap;
 
-extern const Tileset* ScrollManager_backgroundTileset;
-
 #define MAX_TILESETS 4
 extern const u16* ScrollManager_metatileLuts[MAX_TILESETS];
 extern u16 ScrollManager_tilesetVdpLocations[MAX_TILESETS];
@@ -35,10 +33,6 @@ extern u16 ScrollManager_mapWidth;
 extern u16 ScrollManager_mapWidthLimit;
 extern u16 ScrollManager_mapHeight;
 
-extern const u16* ScrollManager_metatileMap;
-extern const u16* ScrollManager_metatileLut;
-extern const u8*  ScrollManager_terrainMap;
-
-extern u16 ScrollManager_tilesetVdpLocation;
+extern const u16* ScrollManager_map;
 
 #endif

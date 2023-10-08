@@ -52,7 +52,7 @@ u8 isPlayerMoving;
 
 u8 stateChanged;
 
-void updatePlayerAnimation()
+void updatePlayerAnimation(void)
 {
 	u8 flipped = ObjectManager_player.flipped;
 
@@ -186,7 +186,7 @@ void Player_UpdateX(void)
 	if (blockY < 0)
 		goto update_x;
 
-	u8 tileType = ScrollManager_terrainMap[blockX + (blockY * ScrollManager_mapWidth)];
+	u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX, blockY, ScrollManager_mapWidth);
 
 	if (tileType == TILE_SOLID)
 	{
@@ -203,7 +203,7 @@ void Player_UpdateX(void)
 	if (blockY < 0)
 		goto update_x;
 
-	tileType = ScrollManager_terrainMap[blockX + (blockY * ScrollManager_mapWidth)];
+	tileType = GET_TILE_TYPE(ScrollManager_map, blockX, blockY, ScrollManager_mapWidth);
 
 	if (tileType == TILE_SOLID)
 	{
@@ -231,7 +231,6 @@ void Player_UpdateY(void)
 	// falling
 	if (playerSpeedY > 0)
 	{
-
 		POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 
 		s16 blockY = V2B(ySensor);
@@ -239,7 +238,7 @@ void Player_UpdateY(void)
 		if (blockY < 0)
 			return;
 
-		u8 tileType = ScrollManager_terrainMap[blockX1 + (blockY * ScrollManager_mapWidth)];
+		u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX1, blockY, ScrollManager_mapWidth);
 
 		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
 		{
@@ -248,10 +247,11 @@ void Player_UpdateY(void)
 			isPlayerOnGround = TRUE;
 
 			isPlayerMoving ? setPlayerState(PLAYER_STATE_RUN) : setPlayerState(PLAYER_STATE_STAND);
+			
 			return;
 		}
 
-		tileType = ScrollManager_terrainMap[blockX2 + (blockY * ScrollManager_mapWidth)];
+		tileType = GET_TILE_TYPE(ScrollManager_map, blockX2, blockY, ScrollManager_mapWidth);
 
 		if (tileType == TILE_SOLID || tileType == TILE_TOPSOLID)
 		{
@@ -277,7 +277,7 @@ void Player_UpdateY(void)
 		if (blockY < 0)
 			return;
 
-		u8 tileType = ScrollManager_terrainMap[blockX1 + (blockY * ScrollManager_mapWidth)];
+		u16 tileType = GET_TILE_TYPE(ScrollManager_map, blockX1, blockY, ScrollManager_mapWidth);
 
 		if (tileType == TILE_SOLID)
 		{
@@ -287,7 +287,7 @@ void Player_UpdateY(void)
 			return;
 		}
 
-		tileType = ScrollManager_terrainMap[blockX2 + (blockY * ScrollManager_mapWidth)];
+		tileType = GET_TILE_TYPE(ScrollManager_map, blockX2, blockY, ScrollManager_mapWidth);
 
 		if (tileType == TILE_SOLID)
 		{
@@ -296,6 +296,8 @@ void Player_UpdateY(void)
 			setPlayerState(PLAYER_STATE_FALL);
 			return;
 		}
+
+
 	}
 
 	//char output[255];

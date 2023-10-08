@@ -10,7 +10,7 @@ void ScrollUtils_buildColumn(u8* buffer)
 	// from the tile column, get the metatile from the level map
 	u16 metamapColumn = (ScrollUtils_mapColumnToBuild >> 1);
 
-	const u16* metatileMapStart = ScrollManager_metatileMap + metamapColumn;
+	const u16* mapStart = ScrollManager_map + metamapColumn;
 
 	// figure out which column of the metatile to get. Metatiles contain two tile columns.
 	u8 metatileOffset = ScrollUtils_mapColumnToBuild & 1;
@@ -30,12 +30,12 @@ void ScrollUtils_buildColumn(u8* buffer)
 
 /*
 #define FILL_COLUMN()\
-metatileMapItem = *metatileMapStart;\
+metatileMapItem = *mapStart;\
 tileset_index = (metatileMapItem >> 9) & 0x03;\  
 vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
 metatileLut = ScrollManager_metatileLuts[tileset_index];\
 metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
-metatileMapStart += ScrollManager_mapWidth;\
+mapStart += ScrollManager_mapWidth;\
 sum = metatileLut + metatile_index;\
 *columnRunner = *(sum) + vdpLocation;\
 *(columnRunner + 1) = *(sum + 2) + vdpLocation;\
@@ -44,12 +44,12 @@ columnRunner += 2
 */
 
 #define FILL_COLUMN()\
-metatileMapItem = *metatileMapStart;\
+metatileMapItem = *mapStart;\
 tileset_index = (metatileMapItem >> 9) & 0x03;\
 vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
 metatileLut = ScrollManager_metatileLuts[tileset_index];\
 metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
-metatileMapStart += ScrollManager_mapWidth;\
+mapStart += ScrollManager_mapWidth;\
 sum = metatileLut + metatile_index;\
 *columnRunner = *(sum) + vdpLocation;\
 *(columnRunner + 1) = *(sum + 2) + vdpLocation;\

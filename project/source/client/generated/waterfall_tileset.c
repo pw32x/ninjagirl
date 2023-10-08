@@ -17,6 +17,7 @@ const AnimatedTileset waterfall_tileset =
     ANIMATED_TILESET_RESOURCE_TYPE,
     waterfall_tileset_metatiles,
     2, // 16x16 metatiles count
+    FALSE, // is breakable
     &waterfall, // animation
 };
 

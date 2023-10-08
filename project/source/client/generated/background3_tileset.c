@@ -2456,10 +2456,11 @@ u16 background3_tilesetVdpLocation;
 const Tileset background3_tileset = 
 {
     TILESET_RESOURCE_TYPE,
-    background3_tileset_tiles,
     background3_tileset_metatiles,
-    228, // unique tile count
     130, // 16x16 metatiles count
+    FALSE, // is breakable
+    background3_tileset_tiles,
+    228, // unique tile count
     &background3_tilesetVdpLocation,
 };
 

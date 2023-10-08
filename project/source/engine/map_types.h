@@ -4,21 +4,23 @@
 #include "engine/base_types.h"
 #include "animation_types.h"
 
+#define COMMON_TILESET_PROPERTIES \
+    u8 resourceType;\
+    const u16* const metatile_lut;\
+    const u16 numMetatiles;\
+    const u8 breakable
+
 typedef struct
 {
-    u8 resourceType;
+    COMMON_TILESET_PROPERTIES;
     const u8* const tiles;
-    const u16* const metatile_lut;
     const u16 numTiles;
-    const u16 numMetatiles;
     u16* vdpLocation;
 } Tileset;
 
 typedef struct
 {
-    u8 resourceType;
-    const u16* const metatile_lut;
-    const u16 numMetatiles;
+    COMMON_TILESET_PROPERTIES;
     const TileAnimation* tileAnimation;
 } AnimatedTileset;
 
@@ -26,7 +28,6 @@ typedef struct
 {
     u8 resourceType;
     const u16* const metatileMap;
-    const u8* const terrainMap;
     const Tileset** const tilesets;
     u8 numTilesets;
     u16 mapWidth;

@@ -9,9 +9,6 @@ void (*ScrollManager_UpdateVDP)(void) = ObjectUtils_doNothing;
 
 const Map* ScrollManager_backgroundMap;
 
-const Tileset* ScrollManager_backgroundTileset;
-const u16* ScrollManager_metatileLut;
-
 const u16* ScrollManager_metatileLuts[MAX_TILESETS];
 u16 ScrollManager_tilesetVdpLocations[MAX_TILESETS];
 u8 ScrollManager_numTilesets;
@@ -20,9 +17,7 @@ u16 ScrollManager_mapWidth;
 u16 ScrollManager_mapWidthLimit;
 u16 ScrollManager_mapHeight;
 
-const u16* ScrollManager_metatileMap;
-
-const u8*  ScrollManager_terrainMap;
+const u16* ScrollManager_map;
 
 u16 ScrollManager_tilesetVdpLocation;
 
