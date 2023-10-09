@@ -9,9 +9,26 @@ Todo
 					it doesn't.
 					it can be any type of resource
 
-	collision check mid-way on player	
 
 	particle system
+	
+		array of 16 tracked particles
+			screen x
+			screen y
+			update function
+			speed x
+			speed y 
+			animation counter
+			animation
+			update function
+			
+		what's the diff between this and just having 32 effect objects?
+
+	collision check mid-way on player	
+
+
+	
+	why does breakable rock have an extra tile and an extra block?
 	
 
 	player top/bottom animations

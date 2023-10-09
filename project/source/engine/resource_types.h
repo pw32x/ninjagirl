@@ -1,6 +1,8 @@
 #ifndef RESOURCE_TYPES_INCLUDE_H
 #define RESOURCE_TYPES_INCLUDE_H
 
+#include "engine/base_types.h"
+
 #define REGULAR_ANIMATION_RESOURCE_TYPE				0
 #define STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE	1
 #define BATCHED_ANIMATION_RESOURCE_TYPE				2
@@ -11,5 +13,10 @@
 #define TILESET_RESOURCE_TYPE						7
 #define ANIMATED_TILESET_RESOURCE_TYPE				8
 #define NUM_RESOURCE_TYPES							9
+
+typedef struct
+{
+	u8 resourceType;
+} Resource;
 
 #endif

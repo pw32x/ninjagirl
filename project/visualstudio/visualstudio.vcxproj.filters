@@ -241,6 +241,12 @@
     <ClCompile Include="..\source\engine\terrain_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\tileset_externs.c">
+      <Filter>Source Files\client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\breakable_rock_resource.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -380,6 +386,9 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\terrain_manager.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\breakable_rock_resource.h">
+      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

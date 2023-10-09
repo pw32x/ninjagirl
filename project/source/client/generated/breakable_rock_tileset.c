@@ -62,12 +62,17 @@ const unsigned char const breakable_rock_tileset_tiles[160] = // 5 tiles
 
 u16 breakable_rock_tilesetVdpLocation;
 
+void breakable_rock_tileset_TilesetFunction(unsigned short blockx, unsigned short blocky, const Resource* resource); // breakable collision function
+extern Resource* breakable_rock_tileset_Resource; // breakable resource
+
 const Tileset breakable_rock_tileset = 
 {
     TILESET_RESOURCE_TYPE,
     breakable_rock_tileset_metatiles,
     2, // 16x16 metatiles count
     TRUE, // is breakable
+    breakable_rock_tileset_TilesetFunction, // breakable tileset function
+    breakable_rock_tileset_Resource, // breakable resource
     breakable_rock_tileset_tiles,
     5, // unique tile count
     &breakable_rock_tilesetVdpLocation,

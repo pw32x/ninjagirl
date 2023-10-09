@@ -2,6 +2,7 @@
 #define MAP_TYPES_INCLUDE_H
 
 #include "engine/base_types.h"
+#include "engine/resource_types.h"
 #include "animation_types.h"
 
 // exported format of map values
@@ -22,13 +23,15 @@
 
 #define GET_TILESET_INDEX(x, y) ((ScrollManager_map[(x) + ((y) * ScrollManager_mapWidth)] & TILESET_INDEX_MASK) >> TILESET_INDEX_SHIFT)
 
-
+typedef void (*TilesetFunction)(unsigned short blockx, unsigned short blocky, const Resource* resource);
 
 #define COMMON_TILESET_PROPERTIES \
     u8 resourceType;\
     const u16* const metatile_lut;\
     const u16 numMetatiles;\
-    const u8 breakable
+    const u8 breakable;\
+    TilesetFunction tilesetFunction;\
+    const Resource* tilesetResource
 
 typedef struct
 {

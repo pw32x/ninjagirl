@@ -155,6 +155,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
     <ClCompile Include="..\source\client\exported\background3.c" />
     <ClCompile Include="..\source\client\exported\birdidle.c" />
+    <ClCompile Include="..\source\client\exported\breakable_rock_resource.c" />
     <ClCompile Include="..\source\client\exported\evil_eye.c" />
     <ClCompile Include="..\source\client\exported\explosion.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
@@ -178,6 +179,7 @@
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
+    <ClCompile Include="..\source\client\tileset_externs.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
@@ -197,6 +199,7 @@
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
     <ClInclude Include="..\source\client\exported\background3.h" />
     <ClInclude Include="..\source\client\exported\birdidle.h" />
+    <ClInclude Include="..\source\client\exported\breakable_rock_resource.h" />
     <ClInclude Include="..\source\client\exported\evil_eye.h" />
     <ClInclude Include="..\source\client\exported\explosion.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
