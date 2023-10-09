@@ -357,9 +357,6 @@
     <ClInclude Include="..\source\client\objects\effect.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\tile_types.h">
-      <Filter>Source Files\client</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\background3.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>

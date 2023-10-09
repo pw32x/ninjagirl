@@ -10,8 +10,6 @@
 #include "engine/math_utils.h"
 #include "engine/terrain_manager.h"
 
-#include "client/tile_types.h"
-
 // music and sfx
 #include "PSGlib.h"
 #include "client/generated/bank2.h"

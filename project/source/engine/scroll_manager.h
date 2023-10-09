@@ -34,14 +34,9 @@ extern u16 ScrollManager_mapWidth;
 extern u16 ScrollManager_mapWidthLimit;
 extern u16 ScrollManager_mapHeight;
 
-// exported format of map items
-// tile_type     | blockmap_index | block_index
-// 11111           11              111111111
-// 0 - 31          0 - 3           0 - 511
-
 extern const u16* ScrollManager_map;
 
-#define GET_TILESET_INDEX(x, y) ((ScrollManager_map[(x) + ((y) * ScrollManager_mapWidth)] & 0x600) >> 9)
+
 
 
 #endif

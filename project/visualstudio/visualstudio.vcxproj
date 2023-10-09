@@ -219,7 +219,6 @@
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />
-    <ClInclude Include="..\source\client\tile_types.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\animation_utils.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />

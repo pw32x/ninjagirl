@@ -11,7 +11,6 @@
 #include "engine/terrain_manager.h"
 
 #include "engine/math_utils.h"
-#include "client/tile_types.h"
 
 #include "client/exported/impact.h"
 #include "client/objects/effect.h"
@@ -84,7 +83,11 @@ void Kunai_Update(GameObject* object)
 	s16 blockX = P2B(object->x);
 	s16 blockY = P2B(object->y);
 
-	if (GET_TERRAIN(blockX, blockY) == TERRAIN_SOLID)
+	if (GET_TERRAIN(blockX, blockY) == TERRAIN_SOLID &&
+		// don't get affected by terrain at the edge of the screen if the block isn't
+		// completely visible on screen. otherwise we might hit the terrain of the other
+		// of the screen because of the wrapping.
+		blockX - (ScrollManager_horizontalScroll >> 4) < TERRAIN_WIDTH)
 	{
 		CreateInfo createInfo = 
 		{ 
@@ -104,13 +107,12 @@ void Kunai_Update(GameObject* object)
 			object->x = blockX;
 			object->y = blockY;
 			ObjectManager_QueueVDPDraw(object, EraseTiles);
+			object->Draw = ObjectUtils_drawNothing;
 		}
 		else
 		{
 			ObjectManager_DestroyObject(object);
 		}
-
-
 
 		//effect->speedx = object->speedx >> 2;
 		//effect->speedy = object->speedy >> 2;

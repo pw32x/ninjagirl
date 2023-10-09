@@ -28,27 +28,12 @@ void ScrollUtils_buildColumn(u8* buffer)
 	u8 vdpLocation;
 	u16 metatileMapItem;
 
-/*
 #define FILL_COLUMN()\
 metatileMapItem = *mapStart;\
-tileset_index = (metatileMapItem >> 9) & 0x03;\  
+tileset_index = (metatileMapItem >> 9) & SHORT_TILESET_INDEX_MASK;\
 vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
 metatileLut = ScrollManager_metatileLuts[tileset_index];\
-metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
-mapStart += ScrollManager_mapWidth;\
-sum = metatileLut + metatile_index;\
-*columnRunner = *(sum) + vdpLocation;\
-*(columnRunner + 1) = *(sum + 2) + vdpLocation;\
-columnRunner += 2
-
-*/
-
-#define FILL_COLUMN()\
-metatileMapItem = *mapStart;\
-tileset_index = (metatileMapItem >> 9) & 0x03;\
-vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
-metatileLut = ScrollManager_metatileLuts[tileset_index];\
-metatile_index = ((metatileMapItem & 511) << 2) + metatileOffset;\
+metatile_index = ((metatileMapItem & BLOCK_MASK) << 2) + metatileOffset;\
 mapStart += ScrollManager_mapWidth;\
 sum = metatileLut + metatile_index;\
 *columnRunner = *(sum) + vdpLocation;\

@@ -24,7 +24,7 @@ void TerrainManager_UpdateTerrain(u16 mapColumnIndex)
 
 	for (u8 loop = 0; loop < TERRAIN_HEIGHT; loop++)
 	{
-		*terrainRunner = (*mapRunner) >> 11;
+		*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT;
 
 		mapRunner += ScrollManager_mapWidth;
 		terrainRunner += TERRAIN_WIDTH;
