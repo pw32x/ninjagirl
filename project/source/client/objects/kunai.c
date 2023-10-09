@@ -53,6 +53,21 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 	return object;
 }
 
+
+void EraseTiles(GameObject* object)
+{
+	u16 tileX = object->x << 1;
+	u16 tileY = object->y << 1;
+
+	SMS_setTileatXY(tileX	    & 31, tileY, 0);
+	SMS_setTileatXY((tileX + 1) & 31, tileY, 0);
+	SMS_setTileatXY(tileX	    & 31, tileY + 1, 0);
+	SMS_setTileatXY((tileX + 1) & 31, tileY + 1, 0);
+
+	ObjectManager_DestroyObject(object);
+}
+
+
 void Kunai_Update(GameObject* object)
 {
 	object->x += object->speedx;
@@ -71,15 +86,6 @@ void Kunai_Update(GameObject* object)
 
 	if (GET_TERRAIN(blockX, blockY) == TERRAIN_SOLID)
 	{
-		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
-
-		if (ScrollManager_tilesets[tilesetIndex]->breakable)
-		{
-			SET_TERRAIN_VALUE(blockX, blockY, TERRAIN_EMPTY);
-		}
-
-		ObjectManager_DestroyObject(object);
-
 		CreateInfo createInfo = 
 		{ 
 			object->x, 
@@ -88,6 +94,23 @@ void Kunai_Update(GameObject* object)
 		};
 
 		GameObject* effect = Effect_Create(&createInfo);
+
+		// destroy or setup erasing a block for later.
+		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
+
+		if (ScrollManager_tilesets[tilesetIndex]->breakable)
+		{
+			SET_TERRAIN_VALUE(blockX, blockY, TERRAIN_EMPTY);
+			object->x = blockX;
+			object->y = blockY;
+			ObjectManager_QueueVDPDraw(object, EraseTiles);
+		}
+		else
+		{
+			ObjectManager_DestroyObject(object);
+		}
+
+
 
 		//effect->speedx = object->speedx >> 2;
 		//effect->speedy = object->speedy >> 2;

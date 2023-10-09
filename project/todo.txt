@@ -6,7 +6,11 @@ Todo
 		use bigger bit flags?
 
 	destructable tiles
-		collide with buffer and not the map
+		collide with a 32x24 terrain buffer and not the map
+		terrain buffer is u8 ?
+		
+		
+		
 		don't destroy a 16x16 tile if it's not entirely on screen
 
 	collision check mid-way on player	
