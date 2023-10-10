@@ -163,6 +163,7 @@
     <ClCompile Include="..\source\client\exported\kunai.c" />
     <ClCompile Include="..\source\client\exported\level002.c" />
     <ClCompile Include="..\source\client\exported\ninja_girl.c" />
+    <ClCompile Include="..\source\client\exported\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\waterfall.c" />
     <ClCompile Include="..\source\client\generated\background3_tileset.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
@@ -171,11 +172,12 @@
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
-    <ClCompile Include="..\source\client\objects\effect.c" />
+    <ClCompile Include="..\source\client\objects\basic_effect.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_runall.c" />
     <ClCompile Include="..\source\client\objects\kunai.c" />
     <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c" />
+    <ClCompile Include="..\source\client\objects\particle_effect.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
@@ -207,6 +209,7 @@
     <ClInclude Include="..\source\client\exported\kunai.h" />
     <ClInclude Include="..\source\client\exported\level002.h" />
     <ClInclude Include="..\source\client\exported\ninja_girl.h" />
+    <ClInclude Include="..\source\client\exported\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\waterfall.h" />
     <ClInclude Include="..\source\client\generated\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
@@ -214,11 +217,12 @@
     <ClInclude Include="..\source\client\generated\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
-    <ClInclude Include="..\source\client\objects\effect.h" />
+    <ClInclude Include="..\source\client\objects\basic_effect.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_runall.h" />
     <ClInclude Include="..\source\client\objects\kunai.h" />
     <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h" />
+    <ClInclude Include="..\source\client\objects\particle_effect.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />

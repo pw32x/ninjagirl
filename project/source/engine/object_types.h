@@ -4,6 +4,7 @@
 #include "engine/base_types.h"
 #include "engine/animation_types.h"
 #include "engine/math_utils.h"
+#include "engine/resource_types.h"
 
 typedef struct game_object
 {
@@ -68,7 +69,7 @@ typedef struct create_info
 {
 	s16 startX;
 	s16 startY;
-	const void* resource;
+	const Resource* resource;
 } CreateInfo;
 
 #endif

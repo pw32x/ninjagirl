@@ -9,7 +9,7 @@
 #include "engine/resource_manager.h"
 
 #include "client/exported/explosion.h"
-#include "client/objects/effect.h"
+#include "client/objects/basic_effect.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -128,7 +128,7 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 			(const void*)&explosion, 
 		};
 		
-		GameObject* effect = Effect_Create(&createInfo);
+		GameObject* effect = BasicEffect_Create(&createInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 	}

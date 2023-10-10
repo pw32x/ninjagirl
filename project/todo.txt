@@ -1,39 +1,25 @@
 Todo
 
-	how to make it so that a broken block gets a custom animation?
-		breakable tilesets have a function and a resource
-		<tileset>_collisionFunction
-		how to define the resource? 
-			<tileset>_collisionResource?
-				does it have to be an animation?
-					it doesn't.
-					it can be any type of resource
-
-
-	particle system
-	
-		array of 16 tracked particles
-			screen x
-			screen y
-			update function
-			speed x
-			speed y 
-			animation counter
-			animation
-			update function
-			
-		what's the diff between this and just having 32 effect objects?
-
 	collision check mid-way on player	
-
-
 	
 	why does breakable rock have an extra tile and an extra block?
-	
 
 	player top/bottom animations
 	
+	ducking
+	
+	treat the effect entities has a circular list. 
+		always overwrite the oldest effect
+	
+	shooting 
+		have the projectile be around the middle of a tile? 
+		
+	don't jump so fast
+	don't fall so fast
+	
 	performance pass
+
+		particles and projetiles are expensive
 
 		improve buildcolumn performance
 			do a bit every frame
@@ -43,6 +29,14 @@ Todo
 		unroll loop to update terrain buffer
 
 	banks!
+
+	object "templates"
+	
+	raster effects
+	
+	go to next level
+	
+	hybrid sprite/tile animations
 
 	thingie that contains items
 		lamp?
@@ -82,10 +76,6 @@ Todo
 	make gg2c not suck
 	make gal2tmx not suck	
 		
-	player movement
-	
-		ducking
-		
 	compress map data
 		
 	store map data column first
@@ -98,8 +88,6 @@ Todo
 		- etc.
 	
 	
-	1	
-	
 	clipping????
 	
 		regular animations
@@ -109,10 +97,6 @@ Todo
 		gg2c, on export, sort sprites in a frame by X position
 			then clip by x position
 	
-	
-	destroying an object should just set its update and draw functions to appropriate doNothing()
-
-	NAH tilesets should contain their paletes
 	
 	automated creation of header file with object_type_ids
 		header file with #defines of GAMEOBJECT_PLAYER_ID
@@ -255,6 +239,37 @@ effects
 	rain	
 	
 Completed
+
+	DONE destroying an object should just set its update and draw functions to appropriate doNothing()
+
+	NAH tilesets should contain their paletes
+	
+
+
+	DONE how to make it so that a broken block gets a custom animation?
+		breakable tilesets have a function and a resource
+		<tileset>_collisionFunction
+		how to define the resource? 
+			<tileset>_collisionResource?
+				does it have to be an animation?
+					it doesn't.
+					it can be any type of resource
+
+
+	NAH particle system
+	
+		array of 16 tracked particles
+			screen x
+			screen y
+			update function
+			speed x
+			speed y 
+			animation counter
+			animation
+			update animation
+			lifetime
+			clipping			
+		what's the diff between this and just having 32 effect objects?
 
 	DONE don't destroy a 16x16 tile if it's not entirely on screen
 		otherwise it creates holes on the left side of the screen

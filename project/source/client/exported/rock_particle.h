@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const Animation rock_particle;
+extern const BatchedAnimation rock_particle;
 
 #endif
 

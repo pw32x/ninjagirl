@@ -32,6 +32,9 @@
     <Filter Include="SMSLib\crt0">
       <UniqueIdentifier>{d2d27c6c-709c-47c4-a8a7-5d6b57f0f1be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\objects\effects">
+      <UniqueIdentifier>{079c91d8-d464-4e72-b19e-dccf6f40f82b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -217,9 +220,6 @@
     <ClCompile Include="..\source\client\exported\impact.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\effect.c">
-      <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\background3.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
@@ -246,6 +246,15 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\breakable_rock_resource.c">
       <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\rock_particle.c">
+      <Filter>Source Files\client\exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\basic_effect.c">
+      <Filter>Source Files\client\objects\effects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\particle_effect.c">
+      <Filter>Source Files\client\objects\effects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -360,9 +369,6 @@
     <ClInclude Include="..\source\client\exported\impact.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\effect.h">
-      <Filter>Source Files\client\objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\background3.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
@@ -389,6 +395,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\breakable_rock_resource.h">
       <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\rock_particle.h">
+      <Filter>Source Files\client\exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\basic_effect.h">
+      <Filter>Source Files\client\objects\effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\particle_effect.h">
+      <Filter>Source Files\client\objects\effects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,9 @@
 
 #define GET_TILESET_INDEX(x, y) ((ScrollManager_map[(x) + ((y) * ScrollManager_mapWidth)] & TILESET_INDEX_MASK) >> TILESET_INDEX_SHIFT)
 
-typedef void (*TilesetFunction)(unsigned short blockx, unsigned short blocky, const Resource* resource);
+struct tile_set;
+
+typedef void (*TilesetFunction)(const struct tile_set* tileset, unsigned short blockx, unsigned short blocky);
 
 #define COMMON_TILESET_PROPERTIES \
     u8 resourceType;\
@@ -31,9 +33,9 @@ typedef void (*TilesetFunction)(unsigned short blockx, unsigned short blocky, co
     const u16 numMetatiles;\
     const u8 breakable;\
     TilesetFunction tilesetFunction;\
-    const Resource* tilesetResource
+    const Resource** tilesetResource
 
-typedef struct
+typedef struct tile_set
 {
     COMMON_TILESET_PROPERTIES;
     const u8* const tiles;

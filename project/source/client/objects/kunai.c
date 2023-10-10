@@ -13,7 +13,7 @@
 #include "engine/math_utils.h"
 
 #include "client/exported/impact.h"
-#include "client/objects/effect.h"
+#include "client/objects/basic_effect.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -96,7 +96,7 @@ void Kunai_Update(GameObject* object)
 			(const void*)&impact, 
 		};
 
-		GameObject* effect = Effect_Create(&createInfo);
+		GameObject* effect = BasicEffect_Create(&createInfo);
 
 		// destroy or setup erasing a block for later.
 		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
@@ -111,7 +111,7 @@ void Kunai_Update(GameObject* object)
 			ObjectManager_QueueVDPDraw(object, EraseTiles);
 			object->Draw = ObjectUtils_drawNothing;
 
-			tileset->tilesetFunction(blockX, blockY, tileset->tilesetResource);
+			tileset->tilesetFunction(tileset, blockX, blockY);
 		}
 		else
 		{
@@ -155,7 +155,7 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 		(const void*)&impact, 
 	};
 
-	GameObject* effect = Effect_Create(&createInfo);
+	GameObject* effect = BasicEffect_Create(&createInfo);
 
 	effect->speedx = gameObject->speedx >> 2;
 	effect->speedy = gameObject->speedy >> 2;
