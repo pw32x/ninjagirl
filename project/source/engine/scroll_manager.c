@@ -1,8 +1,10 @@
 #include "scroll_manager.h"
 #include "scroll_utils.h"
 #include "SMSLib.h"
+
 #include "engine/map_types.h"
 #include "engine/object_utils.h"
+#include "engine/resource_manager.h"
 
 void (*ScrollManager_Update)(GameObject* target) = ObjectUtils_gameObjectDoNothing;
 void (*ScrollManager_UpdateVDP)(void) = ObjectUtils_doNothing;
@@ -36,3 +38,15 @@ u16 ScrollManager_columnBuffer[SCROLLMANAGER_COLUMNBUFFER_HEIGHT];
 u8 ScrollManager_updateMapVDP = FALSE;
 
 
+TilesetFunction MapManager_tilesetFunctions[MAX_TILESETS];
+const Resource* MapManager_tilesetResources[MAX_TILESETS];
+
+
+void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params)
+{
+	MapManager_tilesetFunctions[params->tilesetIndex] = params->tilesetFunction;
+	MapManager_tilesetResources[params->tilesetIndex] = params->resource;
+
+	if (params->resource)
+		ResourceManager_LoadResource(params->resource);
+}

@@ -36,7 +36,16 @@ extern u16 ScrollManager_mapHeight;
 
 extern const u16* ScrollManager_map;
 
+extern const Resource* MapManager_tilesetResources[MAX_TILESETS];
+extern TilesetFunction MapManager_tilesetFunctions[MAX_TILESETS];
 
+typedef struct
+{
+	u8 tilesetIndex;
+	TilesetFunction tilesetFunction;
+	const Resource* resource;
+} SetTilesetProperties_Params;
 
+void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params);
 
 #endif

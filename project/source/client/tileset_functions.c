@@ -1,3 +1,5 @@
+#include "tileset_functions.h"
+
 #include "engine/resource_types.h"
 #include "engine/terrain_manager.h"
 #include "engine/map_types.h"
@@ -7,15 +9,13 @@
 
 #include "objects/particle_effect.h"
 
-const Resource* breakable_rock_tileset_Resource = (const Resource*)&rock_particle;
-
-void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, unsigned short blockx, unsigned short blocky)
+void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resource* resource, u16 blockx, u16 blocky)
 {
 	CreateInfo createInfo = 
 	{ 
 		B2P(blockx & TERRAIN_WIDTH_MINUS_ONE) + 4, 
 		B2P(blocky) + 4, 
-		*tileset->tilesetResource,
+		resource,
 	};
 
 	GameObject* effect = ParticleEffect_Create(&createInfo);

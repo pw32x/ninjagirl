@@ -241,7 +241,7 @@
     <ClCompile Include="..\source\engine\terrain_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\tileset_externs.c">
+    <ClCompile Include="..\source\client\tileset_functions.c">
       <Filter>Source Files\client</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\breakable_rock_resource.c">
@@ -404,6 +404,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\particle_effect.h">
       <Filter>Source Files\client\objects\effects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\tileset_functions.h">
+      <Filter>Source Files\client</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

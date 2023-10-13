@@ -3,6 +3,8 @@
 
 #include "engine/base_types.h"
 #include "engine/resource_types.h"
+#include "engine/command_types.h"
+
 #include "animation_types.h"
 
 // exported format of map values
@@ -25,15 +27,13 @@
 
 struct tile_set;
 
-typedef void (*TilesetFunction)(const struct tile_set* tileset, unsigned short blockx, unsigned short blocky);
+typedef void (*TilesetFunction)(const struct tile_set* tileset, const Resource* resource, unsigned short blockx, unsigned short blocky);
 
 #define COMMON_TILESET_PROPERTIES \
     u8 resourceType;\
     const u16* const metatile_lut;\
     const u16 numMetatiles;\
-    const u8 breakable;\
-    TilesetFunction tilesetFunction;\
-    const Resource** tilesetResource
+    const u8 breakable
 
 typedef struct tile_set
 {
@@ -62,5 +62,8 @@ typedef struct
 u16 Load_MapResource(const Map* map);
 u16 Load_TilesetResource(const Tileset* tileset);
 u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset);
+
+
+
 
 #endif

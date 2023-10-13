@@ -2459,8 +2459,6 @@ const Tileset background3_tileset =
     background3_tileset_metatiles,
     130, // 16x16 metatiles count
     FALSE, // not breakable
-    NULL, // breakable collision function
-    NULL, // breakable resource
     background3_tileset_tiles,
     228, // unique tile count
     &background3_tilesetVdpLocation,

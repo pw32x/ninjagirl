@@ -1,10 +1,16 @@
 Todo
 
+	DONE assign the tileset properties at runtime
+	
+	split the scroll manager and the map manager
+
 	collision check mid-way on player	
 	
 	why does breakable rock have an extra tile and an extra block?
 
 	player top/bottom animations
+	
+	assign tileset "properties" dynamically 
 	
 	ducking
 	

@@ -19,6 +19,8 @@
 //#include "client/objects/bird.h"
 #include "client/objects/tile_animator.h"
 
+#include "client/tileset_functions.h"
+
 // resources
 #include "client/exported/global_palette.h"
 #include "client/exported/ninja_girl.h"
@@ -28,6 +30,9 @@
 #include "client/exported/background3.h"
 #include "client/exported/explosion.h"
 #include "client/exported/impact.h"
+#include "client/exported/rock_particle.h"
+
+// generated
 #include "client/generated/bank2.h" // music
 
 const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girl };
@@ -41,6 +46,13 @@ const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girl }
 //const CreateInfo level002_createInfo011 = { 234, 176, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo012 = { 254, 102, (const void*)&birdidle };
 
+const SetTilesetProperties_Params setTilesetPropertiesParams = 
+{ 
+	1, 
+	breakable_rock_tileset_TilesetFunction, 
+	(const Resource*)&rock_particle 
+};
+
 Command level002_commands[] = 
 {
 	{ 0, (CommandFunction)CommandRunner_RightScroll_Create, NULL },
@@ -48,6 +60,7 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_map },
+	{ 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girl },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunai },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &evil_eye },

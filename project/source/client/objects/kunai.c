@@ -111,7 +111,10 @@ void Kunai_Update(GameObject* object)
 			ObjectManager_QueueVDPDraw(object, EraseTiles);
 			object->Draw = ObjectUtils_drawNothing;
 
-			tileset->tilesetFunction(tileset, blockX, blockY);
+			MapManager_tilesetFunctions[tilesetIndex](tileset, 
+													  MapManager_tilesetResources[tilesetIndex],
+													  blockX, 
+													  blockY);
 		}
 		else
 		{
