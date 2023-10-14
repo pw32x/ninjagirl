@@ -1,17 +1,14 @@
 #include "breakable_rock_tileset.h"
 #include "resource_types.h"
 
-const unsigned short const breakable_rock_tileset_metatiles[8] = // 2 metatiles
+const unsigned short const breakable_rock_tileset_metatiles[4] = // 1 metatiles
 {
     // metatile 0
     0, 1,
     2, 3,
-    // metatile 1
-    4, 4,
-    4, 4,
 };
 
-const unsigned char const breakable_rock_tileset_tiles[160] = // 5 tiles
+const unsigned char const breakable_rock_tileset_tiles[128] = // 4 tiles
 {
 // tile: 0
     0xFF, 0x7F, 0xF0, 0x80, 
@@ -49,15 +46,6 @@ const unsigned char const breakable_rock_tileset_tiles[160] = // 5 tiles
     0x78, 0x00, 0x86, 0x78, 
     0xE4, 0x00, 0x18, 0x00, 
     0x01, 0x00, 0x01, 0x01, 
-// tile: 4
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 
 };
 
 u16 breakable_rock_tilesetVdpLocation;
@@ -66,10 +54,10 @@ const Tileset breakable_rock_tileset =
 {
     TILESET_RESOURCE_TYPE,
     breakable_rock_tileset_metatiles,
-    2, // 16x16 metatiles count
+    1, // 16x16 metatiles count
     TRUE, // is breakable
     breakable_rock_tileset_tiles,
-    5, // unique tile count
+    4, // unique tile count
     &breakable_rock_tilesetVdpLocation,
 };
 

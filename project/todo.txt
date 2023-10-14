@@ -1,9 +1,5 @@
 Todo
 
-
-	
-	why does breakable rock have an extra tile and an extra block?
-
 	player top/bottom animations
 	
 	assign tileset "properties" dynamically 
@@ -65,7 +61,9 @@ Todo
 	
 	coins
 
+	update all projects to Visual Studio 2022
 	
+		
 	
 	that thing where I swap in and out parts of the background
 		the ground and the sky need to be separate tilesets
@@ -241,6 +239,10 @@ effects
 	rain	
 	
 Completed
+
+	DONE why does breakable rock have an extra tile and an extra block?
+
+
 
 	DONE assign the tileset properties at runtime
 	
