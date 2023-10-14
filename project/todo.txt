@@ -1,15 +1,13 @@
 Todo
 
+	treat the effect entities has a circular list. 
+		always overwrite the oldest effect
+
 	player top/bottom animations
-	
-	assign tileset "properties" dynamically 
 	
 	ducking
 	
-	treat the effect entities has a circular list. 
-		always overwrite the oldest effect
-	
-	shooting 
+	shooting animation
 		have the projectile be around the middle of a tile? 
 		
 	don't jump so fast
@@ -242,6 +240,7 @@ Completed
 
 	DONE why does breakable rock have an extra tile and an extra block?
 
+	DONE assign tileset "properties" dynamically 
 
 
 	DONE assign the tileset properties at runtime

@@ -23,11 +23,13 @@ GameObject ObjectManager_player;
 #define NUM_PROJECTILE_SLOTS 3
 #define NUM_ENEMY_SLOTS 8
 #define NUM_EFFECT_SLOTS 8
+#define NUM_EFFECT_SLOTS_MASK 0x7
 
 GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
 GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
+u8 ObjectManager_numEffects; // effects are treated as a circular list. older effects are overwritten.
 
 GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
 u8 ObjectManager_activeProjectilesCount;
@@ -50,6 +52,8 @@ BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject);
 //
 //u8 ObjectManager_oldProjectileDrawCounter;
 
+
+
 void ObjectManager_Init(void)
 {
 	//ObjectManager_enemyIndex = 0;
@@ -58,6 +62,7 @@ void ObjectManager_Init(void)
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
 	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
 	memset(ObjectManager_effectSlots, 0,sizeof(ObjectManager_effectSlots));
+	ObjectManager_numEffects = 0;
 
 	// setup objects
 	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
@@ -332,8 +337,11 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 	}
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
-		objectSlotRunner = ObjectManager_effectSlots;
-		counter = NUM_EFFECT_SLOTS;
+		// treat effects as a circular list. we overwrite the older effects without waiting
+		// if they're done.
+		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
+		ObjectManager_numEffects++;
+		return objectSlotRunner;
 	}
 
 	while (counter--)
