@@ -51,7 +51,7 @@ u8 isPlayerMoving;
 
 u8 stateChanged;
 
-void updatePlayerAnimation(void)
+void setPlayerAnimation(void)
 {
 	u8 flipped = ObjectManager_player.flipped;
 
@@ -86,7 +86,7 @@ void setPlayerState(u8 newState)
 	}
 
 	playerState = newState;
-	updatePlayerAnimation();
+	setPlayerAnimation();
 
 	stateChanged = TRUE;
 }
@@ -213,7 +213,24 @@ void Player_UpdateX(void)
 		playerSpeedX = projectedX - playerX;
 		return;
 	}
+	
+	blockY = V2B(playerY + P2V((ObjectManager_player.rectBottom + ObjectManager_player.rectTop) >> 1));
 
+	if (blockY < 0)
+		goto update_x;
+
+	tileType = GET_TERRAIN(blockX, blockY);
+
+	if (tileType == TERRAIN_SOLID)
+	{
+		if (playerSpeedX < 0)
+			blockX++;
+
+		playerX = B2V(blockX) - offset;
+		playerSpeedX = projectedX - playerX;
+		return;
+	}
+	
 update_x:
 	playerX = projectedX;
 }
@@ -366,7 +383,7 @@ void Player_Update(GameObject* player)
 	//	playerY += PLAYER_SPEED_Y;
 	
 	if (oldIsPlayerMoving != isPlayerMoving)
-		updatePlayerAnimation();
+		setPlayerAnimation();
 
 
 	if (buttonsPressed & PORT_A_KEY_1)

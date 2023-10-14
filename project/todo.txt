@@ -1,10 +1,6 @@
 Todo
 
-	DONE assign the tileset properties at runtime
-	
-	split the scroll manager and the map manager
 
-	collision check mid-way on player	
 	
 	why does breakable rock have an extra tile and an extra block?
 
@@ -245,6 +241,12 @@ effects
 	rain	
 	
 Completed
+
+	DONE assign the tileset properties at runtime
+	
+	DONE split the scroll manager and the map manager
+
+	DONE collision check mid-way on player	
 
 	DONE destroying an object should just set its update and draw functions to appropriate doNothing()
 
