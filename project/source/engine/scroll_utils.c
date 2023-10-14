@@ -2,6 +2,7 @@
 #include "SMSLib.h"
 #include "engine/map_types.h"
 #include "engine/scroll_manager.h"
+#include "engine/map_manager.h"
 
 u16 ScrollUtils_mapColumnToBuild;
 
@@ -10,7 +11,7 @@ void ScrollUtils_buildColumn(u8* buffer)
 	// from the tile column, get the metatile from the level map
 	u16 metamapColumn = (ScrollUtils_mapColumnToBuild >> 1);
 
-	const u16* mapStart = ScrollManager_map + metamapColumn;
+	const u16* mapStart = MapManager_mapData + metamapColumn;
 
 	// figure out which column of the metatile to get. Metatiles contain two tile columns.
 	u8 metatileOffset = ScrollUtils_mapColumnToBuild & 1;
@@ -18,10 +19,9 @@ void ScrollUtils_buildColumn(u8* buffer)
 	u16* columnRunner = buffer;
 
 	// for the height of a map column, fill the buffer
-	u8 loop =  ScrollManager_mapHeight;
+	u8 loop =  MapManager_mapHeight;
 
 	const u16* sum;
-	u16 metatile_raw;
 	u16 metatile_index;
 	u8 tileset_index;
 	const u16* metatileLut;
@@ -31,10 +31,10 @@ void ScrollUtils_buildColumn(u8* buffer)
 #define FILL_COLUMN()\
 metatileMapItem = *mapStart;\
 tileset_index = (metatileMapItem >> 9) & SHORT_TILESET_INDEX_MASK;\
-vdpLocation = ScrollManager_tilesetVdpLocations[tileset_index];\
-metatileLut = ScrollManager_metatileLuts[tileset_index];\
+vdpLocation = MapManager_tilesetVdpLocations[tileset_index];\
+metatileLut = MapManager_metatileLuts[tileset_index];\
 metatile_index = ((metatileMapItem & BLOCK_MASK) << 2) + metatileOffset;\
-mapStart += ScrollManager_mapWidth;\
+mapStart += MapManager_mapWidth;\
 sum = metatileLut + metatile_index;\
 *columnRunner = *(sum) + vdpLocation;\
 *(columnRunner + 1) = *(sum + 2) + vdpLocation;\

@@ -5,7 +5,7 @@
 
 #include "engine/base_types.h"
 #include "engine/animation_utils.h"
-#include "engine/map_types.h"
+#include "engine/map_load.h"
 
 typedef void* (*LoadFunc)(const void* resource);
 typedef void* (*SetupFunc)(struct game_object* gameObject, const void* resource);

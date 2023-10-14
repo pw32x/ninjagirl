@@ -50,6 +50,8 @@ void Bird_Update(GameObject* object)
 
 BOOL Bird_Draw(GameObject* object)
 {
+	UNUSED(object);
+
 	return FALSE;
 }
 

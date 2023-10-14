@@ -4,6 +4,7 @@
 #include "PSGlib.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
+#include "engine/map_manager.h"
 #include "engine/vdptile_manager.h"
 #include "engine/object_types.h"
 #include "engine/animation_types.h"

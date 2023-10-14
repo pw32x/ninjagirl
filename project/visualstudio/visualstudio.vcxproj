@@ -186,6 +186,8 @@
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\level_manager.c" />
+    <ClCompile Include="..\source\engine\map_load.c" />
+    <ClCompile Include="..\source\engine\map_manager.c" />
     <ClCompile Include="..\source\engine\map_types.c" />
     <ClCompile Include="..\source\engine\object_manager.c" />
     <ClCompile Include="..\source\engine\object_utils.c" />
@@ -234,6 +236,8 @@
     <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\level_manager.h" />
     <ClInclude Include="..\source\engine\level_types.h" />
+    <ClInclude Include="..\source\engine\map_load.h" />
+    <ClInclude Include="..\source\engine\map_manager.h" />
     <ClInclude Include="..\source\engine\map_types.h" />
     <ClInclude Include="..\source\engine\math_utils.h" />
     <ClInclude Include="..\source\engine\object_manager.h" />

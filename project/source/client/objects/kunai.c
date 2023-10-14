@@ -4,6 +4,7 @@
 #include "engine/draw_utils.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
+#include "engine/map_manager.h"
 #include "engine/object_utils.h"
 #include "engine/resource_manager.h"
 #include "engine/object_types.h"
@@ -101,7 +102,7 @@ void Kunai_Update(GameObject* object)
 		// destroy or setup erasing a block for later.
 		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
 
-		const Tileset* tileset = ScrollManager_tilesets[tilesetIndex];
+		const Tileset* tileset = MapManager_tilesets[tilesetIndex];
 
 		if (tileset->breakable)
 		{

@@ -6,6 +6,7 @@
 #include "engine/vdptile_manager.h"
 #include "engine/base_defines.h"
 #include "engine/terrain_manager.h"
+#include "engine/map_manager.h"
 
 #include <stdio.h>
 
@@ -23,14 +24,8 @@ GameObject* RightScroller_Create(const Map* map)
 
 	ScrollManager_Update = RightScroll_Update;
 	ScrollManager_UpdateVDP = RightScroll_UpdateVDP;
-	
-	ScrollManager_backgroundMap = map;
 
-	ScrollManager_mapWidth = ScrollManager_backgroundMap->mapWidth;
-	ScrollManager_mapWidthLimit = (ScrollManager_mapWidth << 4) - SCREEN_WIDTH;
-	ScrollManager_mapHeight = ScrollManager_backgroundMap->mapHeight;
-
-	ScrollManager_map = ScrollManager_backgroundMap->metatileMap;
+	ScrollManager_horizontalScrollLimit = (MapManager_mapWidth << 4) - SCREEN_WIDTH;
 
 	ScrollManager_updateMapVDP = FALSE;
 	SMS_VDPturnOnFeature(VDPFEATURE_LEFTCOLBLANK);
@@ -68,11 +63,11 @@ void RightScroll_Update(GameObject* target)
 	// here we move the vdp scrolling and logical map scrolling to the same speed
 	ScrollManager_horizontalScroll += ScrollManager_speedX; // scrolling towards the right into the map
 
-	if (ScrollManager_horizontalScroll >= ScrollManager_mapWidthLimit)
+	if (ScrollManager_horizontalScroll >= ScrollManager_horizontalScrollLimit)
 	{
 		// some kind of limit
-		ScrollManager_speedX = (ScrollManager_mapWidthLimit - 1) - ScrollManager_horizontalScroll;
-		ScrollManager_horizontalScroll = ScrollManager_mapWidthLimit - 1;
+		ScrollManager_speedX = (ScrollManager_horizontalScrollLimit - 1) - ScrollManager_horizontalScroll;
+		ScrollManager_horizontalScroll = ScrollManager_horizontalScrollLimit - 1;
 	}
 
 	ScrollManager_vdpHorizontalScroll = -(ScrollManager_horizontalScroll & 255); // vdp scrolls backwards in comparison

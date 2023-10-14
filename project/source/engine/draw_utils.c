@@ -69,6 +69,9 @@ void DrawUtils_DrawClippedSides(void)
 
 // 1st sdcccall(1) ASM version: 116 CPU cycles
 void SMS_addSprite_fast_f (unsigned char y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) {
+    UNUSED(y);
+    UNUSED(x_tile);
+
   // Y passed in A
   // X passed in D
   // tile passed in E
@@ -126,6 +129,8 @@ void DrawUtils_Draw(void)
 
 void DrawUtils_addSprite(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 
 {
+    UNUSED(y);
+    UNUSED(x_tile);
   // Y passed in L
   // X passed in D
   // tile passed in E
@@ -163,6 +168,8 @@ void DrawUtils_addSprite(unsigned int y, unsigned int x_tile) __naked __preserve
 // based on SMS_addTwoAdjoiningSprites_f but asumes sprites are 8 pixels wide
 void DrawUtils_addTwoAdjoiningSprites(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 
 {
+    UNUSED(y);
+    UNUSED(x_tile);
   // Y passed in L
   // X passed in D
   // tile passed in E
@@ -217,6 +224,8 @@ _secondSpriteClipped:
 // based on SMS_addThreeAdjoiningSprites_f but asumes sprites are 8 pixels wide
 void DrawUtils_addThreeAdjoiningSprites(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 
 {
+    UNUSED(y);
+    UNUSED(x_tile);
   // Y passed in L
   // X passed in D
   // tile passed in E
@@ -293,6 +302,8 @@ _thirdSpriteClipped3:
 // based on SMS_addThreeAdjoiningSprites_f but does four sprites and asumes sprites are 8 pixels wide
 void DrawUtils_addFourAdjoiningSprites(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d, e, iyh, iyl) __sdcccall(1) 
 {
+    UNUSED(y);
+    UNUSED(x_tile);
   // Y passed in L
   // X passed in D
   // tile passed in E

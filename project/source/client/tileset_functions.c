@@ -11,6 +11,8 @@
 
 void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resource* resource, u16 blockx, u16 blocky)
 {
+	UNUSED(tileset);
+
 	CreateInfo createInfo = 
 	{ 
 		B2P(blockx & TERRAIN_WIDTH_MINUS_ONE) + 4, 

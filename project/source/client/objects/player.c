@@ -303,7 +303,7 @@ void Player_UpdateY(void)
 	//sprintf(output, "%d, %d, %d     ", blockX, blockY, tileType);
 	//SMS_printatXY(1, 0, output); 
 	//
-	//sprintf(output, "%d", ScrollManager_mapWidth);
+	//sprintf(output, "%d", MapManager_mapWidth);
 	//SMS_printatXY(1, 1, output); 
 }
 
@@ -390,7 +390,7 @@ void Player_Update(GameObject* player)
 	//sprintf(output, " %d, %d     ", player->x, playerX);
 	//SMS_printatXY(1, 0, output); 
 	//
-	//sprintf(output, "%d", ScrollManager_mapWidth);
+	//sprintf(output, "%d", MapManager_mapWidth);
 	//SMS_printatXY(1, 1, output); 
 
 	//char output[255];
@@ -431,7 +431,7 @@ void Player_Update(GameObject* player)
 	//sprintf(output, "%u %u %u %u    ", isPlayerOnGround, value, currentBatchedAnimationFrame->frameTime, player->currentBatchedAnimationFrame->frameTime);
 	//SMS_printatXY(1, 0, output); 
 	//
-	//sprintf(output, "%d", ScrollManager_mapWidth);
+	//sprintf(output, "%d", MapManager_mapWidth);
 	//SMS_printatXY(1, 1, output); 
 
 }

@@ -12,7 +12,9 @@
 // 1111            111              111111111
 // 0 - 15          0 - 7            0 - 511
 
-
+#define MAX_TILES           512
+#define MAX_TILESETS        8
+#define MAX_TERRAIN_TYPES   16
 
 #define BLOCK_MASK          0x01FF
 #define TILESET_INDEX_MASK  0x0E00
@@ -23,7 +25,7 @@
 #define TILESET_INDEX_SHIFT 9
 #define TERRAIN_TYPE_SHIFT 12
 
-#define GET_TILESET_INDEX(x, y) ((ScrollManager_map[(x) + ((y) * ScrollManager_mapWidth)] & TILESET_INDEX_MASK) >> TILESET_INDEX_SHIFT)
+
 
 struct tile_set;
 
@@ -52,18 +54,11 @@ typedef struct
 typedef struct
 {
     u8 resourceType;
-    const u16* const metatileMap;
+    const u16* const mapData;
     const Tileset** const tilesets;
     u8 numTilesets;
     u16 mapWidth;
     u16 mapHeight;
 } Map;
-
-u16 Load_MapResource(const Map* map);
-u16 Load_TilesetResource(const Tileset* tileset);
-u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset);
-
-
-
 
 #endif

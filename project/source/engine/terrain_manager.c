@@ -1,5 +1,7 @@
 #include "terrain_manager.h"
 
+#include "engine/map_types.h"
+#include "engine/map_manager.h"
 #include "engine/scroll_manager.h"
 
 #include <string.h>
@@ -19,14 +21,14 @@ void TerrainManager_Init(void)
 
 void TerrainManager_UpdateTerrain(u16 mapColumnIndex)
 {
-	const u16* mapRunner = ScrollManager_map + mapColumnIndex;
+	const u16* mapRunner = MapManager_mapData + mapColumnIndex;
 	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_WIDTH_MINUS_ONE);
 
 	for (u8 loop = 0; loop < TERRAIN_HEIGHT; loop++)
 	{
 		*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT;
 
-		mapRunner += ScrollManager_mapWidth;
+		mapRunner += MapManager_mapWidth;
 		terrainRunner += TERRAIN_WIDTH;
 	}
 }
