@@ -38,7 +38,7 @@ u8 playerState;
 
 u8 isPlayerOnGround;
 u8 isPlayerMoving;
-
+u8 isPlayerShooting;
 
 
 #define PLAYER_GRAVITY	5
@@ -50,10 +50,19 @@ u8 isPlayerMoving;
 #define PLAYER_STATE_JUMP	3
 
 u8 stateChanged;
+u8 animationChanged;
 
 void setPlayerAnimation(void)
 {
 	u8 flipped = ObjectManager_player.flipped;
+	animationChanged = TRUE;
+	if (isPlayerShooting)
+	{
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														flipped ? NINJA_GIRL_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_SHOOT_RIGHT_FRAME_INDEX);
+
+		return;
+	}
 
 	switch (playerState)
 	{
@@ -72,7 +81,6 @@ void setPlayerAnimation(void)
 	case PLAYER_STATE_JUMP:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
 														flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
-		break;
 	}
 }
 
@@ -86,7 +94,9 @@ void setPlayerState(u8 newState)
 	}
 
 	playerState = newState;
-	setPlayerAnimation();
+
+	if (!isPlayerShooting)
+		setPlayerAnimation();
 
 	stateChanged = TRUE;
 }
@@ -121,9 +131,6 @@ GameObject* Player_Create(const CreateInfo* createInfo)
 
 	//ObjectManager_player.animationVdpTileIndex = 0xff;
 
-	//Player_FireWeapon(&ObjectManager_player);
-	//Player_FireWeapon(&ObjectManager_player);
-	//Player_FireWeapon(&ObjectManager_player);
 
 	//SMS_setBGPaletteColor(1, 0xffff);
 
@@ -136,8 +143,8 @@ void Player_FireWeapon(GameObject* player)
 {
 	CreateInfo createInfo = 
 	{ 
-		player->x, 
-		player->y - 2, 
+		player->x + (ObjectManager_player.flipped ? -10 : 10), 
+		player->y - 7, 
 		(const void*)&kunai, 
 	};
 
@@ -148,6 +155,10 @@ void Player_FireWeapon(GameObject* player)
 
 	if (ObjectManager_player.flipped)
 		AnimationUtils_setBatchedAnimationFrame(kunai, 1);
+
+	isPlayerShooting = TRUE;
+	stateChanged = TRUE;
+	setPlayerAnimation();
 }
 
 void Player_UpdateX(void)
@@ -346,8 +357,11 @@ void Player_Update(GameObject* player)
 	{
 		ObjectManager_player.flipped = TRUE;
 
+		if (isPlayerShooting && isPlayerOnGround)
+			playerSpeedX = 0;
+		else
+			playerSpeedX = -PLAYER_SPEED_X;
 
-		playerSpeedX = -PLAYER_SPEED_X;
 		isPlayerMoving = MOVING_LEFT;
 
 		// if state is not run
@@ -362,7 +376,11 @@ void Player_Update(GameObject* player)
 	{
 		ObjectManager_player.flipped = FALSE;
 
-		playerSpeedX = PLAYER_SPEED_X;
+		if (isPlayerShooting && isPlayerOnGround)
+			playerSpeedX = 0;
+		else
+			playerSpeedX = PLAYER_SPEED_X;
+
 		isPlayerMoving = MOVING_RIGHT;
 
 		//if (isPlayerOnGround)
@@ -382,14 +400,15 @@ void Player_Update(GameObject* player)
 	//if (buttonState & PORT_A_KEY_DOWN)
 	//	playerY += PLAYER_SPEED_Y;
 	
-	if (oldIsPlayerMoving != isPlayerMoving)
+	if (oldIsPlayerMoving != isPlayerMoving && !isPlayerShooting)
 		setPlayerAnimation();
 
-
-	if (buttonsPressed & PORT_A_KEY_1)
+	if (buttonsPressed & PORT_A_KEY_1  && !isPlayerShooting)
 		Player_FireWeapon(player);
 
-	if (buttonsPressed & PORT_A_KEY_2  && isPlayerOnGround)
+	if (buttonsPressed & PORT_A_KEY_2  && 
+		isPlayerOnGround &&
+		!isPlayerShooting)
 	{
 		playerSpeedY -= JUMP_SPEED;
 
@@ -418,12 +437,24 @@ void Player_Update(GameObject* player)
 	//		ObjectManager_player.animationTime);
 	//SMS_printatXY(1, 0, output); 
 
-	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) || 
+	u8 updateResult = ObjectManager_player.UpdateAnimation(&ObjectManager_player);
+
+	if (isPlayerShooting && updateResult == ANIMATION_FINISHED)
+	{
+		isPlayerShooting = FALSE;
+		setPlayerAnimation();
+	}
+
+	if (updateResult == ANIMATION_CHANGED_FRAME || 
 		stateChanged ||
+		animationChanged ||
 		oldIsPlayerMoving != isPlayerMoving)
 	{
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}
+
+	animationChanged = FALSE;
+
 
 	/*
 	if (isPlayerOnGround && isPlayerMoving)

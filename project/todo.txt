@@ -1,6 +1,6 @@
 Todo
 
-	treat the effect entities has a circular list. 
+	DONE treat the effect entities has a circular list. 
 		always overwrite the oldest effect
 
 	player top/bottom animations
@@ -9,6 +9,8 @@ Todo
 	
 	shooting animation
 		have the projectile be around the middle of a tile? 
+		
+	climbing walls?
 		
 	don't jump so fast
 	don't fall so fast
