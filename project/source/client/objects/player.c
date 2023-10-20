@@ -48,6 +48,7 @@ u8 isPlayerShooting;
 #define PLAYER_STATE_RUN	1
 #define PLAYER_STATE_FALL	2
 #define PLAYER_STATE_JUMP	3
+#define PLAYER_STATE_DUCK	4
 
 u8 stateChanged;
 u8 animationChanged;
@@ -81,6 +82,11 @@ void setPlayerAnimation(void)
 	case PLAYER_STATE_JUMP:
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
 														flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		break;
+	case PLAYER_STATE_DUCK:
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														flipped ? NINJA_GIRL_DUCK_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_RIGHT_FRAME_INDEX);
+		break;
 	}
 }
 
@@ -160,6 +166,10 @@ void Player_FireWeapon(GameObject* player)
 	stateChanged = TRUE;
 	setPlayerAnimation();
 }
+
+u32 buttonState;
+u32 buttonsPressed;
+u32 buttonsReleased;
 
 void Player_UpdateX(void)
 {
@@ -273,7 +283,20 @@ void Player_UpdateY(void)
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
 
-			isPlayerMoving ? setPlayerState(PLAYER_STATE_RUN) : setPlayerState(PLAYER_STATE_STAND);
+			
+
+			if (buttonState & PORT_A_KEY_DOWN && 
+				isPlayerOnGround)
+			{
+				setPlayerState(PLAYER_STATE_DUCK);
+			}
+			else
+			{
+				if (isPlayerMoving) 
+					setPlayerState(PLAYER_STATE_RUN);
+				else 
+					setPlayerState(PLAYER_STATE_STAND);
+			}
 			
 			return;
 		}
@@ -286,7 +309,17 @@ void Player_UpdateY(void)
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
 
-			isPlayerMoving ? setPlayerState(PLAYER_STATE_RUN) : setPlayerState(PLAYER_STATE_STAND);
+			if (buttonState & PORT_A_KEY_DOWN && 
+				isPlayerOnGround)
+			{
+				setPlayerState(PLAYER_STATE_DUCK);
+			}
+
+			if (playerState != PLAYER_STATE_DUCK && isPlayerMoving) 
+				setPlayerState(PLAYER_STATE_RUN);
+			else 
+				setPlayerState(PLAYER_STATE_STAND);
+
 			return;
 		}
 
@@ -349,59 +382,87 @@ void Player_Update(GameObject* player)
 	
 	isPlayerMoving = NOT_MOVING;
 
-	u32 buttonState = SMS_getKeysStatus();
+	buttonState = SMS_getKeysStatus();
+	buttonsPressed = SMS_getKeysPressed();
+	buttonsReleased = SMS_getKeysReleased();
 
-	u32 buttonsPressed = SMS_getKeysPressed();
+	//if (buttonsReleased & PORT_A_KEY_DOWN && playerState == PLAYER_STATE_DUCK)
+	//{
+	//	setPlayerState(PLAYER_STATE_STAND);
+	//}
 
-	if (buttonState & PORT_A_KEY_LEFT)
-	{
-		ObjectManager_player.flipped = TRUE;
-
-		if (isPlayerShooting && isPlayerOnGround)
-			playerSpeedX = 0;
-		else
-			playerSpeedX = -PLAYER_SPEED_X;
-
-		isPlayerMoving = MOVING_LEFT;
-
-		// if state is not run
-		// if on ground
-		//		setstate(run)
-		//			set animation
-
-		//if (isPlayerOnGround)
-		//	setPlayerState(PLAYER_STATE_RUN);
-	}
-	else if (buttonState & PORT_A_KEY_RIGHT)
-	{
-		ObjectManager_player.flipped = FALSE;
-
-		if (isPlayerShooting && isPlayerOnGround)
-			playerSpeedX = 0;
-		else
-			playerSpeedX = PLAYER_SPEED_X;
-
-		isPlayerMoving = MOVING_RIGHT;
-
-		//if (isPlayerOnGround)
-		//	setPlayerState(PLAYER_STATE_RUN);
-	}
-	else
+	u8 flippedChanged = FALSE;
+	
+	if (playerState == PLAYER_STATE_DUCK)
 	{
 		playerSpeedX = 0;
 
-		//if (isPlayerOnGround)
-		//	setPlayerState(PLAYER_STATE_STAND);
+		if (buttonState & PORT_A_KEY_LEFT)
+		{
+			if (!ObjectManager_player.flipped)
+			{
+				ObjectManager_player.flipped = TRUE;
+				flippedChanged = TRUE;
+				setPlayerAnimation();
+			}
+		}
+		else if (buttonState & PORT_A_KEY_RIGHT)
+		{
+			if (ObjectManager_player.flipped)
+			{
+				ObjectManager_player.flipped = FALSE;
+				flippedChanged = TRUE;
+				setPlayerAnimation();
+			}
+		}
 	}
 
-	//if (buttonState & PORT_A_KEY_UP)
-	//	playerY -= PLAYER_SPEED_Y;
-	//
-	//if (buttonState & PORT_A_KEY_DOWN)
-	//	playerY += PLAYER_SPEED_Y;
-	
-	if (oldIsPlayerMoving != isPlayerMoving && !isPlayerShooting)
-		setPlayerAnimation();
+	else
+	{
+		if (buttonState & PORT_A_KEY_LEFT)
+		{
+			ObjectManager_player.flipped = TRUE;
+
+			if (isPlayerShooting && isPlayerOnGround)
+				playerSpeedX = 0;
+			else
+				playerSpeedX = -PLAYER_SPEED_X;
+
+			isPlayerMoving = MOVING_LEFT;
+
+			// if state is not run
+			// if on ground
+			//		setstate(run)
+			//			set animation
+
+			//if (isPlayerOnGround)
+			//	setPlayerState(PLAYER_STATE_RUN);
+		}
+		else if (buttonState & PORT_A_KEY_RIGHT)
+		{
+			ObjectManager_player.flipped = FALSE;
+
+			if (isPlayerShooting && isPlayerOnGround)
+				playerSpeedX = 0;
+			else
+				playerSpeedX = PLAYER_SPEED_X;
+
+			isPlayerMoving = MOVING_RIGHT;
+
+			//if (isPlayerOnGround)
+			//	setPlayerState(PLAYER_STATE_RUN);
+		}
+		else
+		{
+			playerSpeedX = 0;
+
+			//if (isPlayerOnGround)
+			//	setPlayerState(PLAYER_STATE_STAND);
+		}
+
+		if (oldIsPlayerMoving != isPlayerMoving && !isPlayerShooting)
+			setPlayerAnimation();
+	}
 
 	if (buttonsPressed & PORT_A_KEY_1  && !isPlayerShooting)
 		Player_FireWeapon(player);
@@ -415,6 +476,7 @@ void Player_Update(GameObject* player)
 		if (isPlayerOnGround && playerState != PLAYER_STATE_JUMP)
 			setPlayerState(PLAYER_STATE_JUMP);
 	}
+
 
 	Player_UpdateX();
 	Player_UpdateY();
@@ -447,6 +509,7 @@ void Player_Update(GameObject* player)
 
 	if (updateResult == ANIMATION_CHANGED_FRAME || 
 		stateChanged ||
+		flippedChanged ||
 		animationChanged ||
 		oldIsPlayerMoving != isPlayerMoving)
 	{
@@ -454,34 +517,6 @@ void Player_Update(GameObject* player)
 	}
 
 	animationChanged = FALSE;
-
-
-	/*
-	if (isPlayerOnGround && isPlayerMoving)
-	{
-		ObjectManager_player.UpdateAnimation(&ObjectManager_player);
-	}
-	else if (isPlayerOnGround)
-	{
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, PLAYER_ANIMATION_FRAME_STAND);
-	}
-	else
-	{
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, PLAYER_ANIMATION_FRAME_JUMP);
-	}
-	*/
-
-	//char output[255];
-	//
-	//u8 value =  ninja_girl.frames[0]->frameTime;
-	//AnimationFrameBatched* currentBatchedAnimationFrame = ninja_girl.frames[0];
-	//
-	//sprintf(output, "%u %u %u %u    ", isPlayerOnGround, value, currentBatchedAnimationFrame->frameTime, player->currentBatchedAnimationFrame->frameTime);
-	//SMS_printatXY(1, 0, output); 
-	//
-	//sprintf(output, "%d", MapManager_mapWidth);
-	//SMS_printatXY(1, 1, output); 
-
 }
 
 BOOL Player_Draw(GameObject* object)
