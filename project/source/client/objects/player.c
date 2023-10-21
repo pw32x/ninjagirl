@@ -59,8 +59,17 @@ void setPlayerAnimation(void)
 	animationChanged = TRUE;
 	if (isPlayerShooting)
 	{
+		if (playerState == PLAYER_STATE_DUCK)
+		{
+		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
+														flipped ? NINJA_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
+
+		}
+		else
+		{
 		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
 														flipped ? NINJA_GIRL_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_SHOOT_RIGHT_FRAME_INDEX);
+		}
 
 		return;
 	}
@@ -147,10 +156,13 @@ GameObject* Player_Create(const CreateInfo* createInfo)
 
 void Player_FireWeapon(GameObject* player)
 {
+
+	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 1 : -6;
+
 	CreateInfo createInfo = 
 	{ 
 		player->x + (ObjectManager_player.flipped ? -10 : 10), 
-		player->y - 7, 
+		player->y + offset, 
 		(const void*)&kunai, 
 	};
 

@@ -99,7 +99,7 @@ typedef struct
 typedef struct streamed_batched_animation_frame
 {
     const BatchedAnimationSprite* const batchedSprites;
-    u8 tileIndex;
+    u16 tileIndex;
     u8 frameTime;
     struct streamed_batched_animation_frame* nextFrame;
 } StreamedBatchedAnimationFrame;
