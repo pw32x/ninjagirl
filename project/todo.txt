@@ -1,14 +1,7 @@
 Todo
 
-	DONE treat the effect entities has a circular list. 
-		always overwrite the oldest effect
 
-	player top/bottom animations
-	
-	ducking
-	
-	shooting animation
-		have the projectile be around the middle of a tile? 
+	DONE effects are buggy once past the first screen
 		
 	climbing walls?
 		
@@ -25,6 +18,13 @@ Todo
 			I already know how many tiles I have to update
 
 		unroll loop to update terrain buffer
+
+	space pass
+	
+		find ways to save rom space with animations
+		
+			for streaming animations, only store the tile differences in an animation
+			copy the tile differences only to vdp
 
 	banks!
 
@@ -239,6 +239,17 @@ effects
 	rain	
 	
 Completed
+
+	DONE treat the effect entities has a circular list. 
+		always overwrite the oldest effect
+
+	NAH player top/bottom animations
+	
+	DONE ducking
+	
+	DONE shooting animation
+		NAH have the projectile be around the middle of a tile? 
+		
 
 	DONE why does breakable rock have an extra tile and an extra block?
 

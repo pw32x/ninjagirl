@@ -8,6 +8,8 @@
 #include "engine/resource_manager.h"
 #include "engine/animation_utils.h"
 
+#include <stdio.h>
+
 void ParticleEffect_Update(GameObject* object);
 BOOL ParticleEffect_Draw(GameObject* object);
 
@@ -21,6 +23,7 @@ GameObject* ParticleEffect_Create(const CreateInfo* createInfo)
 
 	object->x = P2V(createInfo->startX);
 	object->y = P2V(createInfo->startY);
+
 	object->Update = ParticleEffect_Update;
 	object->Draw = ParticleEffect_Draw;
 
@@ -38,6 +41,7 @@ void ParticleEffect_Update(GameObject* object)
 
 	s16 screenx = V2P(object->x);
 	s16 screeny	= V2P(object->y);
+
 
 	if (screenx > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
 		screeny > SCREEN_BOTTOM ||

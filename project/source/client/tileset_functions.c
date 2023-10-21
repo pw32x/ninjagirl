@@ -15,7 +15,7 @@ void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resour
 
 	CreateInfo createInfo = 
 	{ 
-		B2P(blockx & TERRAIN_WIDTH_MINUS_ONE) + 4, 
+		B2P(blockx) + 4, 
 		B2P(blocky) + 4, 
 		resource,
 	};

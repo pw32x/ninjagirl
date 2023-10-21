@@ -21,8 +21,7 @@
 
 #include <stdio.h>
 
-#define PLAYER_SPEED_X	24
-#define PLAYER_SPEED_Y	16
+
 
 void Player_Update(GameObject* player);
 BOOL Player_Draw(GameObject* player);
@@ -40,9 +39,9 @@ u8 isPlayerOnGround;
 u8 isPlayerMoving;
 u8 isPlayerShooting;
 
-
+#define PLAYER_SPEED_X	24
 #define PLAYER_GRAVITY	5
-#define JUMP_SPEED 100
+#define JUMP_SPEED 95
 
 #define PLAYER_STATE_STAND	0
 #define PLAYER_STATE_RUN	1
@@ -115,9 +114,6 @@ void setPlayerState(u8 newState)
 
 	stateChanged = TRUE;
 }
-
-#define PLAYER_ANIMATION_FRAME_STAND 0
-#define PLAYER_ANIMATION_FRAME_JUMP 1
 
 GameObject* Player_Create(const CreateInfo* createInfo)
 {

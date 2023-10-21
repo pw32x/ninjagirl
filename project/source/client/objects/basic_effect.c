@@ -19,6 +19,8 @@ GameObject* BasicEffect_Create(const CreateInfo* createInfo)
 
 	object->x = createInfo->startX;
 	object->y = createInfo->startY;
+	object->speedx = 0;
+	object->speedy = 0;
 	object->Update = BasicEffect_Update;
 	object->Draw = BasicEffect_Draw;
 
