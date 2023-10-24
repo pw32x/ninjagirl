@@ -8,7 +8,8 @@
 
         public void Perform(Config config)
         {
-            Steps.ExportGameData(config);
+            Steps.RunAllTools(config);
+            Steps.UpdateMakefileConfig(config);
             Steps.BuildCode(config);
             //Steps.RenameRom(config);
             Steps.CopyRom(config);

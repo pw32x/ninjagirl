@@ -2,7 +2,7 @@
   "profiles": {
     "BuildMaster": {
       "commandName": "Project",
-      "commandLineArgs": "config.bms build",
+      "commandLineArgs": "config.bm build",
       "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project\\build"
     }
   }

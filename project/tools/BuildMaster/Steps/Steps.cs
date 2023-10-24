@@ -13,10 +13,8 @@ namespace BuildMaster
         {
             Console.WriteLine("Step: Build code:");
 
-            string makefilePath = config.GetSetting("makefile.Path");
-
             // This app calls powershell, which calls wsl. Yeah, not great probably.
-            string commandArguments = "-nologo /c C:\\Windows\\System32\\wsl.exe make -f " + makefilePath;
+            string commandArguments = "-nologo /c C:\\Windows\\System32\\wsl.exe make -f " + config.MakefilePath;
             Utils.RunCommandLine("powershell.exe", commandArguments);
         }
 
@@ -24,38 +22,49 @@ namespace BuildMaster
         {
             Console.WriteLine("Step: Clean Output Folder:");
 
-            string makefilePath = config.GetSetting("makefile.Path");
-
             // This app calls powershell, which calls wsl. Yeah, not great probably.
-            string commandArguments = "/c C:\\Windows\\System32\\wsl.exe make clean -f " + makefilePath;
+            string commandArguments = "/c C:\\Windows\\System32\\wsl.exe make clean -f " + config.MakefilePath;
             Utils.RunCommandLine("powershell.exe", commandArguments);
         }
 
-        public static void ExportGameData(Config config)
+        public static void RunAllTools(Config config)
         {
-            Console.WriteLine("Step: Export Game Data:");
-            ExportBackgrounds(config);
-            ExportAnimations(config);
+            Console.WriteLine("Step: Running Tools:");
+
+            var entries = config.Entries;
+
+            foreach (var toolInfo in config.ToolInfos)
+            {
+                Console.WriteLine("Step: " + toolInfo.Info);
+
+                var applicableEntries = entries.Where(e => e.ToolName == toolInfo.Name);
+
+                string toolPath = toolInfo.Path;
+
+                foreach (var entry in applicableEntries)
+                {
+                    Console.WriteLine("Tool: " + toolInfo.Name);
+                    Console.WriteLine("Source Path: " + entry.SourcePath);
+                    Console.WriteLine("Destination Path: " + entry.DestinationPath);
+                    Console.WriteLine("Flags: " + toolInfo.Flags);
+
+                    Utils.RunCommandLine(toolPath, entry.SourcePath + " " + entry.DestinationPath + " " + toolInfo.Flags);
+                }
+            }
         }
 
-        public static void ExportBackgrounds(Config config)
+        public static void UpdateMakefileConfig(Config config)
         {
-            Console.WriteLine("Step: Export Backgrounds:");
-            string exePath = config.GetSetting("tmx2c.ExePath");
-            string sourceFolder = config.GetSetting("tmx2c.SourceFolder");
-            string destinationFolder = config.GetSetting("tmx2c.DestinationFolder");
+            var makefileConfigPath = config.GetSetting("buildFolder") + "\\Makefile.config";
 
-            Utils.RunCommandLine(exePath, sourceFolder + " " + destinationFolder);
-        }
+            var sb = new StringBuilder();
 
-        public static void ExportAnimations(Config config)
-        {
-            Console.WriteLine("Step: Export Animations:");
-            string exePath = config.GetSetting("gg2c.ExePath");
-            string sourceFolder = config.GetSetting("gg2c.SourceFolder");
-            string destinationFolder = config.GetSetting("gg2c.DestinationFolder");
+            foreach (var directory in config.DestinationFolders)
+            {
+                sb.AppendLine(directory);
+            }
 
-            Utils.RunCommandLine(exePath, sourceFolder + " " + destinationFolder + " -sms -updateonly");
+            File.WriteAllText(makefileConfigPath, sb.ToString());
         }
 
         public static void RenameRom(Config config)
