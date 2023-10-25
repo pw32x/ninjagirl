@@ -35,6 +35,9 @@
     <Filter Include="Source Files\client\objects\effects">
       <UniqueIdentifier>{079c91d8-d464-4e72-b19e-dccf6f40f82b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="SMSLib\rest">
+      <UniqueIdentifier>{4641e710-cb79-4041-ab37-ad0bb2f04671}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -97,15 +100,6 @@
     <ClCompile Include="..\source\client\exported\kunai.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_sprite.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_twosprites.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_threesprites.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.c">
       <Filter>SMSLib</Filter>
     </ClCompile>
@@ -120,84 +114,6 @@
     </ClCompile>
     <ClCompile Include="..\source\client\objects\bird.c">
       <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_readVRAM.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteAdv.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteClip.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STC0comp.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STMcomp.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_string.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_textrenderer.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE_aPLib.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy_brief.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_aPLib.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_autotext.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_common.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_deprecated.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_getTile.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_load1bppTiles.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapArea.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapColumn.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paddle.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteAdv.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteSub.c">
-      <Filter>SMSLib</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_PSGaiden.c">
-      <Filter>SMSLib</Filter>
     </ClCompile>
     <ClCompile Include="..\source\engine\resource_manager.c">
       <Filter>Source Files\engine</Filter>
@@ -261,6 +177,93 @@
     </ClCompile>
     <ClCompile Include="..\source\engine\map_load.c">
       <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_aPLib.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_autotext.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_common.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_deprecated.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_getTile.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_load1bppTiles.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapArea.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapColumn.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paddle.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteAdv.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteSub.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_PSGaiden.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_readVRAM.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_sprite.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteAdv.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_spriteClip.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STC0comp.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_STMcomp.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_string.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_textrenderer.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_threesprites.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_twosprites.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_UNSAFE_aPLib.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemcpy_brief.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c">
+      <Filter>SMSLib\rest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
+      <Filter>SMSLib\rest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -448,6 +451,9 @@
     </None>
     <None Include="..\..\..\..\devkitSMS-master\crt0\src\crt0_sms.s">
       <Filter>SMSLib\crt0</Filter>
+    </None>
+    <None Include="..\build\Makefile.config">
+      <Filter>build</Filter>
     </None>
   </ItemGroup>
 </Project>

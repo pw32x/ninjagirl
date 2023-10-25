@@ -59,9 +59,11 @@ namespace BuildMaster
 
             var sb = new StringBuilder();
 
+            sb.Append("DEST_DIRECTORIES = ");
+
             foreach (var directory in config.DestinationFolders)
             {
-                sb.AppendLine(directory);
+                sb.Append(directory.Replace('\\', '/') + " ");
             }
 
             File.WriteAllText(makefileConfigPath, sb.ToString());

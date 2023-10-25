@@ -16,8 +16,8 @@
 
 //kunai
 #include "client/objects/kunai.h"
-#include "client/exported/kunai.h"
-#include "client/exported/ninja_girl.h"
+#include "client/exported/animations/kunai.h"
+#include "client/exported/animations/ninja_girl.h"
 
 #include <stdio.h>
 

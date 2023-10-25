@@ -258,6 +258,7 @@
     <None Include="..\build\clean.bat" />
     <None Include="..\build\config.bm" />
     <None Include="..\build\Makefile" />
+    <None Include="..\build\Makefile.config" />
     <None Include="..\build\rebuild.bat" />
     <None Include="..\build\vs_build.bat" />
     <None Include="..\build\vs_clean.bat" />

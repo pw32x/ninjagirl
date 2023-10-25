@@ -1,3 +1,5 @@
+include Build/Makefile.config
+
 #change to your preferred name
 #pass the PROGNAME name as a parameter to set a new rom name. "make PROGNAME=my_new_name"
 PROGNAME?=untitled_project
@@ -18,12 +20,15 @@ PSGLIB_BASE=$(DEVKITSMS_BASE)/PSGlib
 PSGLIB_INCDIR=$(PSGLIB_BASE)/src
 PSGLIB_LIB=$(PSGLIB_BASE)/PSGlib.rel
 
+
+
 FOLDER_TO_CREATE  = $(SOURCE_OUTPUT_DIR) 
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/exported 
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/generated 
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/client/objects
 FOLDER_TO_CREATE += $(SOURCE_OUTPUT_DIR)/engine
+FOLDER_TO_CREATE += $(foreach dir, $(DEST_DIRECTORIES), $(OUTPUT_DIR)/$(dir))
 
 SOURCE_DIR = source
 OUTPUT_DIR = out
@@ -39,6 +44,7 @@ CS    += $(wildcard $(SOURCE_DIR)/client/exported/*.c)
 CS    += $(wildcard $(SOURCE_DIR)/client/generated/*.c)
 CS    += $(wildcard $(SOURCE_DIR)/client/objects/*.c)
 CS    += $(wildcard $(SOURCE_DIR)/engine/*.c)
+CS    += $(foreach dir, $(DEST_DIRECTORIES), $(wildcard $(dir)/*.c))
 
 OBJ = $(CS:.c=.rel)
 OBJS= $(addprefix $(OUTPUT_DIR)/, $(OBJ))
@@ -52,6 +58,7 @@ $(FOLDER_TO_CREATE):
 	mkdir -p $(FOLDER_TO_CREATE)
 
 $(SOURCE_OUTPUT_DIR)/%.rel: $(SOURCE_DIR)/%.c
+	@echo  $(FOLDER_TO_CREATE)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(SOURCE_OUTPUT_DIR)/%.rel: $(SOURCE_DIR)/%.c $(SOURCE_DIR)/%.h
@@ -72,6 +79,10 @@ clean:
 	rm -f $(SOURCE_OUTPUT_DIR)/client/generated/*.*
 	rm -f $(SOURCE_OUTPUT_DIR)/engine/*.*
 	rm -f $(OUTPUT_DIR)/*.* 
+	for dir in $(DEST_DIRECTORIES); do \
+		rm -rf $(OUTPUT_DIR)/$$dir/*.*; \
+	done
+
 
 
 # When a linking error occurs, sdcc returns an error and make fails. However

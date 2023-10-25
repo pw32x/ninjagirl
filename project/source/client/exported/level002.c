@@ -24,14 +24,14 @@
 
 // resources
 #include "client/exported/global_palette.h"
-#include "client/exported/ninja_girl.h"
-#include "client/exported/kunai.h"
+#include "client/exported/animations/ninja_girl.h"
+#include "client/exported/animations/kunai.h"
 //#include "client/exported/evil_eye.h"
 //#include "client/exported/birdidle.h"
-#include "client/exported/background3.h"
-#include "client/exported/explosion.h"
-#include "client/exported/impact.h"
-#include "client/exported/rock_particle.h"
+#include "client/exported/maps/background3.h"
+#include "client/exported/animations/explosion.h"
+#include "client/exported/animations/impact.h"
+#include "client/exported/animations/rock_particle.h"
 
 // generated
 #include "client/generated/bank2.h" // music

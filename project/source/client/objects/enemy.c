@@ -8,7 +8,7 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 
-#include "client/exported/explosion.h"
+#include "client/exported/animations/explosion.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx

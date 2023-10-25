@@ -3,7 +3,7 @@
     "BuildMaster": {
       "commandName": "Project",
       "commandLineArgs": "config.bm build",
-      "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project\\build"
+      "workingDirectory": "..\\..\\build"
     }
   }
 }

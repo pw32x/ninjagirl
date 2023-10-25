@@ -3,7 +3,7 @@
     "SoundMaster": {
       "commandName": "Project",
       "commandLineArgs": "config.sm",
-      "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project\\assets\\vgm"
+      "workingDirectory": "..\\..\\assets\\vgm"
     }
   }
 }

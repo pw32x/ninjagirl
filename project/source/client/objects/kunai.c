@@ -13,7 +13,7 @@
 
 #include "engine/math_utils.h"
 
-#include "client/exported/impact.h"
+#include "client/exported/animations/impact.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx
