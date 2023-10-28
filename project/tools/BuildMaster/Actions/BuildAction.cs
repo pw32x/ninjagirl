@@ -11,6 +11,9 @@
             Steps.RunAllTools(config);
             Steps.UpdateMakefileConfig(config);
             Steps.BuildCode(config);
+
+            NewBuildStep.BuildCode(config);
+
             //Steps.RenameRom(config);
             Steps.CopyRom(config);
             Steps.CopyToDailyFolder(config);

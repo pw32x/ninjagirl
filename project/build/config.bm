@@ -11,18 +11,39 @@
 		<Setting name="buildFolder" value="build" />
 		<Setting name="makefile.Path" value="build/Makefile" /> <!-- forward slashes! -->
 		<Setting name="dailyVersionsFolder" value="..\dailyversions" />
+
+		<!-- new settings -->
+		<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
+		<Setting name="outFolder" value="outFolder"/>		
 		
     </Settings>
     
+
 	<Tools>
 		<Tool name="gg2c" path="..\..\..\..\GenDev\Projects\gg2c\Release\gg2c.exe" flags="-sms -updateonly" info="Export Animations"/>
 		<Tool name="tmx2c" path="..\..\tmx2c\bin\tmx2c.exe" info="Export backgrounds"/>
 	</Tools>
-	<Entries>
-		<Entry tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" />
-		<Entry tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" />
-	</Entries>    
-    
+	
+	<ToolJobs>
+		<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="3"/>
+	</ToolJobs>
+
+	<Include path ="source"/>
+	<Include path ="source/engine"/>
+	
+    <SourceSet>
+		<Source path = "source/client"/>
+		<Source path = "source/client/exported"/>
+		<Source path = "source/client/generated"/>
+		<Source path = "source/client/objects"/>
+		<Source path = "source/engine"/>
+    </SourceSet>
+
+	<SourceSet bank="2">
+		<Source path = "source/client/blah"/>
+	</SourceSet>
+
 </BuildMaster>
 
 
@@ -30,15 +51,17 @@
 
 TODO
 
-build a list of destination folders from the entries
+DONE build a list of destination folders from the entries
 
-use this list to
+DONE use this list to
 	- build the list of destination folders for the makefile to create
-
-
 	- clean generated .c files
 		what about the files that don't get generated automatically?
 	
+if the source is a file, set it apart from any entries that use the directory its in	
+	
 set banking info per entry
+
+process assets
 
 -->

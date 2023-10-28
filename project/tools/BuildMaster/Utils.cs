@@ -56,5 +56,16 @@ namespace BuildMaster
                 throw new Exception("RunCommandLine failed. Command: " + command + " parameters: " + commandParameters + "\n" + 
                                     errors);
         }
+
+        public static string EnsureTrailingSlash(string path)
+        {
+            if (!path.EndsWith("\\") && !path.EndsWith("/"))
+            {
+                // Add a trailing slash
+                path = path + "\\";
+            }
+
+            return path;
+        }
     }
 }

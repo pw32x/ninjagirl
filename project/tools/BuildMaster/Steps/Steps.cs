@@ -18,6 +18,8 @@ namespace BuildMaster
             Utils.RunCommandLine("powershell.exe", commandArguments);
         }
 
+
+
         public static void CleanOutputFolder(Config config)
         {
             Console.WriteLine("Step: Clean Output Folder:");
@@ -31,24 +33,24 @@ namespace BuildMaster
         {
             Console.WriteLine("Step: Running Tools:");
 
-            var entries = config.Entries;
+            var toolJobs = config.ToolJobs;
 
             foreach (var toolInfo in config.ToolInfos)
             {
                 Console.WriteLine("Step: " + toolInfo.Info);
 
-                var applicableEntries = entries.Where(e => e.ToolName == toolInfo.Name);
+                var applicableToolJobs = toolJobs.Where(e => e.ToolName == toolInfo.Name);
 
                 string toolPath = toolInfo.Path;
 
-                foreach (var entry in applicableEntries)
+                foreach (var toolJob in applicableToolJobs)
                 {
                     Console.WriteLine("Tool: " + toolInfo.Name);
-                    Console.WriteLine("Source Path: " + entry.SourcePath);
-                    Console.WriteLine("Destination Path: " + entry.DestinationPath);
+                    Console.WriteLine("Source Path: " + toolJob.SourcePath);
+                    Console.WriteLine("Destination Path: " + toolJob.DestinationPath);
                     Console.WriteLine("Flags: " + toolInfo.Flags);
 
-                    Utils.RunCommandLine(toolPath, entry.SourcePath + " " + entry.DestinationPath + " " + toolInfo.Flags);
+                    Utils.RunCommandLine(toolPath, toolJob.SourcePath + " " + toolJob.DestinationPath + " " + toolInfo.Flags);
                 }
             }
         }
@@ -61,7 +63,7 @@ namespace BuildMaster
 
             sb.Append("DEST_DIRECTORIES = ");
 
-            foreach (var directory in config.DestinationFolders)
+            foreach (var directory in config.ToolDestinationFolders)
             {
                 sb.Append(directory.Replace('\\', '/') + " ");
             }

@@ -1,5 +1,9 @@
 Todo
 	
+	gg2c doesn't create sub folders
+	
+	
+	
 	move tools to tools folder
 	
 	add "bank" option to tools?
