@@ -85,7 +85,7 @@ namespace BuildMaster
 
     class Config
     {
-        private CompilationSettings m_compilationSettings;
+        public CompilationSettings CompilationSettings;
 
         public void Load(string path)
         {
@@ -106,7 +106,7 @@ namespace BuildMaster
             BuildToolDestinationFoldersList();
 
 
-            m_compilationSettings = new CompilationSettings(GetSetting("devkitSmsPath"),
+            CompilationSettings = new CompilationSettings(GetSetting("devkitSmsPath"),
                                                             GetSetting("outFolder"));
         }
 
@@ -116,10 +116,10 @@ namespace BuildMaster
 
             void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
 
-            addFlag(m_compilationSettings.Compiler);
+            addFlag(CompilationSettings.Compiler);
             addFlag("-o");
-            addFlag(m_compilationSettings.OutFolder + ProjectName + ".ihx");
-            addFlag(m_compilationSettings.GetLinkerFlags());
+            addFlag(CompilationSettings.OutFolder + ProjectName + ".ihx");
+            addFlag(CompilationSettings.GetLinkerFlags());
 
             return sb.ToString();
         }
@@ -130,9 +130,9 @@ namespace BuildMaster
 
             void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
 
-            addFlag(m_compilationSettings.IHX2SMS_Path);
-            addFlag(m_compilationSettings.OutFolder + ProjectName + ".ihx");
-            addFlag(m_compilationSettings.OutFolder + ProjectName + ".sms");
+            addFlag(CompilationSettings.IHX2SMS_Path);
+            addFlag(CompilationSettings.OutFolder + ProjectName + ".ihx");
+            addFlag(CompilationSettings.OutFolder + ProjectName + ".sms");
 
             return sb.ToString();
         }
@@ -145,13 +145,13 @@ namespace BuildMaster
             {
                 foreach (var sourcePath in sourceSet.SourcePaths)
                 {
-                    sourceDestinationFolders.Add(m_compilationSettings.OutFolder + sourcePath);
+                    sourceDestinationFolders.Add(CompilationSettings.OutFolder + sourcePath);
                 }
             }
 
             foreach(var toolDestinationFolder in m_toolDestinationFolders)
             {
-                sourceDestinationFolders.Add(m_compilationSettings.OutFolder + toolDestinationFolder);
+                sourceDestinationFolders.Add(CompilationSettings.OutFolder + toolDestinationFolder);
             }
 
             return sourceDestinationFolders;
@@ -182,7 +182,7 @@ namespace BuildMaster
 
             string[] sourceFileExtensions = { ".c", ".s" };
 
-            var compilerFlags = m_compilationSettings.BuildCompilerFlags(m_includePaths);
+            var compilerFlags = CompilationSettings.BuildCompilerFlags(m_includePaths);
 
             var currentDirectory = Directory.GetCurrentDirectory();
 
@@ -202,7 +202,7 @@ namespace BuildMaster
                             string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
 
                             sourceFilesToBuild.Add(new SourceToBuild(relativePath, 
-                                                                     m_compilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
+                                                                     CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
                                                                      compilerFlags,
                                                                      sourceSet.Bank));
                         }
@@ -224,7 +224,7 @@ namespace BuildMaster
                         string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
 
                         sourceFilesToBuild.Add(new SourceToBuild(filteredFile.FullName, 
-                                                                 m_compilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
+                                                                 CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
                                                                  compilerFlags
                                                                  /*, sourceSet.Bank)*/
                                                                  ));

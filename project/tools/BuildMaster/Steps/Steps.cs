@@ -18,8 +18,6 @@ namespace BuildMaster
             Utils.RunCommandLine("powershell.exe", commandArguments);
         }
 
-
-
         public static void CleanOutputFolder(Config config)
         {
             Console.WriteLine("Step: Clean Output Folder:");

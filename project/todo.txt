@@ -1,7 +1,23 @@
 Todo
 	
-	gg2c doesn't create sub folders
+	DONE gg2c doesn't create sub folders
 	
+	
+	BuildMaster
+	
+		DONE build game with new system
+		
+		DONE clean out folder
+
+		DONE rebuild game
+
+		DONE benchmark old and new method
+		
+		remove old method
+		
+		introduce banking
+		
+		include file dependencies
 	
 	
 	move tools to tools folder

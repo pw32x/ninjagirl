@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BuildMaster
 {
-    class NewBuildStep
+    class NewSteps
     {
         public static void BuildCode(Config config)
         {
@@ -17,24 +17,28 @@ namespace BuildMaster
             var sourceFilesToBuild = config.BuildListOfSourceFilesToCompile();
             var sourceDestinationFolders = config.BuildSourceDestinationFolders();
 
-            CreateSourceDestinationFolders(sourceDestinationFolders);
+            Utils.CreateFolders(sourceDestinationFolders);
 
-            BuildSourceFiles(sourceFilesToBuild, config);
+            BuildProject(sourceFilesToBuild, config);
+        }
+
+        public static void CleanOutputFolder(Config config)
+        {
+            Utils.DeleteAllFiles(config.CompilationSettings.OutFolder);
+        }
+
+        private static void BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
+        {
+            // Create a new process start info
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "cmd.exe", // Use the command prompt
+                RedirectStandardInput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
 
             var destinationSourceObjects = sourceFilesToBuild.Select(s => s.Destination);
-            Link(config, destinationSourceObjects);
-        }
-
-        private static void Link(Config config, IEnumerable<string> destinationSourceObjects)
-        {
-            // Create a new process start info
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "cmd.exe", // Use the command prompt
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
 
             // Start the process
             Process process = new Process { StartInfo = psi };
@@ -43,47 +47,7 @@ namespace BuildMaster
             // Get the process's input stream
             StreamWriter sw = process.StandardInput;
 
-            var sb = new StringBuilder();
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
-
-            foreach (var destinationSourceObject in destinationSourceObjects)
-            {
-                addFlag(destinationSourceObject);
-            }
-
-            sw.WriteLine(config.BuildLinkCommand() + " " + sb.ToString());
-            sw.WriteLine(config.BuildIHXToSMSCommand());
-
-            // Close the input stream to indicate the end of input
-            sw.Close();
-
-            // Wait for the process to complete
-            process.WaitForExit();
-
-            // Display the exit code
-            Console.WriteLine("Exit Code: " + process.ExitCode);
-
-            // Close the process
-            process.Close();            
-        }
-
-        private static void BuildSourceFiles(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
-        {
-            // Create a new process start info
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "cmd.exe", // Use the command prompt
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true
-            };
-
-            // Start the process
-            Process process = new Process { StartInfo = psi };
-            process.Start();
-
-            // Get the process's input stream
-            StreamWriter sw = process.StandardInput;
+            // Build files
 
             foreach (var sourceFile in sourceFilesToBuild)
             {
@@ -96,6 +60,18 @@ namespace BuildMaster
                     sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Path + " -o " + sourceFile.Destination);
                 }
             }
+
+            // Run the linker and ihx converter
+            var sb = new StringBuilder();
+            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+
+            foreach (var destinationSourceObject in destinationSourceObjects)
+            {
+                addFlag(destinationSourceObject);
+            }
+
+            sw.WriteLine(config.BuildLinkCommand() + " " + sb.ToString());
+            sw.WriteLine(config.BuildIHXToSMSCommand());
 
             // Close the input stream to indicate the end of input
             sw.Close();

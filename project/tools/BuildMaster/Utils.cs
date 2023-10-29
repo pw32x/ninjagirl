@@ -67,5 +67,40 @@ namespace BuildMaster
 
             return path;
         }
+
+        public static void CreateFolders(IEnumerable<string> sourceDestinationFolders)
+        {
+            foreach (var sourceDestinationFolder in sourceDestinationFolders)
+            {
+                if (!Directory.Exists(sourceDestinationFolder))
+                    Directory.CreateDirectory(sourceDestinationFolder);
+            }
+        }
+
+        public static void DeleteAllFiles(string folder)
+        {
+            // Delete files in the current folder
+            foreach (string file in Directory.GetFiles(folder))
+            {
+                File.Delete(file);
+            }
+            // Recursively delete files in subdirectories
+            foreach (string subfolder in Directory.GetDirectories(folder))
+            {
+                DeleteAllFiles(subfolder);
+            }
+        }
+
+        public static void BenchmarkStep(Action<Config> step, Config config, string stepDescription)
+        {
+            var startTime = DateTime.Now;
+
+            step(config);
+
+            var elapsedTime = DateTime.Now - startTime;
+
+            Console.WriteLine("Step: " + stepDescription + " complete.");
+            Console.WriteLine("Elapsed time: " + elapsedTime.Duration());
+        }
     }
 }
