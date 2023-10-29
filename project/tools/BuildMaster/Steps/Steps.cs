@@ -9,24 +9,6 @@ namespace BuildMaster
 {
     class Steps
     {
-        public static void BuildCode(Config config)
-        {
-            Console.WriteLine("Step: Build code:");
-
-            // This app calls powershell, which calls wsl. Yeah, not great probably.
-            string commandArguments = "-nologo /c C:\\Windows\\System32\\wsl.exe make -f " + config.MakefilePath;
-            Utils.RunCommandLine("powershell.exe", commandArguments);
-        }
-
-        public static void CleanOutputFolder(Config config)
-        {
-            Console.WriteLine("Step: Clean Output Folder:");
-
-            // This app calls powershell, which calls wsl. Yeah, not great probably.
-            string commandArguments = "/c C:\\Windows\\System32\\wsl.exe make clean -f " + config.MakefilePath;
-            Utils.RunCommandLine("powershell.exe", commandArguments);
-        }
-
         public static void RunAllTools(Config config)
         {
             Console.WriteLine("Step: Running Tools:");
@@ -53,25 +35,9 @@ namespace BuildMaster
             }
         }
 
-        public static void UpdateMakefileConfig(Config config)
-        {
-            var makefileConfigPath = config.GetSetting("buildFolder") + "\\Makefile.config";
-
-            var sb = new StringBuilder();
-
-            sb.Append("DEST_DIRECTORIES = ");
-
-            foreach (var directory in config.ToolDestinationFolders)
-            {
-                sb.Append(directory.Replace('\\', '/') + " ");
-            }
-
-            File.WriteAllText(makefileConfigPath, sb.ToString());
-        }
-
         public static void RenameRom(Config config)
         {
-            string romPath = config.GetSetting("romPath");
+            string romPath = config.CompilationSettings.OutFolder;
 
 
             string oldRomName = "untitled_project.sms";
@@ -89,32 +55,12 @@ namespace BuildMaster
             Console.WriteLine("Step: Rename ROM to " + newRomName);
         }
 
-        public static void CopyRom(Config config)
-        {
-            string romPath = config.GetSetting("romPath");
-
-
-            string oldRomName = "untitled_project.sms";
-
-            string projectName = config.ProjectName;
-            string newRomName = projectName + ".sms";
-
-            string sourceName = Path.Combine(romPath, oldRomName);
-
-
-            string destinationName = Path.Combine(romPath, newRomName);
-
-            File.Copy(sourceName, destinationName, true);
-
-            Console.WriteLine("Step: Rename ROM to " + newRomName);
-        }
-
         public static void CopyToDailyFolder(Config config)
         {
             Console.WriteLine("Step: Copy output ROM to daily folder:");
             string dailyFolder = config.GetSetting("dailyVersionsFolder");
 
-            string romPath = config.GetSetting("romPath");
+            string romPath = config.CompilationSettings.OutFolder;
             string projectName = config.ProjectName;
             string romName = projectName + ".sms";
 

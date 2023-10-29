@@ -361,7 +361,6 @@ namespace BuildMaster
 
         public string ProjectName { get { return GetSetting("ProjectName"); }}
         public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); }}
-        public string MakefilePath { get { return GetSetting("makefile.Path"); }}
 
         // Tools
         public class ToolInfo

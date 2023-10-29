@@ -87,13 +87,5 @@ namespace BuildMaster
 
 
         }
-
-        private static void CreateSourceDestinationFolders(IEnumerable<string> sourceDestinationFolders)
-        {
-            foreach (var sourceDestinationFolder in sourceDestinationFolders)
-            {
-                Directory.CreateDirectory(sourceDestinationFolder);
-            }
-        }
     }
 }

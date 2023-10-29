@@ -3,18 +3,16 @@
     <Settings>
         <Setting name="ProjectName" value="NinjaGirl"/>
 		<Setting name="WorkingDirectory" value=".."/> <!-- root of the project folder -->
-		<Setting name="romPath" value = "out" />
 		
 		<!-- paths are relative to the WorkingDirectory -->
 		<!-- customize these to your setup -->
 
 		<Setting name="buildFolder" value="build" />
-		<Setting name="makefile.Path" value="build/Makefile" /> <!-- forward slashes! -->
 		<Setting name="dailyVersionsFolder" value="..\dailyversions" />
 
 		<!-- new settings -->
 		<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
-		<Setting name="outFolder" value="outFolder"/>		
+		<Setting name="outFolder" value="out"/>
 		
     </Settings>
     

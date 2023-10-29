@@ -8,7 +8,6 @@
 
         public void Perform(Config config)
         {
-            Steps.CleanOutputFolder(config);
             NewSteps.CleanOutputFolder(config);
         }
     }

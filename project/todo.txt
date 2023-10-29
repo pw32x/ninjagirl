@@ -13,9 +13,11 @@ Todo
 
 		DONE benchmark old and new method
 		
-		remove old method
+		DONE remove old method
 		
 		introduce banking
+		
+		wild cards
 		
 		include file dependencies
 	
