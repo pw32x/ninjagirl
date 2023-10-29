@@ -33,10 +33,6 @@
 	<!-- Source set order is important. A file found in one source set will not be added to subsequent source sets -->
 
 	<SourceSet bank="2">
-		<Source path = "source/client/generated/cloud_tileset.c"/>
-	</SourceSet>
-
-	<SourceSet bank="1">
 		<Source path = "source/client/generated/*_tileset.c"/>
 	</SourceSet>
 
