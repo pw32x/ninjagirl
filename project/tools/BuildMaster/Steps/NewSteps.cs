@@ -23,7 +23,17 @@ namespace BuildMaster
 
         public static void CleanOutputFolder(Config config)
         {
-            Utils.DeleteAllFiles(config.CompilationSettings.OutFolder);
+            Utils.DeleteAllFilesRecursive(config.CompilationSettings.OutFolder);
+        }
+
+        public static void CleanExportFolder(Config config)
+        {
+            var toolExportFolders = config.GetToolExportFolders();
+
+            foreach (var toolExportFolder in toolExportFolders)
+            {
+                Utils.DeleteAllFiles(toolExportFolder);
+            }
         }
 
         private static void BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
@@ -34,7 +44,7 @@ namespace BuildMaster
                 FileName = "cmd.exe", // Use the command prompt
                 RedirectStandardInput = true,
                 UseShellExecute = false,
-                CreateNoWindow = true
+                CreateNoWindow = !Debugger.IsAttached
             };
 
             var destinationSourceObjects = sourceFilesToBuild.Select(s => s.Destination);
@@ -50,13 +60,13 @@ namespace BuildMaster
 
             foreach (var sourceFile in sourceFilesToBuild)
             {
-                DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Path);
+                DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
                 DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
 
                 // only build if the source file is newer.
                 if (sourceLastWriteTime > destinationLastWriteTime)
                 {
-                    sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Path + " -o " + sourceFile.Destination);
+                    sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
                 }
             }
 

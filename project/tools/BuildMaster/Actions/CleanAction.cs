@@ -9,6 +9,7 @@
         public void Perform(Config config)
         {
             NewSteps.CleanOutputFolder(config);
+            NewSteps.CleanExportFolder(config);
         }
     }
 }

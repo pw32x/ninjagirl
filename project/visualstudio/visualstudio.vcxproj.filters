@@ -38,6 +38,12 @@
     <Filter Include="SMSLib\rest">
       <UniqueIdentifier>{4641e710-cb79-4041-ab37-ad0bb2f04671}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\exported\animations">
+      <UniqueIdentifier>{71ed715c-9af8-46b9-8826-e5b9f2fdd7b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\exported\maps">
+      <UniqueIdentifier>{d08398e2-e0d5-436e-9e57-6a801d5cb248}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -61,9 +67,6 @@
     <ClCompile Include="..\source\client\exported\global_palette.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\ninja_girl.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\engine\command_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -85,9 +88,6 @@
     <ClCompile Include="..\source\client\objects\enemy.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\evil_eye.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\engine\draw_utils.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -97,9 +97,6 @@
     <ClCompile Include="..\source\client\objects\kunai.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\kunai.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.c">
       <Filter>SMSLib</Filter>
     </ClCompile>
@@ -108,9 +105,6 @@
     </ClCompile>
     <ClCompile Include="..\source\client\generated\bank2.c">
       <Filter>Source Files\client\generated</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\birdidle.c">
-      <Filter>Source Files\client\exported</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\objects\bird.c">
       <Filter>Source Files\client\objects</Filter>
@@ -130,23 +124,11 @@
     <ClCompile Include="..\source\engine\command_types.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\explosion.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\impact.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\background3.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\background3_tileset.c">
       <Filter>Source Files\client\generated</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\generated\waterfall_tileset.c">
       <Filter>Source Files\client\generated</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\waterfall.c">
-      <Filter>Source Files\client\exported</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c">
       <Filter>Source Files\client\objects</Filter>
@@ -159,12 +141,6 @@
     </ClCompile>
     <ClCompile Include="..\source\client\tileset_functions.c">
       <Filter>Source Files\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\breakable_rock_resource.c">
-      <Filter>Source Files\client\exported</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\rock_particle.c">
-      <Filter>Source Files\client\exported</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\objects\basic_effect.c">
       <Filter>Source Files\client\objects\effects</Filter>
@@ -265,6 +241,33 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
       <Filter>SMSLib\rest</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\background3.c">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\waterfall.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\rock_particle.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\ninja_girl.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\kunai.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\impact.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\explosion.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\evil_eye.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\birdidle.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -303,9 +306,6 @@
     <ClInclude Include="..\source\client\exported\global_palette.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\ninja_girl.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\command_manager.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
@@ -330,9 +330,6 @@
     <ClInclude Include="..\source\client\objects\enemy.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\evil_eye.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\draw_utils.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
@@ -342,17 +339,11 @@
     <ClInclude Include="..\source\client\objects\kunai.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\kunai.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h">
       <Filter>PSGLib</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\generated\bank2.h">
       <Filter>Source Files\client\generated</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\birdidle.h">
-      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\objects\bird.h">
       <Filter>Source Files\client\objects</Filter>
@@ -372,15 +363,6 @@
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\explosion.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\impact.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\background3.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\generated\background3_tileset.h">
       <Filter>Source Files\client\generated</Filter>
     </ClInclude>
@@ -390,9 +372,6 @@
     <ClInclude Include="..\source\client\generated\waterfall_tileset.h">
       <Filter>Source Files\client\generated</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\waterfall.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h">
       <Filter>Source Files\client\objects</Filter>
     </ClInclude>
@@ -401,12 +380,6 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\terrain_manager.h">
       <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\breakable_rock_resource.h">
-      <Filter>Source Files\client\exported</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\rock_particle.h">
-      <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\objects\basic_effect.h">
       <Filter>Source Files\client\objects\effects</Filter>
@@ -422,6 +395,33 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\map_load.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\background3.h">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\waterfall.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\rock_particle.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\ninja_girl.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\kunai.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\impact.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\explosion.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\evil_eye.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\birdidle.h">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

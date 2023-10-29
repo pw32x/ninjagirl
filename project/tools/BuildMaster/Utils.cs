@@ -65,6 +65,20 @@ namespace BuildMaster
             return path;
         }
 
+        public static string NormalizeSlashes(string path)
+        {
+            string result = path.Replace('/', '\\');
+
+            result = Path.Combine(result.Split('\\'));
+
+            return result;
+        }
+
+        public static string NormalizePath(string path)
+        {
+            return EnsureTrailingSlash(NormalizeSlashes(path));
+        }
+
         public static void CreateFolders(IEnumerable<string> sourceDestinationFolders)
         {
             foreach (var sourceDestinationFolder in sourceDestinationFolders)
@@ -74,7 +88,7 @@ namespace BuildMaster
             }
         }
 
-        public static void DeleteAllFiles(string folder)
+        public static void DeleteAllFilesRecursive(string folder)
         {
             // Delete files in the current folder
             foreach (string file in Directory.GetFiles(folder))
@@ -84,7 +98,16 @@ namespace BuildMaster
             // Recursively delete files in subdirectories
             foreach (string subfolder in Directory.GetDirectories(folder))
             {
-                DeleteAllFiles(subfolder);
+                DeleteAllFilesRecursive(subfolder);
+            }
+        }
+
+        public static void DeleteAllFiles(string folder)
+        {
+            // Delete files in the current folder
+            foreach (string file in Directory.GetFiles(folder))
+            {
+                File.Delete(file);
             }
         }
 
@@ -98,6 +121,57 @@ namespace BuildMaster
 
             Console.WriteLine("Step: " + stepDescription + " complete.");
             Console.WriteLine("Elapsed time: " + elapsedTime.Duration());
+        }
+
+        public static IEnumerable<string> GetFilesFromWildcardPath(string path)
+        {
+            List<string> filenames = new List<string>();
+
+            path = Path.Combine(path.Split('/'));
+            int lastSlashIndex = path.LastIndexOf(System.IO.Path.DirectorySeparatorChar);
+
+            string directoryPath = "";
+
+            if (lastSlashIndex > 0)
+                directoryPath = path.Substring(0, lastSlashIndex + 1);
+
+            string searchPattern = Path.GetFileName(path);
+
+            string[] matchingFiles = Directory.GetFiles(directoryPath, 
+                                                        searchPattern, 
+                                                        SearchOption.TopDirectoryOnly);
+
+            foreach (string matchingFile in matchingFiles)
+            {
+                filenames.Add(matchingFile);
+            }
+
+            return filenames;
+        }
+
+        internal static bool IsFile(string path)
+        {
+            return File.Exists(path);
+        }
+
+        internal static bool IsFileOrFileSpec(string path)
+        {
+            return path.Contains('*') || path.Contains('.');
+        }
+
+        internal static string GetPathFromFileOrFileSpec(string path)
+        {
+            string result = NormalizeSlashes(path);
+
+            result = Path.Combine(result.Split('\\'));
+            int lastSlashIndex = result.LastIndexOf(System.IO.Path.DirectorySeparatorChar);
+
+            string directoryPath = "";
+
+            if (lastSlashIndex > 0)
+                directoryPath = result.Substring(0, lastSlashIndex + 1);
+
+            return directoryPath;
         }
     }
 }

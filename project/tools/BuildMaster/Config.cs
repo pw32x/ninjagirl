@@ -11,8 +11,8 @@ namespace BuildMaster
     {
         public CompilationSettings(string devkitSmsPath, string outFolder)
         {
-            DevkitSmsPath = Utils.EnsureTrailingSlash(devkitSmsPath);
-            OutFolder = Utils.EnsureTrailingSlash(outFolder);
+            DevkitSmsPath = Utils.NormalizePath(devkitSmsPath);
+            OutFolder = Utils.NormalizePath(outFolder);
 
             //IHX2SMS_Path = DevkitSmsPath + "/ihx2sms/Windows/ihx2sms.exe";
             IHX2SMS_Path = "ihx2sms.exe";
@@ -53,6 +53,7 @@ namespace BuildMaster
 
             addFlag(Compiler);
             addFlag("-mz80");
+            //addFlag("-M");
             addFlag("--peep-file " + PeepRules_Path);
 
             addFlag("-I" + SmsLib_IncludePath);
@@ -139,11 +140,11 @@ namespace BuildMaster
 
         public IEnumerable<string> BuildSourceDestinationFolders()
         {
-            var sourceDestinationFolders = new List<string>();
+            var sourceDestinationFolders = new HashSet<string>();
 
             foreach (var sourceSet in m_sourceSets)
             {
-                foreach (var sourcePath in sourceSet.SourcePaths)
+                foreach (var sourcePath in sourceSet.SourceFolders)
                 {
                     sourceDestinationFolders.Add(CompilationSettings.OutFolder + sourcePath);
                 }
@@ -157,28 +158,50 @@ namespace BuildMaster
             return sourceDestinationFolders;
         }
 
+        public IEnumerable<string> GetToolExportFolders()
+        {
+            var toolExportFolders = new HashSet<string>();
+
+            foreach (var toolDestinationFolder in m_toolDestinationFolders)
+            {
+                toolExportFolders.Add(toolDestinationFolder);
+            }
+
+            return toolExportFolders;
+        }
+
         public class SourceToBuild
         {
-            public SourceToBuild(string path,
+            public SourceToBuild(string filename,
                                  string destination,
                                  string flags,
                                  string bank = "")
             {
-                Path = path;
-                Destination = destination;
+                Filename = Path.Combine(filename.Split('/'));
+                Destination = Path.Combine(destination.Split('/'));
                 Bank = bank;
                 Flags = flags;
             }
 
-            public string Path { get; }
+            public string Filename { get; }
             public string Destination { get; }
             public string Bank { get; }
             public string Flags { get; }
+
+            public override int GetHashCode()
+            {
+                return Filename.GetHashCode();
+            }
+
+            public override bool Equals(object obj)
+            {
+                return obj is SourceToBuild other && Filename == other.Filename;
+            }
         }
 
         public IEnumerable<SourceToBuild> BuildListOfSourceFilesToCompile()
         {
-            List<SourceToBuild> sourceFilesToBuild = new List<SourceToBuild>();
+            var sourceFilesToBuild = new HashSet<SourceToBuild>();
 
             string[] sourceFileExtensions = { ".c", ".s" };
 
@@ -190,7 +213,31 @@ namespace BuildMaster
             {
                 foreach (var sourcePath in sourceSet.SourcePaths)
                 {
-                    if (Directory.Exists(sourcePath))
+                    if (Utils.IsFile(sourcePath))
+                    {
+                        string relativePath = Path.GetRelativePath(currentDirectory, sourcePath);
+
+                        sourceFilesToBuild.Add(new SourceToBuild(relativePath,
+                                               CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
+                                               compilerFlags,
+                                               sourceSet.Bank));
+
+                    }
+                    else if (Utils.IsFileOrFileSpec(sourcePath))
+                    {
+                        var filenames = Utils.GetFilesFromWildcardPath(sourcePath);
+
+                        foreach (var filename in filenames)
+                        {
+                            string relativePath = Path.GetRelativePath(currentDirectory, filename);
+
+                            sourceFilesToBuild.Add(new SourceToBuild(relativePath,
+                                                                     CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
+                                                                     compilerFlags,
+                                                                     sourceSet.Bank));
+                        }
+                    }
+                    else if (Directory.Exists(sourcePath))
                     {
                         DirectoryInfo directoryInfo = new DirectoryInfo(sourcePath);
                         FileInfo[] files = directoryInfo.GetFiles();
@@ -287,8 +334,8 @@ namespace BuildMaster
                     uint.TryParse(toolJob.Attributes["bank"]?.Value, out uint bankNumber);
 
                     m_toolJobs.Add(new ToolJobInfo(toolName,
-                                                   Utils.EnsureTrailingSlash(source),
-                                                   Utils.EnsureTrailingSlash(destination),
+                                                   Utils.NormalizePath(source),
+                                                   Utils.NormalizePath(destination),
                                                    bankNumber));
                 }
             }
@@ -306,10 +353,12 @@ namespace BuildMaster
                 {
                     string includePath = includeNode.Attributes["path"].Value;
 
-                    m_includePaths.Add(Utils.EnsureTrailingSlash(includePath));
+                    m_includePaths.Add(Utils.NormalizePath(includePath));
                 }
             }
         }
+
+        // Source Sets
 
         class SourceSet
         {
@@ -319,6 +368,7 @@ namespace BuildMaster
             }
 
             public HashSet<string> SourcePaths { get; } = new HashSet<string>();
+            public HashSet<string> SourceFolders { get; } = new HashSet<string>();
             public string Bank { get; }
         }
 
@@ -338,7 +388,19 @@ namespace BuildMaster
                     foreach (XmlNode sourceNode in sourceSetNode)
                     {
                         string sourcePath = sourceNode.Attributes["path"].Value;
-                        sourceSet.SourcePaths.Add(Utils.EnsureTrailingSlash(sourcePath));
+
+                        if (Utils.IsFileOrFileSpec(sourcePath))
+                        {
+                            sourceSet.SourceFolders.Add(Utils.GetPathFromFileOrFileSpec(sourcePath));
+                        }
+                        else
+                        {
+                            sourcePath = Utils.NormalizePath(sourcePath);
+                            sourceSet.SourceFolders.Add(sourcePath);
+                        }
+
+
+                        sourceSet.SourcePaths.Add(sourcePath);
                     }
 
                     m_sourceSets.Add(sourceSet);
@@ -346,7 +408,7 @@ namespace BuildMaster
             }
         }
 
-        // Source Sets
+        
 
         // Settings
         Dictionary<string, string> m_settings = new Dictionary<string, string>();

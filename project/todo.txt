@@ -15,11 +15,21 @@ Todo
 		
 		DONE remove old method
 		
+		DONE individual files
+		
+		DONE wild cards
+		
+		DONE clean exports folder
+		
+		NAH add generated to exports
+
+		include file dependencies
+		
 		introduce banking
 		
-		wild cards
+			how to get at banked resources
 		
-		include file dependencies
+		
 	
 	
 	move tools to tools folder
