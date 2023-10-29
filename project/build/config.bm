@@ -37,11 +37,6 @@
 		<Source path = "source/client/objects"/>
 		<Source path = "source/engine"/>
     </SourceSet>
-
-	<SourceSet bank="2">
-		<Source path = "source/client/blah"/>
-	</SourceSet>
-
 </BuildMaster>
 
 

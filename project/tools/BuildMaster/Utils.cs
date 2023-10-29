@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuildMaster
 {
@@ -53,7 +50,7 @@ namespace BuildMaster
             }
 
             if (process.ExitCode != 0)
-                throw new Exception("RunCommandLine failed. Command: " + command + " parameters: " + commandParameters + "\n" + 
+                throw new Exception("RunCommandLine failed. Command: " + command + " parameters: " + commandParameters + "\n" +
                                     errors);
         }
 

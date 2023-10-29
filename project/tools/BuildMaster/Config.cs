@@ -22,7 +22,7 @@ namespace BuildMaster
             SmsLib_LibraryPath = SmsLib_BasePath + "/SMSlib.lib";
 
             PeepRules_Path = SmsLib_BasePath + "/src/peep-rules.txt";
-            CRT0_Path=DevkitSmsPath + "/crt0/crt0_sms.rel";
+            CRT0_Path = DevkitSmsPath + "/crt0/crt0_sms.rel";
 
             PsgLib_BasePath = DevkitSmsPath + "/PSGlib/";
             PsgLib_IncludePath = PsgLib_BasePath + "/src";
@@ -54,7 +54,7 @@ namespace BuildMaster
             addFlag(Compiler);
             addFlag("-mz80");
             addFlag("--peep-file " + PeepRules_Path);
-            
+
             addFlag("-I" + SmsLib_IncludePath);
             addFlag("-I" + PsgLib_IncludePath);
 
@@ -149,7 +149,7 @@ namespace BuildMaster
                 }
             }
 
-            foreach(var toolDestinationFolder in m_toolDestinationFolders)
+            foreach (var toolDestinationFolder in m_toolDestinationFolders)
             {
                 sourceDestinationFolders.Add(CompilationSettings.OutFolder + toolDestinationFolder);
             }
@@ -159,7 +159,7 @@ namespace BuildMaster
 
         public class SourceToBuild
         {
-            public SourceToBuild(string path, 
+            public SourceToBuild(string path,
                                  string destination,
                                  string flags,
                                  string bank = "")
@@ -201,7 +201,7 @@ namespace BuildMaster
                         {
                             string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
 
-                            sourceFilesToBuild.Add(new SourceToBuild(relativePath, 
+                            sourceFilesToBuild.Add(new SourceToBuild(relativePath,
                                                                      CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
                                                                      compilerFlags,
                                                                      sourceSet.Bank));
@@ -210,7 +210,7 @@ namespace BuildMaster
                 }
             }
 
-            foreach(var toolDestinationFolder in m_toolDestinationFolders)
+            foreach (var toolDestinationFolder in m_toolDestinationFolders)
             {
                 if (Directory.Exists(toolDestinationFolder))
                 {
@@ -223,7 +223,7 @@ namespace BuildMaster
                     {
                         string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
 
-                        sourceFilesToBuild.Add(new SourceToBuild(filteredFile.FullName, 
+                        sourceFilesToBuild.Add(new SourceToBuild(filteredFile.FullName,
                                                                  CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
                                                                  compilerFlags
                                                                  /*, sourceSet.Bank)*/
@@ -265,9 +265,9 @@ namespace BuildMaster
                     string flags = toolNode.Attributes["flags"]?.Value ?? "";
                     string info = toolNode.Attributes["info"]?.Value ?? "";
 
-                    m_toolInfos[name.ToLower()] = new ToolInfo(name, 
-                                                               path, 
-                                                               flags, 
+                    m_toolInfos[name.ToLower()] = new ToolInfo(name,
+                                                               path,
+                                                               flags,
                                                                info);
                 }
             }
@@ -286,9 +286,9 @@ namespace BuildMaster
                     string destination = toolJob.Attributes["destination"].Value;
                     uint.TryParse(toolJob.Attributes["bank"]?.Value, out uint bankNumber);
 
-                    m_toolJobs.Add(new ToolJobInfo(toolName, 
-                                                   Utils.EnsureTrailingSlash(source), 
-                                                   Utils.EnsureTrailingSlash(destination), 
+                    m_toolJobs.Add(new ToolJobInfo(toolName,
+                                                   Utils.EnsureTrailingSlash(source),
+                                                   Utils.EnsureTrailingSlash(destination),
                                                    bankNumber));
                 }
             }
@@ -351,21 +351,21 @@ namespace BuildMaster
         // Settings
         Dictionary<string, string> m_settings = new Dictionary<string, string>();
 
-        public string GetSetting(string name) 
-        { 
+        public string GetSetting(string name)
+        {
             if (!m_settings.ContainsKey(name.ToLower()))
                 throw new Exception("There is no value in the config file for " + name);
 
-            return m_settings[name.ToLower()]; 
+            return m_settings[name.ToLower()];
         }
 
-        public string ProjectName { get { return GetSetting("ProjectName"); }}
-        public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); }}
+        public string ProjectName { get { return GetSetting("ProjectName"); } }
+        public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); } }
 
         // Tools
         public class ToolInfo
         {
-            public ToolInfo(string name, 
+            public ToolInfo(string name,
                             string path,
                             string flags,
                             string info)
@@ -391,8 +391,8 @@ namespace BuildMaster
         // Tool Jobs 
         public class ToolJobInfo
         {
-            public ToolJobInfo(string toolName, 
-                             string source, 
+            public ToolJobInfo(string toolName,
+                             string source,
                              string destination,
                              uint bankNumber)
             {
