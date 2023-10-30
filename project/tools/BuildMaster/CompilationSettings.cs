@@ -1,0 +1,83 @@
+﻿using System.Collections.Generic;
+using System.Text;
+
+namespace BuildMaster
+{
+    class CompilationSettings
+    {
+        public CompilationSettings(string devkitSmsPath, string outFolder)
+        {
+            DevkitSmsPath = Utils.NormalizePath(devkitSmsPath);
+            OutFolder = Utils.NormalizePath(outFolder);
+
+            //IHX2SMS_Path = DevkitSmsPath + "/ihx2sms/Windows/ihx2sms.exe";
+            IHX2SMS_Path = "ihx2sms.exe";
+
+            SmsLib_BasePath = DevkitSmsPath + "/SMSlib";
+            SmsLib_IncludePath = SmsLib_BasePath + "/src";
+            SmsLib_LibraryPath = SmsLib_BasePath + "/SMSlib.lib";
+
+            PeepRules_Path = SmsLib_BasePath + "/src/peep-rules.txt";
+            CRT0_Path = DevkitSmsPath + "/crt0/crt0_sms.rel";
+
+            PsgLib_BasePath = DevkitSmsPath + "/PSGlib/";
+            PsgLib_IncludePath = PsgLib_BasePath + "/src";
+            PsgLib_LibraryPath = PsgLib_BasePath + "/PSGlib.rel";
+        }
+
+        public string DevkitSmsPath { get; }
+        public string OutFolder { get; }
+
+        public string IHX2SMS_Path { get; }
+        public string SmsLib_BasePath { get; }
+        public string SmsLib_IncludePath { get; }
+        public string SmsLib_LibraryPath { get; }
+
+        public string PeepRules_Path { get; }
+        public string CRT0_Path { get; }
+
+        public string PsgLib_BasePath { get; }
+        public string PsgLib_IncludePath { get; }
+        public string PsgLib_LibraryPath { get; }
+
+        public string Compiler => "sdcc";
+        public string BuildCompilerFlags(IEnumerable<string> includeFolders)
+        {
+            var sb = new StringBuilder();
+
+            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+
+            addFlag(Compiler);
+            addFlag("-mz80");
+            //addFlag("-M");
+            addFlag("--peep-file " + PeepRules_Path);
+
+            addFlag("-I" + SmsLib_IncludePath);
+            addFlag("-I" + PsgLib_IncludePath);
+
+            foreach (var includeFolder in includeFolders)
+            {
+                addFlag("-I" + includeFolder);
+            }
+
+            return sb.ToString();
+        }
+
+        public string GetLinkerFlags()
+        {
+            var sb = new StringBuilder();
+            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+
+            addFlag("-mz80");
+            addFlag("--no-std-crt0");
+            addFlag("--data-loc 0xC000");
+
+            addFlag(SmsLib_LibraryPath);
+            addFlag(CRT0_Path);
+            addFlag(PsgLib_LibraryPath);
+
+            return sb.ToString();
+        }
+    }
+
+}

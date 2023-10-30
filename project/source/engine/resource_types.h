@@ -3,6 +3,9 @@
 
 #include "engine/base_types.h"
 
+#define RESOURCE(bank)
+
+#define RESOURCE_INFO_RESOURCE_TYPE					0xFF
 #define REGULAR_ANIMATION_RESOURCE_TYPE				0
 #define STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE	1
 #define BATCHED_ANIMATION_RESOURCE_TYPE				2
@@ -14,9 +17,17 @@
 #define ANIMATED_TILESET_RESOURCE_TYPE				8
 #define NUM_RESOURCE_TYPES							9
 
+
 typedef struct
 {
 	u8 resourceType;
 } Resource;
+
+typedef struct
+{
+	u8 resourceType;
+	u8 bankNumber;
+	const Resource* resource;
+} ResourceInfo;
 
 #endif

@@ -87,7 +87,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <NMakeOutput>..\out\untitled_project.sms</NMakeOutput>
+    <NMakeOutput>..\out\NinjaGirl.sms</NMakeOutput>
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <NMakeBuildCommandLine>..\build\vs_build.bat</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine>..\build\vs_rebuild.bat</NMakeReBuildCommandLine>
@@ -153,20 +153,19 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
-    <ClCompile Include="..\source\client\exported\background3.c" />
-    <ClCompile Include="..\source\client\exported\birdidle.c" />
-    <ClCompile Include="..\source\client\exported\evil_eye.c" />
-    <ClCompile Include="..\source\client\exported\explosion.c" />
+    <ClCompile Include="..\source\client\exported\animations\explosion.c" />
+    <ClCompile Include="..\source\client\exported\animations\impact.c" />
+    <ClCompile Include="..\source\client\exported\animations\kunai.c" />
+    <ClCompile Include="..\source\client\exported\animations\ninja_girl.c" />
+    <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
+    <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
-    <ClCompile Include="..\source\client\exported\impact.c" />
-    <ClCompile Include="..\source\client\exported\kunai.c" />
     <ClCompile Include="..\source\client\exported\level002.c" />
-    <ClCompile Include="..\source\client\exported\ninja_girl.c" />
-    <ClCompile Include="..\source\client\exported\rock_particle.c" />
-    <ClCompile Include="..\source\client\exported\waterfall.c" />
+    <ClCompile Include="..\source\client\exported\maps\background3.c" />
     <ClCompile Include="..\source\client\generated\background3_tileset.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\breakable_rock_tileset.c" />
+    <ClCompile Include="..\source\client\generated\resource_infos.c" />
     <ClCompile Include="..\source\client\generated\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
@@ -200,20 +199,19 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
-    <ClInclude Include="..\source\client\exported\background3.h" />
-    <ClInclude Include="..\source\client\exported\birdidle.h" />
-    <ClInclude Include="..\source\client\exported\evil_eye.h" />
-    <ClInclude Include="..\source\client\exported\explosion.h" />
+    <ClInclude Include="..\source\client\exported\animations\explosion.h" />
+    <ClInclude Include="..\source\client\exported\animations\impact.h" />
+    <ClInclude Include="..\source\client\exported\animations\kunai.h" />
+    <ClInclude Include="..\source\client\exported\animations\ninja_girl.h" />
+    <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
+    <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
-    <ClInclude Include="..\source\client\exported\impact.h" />
-    <ClInclude Include="..\source\client\exported\kunai.h" />
     <ClInclude Include="..\source\client\exported\level002.h" />
-    <ClInclude Include="..\source\client\exported\ninja_girl.h" />
-    <ClInclude Include="..\source\client\exported\rock_particle.h" />
-    <ClInclude Include="..\source\client\exported\waterfall.h" />
+    <ClInclude Include="..\source\client\exported\maps\background3.h" />
     <ClInclude Include="..\source\client\generated\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
     <ClInclude Include="..\source\client\generated\breakable_rock_tileset.h" />
+    <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\client\generated\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />

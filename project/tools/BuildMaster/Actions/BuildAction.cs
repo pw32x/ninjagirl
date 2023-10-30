@@ -10,6 +10,8 @@
         {
             Steps.RunAllTools(config);
 
+            NewSteps.GenerateResourceInfos(config);
+
             Utils.BenchmarkStep(NewSteps.BuildCode, config, "New Build Code");
 
             Steps.CopyToDailyFolder(config);

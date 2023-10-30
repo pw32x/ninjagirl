@@ -25,9 +25,12 @@ namespace BuildMaster
                     Console.WriteLine("Tool: " + toolInfo.Name);
                     Console.WriteLine("Source Path: " + toolJob.SourcePath);
                     Console.WriteLine("Destination Path: " + toolJob.DestinationPath);
+                    Console.WriteLine("Bank Number: " + toolJob.BankNumber);
                     Console.WriteLine("Flags: " + toolInfo.Flags);
 
-                    Utils.RunCommandLine(toolPath, toolJob.SourcePath + " " + toolJob.DestinationPath + " " + toolInfo.Flags);
+                    string bankFlag = toolJob.BankNumber >= 2 ? "-bank" + toolJob.BankNumber : "";
+
+                    Utils.RunCommandLine(toolPath, toolJob.SourcePath + " " + toolJob.DestinationPath + " " + toolInfo.Flags + " " + bankFlag);
                 }
             }
         }

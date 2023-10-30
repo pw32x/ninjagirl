@@ -7,83 +7,6 @@ using System.Xml;
 
 namespace BuildMaster
 {
-    class CompilationSettings
-    {
-        public CompilationSettings(string devkitSmsPath, string outFolder)
-        {
-            DevkitSmsPath = Utils.NormalizePath(devkitSmsPath);
-            OutFolder = Utils.NormalizePath(outFolder);
-
-            //IHX2SMS_Path = DevkitSmsPath + "/ihx2sms/Windows/ihx2sms.exe";
-            IHX2SMS_Path = "ihx2sms.exe";
-
-            SmsLib_BasePath = DevkitSmsPath + "/SMSlib";
-            SmsLib_IncludePath = SmsLib_BasePath + "/src";
-            SmsLib_LibraryPath = SmsLib_BasePath + "/SMSlib.lib";
-
-            PeepRules_Path = SmsLib_BasePath + "/src/peep-rules.txt";
-            CRT0_Path = DevkitSmsPath + "/crt0/crt0_sms.rel";
-
-            PsgLib_BasePath = DevkitSmsPath + "/PSGlib/";
-            PsgLib_IncludePath = PsgLib_BasePath + "/src";
-            PsgLib_LibraryPath = PsgLib_BasePath + "/PSGlib.rel";
-        }
-
-        public string DevkitSmsPath { get; }
-        public string OutFolder { get; }
-
-        public string IHX2SMS_Path { get; }
-        public string SmsLib_BasePath { get; }
-        public string SmsLib_IncludePath { get; }
-        public string SmsLib_LibraryPath { get; }
-
-        public string PeepRules_Path { get; }
-        public string CRT0_Path { get; }
-
-        public string PsgLib_BasePath { get; }
-        public string PsgLib_IncludePath { get; }
-        public string PsgLib_LibraryPath { get; }
-
-        public string Compiler => "sdcc";
-        public string BuildCompilerFlags(IEnumerable<string> includeFolders)
-        {
-            var sb = new StringBuilder();
-
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
-
-            addFlag(Compiler);
-            addFlag("-mz80");
-            //addFlag("-M");
-            addFlag("--peep-file " + PeepRules_Path);
-
-            addFlag("-I" + SmsLib_IncludePath);
-            addFlag("-I" + PsgLib_IncludePath);
-
-            foreach (var includeFolder in includeFolders)
-            {
-                addFlag("-I" + includeFolder);
-            }
-
-            return sb.ToString();
-        }
-
-        public string GetLinkerFlags()
-        {
-            var sb = new StringBuilder();
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
-
-            addFlag("-mz80");
-            addFlag("--no-std-crt0");
-            addFlag("--data-loc 0xC000");
-
-            addFlag(SmsLib_LibraryPath);
-            addFlag(CRT0_Path);
-            addFlag(PsgLib_LibraryPath);
-
-            return sb.ToString();
-        }
-    }
-
     class Config
     {
         public CompilationSettings CompilationSettings;
@@ -205,7 +128,7 @@ namespace BuildMaster
 
             string[] sourceFileExtensions = { ".c", ".s" };
 
-            var compilerFlags = CompilationSettings.BuildCompilerFlags(m_includePaths);
+            var compilerFlags = CompilationSettings.BuildCompilerFlags(IncludePaths);
 
             var currentDirectory = Directory.GetCurrentDirectory();
 
@@ -282,6 +205,59 @@ namespace BuildMaster
             return sourceFilesToBuild;
         }
 
+
+        public IEnumerable<string> BuildListOfHeaderFiles()
+        {
+            var headerFiles = new HashSet<string>();
+
+            string[] headerFileExtensions = { ".h" };
+
+            var compilerFlags = CompilationSettings.BuildCompilerFlags(IncludePaths);
+
+            var currentDirectory = Directory.GetCurrentDirectory();
+
+            foreach (var sourceSet in m_sourceSets)
+            {
+                foreach (var sourceFolder in sourceSet.SourceFolders)
+                {
+                    if (Directory.Exists(sourceFolder))
+                    {
+                        DirectoryInfo directoryInfo = new DirectoryInfo(sourceFolder);
+                        FileInfo[] files = directoryInfo.GetFiles();
+
+                        var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
+
+                        foreach (var filteredFile in filteredFiles)
+                        {
+                            string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
+
+                            headerFiles.Add(relativePath);
+                        }
+                    }
+                }
+            }
+
+            foreach (var toolDestinationFolder in m_toolDestinationFolders)
+            {
+                if (Directory.Exists(toolDestinationFolder))
+                {
+                    DirectoryInfo directoryInfo = new DirectoryInfo(toolDestinationFolder);
+                    FileInfo[] files = directoryInfo.GetFiles();
+
+                    var filteredFiles = files.Where(file => headerFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
+
+                    foreach (var filteredFile in filteredFiles)
+                    {
+                        string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
+
+                        headerFiles.Add(relativePath);
+                    }
+                }
+            }
+
+            return headerFiles;
+        }
+
         private void LoadSettings(XmlDocument xmlDocument)
         {
             XmlNodeList settingsNodes = xmlDocument.SelectNodes("/BuildMaster/Settings/Setting");
@@ -342,7 +318,7 @@ namespace BuildMaster
         }
 
         // Include paths
-        HashSet<string> m_includePaths = new HashSet<string>();
+        public HashSet<string> IncludePaths { get; } = new HashSet<string>();
         private void LoadIncludes(XmlDocument xmlDocument)
         {
             XmlNodeList includeNodes = xmlDocument.SelectNodes("/BuildMaster/Include");
@@ -353,7 +329,7 @@ namespace BuildMaster
                 {
                     string includePath = includeNode.Attributes["path"].Value;
 
-                    m_includePaths.Add(Utils.NormalizePath(includePath));
+                    IncludePaths.Add(Utils.NormalizePath(includePath));
                 }
             }
         }
@@ -423,6 +399,7 @@ namespace BuildMaster
 
         public string ProjectName { get { return GetSetting("ProjectName"); } }
         public string WorkingDirectory { get { return GetSetting("WorkingDirectory"); } }
+        public string ResourceInfoExportFolder { get { return GetSetting("resourceInfoExportFolder"); } }
 
         // Tools
         public class ToolInfo

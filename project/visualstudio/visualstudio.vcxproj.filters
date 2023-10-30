@@ -241,32 +241,29 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
       <Filter>SMSLib\rest</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\background3.c">
+    <ClCompile Include="..\source\client\exported\animations\explosion.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\impact.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\kunai.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\ninja_girl.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\rock_particle.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\waterfall.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\background3.c">
       <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\waterfall.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\rock_particle.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\ninja_girl.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\kunai.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\impact.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\explosion.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\evil_eye.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\birdidle.c">
-      <Filter>Source Files\client\exported\animations</Filter>
+    <ClCompile Include="..\source\client\generated\resource_infos.c">
+      <Filter>Source Files\client\generated</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -396,32 +393,29 @@
     <ClInclude Include="..\source\engine\map_load.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\background3.h">
+    <ClInclude Include="..\source\client\exported\animations\explosion.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\impact.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\kunai.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\ninja_girl.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\rock_particle.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\waterfall.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\background3.h">
       <Filter>Source Files\client\exported\maps</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\waterfall.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\rock_particle.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\ninja_girl.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\kunai.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\impact.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\explosion.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\evil_eye.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\birdidle.h">
-      <Filter>Source Files\client\exported\animations</Filter>
+    <ClInclude Include="..\source\client\generated\resource_infos.h">
+      <Filter>Source Files\client\generated</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

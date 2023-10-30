@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const BatchedAnimation explosion;
+RESOURCE(BANK2) extern const BatchedAnimation explosion;
 
 #endif
 

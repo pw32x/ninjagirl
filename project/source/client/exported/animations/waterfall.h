@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const TileAnimation waterfall;
+RESOURCE(BANK2) extern const TileAnimation waterfall;
 
 #endif
 

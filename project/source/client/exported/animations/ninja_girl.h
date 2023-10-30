@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-extern const StreamedBatchedAnimation ninja_girl;
+RESOURCE(BANK2) extern const StreamedBatchedAnimation ninja_girl;
 
 // frame numbers for specific animations.
 #define NINJA_GIRL_RUN_RIGHT_FRAME_INDEX 0

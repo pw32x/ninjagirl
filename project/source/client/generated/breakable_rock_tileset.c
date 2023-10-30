@@ -50,7 +50,7 @@ const unsigned char const breakable_rock_tileset_tiles[128] = // 4 tiles
 
 u16 breakable_rock_tilesetVdpLocation;
 
-const Tileset breakable_rock_tileset = 
+RESOURCE() const Tileset breakable_rock_tileset = 
 {
     TILESET_RESOURCE_TYPE,
     breakable_rock_tileset_metatiles,

@@ -12,7 +12,7 @@ const unsigned short const waterfall_tileset_metatiles[8] = // 2 metatiles
 };
 extern TileAnimation waterfall; // the animation this tileset needs
 
-const AnimatedTileset waterfall_tileset = 
+RESOURCE() const AnimatedTileset waterfall_tileset = 
 {
     ANIMATED_TILESET_RESOURCE_TYPE,
     waterfall_tileset_metatiles,

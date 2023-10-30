@@ -191,7 +191,7 @@ const TileAnimationFrame* const waterfallFrames[4] =
 
 u8 waterfallVdpLocation;
 
-const TileAnimation waterfall = 
+RESOURCE(BANK2) const TileAnimation waterfall = 
 {
     TILE_ANIMATION_RESOURCE_TYPE, 
     (const TileAnimationFrame** const)waterfallFrames,
