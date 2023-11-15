@@ -10,14 +10,14 @@ const unsigned short const waterfall_tileset_metatiles[8] = // 2 metatiles
     2, 514,
     3, 515,
 };
-extern TileAnimation waterfall; // the animation this tileset needs
+extern ResourceInfo waterfallResourceInfo; // the animation this tileset needs
 
-RESOURCE() const AnimatedTileset waterfall_tileset = 
+RESOURCE(BANK3) const AnimatedTileset waterfall_tileset = 
 {
     ANIMATED_TILESET_RESOURCE_TYPE,
     waterfall_tileset_metatiles,
     2, // 16x16 metatiles count
     FALSE, // not breakable
-    &waterfall, // animation
+    &waterfallResourceInfo, // animation
 };
 

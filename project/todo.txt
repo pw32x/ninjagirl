@@ -23,14 +23,61 @@ Todo
 		
 		NAH add generated to exports
 
-		include file dependencies
+		NAH include file dependencies
 		
 		introduce banking
 		
-			how to get at banked resources
-		
-		
+			DONE how to get at banked resources
+			
+			DONE switch types to point to RESOURCE_INFOs and not regular resources
+			
+			DONE process the contents of RESOURCE_INFOs
+			
+		DONE get latest devkitsms			
+			
+		DONE test the new debug print function			
+
+		DONE print the bank the resource would switch to
 	
+		compiling banked files			
+			
+			NAH sort files by bank number
+			
+			DONE compile using bank number
+			
+			NAH sort files sent to the linker by bank number
+			
+			DONE link using bank number
+			
+	
+	post message on sms forums
+	
+		
+		post command line
+		post map
+		
+		ask: 
+			can I have multiple files with the same bank?
+			does it make a difference if there are global variables in them?		
+			
+			
+	Banking
+				
+			load using bank number
+						
+		
+	split tiles from animation data
+	
+		aniation data in first 32k
+		
+		tiles in banks
+	
+	
+	split tiles and maparray from maps		
+	
+		tiles in banks
+		
+		map array... in ram?
 	
 	move tools to tools folder
 	

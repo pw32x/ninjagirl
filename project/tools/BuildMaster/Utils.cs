@@ -54,6 +54,49 @@ namespace BuildMaster
                                     errors);
         }
 
+        public static bool RunProcess(Action<StreamWriter> workerFunction)
+        {
+            // Create a new process start info
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "cmd.exe", // Use the command prompt
+                RedirectStandardInput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                CreateNoWindow = !Debugger.IsAttached
+            };
+
+            // Start the process
+            Process process = new Process { StartInfo = psi };
+            process.Start();
+
+            // Get the process's input stream
+            StreamWriter sw = process.StandardInput;
+            StreamReader errorReader = process.StandardError;
+
+            workerFunction(sw);
+
+            // Close the input stream to indicate the end of input
+            sw.Close();
+
+            var errorString = errorReader.ReadToEnd();
+            if (!String.IsNullOrEmpty(errorString))
+            {
+                Console.WriteLine("Error Output: " + errorString);
+            }
+
+            // Wait for the process to complete
+            process.WaitForExit();
+
+            // Display the exit code
+            Console.WriteLine("Exit Code: " + process.ExitCode);
+
+            // Close the process
+            process.Close();
+
+            return string.IsNullOrEmpty(errorString);
+        }
+
         public static string EnsureTrailingSlash(string path)
         {
             if (!path.EndsWith("\\") && !path.EndsWith("/"))

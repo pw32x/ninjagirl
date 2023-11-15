@@ -1,8 +1,5 @@
 #include "resource_infos.h"
 
-#include "client\generated\background3_tileset.h"
-#include "client\generated\breakable_rock_tileset.h"
-#include "client\generated\waterfall_tileset.h"
 #include "client\exported\animations\explosion.h"
 #include "client\exported\animations\impact.h"
 #include "client\exported\animations\kunai.h"
@@ -10,27 +7,9 @@
 #include "client\exported\animations\rock_particle.h"
 #include "client\exported\animations\waterfall.h"
 #include "client\exported\maps\background3.h"
-
-const ResourceInfo background3_tilesetResourceInfo = 
-{
-    RESOURCE_INFO_RESOURCE_TYPE,
-    0,
-    (const Resource*)&background3_tileset
-};
-
-const ResourceInfo breakable_rock_tilesetResourceInfo = 
-{
-    RESOURCE_INFO_RESOURCE_TYPE,
-    0,
-    (const Resource*)&breakable_rock_tileset
-};
-
-const ResourceInfo waterfall_tilesetResourceInfo = 
-{
-    RESOURCE_INFO_RESOURCE_TYPE,
-    0,
-    (const Resource*)&waterfall_tileset
-};
+#include "client\generated\background3_tileset.h"
+#include "client\generated\breakable_rock_tileset.h"
+#include "client\generated\waterfall_tileset.h"
 
 const ResourceInfo explosionResourceInfo = 
 {
@@ -77,7 +56,28 @@ const ResourceInfo waterfallResourceInfo =
 const ResourceInfo background3_mapResourceInfo = 
 {
     RESOURCE_INFO_RESOURCE_TYPE,
-    3,
+    2,
     (const Resource*)&background3_map
+};
+
+const ResourceInfo background3_tilesetResourceInfo = 
+{
+    RESOURCE_INFO_RESOURCE_TYPE,
+    3,
+    (const Resource*)&background3_tileset
+};
+
+const ResourceInfo breakable_rock_tilesetResourceInfo = 
+{
+    RESOURCE_INFO_RESOURCE_TYPE,
+    0,
+    (const Resource*)&breakable_rock_tileset
+};
+
+const ResourceInfo waterfall_tilesetResourceInfo = 
+{
+    RESOURCE_INFO_RESOURCE_TYPE,
+    3,
+    (const Resource*)&waterfall_tileset
 };
 

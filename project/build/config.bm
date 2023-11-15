@@ -20,8 +20,10 @@
 	</Tools>
 	
 	<ToolJobs>
+		<!--<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="3"/>-->
 		<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
-		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="3"/>
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="2"/>
 	</ToolJobs>
 
 	<!--
@@ -57,8 +59,9 @@
 	<Include path ="source/engine"/>
 
 	<!-- Source set order is important. A file found in one source set will not be added to subsequent source sets -->
+	<!-- Source sets are created from tool jobs. They always go first -->
 
-	<SourceSet bank="2">
+	<SourceSet bank="3">
 		<Source path = "source/client/generated/*_tileset.c"/>
 	</SourceSet>
 

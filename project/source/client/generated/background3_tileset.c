@@ -2453,7 +2453,7 @@ const unsigned char const background3_tileset_tiles[7296] = // 228 tiles
 
 u16 background3_tilesetVdpLocation;
 
-RESOURCE() const Tileset background3_tileset = 
+RESOURCE(BANK3) const Tileset background3_tileset = 
 {
     TILESET_RESOURCE_TYPE,
     background3_tileset_metatiles,

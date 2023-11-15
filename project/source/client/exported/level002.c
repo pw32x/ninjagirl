@@ -24,19 +24,20 @@
 
 // resources
 #include "client/exported/global_palette.h"
-#include "client/exported/animations/ninja_girl.h"
-#include "client/exported/animations/kunai.h"
+#include "client/generated/resource_infos.h"
+//#include "client/exported/animations/ninja_girl.h"
+//#include "client/exported/animations/kunai.h"
 //#include "client/exported/evil_eye.h"
 //#include "client/exported/birdidle.h"
-#include "client/exported/maps/background3.h"
-#include "client/exported/animations/explosion.h"
-#include "client/exported/animations/impact.h"
-#include "client/exported/animations/rock_particle.h"
+//#include "client/exported/maps/background3.h"
+//#include "client/exported/animations/explosion.h"
+//#include "client/exported/animations/impact.h"
+//#include "client/exported/animations/rock_particle.h"
 
 // generated
 #include "client/generated/bank2.h" // music
 
-const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girl };
+const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girlResourceInfo };
 //const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
@@ -51,7 +52,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 { 
 	1, 
 	breakable_rock_tileset_TilesetFunction, 
-	(const Resource*)&rock_particle 
+	(const Resource*)&rock_particleResourceInfo 
 };
 
 Command level002_commands[] = 
@@ -60,15 +61,15 @@ Command level002_commands[] =
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_map },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo },
 	{ 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girl },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunai },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunaiResourceInfo },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &evil_eye },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosion },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
-	{ 0, (CommandFunction)ResourceManager_LoadResource, &impact },
-	{ 0, (CommandFunction)RightScroller_Create, &background3_map },
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
+	{ 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
 	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },

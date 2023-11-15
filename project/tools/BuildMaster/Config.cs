@@ -34,7 +34,7 @@ namespace BuildMaster
                                                             GetSetting("outFolder"));
         }
 
-        public string BuildLinkCommand()
+        public string BuildLinkCommand(IEnumerable<uint> usedBankNumbers)
         {
             var sb = new StringBuilder();
 
@@ -43,7 +43,7 @@ namespace BuildMaster
             addFlag(CompilationSettings.Compiler);
             addFlag("-o");
             addFlag(CompilationSettings.OutFolder + ProjectName + ".ihx");
-            addFlag(CompilationSettings.GetLinkerFlags());
+            addFlag(CompilationSettings.GetLinkerFlags(usedBankNumbers));
 
             return sb.ToString();
         }
@@ -103,12 +103,23 @@ namespace BuildMaster
                 Filename = Path.Combine(filename.Split('/'));
                 Destination = Path.Combine(destination.Split('/'));
                 Bank = bank;
+
+                m_bankNumber = 0;
+                uint.TryParse(bank, out m_bankNumber);
+
                 Flags = flags;
+
+                if (m_bankNumber != 0)
+                    Flags += " --constseg BANK" + Bank;
             }
 
             public string Filename { get; }
             public string Destination { get; }
             public string Bank { get; }
+
+            private uint m_bankNumber;
+            public uint BankNumber => m_bankNumber;
+
             public string Flags { get; }
 
             public override int GetHashCode()
@@ -128,7 +139,7 @@ namespace BuildMaster
 
             string[] sourceFileExtensions = { ".c", ".s" };
 
-            var compilerFlags = CompilationSettings.BuildCompilerFlags(IncludePaths);
+            var baseCompilerFlags = CompilationSettings.BuildCompilerFlags(IncludePaths);
 
             var currentDirectory = Directory.GetCurrentDirectory();
 
@@ -142,7 +153,7 @@ namespace BuildMaster
 
                         sourceFilesToBuild.Add(new SourceToBuild(relativePath,
                                                CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                               compilerFlags,
+                                               baseCompilerFlags,
                                                sourceSet.Bank));
 
                     }
@@ -156,7 +167,7 @@ namespace BuildMaster
 
                             sourceFilesToBuild.Add(new SourceToBuild(relativePath,
                                                                      CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                                                     compilerFlags,
+                                                                     baseCompilerFlags,
                                                                      sourceSet.Bank));
                         }
                     }
@@ -173,31 +184,9 @@ namespace BuildMaster
 
                             sourceFilesToBuild.Add(new SourceToBuild(relativePath,
                                                                      CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                                                     compilerFlags,
+                                                                     baseCompilerFlags,
                                                                      sourceSet.Bank));
                         }
-                    }
-                }
-            }
-
-            foreach (var toolDestinationFolder in m_toolDestinationFolders)
-            {
-                if (Directory.Exists(toolDestinationFolder))
-                {
-                    DirectoryInfo directoryInfo = new DirectoryInfo(toolDestinationFolder);
-                    FileInfo[] files = directoryInfo.GetFiles();
-
-                    var filteredFiles = files.Where(file => sourceFileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
-
-                    foreach (var filteredFile in filteredFiles)
-                    {
-                        string relativePath = Path.GetRelativePath(currentDirectory, filteredFile.FullName);
-
-                        sourceFilesToBuild.Add(new SourceToBuild(filteredFile.FullName,
-                                                                 CompilationSettings.OutFolder + Path.GetDirectoryName(relativePath) + "/" + Path.GetFileNameWithoutExtension(relativePath) + ".rel",
-                                                                 compilerFlags
-                                                                 /*, sourceSet.Bank)*/
-                                                                 ));
                     }
                 }
             }
@@ -307,12 +296,32 @@ namespace BuildMaster
                     string toolName = toolJob.Attributes["tool"].Value;
                     string source = toolJob.Attributes["source"].Value;
                     string destination = toolJob.Attributes["destination"].Value;
-                    uint.TryParse(toolJob.Attributes["bank"]?.Value, out uint bankNumber);
+                    string bank = toolJob.Attributes["bank"]?.Value;
+                    uint.TryParse(bank, out uint bankNumber);
 
                     m_toolJobs.Add(new ToolJobInfo(toolName,
                                                    Utils.NormalizePath(source),
                                                    Utils.NormalizePath(destination),
                                                    bankNumber));
+
+                    // create a source set for the tool job.
+                    // the source set's source is the destination of the tool job.
+
+                    var sourceSet = new SourceSet(bank);
+
+                    if (Utils.IsFileOrFileSpec(destination))
+                    {
+                        sourceSet.SourceFolders.Add(Utils.GetPathFromFileOrFileSpec(destination));
+                    }
+                    else
+                    {
+                        source = Utils.NormalizePath(destination);
+                        sourceSet.SourceFolders.Add(destination);
+                    }
+
+                    sourceSet.SourcePaths.Add(destination);
+
+                    m_sourceSets.Add(sourceSet);
                 }
             }
         }

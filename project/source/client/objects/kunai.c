@@ -102,7 +102,7 @@ void Kunai_Update(GameObject* object)
 		// destroy or setup erasing a block for later.
 		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
 
-		const Tileset* tileset = MapManager_tilesets[tilesetIndex];
+		const Tileset* tileset = &MapManager_tilesets[tilesetIndex];
 
 		if (tileset->breakable)
 		{

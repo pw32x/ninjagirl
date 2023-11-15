@@ -133,63 +133,46 @@ namespace BuildMaster
 
         private static void BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
         {
-            // Create a new process start info
-            ProcessStartInfo psi = new ProcessStartInfo
+            Action<StreamWriter> buildProject = (StreamWriter sw) =>
             {
-                FileName = "cmd.exe", // Use the command prompt
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = !Debugger.IsAttached
+                // Build files
+                foreach (var sourceFile in sourceFilesToBuild)
+                {
+                    DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
+                    DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
+
+                    // only build if the source file is newer.
+                    if (sourceLastWriteTime > destinationLastWriteTime)
+                    {
+                        sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
+                    }
+                }
             };
 
-            var destinationSourceObjects = sourceFilesToBuild.Select(s => s.Destination);
+            if (!Utils.RunProcess(buildProject))
+                return;
 
-            // Start the process
-            Process process = new Process { StartInfo = psi };
-            process.Start();
-
-            // Get the process's input stream
-            StreamWriter sw = process.StandardInput;
-
-            // Build files
-
-            foreach (var sourceFile in sourceFilesToBuild)
+            Action<StreamWriter> linkProject = (StreamWriter sw) =>
             {
-                DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
-                DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
+                // Run the linker and ihx converter
+                var sb = new StringBuilder();
+                void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
 
-                // only build if the source file is newer.
-                if (sourceLastWriteTime > destinationLastWriteTime)
+                var destinationSourceObjects = sourceFilesToBuild.OrderBy(s => s.BankNumber).Select(s => s.Destination);
+
+                foreach (var destinationSourceObject in destinationSourceObjects)
                 {
-                    sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
+                    addFlag(destinationSourceObject);
                 }
-            }
 
-            // Run the linker and ihx converter
-            var sb = new StringBuilder();
-            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+                var usedBankNumbers = sourceFilesToBuild.Where(s => s.BankNumber > 1).Select(s => s.BankNumber).Distinct();
 
-            foreach (var destinationSourceObject in destinationSourceObjects)
-            {
-                addFlag(destinationSourceObject);
-            }
+                sw.WriteLine(config.BuildLinkCommand(usedBankNumbers) + " " + sb.ToString());
+                sw.WriteLine(config.BuildIHXToSMSCommand());
+            };
 
-            sw.WriteLine(config.BuildLinkCommand() + " " + sb.ToString());
-            sw.WriteLine(config.BuildIHXToSMSCommand());
-
-            // Close the input stream to indicate the end of input
-            sw.Close();
-
-            // Wait for the process to complete
-            process.WaitForExit();
-
-            // Display the exit code
-            Console.WriteLine("Exit Code: " + process.ExitCode);
-
-            // Close the process
-            process.Close();
-
-
+            if (!Utils.RunProcess(linkProject))
+                return;
         }
     }
 }

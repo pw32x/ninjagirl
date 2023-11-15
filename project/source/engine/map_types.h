@@ -5,6 +5,7 @@
 #include "engine/resource_types.h"
 #include "engine/command_types.h"
 
+
 #include "animation_types.h"
 
 // exported format of map values
@@ -48,14 +49,14 @@ typedef struct tile_set
 typedef struct
 {
     COMMON_TILESET_PROPERTIES;
-    const TileAnimation* tileAnimation;
+    const ResourceInfo* tileAnimationResourceInfo;
 } AnimatedTileset;
 
 typedef struct
 {
     u8 resourceType;
     const u16* const mapData;
-    const Tileset** const tilesets;
+    const ResourceInfo** const tilesetResourceInfos;
     u8 numTilesets;
     u16 mapWidth;
     u16 mapHeight;

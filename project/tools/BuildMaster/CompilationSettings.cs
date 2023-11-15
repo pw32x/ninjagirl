@@ -50,6 +50,7 @@ namespace BuildMaster
             addFlag(Compiler);
             addFlag("-mz80");
             //addFlag("-M");
+
             addFlag("--peep-file " + PeepRules_Path);
 
             addFlag("-I" + SmsLib_IncludePath);
@@ -63,7 +64,7 @@ namespace BuildMaster
             return sb.ToString();
         }
 
-        public string GetLinkerFlags()
+        public string GetLinkerFlags(IEnumerable<uint> usedBankNumbers)
         {
             var sb = new StringBuilder();
             void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
@@ -72,8 +73,13 @@ namespace BuildMaster
             addFlag("--no-std-crt0");
             addFlag("--data-loc 0xC000");
 
-            addFlag(SmsLib_LibraryPath);
+            foreach (var bankNumber in usedBankNumbers)
+            {
+                addFlag("-Wl-b_BANK" + bankNumber + "=0x8000");
+            }
+
             addFlag(CRT0_Path);
+            addFlag(SmsLib_LibraryPath);
             addFlag(PsgLib_LibraryPath);
 
             return sb.ToString();
