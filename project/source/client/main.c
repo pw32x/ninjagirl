@@ -24,6 +24,10 @@ void PSGUpdate(void)
 
 void main(void)
 {
+	SMS_debugPrintf("**********************************\n");
+	SMS_debugPrintf("**********************************\n");
+	SMS_debugPrintf("**********************************\n");
+
 	SMS_setFrameInterruptHandler(PSGUpdate);
 
 	ResourceManager_Init((OnResourceLoadedCallback)OnResourceLoaded);

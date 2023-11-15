@@ -1,42 +1,55 @@
 #include "resource_manager.h"
-#include "resource_types.h"
+//#include "resource_types.h"
 
 #include <string.h>
 
-#include "engine/base_types.h"
+//#include "engine/base_types.h"
 #include "engine/animation_utils.h"
 #include "engine/map_load.h"
 
-typedef void* (*LoadFunc)(const void* resource);
-typedef void* (*SetupFunc)(struct game_object* gameObject, const void* resource);
-
-u16 Load_ResourceInfo(const void* resource);
-u16 Setup_ResourceInfo(struct game_object* gameObject, const void* resource);
+typedef void* (*LoadFunc)(const ResourceInfo* resourceInfo);
+typedef void* (*SetupFunc)(struct game_object* gameObject, const ResourceInfo* resourceInfo);
 
 LoadFunc ResourceManager_loadFunctions[NUM_RESOURCE_TYPES];
 SetupFunc ResourceManager_setupFunctions[NUM_RESOURCE_TYPES];
 
 OnResourceLoadedCallback ResourceManager_onResourceLoadedCallback = NULL;
 
+const void printResourceTypeName(u8 resourceType)
+{
+	switch (resourceType)
+	{
+	case REGULAR_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("Regular Animation"); return;
+	case STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE	: SMS_debugPrintf("Streamed Regular Animation"); return;
+	case BATCHED_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("Batched Animation"); return;
+	case STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE	: SMS_debugPrintf("Streamed Batched Animation"); return;
+	case PLANE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Plane Animation"); return;
+	case TILE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Tile Animation"); return;
+	case MAP_RESOURCE_TYPE							: SMS_debugPrintf("Map"); return;
+	case TILESET_RESOURCE_TYPE						: SMS_debugPrintf("Tileset"); return;
+	case ANIMATED_TILESET_RESOURCE_TYPE				: SMS_debugPrintf("Animated Tileset"); return;
+	}
+
+	SMS_debugPrintf("Unknown");
+}
+
 void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 {
 	memset(ResourceManager_loadFunctions, 0, sizeof(ResourceManager_loadFunctions));
 	memset(ResourceManager_setupFunctions, 0, sizeof(ResourceManager_setupFunctions));
 
-	ResourceManager_loadFunctions[RESOURCE_INFO_RESOURCE_TYPE] = (LoadFunc)Load_ResourceInfo;
+	// Load
 	ResourceManager_loadFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_AnimationResource;
 	ResourceManager_loadFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedAnimationResource;
 	ResourceManager_loadFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_BatchedAnimationResource;
 	ResourceManager_loadFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedBatchedAnimationResource;
 	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
 	ResourceManager_loadFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_TileAnimationResource;
-
-
 	ResourceManager_loadFunctions[MAP_RESOURCE_TYPE] = (LoadFunc)Load_MapResource;
 	ResourceManager_loadFunctions[TILESET_RESOURCE_TYPE] = (LoadFunc)Load_TilesetResource;
 	ResourceManager_loadFunctions[ANIMATED_TILESET_RESOURCE_TYPE] = (LoadFunc)Load_AnimatedTilesetResource;
 
-	ResourceManager_setupFunctions[RESOURCE_INFO_RESOURCE_TYPE] = (SetupFunc)Setup_ResourceInfo;
+	// Setup
 	ResourceManager_setupFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_AnimationResource;
 	ResourceManager_setupFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedAnimationResource;
 	ResourceManager_setupFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
@@ -47,104 +60,77 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	ResourceManager_SetOnResourceLoadedCallback(onResourceLoadedCallback);
 }
 
-u16 Load_ResourceInfo(const void* resource)
+void* ResourceManager_LoadResource(const ResourceInfo* resourceInfo)
 {
 	u8 currentBank = SMS_getROMBank();
-
-	// Resource Info has information about which bank the inner resource is stored
-	// in rom.
-	
-	const ResourceInfo* resourceInfo = (const ResourceInfo*)resource;
 	u8 bankNumber = resourceInfo->bankNumber;
 
-	// switch to the bank in the resource info before
-	// doing the load
+	SMS_debugPrintf("ResourceManager_LoadResource().\n");
 
 	if (currentBank != bankNumber)
 	{
+		SMS_debugPrintf("Switching to Bank %d.\n", bankNumber);
 		SMS_mapROMBank(bankNumber);
 	}
 
-	SMS_debugPrintf("Loading from Bank: %d\n", bankNumber);
+	u8 resourceType = resourceInfo->resource->resourceType;
 
-	u16 result = (u16)ResourceManager_LoadResource((void*)resourceInfo->resource);
-
-	if (currentBank != bankNumber)
-	{
-		SMS_mapROMBank(currentBank);
-	}
-
-	return result;
-}
-
-u16 Setup_ResourceInfo(struct game_object* gameObject, const void* resource)
-{
-	u8 currentBank = SMS_getROMBank();
-
-	// Resource Info has information about which bank the inner resource is stored
-	// in rom.
-	
-	const ResourceInfo* resourceInfo = (const ResourceInfo*)resource;
-	u8 bankNumber = resourceInfo->bankNumber;
-
-	// switch to the bank in the resource info before
-	// doing the load
-
-	if (currentBank != bankNumber)
-	{
-		SMS_mapROMBank(bankNumber);
-	}
-
-	SMS_debugPrintf("Setting up resource from Bank: %d\n", bankNumber);
-
-	u16 result = (u16)ResourceManager_SetupResource(gameObject, (void*)resourceInfo->resource);
-
-	if (currentBank != bankNumber)
-	{
-		SMS_mapROMBank(currentBank);
-	}
-
-	return result;
-}
-
-
-void* ResourceManager_LoadResource(void* resource)
-{
-	u8 resourceType = *(const u8*)resource;
-
-	SMS_debugPrintf("ResourceManager_LoadResource\n");
-	SMS_debugPrintf("Load Resource 0x%x of type %d\n", resource, resourceType);
+	SMS_debugPrintf("Load Resource 0x%x of type ", resourceInfo->resource);
+	printResourceTypeName(resourceType);
+	SMS_debugPrintf("\n");
 
 	if (ResourceManager_loadFunctions[resourceType] == 0)
 	{
+		SMS_debugPrintf("Load function for resource type %d not found.\n", resourceType);
 		while (1) {}
 	}
 
-	void* value = ResourceManager_loadFunctions[resourceType](resource);
+	void* value = ResourceManager_loadFunctions[resourceType](resourceInfo);
 
 	if (ResourceManager_onResourceLoadedCallback != NULL)
-		ResourceManager_onResourceLoadedCallback(resource);
+		ResourceManager_onResourceLoadedCallback(resourceInfo);
 
-	SMS_debugPrintf("Finished with Bank: %d\n", SMS_getROMBank());
+	if (currentBank != bankNumber)
+	{
+		SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
+		SMS_mapROMBank(currentBank);
+	}
 
 	return value;
 }
 
-void* ResourceManager_SetupResource(struct game_object* gameObject, const void* resource)
+void* ResourceManager_SetupResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
-	u8 resourceType = *(const u8*)resource;
+	u8 currentBank = SMS_getROMBank();
+	u8 bankNumber = resourceInfo->bankNumber;
 
-	SMS_debugPrintf("ResourceManager_SetupResource\n");
-	SMS_debugPrintf("Setup Resource 0x%x of type %d\n", resource, resourceType);
+	SMS_debugPrintf("ResourceManager_SetupResource().\n");
+
+	if (currentBank != bankNumber)
+	{
+		SMS_debugPrintf("Switching to Bank %d.\n", bankNumber);
+		SMS_mapROMBank(bankNumber);
+	}
+
+	u8 resourceType = resourceInfo->resource->resourceType;
+
+	SMS_debugPrintf("Setup Resource 0x%x of type ", resourceInfo->resource);
+	printResourceTypeName(resourceType);
+	SMS_debugPrintf("\n");
 
 	if (ResourceManager_setupFunctions[resourceType] == 0)
 	{
+		SMS_debugPrintf("Setup function for resource type %d not found.\n", resourceType);
 		while (1) {}
 	}
 
-	void* result = ResourceManager_setupFunctions[resourceType](gameObject, resource);
+	void* result = ResourceManager_setupFunctions[resourceType](gameObject, resourceInfo);
 
-	SMS_debugPrintf("Finished with Bank: %d\n", SMS_getROMBank());
+	if (currentBank != bankNumber)
+	{
+		SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
+		SMS_mapROMBank(currentBank);
+	}
 
 	return result;
 }

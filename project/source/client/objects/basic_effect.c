@@ -24,7 +24,7 @@ GameObject* BasicEffect_Create(const CreateInfo* createInfo)
 	object->Update = BasicEffect_Update;
 	object->Draw = BasicEffect_Draw;
 
-	ResourceManager_SetupResource(object, createInfo->resource);
+	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }

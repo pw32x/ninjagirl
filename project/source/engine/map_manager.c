@@ -13,7 +13,7 @@ u16 MapManager_metatileLutsDataSize;
 Tileset MapManager_tilesets[MAX_TILESETS];
 u16 MapManager_tilesetVdpLocations[MAX_TILESETS];
 TilesetFunction MapManager_tilesetFunctions[MAX_TILESETS];
-const Resource* MapManager_tilesetResources[MAX_TILESETS];
+const ResourceInfo* MapManager_tilesetResourceInfos[MAX_TILESETS];
 
 u16 MapManager_mapWidth;
 u16 MapManager_mapHeight;
@@ -24,8 +24,8 @@ const ResourceInfo* MapManager_mapResourceInfo;
 void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params)
 {
 	MapManager_tilesetFunctions[params->tilesetIndex] = params->tilesetFunction;
-	MapManager_tilesetResources[params->tilesetIndex] = params->resource;
+	MapManager_tilesetResourceInfos[params->tilesetIndex] = params->resourceInfo;
 
-	if (params->resource)
-		ResourceManager_LoadResource(params->resource);
+	if (params->resourceInfo)
+		ResourceManager_LoadResource(params->resourceInfo);
 }

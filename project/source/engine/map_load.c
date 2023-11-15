@@ -7,8 +7,10 @@
 
 #include "smslib.h"
 
-u16 Load_MapResource(const Map* map)
+u16 Load_MapResource(const ResourceInfo* resourceInfo)
 {
+	const Map* map = (const Map*)resourceInfo->resource;
+
 	MapManager_mapWidth = map->mapWidth;
 	MapManager_mapHeight = map->mapHeight;
 	MapManager_mapData = map->mapData;
@@ -24,7 +26,7 @@ u16 Load_MapResource(const Map* map)
 
 	for (u8 loop = 0; loop < map->numTilesets; loop++)
 	{
-		ResourceManager_LoadResource((void*)*tilesetRunner);
+		ResourceManager_LoadResource(*tilesetRunner);
 
 		tilesetRunner++;
 	}
@@ -32,8 +34,10 @@ u16 Load_MapResource(const Map* map)
 	return NULL;
 }
 
-u16 Load_TilesetResource(const Tileset* tileset)
+u16 Load_TilesetResource(const ResourceInfo* resourceInfo)
 {
+	const Tileset* tileset = (const Tileset*)resourceInfo->resource;
+
 	VDPTileManager_LoadBackgroundTileset(tileset->tiles, 
 										 tileset->numTiles,
 										 tileset->vdpLocation);
@@ -54,9 +58,11 @@ u16 Load_TilesetResource(const Tileset* tileset)
 	return 0;
 }
 
-u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset)
+u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo)
 {
-	u16 vdpLocation = ResourceManager_LoadResource((void*)animatedTileset->tileAnimationResourceInfo);
+	const AnimatedTileset* animatedTileset = (const AnimatedTileset*)resourceInfo->resource;
+
+	u16 vdpLocation = ResourceManager_LoadResource(animatedTileset->tileAnimationResourceInfo);
 
 
 	MapManager_metatileLuts[MapManager_numTilesets] = (u16*)(MapManager_metatileLutsData + MapManager_metatileLutsDataSize);
@@ -69,10 +75,7 @@ u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset)
 
 	memcpy(&MapManager_tilesets[MapManager_numTilesets], animatedTileset, sizeof(AnimatedTileset));
 
-	const ResourceInfo* resourceInfo = animatedTileset->tileAnimationResourceInfo;
-	const TileAnimation* tileAnimation = (const TileAnimation*)resourceInfo->resource;
-
-	MapManager_tilesetVdpLocations[MapManager_numTilesets] = vdpLocation;//*tileAnimation->vdpLocation;
+	MapManager_tilesetVdpLocations[MapManager_numTilesets] = vdpLocation;
 	MapManager_numTilesets++;
 	
 	return 0;

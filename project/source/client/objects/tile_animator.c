@@ -14,7 +14,7 @@
 
 void TileAnimator_Update(GameObject* object);
 
-GameObject* TileAnimator_Create(const TileAnimation* tileAnimation)
+GameObject* TileAnimator_Create(const ResourceInfo* resourceInfo)
 {
 	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
 	if (!object)
@@ -23,7 +23,7 @@ GameObject* TileAnimator_Create(const TileAnimation* tileAnimation)
 	object->Update = TileAnimator_Update;
 	object->Draw = ObjectUtils_drawNothing;
 
-	ResourceManager_SetupResource(object, tileAnimation);
+	ResourceManager_SetupResource(object, resourceInfo);
 
 	return object;
 }

@@ -9,7 +9,7 @@
 
 #include "objects/particle_effect.h"
 
-void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resource* resource, u16 blockx, u16 blocky)
+void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const ResourceInfo* resourceInfo, u16 blockx, u16 blocky)
 {
 	UNUSED(tileset);
 
@@ -17,7 +17,7 @@ void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resour
 	{ 
 		B2P(blockx) + 4, 
 		B2P(blocky) + 4, 
-		resource,
+		resourceInfo,
 	};
 
 	GameObject* effect = ParticleEffect_Create(&createInfo);

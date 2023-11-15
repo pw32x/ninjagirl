@@ -30,7 +30,7 @@
 
 struct tile_set;
 
-typedef void (*TilesetFunction)(const struct tile_set* tileset, const Resource* resource, unsigned short blockx, unsigned short blocky);
+typedef void (*TilesetFunction)(const struct tile_set* tileset, const ResourceInfo* resourceInfo, unsigned short blockx, unsigned short blocky);
 
 #define COMMON_TILESET_PROPERTIES \
     u8 resourceType;\

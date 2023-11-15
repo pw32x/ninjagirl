@@ -106,7 +106,6 @@ namespace BuildMaster
             {
                 sb.AppendLine("const ResourceInfo " + foundResource.Item1 + "ResourceInfo = ");
                 sb.AppendLine("{");
-                sb.AppendLine("    RESOURCE_INFO_RESOURCE_TYPE,");
                 sb.AppendLine("    " + foundResource.Item2 + ",");
                 sb.AppendLine("    (const Resource*)&" + foundResource.Item1);
                 sb.AppendLine("};");

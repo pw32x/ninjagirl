@@ -15,7 +15,7 @@ extern u16 MapManager_metatileLutsDataSize;
 
 extern Tileset MapManager_tilesets[MAX_TILESETS];
 extern u16 MapManager_tilesetVdpLocations[MAX_TILESETS];
-extern const Resource* MapManager_tilesetResources[MAX_TILESETS];
+extern const ResourceInfo* MapManager_tilesetResourceInfos[MAX_TILESETS];
 extern TilesetFunction MapManager_tilesetFunctions[MAX_TILESETS];
 
 extern u16 MapManager_mapWidth;
@@ -31,7 +31,7 @@ typedef struct
 {
 	u8 tilesetIndex;
 	TilesetFunction tilesetFunction;
-	const Resource* resource;
+	const ResourceInfo* resourceInfo;
 } SetTilesetProperties_Params;
 
 void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params);

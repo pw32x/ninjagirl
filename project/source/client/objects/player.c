@@ -16,8 +16,10 @@
 
 //kunai
 #include "client/objects/kunai.h"
-#include "client/exported/animations/kunai.h"
+//#include "client/exported/animations/kunai.h"
 #include "client/exported/animations/ninja_girl.h"
+
+#include "client/generated/resource_infos.h"
 
 #include <stdio.h>
 
@@ -138,7 +140,7 @@ GameObject* Player_Create(const CreateInfo* createInfo)
 
 	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
-	ResourceManager_SetupResource(&ObjectManager_player, createInfo->resource);
+	ResourceManager_SetupResource(&ObjectManager_player, createInfo->resourceInfo);
 
 	//ObjectManager_player.animationVdpTileIndex = 0xff;
 
@@ -159,7 +161,7 @@ void Player_FireWeapon(GameObject* player)
 	{ 
 		player->x + (ObjectManager_player.flipped ? -10 : 10), 
 		player->y + offset, 
-		(const void*)&kunai, 
+		&kunaiResourceInfo, 
 	};
 
 	GameObject* kunai = Kunai_Create(&createInfo);

@@ -3,14 +3,14 @@
 
 #include "tile_animator.h"
 
-void* OnResourceLoaded(u8* resource)
+void* OnResourceLoaded(const ResourceInfo* resourceInfo)
 {
-	u8 resourceType = *resource;
+	u8 resourceType = resourceInfo->resource->resourceType;
 
 	switch (resourceType)
 	{
 	case TILE_ANIMATION_RESOURCE_TYPE:
-		TileAnimator_Create((TileAnimation*)resource);
+		TileAnimator_Create(resourceInfo);
 		break;
 	}
 

@@ -27,7 +27,7 @@ GameObject* ParticleEffect_Create(const CreateInfo* createInfo)
 	object->Update = ParticleEffect_Update;
 	object->Draw = ParticleEffect_Draw;
 
-	ResourceManager_SetupResource(object, createInfo->resource);
+	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }

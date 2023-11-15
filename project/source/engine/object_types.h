@@ -69,7 +69,7 @@ typedef struct create_info
 {
 	s16 startX;
 	s16 startY;
-	const Resource* resource;
+	const ResourceInfo* resourceInfo;
 } CreateInfo;
 
 #endif

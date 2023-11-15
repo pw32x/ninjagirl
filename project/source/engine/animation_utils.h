@@ -3,6 +3,7 @@
 
 #include "SMSLib.h"
 #include "engine/animation_types.h"
+#include "engine/resource_types.h"
 
 struct game_object;
 
@@ -23,26 +24,26 @@ u8 AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 u8 AnimationUtils_updateTileAnimation(struct game_object* gameObject);
 
 // load 
-u16 Load_AnimationResource(const Animation* animation);
-u16 Load_BatchedAnimationResource(const BatchedAnimation* batchedAnimation);
+u16 Load_AnimationResource(const ResourceInfo* resourceInfo);
+u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo);
 
-u16 Load_StreamedAnimationResource(const StreamedAnimation* streamedAnimation);
-u16 Load_StreamedBatchedAnimationResource(const StreamedBatchedAnimation* streamedBatchedAnimation);
+u16 Load_StreamedAnimationResource(const ResourceInfo* resourceInfo);
+u16 Load_StreamedBatchedAnimationResource(const ResourceInfo* resourceInfo);
 
-u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation);
-u16 Load_TileAnimationResource(const TileAnimation* tileAnimation);
+u16 Load_PlaneAnimationResource(const ResourceInfo* resourceInfo);
+u16 Load_TileAnimationResource(const ResourceInfo* resourceInfo);
 
 
 // setup
-u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation);
-u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const BatchedAnimation* batchedAnimation);
+u16 Setup_AnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
+u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
 
-u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const StreamedAnimation* streamedAnimation);
-u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const StreamedBatchedAnimation* streamedBatchedAnimation);
+u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
+u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
 
-u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation);
+u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
 
-u16 Setup_TileAnimationResource(struct game_object* gameObject, const TileAnimation* tileAnimation);
+u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo);
 
 // streaming
 

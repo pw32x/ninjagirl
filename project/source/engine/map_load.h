@@ -3,8 +3,8 @@
 
 #include "engine/map_types.h"
 
-u16 Load_MapResource(const Map* map);
-u16 Load_TilesetResource(const Tileset* tileset);
-u16 Load_AnimatedTilesetResource(const AnimatedTileset* animatedTileset);
+u16 Load_MapResource(const ResourceInfo* resourceInfo);
+u16 Load_TilesetResource(const ResourceInfo* resourceInfo);
+u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo);
 
 #endif

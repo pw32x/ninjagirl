@@ -44,7 +44,7 @@ GameObject* Enemy_Create(const CreateInfo* createInfo)
 	//
 	//object->x = object->data1 * 32;
 
-	ResourceManager_SetupResource(object, createInfo->resource);
+	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }

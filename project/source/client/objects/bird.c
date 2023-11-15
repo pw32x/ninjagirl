@@ -23,7 +23,7 @@ GameObject* Bird_Create(const CreateInfo* createInfo)
 	object->Draw = Bird_Draw;
 
 
-	ResourceManager_SetupResource(object, createInfo->resource);
+	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	object->rectLeft = 0;
 	object->rectTop = 0;

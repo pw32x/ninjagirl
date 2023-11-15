@@ -138,48 +138,62 @@ void AnimationUtils_setStreamedBatchedAnimationFrame(struct game_object* gameObj
 	gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
 }
 
-u16 Load_AnimationResource(const Animation* animation)
+u16 Load_AnimationResource(const ResourceInfo* resourceInfo)
 {
+	const Animation* animation = (const Animation*)resourceInfo->resource;
+
 	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
 										  animation->totalTileCount,
 										  animation->vdpLocation);
 }
 
-u16 Load_BatchedAnimationResource(const BatchedAnimation* batchedAnimation)
+u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
+	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
+
 	return VDPTileManager_LoadSpriteTiles(batchedAnimation->tileData, 
 										  batchedAnimation->totalTileCount,
 										  batchedAnimation->vdpLocation);
 }
 
-u16 Load_StreamedAnimationResource(const StreamedAnimation* streamedAnimation)
+u16 Load_StreamedAnimationResource(const ResourceInfo* resourceInfo)
 {
+	const StreamedAnimation* streamedAnimation = (const StreamedAnimation*)resourceInfo->resource;
+
 	return VDPTileManager_ReserveSpriteTilesArea(streamedAnimation->maxTilesInFrame,
 												 streamedAnimation->vdpLocation);
 }
 
-u16 Load_StreamedBatchedAnimationResource(const StreamedBatchedAnimation* streamedBatchedAnimation)
+u16 Load_StreamedBatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
+	const StreamedBatchedAnimation* streamedBatchedAnimation = (const StreamedBatchedAnimation*)resourceInfo->resource;
+
 	return VDPTileManager_ReserveSpriteTilesArea(streamedBatchedAnimation->maxTilesInFrame,
 												 streamedBatchedAnimation->vdpLocation);
 }
 
-u16 Load_PlaneAnimationResource(const PlaneAnimation* planeAnimation)
+u16 Load_PlaneAnimationResource(const ResourceInfo* resourceInfo)
 {
+	const PlaneAnimation* planeAnimation = (const PlaneAnimation*)resourceInfo->resource;
+
 	return VDPTileManager_LoadBackgroundTileset(planeAnimation->tileData, 
 												planeAnimation->totalTileCount,
 												planeAnimation->vdpLocation);
 }
 
-u16 Load_TileAnimationResource(const TileAnimation* tileAnimation)
+u16 Load_TileAnimationResource(const ResourceInfo* resourceInfo)
 {
+	const TileAnimation* tileAnimation = (const TileAnimation*)resourceInfo->resource;
+
 	return VDPTileManager_LoadBackgroundTileset(tileAnimation->tileData, 
 												tileAnimation->tilesPerFrame,
 												tileAnimation->vdpLocation);
 }
 
-u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* animation)
+u16 Setup_AnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const Animation* animation = (const Animation*)resourceInfo->resource;
+
 	gameObject->animation = animation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentAnimationFrame = animation->frames[0];
@@ -191,8 +205,10 @@ u16 Setup_AnimationResource(struct game_object* gameObject, const Animation* ani
 	return 0;
 }
 
-u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const BatchedAnimation* batchedAnimation)
+u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
+
 	gameObject->batchedAnimation = batchedAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentBatchedAnimationFrame = batchedAnimation->frames[0];
@@ -204,8 +220,10 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Batched
 	return 0;
 }
 
-u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const StreamedAnimation* streamedAnimation)
+u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const StreamedAnimation* streamedAnimation = (const StreamedAnimation*)resourceInfo->resource;
+
 	gameObject->streamedAnimation = streamedAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentStreamedAnimationFrame = streamedAnimation->frames[0];
@@ -217,8 +235,10 @@ u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const Stream
 	return 0;
 }
 
-u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const StreamedBatchedAnimation* streamedBatchedAnimation)
+u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const StreamedBatchedAnimation* streamedBatchedAnimation = (const StreamedBatchedAnimation*)resourceInfo->resource;
+
 	gameObject->streamedBatchedAnimation = streamedBatchedAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentStreamedBatchedAnimationFrame = streamedBatchedAnimation->frames[0];
@@ -230,8 +250,10 @@ u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const
 	return 0;
 }
 
-u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnimation* planeAnimation)
+u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const PlaneAnimation* planeAnimation = (const PlaneAnimation*)resourceInfo->resource;
+
 	gameObject->planeAnimation = planeAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentPlaneAnimationFrame = planeAnimation->frames[0];
@@ -243,8 +265,10 @@ u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const PlaneAnim
 	return 0;
 }
 
-u16 Setup_TileAnimationResource(struct game_object* gameObject, const TileAnimation* tileAnimation)
+u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	const TileAnimation* tileAnimation = (const TileAnimation*)resourceInfo->resource;
+
 	gameObject->tileAnimation = tileAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentTileAnimationFrame = tileAnimation->frames[0];

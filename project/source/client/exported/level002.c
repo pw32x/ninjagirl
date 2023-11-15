@@ -52,7 +52,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 { 
 	1, 
 	breakable_rock_tileset_TilesetFunction, 
-	(const Resource*)&rock_particleResourceInfo 
+	&rock_particleResourceInfo 
 };
 
 Command level002_commands[] = 

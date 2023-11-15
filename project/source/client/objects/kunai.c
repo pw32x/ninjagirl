@@ -13,7 +13,8 @@
 
 #include "engine/math_utils.h"
 
-#include "client/exported/animations/impact.h"
+//#include "client/exported/animations/impact.h"
+#include "client/generated/resource_infos.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx
@@ -46,7 +47,7 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 
 	//object->data1 = 1;
 
-	ResourceManager_SetupResource(object, createInfo->resource);
+	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
@@ -94,7 +95,7 @@ void Kunai_Update(GameObject* object)
 		{ 
 			object->x, 
 			object->y, 
-			(const void*)&impact, 
+			&impactResourceInfo, 
 		};
 
 		GameObject* effect = BasicEffect_Create(&createInfo);
@@ -113,7 +114,7 @@ void Kunai_Update(GameObject* object)
 			object->Draw = ObjectUtils_drawNothing;
 
 			MapManager_tilesetFunctions[tilesetIndex](tileset, 
-													  MapManager_tilesetResources[tilesetIndex],
+													  MapManager_tilesetResourceInfos[tilesetIndex],
 													  blockX, 
 													  blockY);
 		}
@@ -156,7 +157,7 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 	{ 
 		gameObject->x, 
 		gameObject->y, 
-		(const void*)&impact, 
+		&impactResourceInfo, 
 	};
 
 	GameObject* effect = BasicEffect_Create(&createInfo);

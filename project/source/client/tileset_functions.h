@@ -4,6 +4,6 @@
 #include "engine/base_types.h"
 #include "engine/map_types.h"
 
-void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const Resource* resource, u16 blockx, u16 blocky);
+void breakable_rock_tileset_TilesetFunction(const Tileset* tileset, const ResourceInfo* resourceInfo, u16 blockx, u16 blocky);
 
 #endif

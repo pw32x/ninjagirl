@@ -3,6 +3,6 @@
 
 #include "engine/resource_manager.h"
 
-void* OnResourceLoaded(u8* resource);
+void* OnResourceLoaded(const ResourceInfo* resourceInfo);
 
 #endif
