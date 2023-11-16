@@ -57,6 +57,10 @@ columnRunner += 2
 
 void ScrollUtils_InitTilemap(void)
 {
+	u8 currentRomBank = SMS_getROMBank();
+	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
+
+
 	// fill the map from the second column to the last.
 	for (char loop = 1; loop < 32; loop++)
 	{
@@ -73,4 +77,6 @@ void ScrollUtils_InitTilemap(void)
 	ScrollUtils_mapColumnToBuild = 32;
 	ScrollUtils_buildColumn(ScrollManager_columnBuffer);
 	SMS_loadTileMapColumn(0, 0, ScrollManager_columnBuffer, SCROLLMANAGER_BUFFER_HEIGHT);
+
+	SMS_mapROMBank(currentRomBank);
 }

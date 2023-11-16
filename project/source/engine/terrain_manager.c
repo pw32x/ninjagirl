@@ -1,5 +1,7 @@
 #include "terrain_manager.h"
 
+#include "SMSlib.h"
+
 #include "engine/map_types.h"
 #include "engine/map_manager.h"
 #include "engine/scroll_manager.h"
@@ -13,10 +15,15 @@ void TerrainManager_Init(void)
 {
 	memset(TerrainManager_terrain, 0, sizeof(TerrainManager_terrain));
 
+	u8 currentRomBank = SMS_getROMBank();
+	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
+
 	for (u8 loop = 0; loop < TERRAIN_WIDTH; loop++)
 	{
 		TerrainManager_UpdateTerrain(loop);
 	}
+
+	SMS_mapROMBank(currentRomBank);
 }
 
 void TerrainManager_UpdateTerrain(u16 mapColumnIndex)

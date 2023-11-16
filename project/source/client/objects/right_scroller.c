@@ -77,6 +77,9 @@ void RightScroll_Update(GameObject* target)
 
 	u8 tileDiff = columnToUpdate - oldColumn;
 
+	u8 currentRomBank = SMS_getROMBank();
+	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
+
 	if (tileDiff) // when we hit a new column, prep a new column to display
 	{
 		// figure out the column to update
@@ -99,6 +102,8 @@ void RightScroll_Update(GameObject* target)
 	{
 		TerrainManager_UpdateTerrain(terrainColumnToUpdate + 15);
 	}
+
+	SMS_mapROMBank(currentRomBank);
 
 	//SMS_setBackdropColor(COLOR_RED);
 }

@@ -1,83 +1,13 @@
 Todo
-	
-	DONE gg2c doesn't create sub folders
-	
-	
-	BuildMaster
-	
-		DONE build game with new system
-		
-		DONE clean out folder
 
-		DONE rebuild game
+	Build Master 
+	
+		stops building with warnings
+		only stop building on error	
+		rebuild if the bank number changes
+			ie rebuild if the cm file changes
 
-		DONE benchmark old and new method
-		
-		DONE remove old method
-		
-		DONE individual files
-		
-		DONE wild cards
-		
-		DONE clean exports folder
-		
-		NAH add generated to exports
-
-		NAH include file dependencies
-		
-		introduce banking
-		
-			DONE how to get at banked resources
-			
-			DONE switch types to point to RESOURCE_INFOs and not regular resources
-			
-			DONE process the contents of RESOURCE_INFOs
-			
-		DONE get latest devkitsms			
-			
-		DONE test the new debug print function			
-
-		DONE print the bank the resource would switch to
-	
-		compiling banked files			
-			
-			NAH sort files by bank number
-			
-			DONE compile using bank number
-			
-			NAH sort files sent to the linker by bank number
-			
-			DONE link using bank number
-			
-	
-	post message on sms forums
-	
-		
-		post command line
-		post map
-		
-		ask: 
-			can I have multiple files with the same bank?
-			does it make a difference if there are global variables in them?		
-			
-			
-	Banking
-				
-			load using bank number
-						
-		
-	split tiles from animation data
-	
-		aniation data in first 32k
-		
-		tiles in banks
-	
-	
-	split tiles and maparray from maps		
-	
-		tiles in banks
-		
-		map array... in ram?
+	have object switch to their animation's bank?
 	
 	move tools to tools folder
 	
@@ -325,6 +255,75 @@ effects
 	rain	
 	
 Completed
+
+	DONE gg2c doesn't create sub folders
+	
+	
+	BuildMaster
+	
+		DONE build game with new system
+		
+		DONE clean out folder
+
+		DONE rebuild game
+
+		DONE benchmark old and new method
+		
+		DONE remove old method
+		
+		DONE individual files
+		
+		DONE wild cards
+		
+		DONE clean exports folder
+		
+		NAH add generated to exports
+
+		NAH include file dependencies
+		
+		introduce banking
+		
+			DONE how to get at banked resources
+			
+			DONE switch types to point to RESOURCE_INFOs and not regular resources
+			
+			DONE process the contents of RESOURCE_INFOs
+			
+		DONE get latest devkitsms			
+			
+		DONE test the new debug print function			
+
+		DONE print the bank the resource would switch to
+	
+		compiling banked files			
+			
+			NAH sort files by bank number
+			
+			DONE compile using bank number
+			
+			NAH sort files sent to the linker by bank number
+			
+			DONE link using bank number
+			
+	
+			
+	DONE Banking
+				
+			load using bank number
+						
+		
+	NAH split tiles from animation data
+	
+		aniation data in first 32k
+		
+		tiles in banks
+	
+	
+	NAH split tiles and maparray from maps		
+	
+		tiles in banks
+		
+		map array... in ram?
 
 	DONE effects are buggy once past the first screen
 	

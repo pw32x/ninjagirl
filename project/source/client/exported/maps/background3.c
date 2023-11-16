@@ -33,7 +33,7 @@ const ResourceInfo* background3_tilesetResourceInfos[2] =
     &waterfall_tilesetResourceInfo, // AnimatedTileset
 };
 
-RESOURCE(BANK2) const Map const background3_map = 
+RESOURCE(BANK4) const Map const background3_map = 
 {
     MAP_RESOURCE_TYPE,
     background3_metatile_map, // metatile index map data

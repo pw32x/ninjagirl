@@ -4,6 +4,6 @@
 
 #include "map_types.h"
 
-RESOURCE(BANK2) extern const Map const background3_map;
+RESOURCE(BANK4) extern const Map const background3_map;
 
 #endif

@@ -17,6 +17,8 @@ u16 Load_MapResource(const ResourceInfo* resourceInfo)
 	MapManager_numTilesets = 0; // we'll leave it to the tile loading to take care of this
 	MapManager_metatileLutsDataSize = 0;
 
+	MapManager_mapResourceInfo = resourceInfo;
+
 	for (u16 loop = 0; loop < METATILE_LUT_DATA_SIZE; loop++)
 	{
 		MapManager_metatileLutsData[loop] = 0xcc;

@@ -49,7 +49,7 @@ const ResourceInfo waterfallResourceInfo =
 
 const ResourceInfo background3_mapResourceInfo = 
 {
-    2,
+    4,
     (const Resource*)&background3_map
 };
 

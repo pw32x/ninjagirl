@@ -23,7 +23,7 @@
 		<!--<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="3"/>-->
 		<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
-		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="2"/>
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="4"/>
 	</ToolJobs>
 
 	<!--
