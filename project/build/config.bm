@@ -11,6 +11,7 @@
 
 		<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
 		<Setting name="outFolder" value="out"/>
+		<Setting name="UseVisualStudioStylePaths" value="true"/>
 		<Setting name="resourceInfoExportFolder" value="source/client/generated" />
     </Settings>
 

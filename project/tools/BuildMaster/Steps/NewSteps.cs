@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace BuildMaster
 {
@@ -106,6 +107,7 @@ namespace BuildMaster
             {
                 sb.AppendLine("const ResourceInfo " + foundResource.Item1 + "ResourceInfo = ");
                 sb.AppendLine("{");
+
                 sb.AppendLine("    " + foundResource.Item2 + ",");
                 sb.AppendLine("    (const Resource*)&" + foundResource.Item1);
                 sb.AppendLine("};");
@@ -148,8 +150,14 @@ namespace BuildMaster
                 }
             };
 
-            if (!Utils.RunProcess(buildProject))
+            var outputString = Utils.RunProcess(buildProject);
+
+            bool containsError = ProcessErrorString(outputString, config);
+
+            if (containsError)
+            {
                 return;
+            }
 
             Action<StreamWriter> linkProject = (StreamWriter sw) =>
             {
@@ -170,8 +178,62 @@ namespace BuildMaster
                 sw.WriteLine(config.BuildIHXToSMSCommand());
             };
 
-            if (!Utils.RunProcess(linkProject))
-                return;
+            outputString = Utils.RunProcess(linkProject);
+        }
+
+        static (string, int, string) ExtractErrorInfo(string line)
+        {
+            // Define the pattern with capturing groups
+            string pattern = @"^(.*):(\d+):";
+
+            // Match the pattern
+            Match match = Regex.Match(line, pattern);
+
+            // Check if the string matches the pattern
+            if (match.Success)
+            {
+                // Extract the path and line number from capturing groups
+                string filePath = match.Groups[1].Value;
+                int lineNumber = int.Parse(match.Groups[2].Value);
+
+                string restOfString = line.Substring(match.Length).Trim();
+
+                return (filePath, lineNumber, restOfString);
+            }
+
+            return ("", -1, "");
+        }
+
+        private static bool ProcessErrorString(string errorString, Config config)
+        {
+            bool containsError = false;
+
+            if (!String.IsNullOrEmpty(errorString))
+            {
+                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
+
+                string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+                foreach (var line in lines)
+                {
+                    var (filePath, lineNumber, message) = ExtractErrorInfo(line);
+
+                    if (string.IsNullOrEmpty(filePath))
+                        continue;
+
+                    if (!containsError)
+                    {
+                        containsError = message.ToLower().Contains("error");
+                    }
+
+                    if (useVSStylePaths)
+                        Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
+                    else
+                        Console.WriteLine(line);
+                }
+            }
+
+            return containsError;
         }
     }
 }

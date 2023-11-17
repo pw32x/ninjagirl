@@ -401,7 +401,7 @@ namespace BuildMaster
         public string GetSetting(string name)
         {
             if (!m_settings.ContainsKey(name.ToLower()))
-                throw new Exception("There is no value in the config file for " + name);
+                return "Not found";
 
             return m_settings[name.ToLower()];
         }

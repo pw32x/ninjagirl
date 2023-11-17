@@ -7,6 +7,8 @@ Todo
 		rebuild if the bank number changes
 			ie rebuild if the cm file changes
 
+	export tilesets and theme maps as part of the bulid process
+
 	have object switch to their animation's bank?
 	
 	move tools to tools folder
@@ -170,7 +172,7 @@ Idea Backlog
 		health upgrade
 		extra kunai (start with two, get a third one)
 		hold to float down
-		
+		wall running. ubisoft prince of persia style, or run up walls Mario World style.
 
 	spawn info has id of object type instead of pointer to create function
 		automatic generation of gameobject_id.h from scanning header files
