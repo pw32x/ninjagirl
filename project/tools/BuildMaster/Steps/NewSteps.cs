@@ -143,11 +143,14 @@ namespace BuildMaster
                     DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
 
                     // only build if the source file is newer.
-                    if (sourceLastWriteTime > destinationLastWriteTime)
+                    // or the config file is newer.
+                    if (sourceLastWriteTime > destinationLastWriteTime ||
+                        config.LastConfigFileWriteTime > destinationLastWriteTime ||
+                        config.LastApplicationWriteTime > destinationLastWriteTime)
                     {
                         sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
                     }
-                }
+                } 
             };
 
             var outputString = Utils.RunProcess(buildProject);

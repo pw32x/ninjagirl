@@ -2,10 +2,14 @@ Todo
 
 	Build Master 
 	
-		stops building with warnings
-		only stop building on error	
 		rebuild if the bank number changes
 			ie rebuild if the cm file changes
+			or the cm file is newer than the output file
+
+		if the config file is newer
+		how to update assets if the bank changed?
+		how to tell what files the exporter created?\
+			look at the destination folder. listen for new files.
 
 	export tilesets and theme maps as part of the bulid process
 
@@ -257,6 +261,13 @@ effects
 	rain	
 	
 Completed
+
+	DONE speed up gal2tmx
+	
+	Build Master 
+	
+		FIXED stops building with warnings
+		DONE only stop building on error		
 
 	DONE gg2c doesn't create sub folders
 	

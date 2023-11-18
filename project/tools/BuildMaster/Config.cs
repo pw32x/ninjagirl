@@ -9,7 +9,10 @@ namespace BuildMaster
 {
     class Config
     {
-        public CompilationSettings CompilationSettings;
+        public CompilationSettings CompilationSettings { get; private set; }
+
+        public DateTime LastConfigFileWriteTime { get; private set; }
+        public DateTime LastApplicationWriteTime { get; private set; }
 
         public void Load(string path)
         {
@@ -32,6 +35,11 @@ namespace BuildMaster
 
             CompilationSettings = new CompilationSettings(GetSetting("devkitSmsPath"),
                                                             GetSetting("outFolder"));
+
+            LastConfigFileWriteTime = File.GetLastWriteTime(path);
+
+            string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            LastApplicationWriteTime = System.IO.File.GetLastWriteTime(appPath);
         }
 
         public string BuildLinkCommand(IEnumerable<uint> usedBankNumbers)

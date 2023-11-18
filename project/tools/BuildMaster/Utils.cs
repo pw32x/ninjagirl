@@ -63,9 +63,8 @@ namespace BuildMaster
                 FileName = "cmd.exe", // Use the command prompt
                 RedirectStandardInput = true,
                 RedirectStandardError = true,
-                RedirectStandardOutput = true,
                 UseShellExecute = false,
-                CreateNoWindow = !Debugger.IsAttached
+                //CreateNoWindow = !Debugger.IsAttached
             };
 
             // Start the process
@@ -75,17 +74,13 @@ namespace BuildMaster
             // Get the process's input stream
             StreamWriter sw = process.StandardInput;
             StreamReader errorReader = process.StandardError;
-            var stdOutput = process.StandardOutput;
 
-            workerFunction(sw);
+            workerFunction(sw); 
 
             // Close the input stream to indicate the end of input
             sw.Close();
 
-            string output = stdOutput.ReadToEnd();
-
             var errorString = errorReader.ReadToEnd();
-
 
             // Wait for the process to complete
             process.WaitForExit();
