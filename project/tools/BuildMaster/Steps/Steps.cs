@@ -10,28 +10,20 @@ namespace BuildMaster
         {
             Console.WriteLine("Step: Running Tools:");
 
-            var toolJobs = config.ToolJobs;
-
-            foreach (var toolInfo in config.ToolInfos)
+            foreach (var toolJob in config.ToolJobs)
             {
-                Console.WriteLine("Step: " + toolInfo.Info);
+                var toolInfo = config.GetTool(toolJob.ToolName);
 
-                var applicableToolJobs = toolJobs.Where(e => e.ToolName == toolInfo.Name);
+                Console.WriteLine("Tool: " + toolJob.ToolName);
+                Console.WriteLine("Source Path: " + toolJob.SourcePath);
+                Console.WriteLine("Destination Path: " + toolJob.DestinationPath);
+                Console.WriteLine("Bank Number: " + toolJob.BankNumber);
+                Console.WriteLine("Flags: " + toolInfo.Flags);
+                Console.WriteLine("ExtraFlags: " + toolJob.ExtraFlags);
 
-                string toolPath = toolInfo.Path;
+                string bankFlag = toolJob.BankNumber >= 2 ? "-bank" + toolJob.BankNumber : "";
 
-                foreach (var toolJob in applicableToolJobs)
-                {
-                    Console.WriteLine("Tool: " + toolInfo.Name);
-                    Console.WriteLine("Source Path: " + toolJob.SourcePath);
-                    Console.WriteLine("Destination Path: " + toolJob.DestinationPath);
-                    Console.WriteLine("Bank Number: " + toolJob.BankNumber);
-                    Console.WriteLine("Flags: " + toolInfo.Flags);
-
-                    string bankFlag = toolJob.BankNumber >= 2 ? "-bank" + toolJob.BankNumber : "";
-
-                    Utils.RunCommandLine(toolPath, toolJob.SourcePath + " " + toolJob.DestinationPath + " " + toolInfo.Flags + " " + bankFlag);
-                }
+                Utils.RunCommandLine(toolInfo.Path, toolJob.SourcePath + " " + toolJob.DestinationPath + " " + toolJob.ExtraFlags + " " + toolInfo.Flags + " " + bankFlag);
             }
         }
 

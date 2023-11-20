@@ -1,25 +1,26 @@
 Todo
 
-	Build Master 
-	
-		rebuild if the bank number changes
-			ie rebuild if the cm file changes
-			or the cm file is newer than the output file
-
-		if the config file is newer
-		how to update assets if the bank changed?
-		how to tell what files the exporter created?\
-			look at the destination folder. listen for new files.
-
 	export tilesets and theme maps as part of the bulid process
+	
+		make the destination folder of gal2tmx 'exported' and not 'generated'
+	
+		gal2tmx
+	
+			make work with folders and wildcards
+			only update if newer or override
+		
+		does the "breakable" tag in breakable_rock.tileset.breakable.gal make sense?
+		
+		make BuildMaster parse extradestinationfolder/exportfolder
 
-	have object switch to their animation's bank?
+
+	DO SOMETHING FUN
+
+	have object switch to their animation's bank when calling update function?
 	
-	move tools to tools folder
 	
-	add "bank" option to tools?
-	
-	convert to use command line flags
+
+	climbing walls?
 
 
 	space pass
@@ -34,7 +35,6 @@ Todo
 			copy the tile differences only to 
 
 
-	climbing walls?
 	
 	performance pass
 
@@ -165,6 +165,15 @@ vdp
 
 Idea Backlog 
 
+	Build Master 
+	
+		if the config file is newer
+		how to update assets if the bank changed?
+		how to tell what files the exporter created?\
+			look at the destination folder. listen for new files.
+
+
+
 	update ideas
 	
 		double jump
@@ -259,428 +268,3 @@ Game Design Ideas
 effects
 
 	rain	
-	
-Completed
-
-	DONE speed up gal2tmx
-	
-	Build Master 
-	
-		FIXED stops building with warnings
-		DONE only stop building on error		
-
-	DONE gg2c doesn't create sub folders
-	
-	
-	BuildMaster
-	
-		DONE build game with new system
-		
-		DONE clean out folder
-
-		DONE rebuild game
-
-		DONE benchmark old and new method
-		
-		DONE remove old method
-		
-		DONE individual files
-		
-		DONE wild cards
-		
-		DONE clean exports folder
-		
-		NAH add generated to exports
-
-		NAH include file dependencies
-		
-		introduce banking
-		
-			DONE how to get at banked resources
-			
-			DONE switch types to point to RESOURCE_INFOs and not regular resources
-			
-			DONE process the contents of RESOURCE_INFOs
-			
-		DONE get latest devkitsms			
-			
-		DONE test the new debug print function			
-
-		DONE print the bank the resource would switch to
-	
-		compiling banked files			
-			
-			NAH sort files by bank number
-			
-			DONE compile using bank number
-			
-			NAH sort files sent to the linker by bank number
-			
-			DONE link using bank number
-			
-	
-			
-	DONE Banking
-				
-			load using bank number
-						
-		
-	NAH split tiles from animation data
-	
-		aniation data in first 32k
-		
-		tiles in banks
-	
-	
-	NAH split tiles and maparray from maps		
-	
-		tiles in banks
-		
-		map array... in ram?
-
-	DONE effects are buggy once past the first screen
-	
-	DONE adjust jump	
-	NAH don't jump so fast
-	NAH don't fall so fast
-
-
-
-	DONE treat the effect entities has a circular list. 
-		always overwrite the oldest effect
-
-	NAH player top/bottom animations
-	
-	DONE ducking
-	
-	DONE shooting animation
-		NAH have the projectile be around the middle of a tile? 
-		
-
-	DONE why does breakable rock have an extra tile and an extra block?
-
-	DONE assign tileset "properties" dynamically 
-
-
-	DONE assign the tileset properties at runtime
-	
-	DONE split the scroll manager and the map manager
-
-	DONE collision check mid-way on player	
-
-	DONE destroying an object should just set its update and draw functions to appropriate doNothing()
-
-	NAH tilesets should contain their paletes
-	
-
-
-	DONE how to make it so that a broken block gets a custom animation?
-		breakable tilesets have a function and a resource
-		<tileset>_collisionFunction
-		how to define the resource? 
-			<tileset>_collisionResource?
-				does it have to be an animation?
-					it doesn't.
-					it can be any type of resource
-
-
-	NAH particle system
-	
-		array of 16 tracked particles
-			screen x
-			screen y
-			update function
-			speed x
-			speed y 
-			animation counter
-			animation
-			update animation
-			lifetime
-			clipping			
-		what's the diff between this and just having 32 effect objects?
-
-	DONE don't destroy a 16x16 tile if it's not entirely on screen
-		otherwise it creates holes on the left side of the screen
-
-	DONE rename terrain types back to tile types
-
-	DONE remove most slopes types from tile types
-	
-	DONE use 4 bits for terrain type
-	
-	DONE use 3 bits for tileset id
-	
-	DONE use helper defines/functions
-	
-	DONE use defines for shift amounts
-
-	DONE change all animations to have a pointer to the next animation
-	
-	DONE update player sprite tiles when moving
-	
-	DONE stream in animations
-	
-	DONE animated tile shit
-
-	DONE multiple tile sets
-
-
-		how to better specify how many tiles to update?
-		
-		how to animate multiple types of tiles?
-	
-			go back to how the Genesis worked?
-
-
-	DONE Turn left 
-
-	DONE collision map too much? use the map instead?
-		use bigger bit flags?
-
-	DONE destructable tiles
-		collide with a 32x24 terrain buffer and not the map
-		terrain buffer is u8 ?
-
-	DONE animated tiles
-		rework the tooling so that 
-			- water tiles are a separate tileset
-			- a map can contain multiple tilesets
-			- tilesets are stored/loaded contigously
-
-		upload animated tiles to vdp using UNSAFE_SMS_load4Tiles()
-		
-	DONE post animated tiles rework		
-	
-		test loading 4 tilesets
-	
-		how to tell the map that an animated tileset uses X number of tiles?
-
-	NAH player is looping past 16k on the x coordinate
-
-		32bit player pos -> 8 bit screen pos
-		
-		convert entities to do the same
-
-	
-
-
-	DONE fix kunai disappearing early if we scrolled the level
-
-	DONE move player
-
-	DONE top-solid collisions
-
-
-	BLEH anti-flicker strategy
-
-
-	DONE add impact sound effect
-	DONE add explosion sound effect
-	DONE better throw sound
-
-	DONE add effects objects to object manager
-	
-		tile_animator
-		bird
-
-	DONE convert everything_spawner to new command_runner
-	
-	DONE rename spawn_types to command_types
-	
-	DONE CreateInfo to ObjectCreateInfo ? 
-	
-	DONE rename command_runner to rightscroll_command_runner;
-
-	DONE make tile_animation work correctly
-	
-	DONE load resources as part of the spawn list
-	
-		background palette
-		sprite palette
-		map 
-		
-	DONE spawn list format
-		byte blob
-			define in a file that gets exported
-	
-		counter
-		action type
-		data
-
-	DONE animated tiles	
-
-	NAH speed up animation update
-
-
-	DONE sprite animations that draw into the background
-	
-	DONE animation type
-	
-		regular
-		batched
-		plane
-
-	DONE vgm pipeline
-	
-	
-		batch exporter
-		
-			pass root folder
-			
-				list the files in 
-					root
-					channel2
-					channel3
-					channel23
-			
-			optional newer check: 
-			
-				for each psg, check if the dmf is newer
-					
-					if newer, stop
-	
-
-			processing
-			
-				create temp folder
-
-				for each psg use PSG tool and create to temp folder
-				
-				use assets2banks.exe to export to .c and .h files
-				
-					
-			
-				
-
-
-	DONE test out music and sound effects
-	
-	how to make a sound effect
-	
-		make the effect
-	
-			create a new song in Deflemask
-			
-			use SN3 or SN4 channels or both
-			
-			add an OFF note (using the Tab key) at the end of the effect
-			
-			use the rows
-			
-			save as vgm
-			
-			save file
-			
-		compress the vgm
-		
-			use PSGTool
-			
-				java -jar PSGTool.jar hit.vgm 3
-				
-				use 2 or 3 or 23 to indicate which channels the effect uses
-				
-				Mapping:
-				Deflemask -> PSGLib Channel
-				SN3		  -> 2
-				SN4		  -> 3
-				
-		convert to banks C header and source files 
-		
-			<path/>assets2banks.exe <source_path> [--allowsplitting]
-		
-			ex: 
-				C:\Dropbox\SegaMasterSystem\devkitSMS-master\assets2banks\Windows\assets2banks.exe psg --allowsplitting
-	
-
-			the current path is the destination path
-			
-		integration into the game code
-		
-			bring the banks*.h and .c files into the solution		
-
-	DONE improve scroll performance
-	
-	DONE destroy enemy when offscreen
-	
-	DONE draw projectiles
-	
-	DONE collisions with projectiles
-	
-	DONE basic collisions
-	
-	DONE use 8x16 tiles
-	
-	DONE test out using the draw2 and draw3 sprite functions
-	
-	DONE create a draw4 sprite function
-	
-		new sprite format
-			
-			function, x, y, tile
-			
-			
-			function 0
-				finished? 
-				
-			function1 
-				draw one tile
-			function 2
-				draw two tiles
-			function 3
-				draw three tiles
-			function 4
-				draw four tiles
-
-	DONE have a spawner object
-	
-	DONE create a spawn right objects
-
-	DONE split source files into folders
-		game
-		engine
-		
-		update makefile
-
-
-
-	BuildMasterSystem
-	
-		DONE copy to daily folder action
-
-	BuildMasterSystem
-	
-		gg2c
-		
-			DONE add message when there's nothing to be done
-			DONE check if the file should be exported
-			
-		BMS
-						
-			DONE don't show the powershell output text?
-			DONE show the steps?
-			DONE add parameters to config about how to call make
-
-	
-
-	DONE create types.h file
-
-		convert to use types.h file
-		
-		is int 32 bits or 16?
-
-	DONE create objecttypes.h file
-	
-		GameObject	
-		
-		
-	DONE Make a todo.txt
-		
-	DONE destroy objects according to visibility criteria
-		totally to the left
-		offscreen
-
-	DONE clip sprite drawing		
-	
-	DONE clean up changes to optimization
-	
-	BLEH move draw function to object update?	

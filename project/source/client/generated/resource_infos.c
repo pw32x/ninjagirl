@@ -61,7 +61,7 @@ const ResourceInfo background3_tilesetResourceInfo =
 
 const ResourceInfo breakable_rock_tilesetResourceInfo = 
 {
-    0,
+    3,
     (const Resource*)&breakable_rock_tileset
 };
 

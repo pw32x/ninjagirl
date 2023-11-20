@@ -116,7 +116,13 @@ namespace BuildMaster
 
         public static string NormalizePath(string path)
         {
-            return EnsureTrailingSlash(NormalizeSlashes(path));
+            string normalized = NormalizeSlashes(path);
+
+            // don't add a slash if it's a filename
+            if (!string.IsNullOrEmpty(Path.GetExtension(normalized)))
+                return normalized;
+
+            return EnsureTrailingSlash(normalized);
         }
 
         public static void CreateFolders(IEnumerable<string> sourceDestinationFolders)

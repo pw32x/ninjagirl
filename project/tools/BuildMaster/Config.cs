@@ -305,11 +305,13 @@ namespace BuildMaster
                     string source = toolJob.Attributes["source"].Value;
                     string destination = toolJob.Attributes["destination"].Value;
                     string bank = toolJob.Attributes["bank"]?.Value;
+                    string extraFlags = toolJob.Attributes["extraflags"]?.Value;
                     uint.TryParse(bank, out uint bankNumber);
 
                     m_toolJobs.Add(new ToolJobInfo(toolName,
                                                    Utils.NormalizePath(source),
                                                    Utils.NormalizePath(destination),
+                                                   extraFlags,
                                                    bankNumber));
 
                     // create a source set for the tool job.
@@ -450,17 +452,20 @@ namespace BuildMaster
             public ToolJobInfo(string toolName,
                              string source,
                              string destination,
+                             string extraFlags,
                              uint bankNumber)
             {
                 ToolName = toolName.ToLower();
                 SourcePath = source.ToLower();
                 DestinationPath = destination.ToLower();
+                ExtraFlags = extraFlags;
                 BankNumber = bankNumber;
             }
 
             public string ToolName { get; }
             public string SourcePath { get; }
             public string DestinationPath { get; }
+            public string ExtraFlags { get; }
             public uint BankNumber { get; }
         }
 
