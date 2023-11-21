@@ -2,12 +2,22 @@ Todo
 
 	export tilesets and theme maps as part of the bulid process
 	
-		make the destination folder of gal2tmx 'exported' and not 'generated'
-	
 		gal2tmx
-	
+
+			DONE export animatedtilesets directly from the gamedata/animations folder and not the assets folder
+				don't need to perform a copy then.
+
 			make work with folders and wildcards
 			only update if newer or override
+	
+			make the tilesetdest to 'exported' and not 'generated' ? 
+				it's a destination folder and it should be cleaned during Clean
+				
+				flip gal2tmx to gal2tsx with map export option
+				
+			don't clear the gamedata/maps folder when cleaning gal2tmx			
+				if I change it to gal2tsx, then I won't need to
+	
 		
 		does the "breakable" tag in breakable_rock.tileset.breakable.gal make sense?
 		
@@ -15,6 +25,13 @@ Todo
 
 
 	DO SOMETHING FUN
+	
+		enemies
+		
+			ninja robots?
+	
+		object placement tool
+			SceneMaster
 
 	have object switch to their animation's bank when calling update function?
 	

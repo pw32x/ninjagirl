@@ -31,9 +31,9 @@
 	<!-- Tool Jobs are run in the order they're listed. -->
 	<ToolJobs>
 		<!--<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\maps" tilesetdest="source\client\generated" animationdest="gamedata\animations" extraflags="-tiletypes tiletypes.gal -y" bank="3" />-->
-		<ToolJob tool="gal2tmx" source="assets\backgrounds\background3.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -animationdest gamedata\animations -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
-		<ToolJob tool="gal2tmx" source="assets\backgrounds\breakable_rock.tileset.breakable.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -animationdest gamedata\animations -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
-		<ToolJob tool="gal2tmx" source="assets\backgrounds\waterfall.animatedtileset.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -animationdest gamedata\animations -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
+		<ToolJob tool="gal2tmx" source="assets\backgrounds\background3.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
+		<ToolJob tool="gal2tmx" source="assets\backgrounds\breakable_rock.tileset.breakable.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
+		<ToolJob tool="gal2tmx" source="gamedata\animations\waterfall.animatedtileset.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated  -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
 		<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="4"/>
 	</ToolJobs>
