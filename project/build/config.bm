@@ -18,22 +18,18 @@
 	<Tools>
 		<Tool name="gg2c" path="..\..\..\..\GenDev\Projects\gg2c\Release\gg2c.exe" flags="-sms -updateonly" info="Export Animations"/>
 		<Tool name="tmx2c" path="..\..\tmx2c\bin\tmx2c.exe" info="Export backgrounds"/>
-		<Tool name="gal2tmx" path="..\..\gal2tmx\bin\gal2tmx.exe" info="Export theme backgrounds and tilesets"/>
-			
-		<!--
-		<Tool name="gal2tmx" path="..\..\gal2tmx\bin\gal2tmx.exe" info="Export theme backgrounds and tilesets">
-			<extradestinationfolder flag="-tilesetdest" clean="false"/>
-			<extradestinationfolder flag="-animationdest" clean="false"/>
+		<Tool name="gal2tmx" path="..\..\gal2tmx\bin\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
+			<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>
 		</Tool>
-		-->
 	</Tools>
 	
 	<!-- Tool Jobs are run in the order they're listed. -->
 	<ToolJobs>
-		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\maps" tilesetdest="source\client\generated" extraflags="-tilesetdest source\client\generated -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
-		<ToolJob tool="gal2tmx" source="gamedata\animations\*.animatedtileset.gal" destination="gamedata\maps" extraflags="-tilesetdest source\client\generated -tiletypes assets\tiletypes\tiletypes.gal" bank="3" />
+		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets" bank="3" />
+		<ToolJob tool="gal2tmx" source="gamedata\animations\*.animatedtileset.gal" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets" bank="3" />
 		<ToolJob tool="gg2c" source="gamedata\animations" destination="source\client\exported\animations" bank="2"/>
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="4"/>
+		<ToolJob tool="tmx2c" source="gamedata\generated\themes" destination="source\client\exported\maps" bank="4"/>
 	</ToolJobs>
 
 	<!--

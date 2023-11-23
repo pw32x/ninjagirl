@@ -285,10 +285,29 @@ namespace BuildMaster
                     string flags = toolNode.Attributes["flags"]?.Value ?? "";
                     string info = toolNode.Attributes["info"]?.Value ?? "";
 
-                    m_toolInfos[name.ToLower()] = new ToolInfo(name,
-                                                               path,
-                                                               flags,
-                                                               info);
+                    var newToolInfo = new ToolInfo(name,
+                                                   path,
+                                                   flags,
+                                                   info);
+
+                    var additionalExportFolderFlagNodes = toolNode.SelectNodes("AdditionalExportFolderFlag");
+
+                    foreach (XmlNode additionalExportFolderFlagNode in additionalExportFolderFlagNodes)
+                    {
+                        string flag = additionalExportFolderFlagNode.Attributes["flag"]?.Value ?? "";
+
+                        if (string.IsNullOrEmpty(flag))
+                            continue;
+
+                        string useAsIncludeFolder = additionalExportFolderFlagNode.Attributes["useasincludefolder"]?.Value ?? "";
+
+                        var additionalExportFolder = new AdditionalExportFolder() { FlagName = flag, 
+                                                                                    UseAsIncludeFolder = useAsIncludeFolder.ToLower() == "true" };
+
+                        newToolInfo.AdditionalExportFolders.Add(additionalExportFolder);
+                    }
+
+                    m_toolInfos[name.ToLower()] = newToolInfo;
                 }
             }
         }
@@ -308,11 +327,36 @@ namespace BuildMaster
                     string extraFlags = toolJob.Attributes["extraflags"]?.Value;
                     uint.TryParse(bank, out uint bankNumber);
 
-                    m_toolJobs.Add(new ToolJobInfo(toolName,
-                                                   Utils.NormalizePath(source),
-                                                   Utils.NormalizePath(destination),
-                                                   extraFlags,
-                                                   bankNumber));
+                    var toolInfo = GetTool(toolName);
+
+                    var additionalDestinations = new List<string>();
+
+                    foreach (var additionalExportFolder in toolInfo.AdditionalExportFolders)
+                    {
+                        string value = toolJob.Attributes[additionalExportFolder.FlagName]?.Value;
+
+                        if (string.IsNullOrEmpty(value))
+                            continue;
+
+                        extraFlags += " -" + additionalExportFolder.FlagName + " " + value;
+
+                        additionalDestinations.Add(value);
+
+                        if (additionalExportFolder.UseAsIncludeFolder)
+                            IncludePaths.Add(Utils.NormalizePath(value));
+                    }
+
+                    //var destinationFolders = toolJob.Attributes.
+
+                    var newToolJob = new ToolJobInfo(toolName,
+                                                     Utils.NormalizePath(source),
+                                                     Utils.NormalizePath(destination),
+                                                     extraFlags,
+                                                     bankNumber,
+                                                     additionalDestinations);
+
+
+                    m_toolJobs.Add(newToolJob);
 
                     // create a source set for the tool job.
                     // the source set's source is the destination of the tool job.
@@ -330,6 +374,12 @@ namespace BuildMaster
                     }
 
                     sourceSet.SourcePaths.Add(destination);
+
+                    foreach (var additionalDestination in additionalDestinations)
+                    {
+                        sourceSet.SourceFolders.Add(additionalDestination);
+                        sourceSet.SourcePaths.Add(additionalDestination);
+                    }
 
                     m_sourceSets.Add(sourceSet);
                 }
@@ -421,6 +471,13 @@ namespace BuildMaster
         public string ResourceInfoExportFolder { get { return GetSetting("resourceInfoExportFolder"); } }
 
         // Tools
+
+        public class AdditionalExportFolder
+        {
+            public string FlagName { get; set; }
+            public bool UseAsIncludeFolder { get; set; }
+        }
+
         public class ToolInfo
         {
             public ToolInfo(string name,
@@ -438,6 +495,7 @@ namespace BuildMaster
             public string Path { get; }
             public string Flags { get; }
             public string Info { get; }
+            public List<AdditionalExportFolder> AdditionalExportFolders { get; } = new List<AdditionalExportFolder>();
         }
 
         private Dictionary<string, ToolInfo> m_toolInfos = new Dictionary<string, ToolInfo>();
@@ -450,16 +508,18 @@ namespace BuildMaster
         public class ToolJobInfo
         {
             public ToolJobInfo(string toolName,
-                             string source,
-                             string destination,
-                             string extraFlags,
-                             uint bankNumber)
+                               string source,
+                               string destination,
+                               string extraFlags,
+                               uint bankNumber,
+                               List<string> additionalDestinations)
             {
                 ToolName = toolName.ToLower();
                 SourcePath = source.ToLower();
                 DestinationPath = destination.ToLower();
                 ExtraFlags = extraFlags;
                 BankNumber = bankNumber;
+                AdditionalDestinations = additionalDestinations;
             }
 
             public string ToolName { get; }
@@ -467,6 +527,7 @@ namespace BuildMaster
             public string DestinationPath { get; }
             public string ExtraFlags { get; }
             public uint BankNumber { get; }
+            public List<string> AdditionalDestinations;
         }
 
         private List<ToolJobInfo> m_toolJobs = new List<ToolJobInfo>();
@@ -481,14 +542,19 @@ namespace BuildMaster
         {
             var uniqueDirectories = new HashSet<string>();
 
-            foreach (var entry in m_toolJobs)
+            foreach (var toolJob in m_toolJobs)
             {
-                string directory = entry.DestinationPath;
+                string directory = toolJob.DestinationPath;
 
                 if (Path.HasExtension(directory))
                     directory = Path.GetDirectoryName(directory);
 
                 uniqueDirectories.Add(directory);
+
+                foreach (var additionalDestination in toolJob.AdditionalDestinations)
+                {
+                    uniqueDirectories.Add(additionalDestination);
+                }
             }
 
             m_toolDestinationFolders = uniqueDirectories.ToList();

@@ -105,12 +105,10 @@ namespace BuildMaster
 
             foreach (var foundResource in foundResources)
             {
-                sb.AppendLine("const ResourceInfo " + foundResource.Item1 + "ResourceInfo = ");
-                sb.AppendLine("{");
+                sb.Append("const ResourceInfo " + foundResource.Item1 + "ResourceInfo = { /*bank*/ ");
 
-                sb.AppendLine("    " + foundResource.Item2 + ",");
-                sb.AppendLine("    (const Resource*)&" + foundResource.Item1);
-                sb.AppendLine("};");
+                sb.Append(foundResource.Item2 + ", (const Resource*)&" + foundResource.Item1);
+                sb.Append(" };");
                 sb.AppendLine();
             }
 
