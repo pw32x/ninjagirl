@@ -11,14 +11,23 @@
     <Window.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
-       
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding NewCommand}" Gesture="Ctrl+N"/>
+        <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"/>
+        <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"/>
+        <KeyBinding Command="{Binding SaveAsCommand}" Gesture="Ctrl+Shift+S"/>
+        <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4"/>
+    </Window.InputBindings>
+    
     <DockPanel VerticalAlignment="Stretch" Height="auto">
         <Menu DockPanel.Dock="Top">
             <!-- File Menu -->
             <MenuItem Header="_File">
                 <MenuItem Header="_New" Command="{Binding NewCommand}"/>
                 <MenuItem Header="_Open" Command="{Binding OpenCommand}"/>
-                <MenuItem Header="_Save" Command="{Binding SaveCommand}"/>
+                <MenuItem Header="_Save"  Command="{Binding SaveCommand}"/>
+                <MenuItem Header="Save _As..." Command="{Binding SaveAsCommand}"/>
                 <Separator />
                 <MenuItem Header="_Import .Gal File" Command="{Binding ImportGalFileCommand}"/>
                 <Separator />
@@ -30,7 +39,7 @@
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="*" Visibility="{Binding CurrentDocument.IsModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{Binding CurrentDocument.SpriteMasterData.Filename}"/>
+                        <TextBlock Text="{Binding CurrentDocument.Filename}"/>
                     </StackPanel>
                 </TabItem.Header>
                 <local:SpriteMasterDocumentView DataContext="{Binding CurrentDocument}" />

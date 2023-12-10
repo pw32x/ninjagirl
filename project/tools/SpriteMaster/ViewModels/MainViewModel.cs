@@ -11,8 +11,6 @@ namespace SpriteMaster.ViewModels
     {
         public string Title => "Sprite Master";
 
-        public string MyProperty { get => CurrentDocument.SpriteMasterData.FilePath; }
-
         private SpriteMasterDocument m_currentDocument;
         public SpriteMasterDocument CurrentDocument
         {
@@ -27,6 +25,7 @@ namespace SpriteMaster.ViewModels
             NewCommand = new RelayCommand(New);
             OpenCommand = new RelayCommand(Open);
             SaveCommand = new RelayCommand(SaveNoReturn);
+            SaveAsCommand = new RelayCommand(SaveAs);
             ExitCommand = new RelayCommand(Exit);
             ImportGalFileCommand = new RelayCommand(ImportGalFile);
         }
@@ -34,6 +33,7 @@ namespace SpriteMaster.ViewModels
         public ICommand NewCommand { get; }
         public ICommand OpenCommand { get; }
         public ICommand SaveCommand { get; }
+        public ICommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
         public ICommand ImportGalFileCommand { get; }
 
@@ -54,7 +54,7 @@ namespace SpriteMaster.ViewModels
 
             var openFileDialog = new OpenFileDialog();
 
-            SetFileExtensions(openFileDialog);
+            SetSpriteMasterFileExtensions(openFileDialog);
 
             if (openFileDialog.ShowDialog() == false)
                 return;
@@ -68,20 +68,25 @@ namespace SpriteMaster.ViewModels
             }
         }
 
+        private void SaveAs()
+        { 
+            Save(forcePrompt: true);
+        }
+
         private void SaveNoReturn()
         {
             Save();
         }
 
-        private bool Save()
+        private bool Save(bool forcePrompt = false)
         {
             string filePath = "";
 
-            if (!CurrentDocument.IsFilePathSet)
+            if (!CurrentDocument.IsFilePathSet || forcePrompt)
             {
                 var saveFileDialog = new SaveFileDialog();
 
-                SetFileExtensions(saveFileDialog);
+                SetSpriteMasterFileExtensions(saveFileDialog);
 
                 if (saveFileDialog.ShowDialog() == false)
                     return false;
@@ -98,14 +103,24 @@ namespace SpriteMaster.ViewModels
             return true;
         }
 
-        private void SetFileExtensions(FileDialog fileDialog)
+        private void SetSpriteMasterFileExtensions(FileDialog fileDialog)
         {
             // Filter files by extension
-            string extension = CurrentDocument.SpriteMasterDocumentFileExtension;
-            string documentType = CurrentDocument.DocumentTypeName;
+            string extension = SpriteMasterDocument.SpriteMasterDocumentFileExtension;
+            string documentType = SpriteMasterDocument.DocumentTypeName;
             fileDialog.DefaultExt = extension;
             fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
         }
+
+        private void SetGraphicsGaleFileExtensions(FileDialog fileDialog)
+        {
+            // Filter files by extension
+            string extension = SpriteMasterDocument.GraphicsGaleFileExtension;
+            string documentType = SpriteMasterDocument.GraphicsGaleFileTypeName;
+            fileDialog.DefaultExt = extension;
+            fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
+        }
+
 
         private void Exit()
         {
@@ -119,7 +134,7 @@ namespace SpriteMaster.ViewModels
         {
             if (CurrentDocument.IsModified)
             {
-                var result = MessageBox.Show($"Do you want to save changes to {CurrentDocument.SpriteMasterData.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
+                var result = MessageBox.Show($"Do you want to save changes to {CurrentDocument.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
 
                 switch (result)
                 {
@@ -140,6 +155,21 @@ namespace SpriteMaster.ViewModels
 
         private void ImportGalFile()
         {
+            if (!string.IsNullOrEmpty(CurrentDocument.SpriteMasterData.GalFilePath))
+            { 
+                string message = "Completely reset the contents of the Sprite Master file with a new Graphics Gale file?";
+                if (MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
+                    return;
+            }
+
+            var openFileDialog = new OpenFileDialog();
+
+            SetGraphicsGaleFileExtensions(openFileDialog);
+
+            if (openFileDialog.ShowDialog() == false)
+                return;
+
+            CurrentDocument.ImportGalFile(openFileDialog.FileName);
         }
     }
 }

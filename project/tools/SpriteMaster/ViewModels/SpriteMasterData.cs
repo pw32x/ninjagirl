@@ -1,33 +1,31 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
 using System.IO;
 
 namespace SpriteMaster.ViewModels
 {
     public class SpriteMasterData : ObservableObject
     {
-        private string m_filePath;
-        public string FilePath
+        private string m_galFilePath;
+        public string GalFilePath
         {
-            get => m_filePath;
+            get => m_galFilePath;
             set
             {
-                SetProperty(ref m_filePath, value);
-                Filename = Path.GetFileName(m_filePath);
+                SetProperty(ref m_galFilePath, value);
+                GalFilename = Path.GetFileName(m_galFilePath);
             }
         }
 
-        private string m_filename;
-        public string Filename
+        private string m_galFilename;
+        public string GalFilename
         {
-            get => m_filename;
-            private set => SetProperty(ref m_filename, value);
+            get => m_galFilename;
+            private set => SetProperty(ref m_galFilename, value);
         }
 
+        /*
         internal bool Load(string filePath)
         {
-            FilePath = filePath;
-
             return true;
         }
 
@@ -35,5 +33,6 @@ namespace SpriteMaster.ViewModels
         {
             return true;
         }
+        */
     }
 }

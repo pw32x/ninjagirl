@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DataContext ="{d:DesignInstance local:SpriteMasterData, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Blue">
-            
-    </Grid>
+    <StackPanel Background="Blue">
+        <TextBlock Text="{Binding GalFilename}"/>
+    </StackPanel>
 </UserControl>
