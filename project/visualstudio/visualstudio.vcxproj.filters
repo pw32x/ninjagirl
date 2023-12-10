@@ -268,6 +268,9 @@
     <ClCompile Include="..\source\client\generated\waterfall_tileset.c">
       <Filter>Source Files\client\generated\tilesets</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\robotrunner.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -420,6 +423,9 @@
     <ClInclude Include="..\source\client\generated\waterfall_tileset.h">
       <Filter>Source Files\client\generated\tilesets</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\robotrunner.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">
@@ -450,6 +456,9 @@
       <Filter>SMSLib\crt0</Filter>
     </None>
     <None Include="..\build\Makefile.config">
+      <Filter>build</Filter>
+    </None>
+    <None Include="..\out\NinjaGirl.map">
       <Filter>build</Filter>
     </None>
   </ItemGroup>

@@ -8,6 +8,9 @@
 #include "client\exported\animations\kunai.h"
 #include "client\exported\animations\ninja_girl.h"
 #include "client\exported\animations\rock_particle.h"
+#include "client\exported\animations\walker.h"
+#include "client\exported\animations\walker_big.h"
+#include "client\exported\animations\walker_small.h"
 #include "client\exported\animations\waterfall.h"
 #include "client\exported\maps\background3.h"
 
@@ -19,5 +22,8 @@ const ResourceInfo impactResourceInfo = { /*bank*/ 2, (const Resource*)&impact }
 const ResourceInfo kunaiResourceInfo = { /*bank*/ 2, (const Resource*)&kunai };
 const ResourceInfo ninja_girlResourceInfo = { /*bank*/ 2, (const Resource*)&ninja_girl };
 const ResourceInfo rock_particleResourceInfo = { /*bank*/ 2, (const Resource*)&rock_particle };
+const ResourceInfo walkerResourceInfo = { /*bank*/ 2, (const Resource*)&walker };
+const ResourceInfo walker_bigResourceInfo = { /*bank*/ 2, (const Resource*)&walker_big };
+const ResourceInfo walker_smallResourceInfo = { /*bank*/ 2, (const Resource*)&walker_small };
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };

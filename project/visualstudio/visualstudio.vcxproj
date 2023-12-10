@@ -157,6 +157,7 @@
     <ClCompile Include="..\source\client\exported\animations\impact.c" />
     <ClCompile Include="..\source\client\exported\animations\kunai.c" />
     <ClCompile Include="..\source\client\exported\animations\ninja_girl.c" />
+    <ClCompile Include="..\source\client\exported\animations\robotrunner.c" />
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
@@ -203,6 +204,7 @@
     <ClInclude Include="..\source\client\exported\animations\impact.h" />
     <ClInclude Include="..\source\client\exported\animations\kunai.h" />
     <ClInclude Include="..\source\client\exported\animations\ninja_girl.h" />
+    <ClInclude Include="..\source\client\exported\animations\robotrunner.h" />
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
@@ -259,6 +261,7 @@
     <None Include="..\build\vs_build.bat" />
     <None Include="..\build\vs_clean.bat" />
     <None Include="..\build\vs_rebuild.bat" />
+    <None Include="..\out\NinjaGirl.map" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

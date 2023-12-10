@@ -8,7 +8,8 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 
-#include "client/exported/animations/explosion.h"
+
+#include "client/generated/resource_infos.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx
@@ -86,11 +87,6 @@ destroy_object:
 
 BOOL Enemy_Draw(GameObject* object)
 {
-	//if (object->data1 == ObjectManager_enemyCounter)
-	//{
-	//	return FALSE;
-	//}
-
 	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
 	s16 screenRight = screenLeft + 14;//object->rectRight;
 
@@ -99,16 +95,7 @@ BOOL Enemy_Draw(GameObject* object)
 						  object->currentBatchedAnimationFrame->batchedSprite,
 						  *object->batchedAnimation->vdpLocation);
 
-	if (screenRight < SCREEN_LEFT || 
-		screenLeft > SCREEN_RIGHT)
-	{
-		DrawUtils_DrawClippedSides();
-	}
-	else
-	{
-		//DrawUtils_Draw();
-		DrawUtils_DrawBatched();
-	}
+	DrawUtils_DrawBatched();
 
 	return TRUE;
 }
@@ -125,7 +112,7 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 		{ 
 			gameObject->x, 
 			gameObject->y, 
-			(const void*)&explosion, 
+			&explosionResourceInfo
 		};
 		
 		GameObject* effect = BasicEffect_Create(&createInfo);

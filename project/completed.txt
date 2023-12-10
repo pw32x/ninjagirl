@@ -1,6 +1,28 @@
 	
 Completed
 
+
+	DONE DO SOMETHING FUN
+	
+		ninjas that run from the side of the screen
+		ninjas that jump from the bottom with swords
+		ninjas that swoop in on kites from above
+		ninjas that stand and throw three ninja stars
+		
+		
+		what kind of ninjas?
+		
+			regular ninjas
+			robot ninjas
+			ghost ninjas
+			slime ninjas
+			dinosaur ninjas
+	
+	
+		enemies
+		
+			ninja robots?
+
 	export tilesets and theme maps as part of the bulid process
 	
 		gal2tmx

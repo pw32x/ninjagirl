@@ -11,6 +11,9 @@ extern const ResourceInfo impactResourceInfo;
 extern const ResourceInfo kunaiResourceInfo;
 extern const ResourceInfo ninja_girlResourceInfo;
 extern const ResourceInfo rock_particleResourceInfo;
+extern const ResourceInfo walkerResourceInfo;
+extern const ResourceInfo walker_bigResourceInfo;
+extern const ResourceInfo walker_smallResourceInfo;
 extern const ResourceInfo waterfallResourceInfo;
 extern const ResourceInfo background3_mapResourceInfo;
 

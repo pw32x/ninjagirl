@@ -1,17 +1,65 @@
 Todo
 
-	DO SOMETHING FUN
+	DONE install visual studio 2022
+
+	DONE use the microsoft mvvm library
 	
-		enemies
+	DONE check if I can save Graphics Gale files with the C# library
+		RESULT
+			nope
+
+	completely new GUI application for splitting sprites
+	
+		SpriteMaster
+		every gal file will have a corresponding .sm file
+		gui mode and command line mode
 		
-			ninja robots?
-	
+		8x8 or 8x16 tiles
+		
+		multiple inputs
+			.gal importer
+			
+
+		choose multiple split styles
+		choose split style per frame
+		display how the sprite will be split
+		show the results
+
+		show animations
+		choose animations
+		play animations
+
 		object placement tool
 			SceneMaster
 
+		show results in different tabs
+			imported
+			converted to 8x16 sprites
+			the Tilemap
+			
+		file format
+			.gal file name
+			.gal file checksum			
+			streamed
+			batched
+			8x16
+			num frames
+				sprite split style
+			
+	
+	make all projects use visual studio 2022
+	
+	object placement tool
+		SceneMaster			
+
 	have object switch to their animation's bank when calling update function?
-	
-	
+
+
+
+	be more agressive with sprite reduction during conversion
+		there are a lot of duplicate sprites or sequences that I don't deduplicate
+
+	add option to gg2c to slice sprite in 16 pixel high rows starting from y = 0
 
 	climbing walls?
 

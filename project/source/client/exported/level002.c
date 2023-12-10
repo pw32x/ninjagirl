@@ -38,10 +38,10 @@
 #include "client/generated/bank2.h" // music
 
 const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girlResourceInfo };
-//const CreateInfo level002_createInfo004 = { 24, 16, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo005 = { 24, 48, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo006 = { 24, 80, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo007 = { 64, 8, (const void*)&birdidle };
+const CreateInfo level002_createInfo004 = { 64, 128, (const void*)&walkerResourceInfo };
+const CreateInfo level002_createInfo005 = { 144, 32, (const void*)&walker_bigResourceInfo };
+const CreateInfo level002_createInfo006 = { 96, 88, (const void*)&walker_smallResourceInfo  };
+//const CreateInfo level002_createInfo007 = { 180, 32, (const void*)&robotspringResourceInfo };
 //const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&birdidle };
 //const CreateInfo level002_createInfo009 = { 234, 112, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo010 = { 234, 144, (const void*)&evil_eye };
@@ -62,19 +62,27 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo },
-	{ 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams },
+	//z{ 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &kunaiResourceInfo },
-	//{ 0, (CommandFunction)ResourceManager_LoadResource, &evil_eye },
+	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotrunnerResourceInfo },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
+	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotcannonResourceInfo },	
+	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotflyingResourceInfo },	
+	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },			
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },			
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_bigResourceInfo },			
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },			
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
 	{ 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
+	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
+	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },
 	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
-	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
-	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },
-	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
-	//{ 64, (CommandFunction)Bird_Create, &level002_createInfo007 },
+	
+	
+	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
+	//{ 64, (CommandFunction)Enemy_Create, &level002_createInfo007 },
 	//{ 128, (CommandFunction)Bird_Create, &level002_createInfo008 },
 	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo009 },
 	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo010 },
