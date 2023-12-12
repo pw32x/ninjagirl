@@ -1,0 +1,67 @@
+
+	SpriteMaster C#
+			
+		Import Graphics Gale File
+		
+		add a file change watch on the gale file
+			if changed, 
+				ask to 
+					reload gal file
+					save sm file?
+						the frame infos will have changed
+							create ones that are missing
+							delete the ones that are too much
+							
+		origin/offset
+		
+		get and store the hash of the gale file
+		
+		Display one GG frame
+		
+		Display GG frames 
+		
+		choose split type
+		
+		export button
+		
+		export command line mode
+			how to not display a window when run?
+			
+
+		completely new GUI application for splitting sprites
+		
+			SpriteMaster
+			every gal file will have a corresponding .sm file
+			gui mode and command line mode
+			
+			8x8 or 8x16 tiles
+			
+			multiple inputs
+				.gal importer
+				
+
+			choose multiple split styles
+			choose split style per frame
+			display how the sprite will be split
+			show the results
+
+			show animations
+			choose animations
+			play animations
+
+			object placement tool
+				SceneMaster
+
+			show results in different tabs
+				imported
+				converted to 8x16 sprites
+				the Tilemap
+				
+			file format
+				.gal file name
+				.gal file checksum			
+				streamed
+				batched
+				8x16
+				num frames
+					sprite split style

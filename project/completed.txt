@@ -1,6 +1,17 @@
 	
 Completed
 
+	DONE check if there's any lib that saves GG files
+		RESULT
+			nope
+
+	DONE install visual studio 2022
+
+	DONE use the microsoft mvvm library
+	
+	DONE check if I can save Graphics Gale files with the C# library
+		RESULT
+			nope
 
 	DONE DO SOMETHING FUN
 	
