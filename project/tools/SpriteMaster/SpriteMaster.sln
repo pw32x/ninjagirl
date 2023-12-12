@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SpriteMaster", "SpriteMaster.vcxproj", "{B2987133-400B-4473-BDC0-0A571C88454D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2987133-400B-4473-BDC0-0A571C88454D}.Debug|x86.ActiveCfg = Debug|Win32
+		{B2987133-400B-4473-BDC0-0A571C88454D}.Debug|x86.Build.0 = Debug|Win32
+		{B2987133-400B-4473-BDC0-0A571C88454D}.Release|x86.ActiveCfg = Release|Win32
+		{B2987133-400B-4473-BDC0-0A571C88454D}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66946575-8FEC-4052-827A-A2EC20354836}
+	EndGlobalSection
+EndGlobal
