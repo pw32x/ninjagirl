@@ -12,6 +12,11 @@
 #include <stdio.h>
 #include <tchar.h>
 
+#include "Utils\errors.h"
 
 
 // TODO: reference additional headers your program requires here
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
+#include <wingdi.h>
+#include "Shlwapi.h"

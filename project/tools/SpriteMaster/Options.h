@@ -2,6 +2,9 @@
 
 #include <string>
 
+namespace SpriteMaster
+{
+
 class Options
 {
 public:
@@ -16,12 +19,12 @@ public:
 	int mSliceWidth;
 	int mSliceHeight;
 	bool mBackgroundPlaneAnimation;
-	bool mFixedBack; // hardcode the vdp position to the back.
 	bool mCutSliceAsFrame;
-	bool mExportToSMSFormat = false;
 	bool mSMS8x16Sprites = false;
 	bool mSMSBatchedSprites = false;
 	bool mRemoveDuplicates = true;
 	bool mStreamed = false;
 	bool mTileAnimation = false;
 };
+
+}

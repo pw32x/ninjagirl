@@ -1,22 +1,26 @@
 #pragma once
 
-#include "galefile151119\galefile.h"
 #include <vector>
-#include "Options.h"
-#include "Sprite.h"
-#include "SMSCommon.h"
+#include "..\Options.h"
+#include "..\Sprite.h"
+#include "..\SMSCommon.h"
 
 #define PALETTE_SIZE 16
 
-namespace sms
+namespace SpriteMaster
 {
-
+class GraphicsGaleObject;
 
 class GGPlaneAnimationFrame
 {
 public:
 	GGPlaneAnimationFrame();
-	void Init(int frameNumber, LPVOID galeFile, std::vector<Tile>& tiles, const Options& options, int& uniqueTileCount, int& maxUniqueTileCountPerFrame);
+	void Init(int frameNumber, 
+			  const GraphicsGaleObject& ggo, 
+			  std::vector<Tile>& tiles, 
+			  const Options& options, 
+			  int& uniqueTileCount, 
+			  int& maxUniqueTileCountPerFrame);
 
 	int frameNumber() const { return m_FrameNumber; }
 	int tileWidth() const { return m_tileWidth; }
@@ -29,8 +33,8 @@ public:
 	const PALETTEENTRY* getPalette() const { return m_palette; } 
 
 private:
-	void GetFrameDelayTime(LPVOID galeFile);
-	void BuildFrame(LPVOID galeFile, 
+	void GetFrameDelayTime(const GraphicsGaleObject& ggo);
+	void BuildFrame(const GraphicsGaleObject& ggo, 
 					std::vector<Tile>& tileStore, 
 					const Options& options, 
 					int& uniqueTileCount, 

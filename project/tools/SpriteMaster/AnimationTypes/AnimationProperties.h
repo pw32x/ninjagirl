@@ -3,22 +3,8 @@
 #include <string>
 #include <map>
 
-/*
-enum LoopAction
+namespace SpriteMaster
 {
-	LoopAction_NoLoop,
-	LoopAction_Loop,
-	LoopAction_Jump
-};
-
-class AnimationSpan
-{
-	std::string name;
-	int start;
-	int end;
-	LoopAction loopAction;
-};
-*/
 
 class AnimationProperties
 {
@@ -31,3 +17,5 @@ public:
 
 	std::multimap<int, std::string> animationFrameNames;
 };
+
+}

@@ -13,36 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{4ffad612-52f7-4386-a679-7334e0e88e5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AnimationTypes">
+      <UniqueIdentifier>{76749a71-8bf2-4f76-b445-6a3254b21b53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GraphicsGale">
+      <UniqueIdentifier>{e836e4f6-d48f-4cd9-a929-1b382964f05b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpriteMaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGAnimationFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGPlaneAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGPlaneAnimationFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSAnimationFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSPlaneAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSPlaneAnimationFrame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSTileAnimation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GGSMSTileAnimationFrame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Options.cpp">
@@ -57,59 +39,50 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SpriteUtils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TileUtils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Utils\FileUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="WriteUtils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AnimationTypes\AnimationProperties.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
     </ClCompile>
-    <ClCompile Include="AnimationProperties.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AnimationTypes\TileAnimation.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
     </ClCompile>
-    <ClCompile Include="BitmapUtils.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
     </ClCompile>
-    <ClCompile Include="GGAnimation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="AnimationTypes\Animation.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\AnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\PlaneAnimation.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\PlaneAnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\SpriteUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\TileUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\WriteUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\BitmapUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\GraphicsGaleObject.cpp">
+      <Filter>Source Files\GraphicsGale</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GGAnimation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGAnimationFrame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGPlaneAnimation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGPlaneAnimationFrame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSAnimation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSAnimationFrame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSPlaneAnimation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSPlaneAnimationFrame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSTileAnimation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GGSMSTileAnimationFrame.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Options.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -122,34 +95,61 @@
     <ClInclude Include="Sprite.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SpriteUtils.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="TileUtils.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Utils\errors.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="WriteUtils.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Utils\FileUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\AnimationProperties.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\PlaneAnimationFrame.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\TileAnimation.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\TileAnimationFrame.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\Animation.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\AnimationFrame.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\PlaneAnimation.h">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\BitmapUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\SpriteUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\TileUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\WriteUtils.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\GraphicsGaleObject.h">
+      <Filter>Source Files\GraphicsGale</Filter>
     </ClInclude>
     <ClInclude Include="galefile151119\galefile.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationProperties.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BitmapUtils.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GraphicsGale</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="galefile151119\galefile.dll">
-      <Filter>Resource Files</Filter>
+      <Filter>Source Files\GraphicsGale</Filter>
     </CopyFileToFolders>
   </ItemGroup>
 </Project>

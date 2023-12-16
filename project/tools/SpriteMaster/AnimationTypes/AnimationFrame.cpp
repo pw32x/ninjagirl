@@ -1,8 +1,12 @@
-#include "stdafx.h"
-#include "GGSMSAnimationFrame.h"
-#include "BitmapUtils.h"
-#include "SpriteUtils.h"
-#include "TileUtils.h"
+#include "..\stdafx.h"
+#include "AnimationFrame.h"
+#include "..\Utils\BitmapUtils.h"
+#include "..\Utils\SpriteUtils.h"
+#include "..\Utils\TileUtils.h"
+#include "..\Options.h"
+#include "..\SMSCommon.h"
+
+#include "..\Utils\GraphicsGaleObject.h"
 
 #include <iostream>
 #include <string>
@@ -10,7 +14,7 @@
 #include <queue>
 #include <vector>
 
-namespace sms
+namespace SpriteMaster
 {
 
 GGAnimationFrame::GGAnimationFrame() 
@@ -20,14 +24,14 @@ GGAnimationFrame::GGAnimationFrame()
 }
 
 void GGAnimationFrame::Init(int frameNumber, 
-							LPVOID galeFile, 
+							const GraphicsGaleObject& ggo, 
 							std::vector<Tile>& tileStore, 
 							const Options& options, 
 							AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
-	GetGGInfo(galeFile, animationProperties);
-	BuildFrame(galeFile, tileStore, m_sprites, options);
+	GetGGInfo(ggo, animationProperties);
+	BuildFrame(ggo, tileStore, m_sprites, options);
 	BuildAdjoiningSprites();
 }
 
@@ -69,14 +73,15 @@ void GGAnimationFrame::BuildAdjoiningSprites()
 	m_adjoiningSprites.push_back(adjoiningSprite);
 }
 
-void GGAnimationFrame::GetGGInfo(LPVOID galeFile, AnimationProperties& animationProperties)
+void GGAnimationFrame::GetGGInfo(const GraphicsGaleObject& ggo, 
+								 AnimationProperties& animationProperties)
 {
-	LONG ggFrameDelayTime = ggGetFrameInfo(galeFile, mFrameNumber, 2); // the 2 means frame time?
+	LONG ggFrameDelayTime = ggo.getFrameInfo(mFrameNumber, 2); // the 2 means frame time?
 	mFrameDelayTime = (LONG)(myround((float)ggFrameDelayTime / 17.0f)); // 17 ms per frame
 
 	const int length =  1024;
 	char frameName[length];
-	ggGetFrameName(galeFile, mFrameNumber, frameName, length);
+	ggo.getFrameName(mFrameNumber, frameName, length);
 
 
     std::istringstream iss(frameName);
@@ -396,15 +401,15 @@ void SliceImageIntoTallTiles(BYTE* byteData,
 }
 
 
-void GGAnimationFrame::BuildFrame(LPVOID galeFile, 
-									 std::vector<Tile>& tileStore, 
-									 std::vector<Sprite>& sprites, 
-									 const Options& options)
+void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
+								  std::vector<Tile>& tileStore, 
+								  std::vector<Sprite>& sprites, 
+								  const Options& options)
 {
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
 
-	hBitmap = ggGetBitmap(galeFile, mFrameNumber, 0);
+	hBitmap = ggo.getBitmap(mFrameNumber, 0);
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
 	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
 

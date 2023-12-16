@@ -1,7 +1,7 @@
 #include "SMSCommon.h"
 #include <algorithm>
 
-namespace sms
+namespace SpriteMaster
 {
 
 

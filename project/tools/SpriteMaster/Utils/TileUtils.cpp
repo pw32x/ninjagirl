@@ -1,8 +1,8 @@
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "TileUtils.h"
 #include "SpriteUtils.h"
 
-namespace sms
+namespace SpriteMaster
 {
 
 bool TilesAreIdentical(const Tile& firstTile, const Tile& secondTile)

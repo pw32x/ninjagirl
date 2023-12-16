@@ -1,11 +1,10 @@
 #pragma once
 
-#include "galefile151119\galefile.h"
 #include <vector>
-#include "Options.h"
-#include "SMSCommon.h"
+#include "..\Options.h"
+#include "..\SMSCommon.h"
 
-namespace sms
+namespace SpriteMaster
 {
 
 bool TilesAreIdentical(const Tile& firstTile, const Tile& secondTile);

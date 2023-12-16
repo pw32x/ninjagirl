@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-namespace sms
+namespace SpriteMaster
 {
 
 #define SMS_TILE_WIDTH 8

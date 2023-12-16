@@ -2,14 +2,16 @@
 #include "Options.h"
 #include <string>
 
+namespace SpriteMaster
+{
+
 Options::Options() 
 : mNoLoop(false),
   mSliceSpritesOnGrid(false),
   mSliceWidth(DEFAULT_SLICE_SIZE),
   mSliceHeight(DEFAULT_SLICE_SIZE),
   mCutSliceAsFrame(false),
-  mBackgroundPlaneAnimation(false),
-  mFixedBack(false)
+  mBackgroundPlaneAnimation(false)
 {
 
 }
@@ -24,33 +26,13 @@ void Options::ProcessOptions(const std::string& filename)
 
 	if (mSliceSpritesOnGrid)
 	{
-		if (mExportToSMSFormat)
-		{
-			mSliceWidth = 8;
-			mSliceHeight = 8;
-		}
-		else
-		{
-			int widthStartIndex = sliceOnGridIndex + strlen(sliceOnGridName);
-			int widthEndIndex = filename.find('x', widthStartIndex);
-
-			std::string widthString = filename.substr(widthStartIndex, widthEndIndex - widthStartIndex);
-
-			mSliceWidth = std::atoi(widthString.c_str());
-
-			int heightStartIndex = widthEndIndex + 1;
-			int heightEndIndex = filename.find('.', heightStartIndex);
-
-			std::string heightString = filename.substr(heightStartIndex, heightEndIndex - heightStartIndex);
-
-			mSliceHeight = std::atoi(heightString.c_str());
-		}
+		mSliceWidth = 8;
+		mSliceHeight = 8;
 	}
 
 
 
 	mBackgroundPlaneAnimation = (filename.find(".planeanim.") != std::string::npos);
-	mFixedBack = (filename.find(".fixedback.") != std::string::npos);
 
 	mCutSliceAsFrame = (filename.find(".cutsliceasframe.") != std::string::npos);
 
@@ -75,4 +57,6 @@ void Options::ProcessOptions(const std::string& filename)
 	mStreamed = (filename.find(".streamed") != std::string::npos); 
 
 	mTileAnimation = (filename.find(".animatedtileset") != std::string::npos); 
+}
+
 }

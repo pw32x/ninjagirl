@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "BitmapUtils.h"
 
 BYTE* CreateByteDataFromBitmap(BITMAP & bitmapInfo)

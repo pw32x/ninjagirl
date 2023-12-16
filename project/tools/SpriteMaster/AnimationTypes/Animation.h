@@ -1,16 +1,18 @@
 #pragma once
 
-#include "GGSMSAnimationFrame.h"
+#include "AnimationFrame.h"
 #include <string>
 #include "AnimationProperties.h"
 
-namespace sms
+namespace SpriteMaster
 {
+
+class GraphicsGaleObject;
 
 class GGAnimation
 {
 public:
-	GGAnimation(LPVOID galeFileHandle, const Options& options, AnimationProperties& animationProperties);
+	GGAnimation(const GraphicsGaleObject& ggo, const Options& options, AnimationProperties& animationProperties);
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
 	int GetTileCount() { return m_tileStore.size(); }
@@ -31,7 +33,7 @@ private:
 	void WriteGGAnimationSourceFile(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
 private:
-	LPVOID m_galeFileHandle;
+	const GraphicsGaleObject&		m_ggo;
 
 	std::vector<GGAnimationFrame>	m_frames;
 	std::vector<Tile>				m_tileStore;

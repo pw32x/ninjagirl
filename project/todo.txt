@@ -4,8 +4,10 @@ Todo
 	
 		DONE copy and rename gal2c
 		
-		remove mentions of gg2c
-		
+		DONE remove mentions of gg2c
+	
+		DONE move graphics gale loading code out of main
+	
 		remove sega genesis support
 		
 		move animations to new folders

@@ -1,13 +1,15 @@
-#include "stdafx.h"
-#include "GGSMSPlaneAnimationFrame.h"
-#include "BitmapUtils.h"
-#include "SpriteUtils.h"
-#include "TileUtils.h"
+#include "..\stdafx.h"
+#include "PlaneAnimationFrame.h"
+#include "..\Utils\BitmapUtils.h"
+#include "..\Utils\SpriteUtils.h"
+#include "..\Utils\TileUtils.h"
 #include <set>
-#include "palette.h"
+#include "..\palette.h"
+#include "..\Options.h"
+#include "..\SMSCommon.h"
+#include "..\Utils\GraphicsGaleObject.h"
 
-
-namespace sms
+namespace SpriteMaster
 {
 
 GGPlaneAnimationFrame::GGPlaneAnimationFrame()
@@ -18,28 +20,28 @@ GGPlaneAnimationFrame::GGPlaneAnimationFrame()
 }
 
 void GGPlaneAnimationFrame::Init(int frameNumber, 
-								 LPVOID galeFile, 
+								 const GraphicsGaleObject& ggo, 
 								 std::vector<Tile>& tiles, 
 								 const Options& options, 
 								 int& uniqueTileCount,
 								 int& maxUniqueTileCountPerFrame)
 {
 	m_FrameNumber = frameNumber;
-	GetFrameDelayTime(galeFile);
-	BuildFrame(galeFile, tiles, options, uniqueTileCount, maxUniqueTileCountPerFrame);
+	GetFrameDelayTime(ggo);
+	BuildFrame(ggo, tiles, options, uniqueTileCount, maxUniqueTileCountPerFrame);
 
-	HPALETTE palette = ggGetPalette(galeFile, m_FrameNumber);
+	HPALETTE palette = ggo.getPalette(m_FrameNumber);
 
 	GetPaletteData(palette, m_palette);
 }
 
-void GGPlaneAnimationFrame::GetFrameDelayTime(LPVOID galeFile)
+void GGPlaneAnimationFrame::GetFrameDelayTime(const GraphicsGaleObject& ggo)
 {
-	LONG ggFrameDelayTime = ggGetFrameInfo(galeFile, m_FrameNumber, 2); // the 2 means frame time?
+	LONG ggFrameDelayTime = ggo.getFrameInfo(m_FrameNumber, 2); // the 2 means frame time?
 	m_FrameDelayTime = (LONG)(myround((float)ggFrameDelayTime / 17.0f)); // 17 ms per frame
 }
 
-void GGPlaneAnimationFrame::BuildFrame(LPVOID galeFile, 
+void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
 									   std::vector<Tile>& tileStore, 
 									   const Options& options, 
 									   int& uniqueTileCount, 
@@ -48,7 +50,7 @@ void GGPlaneAnimationFrame::BuildFrame(LPVOID galeFile,
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
 
-	hBitmap = ggGetBitmap(galeFile, m_FrameNumber, 0);
+	hBitmap = ggo.getBitmap(m_FrameNumber, 0);
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
 	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
 

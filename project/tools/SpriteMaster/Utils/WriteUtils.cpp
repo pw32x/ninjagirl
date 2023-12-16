@@ -1,8 +1,9 @@
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "WriteUtils.h"
 #include <sstream>
+#include "..\SMSCommon.h"
 
-
+/*
 DWORD SwitchEndian(DWORD value)
 {
     unsigned char tempValue[4];
@@ -127,7 +128,7 @@ void WriteTileData(const std::string& outputName, std::ofstream& sourceFile, con
 
     sourceFile << "};\n\n";
 }
-
+*/
 std::string BuildFrameName(const std::string& outputName, int frameNumber)
 {
     std::stringstream stringStream;
@@ -135,7 +136,7 @@ std::string BuildFrameName(const std::string& outputName, int frameNumber)
 
     return stringStream.str();
 }
-
+/*
 std::string BuildSpriteArrayName(const std::string& outputName, int index)
 {
     std::stringstream stringStream;
@@ -152,9 +153,9 @@ std::string BuildSpriteName(const std::string outputName, int spritenumber)
 
     return stringStream.str();
 }
+*/
 
-
-namespace sms
+namespace SpriteMaster
 {
 
 // SMS

@@ -1,14 +1,15 @@
 #pragma once
 
-#include "galefile151119\galefile.h"
 #include <vector>
-#include "Options.h"
-#include "Sprite.h"
+#include "..\Options.h"
+#include "..\Sprite.h"
 #include "AnimationProperties.h"
-#include "SMSCommon.h"
+#include "..\SMSCommon.h"
 
-namespace sms
+namespace SpriteMaster
 {
+
+class GraphicsGaleObject;
 
 class GGTileAnimationFrame
 {
@@ -16,7 +17,7 @@ public:
 	GGTileAnimationFrame();
 
 	void Init(int frameNumber, 
-			  LPVOID galeFile, 
+			  const GraphicsGaleObject& ggo, 
 	          std::vector<Tile>& tileStore, 
 			  const Options& options, 
 			  AnimationProperties& animationProperties);
@@ -35,8 +36,8 @@ public:
 
 private:
 
-	void GetGGInfo(LPVOID galeFile, AnimationProperties& animationProperties);
-	void BuildFrame(LPVOID galeFile, 
+	void GetGGInfo(const GraphicsGaleObject& ggo, AnimationProperties& animationProperties);
+	void BuildFrame(const GraphicsGaleObject& ggo, 
 					std::vector<Tile>& tileStore, 
 					const Options& options);
 

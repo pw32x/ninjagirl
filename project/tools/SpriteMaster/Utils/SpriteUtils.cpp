@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "..\stdafx.h"
 #include "SpriteUtils.h"
 
 //#define MAX_SPRITE_SIZE 32

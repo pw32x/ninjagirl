@@ -2,7 +2,7 @@
 
 #define WIN32_LEAN_AND_MEAN
 #include "windows.h"
-#include "Sprite.h"
+#include "..\Sprite.h"
 #include <vector>
 #include <string>
 #include <fstream>
@@ -18,10 +18,12 @@ std::string WriteDWORDAsUShort(DWORD value);
 
 
 
-#include "SMSCommon.h"
+#include "..\SMSCommon.h"
 
 // SMS
-namespace sms
+namespace SpriteMaster
 {
-	void WriteTileStore(const std::string& outputName, std::ofstream& sourceFile, const std::vector<Tile>& tileStore);
+	void WriteTileStore(const std::string& outputName, 
+						std::ofstream& sourceFile, 
+						const std::vector<Tile>& tileStore);
 }

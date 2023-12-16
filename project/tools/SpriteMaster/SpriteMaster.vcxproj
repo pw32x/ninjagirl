@@ -57,6 +57,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -72,6 +73,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,51 +84,48 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AnimationProperties.cpp" />
-    <ClCompile Include="BitmapUtils.cpp" />
-    <ClCompile Include="GGAnimation.cpp" />
-    <ClCompile Include="GGAnimationFrame.cpp" />
-    <ClCompile Include="GGPlaneAnimation.cpp" />
-    <ClCompile Include="GGPlaneAnimationFrame.cpp" />
-    <ClCompile Include="GGSMSAnimation.cpp" />
-    <ClCompile Include="GGSMSAnimationFrame.cpp" />
-    <ClCompile Include="GGSMSPlaneAnimation.cpp" />
-    <ClCompile Include="GGSMSPlaneAnimationFrame.cpp" />
-    <ClCompile Include="GGSMSTileAnimation.cpp" />
-    <ClCompile Include="GGSMSTileAnimationFrame.cpp" />
+    <ClCompile Include="AnimationTypes\AnimationProperties.cpp" />
+    <ClCompile Include="AnimationTypes\Animation.cpp" />
+    <ClCompile Include="AnimationTypes\AnimationFrame.cpp" />
+    <ClCompile Include="AnimationTypes\PlaneAnimation.cpp" />
+    <ClCompile Include="AnimationTypes\PlaneAnimationFrame.cpp" />
+    <ClCompile Include="AnimationTypes\TileAnimation.cpp" />
+    <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="palette.cpp" />
     <ClCompile Include="SMSCommon.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteMaster.cpp" />
-    <ClCompile Include="SpriteUtils.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="TileUtils.cpp" />
-    <ClCompile Include="WriteUtils.cpp" />
+    <ClCompile Include="Utils\BitmapUtils.cpp" />
+    <ClCompile Include="Utils\FileUtils.cpp" />
+    <ClCompile Include="Utils\GraphicsGaleObject.cpp" />
+    <ClCompile Include="Utils\SpriteUtils.cpp" />
+    <ClCompile Include="Utils\TileUtils.cpp" />
+    <ClCompile Include="Utils\WriteUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AnimationProperties.h" />
-    <ClInclude Include="BitmapUtils.h" />
+    <ClInclude Include="AnimationTypes\AnimationProperties.h" />
+    <ClInclude Include="AnimationTypes\Animation.h" />
+    <ClInclude Include="AnimationTypes\AnimationFrame.h" />
+    <ClInclude Include="AnimationTypes\PlaneAnimation.h" />
+    <ClInclude Include="AnimationTypes\PlaneAnimationFrame.h" />
+    <ClInclude Include="AnimationTypes\TileAnimation.h" />
+    <ClInclude Include="AnimationTypes\TileAnimationFrame.h" />
     <ClInclude Include="galefile151119\galefile.h" />
-    <ClInclude Include="GGAnimation.h" />
-    <ClInclude Include="GGAnimationFrame.h" />
-    <ClInclude Include="GGPlaneAnimation.h" />
-    <ClInclude Include="GGPlaneAnimationFrame.h" />
-    <ClInclude Include="GGSMSAnimation.h" />
-    <ClInclude Include="GGSMSAnimationFrame.h" />
-    <ClInclude Include="GGSMSPlaneAnimation.h" />
-    <ClInclude Include="GGSMSPlaneAnimationFrame.h" />
-    <ClInclude Include="GGSMSTileAnimation.h" />
-    <ClInclude Include="GGSMSTileAnimationFrame.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="palette.h" />
     <ClInclude Include="SMSCommon.h" />
     <ClInclude Include="Sprite.h" />
-    <ClInclude Include="SpriteUtils.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="TileUtils.h" />
-    <ClInclude Include="WriteUtils.h" />
+    <ClInclude Include="Utils\BitmapUtils.h" />
+    <ClInclude Include="Utils\errors.h" />
+    <ClInclude Include="Utils\FileUtils.h" />
+    <ClInclude Include="Utils\GraphicsGaleObject.h" />
+    <ClInclude Include="Utils\SpriteUtils.h" />
+    <ClInclude Include="Utils\TileUtils.h" />
+    <ClInclude Include="Utils\WriteUtils.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="galefile151119\galefile.dll">

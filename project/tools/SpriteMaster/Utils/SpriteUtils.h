@@ -1,9 +1,8 @@
 #pragma once
 
-#include "galefile151119\galefile.h"
 #include <vector>
-#include "Options.h"
-#include "Sprite.h"
+#include "..\Options.h"
+#include "..\Sprite.h"
 
 #define TILE_WIDTH 8
 #define TILE_HEIGHT 8
