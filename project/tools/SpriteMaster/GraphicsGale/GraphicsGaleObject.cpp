@@ -1,6 +1,6 @@
 #include "..\stdafx.h"
 #include "GraphicsGaleObject.h"
-#include "..\galefile151119\galefile.h"
+#include "..\thirdparty\galefile151119\galefile.h"
 #include <system_error>
 
 namespace SpriteMaster

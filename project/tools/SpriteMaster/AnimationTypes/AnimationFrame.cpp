@@ -6,7 +6,7 @@
 #include "..\Options.h"
 #include "..\SMSCommon.h"
 
-#include "..\Utils\GraphicsGaleObject.h"
+#include "..\GraphicsGale\GraphicsGaleObject.h"
 
 #include <iostream>
 #include <string>

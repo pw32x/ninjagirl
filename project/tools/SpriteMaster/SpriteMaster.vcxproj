@@ -58,11 +58,12 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>galefile151119\galefile.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>thirdparty\galefile151119\galefile.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -91,6 +92,7 @@
     <ClCompile Include="AnimationTypes\PlaneAnimationFrame.cpp" />
     <ClCompile Include="AnimationTypes\TileAnimation.cpp" />
     <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp" />
+    <ClCompile Include="GraphicsGale\GraphicsGaleObject.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="palette.cpp" />
     <ClCompile Include="SMSCommon.cpp" />
@@ -99,7 +101,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Utils\BitmapUtils.cpp" />
     <ClCompile Include="Utils\FileUtils.cpp" />
-    <ClCompile Include="Utils\GraphicsGaleObject.cpp" />
+    <ClCompile Include="Utils\ParseArguments.cpp" />
     <ClCompile Include="Utils\SpriteUtils.cpp" />
     <ClCompile Include="Utils\TileUtils.cpp" />
     <ClCompile Include="Utils\WriteUtils.cpp" />
@@ -108,29 +110,32 @@
     <ClInclude Include="AnimationTypes\AnimationProperties.h" />
     <ClInclude Include="AnimationTypes\Animation.h" />
     <ClInclude Include="AnimationTypes\AnimationFrame.h" />
+    <ClInclude Include="AnimationTypes\AnimationTypes.h" />
     <ClInclude Include="AnimationTypes\PlaneAnimation.h" />
     <ClInclude Include="AnimationTypes\PlaneAnimationFrame.h" />
     <ClInclude Include="AnimationTypes\TileAnimation.h" />
     <ClInclude Include="AnimationTypes\TileAnimationFrame.h" />
-    <ClInclude Include="galefile151119\galefile.h" />
+    <ClInclude Include="GraphicsGale\GraphicsGaleObject.h" />
     <ClInclude Include="Options.h" />
     <ClInclude Include="palette.h" />
     <ClInclude Include="SMSCommon.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="thirdparty\galefile151119\galefile.h" />
     <ClInclude Include="Utils\BitmapUtils.h" />
     <ClInclude Include="Utils\errors.h" />
     <ClInclude Include="Utils\FileUtils.h" />
-    <ClInclude Include="Utils\GraphicsGaleObject.h" />
+    <ClInclude Include="Utils\ParseArguments.h" />
     <ClInclude Include="Utils\SpriteUtils.h" />
     <ClInclude Include="Utils\TileUtils.h" />
     <ClInclude Include="Utils\WriteUtils.h" />
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="galefile151119\galefile.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
+    <None Include="thirdparty\galefile151119\galefile.dll">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+    </None>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

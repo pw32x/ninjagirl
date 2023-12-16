@@ -14,7 +14,7 @@ public:
 	void ProcessOptions(const std::string& filename);
 
 public:
-	bool mNoLoop;
+
 	bool mSliceSpritesOnGrid;
 	int mSliceWidth;
 	int mSliceHeight;

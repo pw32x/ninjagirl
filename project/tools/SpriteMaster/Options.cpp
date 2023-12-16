@@ -6,8 +6,7 @@ namespace SpriteMaster
 {
 
 Options::Options() 
-: mNoLoop(false),
-  mSliceSpritesOnGrid(false),
+: mSliceSpritesOnGrid(false),
   mSliceWidth(DEFAULT_SLICE_SIZE),
   mSliceHeight(DEFAULT_SLICE_SIZE),
   mCutSliceAsFrame(false),
@@ -18,8 +17,6 @@ Options::Options()
 
 void Options::ProcessOptions(const std::string& filename)
 {
-    mNoLoop = (filename.find(".noloop.") != std::string::npos);
-
 	const char* sliceOnGridName = ".sliceongrid";
 	int sliceOnGridIndex = filename.find(sliceOnGridName);
     mSliceSpritesOnGrid = (sliceOnGridIndex != std::string::npos);

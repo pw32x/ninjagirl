@@ -5,14 +5,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{4ffad612-52f7-4386-a679-7334e0e88e5f}</UniqueIdentifier>
     </Filter>
@@ -21,6 +13,9 @@
     </Filter>
     <Filter Include="Source Files\GraphicsGale">
       <UniqueIdentifier>{e836e4f6-d48f-4cd9-a929-1b382964f05b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{edbacb47-9c1f-480d-92d5-552ab429d93d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -78,8 +73,11 @@
     <ClCompile Include="Utils\BitmapUtils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Utils\GraphicsGaleObject.cpp">
+    <ClCompile Include="GraphicsGale\GraphicsGaleObject.cpp">
       <Filter>Source Files\GraphicsGale</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils\ParseArguments.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,16 +138,22 @@
     <ClInclude Include="Utils\WriteUtils.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Utils\GraphicsGaleObject.h">
+    <ClInclude Include="thirdparty\galefile151119\galefile.h">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsGale\GraphicsGaleObject.h">
       <Filter>Source Files\GraphicsGale</Filter>
     </ClInclude>
-    <ClInclude Include="galefile151119\galefile.h">
-      <Filter>Source Files\GraphicsGale</Filter>
+    <ClInclude Include="Utils\ParseArguments.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\AnimationTypes.h">
+      <Filter>Source Files\AnimationTypes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CopyFileToFolders Include="galefile151119\galefile.dll">
-      <Filter>Source Files\GraphicsGale</Filter>
-    </CopyFileToFolders>
+    <None Include="thirdparty\galefile151119\galefile.dll">
+      <Filter>thirdparty</Filter>
+    </None>
   </ItemGroup>
 </Project>

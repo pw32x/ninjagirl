@@ -87,4 +87,54 @@ namespace SpriteMaster
 
         return false;
     }
+
+    std::string FileUtils::ensureBackslash(const std::string& path) 
+    {
+        if (!path.empty() && path.back() != '\\') 
+        {
+            return path + '\\';
+        } 
+        else 
+        {
+            return path;
+        }
+    }
+
+    void FileUtils::getFilenames(const std::string& fileOrPath, std::vector<std::string>& outFilenames)
+    {
+        // if ends with gal, then it's indivdual file.
+        int findIndex = fileOrPath.rfind(".gal");
+        if (findIndex != -1)
+        {
+            outFilenames.push_back(fileOrPath);
+        }
+        else // else assume it's a folder
+        {
+            std::string extension = ".gal";
+
+            WIN32_FIND_DATAA findFileData;
+
+            HANDLE hFind;
+
+            std::string searchPattern = fileOrPath + "\\*.gal";
+            hFind = FindFirstFileA(searchPattern.c_str(), &findFileData);
+
+            if (hFind != INVALID_HANDLE_VALUE)
+            {
+                do
+                {
+                    std::string fileName = findFileData.cFileName;
+                    outFilenames.push_back(fileOrPath + "\\" + fileName);
+
+                } while (FindNextFileA(hFind, &findFileData) != 0);
+
+                FindClose(hFind);
+            }
+            else
+            {
+                printf("No animations found in %s.\n", fileOrPath.c_str());
+                exit(-1);
+            }
+        }
+    }
 }

@@ -10,6 +10,7 @@ namespace SpriteMaster
 		BitmapHandleIsNull,
 		NoBitmapFound,
 		FormatNot4BitsPerPixel,
+		ParsingArgumentsFailed
 	};
 
 #define THROW_ERROR(code, message) \

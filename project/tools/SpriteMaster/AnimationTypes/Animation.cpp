@@ -6,7 +6,7 @@
 #include <sstream>
 #include "..\SMSCommon.h"
 #include "..\Options.h"
-#include "..\Utils\GraphicsGaleObject.h"
+#include "..\GraphicsGale\GraphicsGaleObject.h"
 
 namespace SpriteMaster
 {

@@ -2,7 +2,7 @@
 #include "PlaneAnimation.h"
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\WriteUtils.h"
-#include "..\Utils\GraphicsGaleObject.h"
+#include "..\GraphicsGale\GraphicsGaleObject.h"
 #include "..\Options.h"
 #include <fstream>
 #include <algorithm>
@@ -324,14 +324,7 @@ void GGPlaneAnimation::WriteFrames(const std::string& outputName, std::ofstream&
 
 		if (loop + 1 > m_frames.size() - 1)
 		{
-			if (m_options.mNoLoop)
-			{
-				sourceFile << "    NULL, // stop animation. no looping\n";
-			}
-			else
-			{
-				sourceFile << "    &" << BuildFrameName(outputName, 0) << ", // loop to next frame. \n";
-			}
+			sourceFile << "    &" << BuildFrameName(outputName, 0) << ", // loop to next frame. \n";
 		}
 		else
 		{
