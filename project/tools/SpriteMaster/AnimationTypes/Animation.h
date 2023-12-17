@@ -3,16 +3,20 @@
 #include "AnimationFrame.h"
 #include <string>
 #include "AnimationProperties.h"
+#include "AnimationTypes.h"
 
 namespace SpriteMaster
 {
 
 class GraphicsGaleObject;
 
-class GGAnimation
+class GGAnimation : public IAnimation
 {
 public:
-	GGAnimation(const GraphicsGaleObject& ggo, const Options& options, AnimationProperties& animationProperties);
+	GGAnimation(const GraphicsGaleObject& ggo, 
+				AnimationType animationType, 
+				AnimationProperties& animationProperties);
+
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
 	int GetTileCount() { return m_tileStore.size(); }
@@ -38,7 +42,7 @@ private:
 	std::vector<GGAnimationFrame>	m_frames;
 	std::vector<Tile>				m_tileStore;
 	int								m_totalFrameTime = 0;
-	const Options&					m_options;
+	bool							m_isStreamed;
 	AnimationProperties&			m_animationProperties;
 	BITMAP							m_generalBitmapInfo;
 	int								m_maxTilesInFrame;

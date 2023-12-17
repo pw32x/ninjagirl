@@ -5,17 +5,14 @@
 #include <algorithm>
 #include <sstream>
 #include "..\SMSCommon.h"
-#include "..\Options.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
 namespace SpriteMaster
 {
 
 GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo, 
-                                 const Options& options, 
                                  AnimationProperties& animationProperties)
 : m_ggo(ggo),
-  m_options(options),
   m_animationProperties(animationProperties)
 {
     HBITMAP bitmap = m_ggo.getBitmap(0, 0);
@@ -44,7 +41,6 @@ GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo,
 		frame.Init(loop, 
                    m_ggo, 
                    m_tileStore, 
-                   m_options, 
                    m_animationProperties);
 
 		m_totalFrameTime += frame.GetFrameDelayTime();

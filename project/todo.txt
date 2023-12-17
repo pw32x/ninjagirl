@@ -13,22 +13,32 @@ Todo
 		DONE move animations to new folders
 			make standard animations use SpriteMaster
 			make other animations use gg2c like before
+
+		DONE flags
+			optional
+			destination folder
+			-updateonly
+			
+			mutually exclusive
+			-streamed flag
+			-animatedtileset flag
+			-planeanimation flag
+			-palette flag
+
+		DONE rework Options class		
 		
-		batched by default
-		8x16 by default
-		8x8 is for animated tilesets only
+		DONE batched by default
+		DONE 8x16 by default
+		DONE 8x8 is for animated tilesets only
 		
-		optional
-		destination folder
-		-updateonly
+
+
+		streaming doesn't dedupe tiles to make it easier to copy to vdp
+
+		plane animation seems to not work
+			a 2 frame animation only exports 1 frame.
 		
-		mutually exclusive
-		-streamed flag
-		-animatedtileset flag
-		-planeanimation flag
-		-palette flag
-		
-		new animation folder structure
+		new animation asset folder structure
 		
 			animations
 				streamed

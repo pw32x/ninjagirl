@@ -4,7 +4,6 @@
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
 #include "..\SMSCommon.h"
-#include "..\Options.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
 #include <iostream>
@@ -25,12 +24,11 @@ GGTileAnimationFrame::GGTileAnimationFrame()
 void GGTileAnimationFrame::Init(int frameNumber, 
 								const GraphicsGaleObject& ggo, 
 								std::vector<Tile>& tileStore, 
-								const Options& options, 
 								AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
 	GetGGInfo(ggo, animationProperties);
-	BuildFrame(ggo, tileStore, options);
+	BuildFrame(ggo, tileStore);
 }
 
 void GGTileAnimationFrame::GetGGInfo(const GraphicsGaleObject& ggo, AnimationProperties& animationProperties)
@@ -122,8 +120,7 @@ void CopyTileFromByteData(BYTE* byteData,
 int SliceImageIntoTiles(BYTE* byteData, 
 						 int width, 
 						 int height, 
-						 std::vector<Tile>& tileStore, 
-						 const Options& options)
+						 std::vector<Tile>& tileStore)
 {
 
 	// SMS tiles are always 8x8
@@ -164,8 +161,7 @@ int SliceImageIntoTiles(BYTE* byteData,
 }
 
 void GGTileAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
-									  std::vector<Tile>& tileStore, 
-									  const Options& options)
+									  std::vector<Tile>& tileStore)
 {
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
@@ -179,8 +175,7 @@ void GGTileAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 	mTilesInFrame = SliceImageIntoTiles(byteData, 
 										bitmapInfo.bmWidth, 
 										bitmapInfo.bmHeight, 
-										tileStore, 
-										options);
+										tileStore);
 
 
 

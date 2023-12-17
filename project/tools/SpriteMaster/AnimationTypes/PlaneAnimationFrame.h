@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "..\Options.h"
 #include "..\Sprite.h"
 #include "..\SMSCommon.h"
 
@@ -18,7 +17,6 @@ public:
 	void Init(int frameNumber, 
 			  const GraphicsGaleObject& ggo, 
 			  std::vector<Tile>& tiles, 
-			  const Options& options, 
 			  int& uniqueTileCount, 
 			  int& maxUniqueTileCountPerFrame);
 
@@ -36,7 +34,6 @@ private:
 	void GetFrameDelayTime(const GraphicsGaleObject& ggo);
 	void BuildFrame(const GraphicsGaleObject& ggo, 
 					std::vector<Tile>& tileStore, 
-					const Options& options, 
 					int& uniqueTileCount, 
 					int& maxUniqueTileCountPerFrame);
 

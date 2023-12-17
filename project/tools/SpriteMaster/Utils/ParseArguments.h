@@ -19,11 +19,11 @@ namespace SpriteMaster
 class ProgramArguments
 {
 public:
-    std::string m_filepath;
-    std::string m_destinationFolder;
-    std::string m_bank;
+    std::string m_filepath = "";
+    std::string m_destinationFolder = "";
+    std::string m_bank = "";
     AnimationType m_animationType = AnimationType::Standard;
-    bool m_updateOnly;
+    bool m_updateOnly = false;
 };
 
 ProgramArguments ParseArguments(int argc, char* argv[]);

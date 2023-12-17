@@ -5,7 +5,6 @@
 #include "..\Utils\TileUtils.h"
 #include <set>
 #include "..\palette.h"
-#include "..\Options.h"
 #include "..\SMSCommon.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
@@ -22,13 +21,12 @@ GGPlaneAnimationFrame::GGPlaneAnimationFrame()
 void GGPlaneAnimationFrame::Init(int frameNumber, 
 								 const GraphicsGaleObject& ggo, 
 								 std::vector<Tile>& tiles, 
-								 const Options& options, 
 								 int& uniqueTileCount,
 								 int& maxUniqueTileCountPerFrame)
 {
 	m_FrameNumber = frameNumber;
 	GetFrameDelayTime(ggo);
-	BuildFrame(ggo, tiles, options, uniqueTileCount, maxUniqueTileCountPerFrame);
+	BuildFrame(ggo, tiles, uniqueTileCount, maxUniqueTileCountPerFrame);
 
 	HPALETTE palette = ggo.getPalette(m_FrameNumber);
 
@@ -43,7 +41,6 @@ void GGPlaneAnimationFrame::GetFrameDelayTime(const GraphicsGaleObject& ggo)
 
 void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
 									   std::vector<Tile>& tileStore, 
-									   const Options& options, 
 									   int& uniqueTileCount, 
 									   int& maxUniqueTileCountPerFrame)
 {

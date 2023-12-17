@@ -3,7 +3,6 @@
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
-#include "..\Options.h"
 #include "..\SMSCommon.h"
 
 #include "..\GraphicsGale\GraphicsGaleObject.h"
@@ -26,12 +25,11 @@ GGAnimationFrame::GGAnimationFrame()
 void GGAnimationFrame::Init(int frameNumber, 
 							const GraphicsGaleObject& ggo, 
 							std::vector<Tile>& tileStore, 
-							const Options& options, 
 							AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
 	GetGGInfo(ggo, animationProperties);
-	BuildFrame(ggo, tileStore, m_sprites, options);
+	BuildFrame(ggo, tileStore, m_sprites);
 	BuildAdjoiningSprites();
 }
 
@@ -150,8 +148,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 						 int topMost, 
 						 int bottomMost, 
 						 std::vector<Tile>& tileStore, 
-						 std::vector<Sprite>& sprites,
-						 const Options& options)
+						 std::vector<Sprite>& sprites)
 {
 
 	// SMS tiles are always 8x8
@@ -185,7 +182,7 @@ void SliceImageIntoTiles(BYTE* byteData,
         int leftMost;
         int rightMost;
 
-		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, options.mSliceSpritesOnGrid);
+		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
 		
         //printf("\nLeft/Right Extents - Left: %d, Right: %d\n", leftMost, rightMost);
 
@@ -229,7 +226,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 
 			// Get the sprite. This also modifies the start and end positions to the area actually copied.
 			std::vector<BYTE> tileData;
-			bool atLeastOnePixel = CopySpriteFromByteData(byteData, width, tileData, startPositionX, startPositionY, endPositionX, endPositionY, options.mSliceSpritesOnGrid);
+			bool atLeastOnePixel = CopySpriteFromByteData(byteData, width, tileData, startPositionX, startPositionY, endPositionX, endPositionY, false);
 
             if (!atLeastOnePixel)
             {
@@ -239,7 +236,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 			// See if the sprite already exists.
 			int tileStoreIndex = 0;
 			
-			tileStoreIndex = AddOrGetTileInStore(tileStore, tileData, options.mRemoveDuplicates);
+			tileStoreIndex = AddOrGetTileInStore(tileStore, tileData, true);
 
 			// Create tile properties
 			Sprite sprite;
@@ -253,14 +250,13 @@ void SliceImageIntoTiles(BYTE* byteData,
 }
 
 						 
-void SliceImageIntoTallTiles(BYTE* byteData, 
+void SliceImageInto8x16Tiles(BYTE* byteData, 
 						 int width, 
 						 int height, 
 						 int topMost, 
 						 int bottomMost, 
 						 std::vector<Tile>& tileStore, 
-						 std::vector<Sprite>& sprites,
-						 const Options& options)
+						 std::vector<Sprite>& sprites)
 {
 
 	// Tall SMS tiles are 8x16
@@ -294,7 +290,7 @@ void SliceImageIntoTallTiles(BYTE* byteData,
         int leftMost;
         int rightMost;
 
-		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, options.mSliceSpritesOnGrid);
+		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
 		
         //printf("\nLeft/Right Extents - Left: %d, Right: %d\n", leftMost, rightMost);
 
@@ -403,8 +399,7 @@ void SliceImageIntoTallTiles(BYTE* byteData,
 
 void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
 								  std::vector<Tile>& tileStore, 
-								  std::vector<Sprite>& sprites, 
-								  const Options& options)
+								  std::vector<Sprite>& sprites)
 {
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
@@ -421,30 +416,16 @@ void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 							bitmapInfo.bmHeight, 
 							&topMost, 
 							&bottomMost, 
-							options.mSliceSpritesOnGrid);
+							false);
 
-	if (options.mSMS8x16Sprites)
-	{
-		SliceImageIntoTallTiles(byteData, 
-								bitmapInfo.bmWidth, 
-								bitmapInfo.bmHeight, 
-								topMost, 
-								bottomMost, 
-								tileStore, 
-								sprites, 
-								options);
-	}
-	else
-	{
-		SliceImageIntoTiles(byteData, 
+	SliceImageInto8x16Tiles(byteData, 
 							bitmapInfo.bmWidth, 
 							bitmapInfo.bmHeight, 
 							topMost, 
 							bottomMost, 
 							tileStore, 
-							sprites, 
-							options);
-	}
+							sprites);
+
 	delete [] byteData;
 }
 }

@@ -22,9 +22,6 @@
     <ClCompile Include="SpriteMaster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Options.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="palette.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Options.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="palette.h">
       <Filter>Source Files</Filter>
     </ClInclude>

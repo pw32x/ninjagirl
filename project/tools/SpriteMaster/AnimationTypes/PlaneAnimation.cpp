@@ -3,20 +3,20 @@
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\WriteUtils.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
-#include "..\Options.h"
 #include <fstream>
 #include <algorithm>
 #include <sstream>
 #include <iomanip>
 
+const static int VDP_SIZE = 1535 - 1;
+
 namespace SpriteMaster
 {
 
-GGPlaneAnimation::GGPlaneAnimation(const GraphicsGaleObject& ggo, const Options& options)
+GGPlaneAnimation::GGPlaneAnimation(const GraphicsGaleObject& ggo)
 : m_ggo(ggo),
   m_uniqueTileCount(0),
   m_maxUniqueTilesPerFrame(0),
-  m_options(options),
   m_numberOfFrames(ggo.getFrameCount())
 {
     HBITMAP bitmap = ggo.getBitmap(0, 0);
@@ -39,7 +39,7 @@ GGPlaneAnimation::GGPlaneAnimation(const GraphicsGaleObject& ggo, const Options&
     {
 		GGPlaneAnimationFrame& frame = m_frames[loop];
 
-		frame.Init(loop, ggo, m_tileStore, m_options, m_uniqueTileCount, m_maxUniqueTilesPerFrame);
+		frame.Init(loop, ggo, m_tileStore, m_uniqueTileCount, m_maxUniqueTilesPerFrame);
 
 		if (findSameFrame(frame) == nullptr)
 		{
@@ -104,28 +104,6 @@ void GGPlaneAnimation::WriteGGPlaneAnimationHeaderFile(const std::string& output
 	// exported types
     headerfile << "RESOURCE(" << bank << ") extern const PlaneAnimation " << outputName << ";\n"; 
 
-	/*
-	if (m_options.mFixedBack)
-	{
-		headerfile << "extern const VDPTileIndex " << outputName << "VDPTileIndex;\n";  
-	}
-	else
-	{
-		headerfile << "extern VDPTileIndex " << outputName << "VDPTileIndex;\n";  
-	}
-
-    headerfile << "\n";
-
-	if (m_options.mFixedBack)
-	{
-		headerfile << "#define " << outputName << "LoadFixed() VDPTileManager_LoadGGPlaneAnimationToVDPFixed(&" << outputName << ", " << outputName << "VDPTileIndex)\n\n";
-	}
-	else
-	{
-		headerfile << "#define " << outputName << "Load(region) VDPTileManager_LoadGGPlaneAnimationToVDP(region, &" << outputName << ", &" << outputName << "VDPTileIndex)\n\n";
-	}
-	*/
-
 	headerfile << "\n";
     // end header guard
     headerfile << "#endif\n\n";
@@ -156,13 +134,6 @@ void GGPlaneAnimation::WriteFrameData(const std::string& outputName, std::ofstre
 			for (int loopWidth = 0; loopWidth < frame->tileWidth(); loopWidth++)
 			{
 				int value = frame->frameData()[loopWidth + (loopHeight * frame->tileWidth())];
-
-				/*
-				if (m_options.mFixedBack)
-				{
-					value += (Options::VDP_SIZE - m_uniqueTileCount);
-				}
-				*/
 
 				sourceFile << std::setw(4) << value << ", ";
 			}
@@ -368,18 +339,7 @@ void GGPlaneAnimation::WriteAnimationStruct(const std::string& outputName,
     sourceFile << "\n";
     sourceFile << "\n";
 
-	int vdpPosition = Options::VDP_SIZE - m_uniqueTileCount;
-
-	/*
-	if (m_options.mFixedBack)
-	{
-		sourceFile << "const VDPTileIndex " << outputName << "VDPTileIndex = " << vdpPosition << ";\n";
-	}
-	else
-	{
-		sourceFile << "VDPTileIndex " << outputName << "VDPTileIndex;\n";   
-	}
-	*/
+	int vdpPosition = VDP_SIZE - m_uniqueTileCount;
 
 	sourceFile << "u16 " << outputName << "VdpLocation;\n\n";
 

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "..\Options.h"
 #include "..\Sprite.h"
 
 #define TILE_WIDTH 8

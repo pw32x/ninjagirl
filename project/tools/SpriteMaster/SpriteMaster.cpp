@@ -5,7 +5,6 @@
 #include "AnimationTypes\PlaneAnimation.h"
 #include "AnimationTypes\TileAnimation.h"
 #include "GraphicsGale\GraphicsGaleObject.h"
-#include "Options.h"
 #include "Utils\errors.h"
 #include "Utils\FileUtils.h"
 #include "Utils\ParseArguments.h"
@@ -46,7 +45,6 @@ int Main(int argc, char* argv[])
     for (auto& filename : outFilenames)
     {
         AnimationProperties	animationProperties;
-        Options	options;
 
         GraphicsGaleObject ggo(filename);
 
@@ -67,23 +65,29 @@ int Main(int argc, char* argv[])
         if (!FileUtils::folderExists(programArguments.m_destinationFolder.c_str()))
             FileUtils::createFolder(programArguments.m_destinationFolder.c_str());
 
-        options.ProcessOptions(filename);
+        IAnimation* animation;
 
-        if (options.mBackgroundPlaneAnimation)
+        switch (programArguments.m_animationType)
         {
-            GGPlaneAnimation animation(ggo, options);
-            animation.Write(programArguments.m_destinationFolder, outputName, programArguments.m_bank);
-        }
-        else if (options.mTileAnimation)
+        case AnimationType::PlaneAnimation: 
         {
-            GGTileAnimation animation(ggo, options, animationProperties);
-            animation.Write(programArguments.m_destinationFolder, outputName, programArguments.m_bank);
+            animation = new GGPlaneAnimation(ggo);
+            break;
         }
-        else
+        case AnimationType::AnimatedTileset:
         {
-            GGAnimation animation(ggo, options, animationProperties);
-            animation.Write(programArguments.m_destinationFolder, outputName, programArguments.m_bank);
+            animation = new GGTileAnimation(ggo, animationProperties);
+            break;
         }
+        default:
+        {
+            animation = new GGAnimation(ggo, programArguments.m_animationType, animationProperties);
+            break;
+        }
+        }
+
+        animation->Write(programArguments.m_destinationFolder, outputName, programArguments.m_bank);
+        delete animation;
     }
 
     printf("done\n");

@@ -2,7 +2,7 @@
 
 #include <string>
 #include "PlaneAnimationFrame.h"
-#include "..\Options.h"
+#include "AnimationTypes.h"
 #include <vector>
 #include <memory>
 
@@ -11,10 +11,10 @@ namespace SpriteMaster
 
 class GraphicsGaleObject;
 
-class GGPlaneAnimation
+class GGPlaneAnimation : public IAnimation
 {
 public:
-	GGPlaneAnimation(const GraphicsGaleObject& ggo, const Options& options);
+	GGPlaneAnimation(const GraphicsGaleObject& ggo);
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
 	int GetTileCount() { return m_uniqueTileCount; }
@@ -40,7 +40,6 @@ private:
 	const GraphicsGaleObject&			m_ggo;
 	int									m_uniqueTileCount = 0;
 	int									m_maxUniqueTilesPerFrame = 0;
-	const Options&						m_options;
 	BITMAP								m_generalBitmapInfo;
 	DWORD								m_numberOfFrames;
 	std::vector<GGPlaneAnimationFrame>  m_frames;

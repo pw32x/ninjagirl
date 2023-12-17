@@ -93,7 +93,6 @@
     <ClCompile Include="AnimationTypes\TileAnimation.cpp" />
     <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp" />
     <ClCompile Include="GraphicsGale\GraphicsGaleObject.cpp" />
-    <ClCompile Include="Options.cpp" />
     <ClCompile Include="palette.cpp" />
     <ClCompile Include="SMSCommon.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -116,7 +115,6 @@
     <ClInclude Include="AnimationTypes\TileAnimation.h" />
     <ClInclude Include="AnimationTypes\TileAnimationFrame.h" />
     <ClInclude Include="GraphicsGale\GraphicsGaleObject.h" />
-    <ClInclude Include="Options.h" />
     <ClInclude Include="palette.h" />
     <ClInclude Include="SMSCommon.h" />
     <ClInclude Include="Sprite.h" />

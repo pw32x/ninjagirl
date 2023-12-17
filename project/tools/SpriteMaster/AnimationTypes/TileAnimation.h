@@ -3,17 +3,17 @@
 #include "TileAnimationFrame.h"
 #include <string>
 #include "AnimationProperties.h"
+#include "AnimationTypes.h"
 
 namespace SpriteMaster
 {
 
 class GraphicsGaleObject;
 
-class GGTileAnimation
+class GGTileAnimation : public IAnimation
 {
 public:
 	GGTileAnimation(const GraphicsGaleObject& ggo, 
-					const Options& options, 
 					AnimationProperties& animationProperties);
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
@@ -36,7 +36,6 @@ private:
 	std::vector<GGTileAnimationFrame>	m_frames;
 	std::vector<Tile>					m_tileStore;
 	int									m_totalFrameTime = 0;
-	const Options&						m_options;
 	AnimationProperties&				m_animationProperties;
 	BITMAP								m_generalBitmapInfo;
 	int									m_tilesInFrame;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "..\Options.h"
 #include "..\SMSCommon.h"
 
 namespace SpriteMaster

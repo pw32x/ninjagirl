@@ -1,5 +1,8 @@
 #pragma once
 
+namespace SpriteMaster
+{
+
 enum class AnimationType
 {
     Standard,
@@ -7,3 +10,13 @@ enum class AnimationType
     AnimatedTileset,
     PlaneAnimation
 };
+
+class IAnimation
+{
+public:
+    virtual void Write(const std::string& outputFolder, 
+                       const std::string& outputName, 
+                       const std::string& bank) = 0;
+};
+
+}

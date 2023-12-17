@@ -11,18 +11,19 @@ ProgramArguments ParseArguments(int argc, char* argv[])
     program.add_argument("path").required();
     program.add_argument("-d", "-destfolder").help("Destination folder").default_value("");
     program.add_argument("-u", "-updateonly").help("Only update if source is newer").flag();
-    program.add_argument("-b", "-bank").help("The rom bank number to export to.").default_value(0);
+    //program.add_argument("-b", "-bank").help("The rom bank number to export to.").default_value(0);
 
     auto &group = program.add_mutually_exclusive_group();
     group.add_argument("-s", "-streamed").flag();
-    group.add_argument("-a", "-animatedtileset").flag();
+    group.add_argument("-t", "-animatedtileset").flag();
     group.add_argument("-p", "-planeanimation").flag();
     //group.add_argument("-pal", "-palette");
 
+    std::vector<std::string> unknownArgs;
 
     try
     {
-        program.parse_args(argc, argv);
+        unknownArgs = program.parse_known_args(argc, argv);
     }
     catch (const std::exception&)
     {
@@ -35,16 +36,29 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 
     programArguments.m_filepath = program.get<std::string>("path");
     programArguments.m_destinationFolder = FileUtils::ensureBackslash(program.get<std::string>("-destfolder"));
-
-    programArguments.m_bank = program.get<std::string>("-bank");
-
+    programArguments.m_updateOnly = program.get<bool>("u");
 
     if (program["-s"] == true)
         programArguments.m_animationType = AnimationType::Streamed;
-    if (program["-a"] == true)
+    else if (program["-t"] == true)
         programArguments.m_animationType = AnimationType::AnimatedTileset;
-    if (program["-p"] == true)
+    else if (program["-p"] == true)
         programArguments.m_animationType = AnimationType::PlaneAnimation;
+
+    // get the bank number. it has a different format than what argparse handles.
+    // -bank<NUMBER> and not -bank <NUMBER>
+    std::string bankFlag = "-bank";
+    for (auto& unknownArg : unknownArgs)
+    {
+        if (unknownArg.starts_with(bankFlag))
+        {
+            int found = unknownArg.find(bankFlag);
+            if (found != std::string::npos)
+            {
+                programArguments.m_bank = "BANK" + unknownArg.substr(found + bankFlag.length());
+            }
+        }
+    }
 
     return programArguments;
 }

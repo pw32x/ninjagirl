@@ -1,7 +1,6 @@
 #pragma once
 
 #include <vector>
-#include "..\Options.h"
 #include "..\Sprite.h"
 #include "AnimationProperties.h"
 #include "..\SMSCommon.h"
@@ -43,7 +42,6 @@ public:
 	void Init(int frameNumber, 
 			  const GraphicsGaleObject& ggo, 
 	          std::vector<Tile>& tileStore, 
-			  const Options& options, 
 			  AnimationProperties& animationProperties);
 
 	LONG GetFrameDelayTime() const { return mFrameDelayTime; }
@@ -63,8 +61,7 @@ private:
 	void GetGGInfo(const GraphicsGaleObject& ggo,  AnimationProperties& animationProperties);
 	void BuildFrame(const GraphicsGaleObject& ggo, 
 					std::vector<Tile>& tileStore, 
-					std::vector<Sprite>& sprites, 
-					const Options& options);
+					std::vector<Sprite>& sprites);
 
 	void BuildAdjoiningSprites();
 
