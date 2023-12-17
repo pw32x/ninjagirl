@@ -116,7 +116,7 @@ namespace SpriteMaster
 
             HANDLE hFind;
 
-            std::string searchPattern = fileOrPath + "\\*.gal";
+            std::string searchPattern = fileOrPath + "*.gal";
             hFind = FindFirstFileA(searchPattern.c_str(), &findFileData);
 
             if (hFind != INVALID_HANDLE_VALUE)
@@ -124,7 +124,7 @@ namespace SpriteMaster
                 do
                 {
                     std::string fileName = findFileData.cFileName;
-                    outFilenames.push_back(fileOrPath + "\\" + fileName);
+                    outFilenames.push_back(fileOrPath + fileName);
 
                 } while (FindNextFileA(hFind, &findFileData) != 0);
 

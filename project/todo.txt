@@ -2,79 +2,36 @@ Todo
 
 	Sprite Master C++
 	
-		DONE copy and rename gal2c
-		
-		DONE remove mentions of gg2c
-	
-		DONE move graphics gale loading code out of main
-	
-		DONE remove sega genesis support
-		
-		DONE move animations to new folders
-			make standard animations use SpriteMaster
-			make other animations use gg2c like before
-
-		DONE flags
-			optional
-			destination folder
-			-updateonly
-			
-			mutually exclusive
-			-streamed flag
-			-animatedtileset flag
-			-planeanimation flag
-			-palette flag
-
-		DONE rework Options class		
-		
-		DONE batched by default
-		DONE 8x16 by default
-		DONE 8x8 is for animated tilesets only
-		
-
-
-		streaming doesn't dedupe tiles to make it easier to copy to vdp
-
-		plane animation seems to not work
-			a 2 frame animation only exports 1 frame.
-		
-		new animation asset folder structure
-		
-			animations
-				streamed
-				standard
-				animatedtilesets
-				planeanimations
-			palettes
-				
-
-		reuse identical frames
-		reuse identical spans
-			reuse 8x16 sprites
-
-				
-		split styles
-			smallest/normal
-			columns
+		add slice style
+			smallest area
+			grid
 			rows
-			fixedgrid
-			
-			
+			columns
+
 		In Graphics Gale
 			No specifier:
 			default: Normal
 			
 			applies to single frame:
-			Slice:Normal
+			Slice:SmallestArea
 			Slice:Columns
 			Slice:Rows
 			Slice:FixedGrid
 				
 			applies to all frames:
-			DefaultSlice:Normal
+			DefaultSlice:SmallestArea
 			DefaultSlice:Columns
 			DefaultSlice:Rows
 			DefaultSlice:FixedGrid
+
+		reuse identical frames
+		reuse identical spans
+			reuse 8x16 sprites
+
+		streaming doesn't dedupe tiles to make it easier to copy to vdp
+
+		plane animation seems to not work
+			a 2 frame animation only exports 1 frame.
 
 
 	

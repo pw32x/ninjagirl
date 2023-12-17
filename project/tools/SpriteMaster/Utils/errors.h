@@ -11,7 +11,8 @@ namespace SpriteMaster
 		NoBitmapFound,
 		FormatNot4BitsPerPixel,
 		ParsingArgumentsFailed,
-		UnsupportedAnimationType
+		UnsupportedAnimationType,
+		UnknownCommandLineFlag
 	};
 
 #define THROW_ERROR(code, message) \

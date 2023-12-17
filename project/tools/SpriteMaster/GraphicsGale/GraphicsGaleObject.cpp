@@ -47,7 +47,7 @@ GraphicsGaleObject::~GraphicsGaleObject()
 
 HBITMAP GraphicsGaleObject::getBitmap(LONG frameNo, LONG layerNo) const
 {
-    return ggGetBitmap(m_galeFileHandle, 0, 0);
+    return ggGetBitmap(m_galeFileHandle, frameNo, 0);
 }
 
 DWORD GraphicsGaleObject::getFrameCount() const

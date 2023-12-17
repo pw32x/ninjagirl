@@ -1,6 +1,68 @@
 	
 Completed
 
+	DONE copy and rename gal2c
+		
+		DONE remove mentions of gg2c
+	
+		DONE move graphics gale loading code out of main
+	
+		DONE remove sega genesis support
+		
+		DONE move animations to new folders
+			make standard animations use SpriteMaster
+			make other animations use gg2c like before
+
+		DONE flags
+			optional
+			destination folder
+			-updateonly
+			
+			mutually exclusive
+			-streamed flag
+			-animatedtileset flag
+			-planeanimation flag
+			-palette flag
+
+		DONE rework Options class		
+		
+		DONE batched by default
+		DONE 8x16 by default
+		DONE 8x8 is for animated tilesets only
+		
+
+		DONE new animation asset folder structure
+		
+			animations
+				streamed
+				standard
+				animatedtilesets
+				planeanimations
+			palettes
+			
+		DONE try out SpriteMaster in config.bm		
+				
+		DONE get the same results with SpriteMaster as with the originals
+		
+		DONE go through each animation
+		
+			animatedtilesets\waterfall.animatedtileset.gal
+			standard\walker_small.sms8x16.batched.gal
+			standard\walker_big.sms8x16.batched.gal
+			standard\walker.sms8x16.batched.gal
+			standard\rock_particle.sms8x16.batched.gal
+			streamed\ninja_girl.sms8x16.batched.streamed.gal
+			standard\kunai.sms8x16.batched.gal
+			standard\impact.sms8x16.batched.sliceongrid.gal
+			standard\explosion.sms8x16.batched.sliceongrid.gal
+			
+			standard\bak\evil_eye.sms8x16.batched.gal
+			standard\bak\birdidle.planeanim.gal			
+			standard\bak\robotspring.sms8x16.batched.gal
+			standard\bak\robotrunner.sms8x16.batched.gal
+			standard\bak\robotflying.sms8x16.batched.gal
+			standard\bak\robotcannon.sms8x16.batched.gal
+
 	DONE check if there's any lib that saves GG files
 		RESULT
 			nope

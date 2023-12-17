@@ -9,7 +9,7 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 {
     argparse::ArgumentParser program("SpriteMaster");
     program.add_argument("path").required();
-    program.add_argument("-d", "-destfolder").help("Destination folder").default_value("");
+    program.add_argument("destfolder").help("Destination folder").default_value("");
     program.add_argument("-u", "-updateonly").help("Only update if source is newer").flag();
     //program.add_argument("-b", "-bank").help("The rom bank number to export to.").default_value(0);
 
@@ -35,7 +35,7 @@ ProgramArguments ParseArguments(int argc, char* argv[])
     ProgramArguments programArguments;
 
     programArguments.m_filepath = program.get<std::string>("path");
-    programArguments.m_destinationFolder = FileUtils::ensureBackslash(program.get<std::string>("-destfolder"));
+    programArguments.m_destinationFolder = FileUtils::ensureBackslash(program.get<std::string>("destfolder"));
     programArguments.m_updateOnly = program.get<bool>("u");
 
     if (program["-s"] == true)
@@ -57,6 +57,10 @@ ProgramArguments ParseArguments(int argc, char* argv[])
             {
                 programArguments.m_bank = "BANK" + unknownArg.substr(found + bankFlag.length());
             }
+        }
+        else
+        {
+            THROW_ERROR(Error::UnknownCommandLineFlag, "Encountered unknown flag " + unknownArg);
         }
     }
 
