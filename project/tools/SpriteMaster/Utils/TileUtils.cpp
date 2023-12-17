@@ -5,12 +5,12 @@
 namespace SpriteMaster
 {
 
-bool TilesAreIdentical(const Tile& firstTile, const Tile& secondTile)
+bool TileUtils::TilesAreIdentical(const Tile& firstTile, const Tile& secondTile)
 {
 	return std::equal(firstTile.begin(), firstTile.end(), secondTile.begin());
 }
 
-bool TilesAreMirroredOnX(const Tile& firstTile, const Tile& secondTile)
+bool TileUtils::TilesAreMirroredOnX(const Tile& firstTile, const Tile& secondTile)
 {
 	for (int loopy = 0; loopy < TILE_HEIGHT; loopy++)
 	{
@@ -27,7 +27,7 @@ bool TilesAreMirroredOnX(const Tile& firstTile, const Tile& secondTile)
 }
 
 
-bool TilesAreMirroredOnY(const Tile& firstTile, const Tile& secondTile)
+bool TileUtils::TilesAreMirroredOnY(const Tile& firstTile, const Tile& secondTile)
 {
 	for (int loopy = 0; loopy < TILE_HEIGHT; loopy++)
 	{
@@ -43,7 +43,7 @@ bool TilesAreMirroredOnY(const Tile& firstTile, const Tile& secondTile)
 	return true;
 }
 
-bool TilesAreMirroredOnXY(const Tile& firstTile, const Tile& secondTile)
+bool TileUtils::TilesAreMirroredOnXY(const Tile& firstTile, const Tile& secondTile)
 {
 	for (int loopy = 0; loopy < TILE_HEIGHT; loopy++)
 	{
@@ -59,46 +59,11 @@ bool TilesAreMirroredOnXY(const Tile& firstTile, const Tile& secondTile)
 	return true;
 }
 
-bool TilesAreIdenticalOrMirrored(const Tile& firstTile, const Tile& secondTile)
+bool TileUtils::TilesAreIdenticalOrMirrored(const Tile& firstTile, const Tile& secondTile)
 {
 	return TilesAreIdentical(firstTile, secondTile) ||
 		   TilesAreMirroredOnX(firstTile, secondTile) ||
 		   TilesAreMirroredOnY(firstTile, secondTile) ||
 		   TilesAreMirroredOnXY(firstTile, secondTile);
 }
-
-bool StoreContainsIdenticalOrMirroredTile(std::vector<Tile>& tileStore, const Tile& tileToFind)
-{
-	for (auto& storedTile : tileStore)
-	{
-		if (TilesAreIdenticalOrMirrored(storedTile, tileToFind))
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-int AddOrGetTileInStore(std::vector<Tile>& tileStore, const Tile& tileToFind, bool removeDuplicates)
-{
-	if (removeDuplicates)
-	{
-		for (size_t loop = 0; loop < tileStore.size(); loop++)
-		{
-			const Tile& storedTile = tileStore[loop];
-
-			if (std::equal(storedTile.begin(), storedTile.end(), tileToFind.begin()))
-			{
-				return loop;
-			}
-		}
-	}
-
-	// Tile didn't exist already so create one.
-	tileStore.push_back(tileToFind);
-
-	return tileStore.size() - 1;
-}
-
 }

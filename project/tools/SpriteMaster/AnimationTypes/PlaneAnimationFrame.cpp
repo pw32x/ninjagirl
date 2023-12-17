@@ -5,7 +5,7 @@
 #include "..\Utils\TileUtils.h"
 #include <set>
 #include "..\palette.h"
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
 namespace SpriteMaster
@@ -14,19 +14,22 @@ namespace SpriteMaster
 GGPlaneAnimationFrame::GGPlaneAnimationFrame()
 : m_FrameDelayTime(-1),
   m_FrameNumber(-1),
-  m_uniqueTileCount(0)
+  m_uniqueTileCount(0),
+  m_tileWidth(0),
+  m_tileHeight(0),
+  m_palette()
 {
 }
 
 void GGPlaneAnimationFrame::Init(int frameNumber, 
 								 const GraphicsGaleObject& ggo, 
-								 std::vector<Tile>& tiles, 
+								 TileStore& tileStore, 
 								 int& uniqueTileCount,
 								 int& maxUniqueTileCountPerFrame)
 {
 	m_FrameNumber = frameNumber;
 	GetFrameDelayTime(ggo);
-	BuildFrame(ggo, tiles, uniqueTileCount, maxUniqueTileCountPerFrame);
+	BuildFrame(ggo, tileStore, uniqueTileCount, maxUniqueTileCountPerFrame);
 
 	HPALETTE palette = ggo.getPalette(m_FrameNumber);
 
@@ -40,7 +43,7 @@ void GGPlaneAnimationFrame::GetFrameDelayTime(const GraphicsGaleObject& ggo)
 }
 
 void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
-									   std::vector<Tile>& tileStore, 
+									   TileStore& tileStore, 
 									   int& uniqueTileCount, 
 									   int& maxUniqueTileCountPerFrame)
 {
@@ -81,7 +84,7 @@ void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 			bool verticalFlip = false;
 			bool horizontalFlip = false;
 
-			int tileIndex = AddOrGetTileInStore(tileStore, tileData);
+			int tileIndex = tileStore.AddOrGetTileInStore(tileData);
 			uniqueTileCount++;
 
 			/*

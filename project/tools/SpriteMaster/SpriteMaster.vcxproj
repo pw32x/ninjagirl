@@ -94,7 +94,7 @@
     <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp" />
     <ClCompile Include="GraphicsGale\GraphicsGaleObject.cpp" />
     <ClCompile Include="palette.cpp" />
-    <ClCompile Include="SMSCommon.cpp" />
+    <ClCompile Include="TileStore.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteMaster.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -102,6 +102,7 @@
     <ClCompile Include="Utils\FileUtils.cpp" />
     <ClCompile Include="Utils\ParseArguments.cpp" />
     <ClCompile Include="Utils\SpriteUtils.cpp" />
+    <ClCompile Include="Utils\StringUtils.cpp" />
     <ClCompile Include="Utils\TileUtils.cpp" />
     <ClCompile Include="Utils\WriteUtils.cpp" />
   </ItemGroup>
@@ -116,7 +117,7 @@
     <ClInclude Include="AnimationTypes\TileAnimationFrame.h" />
     <ClInclude Include="GraphicsGale\GraphicsGaleObject.h" />
     <ClInclude Include="palette.h" />
-    <ClInclude Include="SMSCommon.h" />
+    <ClInclude Include="TileStore.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -126,6 +127,7 @@
     <ClInclude Include="Utils\FileUtils.h" />
     <ClInclude Include="Utils\ParseArguments.h" />
     <ClInclude Include="Utils\SpriteUtils.h" />
+    <ClInclude Include="Utils\StringUtils.h" />
     <ClInclude Include="Utils\TileUtils.h" />
     <ClInclude Include="Utils\WriteUtils.h" />
   </ItemGroup>

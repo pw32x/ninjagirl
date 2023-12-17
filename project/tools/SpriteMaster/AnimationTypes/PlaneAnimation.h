@@ -3,6 +3,7 @@
 #include <string>
 #include "PlaneAnimationFrame.h"
 #include "AnimationTypes.h"
+#include "..\TileStore.h"
 #include <vector>
 #include <memory>
 
@@ -44,7 +45,7 @@ private:
 	DWORD								m_numberOfFrames;
 	std::vector<GGPlaneAnimationFrame>  m_frames;
 	std::vector<GGPlaneAnimationFrame*> m_uniqueFrameData;
-	std::vector<Tile>					m_tileStore;
+	TileStore							m_tileStore;
 };
 
 }

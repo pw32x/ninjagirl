@@ -4,6 +4,7 @@
 #include <string>
 #include "AnimationProperties.h"
 #include "AnimationTypes.h"
+#include "..\TileStore.h"
 
 namespace SpriteMaster
 {
@@ -18,7 +19,7 @@ public:
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
-	int GetTileCount() { return m_tileStore.size(); }
+	int GetTileCount() { return m_tileStore.GetStoreTileCount(); }
 
 	const BITMAP& GetGeneralBitmapInfo() { return  m_generalBitmapInfo; }
 
@@ -34,7 +35,7 @@ private:
 	const GraphicsGaleObject& m_ggo;
 
 	std::vector<GGTileAnimationFrame>	m_frames;
-	std::vector<Tile>					m_tileStore;
+	TileStore							m_tileStore;
 	int									m_totalFrameTime = 0;
 	AnimationProperties&				m_animationProperties;
 	BITMAP								m_generalBitmapInfo;

@@ -2,8 +2,9 @@
 
 #include <vector>
 #include "..\Sprite.h"
+#include "AnimationTypes.h"
 #include "AnimationProperties.h"
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 
 namespace SpriteMaster
 {
@@ -17,7 +18,7 @@ public:
 
 	void Init(int frameNumber, 
 			  const GraphicsGaleObject& ggo, 
-	          std::vector<Tile>& tileStore, 
+	          TileStore& tileStore, 
 			  AnimationProperties& animationProperties);
 
 	LONG GetFrameDelayTime() const { return mFrameDelayTime; }
@@ -36,7 +37,7 @@ private:
 
 	void GetGGInfo(const GraphicsGaleObject& ggo, AnimationProperties& animationProperties);
 	void BuildFrame(const GraphicsGaleObject& ggo, 
-					std::vector<Tile>& tileStore);
+					TileStore& tileStore);
 
 private:
 	LONG			mFrameDelayTime;

@@ -1,11 +1,14 @@
 #include "..\stdafx.h"
 #include "Animation.h"
-#include "..\Utils\WriteUtils.h"
-#include <fstream>
-#include <algorithm>
-#include <sstream>
-#include "..\SMSCommon.h"
+
 #include "..\GraphicsGale\GraphicsGaleObject.h"
+#include "..\TileStore.h"
+#include "..\Utils\StringUtils.h"
+#include "..\Utils\WriteUtils.h"
+
+#include <algorithm>
+#include <fstream>
+#include <sstream>
 
 namespace SpriteMaster
 {
@@ -155,7 +158,7 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
         for (const auto& pair : m_animationProperties.animationFrameNames) 
 	    {
 		    std::transform(headerGuard.begin(), headerGuard.end(), headerGuard.begin(), ::toupper);
-		    headerfile << "#define " << str_toupper(outputName) << "_" << str_toupper(pair.second) << "_FRAME_INDEX" << " " << pair.first << "\n";
+		    headerfile << "#define " << StringUtils::str_toupper(outputName) << "_" << StringUtils::str_toupper(pair.second) << "_FRAME_INDEX" << " " << pair.first << "\n";
         }
         headerfile << "\n";
     }
@@ -398,7 +401,7 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
     sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
-    sourceFile << "    " << m_tileStore.size() << ", // the total amount of tiles in animation\n";
+    sourceFile << "    " << m_tileStore.GetStoreTileCount() << ", // the total amount of tiles in animation\n";
 
     if (m_isStreamed)
         sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
@@ -434,7 +437,7 @@ void GGAnimation:: WriteAnimationStruct(const std::string& outputName,
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
     sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
-    sourceFile << "    " << m_tileStore.size() << ", // the total amount of tiles in animation\n";
+    sourceFile << "    " << m_tileStore.GetStoreTileCount() << ", // the total amount of tiles in animation\n";
 
     if (m_isStreamed)
         sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    

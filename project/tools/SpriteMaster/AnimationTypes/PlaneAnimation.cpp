@@ -353,7 +353,7 @@ void GGPlaneAnimation::WriteAnimationStruct(const std::string& outputName,
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
 	sourceFile << "    " << m_frames[0].tileWidth() << ", // width of the total area of the frame in tiles\n";
 	sourceFile << "    " << m_frames[0].tileHeight() << ", // height of the total area of the frame in tiles\n";
-    sourceFile << "    " << m_tileStore.size() << ", // the total number of tiles in the animation\n";
+    sourceFile << "    " << m_tileStore.GetStoreTileCount() << ", // the total number of tiles in the animation\n";
     sourceFile << "    " << outputName << "TileData, // start of the tile data\n";
     //sourceFile << "    &" << outputName << "VDPTileIndex, // vdp tile index\n";
 	sourceFile << "    &" << outputName << "VdpLocation,\n";

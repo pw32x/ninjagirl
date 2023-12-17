@@ -25,7 +25,7 @@
     <ClCompile Include="palette.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SMSCommon.cpp">
+    <ClCompile Include="TileStore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Sprite.cpp">
@@ -76,12 +76,15 @@
     <ClCompile Include="Utils\ParseArguments.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Utils\StringUtils.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="palette.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="SMSCommon.h">
+    <ClInclude Include="TileStore.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Sprite.h">
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="AnimationTypes\AnimationTypes.h">
       <Filter>Source Files\AnimationTypes</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils\StringUtils.h">
+      <Filter>Source Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

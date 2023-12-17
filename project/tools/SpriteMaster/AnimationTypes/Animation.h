@@ -1,9 +1,11 @@
 #pragma once
 
 #include "AnimationFrame.h"
-#include <string>
+
+#include "..\TileStore.h"
 #include "AnimationProperties.h"
 #include "AnimationTypes.h"
+#include <string>
 
 namespace SpriteMaster
 {
@@ -19,7 +21,7 @@ public:
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
-	int GetTileCount() { return m_tileStore.size(); }
+	int GetTileCount() { return m_tileStore.GetStoreTileCount(); }
 
 	const BITMAP& GetGeneralBitmapInfo() { return  m_generalBitmapInfo; }
 
@@ -40,7 +42,7 @@ private:
 	const GraphicsGaleObject&		m_ggo;
 
 	std::vector<GGAnimationFrame>	m_frames;
-	std::vector<Tile>				m_tileStore;
+	TileStore						m_tileStore;
 	int								m_totalFrameTime = 0;
 	bool							m_isStreamed;
 	AnimationProperties&			m_animationProperties;

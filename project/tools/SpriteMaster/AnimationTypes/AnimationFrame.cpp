@@ -3,7 +3,7 @@
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
@@ -24,7 +24,7 @@ GGAnimationFrame::GGAnimationFrame()
 
 void GGAnimationFrame::Init(int frameNumber, 
 							const GraphicsGaleObject& ggo, 
-							std::vector<Tile>& tileStore, 
+							TileStore& tileStore, 
 							AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
@@ -147,7 +147,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 						 int height, 
 						 int topMost, 
 						 int bottomMost, 
-						 std::vector<Tile>& tileStore, 
+						 TileStore& tileStore, 
 						 std::vector<Sprite>& sprites)
 {
 
@@ -236,7 +236,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 			// See if the sprite already exists.
 			int tileStoreIndex = 0;
 			
-			tileStoreIndex = AddOrGetTileInStore(tileStore, tileData, true);
+			tileStoreIndex = tileStore.AddOrGetTileInStore(tileData, true);
 
 			// Create tile properties
 			Sprite sprite;
@@ -255,7 +255,7 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
 						 int height, 
 						 int topMost, 
 						 int bottomMost, 
-						 std::vector<Tile>& tileStore, 
+						 TileStore& tileStore, 
 						 std::vector<Sprite>& sprites)
 {
 
@@ -382,12 +382,12 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
 			//int tileStoreIndex = AddOrGetTileInStore(tileStore, tileData);
 
 			// TODO  check for duplicates of tile pairs.
-			tileStore.push_back(topTileData);
-			tileStore.push_back(bottomTileData);
+			tileStore.AddTile(topTileData);
+			tileStore.AddTile(bottomTileData);
 
 			// Create tile properties
 			Sprite sprite;
-			sprite.tileStoreIndex = tileStore.size() - 2; // sprite index are even
+			sprite.tileStoreIndex = tileStore.GetStoreTileCount() - 2; // sprite index are even
 			sprite.xPositionOffset = startPositionX;
 			sprite.yPositionOffset = startPositionY - 8;
 
@@ -398,7 +398,7 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
 
 
 void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
-								  std::vector<Tile>& tileStore, 
+								  TileStore& tileStore, 
 								  std::vector<Sprite>& sprites)
 {
 	HBITMAP				hBitmap;

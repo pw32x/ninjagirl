@@ -1,20 +1,17 @@
 #pragma once
 
 #include <vector>
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 
 namespace SpriteMaster
 {
-
-bool TilesAreIdentical(const Tile& firstTile, const Tile& secondTile);
-bool TilesAreMirroredOnX(const Tile& firstTile, const Tile& secondTile);
-bool TilesAreMirroredOnY(const Tile& firstTile, const Tile& secondTile);
-bool TilesAreMirroredOnXY(const Tile& firstTile, const Tile& secondTile);
-
-bool TilesAreIdenticalOrMirrored(const Tile& firstTile, const Tile& secondTile);
-
-bool StoreContainsIdenticalOrMirroredTile(std::vector<Tile>& tileStore, const Tile& tileToFind);
-
-int AddOrGetTileInStore(std::vector<Tile>& tileStore,  const Tile& tileToFind, bool removeDuplicates = true);
-
+	class TileUtils
+	{
+	public:
+		static bool TilesAreIdentical(const Tile& firstTile, const Tile& secondTile);
+		static bool TilesAreMirroredOnX(const Tile& firstTile, const Tile& secondTile);
+		static bool TilesAreMirroredOnY(const Tile& firstTile, const Tile& secondTile);
+		static bool TilesAreMirroredOnXY(const Tile& firstTile, const Tile& secondTile);
+		static bool TilesAreIdenticalOrMirrored(const Tile& firstTile, const Tile& secondTile);
+	};
 }

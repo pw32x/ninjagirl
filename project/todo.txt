@@ -1,6 +1,10 @@
 Todo
 
 	Sprite Master C++
+
+		reuse identical frames
+		reuse identical spans
+			when streaming don't dedupe tiles to make it easier to copy to vdp			
 	
 		add slice style
 			smallest area (default)
@@ -24,11 +28,8 @@ Todo
 			DefaultSlice:Rows
 			DefaultSlice:FixedGrid
 
-		reuse identical frames
-		reuse identical spans
-			reuse 8x16 sprites
 
-		streaming doesn't dedupe tiles to make it easier to copy to vdp
+
 
 		plane animation seems to not work
 			a 2 frame animation only exports 1 frame.

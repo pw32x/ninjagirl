@@ -3,7 +3,7 @@
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
 #include <iostream>
@@ -23,7 +23,7 @@ GGTileAnimationFrame::GGTileAnimationFrame()
 
 void GGTileAnimationFrame::Init(int frameNumber, 
 								const GraphicsGaleObject& ggo, 
-								std::vector<Tile>& tileStore, 
+								TileStore& tileStore, 
 								AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
@@ -120,7 +120,7 @@ void CopyTileFromByteData(BYTE* byteData,
 int SliceImageIntoTiles(BYTE* byteData, 
 						 int width, 
 						 int height, 
-						 std::vector<Tile>& tileStore)
+						 TileStore& tileStore)
 {
 
 	// SMS tiles are always 8x8
@@ -130,7 +130,7 @@ int SliceImageIntoTiles(BYTE* byteData,
 	int tileCountX = width / tileWidth;
     int tileCountY = height / tileHeight;
 
-	std::vector<Tile> frameTileStore;
+	TileStore frameTileStore;
 
     // cut the image into slices, then sprites.
     for (int loopy = 0; loopy < tileCountY; loopy++)
@@ -147,21 +147,21 @@ int SliceImageIntoTiles(BYTE* byteData,
 								 tileWidth,
 								 tileHeight);
 
-			if (!StoreContainsIdenticalOrMirroredTile(frameTileStore, tileData))
-				frameTileStore.push_back(tileData);
+			if (!frameTileStore.StoreContainsIdenticalOrMirroredTile(tileData))
+				frameTileStore.AddTile(tileData);
         }
     }
 
-	for (auto& tile : frameTileStore)
+	for (auto& tile : frameTileStore.GetTiles())
 	{
-		tileStore.push_back(tile);
+		tileStore.AddTile(tile);
 	}
 
-	return frameTileStore.size();
+	return frameTileStore.GetStoreTileCount();
 }
 
 void GGTileAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
-									  std::vector<Tile>& tileStore)
+									  TileStore& tileStore)
 {
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
@@ -170,7 +170,7 @@ void GGTileAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
 	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
 
-	mTileDataIndex = tileStore.size();
+	mTileDataIndex = tileStore.GetStoreTileCount();
 
 	mTilesInFrame = SliceImageIntoTiles(byteData, 
 										bitmapInfo.bmWidth, 

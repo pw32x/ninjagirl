@@ -2,7 +2,7 @@
 
 #include <vector>
 #include "..\Sprite.h"
-#include "..\SMSCommon.h"
+#include "..\TileStore.h"
 
 #define PALETTE_SIZE 16
 
@@ -16,7 +16,7 @@ public:
 	GGPlaneAnimationFrame();
 	void Init(int frameNumber, 
 			  const GraphicsGaleObject& ggo, 
-			  std::vector<Tile>& tiles, 
+			  TileStore& tileStore, 
 			  int& uniqueTileCount, 
 			  int& maxUniqueTileCountPerFrame);
 
@@ -33,7 +33,7 @@ public:
 private:
 	void GetFrameDelayTime(const GraphicsGaleObject& ggo);
 	void BuildFrame(const GraphicsGaleObject& ggo, 
-					std::vector<Tile>& tileStore, 
+					TileStore& tileStore, 
 					int& uniqueTileCount, 
 					int& maxUniqueTileCountPerFrame);
 
