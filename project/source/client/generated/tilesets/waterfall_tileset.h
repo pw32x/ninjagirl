@@ -2,7 +2,7 @@
 #define WATERFALL_TILESET_INCLUDE_H
 #include "map_types.h"
 
-RESOURCE(BANK3) extern const AnimatedTileset waterfall_tileset;
+RESOURCE(BANK3) extern const Tileset waterfall_tileset;
 
 #endif
 
