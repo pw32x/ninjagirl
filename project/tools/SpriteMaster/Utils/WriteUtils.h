@@ -8,9 +8,10 @@
 
 namespace SpriteMaster
 {
-	std::string BuildFrameName(const std::string& outputName, int frameNumber);
-
-	void WriteTileStore(const std::string& outputName, 
-						std::ofstream& sourceFile, 
-						const TileStore& tileStore);
+	class WriteUtils
+	{
+	public:
+		static std::string BuildFrameName(const std::string& outputName, int frameNumber);
+		static void OutputTilePlanar(std::ofstream& sourceFile, const Tile& tile);
+	};
 }

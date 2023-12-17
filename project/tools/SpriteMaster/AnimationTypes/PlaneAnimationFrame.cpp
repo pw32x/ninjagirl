@@ -52,7 +52,7 @@ void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 
 	hBitmap = ggo.getBitmap(m_FrameNumber, 0);
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
-	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
+	BYTE* byteData = BitmapUtils::CreateByteDataFromBitmap(bitmapInfo);
 
 	m_tileWidth = (((bitmapInfo.bmWidth - 1) / TILE_WIDTH)) + 1;
 	m_tileHeight = (((bitmapInfo.bmHeight - 1) / TILE_HEIGHT)) + 1;
@@ -70,12 +70,12 @@ void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 			int startPositionX = loopx * TILE_WIDTH;
 			int startPositionY = loopy * TILE_HEIGHT;
 
-			CopyTileFromByteData(byteData, 
-								 bitmapInfo.bmWidth, 
-								 bitmapInfo.bmHeight, 
-								 tileData, 
-								 startPositionX, 
-								 startPositionY);
+			SpriteUtils::CopyTileFromByteData(byteData, 
+											  bitmapInfo.bmWidth, 
+											  bitmapInfo.bmHeight, 
+											  tileData, 
+											  startPositionX, 
+											  startPositionY);
 
 		
 
@@ -86,29 +86,6 @@ void GGPlaneAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 
 			int tileIndex = tileStore.AddOrGetTileInStore(tileData);
 			uniqueTileCount++;
-
-			/*
-			int tileIndex = FindRawSprite(tiles, tileData, TILE_WIDTH, TILE_HEIGHT, true, verticalFlip, horizontalFlip);
-
-			if (tileIndex == -1)
-			{
-				// Tile didn't exist already so create one.
-				tiles.push_back(RawSprite());
-				RawSprite& sprite = tiles.back();
-				sprite.imageData.assign(tileData.begin(), tileData.end());
-				sprite.width = TILE_WIDTH;
-				sprite.height = TILE_HEIGHT;
-				sprite.tileWidth = 1;
-				sprite.tileHeight = 1;
-				sprite.tileStartIndex = uniqueTileCount;
-
-				// 
-				tileIndex = uniqueTileCount;
-
-				// We've added a new tile, so update statistics
-				uniqueTileCount++;
-			}
-			*/
 
 			uniqueTilesUsed.insert(tileIndex);
 

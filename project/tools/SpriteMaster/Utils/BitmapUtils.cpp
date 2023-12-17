@@ -1,7 +1,10 @@
 #include "..\stdafx.h"
 #include "BitmapUtils.h"
 
-BYTE* CreateByteDataFromBitmap(BITMAP & bitmapInfo)
+namespace SpriteMaster
+{
+
+BYTE* BitmapUtils::CreateByteDataFromBitmap(BITMAP & bitmapInfo)
 {
 	const BYTE* imageData = (const BYTE*)bitmapInfo.bmBits;
 	// Graphics Gale exports the bitmap upside down. Fugh.
@@ -29,4 +32,6 @@ BYTE* CreateByteDataFromBitmap(BITMAP & bitmapInfo)
 	}
 
 	return byteData;
+}
+
 }

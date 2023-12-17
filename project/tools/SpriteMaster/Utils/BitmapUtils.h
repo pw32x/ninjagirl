@@ -1,3 +1,11 @@
 #pragma once
 
-BYTE* CreateByteDataFromBitmap(BITMAP & bitmapInfo);
+namespace SpriteMaster
+{
+
+	class BitmapUtils
+	{
+	public:
+		static BYTE* CreateByteDataFromBitmap(BITMAP & bitmapInfo);
+	};
+}

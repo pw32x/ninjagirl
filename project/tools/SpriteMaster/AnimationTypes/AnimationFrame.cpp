@@ -182,7 +182,7 @@ void SliceImageIntoTiles(BYTE* byteData,
         int leftMost;
         int rightMost;
 
-		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
+		SpriteUtils::FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
 		
         //printf("\nLeft/Right Extents - Left: %d, Right: %d\n", leftMost, rightMost);
 
@@ -226,7 +226,7 @@ void SliceImageIntoTiles(BYTE* byteData,
 
 			// Get the sprite. This also modifies the start and end positions to the area actually copied.
 			std::vector<BYTE> tileData;
-			bool atLeastOnePixel = CopySpriteFromByteData(byteData, width, tileData, startPositionX, startPositionY, endPositionX, endPositionY, false);
+			bool atLeastOnePixel = SpriteUtils::CopySpriteFromByteData(byteData, width, tileData, startPositionX, startPositionY, endPositionX, endPositionY, false);
 
             if (!atLeastOnePixel)
             {
@@ -290,7 +290,7 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
         int leftMost;
         int rightMost;
 
-		FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
+		SpriteUtils::FindLeftRightExtentsForSlice(byteData, width, sliceTop, sliceBottom, leftMost, rightMost, false);
 		
         //printf("\nLeft/Right Extents - Left: %d, Right: %d\n", leftMost, rightMost);
 
@@ -335,14 +335,14 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
 
 			// Get the sprite. This also modifies the start and end positions to the area actually copied.
 			std::vector<BYTE> topTileData;
-			bool atLeastOnePixelInTopTile = CopySpriteFromByteData(byteData, 
-																   width, 
-																   topTileData, 
-																   startPositionX, 
-																   startPositionY, 
-																   endPositionX, 
-																   endPositionY, 
-																   true);
+			bool atLeastOnePixelInTopTile = SpriteUtils::CopySpriteFromByteData(byteData, 
+																				width, 
+																				topTileData, 
+																				startPositionX, 
+																				startPositionY, 
+																				endPositionX, 
+																				endPositionY, 
+																				true);
 
 			// bottom tile
             startPositionX = leftMost + (tileLoop * sliceWidth);
@@ -362,14 +362,14 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
             }
 
 			std::vector<BYTE> bottomTileData;
-			bool atLeastOnePixelInBottomTile = CopySpriteFromByteData(byteData, 
-																	  width, 
-																	  bottomTileData, 
-																	  startPositionX, 
-																	  startPositionY, 
-																	  endPositionX, 
-																	  endPositionY, 
-																	  true);
+			bool atLeastOnePixelInBottomTile = SpriteUtils::CopySpriteFromByteData(byteData, 
+																				   width, 
+																				   bottomTileData, 
+																				   startPositionX, 
+																				   startPositionY, 
+																				   endPositionX, 
+																				   endPositionY, 
+																				   true);
 
 
 
@@ -406,17 +406,17 @@ void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 
 	hBitmap = ggo.getBitmap(mFrameNumber, 0);
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
-	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
+	BYTE* byteData = BitmapUtils::CreateByteDataFromBitmap(bitmapInfo);
 
 	int topMost;
 	int bottomMost;
 
-	FindTopAndBottomExtents(byteData, 
-							bitmapInfo.bmWidth, 
-							bitmapInfo.bmHeight, 
-							&topMost, 
-							&bottomMost, 
-							false);
+	SpriteUtils::FindTopAndBottomExtents(byteData, 
+										 bitmapInfo.bmWidth, 
+										 bitmapInfo.bmHeight, 
+										 &topMost, 
+										 &bottomMost, 
+										 false);
 
 	SliceImageInto8x16Tiles(byteData, 
 							bitmapInfo.bmWidth, 

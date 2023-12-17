@@ -1,7 +1,9 @@
 #include "TileStore.h"
 
 #include "Utils/TileUtils.h"
+#include "Utils/WriteUtils.h"
 #include <algorithm>
+#include <ostream>
 
 
 namespace SpriteMaster
@@ -39,6 +41,29 @@ int TileStore::AddOrGetTileInStore(const Tile& tileToFind, bool removeDuplicates
 	m_store.push_back(tileToFind);
 
 	return m_store.size() - 1;
+}
+
+void TileStore::WriteTileStore(const std::string& outputName, 
+							   std::ofstream& sourceFile) const
+{
+	std::string outputTileDataName = outputName + "TileData";
+
+	int tileIndex = 0;
+	int totalTiles = 0;
+	sourceFile << "unsigned char const " << outputTileDataName << "[" << GetStoreTileCount() * 32 << "] = // " << GetStoreTileCount() << "tiles x " << "32 bytes" << "\n";
+	sourceFile << "{\n";
+
+	int tileCount = 0;
+
+	for (const auto& tile : m_store)
+	{
+		sourceFile << "// tile: " << tileCount << "\n";
+		tileCount++;
+
+		WriteUtils::OutputTilePlanar(sourceFile, tile);
+	}
+
+	sourceFile << "};\n\n";
 }
 
 }

@@ -178,7 +178,7 @@ void GGAnimation::WriteSprites(const std::string& outputName, std::ofstream& sou
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string spriteName = BuildFrameName(outputName, frameLoop) + "Sprites";
+        std::string spriteName = WriteUtils::BuildFrameName(outputName, frameLoop) + "Sprites";
 
         sourceFile << "const AnimationSprite " << spriteName << "[] = \n";
         sourceFile << "{\n";
@@ -209,7 +209,7 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string spriteName = BuildFrameName(outputName, frameLoop) + "BatchedSprite";
+        std::string spriteName = WriteUtils::BuildFrameName(outputName, frameLoop) + "BatchedSprite";
 
         sourceFile << "const BatchedAnimationSprite " << spriteName << "[] = \n";
         sourceFile << "{\n";
@@ -242,7 +242,7 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
 
         if (m_isStreamed)
             sourceFile << "extern const StreamedBatchedAnimationFrame " << frameName << ";\n";
@@ -256,14 +256,14 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
         std::string nextFrameName;
         
 
         if (frame.getNextFrameIndex() == NO_LOOP)
             nextFrameName = "NULL";
         else
-            nextFrameName = "&" + BuildFrameName(outputName, frame.getNextFrameIndex());
+            nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
 
 		sourceFile << "\n";
 
@@ -293,7 +293,7 @@ void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sour
 	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
 
         if (m_isStreamed)
             sourceFile << "extern const StreamedAnimationFrame " << frameName << ";\n";
@@ -305,14 +305,14 @@ void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sour
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
         std::string nextFrameName;
         
 
         if (frame.getNextFrameIndex() == NO_LOOP)
             nextFrameName = "NULL";
         else
-            nextFrameName = "&" + BuildFrameName(outputName, frame.getNextFrameIndex());
+            nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
 
 		sourceFile << "\n";
 
@@ -349,7 +349,7 @@ void GGAnimation::WriteFrameArrayBatched(const std::string& outputName, std::ofs
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
     {
-        sourceFile << "    &" << BuildFrameName(outputName, loop) << ",\n";
+        sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, loop) << ",\n";
     }
 
     sourceFile << "};\n\n";
@@ -366,7 +366,7 @@ void GGAnimation::WriteFrameArray(const std::string& outputName, std::ofstream& 
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
     {
-        sourceFile << "    &" << BuildFrameName(outputName, loop) << ",\n";
+        sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, loop) << ",\n";
     }
 
     sourceFile << "};\n\n";
@@ -460,7 +460,7 @@ void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder,
     sourceFile << "\n";
 
 	// tile data
-	WriteTileStore(outputName, sourceFile, m_tileStore);
+    m_tileStore.WriteTileStore(outputName, sourceFile);
 
     WriteSpritesBatched(outputName, sourceFile);
     WriteFramesBatched(outputName, sourceFile);

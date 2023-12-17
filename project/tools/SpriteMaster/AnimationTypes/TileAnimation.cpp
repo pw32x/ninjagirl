@@ -170,7 +170,7 @@ void GGTileAnimation::WriteFrames(const std::string& outputName, std::ofstream& 
 	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
 	{
 		const GGTileAnimationFrame& frame = m_frames[frameLoop];
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
 
         sourceFile << "extern const TileAnimationFrame " << frameName << ";\n";
 	}
@@ -179,13 +179,13 @@ void GGTileAnimation::WriteFrames(const std::string& outputName, std::ofstream& 
 	{
 		const GGTileAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string frameName = BuildFrameName(outputName, frameLoop);
+        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
         std::string nextFrameName;        
 
         if (frame.getNextFrameIndex() == NO_LOOP)
             nextFrameName = "NULL";
         else
-            nextFrameName = "&" + BuildFrameName(outputName, frame.getNextFrameIndex());
+            nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
 
 		sourceFile << "\n";
 		sourceFile << "const TileAnimationFrame " << frameName << " = \n";
@@ -207,7 +207,7 @@ void GGTileAnimation::WriteFrameArray(const std::string& outputName, std::ofstre
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
     {
-        sourceFile << "    &" << BuildFrameName(outputName, loop) << ",\n";
+        sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, loop) << ",\n";
     }
 
     sourceFile << "};\n\n";
@@ -248,7 +248,7 @@ void GGTileAnimation::WriteSourceFile(const std::string& outputFolder,
     sourceFile << "\n";
 
 	// tile data
-	WriteTileStore(outputName, sourceFile, m_tileStore);
+    m_tileStore.WriteTileStore(outputName, sourceFile);
 
 	WriteFrames(outputName, sourceFile);
     WriteFrameArray(outputName, sourceFile);

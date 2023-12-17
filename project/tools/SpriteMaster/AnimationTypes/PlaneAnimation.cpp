@@ -271,7 +271,7 @@ void GGPlaneAnimation::WriteFrameNames(const std::string& outputName, std::ofstr
     // forward declare frame names.
 	for (size_t loop = 0; loop < m_frames.size(); loop++)
 	{
-		sourceFile << "extern const PlaneAnimationFrame " << BuildFrameName(outputName, loop) << ";\n";
+		sourceFile << "extern const PlaneAnimationFrame " << WriteUtils::BuildFrameName(outputName, loop) << ";\n";
 	}
 
 	sourceFile << "\n\n";
@@ -285,7 +285,7 @@ void GGPlaneAnimation::WriteFrames(const std::string& outputName, std::ofstream&
 		auto& frame = m_frames[loop];
 
 		sourceFile << "\n";
-		sourceFile << "const PlaneAnimationFrame " << BuildFrameName(outputName, frame.frameNumber()) << " = \n";
+		sourceFile << "const PlaneAnimationFrame " << WriteUtils::BuildFrameName(outputName, frame.frameNumber()) << " = \n";
 		sourceFile << "{\n";
 
 		int uniqueFrameIndex = findSameFrameIndex(frame);
@@ -295,11 +295,11 @@ void GGPlaneAnimation::WriteFrames(const std::string& outputName, std::ofstream&
 
 		if (loop + 1 > m_frames.size() - 1)
 		{
-			sourceFile << "    &" << BuildFrameName(outputName, 0) << ", // loop to next frame. \n";
+			sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, 0) << ", // loop to next frame. \n";
 		}
 		else
 		{
-			sourceFile << "    &" << BuildFrameName(outputName, loop + 1) << ", // next frame\n";
+			sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, loop + 1) << ", // next frame\n";
 		}
 
 		sourceFile << "};\n";
@@ -325,7 +325,7 @@ void GGPlaneAnimation::WriteFrameArray(const std::string& outputName, std::ofstr
 	{
 		auto& frame = m_frames[loop];
 
-		sourceFile << "    &" << BuildFrameName(outputName, frame.frameNumber()) << ",\n";
+		sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, frame.frameNumber()) << ",\n";
 	}
 
 	sourceFile << "};\n\n";		
@@ -373,7 +373,7 @@ void GGPlaneAnimation::WriteGGPlaneAnimationSourceFile(const std::string& output
     sourceFile << "\n";
     sourceFile << "\n";
 
-	WriteTileStore(outputName, sourceFile, m_tileStore);
+	m_tileStore.WriteTileStore(outputName, sourceFile);
 
 	//WriteFrameData(outputName, sourceFile);
 	//WritePalettes(outputName, sourceFile);

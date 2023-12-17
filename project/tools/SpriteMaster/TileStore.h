@@ -21,6 +21,9 @@ public:
 
 	const std::vector<Tile>& GetTiles() const { return m_store; }
 
+
+	void WriteTileStore(const std::string& outputName, 
+					    std::ofstream& sourceFile) const;
 private:
 	std::vector<Tile>	m_store;
 };

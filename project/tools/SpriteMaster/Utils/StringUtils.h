@@ -5,11 +5,9 @@
 
 namespace SpriteMaster
 {
-
-class StringUtils
-{
-public:
-	static std::string str_toupper(std::string s);
-};
-
+	class StringUtils
+	{
+	public:
+		static std::string str_toupper(std::string s);
+	};
 }

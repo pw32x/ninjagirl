@@ -168,7 +168,7 @@ void GGTileAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 
 	hBitmap = ggo.getBitmap(mFrameNumber, 0);
 	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
-	BYTE* byteData = CreateByteDataFromBitmap(bitmapInfo);
+	BYTE* byteData = BitmapUtils::CreateByteDataFromBitmap(bitmapInfo);
 
 	mTileDataIndex = tileStore.GetStoreTileCount();
 

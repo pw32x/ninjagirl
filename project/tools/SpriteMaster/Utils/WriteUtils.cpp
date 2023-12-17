@@ -7,7 +7,7 @@
 namespace SpriteMaster
 {
 
-std::string BuildFrameName(const std::string& outputName, int frameNumber)
+std::string WriteUtils::BuildFrameName(const std::string& outputName, int frameNumber)
 {
     std::stringstream stringStream;
     stringStream << outputName << "Frame" << frameNumber;
@@ -52,7 +52,7 @@ std::string WriteByteAsHex(DWORD value)
     return tempStringStream.str();
 }
 
-void OutputTilePlanar(std::ofstream& sourceFile, const Tile& tile)
+void WriteUtils::OutputTilePlanar(std::ofstream& sourceFile, const Tile& tile)
 {
     for (int row = 0; row < TILE_HEIGHT; row++)
     {
@@ -71,27 +71,4 @@ void OutputTilePlanar(std::ofstream& sourceFile, const Tile& tile)
     }
 }
 
-void WriteTileStore(const std::string& outputName, 
-                    std::ofstream& sourceFile, 
-                    const TileStore& tileStore)
-{
-	std::string outputTileDataName = outputName + "TileData";
-
-    int tileIndex = 0;
-    int totalTiles = 0;
-    sourceFile << "unsigned char const " << outputTileDataName << "[" << tileStore.GetStoreTileCount() * 32 << "] = // " << tileStore.GetStoreTileCount() << "tiles x " << "32 bytes" << "\n";
-    sourceFile << "{\n";
-
-	int tileCount = 0;
-
-    for (const auto& tile : tileStore.GetTiles())
-    {
-        sourceFile << "// tile: " << tileCount << "\n";
-		tileCount++;
-
-        OutputTilePlanar(sourceFile, tile);
-    }
-
-    sourceFile << "};\n\n";
-}
 }
