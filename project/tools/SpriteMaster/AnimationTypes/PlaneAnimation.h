@@ -1,11 +1,11 @@
 #pragma once
 
-#include <string>
-#include "PlaneAnimationFrame.h"
+#include "..\Base\TileStore.h"
 #include "AnimationTypes.h"
-#include "..\TileStore.h"
-#include <vector>
+#include "PlaneAnimationFrame.h"
 #include <memory>
+#include <string>
+#include <vector>
 
 namespace SpriteMaster
 {

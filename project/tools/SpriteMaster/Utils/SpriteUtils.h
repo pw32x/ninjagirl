@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "..\Sprite.h"
+#include "..\Base\Sprite.h"
 
 #define TILE_WIDTH 8
 #define TILE_HEIGHT 8

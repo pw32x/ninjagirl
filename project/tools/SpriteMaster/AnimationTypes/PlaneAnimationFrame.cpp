@@ -4,8 +4,8 @@
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
 #include <set>
-#include "..\palette.h"
-#include "..\TileStore.h"
+#include "..\Base\palette.h"
+#include "..\Base\TileStore.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 
 namespace SpriteMaster

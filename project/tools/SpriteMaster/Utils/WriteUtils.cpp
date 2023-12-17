@@ -1,8 +1,9 @@
 #include "..\stdafx.h"
 #include "WriteUtils.h"
+
+#include "..\Base\TileStore.h"
 #include "SpriteUtils.h"
 #include <sstream>
-#include "..\TileStore.h"
 
 namespace SpriteMaster
 {

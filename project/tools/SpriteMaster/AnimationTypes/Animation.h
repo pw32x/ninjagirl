@@ -2,7 +2,7 @@
 
 #include "AnimationFrame.h"
 
-#include "..\TileStore.h"
+#include "..\Base\TileStore.h"
 #include "AnimationProperties.h"
 #include "AnimationTypes.h"
 #include <string>

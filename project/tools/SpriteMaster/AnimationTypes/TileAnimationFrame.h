@@ -1,10 +1,10 @@
 #pragma once
 
-#include <vector>
-#include "..\Sprite.h"
-#include "AnimationTypes.h"
+#include "..\Base\Sprite.h"
+#include "..\Base\TileStore.h"
 #include "AnimationProperties.h"
-#include "..\TileStore.h"
+#include "AnimationTypes.h"
+#include <vector>
 
 namespace SpriteMaster
 {

@@ -1,10 +1,10 @@
 #pragma once
 
-#include "TileAnimationFrame.h"
-#include <string>
+#include "..\Base\TileStore.h"
 #include "AnimationProperties.h"
 #include "AnimationTypes.h"
-#include "..\TileStore.h"
+#include "TileAnimationFrame.h"
+#include <string>
 
 namespace SpriteMaster
 {

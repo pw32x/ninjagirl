@@ -1,7 +1,8 @@
+#include "..\stdafx.h"
 #include "TileStore.h"
 
-#include "Utils/TileUtils.h"
-#include "Utils/WriteUtils.h"
+#include "../Utils/TileUtils.h"
+#include "../Utils/WriteUtils.h"
 #include <algorithm>
 #include <ostream>
 

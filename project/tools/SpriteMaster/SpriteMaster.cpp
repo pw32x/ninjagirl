@@ -5,7 +5,7 @@
 #include "AnimationTypes\PlaneAnimation.h"
 #include "AnimationTypes\TileAnimation.h"
 #include "GraphicsGale\GraphicsGaleObject.h"
-#include "Utils\errors.h"
+#include "Base\errors.h"
 #include "Utils\FileUtils.h"
 #include "Utils\ParseArguments.h"
 

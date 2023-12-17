@@ -1,8 +1,8 @@
 #include "..\stdafx.h"
 #include "TileAnimation.h"
 
+#include "..\Base\TileStore.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
-#include "..\TileStore.h"
 #include "..\Utils\StringUtils.h"
 #include "..\Utils\WriteUtils.h"
 #include <algorithm>

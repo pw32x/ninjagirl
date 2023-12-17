@@ -1,16 +1,16 @@
 #include "..\stdafx.h"
 #include "AnimationFrame.h"
+
+#include "..\Base\TileStore.h"
+#include "..\GraphicsGale\GraphicsGaleObject.h"
 #include "..\Utils\BitmapUtils.h"
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
-#include "..\TileStore.h"
-
-#include "..\GraphicsGale\GraphicsGaleObject.h"
 
 #include <iostream>
-#include <string>
-#include <sstream>
 #include <queue>
+#include <sstream>
+#include <string>
 #include <vector>
 
 namespace SpriteMaster

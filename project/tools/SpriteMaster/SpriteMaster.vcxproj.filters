@@ -17,18 +17,12 @@
     <Filter Include="thirdparty">
       <UniqueIdentifier>{edbacb47-9c1f-480d-92d5-552ab429d93d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Base">
+      <UniqueIdentifier>{b18bb788-3c44-456c-9f87-719159ecc196}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpriteMaster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="palette.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TileStore.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Sprite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -79,25 +73,22 @@
     <ClCompile Include="Utils\StringUtils.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Base\Sprite.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\TileStore.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\palette.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="palette.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TileStore.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Sprite.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils\errors.h">
-      <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="Utils\FileUtils.h">
       <Filter>Source Files\Utils</Filter>
@@ -149,6 +140,18 @@
     </ClInclude>
     <ClInclude Include="Utils\StringUtils.h">
       <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\Sprite.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\TileStore.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\palette.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\errors.h">
+      <Filter>Source Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

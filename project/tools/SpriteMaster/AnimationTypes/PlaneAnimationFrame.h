@@ -1,8 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "..\Sprite.h"
-#include "..\TileStore.h"
+#include "..\Base\Sprite.h"
+#include "..\Base\TileStore.h"
 
 #define PALETTE_SIZE 16
 

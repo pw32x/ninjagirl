@@ -11,7 +11,7 @@
 #endif
 
 #include "..\thirdparty\argparse\argparse.hpp"
-#include "errors.h"
+#include "..\Base\errors.h"
 
 namespace SpriteMaster
 {

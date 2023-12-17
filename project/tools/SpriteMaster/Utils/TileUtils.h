@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "..\TileStore.h"
+#include "..\Base\TileStore.h"
 
 namespace SpriteMaster
 {
