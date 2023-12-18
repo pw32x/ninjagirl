@@ -20,6 +20,15 @@
     <Filter Include="Source Files\Base">
       <UniqueIdentifier>{b18bb788-3c44-456c-9f87-719159ecc196}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AnimationTypes\Tile Animation">
+      <UniqueIdentifier>{f5f9e64f-2218-416f-a22d-5b07a208ed8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AnimationTypes\Plane Animation">
+      <UniqueIdentifier>{439696e2-c657-4782-8e96-a7430fbfbe58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AnimationTypes\Standard &amp; Streamed Animation">
+      <UniqueIdentifier>{daafb527-3fa8-4760-a2cd-42f938c2ffe6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpriteMaster.cpp">
@@ -32,24 +41,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="AnimationTypes\AnimationProperties.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\TileAnimation.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\Animation.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\AnimationFrame.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\PlaneAnimation.cpp">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClCompile>
-    <ClCompile Include="AnimationTypes\PlaneAnimationFrame.cpp">
       <Filter>Source Files\AnimationTypes</Filter>
     </ClCompile>
     <ClCompile Include="Utils\SpriteUtils.cpp">
@@ -82,6 +73,30 @@
     <ClCompile Include="Base\palette.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
+    <ClCompile Include="AnimationTypes\AnimationTypes.cpp">
+      <Filter>Source Files\AnimationTypes</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\Animation.cpp">
+      <Filter>Source Files\AnimationTypes\Standard &amp; Streamed Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\AnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes\Standard &amp; Streamed Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\TileAnimation.cpp">
+      <Filter>Source Files\AnimationTypes\Tile Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\TileAnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes\Tile Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\PlaneAnimation.cpp">
+      <Filter>Source Files\AnimationTypes\Plane Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\PlaneAnimationFrame.cpp">
+      <Filter>Source Files\AnimationTypes\Plane Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\SpriteStripStore.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -94,24 +109,6 @@
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="AnimationTypes\AnimationProperties.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\PlaneAnimationFrame.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\TileAnimation.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\TileAnimationFrame.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\Animation.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\AnimationFrame.h">
-      <Filter>Source Files\AnimationTypes</Filter>
-    </ClInclude>
-    <ClInclude Include="AnimationTypes\PlaneAnimation.h">
       <Filter>Source Files\AnimationTypes</Filter>
     </ClInclude>
     <ClInclude Include="Utils\BitmapUtils.h">
@@ -151,6 +148,30 @@
       <Filter>Source Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="Base\errors.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\Animation.h">
+      <Filter>Source Files\AnimationTypes\Standard &amp; Streamed Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\AnimationFrame.h">
+      <Filter>Source Files\AnimationTypes\Standard &amp; Streamed Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\TileAnimation.h">
+      <Filter>Source Files\AnimationTypes\Tile Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\TileAnimationFrame.h">
+      <Filter>Source Files\AnimationTypes\Tile Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\PlaneAnimation.h">
+      <Filter>Source Files\AnimationTypes\Plane Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\PlaneAnimationFrame.h">
+      <Filter>Source Files\AnimationTypes\Plane Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\SpriteStripStore.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\TileTypes.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
   </ItemGroup>

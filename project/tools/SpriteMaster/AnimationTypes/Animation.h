@@ -6,18 +6,18 @@
 #include "AnimationProperties.h"
 #include "AnimationTypes.h"
 #include <string>
+#include "../Base/SpriteStripStore.h"
 
 namespace SpriteMaster
 {
 
 class GraphicsGaleObject;
 
-class GGAnimation : public IAnimation
+class GGAnimation : public AnimationBase
 {
 public:
 	GGAnimation(const GraphicsGaleObject& ggo, 
-				AnimationType animationType, 
-				AnimationProperties& animationProperties);
+				AnimationType animationType);
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
@@ -26,7 +26,7 @@ public:
 	const BITMAP& GetGeneralBitmapInfo() { return  m_generalBitmapInfo; }
 
 private:
-	void WriteSprites(const std::string& outputName, std::ofstream& sourceFile);
+
 	void WriteSpritesBatched(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFrames(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFramesBatched(const std::string& outputName, std::ofstream& sourceFile);
@@ -40,12 +40,15 @@ private:
 
 private:
 	const GraphicsGaleObject&		m_ggo;
+	AnimationProperties				m_animationProperties;
+
+	TileStore						m_tileStore;
+	SpriteStripStore				m_spriteStripStore;
 
 	std::vector<GGAnimationFrame>	m_frames;
-	TileStore						m_tileStore;
 	int								m_totalFrameTime = 0;
 	bool							m_isStreamed;
-	AnimationProperties&			m_animationProperties;
+	bool							m_removeDuplicates;
 	BITMAP							m_generalBitmapInfo;
 	int								m_maxTilesInFrame;
 };

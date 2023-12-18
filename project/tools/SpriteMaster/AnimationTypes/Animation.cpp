@@ -14,10 +14,10 @@ namespace SpriteMaster
 {
 
 GGAnimation::GGAnimation(const GraphicsGaleObject& ggo, 
-                         AnimationType animationType, 
-                         AnimationProperties& animationProperties)
+                         AnimationType animationType)
 : m_ggo(ggo),
-  m_animationProperties(animationProperties)
+  m_isStreamed(false),
+  m_removeDuplicates(false)
 {
     if (animationType != AnimationType::Streamed &&
         animationType != AnimationType::Standard)
@@ -26,6 +26,7 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
     }
 
     m_isStreamed = animationType == AnimationType::Streamed;
+    m_removeDuplicates = m_isStreamed;
 
     HBITMAP bitmap = m_ggo.getBitmap(0, 0);
 
@@ -53,6 +54,7 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
 		frame.Init(loop, 
                    m_ggo, 
                    m_tileStore, 
+                   m_spriteStripStore,
                    m_animationProperties);
 
         m_maxTilesInFrame = max(m_maxTilesInFrame, (int)frame.getSprites().size() * 2);
@@ -65,7 +67,7 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
 
             GGAnimationFrame& previousFrame = m_frames[previousIndex];
 
-            if (previousFrame.getNextFrameIndex() == NEXT_FRAME_NOT_SET)
+            if (previousFrame.getNextFrameIndex() == AnimationFrameBase::NEXT_FRAME_NOT_SET)
             {
                 if (frame.startsAnimation())
                 {
@@ -95,7 +97,7 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
 
     int lastFrameIndex = m_frames.size() - 1;
 
-    if (m_frames[lastFrameIndex].getNextFrameIndex() == NEXT_FRAME_NOT_SET)
+    if (m_frames[lastFrameIndex].getNextFrameIndex() == AnimationFrameBase::NEXT_FRAME_NOT_SET)
     {
         if (!m_frames[lastFrameIndex].startsAnimation())
         {
@@ -168,41 +170,6 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
     headerfile.close();
 }
 
-
-// TODO
-// Write block of Y first, then block of XN
-// write sprites as one big block. frames have index into it.
-void GGAnimation::WriteSprites(const std::string& outputName, std::ofstream& sourceFile)
-{
-	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
-	{
-		const GGAnimationFrame& frame = m_frames[frameLoop];
-
-        std::string spriteName = WriteUtils::BuildFrameName(outputName, frameLoop) + "Sprites";
-
-        sourceFile << "const AnimationSprite " << spriteName << "[] = \n";
-        sourceFile << "{\n";
-
-        int tileStoreModifier = 0;
-
-        if (m_isStreamed)
-        {
-            tileStoreModifier = frame.getSprites().begin()->tileStoreIndex;
-        }
-
-        for (const auto& sprite : frame.getSprites())
-        {
-            sourceFile << "    { ";
-            sourceFile << sprite.xPositionOffset - m_animationProperties.mOffsetX << ", ";
-            sourceFile << sprite.yPositionOffset - m_animationProperties.mOffsetY << ", ";
-            sourceFile << sprite.tileStoreIndex - tileStoreModifier;
-            sourceFile << " },\n";
-        }
-
-        sourceFile << "};\n\n";
-    }
-}
-
 void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstream& sourceFile)
 {
 	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
@@ -218,17 +185,17 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
 
         if (m_isStreamed)
         {
-            tileStoreModifier = frame.getAdjoiningSprites().begin()->sprite->tileStoreIndex;
+            tileStoreModifier = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
         }
 
-        for (const auto& adjoiningSprite : frame.getAdjoiningSprites())
+        for (const auto& sprite : frame.getSprites())
         {
             sourceFile << "    { ";
-            sourceFile << adjoiningSprite.adjoiningCount << ", ";
+            sourceFile << sprite.m_spriteStrip.count << ", ";
             sourceFile << "{ ";
-            sourceFile << adjoiningSprite.sprite->xPositionOffset - m_animationProperties.mOffsetX << ", ";
-            sourceFile << adjoiningSprite.sprite->yPositionOffset - m_animationProperties.mOffsetY << ", ";
-            sourceFile << adjoiningSprite.sprite->tileStoreIndex - tileStoreModifier;
+            sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
+            sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
+            sourceFile << sprite.m_spriteStrip.tileStartIndex - tileStoreModifier;
             sourceFile << " }";
             sourceFile << " },\n";
         }
@@ -260,7 +227,7 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
         std::string nextFrameName;
         
 
-        if (frame.getNextFrameIndex() == NO_LOOP)
+        if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
             nextFrameName = "NULL";
         else
             nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
@@ -277,7 +244,7 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 
         if (m_isStreamed)
         {
-            int tileIndex = frame.getSprites().begin()->tileStoreIndex;
+            int tileIndex = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
             sourceFile << "    " << tileIndex << ", // tile index\n"; 
         }
 
@@ -309,7 +276,7 @@ void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sour
         std::string nextFrameName;
         
 
-        if (frame.getNextFrameIndex() == NO_LOOP)
+        if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
             nextFrameName = "NULL";
         else
             nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
@@ -329,7 +296,7 @@ void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sour
 
         if (m_isStreamed)
         {
-            int tileIndex = frame.getSprites().begin()->tileStoreIndex;
+            int tileIndex = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
             sourceFile << "    " << tileIndex << ", // tile index\n"; 
         }
 

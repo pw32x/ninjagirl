@@ -6,7 +6,12 @@
 namespace SpriteMaster
 {
 
-void SpriteUtils::FindTopAndBottomExtents(BYTE* byteData, int width, int height, int* topMost, int* bottomMost, bool sliceSpritesOnGrid)
+void SpriteUtils::FindTopAndBottomExtents(BYTE* byteData, 
+										  int width, 
+										  int height, 
+										  int* topMost, 
+										  int* bottomMost, 
+										  bool sliceSpritesOnGrid)
 {
     //printf("\n\n Byte Array:\n");
 

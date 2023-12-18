@@ -19,12 +19,40 @@ namespace SpriteMaster
 class SpriteUtils
 {
 public:
-	static void FindTopAndBottomExtents(BYTE* byteData, int width, int height, int* topMost, int* bottomMost, bool sliceSpritesOnGrid);
-	static void FindLeftRightExtentsForSlice(BYTE* byteData, int width, int sliceTop, int sliceBottom, int& leftMost, int& rightMost, bool sliceSpritesOnGrid);
+	static void FindTopAndBottomExtents(BYTE* byteData, 
+										int width, 
+										int height, 
+										int* topMost, 
+										int* bottomMost, 
+										bool sliceSpritesOnGrid);
 
-	static bool CopySpriteFromByteData(BYTE* byteData, int byteDataWidth, std::vector<BYTE>& spriteData, int& startPositionX, int& startPositionY, int& endPositionX, int& endPositionY, bool sliceOnGrid);
-	static void CopyTileFromByteData(BYTE* byteData, int byteDataWidth, int byteDataHeight, std::vector<BYTE>& tileData, int startPositionX, int startPositionY);
-	static void PrintSprite(const std::vector<BYTE>& spriteData, int spriteWidth, int spriteHeight);
+	static void FindLeftRightExtentsForSlice(BYTE* byteData, 
+											 int width, 
+											 int sliceTop, 
+											 int sliceBottom, 
+											 int& leftMost, 
+											 int& rightMost, 
+											 bool sliceSpritesOnGrid);
+
+	static bool CopySpriteFromByteData(BYTE* byteData, 
+									   int byteDataWidth, 
+									   std::vector<BYTE>& spriteData, 
+									   int& startPositionX, 
+									   int& startPositionY, 
+									   int& endPositionX, 
+									   int& endPositionY, 
+									   bool sliceOnGrid);
+
+	static void CopyTileFromByteData(BYTE* byteData, 
+									 int byteDataWidth, 
+									 int byteDataHeight, 
+									 std::vector<BYTE>& tileData, 
+									 int startPositionX, 
+									 int startPositionY);
+
+	static void PrintSprite(const std::vector<BYTE>& spriteData, 
+							int spriteWidth, 
+							int spriteHeight);
 };
 
 }

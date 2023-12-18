@@ -12,7 +12,7 @@ namespace SpriteMaster
 
 class GraphicsGaleObject;
 
-class GGPlaneAnimation : public IAnimation
+class GGPlaneAnimation : public AnimationBase
 {
 public:
 	GGPlaneAnimation(const GraphicsGaleObject& ggo);

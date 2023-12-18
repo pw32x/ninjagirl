@@ -44,8 +44,6 @@ int Main(int argc, char* argv[])
 
     for (auto& filename : outFilenames)
     {
-        AnimationProperties	animationProperties;
-
         GraphicsGaleObject ggo(filename);
 
         std::string outputName;
@@ -65,7 +63,7 @@ int Main(int argc, char* argv[])
         if (!FileUtils::folderExists(programArguments.m_destinationFolder.c_str()))
             FileUtils::createFolder(programArguments.m_destinationFolder.c_str());
 
-        IAnimation* animation;
+        AnimationBase* animation;
 
         switch (programArguments.m_animationType)
         {
@@ -76,12 +74,12 @@ int Main(int argc, char* argv[])
         }
         case AnimationType::AnimatedTileset:
         {
-            animation = new GGTileAnimation(ggo, animationProperties);
+            animation = new GGTileAnimation(ggo);
             break;
         }
         default:
         {
-            animation = new GGAnimation(ggo, programArguments.m_animationType, animationProperties);
+            animation = new GGAnimation(ggo, programArguments.m_animationType);
             break;
         }
         }

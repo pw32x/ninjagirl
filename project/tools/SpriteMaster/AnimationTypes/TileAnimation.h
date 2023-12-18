@@ -11,11 +11,10 @@ namespace SpriteMaster
 
 class GraphicsGaleObject;
 
-class GGTileAnimation : public IAnimation
+class GGTileAnimation : public AnimationBase
 {
 public:
-	GGTileAnimation(const GraphicsGaleObject& ggo, 
-					AnimationProperties& animationProperties);
+	GGTileAnimation(const GraphicsGaleObject& ggo);
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
@@ -37,7 +36,7 @@ private:
 	std::vector<GGTileAnimationFrame>	m_frames;
 	TileStore							m_tileStore;
 	int									m_totalFrameTime = 0;
-	AnimationProperties&				m_animationProperties;
+	AnimationProperties					m_animationProperties;
 	BITMAP								m_generalBitmapInfo;
 	int									m_tilesInFrame;
 };

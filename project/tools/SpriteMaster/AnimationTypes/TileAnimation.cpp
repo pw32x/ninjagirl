@@ -12,10 +12,8 @@
 namespace SpriteMaster
 {
 
-GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo, 
-                                 AnimationProperties& animationProperties)
-: m_ggo(ggo),
-  m_animationProperties(animationProperties)
+GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo)
+: m_ggo(ggo)
 {
     HBITMAP bitmap = m_ggo.getBitmap(0, 0);
 
@@ -62,7 +60,7 @@ GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo,
 
             GGTileAnimationFrame& previousFrame = m_frames[previousIndex];
 
-            if (previousFrame.getNextFrameIndex() == NEXT_FRAME_NOT_SET)
+            if (previousFrame.getNextFrameIndex() == AnimationFrameBase::NEXT_FRAME_NOT_SET)
             {
                 if (frame.startsAnimation())
                 {
@@ -92,7 +90,7 @@ GGTileAnimation::GGTileAnimation(const GraphicsGaleObject& ggo,
 
     int lastFrameIndex = m_frames.size() - 1;
 
-    if (m_frames[lastFrameIndex].getNextFrameIndex() == NEXT_FRAME_NOT_SET)
+    if (m_frames[lastFrameIndex].getNextFrameIndex() == AnimationFrameBase::NEXT_FRAME_NOT_SET)
     {
         if (!m_frames[lastFrameIndex].startsAnimation())
         {
@@ -182,7 +180,7 @@ void GGTileAnimation::WriteFrames(const std::string& outputName, std::ofstream& 
         std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
         std::string nextFrameName;        
 
-        if (frame.getNextFrameIndex() == NO_LOOP)
+        if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
             nextFrameName = "NULL";
         else
             nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());

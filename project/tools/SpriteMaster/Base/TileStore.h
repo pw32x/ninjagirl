@@ -3,11 +3,10 @@
 #include "windows.h"
 #include <vector>
 #include <string>
+#include "TileTypes.h"
 
 namespace SpriteMaster
 {
-
-typedef std::vector<BYTE> Tile;
 
 class TileStore
 {
@@ -27,7 +26,6 @@ public:
 private:
 	std::vector<Tile>	m_store;
 };
-
 
 
 }
