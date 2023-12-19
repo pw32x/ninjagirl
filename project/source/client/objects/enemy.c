@@ -92,7 +92,7 @@ BOOL Enemy_Draw(GameObject* object)
 
 	DRAWUTILS_SETUP_BATCH(screenLeft,
 						  object->y,
-						  object->currentBatchedAnimationFrame->batchedSprite,
+						  object->currentBatchedAnimationFrame->batchedSprites,
 						  *object->batchedAnimation->vdpLocation);
 
 	DrawUtils_DrawBatched();

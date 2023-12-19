@@ -62,14 +62,14 @@ void setPlayerAnimation(void)
 	{
 		if (playerState == PLAYER_STATE_DUCK)
 		{
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? NINJA_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
 
 		}
 		else
 		{
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_SHOOT_RIGHT_FRAME_INDEX);
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? NINJA_GIRL_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_SHOOT_RIGHT_FRAME_INDEX);
 		}
 
 		return;
@@ -78,24 +78,24 @@ void setPlayerAnimation(void)
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+												flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+												flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_FALL:
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+												flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+												flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_DUCK:
-		AnimationUtils_setStreamedBatchedAnimationFrame(&ObjectManager_player, 
-														flipped ? NINJA_GIRL_DUCK_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_RIGHT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+												flipped ? NINJA_GIRL_DUCK_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}
 }
@@ -504,8 +504,8 @@ void Player_Update(GameObject* player)
 	//char output[255];
 	//sprintf(output, 
 	//		" %d, %d, %d   ", 
-	//		ObjectManager_player.currentStreamedBatchedAnimationFrame->frameTime,
-	//		ObjectManager_player.currentStreamedBatchedAnimationFrame->tileIndex,
+	//		ObjectManager_player.currentBatchedAnimationFrame->frameTime,
+	//		ObjectManager_player.currentBatchedAnimationFrame->tileIndex,
 	//		ObjectManager_player.animationTime);
 	//SMS_printatXY(1, 0, output); 
 
@@ -533,8 +533,8 @@ BOOL Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentStreamedBatchedAnimationFrame->batchedSprites,
-						  *object->streamedBatchedAnimation->vdpLocation);
+						  object->currentBatchedAnimationFrame->batchedSprites,
+						  *object->batchedAnimation->vdpLocation);
 
 	// why would the player sprite ever be clipped?
 	DrawUtils_DrawStreamedBatched();

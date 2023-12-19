@@ -87,5 +87,6 @@ const BatchedAnimation walker_small =
     8, // width in pixels
     8, // height in pixels
     4, // the total amount of tiles in animation
+    2, // the max amount of sprite tiles in a frame
     &walker_smallVdpLocation,
 };

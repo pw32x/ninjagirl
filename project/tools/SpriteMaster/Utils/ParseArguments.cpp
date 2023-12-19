@@ -39,7 +39,7 @@ ProgramArguments ParseArguments(int argc, char* argv[])
     programArguments.m_updateOnly = program.get<bool>("u");
 
     if (program["-s"] == true)
-        programArguments.m_animationType = AnimationType::Streamed;
+        programArguments.m_isStreamed = true;
     else if (program["-t"] == true)
         programArguments.m_animationType = AnimationType::AnimatedTileset;
     else if (program["-p"] == true)

@@ -24,6 +24,7 @@ public:
     std::string m_bank = "";
     AnimationType m_animationType = AnimationType::Standard;
     bool m_updateOnly = false;
+    bool m_isStreamed = false;
 };
 
 ProgramArguments ParseArguments(int argc, char* argv[]);

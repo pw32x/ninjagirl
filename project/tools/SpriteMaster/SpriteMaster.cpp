@@ -79,7 +79,7 @@ int Main(int argc, char* argv[])
         }
         default:
         {
-            animation = new GGAnimation(ggo, programArguments.m_animationType);
+            animation = new GGAnimation(ggo, programArguments.m_isStreamed);
             break;
         }
         }

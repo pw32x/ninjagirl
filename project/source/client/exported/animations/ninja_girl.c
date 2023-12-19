@@ -2607,206 +2607,184 @@ const BatchedAnimationSprite ninja_girlFrame21BatchedSprite[] =
     {0},
 };
 
-extern const StreamedBatchedAnimationFrame ninja_girlFrame0;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame1;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame2;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame3;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame4;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame5;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame6;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame7;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame8;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame9;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame10;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame11;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame12;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame13;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame14;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame15;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame16;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame17;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame18;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame19;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame20;
-extern const StreamedBatchedAnimationFrame ninja_girlFrame21;
+extern const BatchedAnimationFrame ninja_girlFrame0;
+extern const BatchedAnimationFrame ninja_girlFrame1;
+extern const BatchedAnimationFrame ninja_girlFrame2;
+extern const BatchedAnimationFrame ninja_girlFrame3;
+extern const BatchedAnimationFrame ninja_girlFrame4;
+extern const BatchedAnimationFrame ninja_girlFrame5;
+extern const BatchedAnimationFrame ninja_girlFrame6;
+extern const BatchedAnimationFrame ninja_girlFrame7;
+extern const BatchedAnimationFrame ninja_girlFrame8;
+extern const BatchedAnimationFrame ninja_girlFrame9;
+extern const BatchedAnimationFrame ninja_girlFrame10;
+extern const BatchedAnimationFrame ninja_girlFrame11;
+extern const BatchedAnimationFrame ninja_girlFrame12;
+extern const BatchedAnimationFrame ninja_girlFrame13;
+extern const BatchedAnimationFrame ninja_girlFrame14;
+extern const BatchedAnimationFrame ninja_girlFrame15;
+extern const BatchedAnimationFrame ninja_girlFrame16;
+extern const BatchedAnimationFrame ninja_girlFrame17;
+extern const BatchedAnimationFrame ninja_girlFrame18;
+extern const BatchedAnimationFrame ninja_girlFrame19;
+extern const BatchedAnimationFrame ninja_girlFrame20;
+extern const BatchedAnimationFrame ninja_girlFrame21;
 
 
-const StreamedBatchedAnimationFrame ninja_girlFrame0 = 
+const BatchedAnimationFrame ninja_girlFrame0 = 
 {
     ninja_girlFrame0BatchedSprite,
-    0, // tile index
     5, // frame time
     &ninja_girlFrame1, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame1 = 
+const BatchedAnimationFrame ninja_girlFrame1 = 
 {
     ninja_girlFrame1BatchedSprite,
-    12, // tile index
     5, // frame time
     &ninja_girlFrame2, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame2 = 
+const BatchedAnimationFrame ninja_girlFrame2 = 
 {
     ninja_girlFrame2BatchedSprite,
-    24, // tile index
     5, // frame time
     &ninja_girlFrame0, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame3 = 
+const BatchedAnimationFrame ninja_girlFrame3 = 
 {
     ninja_girlFrame3BatchedSprite,
-    36, // tile index
     5, // frame time
     &ninja_girlFrame4, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame4 = 
+const BatchedAnimationFrame ninja_girlFrame4 = 
 {
     ninja_girlFrame4BatchedSprite,
-    48, // tile index
     5, // frame time
     &ninja_girlFrame5, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame5 = 
+const BatchedAnimationFrame ninja_girlFrame5 = 
 {
     ninja_girlFrame5BatchedSprite,
-    60, // tile index
     5, // frame time
     &ninja_girlFrame3, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame6 = 
+const BatchedAnimationFrame ninja_girlFrame6 = 
 {
     ninja_girlFrame6BatchedSprite,
-    72, // tile index
     4, // frame time
     &ninja_girlFrame6, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame7 = 
+const BatchedAnimationFrame ninja_girlFrame7 = 
 {
     ninja_girlFrame7BatchedSprite,
-    84, // tile index
     4, // frame time
     &ninja_girlFrame7, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame8 = 
+const BatchedAnimationFrame ninja_girlFrame8 = 
 {
     ninja_girlFrame8BatchedSprite,
-    96, // tile index
     4, // frame time
     &ninja_girlFrame8, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame9 = 
+const BatchedAnimationFrame ninja_girlFrame9 = 
 {
     ninja_girlFrame9BatchedSprite,
-    108, // tile index
     4, // frame time
     &ninja_girlFrame9, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame10 = 
+const BatchedAnimationFrame ninja_girlFrame10 = 
 {
     ninja_girlFrame10BatchedSprite,
-    120, // tile index
     4, // frame time
     &ninja_girlFrame10, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame11 = 
+const BatchedAnimationFrame ninja_girlFrame11 = 
 {
     ninja_girlFrame11BatchedSprite,
-    132, // tile index
     4, // frame time
     &ninja_girlFrame11, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame12 = 
+const BatchedAnimationFrame ninja_girlFrame12 = 
 {
     ninja_girlFrame12BatchedSprite,
-    144, // tile index
     5, // frame time
     &ninja_girlFrame13, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame13 = 
+const BatchedAnimationFrame ninja_girlFrame13 = 
 {
     ninja_girlFrame13BatchedSprite,
-    158, // tile index
     5, // frame time
     NULL, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame14 = 
+const BatchedAnimationFrame ninja_girlFrame14 = 
 {
     ninja_girlFrame14BatchedSprite,
-    170, // tile index
     5, // frame time
     &ninja_girlFrame15, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame15 = 
+const BatchedAnimationFrame ninja_girlFrame15 = 
 {
     ninja_girlFrame15BatchedSprite,
-    184, // tile index
     5, // frame time
     NULL, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame16 = 
+const BatchedAnimationFrame ninja_girlFrame16 = 
 {
     ninja_girlFrame16BatchedSprite,
-    196, // tile index
     4, // frame time
     &ninja_girlFrame16, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame17 = 
+const BatchedAnimationFrame ninja_girlFrame17 = 
 {
     ninja_girlFrame17BatchedSprite,
-    208, // tile index
     5, // frame time
     &ninja_girlFrame18, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame18 = 
+const BatchedAnimationFrame ninja_girlFrame18 = 
 {
     ninja_girlFrame18BatchedSprite,
-    222, // tile index
     5, // frame time
     NULL, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame19 = 
+const BatchedAnimationFrame ninja_girlFrame19 = 
 {
     ninja_girlFrame19BatchedSprite,
-    234, // tile index
     4, // frame time
     &ninja_girlFrame19, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame20 = 
+const BatchedAnimationFrame ninja_girlFrame20 = 
 {
     ninja_girlFrame20BatchedSprite,
-    246, // tile index
     5, // frame time
     &ninja_girlFrame21, // next frame
 };
 
-const StreamedBatchedAnimationFrame ninja_girlFrame21 = 
+const BatchedAnimationFrame ninja_girlFrame21 = 
 {
     ninja_girlFrame21BatchedSprite,
-    260, // tile index
     5, // frame time
     NULL, // next frame
 };
-const StreamedBatchedAnimationFrame* const ninja_girlFrames[22] = 
+const BatchedAnimationFrame* const ninja_girlFrames[22] = 
 {
     &ninja_girlFrame0,
     &ninja_girlFrame1,
@@ -2834,10 +2812,10 @@ const StreamedBatchedAnimationFrame* const ninja_girlFrames[22] =
 
 u8 ninja_girlVdpLocation;
 
-const StreamedBatchedAnimation ninja_girl = 
+const BatchedAnimation ninja_girl = 
 {
     STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const StreamedBatchedAnimationFrame** const)ninja_girlFrames,
+    (const BatchedAnimationFrame** const)ninja_girlFrames,
     (unsigned char* const)ninja_girlTileData, // start of the sprite data
     22, // number of frames
     40, // width in pixels

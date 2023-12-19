@@ -17,7 +17,7 @@ class GGAnimation : public AnimationBase
 {
 public:
 	GGAnimation(const GraphicsGaleObject& ggo, 
-				AnimationType animationType);
+				bool streamed);
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
@@ -28,11 +28,8 @@ public:
 private:
 
 	void WriteSpritesBatched(const std::string& outputName, std::ofstream& sourceFile);
-	void WriteFrames(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFramesBatched(const std::string& outputName, std::ofstream& sourceFile);
-	void WriteFrameArray(const std::string& outputName, std::ofstream& sourceFile);
 	void WriteFrameArrayBatched(const std::string& outputName, std::ofstream& sourceFile);
-	void WriteAnimationStruct(const std::string& outputName, std::ofstream& sourceFile, const std::string& bank);
 	void WriteAnimationStructBatched(const std::string& outputName, std::ofstream& sourceFile, const std::string& bank);
 
 	void WriteGGAnimationHeaderFile(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
@@ -47,7 +44,6 @@ private:
 	std::vector<GGAnimationFrame>	m_frames;
 	int								m_totalFrameTime = 0;
 	bool							m_isStreamed;
-	bool							m_removeDuplicates;
 	BITMAP							m_generalBitmapInfo;
 	int								m_maxTilesInFrame;
 };

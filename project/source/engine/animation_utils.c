@@ -45,14 +45,14 @@ u8 AnimationUtils_updateStreamedBatchedAnimation(struct game_object* gameObject)
 {
 	if (!gameObject->animationTime--)
 	{
-		gameObject->currentStreamedBatchedAnimationFrame = gameObject->currentStreamedBatchedAnimationFrame->nextFrame;
+		gameObject->currentBatchedAnimationFrame = gameObject->currentBatchedAnimationFrame->nextFrame;
 
-		if (gameObject->currentStreamedBatchedAnimationFrame == NULL)
+		if (gameObject->currentBatchedAnimationFrame == NULL)
 		{
 			return ANIMATION_FINISHED;
 		}
 
-		gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
+		gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
 		return ANIMATION_CHANGED_FRAME;
 	}
 
@@ -92,14 +92,6 @@ void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 
 	gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
 }
 
-void AnimationUtils_setStreamedBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex)
-{
-	gameObject->currentAnimationFrameIndex = animationFrameIndex;
-	gameObject->currentStreamedBatchedAnimationFrame = gameObject->streamedBatchedAnimation->frames[animationFrameIndex]; 
-	gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
-}
-
-
 u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
@@ -111,10 +103,10 @@ u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 
 u16 Load_StreamedBatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
-	const StreamedBatchedAnimation* streamedBatchedAnimation = (const StreamedBatchedAnimation*)resourceInfo->resource;
+	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
 
-	return VDPTileManager_ReserveSpriteTilesArea(streamedBatchedAnimation->maxTilesInFrame,
-												 streamedBatchedAnimation->vdpLocation);
+	return VDPTileManager_ReserveSpriteTilesArea(batchedAnimation->maxTilesPerFrame,
+												 batchedAnimation->vdpLocation);
 }
 
 u16 Load_PlaneAnimationResource(const ResourceInfo* resourceInfo)
@@ -147,21 +139,6 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Resourc
 	gameObject->pixelWidth = batchedAnimation->pixelWidth;
 	gameObject->pixelHeight = batchedAnimation->pixelHeight;
 	gameObject->UpdateAnimation = AnimationUtils_updateBatchedAnimation;
-
-	return 0;
-}
-
-u16 Setup_StreamedBatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
-{
-	const StreamedBatchedAnimation* streamedBatchedAnimation = (const StreamedBatchedAnimation*)resourceInfo->resource;
-
-	gameObject->streamedBatchedAnimation = streamedBatchedAnimation;
-	gameObject->currentAnimationFrameIndex = 0;
-	gameObject->currentStreamedBatchedAnimationFrame = streamedBatchedAnimation->frames[0];
-	gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
-	gameObject->pixelWidth = streamedBatchedAnimation->pixelWidth;
-	gameObject->pixelHeight = streamedBatchedAnimation->pixelHeight;
-	gameObject->UpdateAnimation = AnimationUtils_updateStreamedBatchedAnimation;
 
 	return 0;
 }
@@ -200,12 +177,11 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {
 	SMS_setBackdropColor(COLOR_ORANGE);
 
-	const StreamedBatchedAnimationFrame* streamedBatchedAnimationFrame = gameObject->currentStreamedBatchedAnimationFrame;
-	const u8* tileData = gameObject->streamedBatchedAnimation->tileData;
-	u16 vdpIndex = *gameObject->streamedBatchedAnimation->vdpLocation + 256;
+	const BatchedAnimationFrame* batchedAnimationFrame = gameObject->currentBatchedAnimationFrame;
+	const u8* tileData = gameObject->batchedAnimation->tileData;
+	u16 vdpIndex = *gameObject->batchedAnimation->vdpLocation + 256;
 
-	const BatchedAnimationSprite* runner = streamedBatchedAnimationFrame->batchedSprites;
-	//u16 tileIndex = streamedBatchedAnimationFrame->tileIndex;
+	const BatchedAnimationSprite* runner = batchedAnimationFrame->batchedSprites;
 
 	while (runner->count)
 	{

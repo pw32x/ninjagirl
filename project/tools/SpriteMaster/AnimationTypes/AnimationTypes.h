@@ -12,7 +12,6 @@ class GraphicsGaleObject;
 enum class AnimationType
 {
     Standard,
-    Streamed,
     AnimatedTileset,
     PlaneAnimation
 };

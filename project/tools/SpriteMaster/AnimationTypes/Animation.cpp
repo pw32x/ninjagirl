@@ -14,20 +14,10 @@ namespace SpriteMaster
 {
 
 GGAnimation::GGAnimation(const GraphicsGaleObject& ggo, 
-                         AnimationType animationType)
-: m_ggo(ggo),
-  m_isStreamed(false),
-  m_removeDuplicates(false)
+                         bool streamed)
+: m_ggo(ggo)
+, m_isStreamed(streamed)
 {
-    if (animationType != AnimationType::Streamed &&
-        animationType != AnimationType::Standard)
-    {
-        THROW_ERROR(Error::UnsupportedAnimationType, "Animation only supports standard and streamed type animations.");
-    }
-
-    m_isStreamed = animationType == AnimationType::Streamed;
-    m_removeDuplicates = m_isStreamed;
-
     HBITMAP bitmap = m_ggo.getBitmap(0, 0);
 
     if (bitmap == NULL)
@@ -148,8 +138,7 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
 
 	// exported types
 
-    std::string streamed = m_isStreamed ? "Streamed" : "";
-    headerfile << "RESOURCE(" << bank << ") extern const " << streamed << "BatchedAnimation " << outputName << ";\n"; 
+    headerfile << "RESOURCE(" << bank << ") extern const BatchedAnimation " << outputName << ";\n"; 
 
     headerfile << "\n";
 
@@ -180,13 +169,6 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
         sourceFile << "const BatchedAnimationSprite " << spriteName << "[] = \n";
         sourceFile << "{\n";
 
-        int tileStoreModifier = 0;
-
-        if (m_isStreamed)
-        {
-            tileStoreModifier = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
-        }
-
         for (const auto& sprite : frame.getSprites())
         {
             sourceFile << "    { ";
@@ -194,7 +176,6 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
             sourceFile << "{ ";
             sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
             sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
-            //sourceFile << sprite.m_spriteStrip.tileStartIndex - tileStoreModifier;
             sourceFile << sprite.m_spriteStrip.tileStartIndex;
             sourceFile << " }";
             sourceFile << " },\n";
@@ -211,10 +192,7 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 		const GGAnimationFrame& frame = m_frames[frameLoop];
         std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
 
-        if (m_isStreamed)
-            sourceFile << "extern const StreamedBatchedAnimationFrame " << frameName << ";\n";
-        else
-            sourceFile << "extern const BatchedAnimationFrame " << frameName << ";\n";
+        sourceFile << "extern const BatchedAnimationFrame " << frameName << ";\n";
 	}
 
     sourceFile << "\n";
@@ -234,72 +212,10 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 
 		sourceFile << "\n";
 
-        if (m_isStreamed)
-            sourceFile << "const StreamedBatchedAnimationFrame " << frameName << " = \n";
-        else
-		    sourceFile << "const BatchedAnimationFrame " << frameName << " = \n";
+		sourceFile << "const BatchedAnimationFrame " << frameName << " = \n";
 
 		sourceFile << "{\n";
         sourceFile << "    " << frameName << "BatchedSprite,\n";
-
-        if (m_isStreamed)
-        {
-            int tileIndex = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
-            sourceFile << "    " << tileIndex << ", // tile index\n"; 
-        }
-
-		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
-        sourceFile << "    " << nextFrameName << ", // next frame\n";
-		sourceFile << "};\n";
-	}
-}
-
-
-void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sourceFile)
-{
-	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
-	{
-		const GGAnimationFrame& frame = m_frames[frameLoop];
-        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
-
-        if (m_isStreamed)
-            sourceFile << "extern const StreamedAnimationFrame " << frameName << ";\n";
-        else
-            sourceFile << "extern const AnimationFrame " << frameName << ";\n";
-	}
-
-	for (size_t frameLoop = 0; frameLoop < m_frames.size(); frameLoop++)
-	{
-		const GGAnimationFrame& frame = m_frames[frameLoop];
-
-        std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
-        std::string nextFrameName;
-        
-
-        if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
-            nextFrameName = "NULL";
-        else
-            nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
-
-		sourceFile << "\n";
-
-
-        if (m_isStreamed)
-            sourceFile << "const StreamedAnimationFrame " << frameName << " = \n";
-        else
-		    sourceFile << "const AnimationFrame " << frameName << " = \n";
-
-
-		sourceFile << "{\n";
-        sourceFile << "    " << frameName << "Sprites,\n";
-		sourceFile << "    " << frame.getSprites().size() << ", // number of sprites\n";
-
-        if (m_isStreamed)
-        {
-            int tileIndex = frame.getSprites().begin()->m_spriteStrip.tileStartIndex;
-            sourceFile << "    " << tileIndex << ", // tile index\n"; 
-        }
-
 		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
         sourceFile << "    " << nextFrameName << ", // next frame\n";
 		sourceFile << "};\n";
@@ -308,10 +224,8 @@ void GGAnimation::WriteFrames(const std::string& outputName, std::ofstream& sour
 
 void GGAnimation::WriteFrameArrayBatched(const std::string& outputName, std::ofstream& sourceFile)
 {
-    if (m_isStreamed)
-        sourceFile << "const StreamedBatchedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
-    else
-        sourceFile << "const BatchedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
+
+    sourceFile << "const BatchedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
     sourceFile << "{\n";
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
@@ -321,24 +235,6 @@ void GGAnimation::WriteFrameArrayBatched(const std::string& outputName, std::ofs
 
     sourceFile << "};\n\n";
 }
-
-
-void GGAnimation::WriteFrameArray(const std::string& outputName, std::ofstream& sourceFile)
-{
-    if (m_isStreamed)
-        sourceFile << "const StreamedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
-    else
-        sourceFile << "const AnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
-    sourceFile << "{\n";
-
-    for (size_t loop = 0; loop < m_frames.size(); loop++)
-    {
-        sourceFile << "    &" << WriteUtils::BuildFrameName(outputName, loop) << ",\n";
-    }
-
-    sourceFile << "};\n\n";
-}
-
 
 void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName, 
                                                std::ofstream& sourceFile,
@@ -346,73 +242,24 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
 {
     sourceFile << "u8 " << outputName << "VdpLocation;\n\n";
 
+    // final struct
+    sourceFile << "const BatchedAnimation " << outputName << " = \n";
+    sourceFile << "{\n";
+
     if (m_isStreamed)
-    {
-        // final struct
-        sourceFile << "const StreamedBatchedAnimation " << outputName << " = \n";
-        sourceFile << "{\n";
         sourceFile << "    STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, \n";
-        sourceFile << "    (const StreamedBatchedAnimationFrame** const)" << outputName << "Frames,\n";
-    }
     else
-    {
-        // final struct
-        sourceFile << "const BatchedAnimation " << outputName << " = \n";
-        sourceFile << "{\n";
         sourceFile << "    BATCHED_ANIMATION_RESOURCE_TYPE, \n";
-        sourceFile << "    (const BatchedAnimationFrame** const)" << outputName << "Frames,\n";
-    }
-
-
+    sourceFile << "    (const BatchedAnimationFrame** const)" << outputName << "Frames,\n";
     sourceFile << "    (unsigned char* const)" << outputName << "TileData, // start of the sprite data\n";
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
     sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
     sourceFile << "    " << m_spriteStripStore.GetTileCount() << ", // the total amount of tiles in animation\n";
-
-    if (m_isStreamed)
-        sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
-
+    sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
     sourceFile << "    &" << outputName << "VdpLocation,\n";
     sourceFile << "};\n";
 }
-
-
-void GGAnimation:: WriteAnimationStruct(const std::string& outputName, 
-                                        std::ofstream& sourceFile,
-                                        const std::string& bank)
-{
-    sourceFile << "u8 " << outputName << "VdpLocation;\n\n";
-
-    if (m_isStreamed)
-    {
-        // final struct
-        sourceFile << "RESOURCE(" << bank << ") const StreamedAnimation " << outputName << " = \n";
-        sourceFile << "{\n";
-        sourceFile << "    STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE, \n";
-        sourceFile << "    (const StreamedAnimationFrame** const)" << outputName << "Frames,\n";
-    }
-    else
-    {
-        // final struct
-        sourceFile << "RESOURCE(" << bank << ") const Animation " << outputName << " = \n";
-        sourceFile << "{\n";
-        sourceFile << "    REGULAR_ANIMATION_RESOURCE_TYPE, \n";
-        sourceFile << "    (const AnimationFrame** const)" << outputName << "Frames,\n";
-    }
-    sourceFile << "    (unsigned char* const)" << outputName << "TileData, // start of the sprite data\n";
-    sourceFile << "    " << m_frames.size() << ", // number of frames\n";
-    sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
-    sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
-    sourceFile << "    " << m_spriteStripStore.GetTileCount() << ", // the total amount of tiles in animation\n";
-
-    if (m_isStreamed)
-        sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
-
-    sourceFile << "    &" << outputName << "VdpLocation,\n";
-    sourceFile << "};\n";
-}
-
 
 void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder, 
                                              const std::string& outputName,

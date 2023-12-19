@@ -15,7 +15,6 @@ typedef struct game_object
 	union
 	{
 		const BatchedAnimation* batchedAnimation;
-		const StreamedBatchedAnimation* streamedBatchedAnimation;
 		const PlaneAnimation* planeAnimation;
 		const TileAnimation* tileAnimation;
 	};
@@ -23,7 +22,6 @@ typedef struct game_object
 	union
 	{
 		const BatchedAnimationFrame* currentBatchedAnimationFrame;
-		const StreamedBatchedAnimationFrame* currentStreamedBatchedAnimationFrame;
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;
 		const TileAnimationFrame* currentTileAnimationFrame;
 	};
