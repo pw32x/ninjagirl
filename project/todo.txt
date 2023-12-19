@@ -39,7 +39,7 @@ Todo
 			subspans? 
 				a span of 3 could be found in a span of 4 with identical tiles
 
-	check sprite usage of other sprites
+	DONE check sprite usage of other sprites
 
 	
 	object placement tool

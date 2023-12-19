@@ -42,7 +42,7 @@ const CreateInfo level002_createInfo004 = { 64, 128, (const void*)&walkerResourc
 const CreateInfo level002_createInfo005 = { 144, 32, (const void*)&walker_bigResourceInfo };
 const CreateInfo level002_createInfo006 = { 96, 88, (const void*)&walker_smallResourceInfo  };
 const CreateInfo level002_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
-//const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&birdidle };
+const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
 //const CreateInfo level002_createInfo009 = { 234, 112, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo010 = { 234, 144, (const void*)&evil_eye };
 //const CreateInfo level002_createInfo011 = { 234, 176, (const void*)&evil_eye };
@@ -69,7 +69,7 @@ Command level002_commands[] =
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotcannonResourceInfo },	
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotflyingResourceInfo },	
-	//{ 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },			
+	{ 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },			
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },			
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_bigResourceInfo },			
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },			
@@ -83,7 +83,7 @@ Command level002_commands[] =
 	
 	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
 	{ 64, (CommandFunction)Enemy_Create, &level002_createInfo007 },
-	//{ 128, (CommandFunction)Bird_Create, &level002_createInfo008 },
+	{ 128, (CommandFunction)Enemy_Create, &level002_createInfo008 },
 	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo009 },
 	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo010 },
 	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo011 },
