@@ -89,14 +89,19 @@ void SpriteUtils::FindLeftRightExtentsForSlice(BYTE* byteData,
 	}
 }
 
-void SpriteUtils::CopyTileFromByteData(BYTE* byteData, int byteDataWidth, int byteDataHeight, std::vector<BYTE>& tileData, int startPositionX, int startPositionY)
+bool SpriteUtils::CopyTileFromByteData(BYTE* byteData, 
+									   int byteDataWidth, 
+									   int byteDataHeight, 
+									   std::vector<BYTE>& tileData, 
+									   int startPositionX, 
+									   int startPositionY)
 {
 	int endPositionX = startPositionX + TILE_WIDTH; 
 	int endPositionY = startPositionY + TILE_HEIGHT;
 
 	if (endPositionX > byteDataWidth)
 	{
-		endPositionY = byteDataWidth;
+		endPositionX = byteDataWidth;
 	}
 
 	if (endPositionY > byteDataHeight)
@@ -104,6 +109,7 @@ void SpriteUtils::CopyTileFromByteData(BYTE* byteData, int byteDataWidth, int by
 		endPositionY = byteDataHeight;
 	}
 
+	bool foundAtLeastOnePixel = false;
 
 	int left = startPositionX;
 	int top = startPositionY;
@@ -111,11 +117,9 @@ void SpriteUtils::CopyTileFromByteData(BYTE* byteData, int byteDataWidth, int by
 	int bottom = endPositionY;
 
 	tileData.resize(TILE_WIDTH * TILE_HEIGHT);
+	std::fill(tileData.begin(), tileData.end(), 0);
 
     int j = 0;
-
-    bool atLeastOnePixel = false;
-
     for (int loopy = top; loopy < bottom; loopy++, j++)
     {
         int i = 0;
@@ -123,131 +127,13 @@ void SpriteUtils::CopyTileFromByteData(BYTE* byteData, int byteDataWidth, int by
         {
             BYTE byte = byteData[loopx + (loopy * byteDataWidth)];
 
-            tileData[i + (j * TILE_WIDTH)] = byte;
-        }
-    }
-}
-
-bool SpriteUtils::CopySpriteFromByteData(BYTE* byteData, 
-										 int byteDataWidth, 
-										 std::vector<BYTE>& spriteData, 
-										 int& startPositionX, 
-										 int& startPositionY, 
-										 int& endPositionX, 
-										 int& endPositionY, 
-										 bool sliceOnGrid)
-{
-    int left = 0;
-    int top = 0;
-    int right = 0;
-    int bottom = 0;
-
-	if (sliceOnGrid)
-	{
-		left = startPositionX;
-		top = startPositionY;
-		right = endPositionX - 1;
-		bottom = endPositionY - 1;
-	}
-	else
-	{
-		right = 0;
-		bottom = 0;
-		left = endPositionX;
-		top = endPositionY;
-
-		// Find area actually used.
-		for (int loopy = startPositionY; loopy < endPositionY; loopy++)
-		{
-			for (int loopx = startPositionX; loopx < endPositionX; loopx++)
-			{
-				BYTE byte = byteData[loopx + (loopy * byteDataWidth)];
-
-				if (byte > 0)
-				{
-					if (loopx < left) left = loopx;
-					if (loopy < top) top = loopy;
-					if (loopx > right) right = loopx;
-					if (loopy > bottom) bottom = loopy;
-				}
-			}
-		}
-	}
-
-	// sprite width needs to be multiple of 8.
-	int spriteWidth = ((right - left) / 8) * 8 + 8;
-	int spriteHeight = ((bottom - top) / 8) * 8 + 8;
-
-
-	spriteData.resize(spriteWidth * spriteHeight);
-	std::fill(spriteData.begin(), spriteData.end(), 0);
-
-    int j = 0;
-
-    bool atLeastOnePixel = false;
-
-    for (int loopy = top; loopy <= bottom; loopy++, j++)
-    {
-        int i = 0;
-        for (int loopx = left; loopx <= right; loopx++, i++)
-        {
-            BYTE byte = byteData[loopx + (loopy * byteDataWidth)];
-
-            if (byte > 0)
-            {
-                atLeastOnePixel = true;
-            }
-
-            spriteData[i + (j * spriteWidth)] = byte;
-        }
-    }
-
-	startPositionX = left;
-	startPositionY = top;
-	endPositionX = left + spriteWidth;
-	endPositionY = top + spriteHeight;
-
-	return atLeastOnePixel;
-}
-
-
-bool SpriteUtils::CopyTileFromBitmap(BYTE* bitmap, 
-									 int bitmapWidth, 
-									 int bitmapHeight,
-									 Tile& tile, 
-									 int startX, 
-									 int startY)
-{
-	int endX = startX + TILE_WIDTH;
-	int endY = startY + TILE_HEIGHT;
-
-	bool foundAtLeastOnePixel = false;
-
-	tile.resize(TILE_WIDTH * TILE_HEIGHT);
-	std::fill(tile.begin(), tile.end(), 0);
-
-	int j = 0;
-	for (int loopy = startY; loopy < endY; loopy++, j++)
-	{
-		if (loopy > bitmapHeight - 1)
-			break;
-
-		int i = 0;
-		for (int loopx = startX; loopx < endX; loopx++, i++)
-		{
-			if (loopx > bitmapWidth - 1)
-				break;
-
-			BYTE value = bitmap[loopx + (loopy * bitmapWidth)];
-
-			if (value > 0)
+			if (byte > 0)
 			{
 				foundAtLeastOnePixel = true;
+				tileData[i + (j * TILE_WIDTH)] = byte;
 			}
-
-			tile[i + (j * TILE_WIDTH)] = value;
-		}
-	}
+        }
+    }
 
 	return foundAtLeastOnePixel;
 }

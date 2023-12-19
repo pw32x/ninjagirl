@@ -39,16 +39,7 @@ public:
 											 int& rightMost, 
 											 bool sliceSpritesOnGrid);
 
-	static bool CopySpriteFromByteData(BYTE* byteData, 
-									   int byteDataWidth, 
-									   std::vector<BYTE>& spriteData, 
-									   int& startPositionX, 
-									   int& startPositionY, 
-									   int& endPositionX, 
-									   int& endPositionY, 
-									   bool sliceOnGrid);
-
-	static void CopyTileFromByteData(BYTE* byteData, 
+	static bool CopyTileFromByteData(BYTE* byteData, 
 									 int byteDataWidth, 
 									 int byteDataHeight, 
 									 std::vector<BYTE>& tileData, 
@@ -58,13 +49,6 @@ public:
 	static void PrintSprite(const std::vector<BYTE>& spriteData, 
 							int spriteWidth, 
 							int spriteHeight);
-
-	static bool CopyTileFromBitmap(BYTE* bitmap, 
-								   int bitmapWidth, 
-								   int bitmapHeight,
-								   Tile& tile, 
-								   int startX, 
-								   int startY);
 };
 
 }
