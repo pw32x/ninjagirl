@@ -41,15 +41,15 @@ unsigned char const walker_smallTileData[128] = // 4tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSprite walker_smallFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_smallFrame0SpriteStrips[] = 
 {
-    { 1, { 0, 1, 0 } },
+    { 1, 0, 1, 0 },
     {0},
 };
 
-const BatchedAnimationSprite walker_smallFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_smallFrame1SpriteStrips[] = 
 {
-    { 1, { 0, 0, 2 } },
+    { 1, 0, 0, 2 },
     {0},
 };
 
@@ -59,14 +59,14 @@ extern const BatchedAnimationFrame walker_smallFrame1;
 
 const BatchedAnimationFrame walker_smallFrame0 = 
 {
-    walker_smallFrame0BatchedSprite,
+    walker_smallFrame0SpriteStrips,
     8, // frame time
     &walker_smallFrame1, // next frame
 };
 
 const BatchedAnimationFrame walker_smallFrame1 = 
 {
-    walker_smallFrame1BatchedSprite,
+    walker_smallFrame1SpriteStrips,
     8, // frame time
     &walker_smallFrame0, // next frame
 };

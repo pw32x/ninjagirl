@@ -4,23 +4,18 @@
 #include "engine/base_types.h"
 
 
-typedef struct
-{
-    s8 xOffset;
-    s8 yOffset;
-    u8 tileIndex;
-} AnimationSprite;
-
-// batched. a sprite call contains multiple sprites. for use with the SMS_add***AdjoiningSprites functions.
+// a sprite call contains multiple strips for use with the SMS_add***AdjoiningSprites functions.
 typedef struct 
 {
     u8 count;
-    AnimationSprite sprite;
-} BatchedAnimationSprite;
+    s8 xOffset;
+    s8 yOffset;
+    u8 tileIndex;
+} BatchedAnimationSpriteStrip;
 
 typedef struct batched_animation_frame
 {
-    const BatchedAnimationSprite* const batchedSprites;
+    const BatchedAnimationSpriteStrip* const spriteStrips;
     u8 frameTime;
     struct batched_animation_frame* nextFrame;
 } BatchedAnimationFrame;

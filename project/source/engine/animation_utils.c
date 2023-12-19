@@ -181,15 +181,13 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 	const u8* tileData = gameObject->batchedAnimation->tileData;
 	u16 vdpIndex = *gameObject->batchedAnimation->vdpLocation + 256;
 
-	const BatchedAnimationSprite* runner = batchedAnimationFrame->batchedSprites;
+	const BatchedAnimationSpriteStrip* runner = batchedAnimationFrame->spriteStrips;
 
 	while (runner->count)
 	{
-		const AnimationSprite* sprite = &runner->sprite;
-
 		u8 tileCount = runner->count << 1;
 
-		u16 tileOffset = tileData + (runner->sprite.tileIndex << 5);
+		u16 tileOffset = tileData + (runner->tileIndex << 5);
 
 		switch (tileCount)
 		{

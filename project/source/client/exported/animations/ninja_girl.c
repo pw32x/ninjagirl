@@ -2453,157 +2453,157 @@ unsigned char const ninja_girlTileData[8704] = // 272tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSprite ninja_girlFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame0SpriteStrips[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, -10, -16, 0 },
+    { 3, -12, 0, 6 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame1SpriteStrips[] = 
 {
-    { 3, { -10, -16, 12 } },
-    { 3, { -12, 0, 18 } },
+    { 3, -10, -16, 12 },
+    { 3, -12, 0, 18 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame2BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame2SpriteStrips[] = 
 {
-    { 3, { -10, -16, 24 } },
-    { 3, { -12, 0, 30 } },
+    { 3, -10, -16, 24 },
+    { 3, -12, 0, 30 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame3BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame3SpriteStrips[] = 
 {
-    { 3, { -10, -16, 36 } },
-    { 3, { -10, 0, 42 } },
+    { 3, -10, -16, 36 },
+    { 3, -10, 0, 42 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame4BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame4SpriteStrips[] = 
 {
-    { 3, { -10, -16, 48 } },
-    { 3, { -10, 0, 54 } },
+    { 3, -10, -16, 48 },
+    { 3, -10, 0, 54 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame5BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame5SpriteStrips[] = 
 {
-    { 3, { -10, -16, 60 } },
-    { 3, { -12, 0, 66 } },
+    { 3, -10, -16, 60 },
+    { 3, -12, 0, 66 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame6BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame6SpriteStrips[] = 
 {
-    { 3, { -10, -16, 72 } },
-    { 3, { -12, 0, 78 } },
+    { 3, -10, -16, 72 },
+    { 3, -12, 0, 78 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame7BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame7SpriteStrips[] = 
 {
-    { 3, { -10, -16, 84 } },
-    { 3, { -10, 0, 90 } },
+    { 3, -10, -16, 84 },
+    { 3, -10, 0, 90 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame8BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame8SpriteStrips[] = 
 {
-    { 3, { -10, -16, 96 } },
-    { 3, { -12, 0, 102 } },
+    { 3, -10, -16, 96 },
+    { 3, -12, 0, 102 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame9BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame9SpriteStrips[] = 
 {
-    { 3, { -10, -16, 108 } },
-    { 3, { -12, 0, 114 } },
+    { 3, -10, -16, 108 },
+    { 3, -12, 0, 114 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame10BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame10SpriteStrips[] = 
 {
-    { 3, { -10, -16, 120 } },
-    { 3, { -10, 0, 126 } },
+    { 3, -10, -16, 120 },
+    { 3, -10, 0, 126 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame11BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame11SpriteStrips[] = 
 {
-    { 3, { -10, -16, 132 } },
-    { 3, { -10, 0, 138 } },
+    { 3, -10, -16, 132 },
+    { 3, -10, 0, 138 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame12BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame12SpriteStrips[] = 
 {
-    { 4, { -9, -16, 144 } },
-    { 3, { -11, 0, 152 } },
+    { 4, -9, -16, 144 },
+    { 3, -11, 0, 152 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame13BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame13SpriteStrips[] = 
 {
-    { 3, { -9, -14, 158 } },
-    { 3, { -9, 2, 164 } },
+    { 3, -9, -14, 158 },
+    { 3, -9, 2, 164 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame14BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame14SpriteStrips[] = 
 {
-    { 4, { -20, -16, 170 } },
-    { 3, { -11, 0, 178 } },
+    { 4, -20, -16, 170 },
+    { 3, -11, 0, 178 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame15BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame15SpriteStrips[] = 
 {
-    { 3, { -15, -14, 184 } },
-    { 3, { -11, 2, 190 } },
+    { 3, -15, -14, 184 },
+    { 3, -11, 2, 190 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame16BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame16SpriteStrips[] = 
 {
-    { 3, { -12, -9, 196 } },
-    { 3, { -14, 7, 202 } },
+    { 3, -12, -9, 196 },
+    { 3, -14, 7, 202 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame17BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame17SpriteStrips[] = 
 {
-    { 4, { -11, -9, 208 } },
-    { 3, { -13, 7, 216 } },
+    { 4, -11, -9, 208 },
+    { 3, -13, 7, 216 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame18BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame18SpriteStrips[] = 
 {
-    { 3, { -10, -9, 222 } },
-    { 3, { -12, 7, 228 } },
+    { 3, -10, -9, 222 },
+    { 3, -12, 7, 228 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame19BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame19SpriteStrips[] = 
 {
-    { 3, { -10, -9, 234 } },
-    { 3, { -9, 7, 240 } },
+    { 3, -10, -9, 234 },
+    { 3, -9, 7, 240 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame20BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame20SpriteStrips[] = 
 {
-    { 4, { -18, -9, 246 } },
-    { 3, { -10, 7, 254 } },
+    { 4, -18, -9, 246 },
+    { 3, -10, 7, 254 },
     {0},
 };
 
-const BatchedAnimationSprite ninja_girlFrame21BatchedSprite[] = 
+const BatchedAnimationSpriteStrip ninja_girlFrame21SpriteStrips[] = 
 {
-    { 3, { -12, -9, 260 } },
-    { 3, { -9, 7, 266 } },
+    { 3, -12, -9, 260 },
+    { 3, -9, 7, 266 },
     {0},
 };
 
@@ -2633,154 +2633,154 @@ extern const BatchedAnimationFrame ninja_girlFrame21;
 
 const BatchedAnimationFrame ninja_girlFrame0 = 
 {
-    ninja_girlFrame0BatchedSprite,
+    ninja_girlFrame0SpriteStrips,
     5, // frame time
     &ninja_girlFrame1, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame1 = 
 {
-    ninja_girlFrame1BatchedSprite,
+    ninja_girlFrame1SpriteStrips,
     5, // frame time
     &ninja_girlFrame2, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame2 = 
 {
-    ninja_girlFrame2BatchedSprite,
+    ninja_girlFrame2SpriteStrips,
     5, // frame time
     &ninja_girlFrame0, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame3 = 
 {
-    ninja_girlFrame3BatchedSprite,
+    ninja_girlFrame3SpriteStrips,
     5, // frame time
     &ninja_girlFrame4, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame4 = 
 {
-    ninja_girlFrame4BatchedSprite,
+    ninja_girlFrame4SpriteStrips,
     5, // frame time
     &ninja_girlFrame5, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame5 = 
 {
-    ninja_girlFrame5BatchedSprite,
+    ninja_girlFrame5SpriteStrips,
     5, // frame time
     &ninja_girlFrame3, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame6 = 
 {
-    ninja_girlFrame6BatchedSprite,
+    ninja_girlFrame6SpriteStrips,
     4, // frame time
     &ninja_girlFrame6, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame7 = 
 {
-    ninja_girlFrame7BatchedSprite,
+    ninja_girlFrame7SpriteStrips,
     4, // frame time
     &ninja_girlFrame7, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame8 = 
 {
-    ninja_girlFrame8BatchedSprite,
+    ninja_girlFrame8SpriteStrips,
     4, // frame time
     &ninja_girlFrame8, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame9 = 
 {
-    ninja_girlFrame9BatchedSprite,
+    ninja_girlFrame9SpriteStrips,
     4, // frame time
     &ninja_girlFrame9, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame10 = 
 {
-    ninja_girlFrame10BatchedSprite,
+    ninja_girlFrame10SpriteStrips,
     4, // frame time
     &ninja_girlFrame10, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame11 = 
 {
-    ninja_girlFrame11BatchedSprite,
+    ninja_girlFrame11SpriteStrips,
     4, // frame time
     &ninja_girlFrame11, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame12 = 
 {
-    ninja_girlFrame12BatchedSprite,
+    ninja_girlFrame12SpriteStrips,
     5, // frame time
     &ninja_girlFrame13, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame13 = 
 {
-    ninja_girlFrame13BatchedSprite,
+    ninja_girlFrame13SpriteStrips,
     5, // frame time
     NULL, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame14 = 
 {
-    ninja_girlFrame14BatchedSprite,
+    ninja_girlFrame14SpriteStrips,
     5, // frame time
     &ninja_girlFrame15, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame15 = 
 {
-    ninja_girlFrame15BatchedSprite,
+    ninja_girlFrame15SpriteStrips,
     5, // frame time
     NULL, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame16 = 
 {
-    ninja_girlFrame16BatchedSprite,
+    ninja_girlFrame16SpriteStrips,
     4, // frame time
     &ninja_girlFrame16, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame17 = 
 {
-    ninja_girlFrame17BatchedSprite,
+    ninja_girlFrame17SpriteStrips,
     5, // frame time
     &ninja_girlFrame18, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame18 = 
 {
-    ninja_girlFrame18BatchedSprite,
+    ninja_girlFrame18SpriteStrips,
     5, // frame time
     NULL, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame19 = 
 {
-    ninja_girlFrame19BatchedSprite,
+    ninja_girlFrame19SpriteStrips,
     4, // frame time
     &ninja_girlFrame19, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame20 = 
 {
-    ninja_girlFrame20BatchedSprite,
+    ninja_girlFrame20SpriteStrips,
     5, // frame time
     &ninja_girlFrame21, // next frame
 };
 
 const BatchedAnimationFrame ninja_girlFrame21 = 
 {
-    ninja_girlFrame21BatchedSprite,
+    ninja_girlFrame21SpriteStrips,
     5, // frame time
     NULL, // next frame
 };

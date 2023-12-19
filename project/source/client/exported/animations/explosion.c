@@ -329,23 +329,23 @@ unsigned char const explosionTileData[1152] = // 36tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSprite explosionFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip explosionFrame0SpriteStrips[] = 
 {
-    { 2, { -8, -8, 0 } },
+    { 2, -8, -8, 0 },
     {0},
 };
 
-const BatchedAnimationSprite explosionFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip explosionFrame1SpriteStrips[] = 
 {
-    { 4, { -14, -14, 4 } },
-    { 4, { -14, 2, 12 } },
+    { 4, -14, -14, 4 },
+    { 4, -14, 2, 12 },
     {0},
 };
 
-const BatchedAnimationSprite explosionFrame2BatchedSprite[] = 
+const BatchedAnimationSpriteStrip explosionFrame2SpriteStrips[] = 
 {
-    { 4, { -16, -16, 20 } },
-    { 4, { -16, 0, 28 } },
+    { 4, -16, -16, 20 },
+    { 4, -16, 0, 28 },
     {0},
 };
 
@@ -356,21 +356,21 @@ extern const BatchedAnimationFrame explosionFrame2;
 
 const BatchedAnimationFrame explosionFrame0 = 
 {
-    explosionFrame0BatchedSprite,
+    explosionFrame0SpriteStrips,
     7, // frame time
     &explosionFrame1, // next frame
 };
 
 const BatchedAnimationFrame explosionFrame1 = 
 {
-    explosionFrame1BatchedSprite,
+    explosionFrame1SpriteStrips,
     7, // frame time
     &explosionFrame2, // next frame
 };
 
 const BatchedAnimationFrame explosionFrame2 = 
 {
-    explosionFrame2BatchedSprite,
+    explosionFrame2SpriteStrips,
     8, // frame time
     &explosionFrame0, // next frame
 };

@@ -185,51 +185,51 @@ unsigned char const kunaiTileData[640] = // 20tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSprite kunaiFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame0SpriteStrips[] = 
 {
-    { 2, { -7, -2, 0 } },
+    { 2, -7, -2, 0 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame1SpriteStrips[] = 
 {
-    { 2, { -7, -2, 4 } },
+    { 2, -7, -2, 4 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame2BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame2SpriteStrips[] = 
 {
-    { 1, { -3, -7, 8 } },
+    { 1, -3, -7, 8 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame3BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame3SpriteStrips[] = 
 {
-    { 1, { -3, -7, 10 } },
+    { 1, -3, -7, 10 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame4BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame4SpriteStrips[] = 
 {
-    { 1, { -4, -6, 12 } },
+    { 1, -4, -6, 12 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame5BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame5SpriteStrips[] = 
 {
-    { 1, { -4, -6, 14 } },
+    { 1, -4, -6, 14 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame6BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame6SpriteStrips[] = 
 {
-    { 1, { -4, -6, 16 } },
+    { 1, -4, -6, 16 },
     {0},
 };
 
-const BatchedAnimationSprite kunaiFrame7BatchedSprite[] = 
+const BatchedAnimationSpriteStrip kunaiFrame7SpriteStrips[] = 
 {
-    { 1, { -4, -6, 18 } },
+    { 1, -4, -6, 18 },
     {0},
 };
 
@@ -245,56 +245,56 @@ extern const BatchedAnimationFrame kunaiFrame7;
 
 const BatchedAnimationFrame kunaiFrame0 = 
 {
-    kunaiFrame0BatchedSprite,
+    kunaiFrame0SpriteStrips,
     59, // frame time
     &kunaiFrame1, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame1 = 
 {
-    kunaiFrame1BatchedSprite,
+    kunaiFrame1SpriteStrips,
     59, // frame time
     &kunaiFrame2, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame2 = 
 {
-    kunaiFrame2BatchedSprite,
+    kunaiFrame2SpriteStrips,
     59, // frame time
     &kunaiFrame3, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame3 = 
 {
-    kunaiFrame3BatchedSprite,
+    kunaiFrame3SpriteStrips,
     59, // frame time
     &kunaiFrame4, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame4 = 
 {
-    kunaiFrame4BatchedSprite,
+    kunaiFrame4SpriteStrips,
     59, // frame time
     &kunaiFrame5, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame5 = 
 {
-    kunaiFrame5BatchedSprite,
+    kunaiFrame5SpriteStrips,
     59, // frame time
     &kunaiFrame6, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame6 = 
 {
-    kunaiFrame6BatchedSprite,
+    kunaiFrame6SpriteStrips,
     59, // frame time
     &kunaiFrame7, // next frame
 };
 
 const BatchedAnimationFrame kunaiFrame7 = 
 {
-    kunaiFrame7BatchedSprite,
+    kunaiFrame7SpriteStrips,
     59, // frame time
     &kunaiFrame0, // next frame
 };

@@ -581,31 +581,31 @@ unsigned char const walker_bigTileData[2048] = // 64tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSprite walker_bigFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_bigFrame0SpriteStrips[] = 
 {
-    { 4, { 0, 0, 0 } },
-    { 4, { 0, 16, 8 } },
+    { 4, 0, 0, 0 },
+    { 4, 0, 16, 8 },
     {0},
 };
 
-const BatchedAnimationSprite walker_bigFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_bigFrame1SpriteStrips[] = 
 {
-    { 4, { 0, 2, 16 } },
-    { 4, { 0, 18, 24 } },
+    { 4, 0, 2, 16 },
+    { 4, 0, 18, 24 },
     {0},
 };
 
-const BatchedAnimationSprite walker_bigFrame2BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_bigFrame2SpriteStrips[] = 
 {
-    { 4, { 0, 0, 32 } },
-    { 4, { 0, 16, 40 } },
+    { 4, 0, 0, 32 },
+    { 4, 0, 16, 40 },
     {0},
 };
 
-const BatchedAnimationSprite walker_bigFrame3BatchedSprite[] = 
+const BatchedAnimationSpriteStrip walker_bigFrame3SpriteStrips[] = 
 {
-    { 4, { 0, 2, 48 } },
-    { 4, { 0, 18, 56 } },
+    { 4, 0, 2, 48 },
+    { 4, 0, 18, 56 },
     {0},
 };
 
@@ -617,28 +617,28 @@ extern const BatchedAnimationFrame walker_bigFrame3;
 
 const BatchedAnimationFrame walker_bigFrame0 = 
 {
-    walker_bigFrame0BatchedSprite,
+    walker_bigFrame0SpriteStrips,
     14, // frame time
     &walker_bigFrame1, // next frame
 };
 
 const BatchedAnimationFrame walker_bigFrame1 = 
 {
-    walker_bigFrame1BatchedSprite,
+    walker_bigFrame1SpriteStrips,
     14, // frame time
     &walker_bigFrame2, // next frame
 };
 
 const BatchedAnimationFrame walker_bigFrame2 = 
 {
-    walker_bigFrame2BatchedSprite,
+    walker_bigFrame2SpriteStrips,
     14, // frame time
     &walker_bigFrame3, // next frame
 };
 
 const BatchedAnimationFrame walker_bigFrame3 = 
 {
-    walker_bigFrame3BatchedSprite,
+    walker_bigFrame3SpriteStrips,
     14, // frame time
     &walker_bigFrame0, // next frame
 };

@@ -77,15 +77,15 @@ unsigned char const impactTileData[256] = // 8tiles x 32 bytes
     0x01, 0x00, 0x00, 0x01, 
 };
 
-const BatchedAnimationSprite impactFrame0BatchedSprite[] = 
+const BatchedAnimationSpriteStrip impactFrame0SpriteStrips[] = 
 {
-    { 2, { -5, -5, 0 } },
+    { 2, -5, -5, 0 },
     {0},
 };
 
-const BatchedAnimationSprite impactFrame1BatchedSprite[] = 
+const BatchedAnimationSpriteStrip impactFrame1SpriteStrips[] = 
 {
-    { 2, { -8, -8, 4 } },
+    { 2, -8, -8, 4 },
     {0},
 };
 
@@ -95,14 +95,14 @@ extern const BatchedAnimationFrame impactFrame1;
 
 const BatchedAnimationFrame impactFrame0 = 
 {
-    impactFrame0BatchedSprite,
+    impactFrame0SpriteStrips,
     3, // frame time
     &impactFrame1, // next frame
 };
 
 const BatchedAnimationFrame impactFrame1 = 
 {
-    impactFrame1BatchedSprite,
+    impactFrame1SpriteStrips,
     4, // frame time
     &impactFrame0, // next frame
 };

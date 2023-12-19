@@ -137,7 +137,7 @@ BOOL Kunai_Draw(GameObject* object)
 
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentBatchedAnimationFrame->batchedSprites,
+						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 
 

@@ -58,7 +58,7 @@ BOOL ParticleEffect_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(V2P(object->x) - ScrollManager_horizontalScroll,
 						  V2P(object->y),
-						  object->currentBatchedAnimationFrame->batchedSprites,
+						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 
 

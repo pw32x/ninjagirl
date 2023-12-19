@@ -5,7 +5,7 @@
 #include "engine/scroll_manager.h"
 
 u8 DrawUtils_spriteCounter;
-const BatchedAnimationSprite* DrawUtils_currentBatchedSprites;
+const BatchedAnimationSpriteStrip* DrawUtils_currentSpriteStrips;
 u8 DrawUtils_vdpTileIndex;
 s16 DrawUtils_screenX;
 s16 DrawUtils_screenY;
@@ -296,14 +296,12 @@ void (*drawSprite[]) (unsigned int y, unsigned int x_tile) __naked __preserves_r
 
 void DrawUtils_DrawBatched(void)
 {
-	const BatchedAnimationSprite* runner = DrawUtils_currentBatchedSprites;
+	const BatchedAnimationSpriteStrip* runner = DrawUtils_currentSpriteStrips;
 
 	while (runner->count)
 	{
-		const AnimationSprite* sprite = &runner->sprite;
-
-		drawSprite[runner->count](DrawUtils_screenY + sprite->yOffset, 
-								  PARAM_COMBINER(DrawUtils_screenX + sprite->xOffset, sprite->tileIndex + DrawUtils_vdpTileIndex));
+		drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
+								  PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, runner->tileIndex + DrawUtils_vdpTileIndex));
 
 		runner++;
 	}
@@ -311,7 +309,7 @@ void DrawUtils_DrawBatched(void)
 
 void DrawUtils_DrawStreamedBatched(void)
 {
-    const BatchedAnimationSprite* runner = DrawUtils_currentBatchedSprites;
+    const BatchedAnimationSpriteStrip * runner = DrawUtils_currentSpriteStrips;
 
     int vdpOffset = 0;
 
@@ -319,12 +317,10 @@ void DrawUtils_DrawStreamedBatched(void)
 
     while (runner->count)
     {
-        const AnimationSprite* sprite = &runner->sprite;
-
         //SMS_debugPrintf("%d, ", vdpOffset + DrawUtils_vdpTileIndex);
 
-        drawSprite[runner->count](DrawUtils_screenY + sprite->yOffset, 
-                                  PARAM_COMBINER(DrawUtils_screenX + sprite->xOffset, 
+        drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
+                                  PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
                                                  vdpOffset + DrawUtils_vdpTileIndex));
 
         vdpOffset += (runner->count << 1);

@@ -164,20 +164,18 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string spriteName = WriteUtils::BuildFrameName(outputName, frameLoop) + "BatchedSprite";
+        std::string spriteStripName = WriteUtils::BuildFrameName(outputName, frameLoop) + "SpriteStrips";
 
-        sourceFile << "const BatchedAnimationSprite " << spriteName << "[] = \n";
+        sourceFile << "const BatchedAnimationSpriteStrip " << spriteStripName << "[] = \n";
         sourceFile << "{\n";
 
         for (const auto& sprite : frame.getSprites())
         {
             sourceFile << "    { ";
             sourceFile << sprite.m_spriteStrip.count << ", ";
-            sourceFile << "{ ";
             sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
             sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
             sourceFile << sprite.m_spriteStrip.tileStartIndex;
-            sourceFile << " }";
             sourceFile << " },\n";
         }
         sourceFile << "    {0},\n";
@@ -215,7 +213,7 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 		sourceFile << "const BatchedAnimationFrame " << frameName << " = \n";
 
 		sourceFile << "{\n";
-        sourceFile << "    " << frameName << "BatchedSprite,\n";
+        sourceFile << "    " << frameName << "SpriteStrips,\n";
 		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
         sourceFile << "    " << nextFrameName << ", // next frame\n";
 		sourceFile << "};\n";

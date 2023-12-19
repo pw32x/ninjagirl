@@ -533,7 +533,7 @@ BOOL Player_Draw(GameObject* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
-						  object->currentBatchedAnimationFrame->batchedSprites,
+						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 
 	// why would the player sprite ever be clipped?
