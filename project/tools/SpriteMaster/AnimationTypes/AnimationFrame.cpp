@@ -117,7 +117,7 @@ void GGAnimationFrame::SliceImageIntoStrips(BYTE* bitmap,
 			numSprites = (rectWidth / SPRITE_WIDTH);
 		}
 
-		std::vector<Tile> tiles;
+		TileSet tiles;
 
 		int stripX = leftMost;
 

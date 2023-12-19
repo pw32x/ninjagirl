@@ -7,5 +7,5 @@ namespace SpriteMaster
 {
 
 typedef std::vector<BYTE> Tile;
-
+typedef std::vector<Tile> TileSet;
 }

@@ -16,10 +16,11 @@ public:
 	public:
 		int count;
 		int tileStartIndex;
-		std::vector<Tile> tiles;
+		TileSet tiles;
 	};
 
-	const SpriteStrip& AddOrGetSpriteStrip(const std::vector<Tile>& stripTiles);
+	const SpriteStrip& AddOrGetSpriteStrip(const TileSet& stripTiles, 
+										   bool removeDuplicates = true);
 
 	int GetTileCount() const { return m_tileCount; }
 

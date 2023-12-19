@@ -3,15 +3,14 @@ Todo
 	Sprite Master C++
 
 		NAH reuse identical frames
-		reuse identical spans
 	
-		add slice style
+		NAH add slice style
 			smallest area (default)
 			grid
 			rows
 			columns
 
-		In Graphics Gale
+		NAH In Graphics Gale
 			No specifier:
 			default: Normal
 			
@@ -26,16 +25,22 @@ Todo
 			DefaultSlice:Columns
 			DefaultSlice:Rows
 			DefaultSlice:FixedGrid
-
-
-
-
-		plane animation seems to not work
+			
+		FIXED plane animation seems to not work
 			a 2 frame animation only exports 1 frame.
 
+	DONE make all projects use visual studio 2022
 
-	
-	make all projects use visual studio 2022
+	SpriteMaster
+
+		DONE reuse identical spans
+			identical in size and location
+			
+			subspans? 
+				a span of 3 could be found in a span of 4 with identical tiles
+
+	check sprite usage of other sprites
+
 	
 	object placement tool
 		SceneMaster			

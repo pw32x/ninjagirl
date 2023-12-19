@@ -17,7 +17,7 @@
 # out folder
 out/
 outFolder/
-
+!out/NinjaGirl.map
 
 
 # Mono auto generated files
