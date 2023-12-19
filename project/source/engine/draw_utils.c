@@ -424,6 +424,30 @@ void DrawUtils_DrawBatched(void)
 	}
 }
 
+void DrawUtils_DrawStreamedBatched(void)
+{
+    const BatchedAnimationSprite* runner = DrawUtils_currentBatchedSprite;
+
+    int vdpOffset = 0;
+
+    //SMS_debugPrintf("\n********* DrawStreamedBatched\n");
+
+    while (runner->count)
+    {
+        const AnimationSprite* sprite = &runner->sprite;
+
+        //SMS_debugPrintf("%d, ", vdpOffset + DrawUtils_vdpTileIndex);
+
+        drawSprite[runner->count](DrawUtils_screenY + sprite->yOffset, 
+                                  PARAM_COMBINER(DrawUtils_screenX + sprite->xOffset, 
+                                                 vdpOffset + DrawUtils_vdpTileIndex));
+
+        vdpOffset += (runner->count << 1);
+
+        runner++;
+    }
+}
+
 __sfr __at 0xBF VDPControlPort2;
 __sfr __at 0xBE VDPDataPort2;
 

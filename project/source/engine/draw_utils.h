@@ -32,7 +32,7 @@ void DrawUtils_DrawClippedSides(void);
 } 
 
 void DrawUtils_DrawBatched(void);
-
+void DrawUtils_DrawStreamedBatched(void);
 
 extern char DrawUtils_spriteCounter;
 extern const AnimationSprite* DrawUtils_currentSprite;

@@ -2,9 +2,8 @@ Todo
 
 	Sprite Master C++
 
-		reuse identical frames
+		NAH reuse identical frames
 		reuse identical spans
-			when streaming don't dedupe tiles to make it easier to copy to vdp			
 	
 		add slice style
 			smallest area (default)

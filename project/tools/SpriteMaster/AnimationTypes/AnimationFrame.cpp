@@ -23,13 +23,12 @@ GGAnimationFrame::GGAnimationFrame()
 
 void GGAnimationFrame::Init(int frameNumber, 
 							const GraphicsGaleObject& ggo, 
-							TileStore& tileStore, 
 							SpriteStripStore& spriteStripStore,
 							AnimationProperties& animationProperties)
 {
 	mFrameNumber = frameNumber;
 	GetGGInfo(ggo, animationProperties);
-	BuildFrame(ggo, tileStore, spriteStripStore, m_sprites);
+	BuildFrame(ggo, spriteStripStore, m_sprites);
 }
 
 /*
@@ -180,10 +179,21 @@ void SliceImageInto8x16Tiles(BYTE* byteData,
 }
 */
 
+int GGAnimationFrame::GetMaxTilesInAFrame()
+{
+	int maxTilesInAFrame = 0;
+
+	for (const auto& sprite : m_sprites)
+	{
+		maxTilesInAFrame += sprite.m_spriteStrip.count * 2;
+	}
+
+	return maxTilesInAFrame;
+}
+
 void GGAnimationFrame::SliceImageIntoStrips(BYTE* bitmap, 
 											int bitmapWidth, 
 											int bitmapHeight, 
-											TileStore& tileStore, 
 											SpriteStripStore& spriteStripStore,
 											std::vector<GGAnimationFrame::Sprite>& sprites)
 {
@@ -193,15 +203,162 @@ void GGAnimationFrame::SliceImageIntoStrips(BYTE* bitmap,
 	SpriteUtils::FindTopAndBottomExtents(bitmap, 
 										 bitmapWidth, 
 										 bitmapHeight, 
-										 &topMost, 
-										 &bottomMost, 
+										 topMost, 
+										 bottomMost, 
 										 false);
 
-// don't forget to not remove duplicates if m_
+	int rectHeight = (bottomMost - topMost);	
+
+	int numberOfRows = 0;
+	if (rectHeight % SPRITE_HEIGHT != 0)
+	{
+		numberOfRows = (rectHeight / SPRITE_HEIGHT) + 1;
+	}
+	else
+	{
+		numberOfRows = (rectHeight / SPRITE_HEIGHT);
+	}
+
+
+	// go through the sprite row-by-row, cutting the row into sprite slices
+	for (int rowLoop = 0; rowLoop < numberOfRows; rowLoop++)
+	{
+		// compute the row's top and bottom y positions in the bitmap
+		int rowTop = topMost + (rowLoop * SPRITE_HEIGHT);
+		int rowBottom = rowTop + SPRITE_HEIGHT;
+		if (rowBottom > bottomMost)
+		{
+			rowBottom = bottomMost;
+		}
+
+		// get the left and right most positions for the row.
+		int leftMost;
+		int rightMost;
+
+		SpriteUtils::FindLeftRightExtentsForSlice(bitmap, 
+												  bitmapWidth, 
+												  rowTop, 
+												  rowBottom, 
+												  leftMost, 
+												  rightMost, 
+												  false);
+
+		int rectWidth = (rightMost - leftMost);
+
+		// no pixels detected, skip this row.
+		if (rectWidth < 0)
+		{
+			continue;
+		}
+
+		// Go through the row's sprites, building strips along the way
+		int rowSpriteCounter = 0;
+		int stripSpriteCounter = 0;
+		int stripMaxSpriteCount = 4;
+		int numSprites = 0;
+		if (rectWidth % SPRITE_WIDTH != 0)
+		{
+			numSprites = (rectWidth / SPRITE_WIDTH) + 1;
+		}
+		else
+		{
+			numSprites = (rectWidth / SPRITE_WIDTH);
+		}
+
+		std::vector<Tile> tiles;
+
+		int stripX = leftMost;
+
+		bool startedStrip = FALSE;
+		int stripStartX = 0;
+
+		bool continueProcessing = TRUE;
+		while (continueProcessing)
+		{
+			// get top and bottom 8x8 tiles for the 8x16 sprite.
+			//
+			Tile topTile;
+			bool atLeastOnePixelInTopTile = SpriteUtils::CopyTileFromBitmap(bitmap, 
+																			bitmapWidth, 
+																			bitmapHeight,
+																			topTile, 
+																			stripX, 
+																			rowTop);
+
+			Tile bottomTile;
+			bool atLeastOnePixelInBottomTile = SpriteUtils::CopyTileFromBitmap(bitmap, 
+																			   bitmapWidth, 
+																			   bitmapHeight,
+																			   bottomTile, 
+																			   stripX, 
+																			   rowTop + TILE_HEIGHT);
+
+			bool foundAtLeastOnePixel = atLeastOnePixelInTopTile || atLeastOnePixelInBottomTile;
+
+			if (foundAtLeastOnePixel && !startedStrip)
+			{
+				startedStrip = TRUE;
+				stripStartX = stripX;
+			}
+
+			bool finishStrip = FALSE;
+
+			// we're in the middle of building a strip
+			if (startedStrip)
+			{
+				if (foundAtLeastOnePixel)
+				{
+					tiles.push_back(topTile);
+					tiles.push_back(bottomTile);
+
+					stripSpriteCounter++;
+				}
+				else
+				{
+					finishStrip = TRUE;
+				}
+			}
+
+			// increment counters
+			stripX += SPRITE_WIDTH;
+			rowSpriteCounter++;
+
+			// check limits
+			bool finishRow = FALSE;
+
+			if (rowSpriteCounter > numSprites - 1)
+			{
+				finishStrip = TRUE;
+				finishRow = TRUE;
+			}
+
+			if (stripSpriteCounter > stripMaxSpriteCount - 1)
+			{
+				stripSpriteCounter = 0;
+				finishStrip = TRUE;
+			}
+
+			if (finishStrip)
+			{
+				Sprite sprite(stripStartX, 
+							  rowTop, 
+							  spriteStripStore.AddOrGetSpriteStrip(tiles));
+				m_sprites.push_back(sprite);
+
+				tiles.clear();
+				stripSpriteCounter = 0;
+				startedStrip = FALSE;
+			}
+
+			if (finishRow)
+			{
+				continueProcessing = FALSE;
+			}
+		}
+	}
 }
 
 void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo, 
-								  TileStore& tileStore, 
 								  SpriteStripStore& spriteStripStore,
 								  std::vector<Sprite>& sprites)
 {
@@ -215,7 +372,6 @@ void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 	SliceImageIntoStrips(byteData, 
 						 bitmapInfo.bmWidth, 
 						 bitmapInfo.bmHeight, 
-						 tileStore, 
 						 spriteStripStore,
 						 m_sprites);
 

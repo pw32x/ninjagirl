@@ -21,7 +21,7 @@ public:
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
-	int GetTileCount() { return m_tileStore.GetStoreTileCount(); }
+	int GetTileCount() { return m_spriteStripStore.GetTileCount(); }
 
 	const BITMAP& GetGeneralBitmapInfo() { return  m_generalBitmapInfo; }
 
@@ -42,7 +42,6 @@ private:
 	const GraphicsGaleObject&		m_ggo;
 	AnimationProperties				m_animationProperties;
 
-	TileStore						m_tileStore;
 	SpriteStripStore				m_spriteStripStore;
 
 	std::vector<GGAnimationFrame>	m_frames;

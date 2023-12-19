@@ -53,11 +53,10 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
 
 		frame.Init(loop, 
                    m_ggo, 
-                   m_tileStore, 
                    m_spriteStripStore,
                    m_animationProperties);
 
-        m_maxTilesInFrame = max(m_maxTilesInFrame, (int)frame.getSprites().size() * 2);
+        m_maxTilesInFrame = max(m_maxTilesInFrame, frame.GetMaxTilesInAFrame());
 
 		m_totalFrameTime += frame.GetFrameDelayTime();
 
@@ -195,7 +194,8 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
             sourceFile << "{ ";
             sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
             sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
-            sourceFile << sprite.m_spriteStrip.tileStartIndex - tileStoreModifier;
+            //sourceFile << sprite.m_spriteStrip.tileStartIndex - tileStoreModifier;
+            sourceFile << sprite.m_spriteStrip.tileStartIndex;
             sourceFile << " }";
             sourceFile << " },\n";
         }
@@ -368,7 +368,7 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
     sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
-    sourceFile << "    " << m_tileStore.GetStoreTileCount() << ", // the total amount of tiles in animation\n";
+    sourceFile << "    " << m_spriteStripStore.GetTileCount() << ", // the total amount of tiles in animation\n";
 
     if (m_isStreamed)
         sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
@@ -404,7 +404,7 @@ void GGAnimation:: WriteAnimationStruct(const std::string& outputName,
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";
     sourceFile << "    " << m_generalBitmapInfo.bmHeight << ", // height in pixels\n";
-    sourceFile << "    " << m_tileStore.GetStoreTileCount() << ", // the total amount of tiles in animation\n";
+    sourceFile << "    " << m_spriteStripStore.GetTileCount() << ", // the total amount of tiles in animation\n";
 
     if (m_isStreamed)
         sourceFile << "    " << m_maxTilesInFrame << ", // the max amount of sprite tiles in a frame\n";    
@@ -427,7 +427,7 @@ void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder,
     sourceFile << "\n";
 
 	// tile data
-    m_tileStore.WriteTileStore(outputName, sourceFile);
+    m_spriteStripStore.WriteTileStore(outputName, sourceFile);
 
     WriteSpritesBatched(outputName, sourceFile);
     WriteFramesBatched(outputName, sourceFile);

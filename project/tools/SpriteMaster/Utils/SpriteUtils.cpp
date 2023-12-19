@@ -9,22 +9,22 @@ namespace SpriteMaster
 void SpriteUtils::FindTopAndBottomExtents(BYTE* byteData, 
 										  int width, 
 										  int height, 
-										  int* topMost, 
-										  int* bottomMost, 
+										  int& topMost, 
+										  int& bottomMost, 
 										  bool sliceSpritesOnGrid)
 {
     //printf("\n\n Byte Array:\n");
 
 	if (sliceSpritesOnGrid)
 	{
-		*topMost = 0;
-		*bottomMost = height;
+		topMost = 0;
+		bottomMost = height;
 		return;
 	}
 
     // find top and bottom extents of image within bitmap
-    *topMost = height;
-    *bottomMost = 0;
+    topMost = height;
+    bottomMost = 0;
 
     for (int loopy = 0; loopy < height; loopy++)
     {
@@ -36,20 +36,26 @@ void SpriteUtils::FindTopAndBottomExtents(BYTE* byteData,
 
             if (byte > 0)
             {
-                if (loopy < *topMost) *topMost = loopy;
-                if (loopy > *bottomMost) *bottomMost = loopy;
+                if (loopy < topMost) topMost = loopy;
+                if (loopy > bottomMost) bottomMost = loopy;
             }
         }
         //printf("\n");
     }
 
-    (*bottomMost)++;
+   bottomMost++;
 
     //printf("\nTop/Bottom Extents - Top: %d, Bottom: %d\n", *topMost, *bottomMost);
 }
 
 
-void SpriteUtils::FindLeftRightExtentsForSlice(BYTE* byteData, int width, int sliceTop, int sliceBottom, int& leftMost, int& rightMost, bool sliceSpritesOnGrid)
+void SpriteUtils::FindLeftRightExtentsForSlice(BYTE* byteData, 
+											   int width, 
+											   int sliceTop, 
+											   int sliceBottom, 
+											   int& leftMost, 
+											   int& rightMost, 
+											   bool sliceSpritesOnGrid)
 {
 	// Determine the width of the slice.
 	if (sliceSpritesOnGrid)
@@ -202,6 +208,48 @@ bool SpriteUtils::CopySpriteFromByteData(BYTE* byteData,
 	endPositionY = top + spriteHeight;
 
 	return atLeastOnePixel;
+}
+
+
+bool SpriteUtils::CopyTileFromBitmap(BYTE* bitmap, 
+									 int bitmapWidth, 
+									 int bitmapHeight,
+									 Tile& tile, 
+									 int startX, 
+									 int startY)
+{
+	int endX = startX + TILE_WIDTH;
+	int endY = startY + TILE_HEIGHT;
+
+	bool foundAtLeastOnePixel = false;
+
+	tile.resize(TILE_WIDTH * TILE_HEIGHT);
+	std::fill(tile.begin(), tile.end(), 0);
+
+	int j = 0;
+	for (int loopy = startY; loopy < endY; loopy++, j++)
+	{
+		if (loopy > bitmapHeight - 1)
+			break;
+
+		int i = 0;
+		for (int loopx = startX; loopx < endX; loopx++, i++)
+		{
+			if (loopx > bitmapWidth - 1)
+				break;
+
+			BYTE value = bitmap[loopx + (loopy * bitmapWidth)];
+
+			if (value > 0)
+			{
+				foundAtLeastOnePixel = true;
+			}
+
+			tile[i + (j * TILE_WIDTH)] = value;
+		}
+	}
+
+	return foundAtLeastOnePixel;
 }
 
 void SpriteUtils::PrintSprite(const std::vector<BYTE>& spriteData, int spriteWidth, int spriteHeight)

@@ -2462,148 +2462,148 @@ const BatchedAnimationSprite ninja_girlFrame0BatchedSprite[] =
 
 const BatchedAnimationSprite ninja_girlFrame1BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 12 } },
+    { 3, { -12, 0, 18 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame2BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 24 } },
+    { 3, { -12, 0, 30 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame3BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -10, 0, 6 } },
+    { 3, { -10, -16, 36 } },
+    { 3, { -10, 0, 42 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame4BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -10, 0, 6 } },
+    { 3, { -10, -16, 48 } },
+    { 3, { -10, 0, 54 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame5BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 60 } },
+    { 3, { -12, 0, 66 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame6BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 72 } },
+    { 3, { -12, 0, 78 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame7BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -10, 0, 6 } },
+    { 3, { -10, -16, 84 } },
+    { 3, { -10, 0, 90 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame8BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 96 } },
+    { 3, { -12, 0, 102 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame9BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -12, 0, 6 } },
+    { 3, { -10, -16, 108 } },
+    { 3, { -12, 0, 114 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame10BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -10, 0, 6 } },
+    { 3, { -10, -16, 120 } },
+    { 3, { -10, 0, 126 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame11BatchedSprite[] = 
 {
-    { 3, { -10, -16, 0 } },
-    { 3, { -10, 0, 6 } },
+    { 3, { -10, -16, 132 } },
+    { 3, { -10, 0, 138 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame12BatchedSprite[] = 
 {
-    { 4, { -9, -16, 0 } },
-    { 3, { -11, 0, 8 } },
+    { 4, { -9, -16, 144 } },
+    { 3, { -11, 0, 152 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame13BatchedSprite[] = 
 {
-    { 3, { -9, -14, 0 } },
-    { 3, { -9, 2, 6 } },
+    { 3, { -9, -14, 158 } },
+    { 3, { -9, 2, 164 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame14BatchedSprite[] = 
 {
-    { 4, { -20, -16, 0 } },
-    { 3, { -11, 0, 8 } },
+    { 4, { -20, -16, 170 } },
+    { 3, { -11, 0, 178 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame15BatchedSprite[] = 
 {
-    { 3, { -15, -14, 0 } },
-    { 3, { -11, 2, 6 } },
+    { 3, { -15, -14, 184 } },
+    { 3, { -11, 2, 190 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame16BatchedSprite[] = 
 {
-    { 3, { -12, -9, 0 } },
-    { 3, { -14, 7, 6 } },
+    { 3, { -12, -9, 196 } },
+    { 3, { -14, 7, 202 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame17BatchedSprite[] = 
 {
-    { 4, { -11, -9, 0 } },
-    { 3, { -13, 7, 8 } },
+    { 4, { -11, -9, 208 } },
+    { 3, { -13, 7, 216 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame18BatchedSprite[] = 
 {
-    { 3, { -10, -9, 0 } },
-    { 3, { -12, 7, 6 } },
+    { 3, { -10, -9, 222 } },
+    { 3, { -12, 7, 228 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame19BatchedSprite[] = 
 {
-    { 3, { -10, -9, 0 } },
-    { 3, { -9, 7, 6 } },
+    { 3, { -10, -9, 234 } },
+    { 3, { -9, 7, 240 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame20BatchedSprite[] = 
 {
-    { 4, { -18, -9, 0 } },
-    { 3, { -10, 7, 8 } },
+    { 4, { -18, -9, 246 } },
+    { 3, { -10, 7, 254 } },
     {0},
 };
 
 const BatchedAnimationSprite ninja_girlFrame21BatchedSprite[] = 
 {
-    { 3, { -12, -9, 0 } },
-    { 3, { -9, 7, 6 } },
+    { 3, { -12, -9, 260 } },
+    { 3, { -9, 7, 266 } },
     {0},
 };
 

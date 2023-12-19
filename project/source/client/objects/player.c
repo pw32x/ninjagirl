@@ -537,7 +537,7 @@ BOOL Player_Draw(GameObject* object)
 						  *object->streamedBatchedAnimation->vdpLocation);
 
 	// why would the player sprite ever be clipped?
-	DrawUtils_DrawBatched();
+	DrawUtils_DrawStreamedBatched();
 
 	return TRUE;
 }

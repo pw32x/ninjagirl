@@ -21,7 +21,7 @@ public:
 	public:
 		Sprite(int xPositionOffset,
 			   int yPositionOffset,
-			   SpriteStripStore::SpriteStrip& spriteStrip)
+			   const SpriteStripStore::SpriteStrip& spriteStrip)
 			: m_xPositionOffset(xPositionOffset)
 			, m_yPositionOffset(yPositionOffset)
 			, m_spriteStrip(spriteStrip)
@@ -29,7 +29,7 @@ public:
 
 		int m_xPositionOffset;
 		int m_yPositionOffset;
-		const SpriteStripStore::SpriteStrip& m_spriteStrip;
+		const SpriteStripStore::SpriteStrip m_spriteStrip;
 	};
 
 public:
@@ -37,22 +37,21 @@ public:
 
 	void Init(int frameNumber, 
 			  const GraphicsGaleObject& ggo, 
-	          TileStore& tileStore, 
 			  SpriteStripStore& spriteStripStore,
 			  AnimationProperties& animationProperties);
 
 	const std::vector<Sprite>& getSprites() const { return m_sprites; }
 
+	int GetMaxTilesInAFrame();
+
 private:
 	void BuildFrame(const GraphicsGaleObject& ggo, 
-					TileStore& tileStore, 
 					SpriteStripStore& spriteStripStore,
 					std::vector<Sprite>& sprites);
 
 	void SliceImageIntoStrips(BYTE* bitmap, 
 							  int bitmapWidth, 
 							  int bitmapHeight, 
-							  TileStore& tileStore, 
 							  SpriteStripStore& spriteStripStore,
 							  std::vector<Sprite>& sprites);
 

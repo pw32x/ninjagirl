@@ -289,10 +289,7 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 	u16 vdpIndex = *gameObject->streamedBatchedAnimation->vdpLocation + 256;
 
 	const BatchedAnimationSprite* runner = streamedBatchedAnimationFrame->batchedSprites;
-	u16 tileIndex = streamedBatchedAnimationFrame->tileIndex;
-
-	// assumes tiles are stored linearly, with no deduplication to make copying
-	// to vdp as simple as possible.
+	//u16 tileIndex = streamedBatchedAnimationFrame->tileIndex;
 
 	while (runner->count)
 	{
@@ -300,7 +297,7 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 
 		u8 tileCount = runner->count << 1;
 
-		u16 tileOffset = tileData + ((tileIndex + runner->sprite.tileIndex) << 5);
+		u16 tileOffset = tileData + (runner->sprite.tileIndex << 5);
 
 		switch (tileCount)
 		{
