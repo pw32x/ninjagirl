@@ -7,5 +7,9 @@
 
 RESOURCE(BANK2) extern const BatchedAnimation walker_big;
 
+// frame numbers for specific animations.
+#define WALKER_BIG_RUN_RIGHT_FRAME_INDEX 0
+#define WALKER_BIG_RUN_LEFT_FRAME_INDEX 4
+
 #endif
 

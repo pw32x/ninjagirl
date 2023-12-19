@@ -15,10 +15,10 @@
 
 
 # out folder
-out/
-outFolder/
-!out/NinjaGirl.map
+project/out/*
 
+# except this file
+!/project/out/NinjaGirl.map
 
 # Mono auto generated files
 mono_crash.*

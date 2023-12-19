@@ -10,6 +10,7 @@ extern const ResourceInfo explosionResourceInfo;
 extern const ResourceInfo impactResourceInfo;
 extern const ResourceInfo kunaiResourceInfo;
 extern const ResourceInfo ninja_girlResourceInfo;
+extern const ResourceInfo robotrunnerResourceInfo;
 extern const ResourceInfo rock_particleResourceInfo;
 extern const ResourceInfo walkerResourceInfo;
 extern const ResourceInfo walker_bigResourceInfo;
