@@ -19,8 +19,6 @@ const void printResourceTypeName(u8 resourceType)
 {
 	switch (resourceType)
 	{
-	case REGULAR_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("Regular Animation"); return;
-	case STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE	: SMS_debugPrintf("Streamed Regular Animation"); return;
 	case BATCHED_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("Batched Animation"); return;
 	case STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE	: SMS_debugPrintf("Streamed Batched Animation"); return;
 	case PLANE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Plane Animation"); return;
@@ -39,8 +37,6 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	memset(ResourceManager_setupFunctions, 0, sizeof(ResourceManager_setupFunctions));
 
 	// Load
-	ResourceManager_loadFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_AnimationResource;
-	ResourceManager_loadFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedAnimationResource;
 	ResourceManager_loadFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_BatchedAnimationResource;
 	ResourceManager_loadFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedBatchedAnimationResource;
 	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
@@ -50,8 +46,6 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	ResourceManager_loadFunctions[ANIMATED_TILESET_RESOURCE_TYPE] = (LoadFunc)Load_AnimatedTilesetResource;
 
 	// Setup
-	ResourceManager_setupFunctions[REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_AnimationResource;
-	ResourceManager_setupFunctions[STREAMED_REGULAR_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedAnimationResource;
 	ResourceManager_setupFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
 	ResourceManager_setupFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_StreamedBatchedAnimationResource;
 	ResourceManager_setupFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_PlaneAnimationResource;

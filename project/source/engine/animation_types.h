@@ -11,6 +11,7 @@ typedef struct
     u8 tileIndex;
 } AnimationSprite;
 
+/*
 typedef struct animation_frame
 {
     const AnimationSprite* const sprites;
@@ -33,32 +34,7 @@ typedef struct
     u8 totalTileCount;
     u8* vdpLocation;
 } Animation;
-
-// streamed version
-
-
-typedef struct streamed_animation_frame
-{
-    const AnimationSprite* const sprites;
-    u8 numSprites;
-    u8 tileIndex;
-    u8 frameTime;
-    struct streamed_animation_frame* nextFrame;
-} StreamedAnimationFrame;
-
-typedef struct
-{
-    u8 resourceType;
-    const StreamedAnimationFrame** const frames;
-    const u8* const tileData;
-
-    u8 numFrames;
-    u8 pixelWidth;
-    u8 pixelHeight;
-    u8 totalTileCount;
-    u8 maxTilesInFrame;
-    u8* vdpLocation;
-} StreamedAnimation;
+*/
 
 // batched. a sprite call contains multiple sprites. for use with the SMS_add***AdjoiningSprites functions.
 
@@ -85,11 +61,9 @@ typedef struct
     u8 numFrames;
     u8 pixelWidth;
     u8 pixelHeight;
-    //u8 maxTilesPerFrame;
-
     u8 totalTileCount;
+    //u8 maxTilesPerFrame;
     u8* vdpLocation;
-
 } BatchedAnimation;
 
 

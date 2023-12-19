@@ -14,9 +14,7 @@ typedef struct game_object
 	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);
 	union
 	{
-		const Animation* animation;
 		const BatchedAnimation* batchedAnimation;
-		const StreamedAnimation* streamedAnimation;
 		const StreamedBatchedAnimation* streamedBatchedAnimation;
 		const PlaneAnimation* planeAnimation;
 		const TileAnimation* tileAnimation;
@@ -24,9 +22,7 @@ typedef struct game_object
 
 	union
 	{
-		const AnimationFrame* currentAnimationFrame;
 		const BatchedAnimationFrame* currentBatchedAnimationFrame;
-		const StreamedAnimationFrame* currentStreamedAnimationFrame;
 		const StreamedBatchedAnimationFrame* currentStreamedBatchedAnimationFrame;
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;
 		const TileAnimationFrame* currentTileAnimationFrame;

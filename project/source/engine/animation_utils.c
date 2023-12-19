@@ -3,24 +3,6 @@
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
 
-u8 AnimationUtils_updateAnimation(GameObject* gameObject)
-{
-	if (!gameObject->animationTime--)
-	{
-		gameObject->currentAnimationFrame = gameObject->currentAnimationFrame->nextFrame;
-
-		if (gameObject->currentAnimationFrame == NULL)
-		{
-			return ANIMATION_FINISHED;
-		}
-
-		gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
-		return ANIMATION_CHANGED_FRAME;
-	}
-
-	return ANIMATION_NO_CHANGE;
-}
-
 u8 AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 {
 	if (!gameObject->animationTime--)
@@ -59,27 +41,6 @@ u8 AnimationUtils_updateBatchedAnimation_noLoop(GameObject* gameObject)
 }
 
 // streamed
-
-
-
-u8 AnimationUtils_updateStreamedAnimation(GameObject* gameObject)
-{
-	if (!gameObject->animationTime--)
-	{
-		gameObject->currentStreamedAnimationFrame = gameObject->currentStreamedAnimationFrame->nextFrame;
-
-		if (gameObject->currentStreamedAnimationFrame == NULL)
-		{
-			return ANIMATION_FINISHED;
-		}
-
-		gameObject->animationTime = gameObject->currentStreamedAnimationFrame->frameTime;
-		return ANIMATION_CHANGED_FRAME;
-	}
-
-	return ANIMATION_NO_CHANGE;
-}
-
 u8 AnimationUtils_updateStreamedBatchedAnimation(struct game_object* gameObject)
 {
 	if (!gameObject->animationTime--)
@@ -138,14 +99,6 @@ void AnimationUtils_setStreamedBatchedAnimationFrame(struct game_object* gameObj
 	gameObject->animationTime = gameObject->currentStreamedBatchedAnimationFrame->frameTime;
 }
 
-u16 Load_AnimationResource(const ResourceInfo* resourceInfo)
-{
-	const Animation* animation = (const Animation*)resourceInfo->resource;
-
-	return VDPTileManager_LoadSpriteTiles(animation->tileData, 
-										  animation->totalTileCount,
-										  animation->vdpLocation);
-}
 
 u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
@@ -154,14 +107,6 @@ u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 	return VDPTileManager_LoadSpriteTiles(batchedAnimation->tileData, 
 										  batchedAnimation->totalTileCount,
 										  batchedAnimation->vdpLocation);
-}
-
-u16 Load_StreamedAnimationResource(const ResourceInfo* resourceInfo)
-{
-	const StreamedAnimation* streamedAnimation = (const StreamedAnimation*)resourceInfo->resource;
-
-	return VDPTileManager_ReserveSpriteTilesArea(streamedAnimation->maxTilesInFrame,
-												 streamedAnimation->vdpLocation);
 }
 
 u16 Load_StreamedBatchedAnimationResource(const ResourceInfo* resourceInfo)
@@ -190,20 +135,6 @@ u16 Load_TileAnimationResource(const ResourceInfo* resourceInfo)
 												tileAnimation->vdpLocation);
 }
 
-u16 Setup_AnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
-{
-	const Animation* animation = (const Animation*)resourceInfo->resource;
-
-	gameObject->animation = animation;
-	gameObject->currentAnimationFrameIndex = 0;
-	gameObject->currentAnimationFrame = animation->frames[0];
-	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
-	gameObject->pixelWidth = animation->pixelWidth;
-	gameObject->pixelHeight = animation->pixelHeight;
-	gameObject->UpdateAnimation = AnimationUtils_updateAnimation;
-
-	return 0;
-}
 
 u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
@@ -216,21 +147,6 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Resourc
 	gameObject->pixelWidth = batchedAnimation->pixelWidth;
 	gameObject->pixelHeight = batchedAnimation->pixelHeight;
 	gameObject->UpdateAnimation = AnimationUtils_updateBatchedAnimation;
-
-	return 0;
-}
-
-u16 Setup_StreamedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
-{
-	const StreamedAnimation* streamedAnimation = (const StreamedAnimation*)resourceInfo->resource;
-
-	gameObject->streamedAnimation = streamedAnimation;
-	gameObject->currentAnimationFrameIndex = 0;
-	gameObject->currentStreamedAnimationFrame = streamedAnimation->frames[0];
-	gameObject->animationTime = gameObject->currentAnimationFrame->frameTime;
-	gameObject->pixelWidth = streamedAnimation->pixelWidth;
-	gameObject->pixelHeight = streamedAnimation->pixelHeight;
-	gameObject->UpdateAnimation = AnimationUtils_updateStreamedAnimation;
 
 	return 0;
 }
