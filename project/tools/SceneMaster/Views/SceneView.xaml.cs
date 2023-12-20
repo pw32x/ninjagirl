@@ -3,11 +3,11 @@
 namespace SceneMaster
 {
     /// <summary>
-    /// Interaction logic for SceneMasterDocumentView.xaml
+    /// Interaction logic for SceneView.xaml
     /// </summary>
-    public partial class SceneMasterDocumentView : UserControl
+    public partial class SceneView : UserControl
     {
-        public SceneMasterDocumentView()
+        public SceneView()
         {
             InitializeComponent();
         }

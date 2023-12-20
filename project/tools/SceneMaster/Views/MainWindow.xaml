@@ -4,10 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SceneMaster" 
-        xmlns:converters="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+        xmlns:converters="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:viewmodels="clr-namespace:SceneMaster.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
-        d:DataContext ="{d:DesignInstance local:MainViewModel, IsDesignTimeCreatable=True}">
+        d:DataContext="{d:DesignInstance viewmodels:MainViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
         <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </Window.Resources>
@@ -17,7 +17,7 @@
         <KeyBinding Command="{Binding OpenCommand}" Gesture="Ctrl+O"/>
         <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"/>
         <KeyBinding Command="{Binding SaveAsCommand}" Gesture="Ctrl+Shift+S"/>
-        <KeyBinding Command="{Binding ImportGalFileCommand}" Gesture="Ctrl+I"/>
+        <KeyBinding Command="{Binding ImportTiledMapCommand}" Gesture="Ctrl+I"/>
         <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4"/>
     </Window.InputBindings>
     
@@ -30,7 +30,7 @@
                 <MenuItem Header="_Save"  InputGestureText="Ctrl+S" Command="{Binding SaveCommand}"/>
                 <MenuItem Header="Save _As..." InputGestureText="Ctrl+Shift+S" Command="{Binding SaveAsCommand}"/>
                 <Separator />
-                <MenuItem Header="_Import .Gal File" InputGestureText="Ctrl+I" Command="{Binding ImportGalFileCommand}"/>
+                <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}"/>
                 <Separator />
                 <MenuItem Header="_Exit" InputGestureText="Alt+F4" Command="{Binding ExitCommand}"/>
             </MenuItem>

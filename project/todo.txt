@@ -1,49 +1,14 @@
 Todo
 
-	Sprite Master C++
+	SceneMaster			
 
-		NAH reuse identical frames
-	
-		NAH add slice style
-			smallest area (default)
-			grid
-			rows
-			columns
+		remove unneeded SpriteMaster bits
 
-		NAH In Graphics Gale
-			No specifier:
-			default: Normal
-			
-			applies to single frame:
-			Slice:SmallestArea
-			Slice:Columns
-			Slice:Rows
-			Slice:FixedGrid
-				
-			applies to all frames:
-			DefaultSlice:SmallestArea
-			DefaultSlice:Columns
-			DefaultSlice:Rows
-			DefaultSlice:FixedGrid
-			
-		FIXED plane animation seems to not work
-			a 2 frame animation only exports 1 frame.
-
-	DONE make all projects use visual studio 2022
-
-	SpriteMaster
-
-		DONE reuse identical spans
-			identical in size and location
-			
-			subspans? 
-				a span of 3 could be found in a span of 4 with identical tiles
-
-	DONE check sprite usage of other sprites
-
-	
-	object placement tool
-		SceneMaster			
+		load Tiled tileset
+		load Tiled map (or fake one)
+		display map with tiles
+		zoom/scroll/pan map display
+		click on map, get position on map
 
 	have object switch to their animation's bank when calling update function?
 

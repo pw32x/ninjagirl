@@ -28,7 +28,7 @@ namespace SceneMaster.ViewModels
             SaveCommand = new RelayCommand(SaveNoReturn);
             SaveAsCommand = new RelayCommand(SaveAs);
             ExitCommand = new RelayCommand(Exit);
-            ImportGalFileCommand = new RelayCommand(ImportGalFile);
+            ImportTiledMapCommand = new RelayCommand(ImportGalFile);
         }
 
         public ICommand NewCommand { get; }
@@ -36,7 +36,7 @@ namespace SceneMaster.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
-        public ICommand ImportGalFileCommand { get; }
+        public ICommand ImportTiledMapCommand { get; }
 
 
         private void New()
@@ -115,11 +115,11 @@ namespace SceneMaster.ViewModels
             fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
         }
 
-        private void SetGraphicsGaleFileExtensions(FileDialog fileDialog)
+        private void SetTiledMapFileExtensions(FileDialog fileDialog)
         {
             // Filter files by extension
-            string extension = SceneMasterDocument.GraphicsGaleFileExtension;
-            string documentType = SceneMasterDocument.GraphicsGaleFileTypeName;
+            string extension = SceneMasterDocument.TiledMapFileExtension;
+            string documentType = SceneMasterDocument.TiledMapFileTypeName;
             fileDialog.DefaultExt = extension;
             fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
         }
@@ -158,21 +158,21 @@ namespace SceneMaster.ViewModels
 
         private void ImportGalFile()
         {
-            if (!string.IsNullOrEmpty(CurrentDocument.SceneMasterData.GalFilePath))
+            if (!string.IsNullOrEmpty(CurrentDocument.Scene.TiledMapFilePath))
             { 
-                string message = "Completely reset the contents of the Scene Master file with a new Graphics Gale file?";
+                string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
                 if (MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
                     return;
             }
 
             var openFileDialog = new OpenFileDialog();
 
-            SetGraphicsGaleFileExtensions(openFileDialog);
+            SetTiledMapFileExtensions(openFileDialog);
 
             if (openFileDialog.ShowDialog() == false)
                 return;
 
-            CurrentDocument.ImportGalFile(openFileDialog.FileName);
+            CurrentDocument.ImportTiledMap(openFileDialog.FileName);
         }
     }
 }

@@ -3,12 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SceneMaster"
-             mc:Ignorable="d" 
-             d:DataContext ="{d:DesignInstance local:SceneMasterDocument, IsDesignTimeCreatable=True}"
+             xmlns:local="clr-namespace:SceneMaster" 
+             xmlns:viewmodels="clr-namespace:SceneMaster.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance viewmodels:SceneMasterDocument, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
-    <StackPanel>
-        <Button Command="{Binding ModifyDocumentCommand}" Width="60" Height="20"/>
-        <local:SceneMasterDataView DataContext="{Binding SceneMasterData}" Width="300" Height="200"/>
-    </StackPanel>
+    <Grid>
+        <!--<Button Command="{Binding ModifyDocumentCommand}" Width="60" Height="20"/>-->
+        <local:SceneView DataContext="{Binding Scene}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+    </Grid>
 </UserControl>

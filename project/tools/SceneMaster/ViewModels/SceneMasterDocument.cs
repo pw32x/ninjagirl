@@ -1,10 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System;
 using System.IO;
-using System.Windows;
 using System.Windows.Input;
-using System.Xml.Serialization;
 
 namespace SceneMaster.ViewModels
 {
@@ -17,11 +14,11 @@ namespace SceneMaster.ViewModels
             private set => SetProperty(ref m_isModified, value);
         }
 
-        public static string SceneMasterDocumentFileExtension => ".scenem";
+        public static string SceneMasterDocumentFileExtension => ".scm";
         public static string DocumentTypeName => "Scene Master";
 
-        public static string GraphicsGaleFileExtension => ".gal";
-        public static string GraphicsGaleFileTypeName => "Graphics Gale";
+        public static string TiledMapFileExtension => ".tmx";
+        public static string TiledMapFileTypeName => "Tiled map";
 
         public string DefaultFilename => "Untitled Scene Master Document" + SceneMasterDocumentFileExtension;
         
@@ -43,27 +40,27 @@ namespace SceneMaster.ViewModels
             private set => SetProperty(ref m_filename, value);
         }
 
-        private SceneMasterData m_sceneMasterData;
-        public SceneMasterData SceneMasterData
+        private Scene m_scene;
+        public Scene Scene
         {
-            get => m_sceneMasterData;
+            get => m_scene;
             private set
             {
-                if (m_sceneMasterData != null) 
+                if (m_scene != null) 
                 { 
-                    m_sceneMasterData.PropertyChanged -= SceneMasterData_PropertyChanged;
+                    m_scene.PropertyChanged -= Scene_PropertyChanged;
                 }
 
-                SetProperty(ref m_sceneMasterData, value);
+                SetProperty(ref m_scene, value);
 
-                if (m_sceneMasterData != null) 
+                if (m_scene != null) 
                 {
-                    m_sceneMasterData.PropertyChanged += SceneMasterData_PropertyChanged;
+                    m_scene.PropertyChanged += Scene_PropertyChanged;
                 }
             }
         }
 
-        private void SceneMasterData_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             IsModified = true;
         }
@@ -72,7 +69,7 @@ namespace SceneMaster.ViewModels
 
         public SceneMasterDocument()
         {
-            SceneMasterData = new SceneMasterData();
+            Scene = new Scene();
 
             FilePath = DefaultFilename;
 
@@ -83,8 +80,8 @@ namespace SceneMaster.ViewModels
 
         public bool Load(string filePath)
         {
-            SceneMasterData = new SceneMasterData();
-            SceneMasterData.Load(filePath);
+            Scene = new Scene();
+            Scene.Load(filePath);
 
             FilePath = filePath;
             IsFilePathSet = true;
@@ -95,7 +92,7 @@ namespace SceneMaster.ViewModels
 
         public bool Save(string filePath)
         {
-            SceneMasterData.Save(filePath);
+            Scene.Save(filePath);
 
             FilePath = filePath;
             IsFilePathSet = true;
@@ -109,9 +106,9 @@ namespace SceneMaster.ViewModels
             IsModified = true;
         }
 
-        internal void ImportGalFile(string galFilePath)
+        internal void ImportTiledMap(string tiledMapFilePath)
         {
-            SceneMasterData.ImportGraphicsGaleFile(galFilePath);
+            Scene.ImportTiledMap(tiledMapFilePath);
         }
     }
 }
