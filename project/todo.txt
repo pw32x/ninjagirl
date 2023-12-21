@@ -8,11 +8,12 @@ Todo
 		DONE display map with tiles
 		
 		
-		zoom/scroll/pan map display
+		DONE zoom/scroll/pan map display
 			don't stretch or squash. keep aspect ratio at all times
-		click on map, get position on map
+			
+		DONE click on map, get position on map
 
-
+		draw something overtop the map
 
 	have object switch to their animation's bank when calling update function?
 

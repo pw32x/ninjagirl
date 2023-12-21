@@ -1,16 +1,42 @@
 ﻿<UserControl x:Class="SceneMaster.SceneView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SceneMaster" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:SceneMaster.Controls"
              xmlns:viewmodels="clr-namespace:SceneMaster.ViewModels"
              mc:Ignorable="d"
              d:DataContext ="{d:DesignInstance viewmodels:Scene, IsDesignTimeCreatable=True}"
              d:DesignHeight="301" d:DesignWidth="512"
+             DataContextChanged="UserControl_DataContextChanged"
              >
     <Grid Background="Blue">
-        <TextBlock Text="{Binding TiledMapFilename}" d:Text="Path To Tiled Map"/>
-        <Image Source="{Binding TiledMapBitmapSource}" Margin="67,28,43,104"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+            <controls:ZoomBorderCustom x:Name="ZoomBorder" 
+                            Stretch="None" ZoomSpeed="1.2"
+                            Background="SlateBlue" 
+                            ClipToBounds="True" 
+                            Focusable="True"
+                            VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Stretch"
+                            PanButton="Middle">
+                <Image x:Name="TileMapBitmapImage"  Source="{Binding TiledMapBitmapSource}"
+                       RenderOptions.BitmapScalingMode="NearestNeighbor"
+                       MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+            </controls:ZoomBorderCustom>
+        </ScrollViewer>
+        <StatusBar Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding TiledMapFilename}" d:Text="Path To Tiled Map"/>
+                <Button Content="Reset" Click="Button_ClickReset"/>
+            </StackPanel>
+        </StatusBar>
     </Grid>
 </UserControl>
