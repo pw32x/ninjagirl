@@ -1,7 +1,16 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Linq;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Xml;
+using TiledCS;
 
 namespace SceneMaster.ViewModels
 {
@@ -31,19 +40,30 @@ namespace SceneMaster.ViewModels
 
         public Scene()
         {
+            //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
         }
 
-        //private GaleObject m_tiledMap;
-        //public GaleObject TiledMap { get => m_tiledMap; private set => SetProperty(ref m_tiledMap, value); }
+        private TiledMap m_tiledMap;
+        private string m_tiledMapDirectory;
+
+        public TiledMap TiledMap { get => m_tiledMap; private set => SetProperty(ref m_tiledMap, value); }
+
+        private Dictionary<int, TiledTileset> m_tiledMapTilesets;
+        private IEnumerable<TiledLayer> m_tileMapTileLayers;
+
+        // visual of the actual Tiled map
+        private Bitmap m_tiledMapBitmap;
+        public Bitmap TiledMapBitmap { get => m_tiledMapBitmap; private set => SetProperty(ref m_tiledMapBitmap, value); }
+        private BitmapSource m_tiledMapBitmapSource;
+        public BitmapSource TiledMapBitmapSource { get => m_tiledMapBitmapSource; private set => SetProperty(ref m_tiledMapBitmapSource, value); }
 
         public void ImportTiledMap(string tiledMapFilePath)
-        { 
+        {
             if (!File.Exists(tiledMapFilePath))
                 throw new Exception($"File {tiledMapFilePath} doesn't exist.");
 
             TiledMapFilePath = tiledMapFilePath;
-
-            //m_tiledMap = new GaleObject(m_tiledMapFilePath);
+            LoadTiledMap(tiledMapFilePath);
         }
 
         public bool Load(string filePath)
@@ -60,6 +80,7 @@ namespace SceneMaster.ViewModels
             if (ggFilePathNode != null && !string.IsNullOrEmpty(ggFilePathNode.InnerText))
             {
                 TiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), ggFilePathNode.InnerText);
+                LoadTiledMap(TiledMapFilePath);
             }
 
             return true;
@@ -82,6 +103,102 @@ namespace SceneMaster.ViewModels
             doc.Save(filePath);
 
             return true;
+        }
+
+        private void LoadTiledMap(string tiledMapFilePath)
+        {
+            m_tiledMap = new TiledMap(tiledMapFilePath);
+
+            m_tiledMapDirectory = StringUtils.EnsureTrailingSlash(Path.GetDirectoryName(tiledMapFilePath));
+
+            m_tiledMapTilesets = m_tiledMap.GetTiledTilesets(m_tiledMapDirectory);
+            m_tileMapTileLayers = m_tiledMap.Layers.Where(x => x.type == TiledLayerType.TileLayer);
+
+            TiledMapBitmapSource = BuildTiledMapBitmapSource();
+        }
+
+        private BitmapSource BuildTiledMapBitmapSource()
+        {
+            WriteableBitmap writeableBitmap = new WriteableBitmap(m_tiledMap.Width * m_tiledMap.TileWidth, 
+                                                                 m_tiledMap.Height * m_tiledMap.TileHeight, 
+                                                                 96, 
+                                                                 96, 
+                                                                 PixelFormats.Bgr32, 
+                                                                 null);
+
+            var tilesetBitmaps = new Dictionary<string, BitmapSource>();
+            foreach (var tileset in m_tiledMapTilesets.Values)
+            {
+                string source = tileset.Image.source;
+                BitmapImage bitmapImage = new BitmapImage(new Uri(m_tiledMapDirectory + source, UriKind.RelativeOrAbsolute));
+
+                FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, PixelFormats.Bgr32, null, 0);
+
+                tilesetBitmaps.Add(source, convertedBitmap);
+            }
+
+            try
+            {
+                writeableBitmap.Lock();
+
+                foreach (var layer in m_tileMapTileLayers)
+                {
+                    for (var y = 0; y < layer.height; y++)
+                    {
+                        for (var x = 0; x < layer.width; x++)
+                        {
+                            var index = (y * layer.width) + x; // Assuming the default render order is used which is from right to bottom
+                            var gid = layer.data[index]; // The tileset tile index
+                            var tileX = (x * m_tiledMap.TileWidth);
+                            var tileY = (y * m_tiledMap.TileHeight);
+
+                            // Gid 0 is used to tell there is no tile set
+                            if (gid == 0)
+                            {
+                                continue;
+                            }
+
+                            // Helper method to fetch the right TieldMapTileset instance. 
+                            // This is a connection object Tiled uses for linking the correct tileset to the gid value using the firstgid property.
+                            var mapTileset = m_tiledMap.GetTiledMapTileset(gid);
+            
+                            // Retrieve the actual tileset based on the firstgid property of the connection object we retrieved just now
+                            var tileset = m_tiledMapTilesets[mapTileset.firstgid];
+            
+                            // Use the connection object as well as the tileset to figure out the source rectangle.
+                            var rect = m_tiledMap.GetSourceRect(mapTileset, tileset, gid);
+            
+                            // Render sprite at position tileX, tileY using the rect
+
+                            var bitmapImage = tilesetBitmaps[tileset.Image.source];
+
+                            // Copy pixel data from the BitmapImage to the WriteableBitmap
+                            Int32Rect sourceRect = new Int32Rect(rect.x, rect.y, rect.width, rect.height);
+                            var stride = (sourceRect.Width * bitmapImage.Format.BitsPerPixel + 7) / 8; // here
+
+                            byte[] pixelData = new byte[stride * sourceRect.Height];
+                            bitmapImage.CopyPixels(sourceRect, pixelData, stride, 0);
+
+                            Int32Rect destRect = new Int32Rect(x * m_tiledMap.TileWidth, 
+                                                               y * m_tiledMap.TileHeight,
+                                                               m_tiledMap.TileWidth, 
+                                                               m_tiledMap.TileHeight);
+
+                            writeableBitmap.WritePixels(destRect, 
+                                                        pixelData, 
+                                                        stride, 
+                                                        0);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                // Unlock the WriteableBitmap when done
+                writeableBitmap.Unlock();
+            }
+
+            return writeableBitmap;
         }
     }
 }

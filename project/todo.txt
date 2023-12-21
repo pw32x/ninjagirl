@@ -2,17 +2,19 @@ Todo
 
 	SceneMaster			
 
-		remove unneeded SpriteMaster bits
-
-		load Tiled tileset
-		load Tiled map (or fake one)
-		display map with tiles
+		DONE remove unneeded SpriteMaster bits
+		DONE load Tiled tileset
+		DONE load Tiled map (or fake one)
+		DONE display map with tiles
+		
+		
 		zoom/scroll/pan map display
+			don't stretch or squash. keep aspect ratio at all times
 		click on map, get position on map
 
+
+
 	have object switch to their animation's bank when calling update function?
-
-
 
 	be more agressive with sprite reduction during conversion
 		there are a lot of duplicate sprites or sequences that I don't deduplicate
@@ -21,6 +23,7 @@ Todo
 
 	climbing walls?
 
+	compress standard animations
 
 	space pass
 

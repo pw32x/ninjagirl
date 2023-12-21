@@ -11,5 +11,6 @@
              >
     <Grid Background="Blue">
         <TextBlock Text="{Binding TiledMapFilename}" d:Text="Path To Tiled Map"/>
+        <Image Source="{Binding TiledMapBitmapSource}" Margin="67,28,43,104"/>
     </Grid>
 </UserControl>

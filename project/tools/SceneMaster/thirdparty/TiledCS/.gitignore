@@ -1,0 +1,7 @@
+.vscode/
+.vs/
+.idea/
+bin/
+obj/
+out/
+*.nupkg
