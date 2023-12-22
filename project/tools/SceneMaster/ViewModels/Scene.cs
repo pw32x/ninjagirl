@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -16,9 +17,19 @@ namespace SceneMaster.ViewModels
 {
     public class Scene : ObservableObject
     {
+        public class Sprite
+        { 
+            public double X { get; set; }
+            public double Y { get; set; }
+            public BitmapImage Bitmap { get; set; }
+        }
+
+        BitmapImage m_spriteImage;
+
+        private ObservableCollection<Sprite> m_sprites = new ObservableCollection<Sprite>();
+        public ObservableCollection<Sprite> Sprites {  get => m_sprites; }
+
         private const string TiledMapFilePathNodeName = "TiledMapFilePath";
-        //private const string FrameInfosNodeName = "FrameInfos";
-        //private const string FrameInfoNodeName = "FrameInfo";
 
         private string m_tiledMapFilePath = "";
         public string TiledMapFilePath
@@ -40,7 +51,28 @@ namespace SceneMaster.ViewModels
 
         public Scene()
         {
-            //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
+            ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
+
+            m_spriteImage = new BitmapImage();
+            // Set the image source to a file stream
+            m_spriteImage.BeginInit();
+            m_spriteImage.CacheOption = BitmapCacheOption.OnLoad;
+            m_spriteImage.UriSource = new Uri("sprite.png", UriKind.RelativeOrAbsolute);
+            m_spriteImage.EndInit();
+
+            /*
+            m_sprites.Add(new Sprite { X = 0,
+                                       Y = 0,
+                                       Bitmap = m_spriteImage });
+
+            m_sprites.Add(new Sprite { X = 790,
+                                       Y = 224,
+                                       Bitmap = m_spriteImage });
+
+            m_sprites.Add(new Sprite { X = 180,
+                                       Y = 100,
+                                       Bitmap = m_spriteImage });
+            */
         }
 
         private TiledMap m_tiledMap;
@@ -220,13 +252,23 @@ namespace SceneMaster.ViewModels
                                         0);
         }
 
-        internal void LeftClickDown(int bitmapX, int bitmapY)
+        internal Sprite CreateSprite(int x, int y)
         {
+            /*
             var tileX = bitmapX / TiledMap.TileWidth;
             var tileY = bitmapY / TiledMap.TileHeight;
 
             DrawTileToBitmap(TiledMapBitmapSource, tileX, tileY, 2);
             OnPropertyChanged(nameof(TiledMapBitmapSource));
+            */
+
+            var sprite = new Sprite();
+            sprite.X = x; 
+            sprite.Y = y;
+            sprite.Bitmap = m_spriteImage;
+            Sprites.Add(sprite);
+
+            return sprite;
         }
     }
 }

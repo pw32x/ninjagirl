@@ -9,7 +9,7 @@
              d:DataContext ="{d:DesignInstance viewmodels:Scene, IsDesignTimeCreatable=True}"
              d:DesignHeight="301" d:DesignWidth="512"
              DataContextChanged="UserControl_DataContextChanged"
-             >
+             x:Name="SceneMasterSceneView">
     <Grid Background="Blue">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,9 +27,40 @@
                             VerticalAlignment="Stretch" 
                             HorizontalAlignment="Stretch"
                             PanButton="Middle">
-                <Image x:Name="TileMapBitmapImage"  Source="{Binding TiledMapBitmapSource}"
-                       RenderOptions.BitmapScalingMode="NearestNeighbor"
-                       MouseLeftButtonDown="Image_MouseLeftButtonDown"/>
+                <Grid x:Name="MainGrid">
+                    <Image x:Name="TileMapBitmapImage"  Source="{Binding TiledMapBitmapSource}"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           MouseLeftButtonDown="Image_MouseLeftButtonDown" 
+                           LayoutUpdated="TileMapBitmapImage_LayoutUpdated" />
+
+                    <ItemsControl x:Name="SpritesItemControl" 
+                                  ItemsSource="{Binding SpriteViews, ElementName=SceneMasterSceneView}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas x:Name="SpriteCanvas"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left" Value="{Binding X}" />
+                                <Setter Property="Canvas.Top" Value="{Binding Y}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Sprite.Bitmap}" 
+                                       Canvas.Left="{Binding X}" 
+                                       Canvas.Top="{Binding Y}"
+                                       Width="{Binding Width}"
+                                       Height="{Binding Height}"
+                                       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </Grid>
             </controls:ZoomBorderCustom>
         </ScrollViewer>
         <StatusBar Grid.Row="1">
