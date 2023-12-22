@@ -1,19 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+using SceneMaster.ViewModels;
+using System;
 using System.IO;
-using System.Windows.Input;
 
-namespace SceneMaster.ViewModels
+namespace SceneMaster.Documents
 {
-    public class SceneMasterDocument : ObservableObject
+    public class SceneMasterDocument : ObservableObject, IDisposable
     {
-        private bool m_isModified = false;
-        public bool IsModified
-        {
-            get => m_isModified;
-            private set => SetProperty(ref m_isModified, value);
-        }
-
         public static string SceneMasterDocumentFileExtension => ".scm";
         public static string DocumentTypeName => "Scene Master";
 
@@ -40,75 +33,54 @@ namespace SceneMaster.ViewModels
             private set => SetProperty(ref m_filename, value);
         }
 
-        private Scene m_scene;
-        public Scene Scene
-        {
-            get => m_scene;
-            private set
-            {
-                if (m_scene != null) 
-                { 
-                    m_scene.PropertyChanged -= Scene_PropertyChanged;
-                }
-
-                SetProperty(ref m_scene, value);
-
-                if (m_scene != null) 
-                {
-                    m_scene.PropertyChanged += Scene_PropertyChanged;
-                }
-            }
+        private SceneViewModel m_sceneViewModel;
+        public SceneViewModel SceneViewModel 
+        { 
+            get => m_sceneViewModel;
+            set => SetProperty(ref m_sceneViewModel, value);
         }
 
-        private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            IsModified = true;
-        }
 
         public bool IsFilePathSet { get; private set; } = false;
 
         public SceneMasterDocument()
         {
-            Scene = new Scene();
+            SceneViewModel = new SceneViewModel();
 
             FilePath = DefaultFilename;
-
-            ModifyDocumentCommand = new RelayCommand(ModifyDocument);
         }
 
-        public ICommand ModifyDocumentCommand { get; }
+        public void Dispose()
+        {
+            SceneViewModel.Dispose();
+            SceneViewModel = null;
+        }
 
         public bool Load(string filePath)
         {
-            Scene = new Scene();
-            Scene.Load(filePath);
+            SceneViewModel.Dispose();
+            SceneViewModel = new SceneViewModel();
+            SceneViewModel.Load(filePath);
 
             FilePath = filePath;
             IsFilePathSet = true;
-            IsModified = false;
 
             return true;
         }
 
         public bool Save(string filePath)
         {
-            Scene.Save(filePath);
+            SceneViewModel.Save(filePath);
 
             FilePath = filePath;
             IsFilePathSet = true;
-            IsModified = false;
 
             return true;
         }
 
-        public void ModifyDocument()
-        {
-            IsModified = true;
-        }
-
         internal void ImportTiledMap(string tiledMapFilePath)
         {
-            Scene.ImportTiledMap(tiledMapFilePath);
+            SceneViewModel.Scene.ImportTiledMap(tiledMapFilePath);
         }
     }
 }

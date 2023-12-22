@@ -6,9 +6,8 @@
              xmlns:controls="clr-namespace:SceneMaster.Controls"
              xmlns:viewmodels="clr-namespace:SceneMaster.ViewModels"
              mc:Ignorable="d"
-             d:DataContext ="{d:DesignInstance viewmodels:Scene, IsDesignTimeCreatable=True}"
+             d:DataContext ="{d:DesignInstance viewmodels:SceneViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="301" d:DesignWidth="512"
-             DataContextChanged="UserControl_DataContextChanged"
              x:Name="SceneMasterSceneView">
     <Grid Background="Blue">
         <Grid.RowDefinitions>
@@ -28,13 +27,13 @@
                             HorizontalAlignment="Stretch"
                             PanButton="Middle">
                 <Grid x:Name="MainGrid">
-                    <Image x:Name="TileMapBitmapImage"  Source="{Binding TiledMapBitmapSource}"
+                    <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
                            RenderOptions.BitmapScalingMode="NearestNeighbor"
                            MouseLeftButtonDown="Image_MouseLeftButtonDown" 
                            LayoutUpdated="TileMapBitmapImage_LayoutUpdated" />
 
                     <ItemsControl x:Name="SpritesItemControl" 
-                                  ItemsSource="{Binding SpriteViews, ElementName=SceneMasterSceneView}">
+                                  ItemsSource="{Binding SpriteViewModels}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <Canvas x:Name="SpriteCanvas"/>
@@ -61,7 +60,7 @@
         </ScrollViewer>
         <StatusBar Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding TiledMapFilename}" d:Text="Path To Tiled Map"/>
+                <TextBlock Text="{Binding Scene.TiledMapFilename}" d:Text="Path To Tiled Map"/>
                 <Button Content="Reset" Click="Button_ClickReset"/>
             </StackPanel>
         </StatusBar>

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
+using SceneMaster.Documents;
 using System;
 using System.IO;
 using System.Windows;
@@ -44,6 +45,7 @@ namespace SceneMaster.ViewModels
             if (!CheckForSave())
                 return;
 
+            CurrentDocument?.Dispose();
             CurrentDocument = new SceneMasterDocument();
             // Add logic to clear/reset your UI or perform other actions for a new document
         }
@@ -60,11 +62,13 @@ namespace SceneMaster.ViewModels
             if (openFileDialog.ShowDialog() == false)
                 return;
 
+            CurrentDocument?.Dispose();
             CurrentDocument = new SceneMasterDocument();
             
             if (!CurrentDocument.Load(openFileDialog.FileName))
             { 
                 MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
+                CurrentDocument?.Dispose();
                 CurrentDocument = new SceneMasterDocument();
             }
         }
@@ -135,7 +139,7 @@ namespace SceneMaster.ViewModels
 
         private bool CheckForSave()
         {
-            if (CurrentDocument.IsModified)
+            if (CurrentDocument.SceneViewModel.IsModified)
             {
                 var result = MessageBox.Show($"Do you want to save changes to {CurrentDocument.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
 
@@ -158,7 +162,7 @@ namespace SceneMaster.ViewModels
 
         private void ImportGalFile()
         {
-            if (!string.IsNullOrEmpty(CurrentDocument.Scene.TiledMapFilePath))
+            if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
             { 
                 string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
                 if (MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)

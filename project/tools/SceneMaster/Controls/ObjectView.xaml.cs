@@ -1,7 +1,7 @@
-﻿using System.Windows;
+﻿using SceneMaster.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static SceneMaster.SceneView;
 
 namespace SceneMaster.Controls
 {
@@ -39,11 +39,11 @@ namespace SceneMaster.Controls
                 double offsetX = currentPoint.X - startPoint.X;
                 double offsetY = currentPoint.Y - startPoint.Y;
 
-                var spriteView = (SpriteView)DataContext;
-                if (spriteView != null)
+                var spriteViewModel = (SpriteViewModel)DataContext;
+                if (spriteViewModel != null)
                 { 
-                    spriteView.X += offsetX;
-                    spriteView.Y += offsetY;
+                    spriteViewModel.X += offsetX;
+                    spriteViewModel.Y += offsetY;
                 }
 
                 startPoint = currentPoint;

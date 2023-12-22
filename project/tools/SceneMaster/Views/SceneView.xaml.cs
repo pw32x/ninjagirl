@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using static SceneMaster.ViewModels.Scene;
+using SceneMaster.Models;
 
 namespace SceneMaster
 {
@@ -16,109 +16,9 @@ namespace SceneMaster
     /// </summary>
     public partial class SceneView : UserControl
     {
-        // Sprites in the scene are relative to the bitmap of the tiled map
-        // but the sprites we see in the view are relative to the MainGrid
-        public class SpriteView : ObservableObject
-        { 
-            public SpriteView(Sprite sprite)
-            {
-                Sprite = sprite;
-            }
-
-            public void Refresh()
-            {
-                OnPropertyChanged("X");
-                OnPropertyChanged("Y");
-                OnPropertyChanged("Width");
-                OnPropertyChanged("Height");
-            }
-
-            public double X 
-            { 
-                get => (Sprite.X * ImageToMapRatio) + GridToImageOffset.X;
-                set 
-                { 
-                    Sprite.X = (value - GridToImageOffset.X) / ImageToMapRatio;
-                    OnPropertyChanged();
-                }
-            }
-
-            public double Y 
-            { 
-                get => (Sprite.Y * ImageToMapRatio) + GridToImageOffset.Y;
-                set
-                { 
-                    Sprite.Y = (value - GridToImageOffset.Y) / ImageToMapRatio;
-                    OnPropertyChanged();
-                }
-            }
-
-            public double Width { get => Sprite.Bitmap.Width * ImageToMapRatio; }
-            public double Height { get => Sprite.Bitmap.Height * ImageToMapRatio; }
-
-            public Scene.Sprite Sprite { get; set; }
-
-            // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
-            public static Point GridToImageOffset { get; set; } = new Point(0, 0);
-            public static double ImageToMapRatio { get; set; } = 1;
-        }
-
-        public ObservableCollection<SpriteView> SpriteViews { get; set; } = new();
-
-        private SpriteView m_selectedSpriteView;
-        public SpriteView SelectedSpriteView 
-        { 
-            get => m_selectedSpriteView;
-            set => m_selectedSpriteView = value;
-        }
-
-        Scene m_scene;
-
         public SceneView()
         {
             InitializeComponent();
-        }
-
-        private void UserControl_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-            if (m_scene != null) 
-            { 
-                SpriteViews.Clear();
-                m_scene.Sprites.CollectionChanged -= Sprites_CollectionChanged;
-                m_scene = null;
-            }
-
-            m_scene = (Scene)e.NewValue;
-            if (m_scene != null) 
-            {
-                m_scene.Sprites.CollectionChanged += Sprites_CollectionChanged;
-
-                foreach (var sprite in m_scene.Sprites)
-                { 
-                    SpriteViews.Add(new SpriteView(sprite));
-                }
-            }
-        }
-
-        private void Sprites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            { 
-                foreach (var newSprite in e.NewItems.OfType<Scene.Sprite>())
-                    SpriteViews.Add(new SpriteView(newSprite));
-            }
-            
-            if (e.OldItems != null) 
-            {
-                foreach (var spriteToDelete in e.OldItems.OfType<Scene.Sprite>())
-                { 
-                    var spriteView = SpriteViews.FirstOrDefault(x => x.Sprite == spriteToDelete);
-                    if (spriteView != null)
-                    {
-                        SpriteViews.Remove(spriteView);
-                    }
-                }
-            }
         }
 
         private void Button_ClickReset(object sender, System.Windows.RoutedEventArgs e)
@@ -128,7 +28,8 @@ namespace SceneMaster
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (m_scene != null) 
+            SceneViewModel sceneViewModel = (SceneViewModel)DataContext;
+            if (sceneViewModel != null) 
             { 
                 // convert the position clicked on the TileMapBitmapImage 
                 // to a position on the tilemap.
@@ -136,24 +37,33 @@ namespace SceneMaster
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                m_scene.CreateSprite(mapX, mapY);
+                sceneViewModel.Scene.CreateSprite(mapX, mapY);
             }
         }
 
         private void TileMapBitmapImage_LayoutUpdated(object sender, EventArgs e)
         {
+            // the spriteviewmodels depend on the size/width of the TileMapBitmapImage and
+            // MainGrid to place themselves correctly. This is a weird way of updating their
+            // ratios I'll admit. 
+
             // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
             GeneralTransform transform = TileMapBitmapImage.TransformToAncestor(MainGrid);
-            SpriteView.GridToImageOffset = transform.Transform(new Point(0, 0));
+            var gridToImageOffset = transform.Transform(new Point(0, 0));
+            var imageToMapRatio = SpriteViewModel.ImageToMapRatio;
+
+            SpriteViewModel.GridToImageOffset = gridToImageOffset;
 
             if (TileMapBitmapImage.Source is not null)
             {
-                SpriteView.ImageToMapRatio = TileMapBitmapImage.ActualHeight / TileMapBitmapImage.Source.Height;
+                imageToMapRatio = TileMapBitmapImage.ActualHeight / TileMapBitmapImage.Source.Height;
             }
 
-            foreach (var spriteView in SpriteViews)
-            { 
-                spriteView.Refresh();
+            if ((gridToImageOffset != SpriteViewModel.GridToImageOffset || 
+                imageToMapRatio != SpriteViewModel.ImageToMapRatio) &&
+                DataContext is SceneViewModel sceneViewModel)
+            {
+                sceneViewModel.RefreshSpriteViewModels();
             }
         }
     }

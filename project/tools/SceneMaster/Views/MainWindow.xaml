@@ -39,7 +39,7 @@
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="*" Visibility="{Binding CurrentDocument.IsModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                        <TextBlock Text="*" Visibility="{Binding CurrentDocument.SceneViewModel.IsModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
                         <TextBlock Text="{Binding CurrentDocument.Filename}"/>
                     </StackPanel>
                 </TabItem.Header>

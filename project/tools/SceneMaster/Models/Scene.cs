@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Xml;
 using TiledCS;
 
-namespace SceneMaster.ViewModels
+namespace SceneMaster.Models
 {
     public class Scene : ObservableObject
     {
