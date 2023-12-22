@@ -13,7 +13,19 @@ Todo
 			
 		DONE click on map, get position on map
 
-		draw something overtop the map
+		DONE draw something overtop the map
+		
+		DONE place object on map
+		
+		load and save objects
+		
+		drag placed objects
+		
+		delete placed objects
+		
+		select object
+		
+		select object type
 
 	have object switch to their animation's bank when calling update function?
 

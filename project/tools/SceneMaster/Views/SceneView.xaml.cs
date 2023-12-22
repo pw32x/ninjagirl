@@ -6,7 +6,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Wpf.Controls.PanAndZoom;
 using static SceneMaster.ViewModels.Scene;
 
 namespace SceneMaster
@@ -34,11 +33,15 @@ namespace SceneMaster
             public double Width { get; set; }
             public double Height { get; set; }
             public Scene.Sprite Sprite { get; set; }
+
+            // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
             public static Point GridToImageOffset { get; set; } = new Point(0, 0);
             public static double ImageToMapRatio { get; set; } = 1;
         }
 
-        public ObservableCollection<SpriteView> SpriteViews { get; set; } = new ObservableCollection<SpriteView> { };
+        public ObservableCollection<SpriteView> SpriteViews { get; set; } = new();
+
+        Scene m_scene;
 
         public SceneView()
         {
@@ -47,15 +50,42 @@ namespace SceneMaster
 
         private void UserControl_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            Scene scene = (Scene)e.NewValue;
-            if (scene != null) 
+            if (m_scene != null) 
             { 
-                var bitmap = scene.TiledMapBitmapSource;
-
                 SpriteViews.Clear();
-                foreach (var sprite in scene.Sprites)
+                m_scene.Sprites.CollectionChanged -= Sprites_CollectionChanged;
+                m_scene = null;
+            }
+
+            m_scene = (Scene)e.NewValue;
+            if (m_scene != null) 
+            {
+                m_scene.Sprites.CollectionChanged += Sprites_CollectionChanged;
+
+                foreach (var sprite in m_scene.Sprites)
                 { 
                     SpriteViews.Add(new SpriteView(sprite));
+                }
+            }
+        }
+
+        private void Sprites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            { 
+                foreach (var newSprite in e.NewItems.OfType<Scene.Sprite>())
+                    SpriteViews.Add(new SpriteView(newSprite));
+            }
+            
+            if (e.OldItems != null) 
+            {
+                foreach (var spriteToDelete in e.OldItems.OfType<Scene.Sprite>())
+                { 
+                    var spriteView = SpriteViews.FirstOrDefault(x => x.Sprite == spriteToDelete);
+                    if (spriteView != null)
+                    {
+                        SpriteViews.Remove(spriteView);
+                    }
                 }
             }
         }
@@ -67,24 +97,20 @@ namespace SceneMaster
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Scene scene = (Scene)DataContext;
-            if (scene != null) 
+            if (m_scene != null) 
             { 
-                var viewPos = e.GetPosition(MainGrid);
-
+                // convert the position clicked on the TileMapBitmapImage 
+                // to a position on the tilemap.
                 var mapPos = e.GetPosition(TileMapBitmapImage);
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                var sprite = scene.CreateSprite(mapX, mapY);
-
-                SpriteViews.Add(new SpriteView(sprite));
+                m_scene.CreateSprite(mapX, mapY);
             }
         }
 
         private void TileMapBitmapImage_LayoutUpdated(object sender, EventArgs e)
         {
-
             // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
             GeneralTransform transform = TileMapBitmapImage.TransformToAncestor(MainGrid);
             SpriteView.GridToImageOffset = transform.Transform(new Point(0, 0));
