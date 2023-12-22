@@ -1,4 +1,5 @@
-﻿using SceneMaster.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,21 +18,44 @@ namespace SceneMaster
     {
         // Sprites in the scene are relative to the bitmap of the tiled map
         // but the sprites we see in the view are relative to the MainGrid
-        public class SpriteView
+        public class SpriteView : ObservableObject
         { 
             public SpriteView(Sprite sprite)
             {
-                X = (sprite.X * ImageToMapRatio) + GridToImageOffset.X;
-                Y = (sprite.Y * ImageToMapRatio) + GridToImageOffset.Y;
-                Width = (sprite.Bitmap.Width * ImageToMapRatio);
-                Height = (sprite.Bitmap.Height * ImageToMapRatio);
                 Sprite = sprite;
             }
 
-            public double X { get; set; }
-            public double Y { get; set; }
-            public double Width { get; set; }
-            public double Height { get; set; }
+            public void Refresh()
+            {
+                OnPropertyChanged("X");
+                OnPropertyChanged("Y");
+                OnPropertyChanged("Width");
+                OnPropertyChanged("Height");
+            }
+
+            public double X 
+            { 
+                get => (Sprite.X * ImageToMapRatio) + GridToImageOffset.X;
+                set 
+                { 
+                    Sprite.X = (value - GridToImageOffset.X) / ImageToMapRatio;
+                    OnPropertyChanged();
+                }
+            }
+
+            public double Y 
+            { 
+                get => (Sprite.Y * ImageToMapRatio) + GridToImageOffset.Y;
+                set
+                { 
+                    Sprite.Y = (value - GridToImageOffset.Y) / ImageToMapRatio;
+                    OnPropertyChanged();
+                }
+            }
+
+            public double Width { get => Sprite.Bitmap.Width * ImageToMapRatio; }
+            public double Height { get => Sprite.Bitmap.Height * ImageToMapRatio; }
+
             public Scene.Sprite Sprite { get; set; }
 
             // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
@@ -118,6 +142,11 @@ namespace SceneMaster
             if (TileMapBitmapImage.Source is not null)
             {
                 SpriteView.ImageToMapRatio = TileMapBitmapImage.ActualHeight / TileMapBitmapImage.Source.Height;
+            }
+
+            foreach (var spriteView in SpriteViews)
+            { 
+                spriteView.Refresh();
             }
         }
     }
