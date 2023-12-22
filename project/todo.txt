@@ -17,15 +17,26 @@ Todo
 		
 		DONE place object on map
 		
-		load and save objects
-		
+		DONE load and save objects
+
 		drag placed objects
+
+		select object
 		
 		delete placed objects
 		
-		select object
-		
-		select object type
+		create object templates
+		load object template
+		select object template
+
+		property grid ? 
+			custom view?
+
+		options
+			automatically reload last file
+			enemy template location
+			last save map location
+			
 
 	have object switch to their animation's bank when calling update function?
 

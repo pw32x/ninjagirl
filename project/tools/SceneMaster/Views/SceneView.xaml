@@ -50,12 +50,8 @@
 
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding Sprite.Bitmap}" 
-                                       Canvas.Left="{Binding X}" 
-                                       Canvas.Top="{Binding Y}"
-                                       Width="{Binding Width}"
-                                       Height="{Binding Height}"
-                                       RenderOptions.BitmapScalingMode="NearestNeighbor"/>
+                                <controls:ObjectView Canvas.Left="{Binding X}" 
+                                                     Canvas.Top="{Binding Y}"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>

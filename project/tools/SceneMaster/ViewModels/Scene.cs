@@ -30,6 +30,8 @@ namespace SceneMaster.ViewModels
         public ObservableCollection<Sprite> Sprites {  get => m_sprites; }
 
         private const string TiledMapFilePathNodeName = "TiledMapFilePath";
+        private const string SpritesNodeName = "Sprites";
+        private const string SpriteNodeName = "Sprite";
 
         private string m_tiledMapFilePath = "";
         public string TiledMapFilePath
@@ -51,7 +53,7 @@ namespace SceneMaster.ViewModels
 
         public Scene()
         {
-            ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
+            //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
 
             m_spriteImage = new BitmapImage();
             // Set the image source to a file stream
@@ -65,7 +67,7 @@ namespace SceneMaster.ViewModels
                                        Y = 0,
                                        Bitmap = m_spriteImage });
 
-            m_sprites.Add(new Sprite { X = 790,
+            m_sprites.Add(new Sprite { X = 640,
                                        Y = 224,
                                        Bitmap = m_spriteImage });
 
@@ -73,6 +75,9 @@ namespace SceneMaster.ViewModels
                                        Y = 100,
                                        Bitmap = m_spriteImage });
             */
+            //Save(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\tools\SceneMaster\test.scm");
+
+
         }
 
         private TiledMap m_tiledMap;
@@ -116,6 +121,28 @@ namespace SceneMaster.ViewModels
                 LoadTiledMap(TiledMapFilePath);
             }
 
+            var spritesNode = root[SpritesNodeName];
+            if (spritesNode != null)
+            { 
+                foreach (var spriteNode in spritesNode.ChildNodes.OfType<XmlElement>())
+                { 
+                    var sprite = new Sprite();
+
+                    string xString = spriteNode.Attributes[nameof(Sprite.X)]?.Value ?? "0";
+                    string yString = spriteNode.Attributes[nameof(Sprite.Y)]?.Value ?? "0";
+
+                    if (double.TryParse(xString, out var x))
+                        sprite.X = x;
+
+                    if (double.TryParse(yString, out var y))
+                        sprite.Y = y;
+
+                    sprite.Bitmap = m_spriteImage;
+
+                    Sprites.Add(sprite);
+                }
+            }
+
             return true;
         }
 
@@ -131,6 +158,19 @@ namespace SceneMaster.ViewModels
             var ggFilePathNode = doc.CreateElement(TiledMapFilePathNodeName);
             ggFilePathNode.InnerText = string.IsNullOrEmpty(TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), TiledMapFilePath);
             root.AppendChild(ggFilePathNode);
+
+            // sprites
+            var spritesNode = doc.CreateElement(SpritesNodeName);
+            root.AppendChild(spritesNode);
+
+            foreach (var sprite in Sprites)
+            { 
+                var spriteNode = doc.CreateElement(SpriteNodeName);
+                spritesNode.AppendChild(spriteNode);
+
+                spriteNode.SetAttribute(nameof(Sprite.X), sprite.X.ToString());
+                spriteNode.SetAttribute(nameof(Sprite.Y), sprite.Y.ToString());
+            }
 
             // Save
             doc.Save(filePath);
@@ -254,19 +294,13 @@ namespace SceneMaster.ViewModels
 
         internal Sprite CreateSprite(int x, int y)
         {
-            /*
-            var tileX = bitmapX / TiledMap.TileWidth;
-            var tileY = bitmapY / TiledMap.TileHeight;
-
-            DrawTileToBitmap(TiledMapBitmapSource, tileX, tileY, 2);
-            OnPropertyChanged(nameof(TiledMapBitmapSource));
-            */
-
             var sprite = new Sprite();
             sprite.X = x; 
             sprite.Y = y;
             sprite.Bitmap = m_spriteImage;
             Sprites.Add(sprite);
+
+            OnPropertyChanged(nameof(Sprites));
 
             return sprite;
         }

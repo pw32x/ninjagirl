@@ -65,6 +65,13 @@ namespace SceneMaster
 
         public ObservableCollection<SpriteView> SpriteViews { get; set; } = new();
 
+        private SpriteView m_selectedSpriteView;
+        public SpriteView SelectedSpriteView 
+        { 
+            get => m_selectedSpriteView;
+            set => m_selectedSpriteView = value;
+        }
+
         Scene m_scene;
 
         public SceneView()
