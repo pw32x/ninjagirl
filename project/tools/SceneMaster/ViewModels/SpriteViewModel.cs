@@ -5,9 +5,6 @@ using System.Windows;
 
 namespace SceneMaster.ViewModels
 {
-
-    // Sprites in the scene are relative to the bitmap of the tiled map
-    // but the sprites we see in the view are relative to the MainGrid
     public class SpriteViewModel : ObservableObject
     { 
         public SpriteViewModel(Scene.Sprite sprite, 
@@ -15,14 +12,6 @@ namespace SceneMaster.ViewModels
         {
             Sprite = sprite;
             SceneViewModel = sceneViewModel;
-        }
-
-        public void RefreshVisual()
-        {
-            OnPropertyChanged("X");
-            OnPropertyChanged("Y");
-            OnPropertyChanged("Width");
-            OnPropertyChanged("Height");
         }
 
         internal void Select()

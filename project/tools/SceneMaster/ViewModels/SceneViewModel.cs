@@ -11,7 +11,8 @@ namespace SceneMaster.ViewModels
     /// </summary>
     public class SceneViewModel : ObservableObject, IDisposable
     {
-        public static double ZoomFactor { get; set; } = 1;
+        // not the best place to put this, but it'll do for now.
+        public static double ZoomFactor { get; set; } = 1; 
 
         private bool m_ignoreChanges = false;
         private bool m_isModified = false;
@@ -130,16 +131,6 @@ namespace SceneMaster.ViewModels
         {
             Scene.Save(filePath);
             IsModified = false;
-        }
-
-        internal void RefreshSpriteViewModels()
-        {
-            m_ignoreChanges = true;
-            foreach (var spriteView in SpriteViewModels)
-            { 
-                spriteView.RefreshVisual();
-            }
-            m_ignoreChanges = false;
         }
 
         internal void Select(SpriteViewModel spriteViewModel)

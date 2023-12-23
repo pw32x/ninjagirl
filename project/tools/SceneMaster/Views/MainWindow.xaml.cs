@@ -16,5 +16,11 @@ namespace SceneMaster
         }
 
         public MainViewModel MainViewModel { get; } = new MainViewModel();
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!MainViewModel.CheckForSave())
+                e.Cancel = true;
+        }
     }
 }

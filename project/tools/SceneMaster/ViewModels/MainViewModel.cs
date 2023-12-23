@@ -137,7 +137,7 @@ namespace SceneMaster.ViewModels
             Environment.Exit(0);
         }
 
-        private bool CheckForSave()
+        public bool CheckForSave()
         {
             if (CurrentDocument.SceneViewModel.IsModified)
             {

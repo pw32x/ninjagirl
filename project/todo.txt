@@ -28,12 +28,14 @@ Todo
 		DONE show selection with rectangle around selection
 		
 		DONE improve selection 
+
+		DONE get mouse events when dragging objects outside of window
 		
-		snap object views to bitmap pixels
+		DONE snap object views to bitmap pixels
+
+		DONE check for clicking on close button
 		
 		delete selected objects
-
-		get mouse events when dragging objects outside of window
 
 		change Sprite-related and ObjectView classes to more descriptive names
 		
