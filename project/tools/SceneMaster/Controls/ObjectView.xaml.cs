@@ -35,6 +35,8 @@ namespace SceneMaster.Controls
 
                 // Bring the control to the front when clicked
                 Panel.SetZIndex(this, 1);
+
+                (sender as UIElement)?.CaptureMouse();
             }
         }
 
@@ -42,13 +44,13 @@ namespace SceneMaster.Controls
         {
             if (m_isDragging)
             {
-                Point currentPoint = e.GetPosition(Parent as UIElement);
+                Point currentPoint = e.GetPosition(null);
 
                 double offsetX = currentPoint.X - m_startPoint.X;
                 double offsetY = currentPoint.Y - m_startPoint.Y;
 
-                offsetX /= SpriteViewModel.ZoomFactor;
-                offsetY /= SpriteViewModel.ZoomFactor;
+                offsetX /= SceneViewModel.ZoomFactor;
+                offsetY /= SceneViewModel.ZoomFactor;
 
                 m_spriteViewModel.X += offsetX;
                 m_spriteViewModel.Y += offsetY;
@@ -62,6 +64,7 @@ namespace SceneMaster.Controls
             if (e.ChangedButton == MouseButton.Left)
             {
                 m_isDragging = false;
+                (sender as UIElement)?.ReleaseMouseCapture();
             }
         }
 

@@ -43,33 +43,7 @@ namespace SceneMaster
 
         private void TileMapBitmapImage_LayoutUpdated(object sender, EventArgs e)
         {
-            // the spriteviewmodels depend on the size/width of the TileMapBitmapImage and
-            // MainGrid to place themselves correctly. This is a weird way of updating their
-            // ratios I'll admit. 
-
-            // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
-            GeneralTransform transform = TileMapBitmapImage.TransformToAncestor(MainGrid);
-            var gridToImageOffset = transform.Transform(new Point(0, 0));
-            var imageToMapRatio = SpriteViewModel.ImageToMapRatio;
-
-            SpriteViewModel.GridToImageOffset = gridToImageOffset;
-
-            if (TileMapBitmapImage.Source is not null)
-            {
-                imageToMapRatio = TileMapBitmapImage.ActualHeight / TileMapBitmapImage.Source.Height;
-            }
-
-            SpriteViewModel.ZoomFactor = ZoomBorder.ZoomX;
-
-            if ((gridToImageOffset != SpriteViewModel.GridToImageOffset || 
-                imageToMapRatio != SpriteViewModel.ImageToMapRatio) &&
-                DataContext is SceneViewModel sceneViewModel)
-            {
-                SpriteViewModel.GridToImageOffset = gridToImageOffset;
-                SpriteViewModel.ImageToMapRatio = imageToMapRatio;
-
-                sceneViewModel.RefreshSpriteViewModels();
-            }
+            SceneViewModel.ZoomFactor = ZoomBorder.ZoomX;
         }
     }
 }

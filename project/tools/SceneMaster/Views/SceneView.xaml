@@ -9,55 +9,59 @@
              d:DataContext ="{d:DesignInstance viewmodels:SceneViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="301" d:DesignWidth="512"
              x:Name="SceneMasterSceneView">
-    <Grid Background="Blue">
+    <Grid Background="Blue" x:Name="ParentGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
-
-        <ScrollViewer Grid.Row="0"
+            <ScrollViewer 
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
-            <controls:ZoomBorderCustom x:Name="ZoomBorder" 
-                            Stretch="None" ZoomSpeed="1.2"
-                            Background="SlateBlue" 
-                            ClipToBounds="True" 
-                            Focusable="True"
-                            VerticalAlignment="Stretch" 
-                            HorizontalAlignment="Stretch"
-                            PanButton="Middle">
-                <Grid x:Name="MainGrid">
-                    <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
-                           RenderOptions.BitmapScalingMode="NearestNeighbor"
-                           MouseLeftButtonDown="Image_MouseLeftButtonDown" 
-                           LayoutUpdated="TileMapBitmapImage_LayoutUpdated" />
 
-                    <ItemsControl x:Name="SpritesItemControl" 
-                                  ItemsSource="{Binding SpriteViewModels}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <Canvas x:Name="SpriteCanvas"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
+                <controls:ZoomBorderCustom x:Name="ZoomBorder" 
+                                ZoomSpeed="1.2"
+                                Background="SlateBlue" 
+                                ClipToBounds="True" 
+                                Focusable="True"
+                                PanButton="Middle" 
+                                Stretch="None"
+                                VerticalAlignment="Stretch" 
+                                HorizontalAlignment="Stretch">
+                    <Grid x:Name="MainGrid" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               MouseLeftButtonDown="Image_MouseLeftButtonDown" 
+                               LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
+                               Stretch="None" />
 
-                        <ItemsControl.ItemContainerStyle>
-                            <Style TargetType="ContentPresenter">
-                                <Setter Property="Canvas.Left" Value="{Binding X}" />
-                                <Setter Property="Canvas.Top" Value="{Binding Y}" />
-                            </Style>
-                        </ItemsControl.ItemContainerStyle>
+                        <ItemsControl x:Name="SpritesItemControl" 
+                                      ItemsSource="{Binding SpriteViewModels}" >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas x:Name="SpriteCanvas"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
 
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <controls:ObjectView Canvas.Left="{Binding X}" 
-                                                     Canvas.Top="{Binding Y}"/>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="{Binding SnappedX}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding SnappedY}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
 
-                </Grid>
-            </controls:ZoomBorderCustom>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:ObjectView Canvas.Left="{Binding SnappedX}" 
+                                                         Canvas.Top="{Binding SnappedY}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </Grid>
+                </controls:ZoomBorderCustom>
+
         </ScrollViewer>
+
         <StatusBar Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Scene.TiledMapFilename}" d:Text="Path To Tiled Map"/>

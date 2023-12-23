@@ -11,6 +11,8 @@ namespace SceneMaster.ViewModels
     /// </summary>
     public class SceneViewModel : ObservableObject, IDisposable
     {
+        public static double ZoomFactor { get; set; } = 1;
+
         private bool m_ignoreChanges = false;
         private bool m_isModified = false;
         public bool IsModified

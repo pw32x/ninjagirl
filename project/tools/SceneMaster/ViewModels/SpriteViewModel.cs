@@ -37,26 +37,31 @@ namespace SceneMaster.ViewModels
 
         public double X 
         { 
-            get => (Sprite.X * ImageToMapRatio) + GridToImageOffset.X;
+            get => Sprite.X;
             set 
             { 
-                Sprite.X = (value - GridToImageOffset.X) / ImageToMapRatio;
+                Sprite.X = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SnappedX));
             }
         }
 
         public double Y 
         { 
-            get => (Sprite.Y * ImageToMapRatio) + GridToImageOffset.Y;
+            get => Sprite.Y;
             set
             { 
-                Sprite.Y = (value - GridToImageOffset.Y) / ImageToMapRatio;
+                Sprite.Y = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(SnappedY));
             }
         }
 
-        public double Width { get => Sprite.Bitmap.Width * ImageToMapRatio; }
-        public double Height { get => Sprite.Bitmap.Height * ImageToMapRatio; }
+        public double SnappedX { get => (int)Sprite.X; }
+        public double SnappedY { get => (int)Sprite.Y; }
+
+        public double Width { get => Sprite.Bitmap.Width; }
+        public double Height { get => Sprite.Bitmap.Height; }
 
         public Scene.Sprite Sprite { get; set; }
 
@@ -71,10 +76,5 @@ namespace SceneMaster.ViewModels
                 SetProperty(ref m_isSelected, value); 
             }
         } 
-
-        // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
-        public static Point GridToImageOffset { get; set; } = new Point(0, 0);
-        public static double ImageToMapRatio { get; set; } = 1;
-        public static double ZoomFactor { get; set; } = 1;
     }
 }
