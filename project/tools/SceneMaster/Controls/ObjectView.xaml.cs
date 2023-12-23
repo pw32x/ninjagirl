@@ -10,20 +10,28 @@ namespace SceneMaster.Controls
     /// </summary>
     public partial class ObjectView : UserControl
     {
-        private Point startPoint;
-        private bool isDragging = false;
+        private Point m_startPoint;
+        private bool m_isDragging = false;
+        private SpriteViewModel m_spriteViewModel;
 
         public ObjectView()
         {
             InitializeComponent();
         }
 
+        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            m_spriteViewModel = (SpriteViewModel)e.NewValue;
+        }
+
         private void ObjectView_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                startPoint = e.GetPosition(Parent as UIElement);
-                isDragging = true;
+                m_spriteViewModel.Select();
+
+                m_startPoint = e.GetPosition(Parent as UIElement);
+                m_isDragging = true;
 
                 // Bring the control to the front when clicked
                 Panel.SetZIndex(this, 1);
@@ -32,21 +40,20 @@ namespace SceneMaster.Controls
 
         private void ObjectView_MouseMove(object sender, MouseEventArgs e)
         {
-            if (isDragging)
+            if (m_isDragging)
             {
                 Point currentPoint = e.GetPosition(Parent as UIElement);
 
-                double offsetX = currentPoint.X - startPoint.X;
-                double offsetY = currentPoint.Y - startPoint.Y;
+                double offsetX = currentPoint.X - m_startPoint.X;
+                double offsetY = currentPoint.Y - m_startPoint.Y;
 
-                var spriteViewModel = (SpriteViewModel)DataContext;
-                if (spriteViewModel != null)
-                { 
-                    spriteViewModel.X += offsetX;
-                    spriteViewModel.Y += offsetY;
-                }
+                offsetX /= SpriteViewModel.ZoomFactor;
+                offsetY /= SpriteViewModel.ZoomFactor;
 
-                startPoint = currentPoint;
+                m_spriteViewModel.X += offsetX;
+                m_spriteViewModel.Y += offsetY;
+
+                m_startPoint = currentPoint;
             }
         }
 
@@ -54,8 +61,20 @@ namespace SceneMaster.Controls
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                isDragging = false;
+                m_isDragging = false;
             }
         }
+
+        private void ObjectView_MouseLeave(object sender, MouseEventArgs e)
+        {
+            //isDragging = false;
+            //var spriteViewModel = (SpriteViewModel)DataContext;
+            //if (spriteViewModel != null)
+            //{ 
+            //    spriteViewModel.IsSelected = false;
+            //}
+        }
+
+
     }
 }

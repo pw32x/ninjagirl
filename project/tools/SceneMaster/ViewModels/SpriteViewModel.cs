@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SceneMaster.Models;
+using System;
 using System.Windows;
 
 namespace SceneMaster.ViewModels
@@ -9,17 +10,29 @@ namespace SceneMaster.ViewModels
     // but the sprites we see in the view are relative to the MainGrid
     public class SpriteViewModel : ObservableObject
     { 
-        public SpriteViewModel(Scene.Sprite sprite)
+        public SpriteViewModel(Scene.Sprite sprite, 
+                               SceneViewModel sceneViewModel)
         {
             Sprite = sprite;
+            SceneViewModel = sceneViewModel;
         }
 
-        public void Refresh()
+        public void RefreshVisual()
         {
             OnPropertyChanged("X");
             OnPropertyChanged("Y");
             OnPropertyChanged("Width");
             OnPropertyChanged("Height");
+        }
+
+        internal void Select()
+        {
+            SceneViewModel.Select(this);
+        }
+
+        internal void Deselect()
+        {
+            SceneViewModel.Deselect(this);
         }
 
         public double X 
@@ -47,8 +60,21 @@ namespace SceneMaster.ViewModels
 
         public Scene.Sprite Sprite { get; set; }
 
+        public SceneViewModel SceneViewModel { get; internal set; }
+
+        private bool m_isSelected = false;
+        public bool IsSelected 
+        { 
+            get => m_isSelected; 
+            set
+            {
+                SetProperty(ref m_isSelected, value); 
+            }
+        } 
+
         // GridToImageRatio and ImageToMapRatio tell us how to transform a point from the grid to the image.
         public static Point GridToImageOffset { get; set; } = new Point(0, 0);
         public static double ImageToMapRatio { get; set; } = 1;
+        public static double ZoomFactor { get; set; } = 1;
     }
 }

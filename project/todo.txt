@@ -19,11 +19,23 @@ Todo
 		
 		DONE load and save objects
 
-		drag placed objects
+		DONE drag placed objects
 
-		select object
+		DONE select object
 		
-		delete placed objects
+		DONE fix object dragging
+		
+		DONE show selection with rectangle around selection
+		
+		DONE improve selection 
+		
+		snap object views to bitmap pixels
+		
+		delete selected objects
+
+		get mouse events when dragging objects outside of window
+
+		change Sprite-related and ObjectView classes to more descriptive names
 		
 		create object templates
 		load object template

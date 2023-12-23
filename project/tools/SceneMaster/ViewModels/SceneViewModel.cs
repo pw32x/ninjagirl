@@ -32,7 +32,13 @@ namespace SceneMaster.ViewModels
 
             set
             { 
+                if (m_selectedSpriteViewModel != null)
+                    m_selectedSpriteViewModel.IsSelected = false;
+
                 SetProperty(ref m_selectedSpriteViewModel, value);
+
+                if (m_selectedSpriteViewModel != null)
+                    m_selectedSpriteViewModel.IsSelected = true;
             }
         }
 
@@ -49,7 +55,7 @@ namespace SceneMaster.ViewModels
 
             foreach (var sprite in m_scene.Sprites)
             { 
-                var spriteViewModel = new SpriteViewModel(sprite);
+                var spriteViewModel = new SpriteViewModel(sprite, this);
                 spriteViewModel.PropertyChanged += Scene_PropertyChanged;
                 SpriteViewModels.Add(spriteViewModel);
             }
@@ -81,11 +87,13 @@ namespace SceneMaster.ViewModels
         {
             IsModified = true;
 
+            Deselect(SelectedSpriteViewModel);
+
             if (e.NewItems != null)
             { 
                 foreach (var newSprite in e.NewItems.OfType<Scene.Sprite>())
                 {
-                    var newSpriteViewModel = new SpriteViewModel(newSprite);
+                    var newSpriteViewModel = new SpriteViewModel(newSprite, this);
                     newSpriteViewModel.PropertyChanged += Scene_PropertyChanged;
                     SpriteViewModels.Add(newSpriteViewModel);
                 }
@@ -127,9 +135,25 @@ namespace SceneMaster.ViewModels
             m_ignoreChanges = true;
             foreach (var spriteView in SpriteViewModels)
             { 
-                spriteView.Refresh();
+                spriteView.RefreshVisual();
             }
             m_ignoreChanges = false;
+        }
+
+        internal void Select(SpriteViewModel spriteViewModel)
+        {
+            if (SelectedSpriteViewModel == spriteViewModel)
+                return;
+
+            SelectedSpriteViewModel = spriteViewModel;
+        }
+
+        internal void Deselect(SpriteViewModel spriteViewModel)
+        {
+            if (SelectedSpriteViewModel == spriteViewModel)
+            {
+                SelectedSpriteViewModel = null;
+            }
         }
     }
 }

@@ -59,10 +59,15 @@ namespace SceneMaster
                 imageToMapRatio = TileMapBitmapImage.ActualHeight / TileMapBitmapImage.Source.Height;
             }
 
+            SpriteViewModel.ZoomFactor = ZoomBorder.ZoomX;
+
             if ((gridToImageOffset != SpriteViewModel.GridToImageOffset || 
                 imageToMapRatio != SpriteViewModel.ImageToMapRatio) &&
                 DataContext is SceneViewModel sceneViewModel)
             {
+                SpriteViewModel.GridToImageOffset = gridToImageOffset;
+                SpriteViewModel.ImageToMapRatio = imageToMapRatio;
+
                 sceneViewModel.RefreshSpriteViewModels();
             }
         }
