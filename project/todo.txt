@@ -39,6 +39,8 @@ Todo
 
 		change Sprite-related and ObjectView classes to more descriptive names
 		
+		create tools/bin folder for tool .exe to go to when built
+		
 		create object templates
 		load object template
 		select object template

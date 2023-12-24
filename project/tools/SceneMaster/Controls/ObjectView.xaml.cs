@@ -52,6 +52,9 @@ namespace SceneMaster.Controls
                 offsetX /= SceneViewModel.ZoomFactor;
                 offsetY /= SceneViewModel.ZoomFactor;
 
+                if (offsetX == 0 && offsetY == 0)
+                    return;
+
                 m_spriteViewModel.X += offsetX;
                 m_spriteViewModel.Y += offsetY;
 

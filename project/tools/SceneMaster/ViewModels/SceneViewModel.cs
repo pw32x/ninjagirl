@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using SceneMaster.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Input;
 
 namespace SceneMaster.ViewModels
 {
@@ -35,6 +37,7 @@ namespace SceneMaster.ViewModels
 
             set
             { 
+                m_ignoreChanges = true;
                 if (m_selectedSpriteViewModel != null)
                     m_selectedSpriteViewModel.IsSelected = false;
 
@@ -42,6 +45,8 @@ namespace SceneMaster.ViewModels
 
                 if (m_selectedSpriteViewModel != null)
                     m_selectedSpriteViewModel.IsSelected = true;
+
+                m_ignoreChanges = false;
             }
         }
 
@@ -62,6 +67,35 @@ namespace SceneMaster.ViewModels
                 spriteViewModel.PropertyChanged += Scene_PropertyChanged;
                 SpriteViewModels.Add(spriteViewModel);
             }
+
+            DeleteCommand = new RelayCommand(DeleteSelectedSprite, CanDeleteSelectedSprite);
+        }
+
+        public ICommand DeleteCommand { get; }
+
+        private void DeleteSelectedSprite()
+        {
+            if (SelectedSpriteViewModel == null) 
+                return;
+
+            m_scene.Sprites.Remove(SelectedSpriteViewModel.Sprite);
+        }
+
+        private bool CanDeleteSelectedSprite()
+        {
+            return SelectedSpriteViewModel != null;
+        }
+
+        private void DeleteSpriteViewModel(Scene.Sprite spriteToDelete)
+        {
+            var spriteViewModel = SpriteViewModels.FirstOrDefault(x => x.Sprite == spriteToDelete);
+            if (spriteViewModel == null)
+                return;
+
+            SpriteViewModels.Remove(spriteViewModel);
+            spriteViewModel.PropertyChanged -= Scene_PropertyChanged;
+
+            Deselect(spriteViewModel);
         }
 
         public void Dispose()
@@ -106,16 +140,10 @@ namespace SceneMaster.ViewModels
             {
                 foreach (var spriteToDelete in e.OldItems.OfType<Scene.Sprite>())
                 { 
-                    var spriteViewModel = SpriteViewModels.FirstOrDefault(x => x.Sprite == spriteToDelete);
-                    if (spriteViewModel != null)
-                    {
-                        spriteViewModel.PropertyChanged -= Scene_PropertyChanged;
-                        SpriteViewModels.Remove(spriteViewModel);
-                    }
+                    DeleteSpriteViewModel(spriteToDelete);
                 }
             }
         }
-
 
         internal void Load(string filePath)
         {

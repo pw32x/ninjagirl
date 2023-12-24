@@ -20,6 +20,7 @@
         <KeyBinding Command="{Binding SaveAsCommand}" Gesture="Ctrl+Shift+S"/>
         <KeyBinding Command="{Binding ImportTiledMapCommand}" Gesture="Ctrl+I"/>
         <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4"/>
+        <KeyBinding Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand }" Gesture="Delete"/>
     </Window.InputBindings>
     
     <DockPanel VerticalAlignment="Stretch" Height="auto">
@@ -34,6 +35,9 @@
                 <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}"/>
                 <Separator />
                 <MenuItem Header="_Exit" InputGestureText="Alt+F4" Command="{Binding ExitCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Delete" InputGestureText="Del" Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand}"/>
             </MenuItem>
         </Menu>
         <TabControl>
