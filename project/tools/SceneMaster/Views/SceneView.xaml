@@ -34,11 +34,10 @@
                                LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
                                Stretch="None" />
 
-                        <ItemsControl x:Name="SpritesItemControl" 
-                                      ItemsSource="{Binding SpriteViewModels}" >
+                        <ItemsControl ItemsSource="{Binding GameObjectViewModels}" >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <Canvas x:Name="SpriteCanvas"/>
+                                    <Canvas/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
@@ -51,8 +50,8 @@
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <controls:ObjectView Canvas.Left="{Binding SnappedX}" 
-                                                         Canvas.Top="{Binding SnappedY}"/>
+                                    <controls:GameObjectControl Canvas.Left="{Binding SnappedX}" 
+                                                                Canvas.Top="{Binding SnappedY}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

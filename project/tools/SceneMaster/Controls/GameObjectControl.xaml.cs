@@ -6,29 +6,29 @@ using System.Windows.Input;
 namespace SceneMaster.Controls
 {
     /// <summary>
-    /// Interaction logic for ObjectView.xaml
+    /// Interaction logic for GameObjectControl.xaml
     /// </summary>
-    public partial class ObjectView : UserControl
+    public partial class GameObjectControl : UserControl
     {
         private Point m_startPoint;
         private bool m_isDragging = false;
-        private SpriteViewModel m_spriteViewModel;
+        private GameObjectViewModel m_gameObjectViewModel;
 
-        public ObjectView()
+        public GameObjectControl()
         {
             InitializeComponent();
         }
 
-        private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void GameObjectControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            m_spriteViewModel = (SpriteViewModel)e.NewValue;
+            m_gameObjectViewModel = (GameObjectViewModel)e.NewValue;
         }
 
-        private void ObjectView_MouseDown(object sender, MouseButtonEventArgs e)
+        private void GameObjectControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                m_spriteViewModel.Select();
+                m_gameObjectViewModel.Select();
 
                 m_startPoint = e.GetPosition(Parent as UIElement);
                 m_isDragging = true;
@@ -40,7 +40,7 @@ namespace SceneMaster.Controls
             }
         }
 
-        private void ObjectView_MouseMove(object sender, MouseEventArgs e)
+        private void GameObjectControl_MouseMove(object sender, MouseEventArgs e)
         {
             if (m_isDragging)
             {
@@ -55,14 +55,14 @@ namespace SceneMaster.Controls
                 if (offsetX == 0 && offsetY == 0)
                     return;
 
-                m_spriteViewModel.X += offsetX;
-                m_spriteViewModel.Y += offsetY;
+                m_gameObjectViewModel.X += offsetX;
+                m_gameObjectViewModel.Y += offsetY;
 
                 m_startPoint = currentPoint;
             }
         }
 
-        private void ObjectView_MouseUp(object sender, MouseButtonEventArgs e)
+        private void GameObjectControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
@@ -71,13 +71,13 @@ namespace SceneMaster.Controls
             }
         }
 
-        private void ObjectView_MouseLeave(object sender, MouseEventArgs e)
+        private void GameObjectControl_MouseLeave(object sender, MouseEventArgs e)
         {
             //isDragging = false;
-            //var spriteViewModel = (SpriteViewModel)DataContext;
-            //if (spriteViewModel != null)
+            //var gameObjectViewModel = (GameObjectViewModel)DataContext;
+            //if (gameObjectViewModel != null)
             //{ 
-            //    spriteViewModel.IsSelected = false;
+            //    gameObjectViewModel.IsSelected = false;
             //}
         }
 

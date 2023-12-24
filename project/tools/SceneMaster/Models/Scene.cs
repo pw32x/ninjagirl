@@ -17,21 +17,14 @@ namespace SceneMaster.Models
 {
     public class Scene : ObservableObject
     {
-        public class Sprite
-        { 
-            public double X { get; set; }
-            public double Y { get; set; }
-            public BitmapImage Bitmap { get; set; }
-        }
+        BitmapImage m_defaultImage;
 
-        BitmapImage m_spriteImage;
-
-        private ObservableCollection<Sprite> m_sprites = new ObservableCollection<Sprite>();
-        public ObservableCollection<Sprite> Sprites {  get => m_sprites; }
+        private ObservableCollection<GameObject> m_gameObjects = new ObservableCollection<GameObject>();
+        public ObservableCollection<GameObject> GameObjects {  get => m_gameObjects; }
 
         private const string TiledMapFilePathNodeName = "TiledMapFilePath";
-        private const string SpritesNodeName = "Sprites";
-        private const string SpriteNodeName = "Sprite";
+        private const string GameObjectsNodeName = "GameObjects";
+        private const string GameObjectNodeName = "GameObject";
 
         private string m_tiledMapFilePath = "";
         public string TiledMapFilePath
@@ -53,29 +46,30 @@ namespace SceneMaster.Models
 
         public Scene()
         {
-            //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
+            ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
 
-            m_spriteImage = new BitmapImage();
+            m_defaultImage = new BitmapImage();
             // Set the image source to a file stream
-            m_spriteImage.BeginInit();
-            m_spriteImage.CacheOption = BitmapCacheOption.OnLoad;
-            m_spriteImage.UriSource = new Uri("sprite.png", UriKind.RelativeOrAbsolute);
-            m_spriteImage.EndInit();
+            m_defaultImage.BeginInit();
+            m_defaultImage.CacheOption = BitmapCacheOption.OnLoad;
+            m_defaultImage.UriSource = new Uri("sprite.png", UriKind.RelativeOrAbsolute);
+            m_defaultImage.EndInit();
 
             /*
-            m_sprites.Add(new Sprite { X = 0,
-                                       Y = 0,
-                                       Bitmap = m_spriteImage });
+            m_gameObjects.Add(new GameObject { X = 0,
+                                               Y = 0,
+                                               Bitmap = m_defaultImage });
 
-            m_sprites.Add(new Sprite { X = 640,
-                                       Y = 224,
-                                       Bitmap = m_spriteImage });
+            m_gameObjects.Add(new GameObject { X = 640,
+                                               Y = 224,
+                                               Bitmap = m_defaultImage });
 
-            m_sprites.Add(new Sprite { X = 180,
-                                       Y = 100,
-                                       Bitmap = m_spriteImage });
+            m_gameObjects.Add(new GameObject { X = 180,
+                                               Y = 100,
+                                               Bitmap = m_defaultImage });
             */
-            //Save(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\tools\SceneMaster\test.scm");
+            //Load(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\tools\SceneMaster\test.scm");
+
 
 
         }
@@ -121,25 +115,25 @@ namespace SceneMaster.Models
                 LoadTiledMap(TiledMapFilePath);
             }
 
-            var spritesNode = root[SpritesNodeName];
-            if (spritesNode != null)
+            var gameObjectsNode = root[GameObjectsNodeName];
+            if (gameObjectsNode != null)
             { 
-                foreach (var spriteNode in spritesNode.ChildNodes.OfType<XmlElement>())
+                foreach (var gameObjectNode in gameObjectsNode.ChildNodes.OfType<XmlElement>())
                 { 
-                    var sprite = new Sprite();
+                    var gameObject = new GameObject();
 
-                    string xString = spriteNode.Attributes[nameof(Sprite.X)]?.Value ?? "0";
-                    string yString = spriteNode.Attributes[nameof(Sprite.Y)]?.Value ?? "0";
+                    string xString = gameObjectNode.Attributes[nameof(GameObject.X)]?.Value ?? "0";
+                    string yString = gameObjectNode.Attributes[nameof(GameObject.Y)]?.Value ?? "0";
 
                     if (double.TryParse(xString, out var x))
-                        sprite.X = x;
+                        gameObject.X = x;
 
                     if (double.TryParse(yString, out var y))
-                        sprite.Y = y;
+                        gameObject.Y = y;
 
-                    sprite.Bitmap = m_spriteImage;
+                    gameObject.Bitmap = m_defaultImage;
 
-                    Sprites.Add(sprite);
+                    GameObjects.Add(gameObject);
                 }
             }
 
@@ -159,17 +153,17 @@ namespace SceneMaster.Models
             ggFilePathNode.InnerText = string.IsNullOrEmpty(TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), TiledMapFilePath);
             root.AppendChild(ggFilePathNode);
 
-            // sprites
-            var spritesNode = doc.CreateElement(SpritesNodeName);
-            root.AppendChild(spritesNode);
+            // gameobjects
+            var gameObjectsNode = doc.CreateElement(GameObjectsNodeName);
+            root.AppendChild(gameObjectsNode);
 
-            foreach (var sprite in Sprites)
+            foreach (var gameObject in GameObjects)
             { 
-                var spriteNode = doc.CreateElement(SpriteNodeName);
-                spritesNode.AppendChild(spriteNode);
+                var gameObjectNode = doc.CreateElement(GameObjectNodeName);
+                gameObjectsNode.AppendChild(gameObjectNode);
 
-                spriteNode.SetAttribute(nameof(Sprite.X), sprite.X.ToString());
-                spriteNode.SetAttribute(nameof(Sprite.Y), sprite.Y.ToString());
+                gameObjectNode.SetAttribute(nameof(GameObject.X), gameObject.X.ToString());
+                gameObjectNode.SetAttribute(nameof(GameObject.Y), gameObject.Y.ToString());
             }
 
             // Save
@@ -270,7 +264,7 @@ namespace SceneMaster.Models
             // Use the connection object as well as the tileset to figure out the source rectangle.
             var rect = m_tiledMap.GetSourceRect(mapTileset, tileset, gid);
 
-            // Render sprite at position tileX, tileY using the rect
+            // Render gameobject at position tileX, tileY using the rect
 
             var bitmapImage = m_tilesetBitmaps[tileset.Image.source];
 
@@ -292,17 +286,17 @@ namespace SceneMaster.Models
                                         0);
         }
 
-        internal Sprite CreateSprite(int x, int y)
+        internal GameObject CreateGameObject(int x, int y)
         {
-            var sprite = new Sprite();
-            sprite.X = x; 
-            sprite.Y = y;
-            sprite.Bitmap = m_spriteImage;
-            Sprites.Add(sprite);
+            var gameObject = new GameObject();
+            gameObject.X = x; 
+            gameObject.Y = y;
+            gameObject.Bitmap = m_defaultImage;
+            GameObjects.Add(gameObject);
 
-            OnPropertyChanged(nameof(Sprites));
+            OnPropertyChanged(nameof(GameObjects));
 
-            return sprite;
+            return gameObject;
         }
     }
 }

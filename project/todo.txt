@@ -35,7 +35,7 @@ Todo
 
 		DONE check for clicking on close button
 		
-		delete selected objects
+		DONE delete selected objects
 
 		change Sprite-related and ObjectView classes to more descriptive names
 		

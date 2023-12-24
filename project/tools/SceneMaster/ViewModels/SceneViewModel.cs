@@ -28,23 +28,23 @@ namespace SceneMaster.ViewModels
             }
         }
 
-        public ObservableCollection<SpriteViewModel> SpriteViewModels { get; set; } = new();
+        public ObservableCollection<GameObjectViewModel> GameObjectViewModels { get; set; } = new();
 
-        private SpriteViewModel m_selectedSpriteViewModel;
-        public SpriteViewModel SelectedSpriteViewModel 
+        private GameObjectViewModel m_selectedGameObjectViewModel;
+        public GameObjectViewModel SelectedGameObjectViewModel 
         { 
-            get => m_selectedSpriteViewModel;
+            get => m_selectedGameObjectViewModel;
 
             set
             { 
                 m_ignoreChanges = true;
-                if (m_selectedSpriteViewModel != null)
-                    m_selectedSpriteViewModel.IsSelected = false;
+                if (m_selectedGameObjectViewModel != null)
+                    m_selectedGameObjectViewModel.IsSelected = false;
 
-                SetProperty(ref m_selectedSpriteViewModel, value);
+                SetProperty(ref m_selectedGameObjectViewModel, value);
 
-                if (m_selectedSpriteViewModel != null)
-                    m_selectedSpriteViewModel.IsSelected = true;
+                if (m_selectedGameObjectViewModel != null)
+                    m_selectedGameObjectViewModel.IsSelected = true;
 
                 m_ignoreChanges = false;
             }
@@ -59,43 +59,43 @@ namespace SceneMaster.ViewModels
 
             // attach
             Scene.PropertyChanged += Scene_PropertyChanged;
-            Scene.Sprites.CollectionChanged += Sprites_CollectionChanged;
+            Scene.GameObjects.CollectionChanged += GameObjects_CollectionChanged;
 
-            foreach (var sprite in m_scene.Sprites)
+            foreach (var gameObject in Scene.GameObjects)
             { 
-                var spriteViewModel = new SpriteViewModel(sprite, this);
-                spriteViewModel.PropertyChanged += Scene_PropertyChanged;
-                SpriteViewModels.Add(spriteViewModel);
+                var gameObjectViewModel = new GameObjectViewModel(gameObject, this);
+                gameObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                GameObjectViewModels.Add(gameObjectViewModel);
             }
 
-            DeleteCommand = new RelayCommand(DeleteSelectedSprite, CanDeleteSelectedSprite);
+            DeleteCommand = new RelayCommand(DeleteSelectedGameObjectViewModel, CanDeleteSelectedGameObjectViewModel);
         }
 
         public ICommand DeleteCommand { get; }
 
-        private void DeleteSelectedSprite()
+        private void DeleteSelectedGameObjectViewModel()
         {
-            if (SelectedSpriteViewModel == null) 
+            if (SelectedGameObjectViewModel == null) 
                 return;
 
-            m_scene.Sprites.Remove(SelectedSpriteViewModel.Sprite);
+            Scene.GameObjects.Remove(SelectedGameObjectViewModel.GameObject);
         }
 
-        private bool CanDeleteSelectedSprite()
+        private bool CanDeleteSelectedGameObjectViewModel()
         {
-            return SelectedSpriteViewModel != null;
+            return SelectedGameObjectViewModel != null;
         }
 
-        private void DeleteSpriteViewModel(Scene.Sprite spriteToDelete)
+        private void DeleteGameObjectViewModel(GameObject gameObjectToDelete)
         {
-            var spriteViewModel = SpriteViewModels.FirstOrDefault(x => x.Sprite == spriteToDelete);
-            if (spriteViewModel == null)
+            var gameObjectViewModel = GameObjectViewModels.FirstOrDefault(x => x.GameObject == gameObjectToDelete);
+            if (gameObjectViewModel == null)
                 return;
 
-            SpriteViewModels.Remove(spriteViewModel);
-            spriteViewModel.PropertyChanged -= Scene_PropertyChanged;
+            GameObjectViewModels.Remove(gameObjectViewModel);
+            gameObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
 
-            Deselect(spriteViewModel);
+            Deselect(gameObjectViewModel);
         }
 
         public void Dispose()
@@ -103,14 +103,14 @@ namespace SceneMaster.ViewModels
             // detach
             if (Scene != null) 
             { 
-                foreach (var spriteViewModel in SpriteViewModels)
+                foreach (var gameObjectViewMode in GameObjectViewModels)
                 { 
-                    spriteViewModel.PropertyChanged -= Scene_PropertyChanged;
+                    gameObjectViewMode.PropertyChanged -= Scene_PropertyChanged;
                 }
-                SpriteViewModels.Clear();
+                GameObjectViewModels.Clear();
 
                 Scene.PropertyChanged -= Scene_PropertyChanged;
-                Scene.Sprites.CollectionChanged -= Sprites_CollectionChanged;
+                Scene.GameObjects.CollectionChanged -= GameObjects_CollectionChanged;
                 Scene = null;
             }
         }
@@ -120,27 +120,27 @@ namespace SceneMaster.ViewModels
             IsModified = true;
         }
 
-        private void Sprites_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void GameObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             IsModified = true;
 
-            Deselect(SelectedSpriteViewModel);
+            Deselect(SelectedGameObjectViewModel);
 
             if (e.NewItems != null)
             { 
-                foreach (var newSprite in e.NewItems.OfType<Scene.Sprite>())
+                foreach (var newGameObject in e.NewItems.OfType<GameObject>())
                 {
-                    var newSpriteViewModel = new SpriteViewModel(newSprite, this);
-                    newSpriteViewModel.PropertyChanged += Scene_PropertyChanged;
-                    SpriteViewModels.Add(newSpriteViewModel);
+                    var newGameObjectViewModel = new GameObjectViewModel(newGameObject, this);
+                    newGameObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                    GameObjectViewModels.Add(newGameObjectViewModel);
                 }
             }
             
             if (e.OldItems != null) 
             {
-                foreach (var spriteToDelete in e.OldItems.OfType<Scene.Sprite>())
+                foreach (var gameObjectToDelete in e.OldItems.OfType<GameObject>())
                 { 
-                    DeleteSpriteViewModel(spriteToDelete);
+                    DeleteGameObjectViewModel(gameObjectToDelete);
                 }
             }
         }
@@ -161,19 +161,19 @@ namespace SceneMaster.ViewModels
             IsModified = false;
         }
 
-        internal void Select(SpriteViewModel spriteViewModel)
+        internal void Select(GameObjectViewModel gameObjectViewModel)
         {
-            if (SelectedSpriteViewModel == spriteViewModel)
+            if (SelectedGameObjectViewModel == gameObjectViewModel)
                 return;
 
-            SelectedSpriteViewModel = spriteViewModel;
+            SelectedGameObjectViewModel = gameObjectViewModel;
         }
 
-        internal void Deselect(SpriteViewModel spriteViewModel)
+        internal void Deselect(GameObjectViewModel gameObjectViewModel)
         {
-            if (SelectedSpriteViewModel == spriteViewModel)
+            if (SelectedGameObjectViewModel == gameObjectViewModel)
             {
-                SelectedSpriteViewModel = null;
+                SelectedGameObjectViewModel = null;
             }
         }
     }

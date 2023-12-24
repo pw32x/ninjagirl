@@ -5,12 +5,12 @@ using System.Windows;
 
 namespace SceneMaster.ViewModels
 {
-    public class SpriteViewModel : ObservableObject
+    public class GameObjectViewModel : ObservableObject
     { 
-        public SpriteViewModel(Scene.Sprite sprite, 
-                               SceneViewModel sceneViewModel)
+        public GameObjectViewModel(GameObject gameObject, 
+                                   SceneViewModel sceneViewModel)
         {
-            Sprite = sprite;
+            GameObject = gameObject;
             SceneViewModel = sceneViewModel;
         }
 
@@ -26,10 +26,10 @@ namespace SceneMaster.ViewModels
 
         public double X 
         { 
-            get => Sprite.X;
+            get => GameObject.X;
             set 
             { 
-                Sprite.X = value;
+                GameObject.X = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedX));
             }
@@ -37,22 +37,22 @@ namespace SceneMaster.ViewModels
 
         public double Y 
         { 
-            get => Sprite.Y;
+            get => GameObject.Y;
             set
             { 
-                Sprite.Y = value;
+                GameObject.Y = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedY));
             }
         }
 
-        public double SnappedX { get => (int)Sprite.X; }
-        public double SnappedY { get => (int)Sprite.Y; }
+        public double SnappedX { get => (int)GameObject.X; }
+        public double SnappedY { get => (int)GameObject.Y; }
 
-        public double Width { get => Sprite.Bitmap.Width; }
-        public double Height { get => Sprite.Bitmap.Height; }
+        public double Width { get => GameObject.Bitmap.Width; }
+        public double Height { get => GameObject.Bitmap.Height; }
 
-        public Scene.Sprite Sprite { get; set; }
+        public GameObject GameObject { get; set; }
 
         public SceneViewModel SceneViewModel { get; internal set; }
 

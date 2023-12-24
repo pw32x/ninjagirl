@@ -37,7 +37,7 @@ namespace SceneMaster
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                sceneViewModel.Scene.CreateSprite(mapX, mapY);
+                sceneViewModel.Scene.CreateGameObject(mapX, mapY);
             }
         }
 
