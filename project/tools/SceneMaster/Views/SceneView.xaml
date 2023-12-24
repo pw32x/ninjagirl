@@ -8,7 +8,9 @@
              mc:Ignorable="d"
              d:DataContext ="{d:DesignInstance viewmodels:SceneViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="301" d:DesignWidth="512"
-             x:Name="SceneMasterSceneView">
+             x:Name="SceneMasterSceneView"
+             DataContextChanged="SceneMasterSceneView_DataContextChanged"
+             SizeChanged="SceneMasterSceneView_SizeChanged">
     <Grid Background="Blue" x:Name="ParentGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -27,17 +29,20 @@
                                 Stretch="None"
                                 VerticalAlignment="Stretch" 
                                 HorizontalAlignment="Stretch">
-                    <Grid x:Name="MainGrid" Background="Beige" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid x:Name="MainGrid" 
+                          Background="Beige" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center">
                         <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
-                               MouseLeftButtonDown="Image_MouseLeftButtonDown" 
                                LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
+                               MouseLeftButtonDown="Image_MouseLeftButtonDown" 
                                Stretch="None" />
-
+                        <Canvas x:Name="GridCanvas" IsHitTestVisible="False"/>
                         <ItemsControl ItemsSource="{Binding GameObjectViewModels}" >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <Canvas/>
+                                    <Canvas />
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
 
@@ -58,7 +63,6 @@
 
                     </Grid>
                 </controls:ZoomBorderCustom>
-
         </ScrollViewer>
 
         <StatusBar Grid.Row="1">

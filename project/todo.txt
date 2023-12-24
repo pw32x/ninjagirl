@@ -37,7 +37,11 @@ Todo
 		
 		DONE delete selected objects
 
-		change Sprite-related and ObjectView classes to more descriptive names
+		DONE change Sprite-related and ObjectView classes to more descriptive names
+		
+		DONE draw a grid over the tiles
+		
+		update grid when changing maps
 		
 		create tools/bin folder for tool .exe to go to when built
 		
