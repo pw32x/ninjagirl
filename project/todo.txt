@@ -41,7 +41,9 @@ Todo
 		
 		DONE draw a grid over the tiles
 		
-		update grid when changing maps
+		DONE update grid when changing maps
+		
+		DONE make the lines dashed or semi transparent?
 		
 		create tools/bin folder for tool .exe to go to when built
 		

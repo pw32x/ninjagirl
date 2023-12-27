@@ -16,6 +16,9 @@ namespace SceneMaster
     /// </summary>
     public partial class SceneView : UserControl
     {
+        private SceneViewModel m_sceneViewModel;
+        private Scene m_scene;
+
         public SceneView()
         {
             InitializeComponent();
@@ -65,7 +68,11 @@ namespace SceneMaster
             DrawingVisual drawingVisual = new DrawingVisual();
             using (DrawingContext drawingContext = drawingVisual.RenderOpen())
             {
-                Pen pen = new Pen(Brushes.Black, 1); // Change color and thickness as needed
+                Color lineColor = Colors.Gray;
+                byte alphaValue = 255; // Adjust the alpha value as needed (0 to 255 for transparency)
+
+                Pen pen = new Pen(new SolidColorBrush(Color.FromArgb(alphaValue, lineColor.R, lineColor.G, lineColor.B)), .25);
+                pen.DashStyle = new DashStyle(new double[] { 0, 2 }, 0); // Adjust the dash and gap lengths as needed
 
                 // Draw vertical grid lines
                 for (double x = 0; x <= mapWidth; x += tileWidth) // Adjust the interval as needed
@@ -97,23 +104,32 @@ namespace SceneMaster
 
         private void SceneMasterSceneView_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (DataContext is SceneViewModel sceneViewModel)
+            m_sceneViewModel = null;
+
+            if (m_scene != null)
             {
-                sceneViewModel.PropertyChanged += SceneViewModel_PropertyChanged;
+                m_scene.PropertyChanged -= Scene_PropertyChanged;
+                m_scene = null;
             }
 
+            if (DataContext is SceneViewModel sceneViewModel)
+            {
+                m_sceneViewModel = sceneViewModel;
+                m_scene = sceneViewModel.Scene;
+
+                if (m_scene != null) 
+                {
+                    m_scene.PropertyChanged += Scene_PropertyChanged;
+                }
+            }
 
             DrawGridLines();
-
         }
 
-        private void SceneViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void Scene_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (DataContext is SceneViewModel sceneViewModel)
-            {
-                if (e.PropertyName == nameof(sceneViewModel.Scene))
-                    DrawGridLines();
-            }
+            if (e.PropertyName == nameof(Scene.TiledMapBitmapSource))
+                DrawGridLines();
         }
     }
 }
