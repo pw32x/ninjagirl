@@ -10,7 +10,7 @@
 	</EditorProperties>
 	<GameProperties>
 		<BoundingBox left="" right="" top="" bottom="" />
-		<ObjectType value="" />
+		<GameObjectType value="Projectile" />
 		<Health value="3"/>
 		<ResourceInfo value="" />
 		<DrawFunction value="" />

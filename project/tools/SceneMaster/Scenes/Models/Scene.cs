@@ -117,13 +117,8 @@ namespace SceneMaster.Scenes.Models
                 {
                     var gameObject = new GameObject();
 
-                    string xString = gameObjectNode.Attributes[nameof(GameObject.X)]?.Value ?? "0";
-                    if (double.TryParse(xString, out var x))
-                        gameObject.X = x;
-
-                    string yString = gameObjectNode.Attributes[nameof(GameObject.Y)]?.Value ?? "0";
-                    if (double.TryParse(yString, out var y))
-                        gameObject.Y = y;
+                    gameObject.X = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.X));
+                    gameObject.Y = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.Y));
 
                     gameObject.Bitmap = m_defaultImage;
 
