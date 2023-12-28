@@ -6,14 +6,24 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
+using SceneMaster.GameObjectTemplates.Models;
 
 namespace SceneMaster.Main.ViewModels
 {
+    public class AppConfig
+    {
+        public string GameObjectTemplatesDirectory { get => "..\\..\\..\\..\\..\\gamedata\\gameobjecttemplates"; }
+    }
+
     public class MainViewModel : ObservableObject
     {
         public string Title => "Scene Master";
 
+        private AppConfig AppConfig { get; } = new();
+        private GameObjectTemplateLibrary GameObjectTemplateLibrary { get; } = new();
+
         private SceneMasterDocument m_currentDocument;
+
         public SceneMasterDocument CurrentDocument
         {
             get => m_currentDocument;
@@ -22,6 +32,8 @@ namespace SceneMaster.Main.ViewModels
 
         public MainViewModel()
         {
+            GameObjectTemplateLibrary.Load(AppConfig.GameObjectTemplatesDirectory);
+
             CurrentDocument = new SceneMasterDocument();
 
             NewCommand = new RelayCommand(New);

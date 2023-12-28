@@ -1,5 +1,6 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
@@ -100,13 +101,7 @@ namespace SceneMaster.Scenes.Models
 
         public bool Load(string filePath)
         {
-            var doc = new XmlDocument();
-            doc.Load(filePath);
-
-            var root = doc[nameof(Scene)];
-
-            if (root == null)
-                throw new Exception($"No {nameof(Scene)} node found in {filePath}.");
+            var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
 
             var ggFilePathNode = root[TiledMapFilePathNodeName];
             if (ggFilePathNode != null && !string.IsNullOrEmpty(ggFilePathNode.InnerText))
@@ -123,11 +118,10 @@ namespace SceneMaster.Scenes.Models
                     var gameObject = new GameObject();
 
                     string xString = gameObjectNode.Attributes[nameof(GameObject.X)]?.Value ?? "0";
-                    string yString = gameObjectNode.Attributes[nameof(GameObject.Y)]?.Value ?? "0";
-
                     if (double.TryParse(xString, out var x))
                         gameObject.X = x;
 
+                    string yString = gameObjectNode.Attributes[nameof(GameObject.Y)]?.Value ?? "0";
                     if (double.TryParse(yString, out var y))
                         gameObject.Y = y;
 

@@ -1,4 +1,5 @@
-<GameObjectTemplate>
+<GameObjectTemplate >
+	<Name value="TestEnemy"/>
 	<EditorProperties>
 		<Visual>
 			<GraphicsGaleVisual filename="" framenumber=""/>
