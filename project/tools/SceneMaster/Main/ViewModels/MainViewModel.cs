@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using SceneMaster.GameObjectTemplates.Models;
+using SceneMaster.GameObjectTemplates.ViewModels;
 
 namespace SceneMaster.Main.ViewModels
 {
@@ -20,7 +21,7 @@ namespace SceneMaster.Main.ViewModels
         public string Title => "Scene Master";
 
         private AppConfig AppConfig { get; } = new();
-        private GameObjectTemplateLibrary GameObjectTemplateLibrary { get; } = new();
+        private GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; } = new();
 
         private SceneMasterDocument m_currentDocument;
 
@@ -32,9 +33,13 @@ namespace SceneMaster.Main.ViewModels
 
         public MainViewModel()
         {
-            GameObjectTemplateLibrary.Load(AppConfig.GameObjectTemplatesDirectory);
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            var dllDirectory = baseDirectory + @"thirdparty\GraphicsGale"; // ensures galefile.dll gets loaded.
+            Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory);
 
-            CurrentDocument = new SceneMasterDocument();
+            GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary.Load(AppConfig.GameObjectTemplatesDirectory);
+
+            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
 
             NewCommand = new RelayCommand(New);
             OpenCommand = new RelayCommand(Open);
@@ -58,7 +63,7 @@ namespace SceneMaster.Main.ViewModels
                 return;
 
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument();
+            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
             // Add logic to clear/reset your UI or perform other actions for a new document
         }
 
@@ -75,13 +80,13 @@ namespace SceneMaster.Main.ViewModels
                 return;
 
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument();
+            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
 
             if (!CurrentDocument.Load(openFileDialog.FileName))
             {
                 MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
                 CurrentDocument?.Dispose();
-                CurrentDocument = new SceneMasterDocument();
+                CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
             }
         }
 

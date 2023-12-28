@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace SceneMaster.GameObjectTemplates.Models
 {
-
-    internal class GameObjectTemplateLibrary
+    public class GameObjectTemplateLibrary
     {
         public GameObjectTemplateLibrary() { }
 

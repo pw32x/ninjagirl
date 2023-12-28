@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SceneMaster.GameObjectTemplates.ViewModels;
 using SceneMaster.Scenes.Models;
 using System;
 using System.Collections.ObjectModel;
@@ -53,8 +54,11 @@ namespace SceneMaster.Scenes.ViewModels
         private Scene m_scene;
         public Scene Scene { get => m_scene; private set => m_scene = value; }
 
-        public SceneViewModel()
+        GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; set; }
+
+        public SceneViewModel(GameObjectTemplateLibraryViewModel gameObjectTemplateLibraryViewModel)
         {
+            GameObjectTemplateLibraryViewModel = gameObjectTemplateLibraryViewModel;
             Scene = new Scene();
 
             // attach
@@ -175,6 +179,14 @@ namespace SceneMaster.Scenes.ViewModels
             {
                 SelectedGameObjectViewModel = null;
             }
+        }
+
+        internal void CreateGameObject(int mapX, int mapY)
+        {
+            if (GameObjectTemplateLibraryViewModel.SelectedGameObjectTemplate == null)
+                return;
+
+            Scene.CreateGameObject(mapX, mapY, GameObjectTemplateLibraryViewModel.SelectedGameObjectTemplate);
         }
     }
 }

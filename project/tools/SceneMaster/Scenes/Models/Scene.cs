@@ -275,12 +275,12 @@ namespace SceneMaster.Scenes.Models
                                         0);
         }
 
-        internal GameObject CreateGameObject(int x, int y)
+        internal GameObject CreateGameObject(int x, int y, GameObjectTemplate gameObjectTemplate)
         {
             var gameObject = new GameObject();
             gameObject.X = x;
             gameObject.Y = y;
-            gameObject.Bitmap = m_defaultImage;
+            gameObject.Bitmap = gameObjectTemplate.Visual.Image;
             GameObjects.Add(gameObject);
 
             OnPropertyChanged(nameof(GameObjects));

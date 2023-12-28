@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.GameObjectTemplates.Models;
+using SceneMaster.GameObjectTemplates.ViewModels;
 using SceneMaster.Scenes.ViewModels;
 using System;
 using System.IO;
@@ -43,9 +45,13 @@ namespace SceneMaster.Documents.ViewModels
 
         public bool IsFilePathSet { get; private set; } = false;
 
-        public SceneMasterDocument()
+        public GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; private set; }
+
+        public SceneMasterDocument(GameObjectTemplateLibraryViewModel gameObjectTemplateLibraryViewModel)
         {
-            SceneViewModel = new SceneViewModel();
+            GameObjectTemplateLibraryViewModel = gameObjectTemplateLibraryViewModel;
+
+            SceneViewModel = new SceneViewModel(GameObjectTemplateLibraryViewModel);
 
             FilePath = DefaultFilename;
         }
@@ -59,7 +65,7 @@ namespace SceneMaster.Documents.ViewModels
         public bool Load(string filePath)
         {
             SceneViewModel.Dispose();
-            SceneViewModel = new SceneViewModel();
+            SceneViewModel = new SceneViewModel(GameObjectTemplateLibraryViewModel);
             SceneViewModel.Load(filePath);
 
             FilePath = filePath;

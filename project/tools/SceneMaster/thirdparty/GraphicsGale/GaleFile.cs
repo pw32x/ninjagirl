@@ -304,7 +304,7 @@ namespace GraphicsGaleWrapper
         }
 
         [DllImport("galefile.dll", EntryPoint = "ggGetBitmap")]
-        private static extern IntPtr _ggGetBitmap(IntPtr pFile, int frameIndex, int layerIndex);
+        public static extern IntPtr _ggGetBitmap(IntPtr pFile, int frameIndex, int layerIndex);
 
         /// <summary>
         /// Retrieves a new Bitmap of specific frame and layer.

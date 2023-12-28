@@ -28,8 +28,7 @@ namespace SceneMaster.Scenes.Views
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            SceneViewModel sceneViewModel = (SceneViewModel)DataContext;
-            if (sceneViewModel != null) 
+            if (m_sceneViewModel != null) 
             { 
                 // convert the position clicked on the TileMapBitmapImage 
                 // to a position on the tilemap.
@@ -37,7 +36,7 @@ namespace SceneMaster.Scenes.Views
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                sceneViewModel.Scene.CreateGameObject(mapX, mapY);
+                m_sceneViewModel.CreateGameObject(mapX, mapY);
             }
         }
 
@@ -48,16 +47,15 @@ namespace SceneMaster.Scenes.Views
 
         private void DrawGridLines()
         {
-            SceneViewModel sceneViewModel = (SceneViewModel)DataContext;
-            if (sceneViewModel == null)
+            if (m_sceneViewModel == null)
                 return;
 
 
-            int tileWidth = sceneViewModel.Scene.TiledMap.TileWidth;
-            int tileHeight = sceneViewModel.Scene.TiledMap.TileHeight;
+            int tileWidth = m_sceneViewModel.Scene.TiledMap.TileWidth;
+            int tileHeight = m_sceneViewModel.Scene.TiledMap.TileHeight;
 
-            int mapWidth = sceneViewModel.Scene.TiledMap.Width * tileWidth;
-            int mapHeight = sceneViewModel.Scene.TiledMap.Height * tileHeight;
+            int mapWidth = m_sceneViewModel.Scene.TiledMap.Width * tileWidth;
+            int mapHeight = m_sceneViewModel.Scene.TiledMap.Height * tileHeight;
 
             GridCanvas.Children.Clear();
 

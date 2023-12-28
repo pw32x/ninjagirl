@@ -1,13 +1,18 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using GraphicsGaleWrapper;
+using PropertyTools.DataAnnotations;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace SceneMaster.GameObjectTemplates.Models
 {
-    internal enum GameObjectType
+    public enum GameObjectType
     {
         Undefined,
         Projectile,
@@ -15,57 +20,91 @@ namespace SceneMaster.GameObjectTemplates.Models
         Effect
     }
 
-    internal class EditorProperties
+    public class Visual
     {
-        internal void Load(XmlElement editorPropertiesNode)
+        public int Width { get; private set; }
+        public int Height { get; private set; }
+        public BitmapImage Image { get; private set; }
+
+        public void Load(XmlElement visualNode)
         {
-            
+            if (visualNode["GraphicsGale"] is var graphicsGaleNode && graphicsGaleNode != null)
+            {
+                string graphicsGaleFilename = XmlUtils.GetValue<string>(graphicsGaleNode, "filename");
+                int frameNumber = XmlUtils.GetValue<int>(graphicsGaleNode, "framenumber");
+
+                if (!string.IsNullOrEmpty(graphicsGaleFilename)) 
+                {
+                    var galeFile = GaleFile.Open(graphicsGaleFilename);
+
+                    Width = GaleFile.GetWidth(galeFile);
+                    Height = GaleFile.GetHeight(galeFile);
+
+                    var frameBitmap = GaleFile._ggGetBitmap(galeFile, frameNumber, 0);
+                    var palette = GaleFile.GetPalette(galeFile, frameNumber);
+
+                    Image = BitmapUtils.ConvertHBitmapToBitmapImage(frameBitmap);
+
+                    GaleFile.Close(galeFile);
+                }
+            }
         }
     }
 
-    internal class GameProperties
-    {
-        public int Health { get; set; }
-        public GameObjectType GameObjectType { get; set; }
-        public double Something { get; set; }
-
-        internal void Load(XmlElement gamePropertiesNode)
-        {
-            Health = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(Health));
-            GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
-            Something = XmlUtils.GetChildValue<double>(gamePropertiesNode, nameof(Something));
-        }
-    }
-
-    internal class GameObjectTemplate
+    public class GameObjectTemplate
     {
         public string Name { get; private set; }
 
-        private EditorProperties m_editorProperties = new EditorProperties();
-        public EditorProperties EditorProperties { get => m_editorProperties; }
+        // editor properties
+        public Visual Visual { get; } = new();
 
-        private GameProperties m_gameProperties = new GameProperties();
-        public GameProperties GameProperties { get => m_gameProperties; }
+        // game properties
+        [System.ComponentModel.ReadOnly(true)]
+        public int Health { get; set; }
 
-        internal void Load(string filePath)
+        [System.ComponentModel.ReadOnly(true)]
+        [SelectorStyle(SelectorStyle.ComboBox)]
+        public GameObjectType GameObjectType { get; set; }
+
+        public void LoadEditorProperties(XmlElement editorPropertiesNode)
+        {
+            if (editorPropertiesNode["Visual"] is var visualNode && visualNode != null)
+            {
+                Visual.Load(visualNode);
+            }
+        }
+
+        public void LoadGameProperties(XmlElement gamePropertiesNode)
+        {
+            Health = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(Health));
+            GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
+        }
+
+        public void Load(string filePath)
         {
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(GameObjectTemplate));
 
+            string oldCurrentDirectory = Directory.GetCurrentDirectory();
+
+            Directory.SetCurrentDirectory(Path.GetDirectoryName(filePath));
+
             Name = "UnnamedGameObjectTemplate";
-            if (root[nameof(Name)] is var nameNode)
+            if (root[nameof(Name)] is var nameNode && nameNode != null)
             {
                 Name = nameNode.Attributes["value"]?.Value ?? "UnnamedGameObjectTemplate";
             }
 
-            if (root[nameof(EditorProperties)] is var editorPropertiesNode)
+            if (root["EditorProperties"] is var editorPropertiesNode && editorPropertiesNode != null)
             {
-                EditorProperties.Load(editorPropertiesNode);
+                LoadEditorProperties(editorPropertiesNode);
             }
 
-            if (root[nameof(GameProperties)] is var gamePropertiesNode) 
+            if (root["GameProperties"] is var gamePropertiesNode && gamePropertiesNode != null) 
             {
-                GameProperties.Load(gamePropertiesNode);
+                LoadGameProperties(gamePropertiesNode);
             }
+
+            Directory.SetCurrentDirectory(oldCurrentDirectory);
         }
 
     }

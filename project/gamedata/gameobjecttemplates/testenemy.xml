@@ -2,7 +2,7 @@
 	<Name value="TestEnemy"/>
 	<EditorProperties>
 		<Visual>
-			<GraphicsGaleVisual filename="" framenumber=""/>
+			<GraphicsGale filename="..\animations\standard\walker.gal" framenumber="1"/>
 			<!-- <Rectangle x="" y="" width="" height="" /> 
 				<Image filename="" />
 			-->
