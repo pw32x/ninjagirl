@@ -1,13 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SceneMaster.Models;
-using System;
-using System.Windows;
+using SceneMaster.Scenes.Models;
 
-namespace SceneMaster.ViewModels
+namespace SceneMaster.Scenes.ViewModels
 {
     public class GameObjectViewModel : ObservableObject
-    { 
-        public GameObjectViewModel(GameObject gameObject, 
+    {
+        public GameObjectViewModel(GameObject gameObject,
                                    SceneViewModel sceneViewModel)
         {
             GameObject = gameObject;
@@ -24,22 +22,22 @@ namespace SceneMaster.ViewModels
             SceneViewModel.Deselect(this);
         }
 
-        public double X 
-        { 
+        public double X
+        {
             get => GameObject.X;
-            set 
-            { 
+            set
+            {
                 GameObject.X = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedX));
             }
         }
 
-        public double Y 
-        { 
+        public double Y
+        {
             get => GameObject.Y;
             set
-            { 
+            {
                 GameObject.Y = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedY));
@@ -57,13 +55,13 @@ namespace SceneMaster.ViewModels
         public SceneViewModel SceneViewModel { get; internal set; }
 
         private bool m_isSelected = false;
-        public bool IsSelected 
-        { 
-            get => m_isSelected; 
+        public bool IsSelected
+        {
+            get => m_isSelected;
             set
             {
-                SetProperty(ref m_isSelected, value); 
+                SetProperty(ref m_isSelected, value);
             }
-        } 
+        }
     }
 }

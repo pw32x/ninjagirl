@@ -1,6 +1,52 @@
 	
 Completed
 
+	SceneMaster			
+
+		DONE remove unneeded SpriteMaster bits
+		DONE load Tiled tileset
+		DONE load Tiled map (or fake one)
+		DONE display map with tiles
+		
+		
+		DONE zoom/scroll/pan map display
+			don't stretch or squash. keep aspect ratio at all times
+			
+		DONE click on map, get position on map
+
+		DONE draw something overtop the map
+		
+		DONE place object on map
+		
+		DONE load and save objects
+
+		DONE drag placed objects
+
+		DONE select object
+		
+		DONE fix object dragging
+		
+		DONE show selection with rectangle around selection
+		
+		DONE improve selection 
+
+		DONE get mouse events when dragging objects outside of window
+		
+		DONE snap object views to bitmap pixels
+
+		DONE check for clicking on close button
+		
+		DONE delete selected objects
+
+		DONE change Sprite-related and ObjectView classes to more descriptive names
+		
+		DONE draw a grid over the tiles
+		
+		DONE update grid when changing maps
+		
+		DONE make the lines dashed or semi transparent?
+		
+		NAH create tools/bin folder for tool .exe to go to when built
 
 	Sprite Master C++
 

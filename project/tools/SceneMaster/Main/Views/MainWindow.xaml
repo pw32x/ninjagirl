@@ -1,10 +1,11 @@
 ﻿<Window x:Class="SceneMaster.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:converters="http://schemas.microsoft.com/netfx/2009/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SceneMaster" 
-        xmlns:converters="http://schemas.microsoft.com/netfx/2009/xaml/presentation" xmlns:viewmodels="clr-namespace:SceneMaster.ViewModels"
+        xmlns:documents="clr-namespace:SceneMaster.Documents.Views"
+        xmlns:viewmodels="clr-namespace:SceneMaster.Main.ViewModels"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="450" Width="800"
         d:DataContext="{d:DesignInstance viewmodels:MainViewModel, IsDesignTimeCreatable=True}"
@@ -48,7 +49,7 @@
                         <TextBlock Text="{Binding CurrentDocument.Filename}"/>
                     </StackPanel>
                 </TabItem.Header>
-                <local:SceneMasterDocumentView DataContext="{Binding CurrentDocument}" />
+                <documents:SceneMasterDocumentView DataContext="{Binding CurrentDocument}" />
             </TabItem>
         </TabControl>
     </DockPanel>

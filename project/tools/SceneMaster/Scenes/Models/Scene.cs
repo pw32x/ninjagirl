@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Xml;
 using TiledCS;
 
-namespace SceneMaster.Models
+namespace SceneMaster.Scenes.Models
 {
     public class Scene : ObservableObject
     {
         BitmapImage m_defaultImage;
 
         private ObservableCollection<GameObject> m_gameObjects = new ObservableCollection<GameObject>();
-        public ObservableCollection<GameObject> GameObjects {  get => m_gameObjects; }
+        public ObservableCollection<GameObject> GameObjects { get => m_gameObjects; }
 
         private const string TiledMapFilePathNodeName = "TiledMapFilePath";
         private const string GameObjectsNodeName = "GameObjects";
@@ -117,9 +117,9 @@ namespace SceneMaster.Models
 
             var gameObjectsNode = root[GameObjectsNodeName];
             if (gameObjectsNode != null)
-            { 
+            {
                 foreach (var gameObjectNode in gameObjectsNode.ChildNodes.OfType<XmlElement>())
-                { 
+                {
                     var gameObject = new GameObject();
 
                     string xString = gameObjectNode.Attributes[nameof(GameObject.X)]?.Value ?? "0";
@@ -158,7 +158,7 @@ namespace SceneMaster.Models
             root.AppendChild(gameObjectsNode);
 
             foreach (var gameObject in GameObjects)
-            { 
+            {
                 var gameObjectNode = doc.CreateElement(GameObjectNodeName);
                 gameObjectsNode.AppendChild(gameObjectNode);
 
@@ -197,11 +197,11 @@ namespace SceneMaster.Models
 
         private WriteableBitmap BuildTiledMapBitmapSource()
         {
-            WriteableBitmap writeableBitmap = new WriteableBitmap(m_tiledMap.Width * m_tiledMap.TileWidth, 
-                                                                 m_tiledMap.Height * m_tiledMap.TileHeight, 
-                                                                 96, 
-                                                                 96, 
-                                                                 PixelFormats.Bgr32, 
+            WriteableBitmap writeableBitmap = new WriteableBitmap(m_tiledMap.Width * m_tiledMap.TileWidth,
+                                                                 m_tiledMap.Height * m_tiledMap.TileHeight,
+                                                                 96,
+                                                                 96,
+                                                                 PixelFormats.Bgr32,
                                                                  null);
 
             try
@@ -214,7 +214,7 @@ namespace SceneMaster.Models
                     {
                         for (var tileX = 0; tileX < layer.width; tileX++)
                         {
-                            var index = (tileY * layer.width) + tileX; // Assuming the default render order is used which is from right to bottom
+                            var index = tileY * layer.width + tileX; // Assuming the default render order is used which is from right to bottom
                             var gid = layer.data[index]; // The tileset tile index
 
                             DrawTileToBitmapHelper(writeableBitmap, tileX, tileY, gid);
@@ -232,7 +232,7 @@ namespace SceneMaster.Models
         }
 
         private void DrawTileToBitmap(WriteableBitmap writeableBitmap, int tileX, int tileY, int gid)
-        { 
+        {
             try
             {
                 writeableBitmap.Lock();
@@ -289,7 +289,7 @@ namespace SceneMaster.Models
         internal GameObject CreateGameObject(int x, int y)
         {
             var gameObject = new GameObject();
-            gameObject.X = x; 
+            gameObject.X = x;
             gameObject.Y = y;
             gameObject.Bitmap = m_defaultImage;
             GameObjects.Add(gameObject);

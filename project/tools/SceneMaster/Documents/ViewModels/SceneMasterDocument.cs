@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SceneMaster.ViewModels;
+using SceneMaster.Scenes.ViewModels;
 using System;
 using System.IO;
 
-namespace SceneMaster.Documents
+namespace SceneMaster.Documents.ViewModels
 {
     public class SceneMasterDocument : ObservableObject, IDisposable
     {
@@ -14,7 +14,7 @@ namespace SceneMaster.Documents
         public static string TiledMapFileTypeName => "Tiled map";
 
         public string DefaultFilename => "Untitled Scene Master Document" + SceneMasterDocumentFileExtension;
-        
+
         private string m_filePath;
         public string FilePath
         {
@@ -34,8 +34,8 @@ namespace SceneMaster.Documents
         }
 
         private SceneViewModel m_sceneViewModel;
-        public SceneViewModel SceneViewModel 
-        { 
+        public SceneViewModel SceneViewModel
+        {
             get => m_sceneViewModel;
             set => SetProperty(ref m_sceneViewModel, value);
         }

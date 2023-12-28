@@ -1,4 +1,4 @@
-﻿using SceneMaster.ViewModels;
+﻿using SceneMaster.Scenes.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;

@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace SceneMaster
+namespace SceneMaster.Documents.Views
 {
     /// <summary>
     /// Interaction logic for SceneMasterDocumentView.xaml

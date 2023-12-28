@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using SceneMaster.ViewModels;
+using SceneMaster.Main.ViewModels;
 
 namespace SceneMaster
 {

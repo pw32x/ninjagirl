@@ -1,0 +1,24 @@
+<GameObjectTemplate>
+	<EditorProperties>
+		<Visual>
+			<GraphicsGaleVisual filename="" framenumber=""/>
+			<!-- <Rectangle x="" y="" width="" height="" /> 
+				<Image filename="" />
+			-->
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<BoundingBox left="" right="" top="" bottom="" />
+		<ObjectType value="" />
+		<Health value="3"/>
+		<ResourceInfo value="" />
+		<DrawFunction value="" />
+		<UpdateFunction value="" />
+		<UpdateAnimationFunction value=""/>
+		<HandleCollision value=""/>
+		
+		<!-- or
+		<StateMachine value="" /> ???
+		-->
+	</GameProperties>
+</GameObjectTemplate>

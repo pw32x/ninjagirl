@@ -1,12 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using SceneMaster.Models;
+using SceneMaster.Scenes.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
-namespace SceneMaster.ViewModels
+namespace SceneMaster.Scenes.ViewModels
 {
     /// <summary>
     /// Interaction logic for SceneView.xaml
@@ -14,7 +14,7 @@ namespace SceneMaster.ViewModels
     public class SceneViewModel : ObservableObject, IDisposable
     {
         // not the best place to put this, but it'll do for now.
-        public static double ZoomFactor { get; set; } = 1; 
+        public static double ZoomFactor { get; set; } = 1;
 
         private bool m_ignoreChanges = false;
         private bool m_isModified = false;
@@ -31,12 +31,12 @@ namespace SceneMaster.ViewModels
         public ObservableCollection<GameObjectViewModel> GameObjectViewModels { get; set; } = new();
 
         private GameObjectViewModel m_selectedGameObjectViewModel;
-        public GameObjectViewModel SelectedGameObjectViewModel 
-        { 
+        public GameObjectViewModel SelectedGameObjectViewModel
+        {
             get => m_selectedGameObjectViewModel;
 
             set
-            { 
+            {
                 m_ignoreChanges = true;
                 if (m_selectedGameObjectViewModel != null)
                     m_selectedGameObjectViewModel.IsSelected = false;
@@ -54,7 +54,7 @@ namespace SceneMaster.ViewModels
         public Scene Scene { get => m_scene; private set => m_scene = value; }
 
         public SceneViewModel()
-        { 
+        {
             Scene = new Scene();
 
             // attach
@@ -62,7 +62,7 @@ namespace SceneMaster.ViewModels
             Scene.GameObjects.CollectionChanged += GameObjects_CollectionChanged;
 
             foreach (var gameObject in Scene.GameObjects)
-            { 
+            {
                 var gameObjectViewModel = new GameObjectViewModel(gameObject, this);
                 gameObjectViewModel.PropertyChanged += Scene_PropertyChanged;
                 GameObjectViewModels.Add(gameObjectViewModel);
@@ -75,7 +75,7 @@ namespace SceneMaster.ViewModels
 
         private void DeleteSelectedGameObjectViewModel()
         {
-            if (SelectedGameObjectViewModel == null) 
+            if (SelectedGameObjectViewModel == null)
                 return;
 
             Scene.GameObjects.Remove(SelectedGameObjectViewModel.GameObject);
@@ -101,10 +101,10 @@ namespace SceneMaster.ViewModels
         public void Dispose()
         {
             // detach
-            if (Scene != null) 
-            { 
+            if (Scene != null)
+            {
                 foreach (var gameObjectViewMode in GameObjectViewModels)
-                { 
+                {
                     gameObjectViewMode.PropertyChanged -= Scene_PropertyChanged;
                 }
                 GameObjectViewModels.Clear();
@@ -127,7 +127,7 @@ namespace SceneMaster.ViewModels
             Deselect(SelectedGameObjectViewModel);
 
             if (e.NewItems != null)
-            { 
+            {
                 foreach (var newGameObject in e.NewItems.OfType<GameObject>())
                 {
                     var newGameObjectViewModel = new GameObjectViewModel(newGameObject, this);
@@ -135,11 +135,11 @@ namespace SceneMaster.ViewModels
                     GameObjectViewModels.Add(newGameObjectViewModel);
                 }
             }
-            
-            if (e.OldItems != null) 
+
+            if (e.OldItems != null)
             {
                 foreach (var gameObjectToDelete in e.OldItems.OfType<GameObject>())
-                { 
+                {
                     DeleteGameObjectViewModel(gameObjectToDelete);
                 }
             }

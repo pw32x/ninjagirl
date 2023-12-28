@@ -1,13 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.Win32;
-using SceneMaster.Documents;
+using SceneMaster.Documents.ViewModels;
 using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SceneMaster.ViewModels
+namespace SceneMaster.Main.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
@@ -64,9 +64,9 @@ namespace SceneMaster.ViewModels
 
             CurrentDocument?.Dispose();
             CurrentDocument = new SceneMasterDocument();
-            
+
             if (!CurrentDocument.Load(openFileDialog.FileName))
-            { 
+            {
                 MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
                 CurrentDocument?.Dispose();
                 CurrentDocument = new SceneMasterDocument();
@@ -74,7 +74,7 @@ namespace SceneMaster.ViewModels
         }
 
         private void SaveAs()
-        { 
+        {
             Save(forcePrompt: true);
         }
 
@@ -163,7 +163,7 @@ namespace SceneMaster.ViewModels
         private void ImportGalFile()
         {
             if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
-            { 
+            {
                 string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
                 if (MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
                     return;

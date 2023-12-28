@@ -1,15 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SceneMaster.ViewModels;
+﻿using SceneMaster.Scenes.ViewModels;
+using SceneMaster.Scenes.Models;
 using System;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using SceneMaster.Models;
 
-namespace SceneMaster
+namespace SceneMaster.Scenes.Views
 {
     /// <summary>
     /// Interaction logic for SceneView.xaml
