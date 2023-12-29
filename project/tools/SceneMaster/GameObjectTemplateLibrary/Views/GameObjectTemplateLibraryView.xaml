@@ -13,7 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ListBox Grid.Row="0"
-                 ItemsSource="{Binding GameObjectTemplateLibrary.GameObjectTemplates}" 
+                 ItemsSource="{Binding GameObjectTemplateLibrary.GameObjectTemplates.Values}" 
                  SelectedItem="{Binding SelectedGameObjectTemplate}"
                  DisplayMemberPath="Name"/>
         <GridSplitter Grid.Row="1" 

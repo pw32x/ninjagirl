@@ -2,13 +2,16 @@ Todo
 
 	Scene Master
 		
-		create object templates
-		load object template
-		select object template
+		DONE create object templates
+		DONE load object template
+		DONE select object template
 
-		property grid ? 
+		DONE property grid ? 
 			custom view?
-
+		
+		DONE save and load map with templates
+		
+		export scene to C from menu item
 		a level is
 			the list of resources to load
 			the list of objects in a level, sorted by increasing x
@@ -18,6 +21,17 @@ Todo
 					increasing y
 					decreasing y
 					timer-based
+					
+		run application as command line tool
+					
+	Scene Master
+
+		modes
+			selection
+			add
+		show template with pointer
+		option to snap to grid
+
 
 		options
 			automatically reload last file

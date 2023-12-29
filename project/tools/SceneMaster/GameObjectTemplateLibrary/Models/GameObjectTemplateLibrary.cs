@@ -15,6 +15,11 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
             m_gameObjectTemplatesDirectory = gameObjectTemplatesDirectory;
 
+            DefaultGameObjectTemplate = new GameObjectTemplate();
+            DefaultGameObjectTemplate.Name = "DefaultOrMissing";
+            
+            //DefaultGameObjectTemplate.Visual.Load("default.png");
+
             DirectoryInfo directoryInfo = new DirectoryInfo(gameObjectTemplatesDirectory);
             FileInfo[] fileInfos = directoryInfo.GetFiles();
 
@@ -25,12 +30,14 @@ namespace SceneMaster.GameObjectTemplates.Models
             {
                 var gameObjectTemplate = new GameObjectTemplate();
                 gameObjectTemplate.Load(fileInfo.FullName);
-                GameObjectTemplates.Add(gameObjectTemplate);
+                GameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
             }
         }
 
-        private List<GameObjectTemplate> m_gameObjectTemplates = new(); 
-        public List<GameObjectTemplate> GameObjectTemplates { get => m_gameObjectTemplates; }
+        private Dictionary<string, GameObjectTemplate> m_gameObjectTemplates = new(); 
+        public Dictionary<string, GameObjectTemplate> GameObjectTemplates { get => m_gameObjectTemplates; }
+
+        public GameObjectTemplate DefaultGameObjectTemplate { get; private set; }
 
         private string m_gameObjectTemplatesDirectory;
     }

@@ -53,7 +53,7 @@ namespace SceneMaster.GameObjectTemplates.Models
 
     public class GameObjectTemplate
     {
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
         // editor properties
         public Visual Visual { get; } = new();

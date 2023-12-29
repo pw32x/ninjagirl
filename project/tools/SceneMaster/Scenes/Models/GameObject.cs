@@ -1,4 +1,5 @@
-﻿using System.Windows.Media.Imaging;
+﻿using SceneMaster.GameObjectTemplates.Models;
+using System.Windows.Media.Imaging;
 
 namespace SceneMaster.Scenes.Models
 {
@@ -6,6 +7,7 @@ namespace SceneMaster.Scenes.Models
     {
         public double X { get; set; }
         public double Y { get; set; }
-        public BitmapImage Bitmap { get; set; }
+        public string GameObjectTemplateName { get; set; }
+        public GameObjectTemplate GameObjectTemplate { get; set; }
     }
 }

@@ -31,7 +31,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <Image Source="{Binding GameObject.Bitmap}"
+        <Image Source="{Binding GameObject.GameObjectTemplate.Visual.Image}"
                 Width="{Binding Width}"
                 Height="{Binding Height}"
                 RenderOptions.BitmapScalingMode="NearestNeighbor"

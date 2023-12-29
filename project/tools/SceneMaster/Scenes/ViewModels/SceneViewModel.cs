@@ -152,7 +152,7 @@ namespace SceneMaster.Scenes.ViewModels
         internal void Load(string filePath)
         {
             m_ignoreChanges = true;
-            Scene.Load(filePath);
+            Scene.Load(filePath, GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary);
             m_ignoreChanges = false;
 
             IsModified = false;

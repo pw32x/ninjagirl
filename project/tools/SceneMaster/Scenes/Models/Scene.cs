@@ -99,7 +99,7 @@ namespace SceneMaster.Scenes.Models
             LoadTiledMap(tiledMapFilePath);
         }
 
-        public bool Load(string filePath)
+        public bool Load(string filePath, GameObjectTemplateLibrary gameObjectTemplateLibrary)
         {
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
 
@@ -120,7 +120,17 @@ namespace SceneMaster.Scenes.Models
                     gameObject.X = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.X));
                     gameObject.Y = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.Y));
 
-                    gameObject.Bitmap = m_defaultImage;
+                    string gameObjectTemplateName = XmlUtils.GetValue<string>(gameObjectNode, nameof(GameObject.GameObjectTemplateName));
+                    gameObject.GameObjectTemplateName = gameObjectTemplateName;
+
+                    if (gameObjectTemplateLibrary.GameObjectTemplates.TryGetValue(gameObjectTemplateName, out var gameObjectTemplate))
+                    {
+                        gameObject.GameObjectTemplate = gameObjectTemplate;
+                    }
+                    else
+                    {
+                        gameObject.GameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
+                    }
 
                     GameObjects.Add(gameObject);
                 }
@@ -153,6 +163,7 @@ namespace SceneMaster.Scenes.Models
 
                 gameObjectNode.SetAttribute(nameof(GameObject.X), gameObject.X.ToString());
                 gameObjectNode.SetAttribute(nameof(GameObject.Y), gameObject.Y.ToString());
+                gameObjectNode.SetAttribute(nameof(GameObject.GameObjectTemplateName), gameObject.GameObjectTemplateName);
             }
 
             // Save
@@ -280,7 +291,8 @@ namespace SceneMaster.Scenes.Models
             var gameObject = new GameObject();
             gameObject.X = x;
             gameObject.Y = y;
-            gameObject.Bitmap = gameObjectTemplate.Visual.Image;
+            gameObject.GameObjectTemplateName = gameObjectTemplate.Name;
+            gameObject.GameObjectTemplate = gameObjectTemplate;
             GameObjects.Add(gameObject);
 
             OnPropertyChanged(nameof(GameObjects));

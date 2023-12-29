@@ -47,8 +47,8 @@ namespace SceneMaster.Scenes.ViewModels
         public double SnappedX { get => (int)GameObject.X; }
         public double SnappedY { get => (int)GameObject.Y; }
 
-        public double Width { get => GameObject.Bitmap.Width; }
-        public double Height { get => GameObject.Bitmap.Height; }
+        public double Width { get => GameObject.GameObjectTemplate.Visual.Width; }
+        public double Height { get => GameObject.GameObjectTemplate.Visual.Height; }
 
         public GameObject GameObject { get; set; }
 
