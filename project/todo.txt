@@ -11,7 +11,18 @@ Todo
 		
 		DONE save and load map with templates
 		
-		export scene to C from menu item
+		template generator
+			TemplateMaster
+		
+		call export scene to C functoin from menu item
+			
+		
+		export scenes functoin
+			export templates
+				per template
+					#include "resource_infos.h"
+			export scenes
+			
 		a level is
 			the list of resources to load
 			the list of objects in a level, sorted by increasing x
@@ -22,9 +33,22 @@ Todo
 					decreasing y
 					timer-based
 					
+		detect that the game needs building before doing anything
+	
+		editor properties
+			IsUnique - only one instance is allowed
+				player
+
+	
 		run application as command line tool
-					
+				
+		Build and run level
+				
 	Scene Master
+	
+		templates decide which resources to export and build
+
+		remember last camera position and zoom
 
 		modes
 			selection
@@ -32,6 +56,7 @@ Todo
 		show template with pointer
 		option to snap to grid
 
+		make sprites from graphic gale frames transparent
 
 		options
 			automatically reload last file

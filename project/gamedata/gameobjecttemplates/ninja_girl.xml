@@ -1,0 +1,19 @@
+<GameObjectTemplate >
+	<Name value="Ninja Girl"/>
+	<EditorProperties>
+		<Visual>
+			<GraphicsGale filename="..\animations\streamed\ninja_girl.gal" framenumber="6"/>
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<BoundingBox left="-3" right="3" top="-12" bottom="16" />
+		<GameObjectType value="Player" />
+		<Health value="2"/>
+		<ResourceInfo value="ninja_girlResourceInfo" />		
+	</GameProperties>
+	<Requires>
+		<Template value="explosion.xml"/>
+		<Template value="impact.xml"/>
+		<Template value="kunai.xml"/>
+	</Requires>	
+</GameObjectTemplate>

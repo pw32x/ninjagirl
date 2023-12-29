@@ -47,7 +47,9 @@ namespace SceneMaster.Scenes.Views
 
         private void DrawGridLines()
         {
-            if (m_sceneViewModel == null)
+            if (m_sceneViewModel == null ||
+                m_sceneViewModel.Scene == null ||
+                m_sceneViewModel.Scene.TiledMap == null)
                 return;
 
 

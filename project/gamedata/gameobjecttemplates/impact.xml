@@ -1,0 +1,7 @@
+<GameObjectTemplate >
+	<Name value="Impact"/>
+	<GameProperties>
+		<GameObjectType value="Effect" />
+		<ResourceInfo value="impactResourceInfo" />		
+	</GameProperties>
+</GameObjectTemplate>

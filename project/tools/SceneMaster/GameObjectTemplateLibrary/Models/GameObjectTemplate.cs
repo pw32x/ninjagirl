@@ -14,10 +14,11 @@ namespace SceneMaster.GameObjectTemplates.Models
 {
     public enum GameObjectType
     {
-        Undefined,
+        Undefined = -1,
         Projectile,
         Enemy,
-        Effect
+        Effect,
+        Player
     }
 
     public class Visual
@@ -55,7 +56,11 @@ namespace SceneMaster.GameObjectTemplates.Models
     {
         public string Name { get; set; }
 
+        [Browsable(false)]
+        public bool IsEditorVisible { get; protected set; }
+
         // editor properties
+        [Browsable(false)]
         public Visual Visual { get; } = new();
 
         // game properties
@@ -96,6 +101,7 @@ namespace SceneMaster.GameObjectTemplates.Models
 
             if (root["EditorProperties"] is var editorPropertiesNode && editorPropertiesNode != null)
             {
+                IsEditorVisible = true;
                 LoadEditorProperties(editorPropertiesNode);
             }
 

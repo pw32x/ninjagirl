@@ -4,6 +4,7 @@ using SceneMaster.GameObjectTemplates.ViewModels;
 using SceneMaster.Scenes.ViewModels;
 using System;
 using System.IO;
+using System.Windows;
 
 namespace SceneMaster.Documents.ViewModels
 {
@@ -86,7 +87,14 @@ namespace SceneMaster.Documents.ViewModels
 
         internal void ImportTiledMap(string tiledMapFilePath)
         {
-            SceneViewModel.Scene.ImportTiledMap(tiledMapFilePath);
+            try 
+            {
+                SceneViewModel.Scene.ImportTiledMap(tiledMapFilePath);
+            }
+            catch (Exception e) 
+            {
+                MessageBox.Show("Failed loading " + tiledMapFilePath + ". Error: " + e.Message);
+            }
         }
     }
 }

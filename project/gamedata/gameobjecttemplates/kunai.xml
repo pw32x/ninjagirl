@@ -1,0 +1,8 @@
+<GameObjectTemplate >
+	<Name value="Kunai"/>
+	<GameProperties>
+		<BoundingBox left="-4" right="4" top="-4" bottom="4" />
+		<GameObjectType value="Projectile" />
+		<ResourceInfo value="kunaiResourceInfo" />		
+	</GameProperties>
+</GameObjectTemplate>

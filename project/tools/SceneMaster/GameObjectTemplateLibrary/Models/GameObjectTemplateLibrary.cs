@@ -7,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace SceneMaster.GameObjectTemplates.Models
 {
+    public class DefaultGameObjectTemplate : GameObjectTemplate
+    {
+        public DefaultGameObjectTemplate() { IsEditorVisible = true; }
+    }
+
     public class GameObjectTemplateLibrary
     {
         public GameObjectTemplateLibrary() { }
@@ -15,7 +20,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
             m_gameObjectTemplatesDirectory = gameObjectTemplatesDirectory;
 
-            DefaultGameObjectTemplate = new GameObjectTemplate();
+            DefaultGameObjectTemplate = new DefaultGameObjectTemplate();
             DefaultGameObjectTemplate.Name = "DefaultOrMissing";
             
             //DefaultGameObjectTemplate.Visual.Load("default.png");
@@ -29,13 +34,30 @@ namespace SceneMaster.GameObjectTemplates.Models
             foreach (var fileInfo in foundFileInfos)
             {
                 var gameObjectTemplate = new GameObjectTemplate();
-                gameObjectTemplate.Load(fileInfo.FullName);
-                GameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
+
+                try
+                {
+                    gameObjectTemplate.Load(fileInfo.FullName);
+
+                    if (gameObjectTemplate.IsEditorVisible)
+                        GameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
+                    else
+                        m_invisibleGameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
+                }
+                catch (Exception) 
+                {
+                    m_failedGameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
+                }
             }
         }
 
+        private Dictionary<string, GameObjectTemplate> m_invisibleGameObjectTemplates = new(); 
+        private Dictionary<string, GameObjectTemplate> m_failedGameObjectTemplates = new(); 
+
         private Dictionary<string, GameObjectTemplate> m_gameObjectTemplates = new(); 
         public Dictionary<string, GameObjectTemplate> GameObjectTemplates { get => m_gameObjectTemplates; }
+
+
 
         public GameObjectTemplate DefaultGameObjectTemplate { get; private set; }
 

@@ -6,7 +6,7 @@
 #define OBJECTTYPE_PROJECTILE	0
 #define OBJECTTYPE_ENEMY		1
 #define OBJECTTYPE_EFFECT		2
-
+#define OBJECTTYPE_PLAYER		3
 
 void ObjectManager_Init(void);
 

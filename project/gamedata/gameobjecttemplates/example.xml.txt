@@ -1,0 +1,27 @@
+<GameObjectTemplate >
+	<Name value="Walker"/>
+	<EditorProperties>
+		<Visual>
+			<GraphicsGale filename="..\animations\standard\walker.gal" framenumber="1"/>
+			<!-- <Rectangle x="" y="" width="" height="" /> 
+				<Image filename="" />
+			-->
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<BoundingBox left="" right="" top="" bottom="" />
+		<GameObjectType value="Enemy" />
+		<Health value="3"/>
+		<ResourceInfo value="walkerResourceInfo" />
+		
+		
+		<!--<DrawFunction value="" />
+		<UpdateFunction value="" />
+		<UpdateAnimationFunction value=""/>
+		<HandleCollision value=""/>-->
+		
+		<!-- or
+		<StateMachine value="" /> ???
+		-->
+	</GameProperties>
+</GameObjectTemplate>

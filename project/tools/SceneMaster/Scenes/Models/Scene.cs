@@ -47,7 +47,7 @@ namespace SceneMaster.Scenes.Models
 
         public Scene()
         {
-            ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
+            //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
 
             m_defaultImage = new BitmapImage();
             // Set the image source to a file stream
