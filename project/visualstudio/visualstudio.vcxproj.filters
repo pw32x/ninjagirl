@@ -426,6 +426,9 @@
     <ClInclude Include="..\source\client\exported\animations\robotrunner.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\engine\gameobject_template_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">

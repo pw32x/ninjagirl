@@ -232,6 +232,7 @@
     <ClInclude Include="..\source\engine\base_defines.h" />
     <ClInclude Include="..\source\engine\command_types.h" />
     <ClInclude Include="..\source\engine\draw_utils.h" />
+    <ClInclude Include="..\source\engine\gameobject_template_types.h" />
     <ClInclude Include="..\source\engine\level_manager.h" />
     <ClInclude Include="..\source\engine\level_types.h" />
     <ClInclude Include="..\source\engine\map_load.h" />
