@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.IO;
 
 namespace TemplateMaster
 {
@@ -64,6 +65,11 @@ namespace TemplateMaster
                                                   templateName, 
                                                   destinationPath);
             }
+
+            var templateNames = foundFileInfos.Select(fileInfo => Path.GetFileNameWithoutExtension(fileInfo.Name));
+
+            GameObjectTemplateExporter.ExportAllHeader(templateNames,
+                                                       DestinationFolder);
         }
     }
 }

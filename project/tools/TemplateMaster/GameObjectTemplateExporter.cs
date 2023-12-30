@@ -38,5 +38,27 @@ namespace TemplateMaster
                 sb.AppendLine("    " + fieldToUse + ", // " + description);
             }
         }
+
+        internal static void ExportAllHeader(IEnumerable<string> templateNames, 
+                                             string destinationFolder)
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("#ifndef GAMEOBJECT_TEMPLATES_INCLUDE_H");
+            sb.AppendLine("#define GAMEOBJECT_TEMPLATES_INCLUDE_H");
+            sb.AppendLine();
+            sb.AppendLine("#include \"..\\..\\..\\engine\\gameobject_template_types.h\"");
+            sb.AppendLine();
+
+            foreach (var templateName in templateNames)
+            {
+                sb.AppendLine("extern const GameObjectTemplate " + templateName + ";");
+            }
+
+            sb.AppendLine();
+            sb.AppendLine("#endif");
+
+            File.WriteAllText(destinationFolder + "gameobject_templates.h", sb.ToString());
+        }
     }
 }

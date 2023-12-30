@@ -25,7 +25,7 @@ Todo
 	
 	TemplateMaster
 	
-		create gameobject_templates.h export header
+		DONE create gameobject_templates.h export header
 		
 		convert the objects to use templates
 
