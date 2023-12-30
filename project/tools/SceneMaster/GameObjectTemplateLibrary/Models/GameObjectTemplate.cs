@@ -68,6 +68,18 @@ namespace SceneMaster.GameObjectTemplates.Models
         public int Health { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
+        public int RectLeft { get; set; } = 0;
+
+        [System.ComponentModel.ReadOnly(true)]
+        public int RectTop { get; set; } = 0;
+
+        [System.ComponentModel.ReadOnly(true)]
+        public int RectRight { get; set; } = 0;
+
+        [System.ComponentModel.ReadOnly(true)]
+        public int RectBottom { get; set; } = 0;
+
+        [System.ComponentModel.ReadOnly(true)]
         [SelectorStyle(SelectorStyle.ComboBox)]
         public GameObjectType GameObjectType { get; set; }
 
@@ -83,6 +95,10 @@ namespace SceneMaster.GameObjectTemplates.Models
         {
             Health = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(Health));
             GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
+            RectLeft = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectLeft));
+            RectTop = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectTop));
+            RectRight = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectRight));
+            RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
         }
 
         public void Load(string filePath)

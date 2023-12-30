@@ -18,12 +18,20 @@ Todo
 			
 			
 	DONE finish filling out the templates for the game
-	create gameobject_templates.h export header
-	convert the objects to use templates
+	
+	Scene Master
+
+		DONE load the rest of the template information	
+	
+	TemplateMaster
+	
+		create gameobject_templates.h export header
+		
+		convert the objects to use templates
 
 	Scene Master
 
-		load the rest of the template information
+		DONE load the rest of the template information
 		
 		call export scene to C functoin from menu item
 			
