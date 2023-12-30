@@ -17,7 +17,7 @@ BOOL ParticleEffect_Draw(GameObject* object);
 
 GameObject* ParticleEffect_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
+	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
 	if (!object)
 		return NULL;
 
@@ -26,8 +26,6 @@ GameObject* ParticleEffect_Create(const CreateInfo* createInfo)
 
 	object->Update = ParticleEffect_Update;
 	object->Draw = ParticleEffect_Draw;
-
-	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }

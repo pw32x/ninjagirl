@@ -13,7 +13,7 @@ BOOL Bird_Draw(GameObject* object);
 
 GameObject* Bird_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
+	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
 	if (!object)
 		return NULL;
 
@@ -21,9 +21,6 @@ GameObject* Bird_Create(const CreateInfo* createInfo)
 	object->y = createInfo->startY;
 	object->Update = Bird_Update;
 	object->Draw = Bird_Draw;
-
-
-	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	object->rectLeft = 0;
 	object->rectTop = 0;

@@ -4,7 +4,7 @@
 #include "engine/base_types.h"
 #include "engine/resource_types.h"
 #include "engine/command_types.h"
-
+#include "engine/gameobject_template_types.h"
 
 #include "animation_types.h"
 
@@ -30,7 +30,7 @@
 
 struct tile_set;
 
-typedef void (*TilesetFunction)(const struct tile_set* tileset, const ResourceInfo* resourceInfo, unsigned short blockx, unsigned short blocky);
+typedef void (*TilesetFunction)(const struct tile_set* tileset, const GameObjectTemplate* gameObjectTemplate, unsigned short blockx, unsigned short blocky);
 
 #define COMMON_TILESET_PROPERTIES \
     u8 resourceType;\

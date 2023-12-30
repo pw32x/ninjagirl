@@ -1,7 +1,9 @@
 #include "map_manager.h"
 
-#include "engine/resource_manager.h"
 
+#include "SMSlib.h"
+#include "engine/resource_manager.h"
+#include "engine/gameobject_template_types.h"
 
 u8 MapManager_numTilesets;
 const u16* MapManager_metatileLuts[MAX_TILESETS];
@@ -13,7 +15,7 @@ u16 MapManager_metatileLutsDataSize;
 Tileset MapManager_tilesets[MAX_TILESETS];
 u16 MapManager_tilesetVdpLocations[MAX_TILESETS];
 TilesetFunction MapManager_tilesetFunctions[MAX_TILESETS];
-const ResourceInfo* MapManager_tilesetResourceInfos[MAX_TILESETS];
+const GameObjectTemplate* MapManager_tilesetGameObjectTemplates[MAX_TILESETS];
 
 u16 MapManager_mapWidth;
 u16 MapManager_mapHeight;
@@ -24,8 +26,10 @@ const ResourceInfo* MapManager_mapResourceInfo;
 void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params)
 {
 	MapManager_tilesetFunctions[params->tilesetIndex] = params->tilesetFunction;
-	MapManager_tilesetResourceInfos[params->tilesetIndex] = params->resourceInfo;
+	MapManager_tilesetGameObjectTemplates[params->tilesetIndex] = params->gameObjectTemplate;
 
-	if (params->resourceInfo)
-		ResourceManager_LoadResource(params->resourceInfo);
+	if (params->gameObjectTemplate->resourceInfo != NULL)
+	{
+		ResourceManager_LoadResource(params->gameObjectTemplate->resourceInfo);
+	}
 }

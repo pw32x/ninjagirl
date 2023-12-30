@@ -3,15 +3,15 @@
 
 #include "..\..\..\engine\gameobject_template_types.h"
 
-extern const GameObjectTemplate explosion;
-extern const GameObjectTemplate impact;
-extern const GameObjectTemplate kunai;
-extern const GameObjectTemplate ninja_girl;
-extern const GameObjectTemplate robotrunner;
-extern const GameObjectTemplate robotspring;
-extern const GameObjectTemplate rock_particle;
-extern const GameObjectTemplate walker;
-extern const GameObjectTemplate walker_big;
-extern const GameObjectTemplate walker_small;
+extern const GameObjectTemplate explosion_template;
+extern const GameObjectTemplate impact_template;
+extern const GameObjectTemplate kunai_template;
+extern const GameObjectTemplate ninja_girl_template;
+extern const GameObjectTemplate robotrunner_template;
+extern const GameObjectTemplate robotspring_template;
+extern const GameObjectTemplate rock_particle_template;
+extern const GameObjectTemplate walker_template;
+extern const GameObjectTemplate walker_big_template;
+extern const GameObjectTemplate walker_small_template;
 
 #endif

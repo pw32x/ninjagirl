@@ -27,7 +27,12 @@ Todo
 	
 		DONE create gameobject_templates.h export header
 		
-		convert the objects to use templates
+		DONE convert the objects to use templates
+		
+		DONE apply template values to objects
+		
+		what about that stray CreateObject( call that doesn't use templates
+			isn't tile animator an object?
 
 	Scene Master
 

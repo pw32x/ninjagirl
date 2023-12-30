@@ -4,6 +4,7 @@
 #include "engine/base_defines.h"
 #include "engine/scroll_manager.h"
 #include "engine/command_manager.h"
+#include "engine/resource_manager.h"
 #include "engine/object_utils.h"
 #include "engine/draw_utils.h"
 
@@ -325,7 +326,7 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
 }
 
-GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
+GameObject* ObjectManager_CreateObject(u8 objectType)
 {
 	GameObject* objectSlotRunner = ObjectManager_enemySlots;
 	u8 counter = NUM_ENEMY_SLOTS;
@@ -349,6 +350,61 @@ GameObject* ObjectManager_GetAvailableSlot(u8 objectType)
 		if (!objectSlotRunner->alive)
 		{
 			objectSlotRunner->alive = TRUE;
+			return objectSlotRunner;
+		}
+
+		objectSlotRunner++;
+	}
+
+	return NULL;
+}
+
+
+void ApplyGameObjectTemplate(GameObject* object, 
+							 const GameObjectTemplate* gameObjectTemplate)
+{
+	object->objectType = gameObjectTemplate->objectType;
+	object->health = gameObjectTemplate->startHealth;
+	object->damage = gameObjectTemplate->damage;
+
+	object->rectLeft = gameObjectTemplate->rectLeft;
+	object->rectTop = gameObjectTemplate->rectTop;
+	object->rectRight = gameObjectTemplate->rectRight;
+	object->rectBottom = gameObjectTemplate->rectBottom;
+
+	if (gameObjectTemplate->resourceInfo != NULL)
+		ResourceManager_SetupResource(object, gameObjectTemplate->resourceInfo);
+}
+
+GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameObjectTemplate)
+{
+	u8 objectType = gameObjectTemplate->objectType;
+
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
+	u8 counter = NUM_ENEMY_SLOTS;
+
+	if (objectType == OBJECTTYPE_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_projectileSlots;
+		counter = NUM_PROJECTILE_SLOTS;	
+	}
+	else if (objectType == OBJECTTYPE_EFFECT)
+	{
+		// treat effects as a circular list. we overwrite the older effects without waiting
+		// if they're done.
+		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
+		ObjectManager_numEffects++;
+		ApplyGameObjectTemplate(objectSlotRunner, gameObjectTemplate);
+		return objectSlotRunner;
+	}
+
+	while (counter--)
+	{
+		if (!objectSlotRunner->alive)
+		{
+			objectSlotRunner->alive = TRUE;
+
+			ApplyGameObjectTemplate(objectSlotRunner, gameObjectTemplate);
 			return objectSlotRunner;
 		}
 

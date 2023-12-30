@@ -69,9 +69,9 @@ void* ResourceManager_LoadResource(const ResourceInfo* resourceInfo)
 
 	u8 resourceType = resourceInfo->resource->resourceType;
 
-	SMS_debugPrintf("Load Resource 0x%x of type ", resourceInfo->resource);
-	printResourceTypeName(resourceType);
-	SMS_debugPrintf("\n");
+	//SMS_debugPrintf("Load Resource 0x%x of type ", resourceInfo->resource);
+	//printResourceTypeName(resourceType);
+	//SMS_debugPrintf("\n");
 
 	if (ResourceManager_loadFunctions[resourceType] == 0)
 	{
@@ -98,7 +98,7 @@ void* ResourceManager_SetupResource(struct game_object* gameObject, const Resour
 	u8 currentBank = SMS_getROMBank();
 	u8 bankNumber = resourceInfo->bankNumber;
 
-	SMS_debugPrintf("ResourceManager_SetupResource().\n");
+	//SMS_debugPrintf("ResourceManager_SetupResource().\n");
 
 	if (currentBank != bankNumber)
 	{
@@ -108,9 +108,9 @@ void* ResourceManager_SetupResource(struct game_object* gameObject, const Resour
 
 	u8 resourceType = resourceInfo->resource->resourceType;
 
-	SMS_debugPrintf("Setup Resource 0x%x of type ", resourceInfo->resource);
-	printResourceTypeName(resourceType);
-	SMS_debugPrintf("\n");
+	//SMS_debugPrintf("Setup Resource 0x%x of type ", resourceInfo->resource);
+	//printResourceTypeName(resourceType);
+	//SMS_debugPrintf("\n");
 
 	if (ResourceManager_setupFunctions[resourceType] == 0)
 	{

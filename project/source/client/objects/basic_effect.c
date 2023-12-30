@@ -13,7 +13,7 @@ BOOL BasicEffect_Draw(GameObject* object);
 
 GameObject* BasicEffect_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
+	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
 	if (!object)
 		return NULL;
 
@@ -23,8 +23,6 @@ GameObject* BasicEffect_Create(const CreateInfo* createInfo)
 	object->speedy = 0;
 	object->Update = BasicEffect_Update;
 	object->Draw = BasicEffect_Draw;
-
-	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }

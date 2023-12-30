@@ -52,7 +52,7 @@ namespace TemplateMaster
 
             foreach (var templateName in templateNames)
             {
-                sb.AppendLine("extern const GameObjectTemplate " + templateName + ";");
+                sb.AppendLine("extern const GameObjectTemplate " + templateName + "_template;");
             }
 
             sb.AppendLine();

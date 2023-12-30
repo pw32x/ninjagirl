@@ -14,7 +14,7 @@
 #include "engine/math_utils.h"
 
 //#include "client/exported/animations/impact.h"
-#include "client/generated/resource_infos.h"
+#include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx
@@ -27,7 +27,7 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Kunai_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_PROJECTILE);
+	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
 	if (!object)
 		return NULL;
 
@@ -37,17 +37,6 @@ GameObject* Kunai_Create(const CreateInfo* createInfo)
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 	object->HandleCollision = Kunai_HandleCollision;
-
-	object->rectLeft = -4;
-	object->rectTop = -4;
-	object->rectRight = 4;
-	object->rectBottom = 4;
-
-	object->damage = 1;
-
-	//object->data1 = 1;
-
-	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
@@ -95,18 +84,23 @@ void Kunai_Update(GameObject* object)
 		{ 
 			object->x, 
 			object->y, 
-			&impactResourceInfo, 
+			&impact_template, 
 		};
 
 		GameObject* effect = BasicEffect_Create(&createInfo);
 
-		// destroy or setup erasing a block for later.
+
+		u8 currentBank = SMS_getROMBank();
+		SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
+
 		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
+		SMS_mapROMBank(currentBank);
 
 		const Tileset* tileset = &MapManager_tilesets[tilesetIndex];
 
 		if (tileset->breakable)
 		{
+			SMS_debugPrintf("Breakable\n");
 			SET_TERRAIN_VALUE(blockX, blockY, TERRAIN_EMPTY);
 			object->x = blockX;
 			object->y = blockY;
@@ -114,7 +108,7 @@ void Kunai_Update(GameObject* object)
 			object->Draw = ObjectUtils_drawNothing;
 
 			MapManager_tilesetFunctions[tilesetIndex](tileset, 
-													  MapManager_tilesetResourceInfos[tilesetIndex],
+													  MapManager_tilesetGameObjectTemplates[tilesetIndex],
 													  blockX, 
 													  blockY);
 		}
@@ -157,7 +151,7 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 	{ 
 		gameObject->x, 
 		gameObject->y, 
-		&impactResourceInfo, 
+		&impact_template, 
 	};
 
 	GameObject* effect = BasicEffect_Create(&createInfo);

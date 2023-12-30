@@ -2,12 +2,14 @@
 #define OBJECT_MANAGER_INCLUDE_H
 
 #include "engine/object_types.h"
+#include "engine/gameobject_template_types.h"
 
 void ObjectManager_Init(void);
 
 void ObjectManager_Update(void);
 
-GameObject* ObjectManager_GetAvailableSlot(u8 objectType);
+GameObject* ObjectManager_CreateObject(u8 objectType);
+GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameObjectTemplate);
 void ObjectManager_DestroyObject(GameObject* gameObject);
 
 extern GameObject ObjectManager_player;

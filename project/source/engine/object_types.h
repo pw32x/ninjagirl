@@ -5,6 +5,7 @@
 #include "engine/animation_types.h"
 #include "engine/math_utils.h"
 #include "engine/resource_types.h"
+#include "engine/gameobject_template_types.h"
 
 #define OBJECTTYPE_PROJECTILE	0
 #define OBJECTTYPE_ENEMY		1
@@ -42,11 +43,6 @@ typedef struct game_object
 	u8 alive;
 	u8 flipped;
 
-	u8 data1;
-
-
-	u8 data2;
-	u8 data3;
 	s8 health;
 	s8 damage;
 
@@ -56,8 +52,8 @@ typedef struct game_object
 	s8 rectBottom;
 
 	u8 objectId;
-	u8 pixelWidth;
-	u8 pixelHeight;
+	u8 pixelWidth; // remove me
+	u8 pixelHeight;// remove me
 	u8 objectType;
 } GameObject;
 
@@ -68,7 +64,7 @@ typedef struct create_info
 {
 	s16 startX;
 	s16 startY;
-	const ResourceInfo* resourceInfo;
+	const GameObjectTemplate* gameObjectTemplate;
 } CreateInfo;
 
 #endif

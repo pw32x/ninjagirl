@@ -9,7 +9,7 @@
 #include "engine/resource_manager.h"
 
 
-#include "client/generated/resource_infos.h"
+#include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/basic_effect.h"
 
 // music and sfx
@@ -22,7 +22,7 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* Enemy_Create(const CreateInfo* createInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_ENEMY);
+	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
 	if (!object)
 		return NULL;
 
@@ -31,21 +31,6 @@ GameObject* Enemy_Create(const CreateInfo* createInfo)
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 	object->HandleCollision = Enemy_HandleCollision;
-
-	object->rectLeft = -14;
-	object->rectTop = -14;
-	object->rectRight = 14;
-	object->rectBottom = 14;
-
-	object->health = 8;
-
-	//ObjectManager_enemyIndex = (ObjectManager_enemyIndex++) & 7;
-
-	//object->data1 = object - ObjectManager_enemySlots;
-	//
-	//object->x = object->data1 * 32;
-
-	ResourceManager_SetupResource(object, createInfo->resourceInfo);
 
 	return object;
 }
@@ -112,7 +97,7 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 		{ 
 			gameObject->x, 
 			gameObject->y, 
-			&explosionResourceInfo
+			&explosion_template
 		};
 		
 		GameObject* effect = BasicEffect_Create(&createInfo);

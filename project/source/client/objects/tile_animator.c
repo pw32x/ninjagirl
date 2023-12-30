@@ -16,7 +16,7 @@ void TileAnimator_Update(GameObject* object);
 
 GameObject* TileAnimator_Create(const ResourceInfo* resourceInfo)
 {
-	GameObject* object = ObjectManager_GetAvailableSlot(OBJECTTYPE_EFFECT);
+	GameObject* object = ObjectManager_CreateObject(OBJECTTYPE_EFFECT);
 	if (!object)
 		return NULL;
 
