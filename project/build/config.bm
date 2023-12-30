@@ -20,6 +20,8 @@
 		<Tool name="SpriteMaster_standard" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-updateonly" info="Export Standard Animations"/>
 		<Tool name="SpriteMaster_animatedtilesets" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-animatedtileset -updateonly" info="Export Animated Tilesets"/>
 		<Tool name="tmx2c" path="..\..\tmx2c\bin\tmx2c.exe" info="Export backgrounds"/>
+		<Tool name="TemplateMaster" path="tools\TemplateMaster\bin\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
+
 		<Tool name="gal2tmx" path="..\..\gal2tmx\bin\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
 			<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>
 		</Tool>
@@ -27,6 +29,7 @@
 	
 	<!-- Tool Jobs are run in the order they're listed. -->
 	<ToolJobs>
+		<ToolJob tool="TemplateMaster" source="gamedata\gameobjecttemplates" destination="source\client\generated\gameobjecttemplates"/>
 		<ToolJob tool="gal2tmx" source="assets\backgrounds" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets" bank="3" />
 		<ToolJob tool="gal2tmx" source="gamedata\animations\animatedtilesets\*.gal" destination="gamedata\generated\themes" tilesetdest="source\client\generated\tilesets" bank="3" />
 		<ToolJob tool="SpriteMaster_streamed" source="gamedata\animations\streamed" destination="source\client\exported\animations" bank="2"/>

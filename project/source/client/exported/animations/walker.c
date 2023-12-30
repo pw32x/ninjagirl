@@ -79,13 +79,13 @@ unsigned char const walkerTileData[256] = // 8tiles x 32 bytes
 
 const BatchedAnimationSpriteStrip walkerFrame0SpriteStrips[] = 
 {
-    { 2, 0, 1, 0 },
+    { 2, -8, -7, 0 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walkerFrame1SpriteStrips[] = 
 {
-    { 2, 0, 0, 4 },
+    { 2, -8, -8, 4 },
     {0},
 };
 

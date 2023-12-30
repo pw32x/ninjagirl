@@ -47,6 +47,9 @@
     <Filter Include="Source Files\client\generated\tilesets">
       <UniqueIdentifier>{1a8fd017-7143-413d-b3b0-0c0f6f03a8f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\generated\gameobjecttemplates">
+      <UniqueIdentifier>{ef4bb437-e4c0-4934-9e70-eff4fbb0c0c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\level_manager.c">
@@ -270,6 +273,33 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\robotrunner.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\ninja_girl_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

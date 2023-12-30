@@ -6,7 +6,10 @@
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
-		<BoundingBox left="-3" right="3" top="-12" bottom="16" />
+		<RectLeft value="-3"/>
+		<RectTop value="-12"/>
+		<RectRight value="3"/>
+		<RectBottom value="16"/>		
 		<GameObjectType value="Player" />
 		<Health value="2"/>
 		<ResourceInfo value="ninja_girlResourceInfo" />		

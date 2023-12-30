@@ -151,22 +151,22 @@ unsigned char const robotspringTileData[512] = // 16tiles x 32 bytes
 
 const BatchedAnimationSpriteStrip robotspringFrame0SpriteStrips[] = 
 {
-    { 2, 0, 13, 0 },
-    { 2, 2, 29, 4 },
+    { 2, -8, -8, 0 },
+    { 2, -6, 8, 4 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip robotspringFrame1SpriteStrips[] = 
 {
-    { 2, 0, 2, 0 },
-    { 2, 3, 18, 8 },
+    { 2, -8, -8, 0 },
+    { 2, -5, 8, 8 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip robotspringFrame2SpriteStrips[] = 
 {
-    { 2, 0, 0, 0 },
-    { 2, 2, 16, 12 },
+    { 2, -8, -8, 0 },
+    { 2, -6, 8, 12 },
     {0},
 };
 

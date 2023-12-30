@@ -6,7 +6,10 @@
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
-		<BoundingBox left="" right="" top="" bottom="" />
+		<RectLeft value="-4"/>
+		<RectTop value="-4"/>
+		<RectRight value="4"/>
+		<RectBottom value="4"/>
 		<GameObjectType value="Enemy" />
 		<Health value="1"/>
 		<ResourceInfo value="walker_smallResourceInfo" />

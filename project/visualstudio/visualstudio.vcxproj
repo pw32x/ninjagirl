@@ -166,6 +166,15 @@
     <ClCompile Include="..\source\client\generated\background3_tileset.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\breakable_rock_tileset.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\ninja_girl_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c" />
     <ClCompile Include="..\source\client\generated\resource_infos.c" />
     <ClCompile Include="..\source\client\generated\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />

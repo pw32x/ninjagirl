@@ -1,0 +1,7 @@
+<GameObjectTemplate >
+	<Name value="Rock Particle"/>
+	<GameProperties>
+		<GameObjectType value="Effect" />
+		<ResourceInfo value="rock_particleResourceInfo" />		
+	</GameProperties>
+</GameObjectTemplate>

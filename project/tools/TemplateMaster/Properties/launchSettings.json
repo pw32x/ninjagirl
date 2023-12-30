@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TemplateMaster": {
+      "commandName": "Project",
+      "commandLineArgs": "gamedata\\gameobjecttemplates source\\client\\generated\\gameobjecttemplates",
+      "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project"
+    }
+  }
+}

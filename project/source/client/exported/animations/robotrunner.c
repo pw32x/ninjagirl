@@ -295,29 +295,29 @@ unsigned char const robotrunnerTileData[1024] = // 32tiles x 32 bytes
 
 const BatchedAnimationSpriteStrip robotrunnerFrame0SpriteStrips[] = 
 {
-    { 2, 4, 1, 0 },
-    { 3, 0, 17, 4 },
+    { 2, -8, -15, 0 },
+    { 3, -12, 1, 4 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip robotrunnerFrame1SpriteStrips[] = 
 {
-    { 2, 4, 0, 0 },
-    { 3, 0, 16, 10 },
+    { 2, -8, -16, 0 },
+    { 3, -12, 0, 10 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip robotrunnerFrame2SpriteStrips[] = 
 {
-    { 2, 4, 1, 16 },
-    { 3, 1, 17, 20 },
+    { 2, -8, -15, 16 },
+    { 3, -11, 1, 20 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip robotrunnerFrame3SpriteStrips[] = 
 {
-    { 2, 4, 0, 16 },
-    { 3, 1, 16, 26 },
+    { 2, -8, -16, 16 },
+    { 3, -11, 0, 26 },
     {0},
 };
 

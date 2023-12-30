@@ -6,7 +6,11 @@
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
-		<BoundingBox left="" right="" top="" bottom="" />
+		<RectLeft value="-8"/>
+		<RectTop value="-8"/>
+		<RectRight value="8"/>
+		<RectBottom value="11"/>
+		<Damage value="1"/>
 		<GameObjectType value="Enemy" />
 		<Health value="2"/>
 		<ResourceInfo value="robotspringResourceInfo" />		
