@@ -13,16 +13,11 @@ using System.Windows.Forms;
 
 namespace SceneMaster.Main.ViewModels
 {
-    public class AppConfig
-    {
-        public string GameObjectTemplatesDirectory { get => "..\\..\\..\\..\\..\\gamedata\\gameobjecttemplates"; }
-    }
-
     public class MainViewModel : ObservableObject
     {
         public string Title => "Scene Master";
 
-        private AppConfig AppConfig { get; } = new();
+        public Settings Settings { get; } = new();
         private GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; } = new();
 
         private SceneMasterDocument m_currentDocument;
@@ -35,13 +30,23 @@ namespace SceneMaster.Main.ViewModels
 
         public MainViewModel()
         {
+            Settings.Load();
+            Settings.PropertyChanged += Settings_PropertyChanged;
+
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
             var dllDirectory = baseDirectory + @"thirdparty\GraphicsGale"; // ensures galefile.dll gets loaded.
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory);
 
-            GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary.Load(AppConfig.GameObjectTemplatesDirectory);
+            GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary.Load(Settings.GameObjectTemplatesDirectory);
 
-            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+            bool openedScene = false;
+            if (Settings.ReloadLastScene && !string.IsNullOrEmpty(Settings.LastLoadedSceneFilename))
+            {
+                openedScene = OpenHelper(Settings.LastLoadedSceneFilename);
+            }
+            
+            if (!openedScene)
+                NewHelper();
 
             NewCommand = new RelayCommand(New);
             OpenCommand = new RelayCommand(Open);
@@ -50,6 +55,11 @@ namespace SceneMaster.Main.ViewModels
             ExitCommand = new RelayCommand(Exit);
             ImportTiledMapCommand = new RelayCommand(ImportGalFile);
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
+        }
+
+        private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            Settings.Save();
         }
 
         public ICommand NewCommand { get; }
@@ -62,15 +72,40 @@ namespace SceneMaster.Main.ViewModels
 
 
 
+        private void NewHelper()
+        {
+            CurrentDocument?.Dispose();
+            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+            
+            Settings.LastLoadedSceneFilename = "";
+        }
+
         private void New()
         {
             if (!CheckForSave())
                 return;
 
+            NewHelper();
+        }
+
+        private bool OpenHelper(string filePath)
+        {
             CurrentDocument?.Dispose();
             CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
-            // Add logic to clear/reset your UI or perform other actions for a new document
+
+            if (!CurrentDocument.Load(filePath))
+            {
+                System.Windows.MessageBox.Show($"Loading {filePath} failed.");
+                CurrentDocument?.Dispose();
+                CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+                Settings.LastLoadedSceneFilename = "";
+                return false;
+            }
+
+            Settings.LastLoadedSceneFilename = CurrentDocument.FilePath;
+            return true;
         }
+
 
         private void Open()
         {
@@ -84,15 +119,7 @@ namespace SceneMaster.Main.ViewModels
             if (openFileDialog.ShowDialog() == false)
                 return;
 
-            CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
-
-            if (!CurrentDocument.Load(openFileDialog.FileName))
-            {
-                System.Windows.MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
-                CurrentDocument?.Dispose();
-                CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
-            }
+            OpenHelper(openFileDialog.FileName);
         }
 
         private void SaveAs()
@@ -128,6 +155,8 @@ namespace SceneMaster.Main.ViewModels
                 System.Windows.MessageBox.Show($"Saving {filePath} failed.");
                 return false;
             }
+
+            Settings.LastLoadedSceneFilename = CurrentDocument.FilePath;
 
             return true;
         }

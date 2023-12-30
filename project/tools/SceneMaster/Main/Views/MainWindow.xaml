@@ -43,6 +43,9 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Delete" InputGestureText="Del" Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand}"/>
             </MenuItem>
+            <MenuItem Header="Settings">
+                <MenuItem Header="Load last scene on startup" IsCheckable="True" IsChecked="{Binding Settings.ReloadLastScene}"/>
+            </MenuItem>
         </Menu>
         <TabControl>
             <TabItem>

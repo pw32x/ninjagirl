@@ -45,20 +45,41 @@ Todo
 
 	SceneMaster
 
-		add export to C menu item
+		DONE add export to C menu item
 		
-		create stub export-to-C function
+		DONE create stub export-to-C function
 		
-		call export scene to C functoin from menu item		
+		DONE call export scene to C functoin from menu item		
+
+		DONE reload last level
+
+		export the resources
+
+		add create function to template
+	
+		export the placed objects
+		
+
+		
+		editor types
+			command runner
+			scroller
+			object
+			
+			
+		how to set MapManager_SetTilesetProperties_Command?
+		how to set the RightScroller_Create parameter?
+		
+		add command runner
+			template
+				
+		
+		add palettes
+			template
 
 		when exporting a level, track which tileset uses resources for their tilset function
 			
 		where/how to set palettes in a level?
-
-	
-		
-
-			
 		
 		export scenes functoin
 			export templates
@@ -80,7 +101,9 @@ Todo
 					increasing y
 					decreasing y
 					timer-based
-				
+					
+		display list of placed objects
+			
 		auto reload of imported map
 			
 		animated tiles to into bank 0/1?
