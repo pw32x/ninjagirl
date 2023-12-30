@@ -459,6 +459,9 @@
     <ClInclude Include="..\source\engine\gameobject_template_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">
