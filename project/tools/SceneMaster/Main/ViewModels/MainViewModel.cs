@@ -40,7 +40,9 @@ namespace SceneMaster.Main.ViewModels
             GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary.Load(Settings.GameObjectTemplatesDirectory);
 
             bool openedScene = false;
-            if (Settings.ReloadLastScene && !string.IsNullOrEmpty(Settings.LastLoadedSceneFilename))
+            if (Settings.ReloadLastScene && 
+                !string.IsNullOrEmpty(Settings.LastLoadedSceneFilename) &&
+                File.Exists(Settings.LastLoadedSceneFilename))
             {
                 openedScene = OpenHelper(Settings.LastLoadedSceneFilename);
             }

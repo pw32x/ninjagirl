@@ -3,7 +3,7 @@
 
 #include "engine/base_types.h"
 #include "engine/base_defines.h"
-#include "engine/level_manager.h"
+#include "engine/scene_manager.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/resource_manager.h"
@@ -12,9 +12,9 @@
 
 // levels
 //#include "exported/level001.h"
-#include "exported/level002.h"
+#include "exported/scene001.h"
 	
-#define LEVEL_TO_RUN level002
+#define SCENE_TO_RUN scene001
 
 void PSGUpdate(void)
 {
@@ -38,7 +38,7 @@ void main(void)
 	SMS_autoSetUpTextRenderer();
 
 
-	LevelManager_Init(&LEVEL_TO_RUN);
+	SceneManager_Init(&SCENE_TO_RUN);
 		
 	SMS_setSpriteMode(SPRITEMODE_TALL);
 

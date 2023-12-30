@@ -161,7 +161,7 @@
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
-    <ClCompile Include="..\source\client\exported\level002.c" />
+    <ClCompile Include="..\source\client\exported\scene001.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
@@ -194,7 +194,7 @@
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
-    <ClCompile Include="..\source\engine\level_manager.c" />
+    <ClCompile Include="..\source\engine\scene_manager.c" />
     <ClCompile Include="..\source\engine\map_load.c" />
     <ClCompile Include="..\source\engine\map_manager.c" />
     <ClCompile Include="..\source\engine\map_types.c" />
@@ -218,7 +218,7 @@
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
-    <ClInclude Include="..\source\client\exported\level002.h" />
+    <ClInclude Include="..\source\client\exported\scene001.h" />
     <ClInclude Include="..\source\client\exported\maps\background3.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
@@ -245,8 +245,8 @@
     <ClInclude Include="..\source\engine\createinfo_types.h" />
     <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\gameobject_template_types.h" />
-    <ClInclude Include="..\source\engine\level_manager.h" />
-    <ClInclude Include="..\source\engine\level_types.h" />
+    <ClInclude Include="..\source\engine\scene_manager.h" />
+    <ClInclude Include="..\source\engine\scene_types.h" />
     <ClInclude Include="..\source\engine\map_load.h" />
     <ClInclude Include="..\source\engine\map_manager.h" />
     <ClInclude Include="..\source\engine\map_types.h" />

@@ -115,14 +115,14 @@ _CODE                               00000200    000044E4 =       17636. bytes (R
      000007E6  _PSGUpdate                         main
      000007EC  _main                              main
      000008B6  _breakable_rock_tileset_TilesetF   tileset_functions
-     00000982  _level002_createInfo003            level002
-     00000988  _level002_createInfo004            level002
-     0000098E  _level002_createInfo005            level002
-     00000994  _level002_createInfo006            level002
-     0000099A  _level002_createInfo007            level002
-     000009A0  _level002_createInfo008            level002
-     000009A6  _setTilesetPropertiesParams        level002
-     000009AB  _level002                          level002
+     00000982  _scene001_createInfo003            scene001
+     00000988  _scene001_createInfo004            scene001
+     0000098E  _scene001_createInfo005            scene001
+     00000994  _scene001_createInfo006            scene001
+     0000099A  _scene001_createInfo007            scene001
+     000009A0  _scene001_createInfo008            scene001
+     000009A6  _setTilesetPropertiesParams        scene001
+     000009AB  _scene001                          scene001
      000009AD  _explosion_psg                     bank2
      000009C8  _throw_psg                         bank2
      000009DE  _hit_psg                           bank2
@@ -218,29 +218,29 @@ _CODE                               00000200    000044E4 =       17636. bytes (R
      00002750  _DrawUtils_DrawStreamedBatched     draw_utils
      000027E3  _drawToPlane                       draw_utils
      00002AA4  _DrawUtils_DrawPlaneAnimationFra   draw_utils
-     00002B2E  _LevelManager_Init                 level_manager
-     00002B49  _Load_MapResource                  map_load
-     00002BDF  _Load_TilesetResource              map_load
-     00002CCE  _Load_AnimatedTilesetResource      map_load
-     00002D85  _MapManager_SetTilesetProperties   map_manager
-     00002DD9  _ObjectManager_Init                object_manager
-     00002E52  _ObjectManager_Update              object_manager
-     000030A7  _ObjectManager_CreateObject        object_manager
-     0000310E  _ApplyGameObjectTemplate           object_manager
-     00003187  _ObjectManager_CreateObjectByTem   object_manager
-     00003246  _ObjectManager_DestroyObject       object_manager
-     0000325D  _ObjectManagerUtils_doProjectCol   object_manager
-     000033F8  _ObjectManager_QueueVDPDraw        object_manager
-     00003428  _ObjectManager_VDPDraw             object_manager
-     00003477  _ObjectUtils_gameObjectDoNothing   object_utils
-     00003478  _ObjectUtils_doNothing             object_utils
-     00003479  _ObjectUtils_twoGameObjectsDoNot   object_utils
-     0000347A  _ObjectUtils_drawNothing           object_utils
-     0000347C  _printResourceTypeName             resource_manager
-     00003559  _ResourceManager_Init              resource_manager
-     000035BC  _ResourceManager_LoadResource      resource_manager
-     000036F3  _ResourceManager_SetupResource     resource_manager
-     000037F9  _ResourceManager_SetOnResourceLo   resource_manager
+     00002B2E  _Load_MapResource                  map_load
+     00002BC4  _Load_TilesetResource              map_load
+     00002CB3  _Load_AnimatedTilesetResource      map_load
+     00002D6A  _MapManager_SetTilesetProperties   map_manager
+     00002DBE  _ObjectManager_Init                object_manager
+     00002E37  _ObjectManager_Update              object_manager
+     0000308C  _ObjectManager_CreateObject        object_manager
+     000030F3  _ApplyGameObjectTemplate           object_manager
+     0000316C  _ObjectManager_CreateObjectByTem   object_manager
+     0000322B  _ObjectManager_DestroyObject       object_manager
+     00003242  _ObjectManagerUtils_doProjectCol   object_manager
+     000033DD  _ObjectManager_QueueVDPDraw        object_manager
+     0000340D  _ObjectManager_VDPDraw             object_manager
+     0000345C  _ObjectUtils_gameObjectDoNothing   object_utils
+     0000345D  _ObjectUtils_doNothing             object_utils
+     0000345E  _ObjectUtils_twoGameObjectsDoNot   object_utils
+     0000345F  _ObjectUtils_drawNothing           object_utils
+     00003461  _printResourceTypeName             resource_manager
+     0000353E  _ResourceManager_Init              resource_manager
+     000035A1  _ResourceManager_LoadResource      resource_manager
+     000036D8  _ResourceManager_SetupResource     resource_manager
+     000037DE  _ResourceManager_SetOnResourceLo   resource_manager
+     000037E2  _SceneManager_Init                 scene_manager
      000037FD  _ScrollUtils_buildColumn           scroll_utils
      00003E3E  _ScrollUtils_InitTilemap           scroll_utils
      00003EA8  _TerrainManager_Init               terrain_manager
@@ -545,7 +545,7 @@ _INITIALIZED                        0000D5C4    000000AA =         170. bytes (R
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      0000D5C4  _globalPalette                     global_palette
-     0000D5D4  _level002_commands                 level002
+     0000D5D4  _scene001_commands                 scene001
      0000D64C  _CommandManager_Update             command_manager
      0000D64E  _drawSprite                        draw_utils
      0000D658  _projectileFlicker                 object_manager
@@ -872,7 +872,7 @@ out\source\client\main.rel                [ main ]
 out\source\client\tileset_functions.rel   [ tileset_functions ]
 out\source\client\exported\global_palette.rel
                                           [ global_palette ]
-out\source\client\exported\level002.rel   [ level002 ]
+out\source\client\exported\scene001.rel   [ scene001 ]
 out\source\client\generated\bank2.rel     [ bank2 ]
 out\source\client\generated\resource_infos.rel
                                           [ resource_infos ]
@@ -898,13 +898,13 @@ out\source\engine\animation_utils.rel     [ animation_utils ]
 out\source\engine\command_manager.rel     [ command_manager ]
 out\source\engine\command_types.rel       [ command_types ]
 out\source\engine\draw_utils.rel          [ draw_utils ]
-out\source\engine\level_manager.rel       [ level_manager ]
 out\source\engine\map_load.rel            [ map_load ]
 out\source\engine\map_manager.rel         [ map_manager ]
 out\source\engine\map_types.rel           [ map_types ]
 out\source\engine\object_manager.rel      [ object_manager ]
 out\source\engine\object_utils.rel        [ object_utils ]
 out\source\engine\resource_manager.rel    [ resource_manager ]
+out\source\engine\scene_manager.rel       [ scene_manager ]
 out\source\engine\scroll_manager.rel      [ scroll_manager ]
 out\source\engine\scroll_utils.rel        [ scroll_utils ]
 out\source\engine\terrain_manager.rel     [ terrain_manager ]

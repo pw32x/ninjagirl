@@ -1,4 +1,4 @@
-#include "level002.h"
+#include "scene001.h"
 
 #include "SMSlib.h"
 #include "PSGlib.h"
@@ -38,25 +38,25 @@
 // generated
 #include "client/generated/bank2.h" // music
 
-//const CreateInfo level002_createInfo003 = { 122, 110, (const void*)&ninja_girlResourceInfo };
-//const CreateInfo level002_createInfo004 = { 64, 128, (const void*)&walkerResourceInfo };
-//const CreateInfo level002_createInfo005 = { 144, 32, (const void*)&walker_bigResourceInfo };
-//const CreateInfo level002_createInfo006 = { 96, 88, (const void*)&walker_smallResourceInfo  };
-//const CreateInfo level002_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
-//const CreateInfo level002_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
+//const CreateInfo scene001_createInfo003 = { 122, 110, (const void*)&ninja_girlResourceInfo };
+//const CreateInfo scene001_createInfo004 = { 64, 128, (const void*)&walkerResourceInfo };
+//const CreateInfo scene001_createInfo005 = { 144, 32, (const void*)&walker_bigResourceInfo };
+//const CreateInfo scene001_createInfo006 = { 96, 88, (const void*)&walker_smallResourceInfo  };
+//const CreateInfo scene001_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
+//const CreateInfo scene001_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
 
-const CreateInfo level002_createInfo003 = { 122, 110, &ninja_girl_template };
-const CreateInfo level002_createInfo004 = { 64, 128, &walker_template };
-const CreateInfo level002_createInfo005 = { 144, 32, &walker_big_template };
-const CreateInfo level002_createInfo006 = { 96, 88, &walker_small_template };
-const CreateInfo level002_createInfo007 = { 180, 32, &robotrunner_template };
-const CreateInfo level002_createInfo008 = { 128, 8, &robotspring_template };
+const CreateInfo scene001_createInfo003 = { 122, 110, &ninja_girl_template };
+const CreateInfo scene001_createInfo004 = { 64, 128, &walker_template };
+const CreateInfo scene001_createInfo005 = { 144, 32, &walker_big_template };
+const CreateInfo scene001_createInfo006 = { 96, 88, &walker_small_template };
+const CreateInfo scene001_createInfo007 = { 180, 32, &robotrunner_template };
+const CreateInfo scene001_createInfo008 = { 128, 8, &robotspring_template };
 
 
-//const CreateInfo level002_createInfo009 = { 234, 112, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo010 = { 234, 144, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo011 = { 234, 176, (const void*)&evil_eye };
-//const CreateInfo level002_createInfo012 = { 254, 102, (const void*)&birdidle };
+//const CreateInfo scene001_createInfo009 = { 234, 112, (const void*)&evil_eye };
+//const CreateInfo scene001_createInfo010 = { 234, 144, (const void*)&evil_eye };
+//const CreateInfo scene001_createInfo011 = { 234, 176, (const void*)&evil_eye };
+//const CreateInfo scene001_createInfo012 = { 254, 102, (const void*)&birdidle };
 
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
 { 
@@ -65,7 +65,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 	&rock_particle_template
 };
 
-Command level002_commands[] = 
+Command scene001_commands[] = 
 {
 	{ 0, (CommandFunction)CommandRunner_RightScroll_Create, NULL },
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
@@ -88,22 +88,22 @@ Command level002_commands[] =
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 
 	{ 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
-	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo004 },
-	//{ 24, (CommandFunction)Enemy_Create, &level002_createInfo005 },
-	{ 122, (CommandFunction)Player_Create, &level002_createInfo003 }, 
+	{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo004 },
+	//{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo005 },
+	{ 122, (CommandFunction)Player_Create, &scene001_createInfo003 }, 
 	
 	
-	{ 24, (CommandFunction)Enemy_Create, &level002_createInfo006 },
-	{ 64, (CommandFunction)Enemy_Create, &level002_createInfo007 },
-	{ 128, (CommandFunction)Enemy_Create, &level002_createInfo008 },
-	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo009 },
-	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo010 },
-	//{ 234, (CommandFunction)Enemy_Create, &level002_createInfo011 },
-	//{ 654, (CommandFunction)Bird_Create, &level002_createInfo012 },
+	{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo006 },
+	{ 64, (CommandFunction)Enemy_Create, &scene001_createInfo007 },
+	{ 128, (CommandFunction)Enemy_Create, &scene001_createInfo008 },
+	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo009 },
+	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo010 },
+	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo011 },
+	//{ 654, (CommandFunction)Bird_Create, &scene001_createInfo012 },
 	{ 0, (CommandFunction)NULL, NULL}
 };
 
-const Level level002 =
+const Scene scene001 =
 {
-	level002_commands
+	scene001_commands
 };

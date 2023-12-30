@@ -52,7 +52,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\engine\level_manager.c">
+    <ClCompile Include="..\source\engine\scene_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
     <ClCompile Include="..\source\engine\object_manager.c">
@@ -88,7 +88,7 @@
     <ClCompile Include="..\source\client\objects\commandrunner_runall.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\level002.c">
+    <ClCompile Include="..\source\client\exported\scene001.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\objects\enemy.c">
@@ -312,10 +312,10 @@
     <ClInclude Include="..\source\engine\animation_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\level_manager.h">
+    <ClInclude Include="..\source\engine\scene_manager.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\engine\level_types.h">
+    <ClInclude Include="..\source\engine\scene_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\map_types.h">
@@ -360,7 +360,7 @@
     <ClInclude Include="..\source\engine\base_defines.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\level002.h">
+    <ClInclude Include="..\source\client\exported\scene001.h">
       <Filter>Source Files\client\exported</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\objects\enemy.h">

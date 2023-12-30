@@ -81,6 +81,8 @@ namespace SceneMaster.Export
             ExportResourceCommands(sb, gameObjects);
             ExportGameObjectCommands(sb, gameObjects, createInfos);
 
+            sb.AppendLine("    { 0, (CommandFunction)NULL, NULL}");
+
             sb.AppendLine("};");
             sb.AppendLine();
         }

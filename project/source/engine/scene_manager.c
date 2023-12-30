@@ -1,10 +1,10 @@
-#include "level_manager.h"
+#include "scene_manager.h"
 #include "SMSlib.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/vdptile_manager.h"
 
-void LevelManager_Init(const Level* level)
+void SceneManager_Init(const Scene* scene)
 {
 	// init systems
 	ObjectManager_Init();
@@ -12,6 +12,6 @@ void LevelManager_Init(const Level* level)
 
 
 	// we assume the first item is a command processor
-	CommandFunction firstCommand = level->commands->command;
-	firstCommand(level->commands + 1);
+	CommandFunction firstCommand = scene->commands->command;
+	firstCommand(scene->commands + 1);
 }
