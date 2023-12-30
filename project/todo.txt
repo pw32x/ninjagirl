@@ -53,13 +53,12 @@ Todo
 
 		DONE reload last level
 
-		export the resources
+		DONE export the resources
+		
+		DONE export the game objects
 
 		add create function to template
 	
-		export the placed objects
-		
-
 		
 		editor types
 			command runner
@@ -69,6 +68,7 @@ Todo
 			
 		how to set MapManager_SetTilesetProperties_Command?
 		how to set the RightScroller_Create parameter?
+		how to add Command runner object?
 		
 		add command runner
 			template

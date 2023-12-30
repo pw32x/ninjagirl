@@ -59,6 +59,9 @@ namespace SceneMaster.GameObjectTemplates.Models
         [Browsable(false)]
         public bool IsEditorVisible { get; protected set; }
 
+        [System.ComponentModel.ReadOnly(true)]
+        public string FilePath { get; private set; }
+
         // editor properties
         [Browsable(false)]
         public Visual Visual { get; } = new();
@@ -83,6 +86,9 @@ namespace SceneMaster.GameObjectTemplates.Models
         [SelectorStyle(SelectorStyle.ComboBox)]
         public GameObjectType GameObjectType { get; set; }
 
+        [System.ComponentModel.ReadOnly(true)]
+        public string ResourceInfo { get; set; }
+
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
             if (editorPropertiesNode["Visual"] is var visualNode && visualNode != null)
@@ -99,10 +105,13 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectTop = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectTop));
             RectRight = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectRight));
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
+            ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
         }
 
         public void Load(string filePath)
         {
+            FilePath = filePath;
+
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(GameObjectTemplate));
 
             string oldCurrentDirectory = Directory.GetCurrentDirectory();
