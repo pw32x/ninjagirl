@@ -40,19 +40,19 @@ Area                                    Addr        Size        Decimal Bytes (A
      0000001F  l__HEADER2                      
      0000002B  l__CABS3                        
      0000002B  l__HEADER3                      
-     000000AE  l__INITIALIZED                  
-     000000AE  l__INITIALIZER                  
+     000000AA  l__INITIALIZED                  
+     000000AA  l__INITIALIZER                  
      00000104  l__HEADER4                      
      00000200  s__CODE                         
      00000478  l__BANK4                        
      000015C4  l__DATA                         
      000021CC  l__BANK3                        
      00003F9C  l__BANK2                        
-     000044D0  l__CODE                         
-     000046D0  s__HOME                         
-     000046D0  s__INITIALIZER                  
-     0000477E  s__GSINIT                       
-     0000478D  s__GSFINAL                      
+     000044E4  l__CODE                         
+     000046E4  s__HOME                         
+     000046E4  s__INITIALIZER                  
+     0000478E  s__GSINIT                       
+     0000479D  s__GSFINAL                      
      00008000  _SMS_SRAM                          SMSlib_textrenderer
      00008000  s__BANK2                        
      00008000  s__BANK3                        
@@ -68,9 +68,9 @@ Area                                    Addr        Size        Decimal Bytes (A
       -----  --------------------------------   ------------------------
      0000C000  s__DATA                         
      0000D5C4  s__INITIALIZED                  
-     0000D672  s__BSEG                         
-     0000D672  s__BSS                          
-     0000D672  s__HEAP                         
+     0000D66E  s__BSEG                         
+     0000D66E  s__BSS                          
+     0000D66E  s__HEAP                         
      0000FFFC  _SRAM_bank_to_be_mapped_on_slot2   SMSlib_textrenderer
      0000FFFD  _ROM_bank_to_be_mapped_on_slot0    SMSlib_textrenderer
      0000FFFE  _ROM_bank_to_be_mapped_on_slot1    SMSlib_textrenderer
@@ -81,7 +81,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000044D0 =       17616. bytes (REL,CON)
+_CODE                               00000200    000044E4 =       17636. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -103,210 +103,210 @@ _CODE                               00000200    000044D0 =       17616. bytes (R
      000005CE  _PSGFrame                          PSGlib
      000006F2  _PSGSFXFrame                       PSGlib
      00000778  _explosion_template                explosion_template
-     00000781  _impact_template                   impact_template
-     0000078A  _kunai_template                    kunai_template
-     00000793  _ninja_girl_template               ninja_girl_template
-     0000079C  _robotrunner_template              robotrunner_template
-     000007A5  _robotspring_template              robotspring_template
-     000007AE  _rock_particle_template            rock_particle_template
-     000007B7  _walker_big_template               walker_big_template
-     000007C0  _walker_small_template             walker_small_template
-     000007C9  _walker_template                   walker_template
-     000007D2  _PSGUpdate                         main
-     000007D8  _main                              main
-     000008A2  _breakable_rock_tileset_TilesetF   tileset_functions
-     0000096E  _level002_createInfo003            level002
-     00000974  _level002_createInfo004            level002
-     0000097A  _level002_createInfo005            level002
-     00000980  _level002_createInfo006            level002
-     00000986  _level002_createInfo007            level002
-     0000098C  _level002_createInfo008            level002
-     00000992  _setTilesetPropertiesParams        level002
-     00000997  _level002                          level002
-     00000999  _explosion_psg                     bank2
-     000009B4  _throw_psg                         bank2
-     000009CA  _hit_psg                           bank2
-     000009DB  _background3_tilesetResourceInfo   resource_infos
-     000009DE  _breakable_rock_tilesetResourceI   resource_infos
-     000009E1  _waterfall_tilesetResourceInfo     resource_infos
-     000009E4  _explosionResourceInfo             resource_infos
-     000009E7  _impactResourceInfo                resource_infos
-     000009EA  _kunaiResourceInfo                 resource_infos
-     000009ED  _ninja_girlResourceInfo            resource_infos
-     000009F0  _robotrunnerResourceInfo           resource_infos
-     000009F3  _robotspringResourceInfo           resource_infos
+     00000783  _impact_template                   impact_template
+     0000078E  _kunai_template                    kunai_template
+     00000799  _ninja_girl_template               ninja_girl_template
+     000007A4  _robotrunner_template              robotrunner_template
+     000007AF  _robotspring_template              robotspring_template
+     000007BA  _rock_particle_template            rock_particle_template
+     000007C5  _walker_big_template               walker_big_template
+     000007D0  _walker_small_template             walker_small_template
+     000007DB  _walker_template                   walker_template
+     000007E6  _PSGUpdate                         main
+     000007EC  _main                              main
+     000008B6  _breakable_rock_tileset_TilesetF   tileset_functions
+     00000982  _level002_createInfo003            level002
+     00000988  _level002_createInfo004            level002
+     0000098E  _level002_createInfo005            level002
+     00000994  _level002_createInfo006            level002
+     0000099A  _level002_createInfo007            level002
+     000009A0  _level002_createInfo008            level002
+     000009A6  _setTilesetPropertiesParams        level002
+     000009AB  _level002                          level002
+     000009AD  _explosion_psg                     bank2
+     000009C8  _throw_psg                         bank2
+     000009DE  _hit_psg                           bank2
+     000009EF  _background3_tilesetResourceInfo   resource_infos
+     000009F2  _breakable_rock_tilesetResourceI   resource_infos
+     000009F5  _waterfall_tilesetResourceInfo     resource_infos
+     000009F8  _explosionResourceInfo             resource_infos
+     000009FB  _impactResourceInfo                resource_infos
+     000009FE  _kunaiResourceInfo                 resource_infos
+     00000A01  _ninja_girlResourceInfo            resource_infos
+     00000A04  _robotrunnerResourceInfo           resource_infos
+     00000A07  _robotspringResourceInfo           resource_infos
 ASxxxx Linker V03.00/V05.40 + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000044D0 =       17616. bytes (REL,CON)
+_CODE                               00000200    000044E4 =       17636. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000009F6  _rock_particleResourceInfo         resource_infos
-     000009F9  _walkerResourceInfo                resource_infos
-     000009FC  _walker_bigResourceInfo            resource_infos
-     000009FF  _walker_smallResourceInfo          resource_infos
-     00000A02  _waterfallResourceInfo             resource_infos
-     00000A05  _background3_mapResourceInfo       resource_infos
-     00000A08  _waterfall_mapResourceInfo         resource_infos
-     00000A0B  _BasicEffect_Create                basic_effect
-     00000A87  _BasicEffect_Update                basic_effect
-     00000B3A  _BasicEffect_Draw                  basic_effect
-     00000B91  _Bird_Create                       bird
-     00000C29  _Bird_Update                       bird
-     00000C6B  _Bird_Draw                         bird
-     00000C6D  _CommandRunner_RightScroll_Creat   commandrunner_rightscroll
-     00000CB8  _CommandRunner_RightScroll_Updat   commandrunner_rightscroll
-     00000D01  _CommandRunner_RunAll_Create       commandrunner_runall
-     00000D36  _Enemy_Create                      enemy
-     00000DAB  _Enemy_Update                      enemy
-     00000DDB  _Enemy_Draw                        enemy
-     00000E32  _Enemy_HandleCollision             enemy
-     00000EBD  _Kunai_Create                      kunai
-     00000F3E  _EraseTiles                        kunai
-     00000FE4  _Kunai_Update                      kunai
-     00001265  _Kunai_Draw                        kunai
-     000012BC  _Kunai_HandleCollision             kunai
-     0000137A  _OnResourceLoaded                  on_resource_loaded_callback
-     0000138D  _ParticleEffect_Create             particle_effect
-     00001406  _ParticleEffect_Update             particle_effect
-     00001507  _ParticleEffect_Draw               particle_effect
-     0000158F  _setPlayerAnimation                player
-     00001667  _setPlayerState                    player
-     00001685  _Player_Create                     player
-     00001705  _Player_FireWeapon                 player
-     000017C2  _Player_UpdateX                    player
-     00001A3A  _Player_UpdateY                    player
-     00001C55  _Player_Update                     player
-     00001E24  _Player_Draw                       player
-     00001E7B  _RightScroller_Create              right_scroller
-     00001EC6  _RightScroll_Update                right_scroller
-     00001FE9  _RightScroll_UpdateVDP             right_scroller
-     00002017  _TileAnimator_Create               tile_animator
-     00002040  _UpdateTiles                       tile_animator
-     000020A3  _TileAnimator_Update               tile_animator
-     000020C0  _AnimationUtils_updateBatchedAni   animation_utils
-     0000210D  _AnimationUtils_updateBatchedAni   animation_utils
-     00002187  _AnimationUtils_updateStreamedBa   animation_utils
-     000021D4  _AnimationUtils_updatePlaneAnima   animation_utils
-     00002215  _AnimationUtils_updateTileAnimat   animation_utils
-     00002254  _AnimationUtils_setBatchedAnimat   animation_utils
-     00002297  _Load_BatchedAnimationResource     animation_utils
-     000022BF  _Load_StreamedBatchedAnimationRe   animation_utils
+     00000A0A  _rock_particleResourceInfo         resource_infos
+     00000A0D  _walkerResourceInfo                resource_infos
+     00000A10  _walker_bigResourceInfo            resource_infos
+     00000A13  _walker_smallResourceInfo          resource_infos
+     00000A16  _waterfallResourceInfo             resource_infos
+     00000A19  _background3_mapResourceInfo       resource_infos
+     00000A1C  _waterfall_mapResourceInfo         resource_infos
+     00000A1F  _BasicEffect_Create                basic_effect
+     00000A9B  _BasicEffect_Update                basic_effect
+     00000B4E  _BasicEffect_Draw                  basic_effect
+     00000BA5  _Bird_Create                       bird
+     00000C3D  _Bird_Update                       bird
+     00000C7F  _Bird_Draw                         bird
+     00000C81  _CommandRunner_RightScroll_Creat   commandrunner_rightscroll
+     00000CCC  _CommandRunner_RightScroll_Updat   commandrunner_rightscroll
+     00000D15  _CommandRunner_RunAll_Create       commandrunner_runall
+     00000D4A  _Enemy_Create                      enemy
+     00000DBF  _Enemy_Update                      enemy
+     00000DEF  _Enemy_Draw                        enemy
+     00000E46  _Enemy_HandleCollision             enemy
+     00000ED1  _Kunai_Create                      kunai
+     00000F52  _EraseTiles                        kunai
+     00000FF8  _Kunai_Update                      kunai
+     00001279  _Kunai_Draw                        kunai
+     000012D0  _Kunai_HandleCollision             kunai
+     0000138E  _OnResourceLoaded                  on_resource_loaded_callback
+     000013A1  _ParticleEffect_Create             particle_effect
+     0000141A  _ParticleEffect_Update             particle_effect
+     0000151B  _ParticleEffect_Draw               particle_effect
+     000015A3  _setPlayerAnimation                player
+     0000167B  _setPlayerState                    player
+     00001699  _Player_Create                     player
+     00001719  _Player_FireWeapon                 player
+     000017D6  _Player_UpdateX                    player
+     00001A4E  _Player_UpdateY                    player
+     00001C69  _Player_Update                     player
+     00001E38  _Player_Draw                       player
+     00001E8F  _RightScroller_Create              right_scroller
+     00001EDA  _RightScroll_Update                right_scroller
+     00001FFD  _RightScroll_UpdateVDP             right_scroller
+     0000202B  _TileAnimator_Create               tile_animator
+     00002054  _UpdateTiles                       tile_animator
+     000020B7  _TileAnimator_Update               tile_animator
+     000020D4  _AnimationUtils_updateBatchedAni   animation_utils
+     00002121  _AnimationUtils_updateBatchedAni   animation_utils
+     0000219B  _AnimationUtils_updateStreamedBa   animation_utils
+     000021E8  _AnimationUtils_updatePlaneAnima   animation_utils
+     00002229  _AnimationUtils_updateTileAnimat   animation_utils
+     00002268  _AnimationUtils_setBatchedAnimat   animation_utils
+     000022AB  _Load_BatchedAnimationResource     animation_utils
+     000022D3  _Load_StreamedBatchedAnimationRe   animation_utils
 ASxxxx Linker V03.00/V05.40 + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000044D0 =       17616. bytes (REL,CON)
+_CODE                               00000200    000044E4 =       17636. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     000022D8  _Load_PlaneAnimationResource       animation_utils
-     000022FE  _Load_TileAnimationResource        animation_utils
-     00002324  _Setup_BatchedAnimationResource    animation_utils
-     000023A7  _Setup_PlaneAnimationResource      animation_utils
-     0000242D  _Setup_TileAnimationResource       animation_utils
-     00002478  _AnimationUtils_UpdateStreamedBa   animation_utils
-     000025A9  _DrawUtils_addSprite               draw_utils
-     000025CB  _DrawUtils_addTwoAdjoiningSprite   draw_utils
-     00002601  _DrawUtils_addThreeAdjoiningSpri   draw_utils
-     00002652  _DrawUtils_addFourAdjoiningSprit   draw_utils
-     000026B9  _DrawUtils_DrawBatched             draw_utils
-     0000273C  _DrawUtils_DrawStreamedBatched     draw_utils
-     000027CF  _drawToPlane                       draw_utils
-     00002A90  _DrawUtils_DrawPlaneAnimationFra   draw_utils
-     00002B1A  _LevelManager_Init                 level_manager
-     00002B35  _Load_MapResource                  map_load
-     00002BCB  _Load_TilesetResource              map_load
-     00002CBA  _Load_AnimatedTilesetResource      map_load
-     00002D71  _MapManager_SetTilesetProperties   map_manager
-     00002DC5  _ObjectManager_Init                object_manager
-     00002E3E  _ObjectManager_Update              object_manager
-     00003093  _ObjectManager_CreateObject        object_manager
-     000030FA  _ApplyGameObjectTemplate           object_manager
-     00003173  _ObjectManager_CreateObjectByTem   object_manager
-     00003232  _ObjectManager_DestroyObject       object_manager
-     00003249  _ObjectManagerUtils_doProjectCol   object_manager
-     000033E4  _ObjectManager_QueueVDPDraw        object_manager
-     00003414  _ObjectManager_VDPDraw             object_manager
-     00003463  _ObjectUtils_gameObjectDoNothing   object_utils
-     00003464  _ObjectUtils_doNothing             object_utils
-     00003465  _ObjectUtils_twoGameObjectsDoNot   object_utils
-     00003466  _ObjectUtils_drawNothing           object_utils
-     00003468  _printResourceTypeName             resource_manager
-     00003545  _ResourceManager_Init              resource_manager
-     000035A8  _ResourceManager_LoadResource      resource_manager
-     000036DF  _ResourceManager_SetupResource     resource_manager
-     000037E5  _ResourceManager_SetOnResourceLo   resource_manager
-     000037E9  _ScrollUtils_buildColumn           scroll_utils
-     00003E2A  _ScrollUtils_InitTilemap           scroll_utils
-     00003E94  _TerrainManager_Init               terrain_manager
-     00003EC0  _TerrainManager_UpdateTerrain      terrain_manager
-     00003F0F  _VDPTileManager_Init               vdptile_manager
-     00003F1A  _VDPTileManager_LoadSpriteTiles    vdptile_manager
-     00003F7C  _VDPTileManager_ReserveSpriteTil   vdptile_manager
-     00003FA0  _VDPTileManager_LoadBackgroundTi   vdptile_manager
-     00003FEB  _SMS_VRAMmemset_f                  SMSlib_VRAMmemset
-     00004007  _SMS_VRAMmemsetW                   SMSlib_VRAMmemset
-     0000401A  _SMS_init                          SMSlib
-     00004046  _VDPReg_init                       SMSlib
-     00004051  _SMS_VDPturnOnFeature              SMSlib
-     00004066  _SMS_VDPturnOffFeature             SMSlib
+     000022EC  _Load_PlaneAnimationResource       animation_utils
+     00002312  _Load_TileAnimationResource        animation_utils
+     00002338  _Setup_BatchedAnimationResource    animation_utils
+     000023BB  _Setup_PlaneAnimationResource      animation_utils
+     00002441  _Setup_TileAnimationResource       animation_utils
+     0000248C  _AnimationUtils_UpdateStreamedBa   animation_utils
+     000025BD  _DrawUtils_addSprite               draw_utils
+     000025DF  _DrawUtils_addTwoAdjoiningSprite   draw_utils
+     00002615  _DrawUtils_addThreeAdjoiningSpri   draw_utils
+     00002666  _DrawUtils_addFourAdjoiningSprit   draw_utils
+     000026CD  _DrawUtils_DrawBatched             draw_utils
+     00002750  _DrawUtils_DrawStreamedBatched     draw_utils
+     000027E3  _drawToPlane                       draw_utils
+     00002AA4  _DrawUtils_DrawPlaneAnimationFra   draw_utils
+     00002B2E  _LevelManager_Init                 level_manager
+     00002B49  _Load_MapResource                  map_load
+     00002BDF  _Load_TilesetResource              map_load
+     00002CCE  _Load_AnimatedTilesetResource      map_load
+     00002D85  _MapManager_SetTilesetProperties   map_manager
+     00002DD9  _ObjectManager_Init                object_manager
+     00002E52  _ObjectManager_Update              object_manager
+     000030A7  _ObjectManager_CreateObject        object_manager
+     0000310E  _ApplyGameObjectTemplate           object_manager
+     00003187  _ObjectManager_CreateObjectByTem   object_manager
+     00003246  _ObjectManager_DestroyObject       object_manager
+     0000325D  _ObjectManagerUtils_doProjectCol   object_manager
+     000033F8  _ObjectManager_QueueVDPDraw        object_manager
+     00003428  _ObjectManager_VDPDraw             object_manager
+     00003477  _ObjectUtils_gameObjectDoNothing   object_utils
+     00003478  _ObjectUtils_doNothing             object_utils
+     00003479  _ObjectUtils_twoGameObjectsDoNot   object_utils
+     0000347A  _ObjectUtils_drawNothing           object_utils
+     0000347C  _printResourceTypeName             resource_manager
+     00003559  _ResourceManager_Init              resource_manager
+     000035BC  _ResourceManager_LoadResource      resource_manager
+     000036F3  _ResourceManager_SetupResource     resource_manager
+     000037F9  _ResourceManager_SetOnResourceLo   resource_manager
+     000037FD  _ScrollUtils_buildColumn           scroll_utils
+     00003E3E  _ScrollUtils_InitTilemap           scroll_utils
+     00003EA8  _TerrainManager_Init               terrain_manager
+     00003ED4  _TerrainManager_UpdateTerrain      terrain_manager
+     00003F23  _VDPTileManager_Init               vdptile_manager
+     00003F2E  _VDPTileManager_LoadSpriteTiles    vdptile_manager
+     00003F90  _VDPTileManager_ReserveSpriteTil   vdptile_manager
+     00003FB4  _VDPTileManager_LoadBackgroundTi   vdptile_manager
+     00003FFF  _SMS_VRAMmemset_f                  SMSlib_VRAMmemset
+     0000401B  _SMS_VRAMmemsetW                   SMSlib_VRAMmemset
+     0000402E  _SMS_init                          SMSlib
+     0000405A  _VDPReg_init                       SMSlib
+     00004065  _SMS_VDPturnOnFeature              SMSlib
+     0000407A  _SMS_VDPturnOffFeature             SMSlib
 ASxxxx Linker V03.00/V05.40 + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_CODE                               00000200    000044D0 =       17616. bytes (REL,CON)
+_CODE                               00000200    000044E4 =       17636. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000407E  _SMS_setBGScrollX                  SMSlib
-     00004088  _SMS_setBGScrollY                  SMSlib
-     00004092  _SMS_setBackdropColor              SMSlib
-     0000409C  _SMS_useFirstHalfTilesforSprites   SMSlib
-     000040B2  _SMS_setSpriteMode                 SMSlib
-     000040FF  _SMS_setBGPaletteColor             SMSlib
-     0000410C  _SMS_setSpritePaletteColor         SMSlib
-     00004119  _SMS_loadBGPalette                 SMSlib
-     0000412D  _SMS_loadSpritePalette             SMSlib
-     00004141  _SMS_setColor                      SMSlib
-     00004145  _SMS_waitForVBlank                 SMSlib
-     00004152  _SMS_getKeysStatus                 SMSlib
-     00004157  _SMS_getKeysPressed                SMSlib
-     0000416C  _SMS_getKeysHeld                   SMSlib
-     0000417F  _SMS_getKeysReleased               SMSlib
-     00004198  _SMS_queryPauseRequested           SMSlib
-     0000419C  _SMS_resetPauseRequest             SMSlib
-     000041A2  _SMS_setFrameInterruptHandler      SMSlib
-     000041A6  _SMS_setLineInterruptHandler       SMSlib
-     000041AA  _SMS_setLineCounter                SMSlib
-     000041B4  _SMS_getVCount                     SMSlib
-     000041B7  _SMS_getHCount                     SMSlib
-     000041BA  _SMS_isr                           SMSlib
-     00004202  _SMS_nmi_isr                       SMSlib
-     0000420B  _SMS_initSprites                   SMSlib_sprite
-     00004211  _SMS_addSprite_f                   SMSlib_sprite
-     0000423C  _SMS_copySpritestoSAT              SMSlib_sprite
-     00004270  __mulint                           
-     00004272  __mul16                            
-     00004287  ___sdcc_call_hl                    
-     00004288  _SMS_debugPrintf                   SMSlib_debug
-     00004298  _UNSAFE_SMS_copySpritestoSAT       SMSlib_UNSAFE
-     000042DF  _UNSAFE_SMS_VRAMmemcpy32           SMSlib_UNSAFE
-     000042E8  _UNSAFE_SMS_VRAMmemcpy64           SMSlib_UNSAFE
-     000042F1  _UNSAFE_SMS_VRAMmemcpy128          SMSlib_UNSAFE
-     000042FA  _SMS_VRAMmemcpy                    SMSlib_VRAMmemcpy
-     00004311  ___sdcc_call_iy                    
-     00004313  _SMS_autoSetUpTextRenderer         SMSlib_autotext
-     00004342  _devkitSMS_font__tiles__1bpp       SMSlib_autotext
-     00004642  _SMS_loadTileMapColumnatAddr       SMSlib_loadTileMapColumn
-     00004662  _SMS_load1bppTiles                 SMSlib_load1bppTiles
-     000046C4  _SMS_configureTextRenderer         SMSlib_textrenderer
-     000046C8  _putchar                           SMSlib_textrenderer
+     00004092  _SMS_setBGScrollX                  SMSlib
+     0000409C  _SMS_setBGScrollY                  SMSlib
+     000040A6  _SMS_setBackdropColor              SMSlib
+     000040B0  _SMS_useFirstHalfTilesforSprites   SMSlib
+     000040C6  _SMS_setSpriteMode                 SMSlib
+     00004113  _SMS_setBGPaletteColor             SMSlib
+     00004120  _SMS_setSpritePaletteColor         SMSlib
+     0000412D  _SMS_loadBGPalette                 SMSlib
+     00004141  _SMS_loadSpritePalette             SMSlib
+     00004155  _SMS_setColor                      SMSlib
+     00004159  _SMS_waitForVBlank                 SMSlib
+     00004166  _SMS_getKeysStatus                 SMSlib
+     0000416B  _SMS_getKeysPressed                SMSlib
+     00004180  _SMS_getKeysHeld                   SMSlib
+     00004193  _SMS_getKeysReleased               SMSlib
+     000041AC  _SMS_queryPauseRequested           SMSlib
+     000041B0  _SMS_resetPauseRequest             SMSlib
+     000041B6  _SMS_setFrameInterruptHandler      SMSlib
+     000041BA  _SMS_setLineInterruptHandler       SMSlib
+     000041BE  _SMS_setLineCounter                SMSlib
+     000041C8  _SMS_getVCount                     SMSlib
+     000041CB  _SMS_getHCount                     SMSlib
+     000041CE  _SMS_isr                           SMSlib
+     00004216  _SMS_nmi_isr                       SMSlib
+     0000421F  _SMS_initSprites                   SMSlib_sprite
+     00004225  _SMS_addSprite_f                   SMSlib_sprite
+     00004250  _SMS_copySpritestoSAT              SMSlib_sprite
+     00004284  __mulint                           
+     00004286  __mul16                            
+     0000429B  ___sdcc_call_hl                    
+     0000429C  _SMS_debugPrintf                   SMSlib_debug
+     000042AC  _UNSAFE_SMS_copySpritestoSAT       SMSlib_UNSAFE
+     000042F3  _UNSAFE_SMS_VRAMmemcpy32           SMSlib_UNSAFE
+     000042FC  _UNSAFE_SMS_VRAMmemcpy64           SMSlib_UNSAFE
+     00004305  _UNSAFE_SMS_VRAMmemcpy128          SMSlib_UNSAFE
+     0000430E  _SMS_VRAMmemcpy                    SMSlib_VRAMmemcpy
+     00004325  ___sdcc_call_iy                    
+     00004327  _SMS_autoSetUpTextRenderer         SMSlib_autotext
+     00004356  _devkitSMS_font__tiles__1bpp       SMSlib_autotext
+     00004656  _SMS_loadTileMapColumnatAddr       SMSlib_loadTileMapColumn
+     00004676  _SMS_load1bppTiles                 SMSlib_load1bppTiles
+     000046D8  _SMS_configureTextRenderer         SMSlib_textrenderer
+     000046DC  _putchar                           SMSlib_textrenderer
 ASxxxx Linker V03.00/V05.40 + sdld,  page 7.
 Hexadecimal  [32-Bits]
 
@@ -367,7 +367,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_INITIALIZER                        000046D0    000000AE =         174. bytes (REL,CON)
+_INITIALIZER                        000046E4    000000AA =         170. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -376,18 +376,18 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSINIT                             0000477E    0000000F =          15. bytes (REL,CON)
+_GSINIT                             0000478E    0000000F =          15. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000477E  gsinit                             crt0
+     0000478E  gsinit                             crt0
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 14.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSFINAL                            0000478D    00000001 =           1. bytes (REL,CON)
+_GSFINAL                            0000479D    00000001 =           1. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -540,7 +540,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_INITIALIZED                        0000D5C4    000000AE =         174. bytes (REL,CON)
+_INITIALIZED                        0000D5C4    000000AA =         170. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -558,11 +558,11 @@ _INITIALIZED                        0000D5C4    000000AE =         174. bytes (R
      0000D663  _ScrollManager_vdpHorizontalScro   scroll_manager
      0000D664  _ScrollManager_updateMapVDP        scroll_manager
      0000D665  _background3_tilesetResourceInfo   background3
-     0000D66B  _waterfall_tilesetResourceInfos    waterfall
-     0000D66D  _VDPReg                            SMSlib
-     0000D66F  _spritesHeight                     SMSlib
-     0000D670  _spritesWidth                      SMSlib
-     0000D671  _spritesTileOffset                 SMSlib
+     0000D667  _waterfall_tilesetResourceInfos    waterfall
+     0000D669  _VDPReg                            SMSlib
+     0000D66B  _spritesHeight                     SMSlib
+     0000D66C  _spritesWidth                      SMSlib
+     0000D66D  _spritesTileOffset                 SMSlib
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 19.
 Hexadecimal  [32-Bits]

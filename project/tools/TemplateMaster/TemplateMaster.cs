@@ -41,6 +41,8 @@ namespace TemplateMaster
             string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var lastApplicationWriteTime = System.IO.File.GetLastWriteTime(appPath);
 
+            bool processedAtLeastOne = false;
+
             foreach (var fileInfo in foundFileInfos)
             {
                 string templateName = Path.GetFileNameWithoutExtension(fileInfo.Name) + "_template";
@@ -55,8 +57,11 @@ namespace TemplateMaster
                 if (destinationLastWriteTime > sourceLastWriteTime &&
                     destinationLastWriteTime > lastApplicationWriteTime)
                 {
+                    Console.WriteLine(fileInfo.Name + " is already up to date.");
                     continue;
                 }
+
+                Console.WriteLine("Exporting " + fileInfo.Name);
 
                 var gameObjectTemplate = new GameObjectTemplate();
                 gameObjectTemplate.Load(fileInfo.FullName);
@@ -64,12 +69,18 @@ namespace TemplateMaster
                 GameObjectTemplateExporter.Export(gameObjectTemplate, 
                                                   templateName, 
                                                   destinationPath);
+
+                processedAtLeastOne = true;
             }
 
-            var templateNames = foundFileInfos.Select(fileInfo => Path.GetFileNameWithoutExtension(fileInfo.Name));
+            if (processedAtLeastOne || !File.Exists(DestinationFolder + "gameobject_templates.h"))
+            {
+                Console.WriteLine("Exporting gameobject_templates.h");
+                var templateNames = foundFileInfos.Select(fileInfo => Path.GetFileNameWithoutExtension(fileInfo.Name));
 
-            GameObjectTemplateExporter.ExportAllHeader(templateNames,
-                                                       DestinationFolder);
+                GameObjectTemplateExporter.ExportAllHeader(templateNames,
+                                                           DestinationFolder);
+            }
         }
     }
 }

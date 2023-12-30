@@ -102,11 +102,10 @@ namespace SceneMaster.Export
                                                      IEnumerable<GameObject> gameObjects,
                                                      Dictionary<GameObject, ExportedCreateInfo> createInfos)
         {
-            string commandFunction = "Enemy_Create";
             foreach (var gameObject in gameObjects)
             {
                 var createInfo = createInfos[gameObject];
-                sb.AppendLine("    { " + gameObject.X + ", (CommandFunction)" + commandFunction + ", &" + createInfo.Name + " },");
+                sb.AppendLine("    { " + gameObject.X + ", (CommandFunction)" + gameObject.GameObjectTemplate.CreateFunction + ", &" + createInfo.Name + " },");
             }
         }
 

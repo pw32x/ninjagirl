@@ -13,6 +13,7 @@
 		<GameObjectType value="Player" />
 		<Health value="2"/>
 		<ResourceInfo value="ninja_girlResourceInfo" />		
+		<CreateFunction value="Player_Create"/>
 	</GameProperties>
 	<Requires>
 		<Template value="explosion.xml"/>

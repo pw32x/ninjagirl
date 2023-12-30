@@ -3,5 +3,6 @@
 	<GameProperties>
 		<GameObjectType value="Effect" />
 		<ResourceInfo value="rock_particleResourceInfo" />		
+		<CreateFunction value="BasicEffect_Create"/>	
 	</GameProperties>
 </GameObjectTemplate>

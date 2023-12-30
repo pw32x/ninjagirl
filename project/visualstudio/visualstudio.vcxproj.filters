@@ -465,6 +465,9 @@
     <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h">
       <Filter>Source Files\client\generated\tilesets</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\engine\createinfo_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\build\Makefile">

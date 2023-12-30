@@ -13,7 +13,12 @@ namespace TemplateMaster
 
             sb.AppendLine("#include \"..\\..\\..\\engine\\gameobject_template_types.h\"");
             sb.AppendLine("#include \"..\\..\\..\\engine\\object_types.h\"");
+            sb.AppendLine("#include \"..\\..\\..\\engine\\createinfo_types.h\"");
             sb.AppendLine("#include \"..\\resource_infos.h\"");
+            sb.AppendLine();
+
+            // forward declare the create function
+            sb.AppendLine("GameObject* " + gameObjectTemplate.CreateFunction + "(const CreateInfo* createInfo);");
             sb.AppendLine();
 
             sb.AppendLine("const GameObjectTemplate " + templateName + " = ");
@@ -26,6 +31,8 @@ namespace TemplateMaster
             AppendField(gameObjectTemplate.RectBottom, sb, "0", "rect bottom");
             AppendField("OBJECTTYPE_" + gameObjectTemplate.GameObjectType.ToUpper(), sb, "Error", "object type");
             AppendField("&" + gameObjectTemplate.ResourceInfo, sb, "Error", "resource info");
+            AppendField(gameObjectTemplate.CreateFunction, sb, "Error", "create function");
+            
             sb.AppendLine("};");
             File.WriteAllText(destinationPath, sb.ToString());
 

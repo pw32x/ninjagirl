@@ -89,6 +89,9 @@ namespace SceneMaster.GameObjectTemplates.Models
         [System.ComponentModel.ReadOnly(true)]
         public string ResourceInfo { get; set; }
 
+        [System.ComponentModel.ReadOnly(true)]
+        public string CreateFunction { get; set; }
+
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
             if (editorPropertiesNode["Visual"] is var visualNode && visualNode != null)
@@ -106,6 +109,10 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectRight = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectRight));
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
             ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
+            CreateFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(CreateFunction));
+
+            if (string.IsNullOrEmpty(CreateFunction))
+                throw new Exception("No create function in object template.");
         }
 
         public void Load(string filePath)

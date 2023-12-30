@@ -583,57 +583,57 @@ unsigned char const walker_bigTileData[2048] = // 64tiles x 32 bytes
 
 const BatchedAnimationSpriteStrip walker_bigFrame0SpriteStrips[] = 
 {
-    { 4, 0, 0, 0 },
-    { 4, 0, 16, 8 },
+    { 4, -16, -16, 0 },
+    { 4, -16, 0, 8 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame1SpriteStrips[] = 
 {
-    { 4, 0, 2, 0 },
-    { 4, 0, 18, 16 },
+    { 4, -16, -14, 0 },
+    { 4, -16, 2, 16 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame2SpriteStrips[] = 
 {
-    { 4, 0, 0, 0 },
-    { 4, 0, 16, 8 },
+    { 4, -16, -16, 0 },
+    { 4, -16, 0, 8 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame3SpriteStrips[] = 
 {
-    { 4, 0, 2, 0 },
-    { 4, 0, 18, 24 },
+    { 4, -16, -14, 0 },
+    { 4, -16, 2, 24 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame4SpriteStrips[] = 
 {
-    { 4, 2, 0, 32 },
-    { 4, 2, 16, 40 },
+    { 4, -14, -16, 32 },
+    { 4, -14, 0, 40 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame5SpriteStrips[] = 
 {
-    { 4, 2, 2, 32 },
-    { 4, 0, 18, 48 },
+    { 4, -14, -14, 32 },
+    { 4, -16, 2, 48 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame6SpriteStrips[] = 
 {
-    { 4, 2, 0, 32 },
-    { 4, 2, 16, 40 },
+    { 4, -14, -16, 32 },
+    { 4, -14, 0, 40 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_bigFrame7SpriteStrips[] = 
 {
-    { 4, 2, 2, 32 },
-    { 4, 0, 18, 56 },
+    { 4, -14, -14, 32 },
+    { 4, -16, 2, 56 },
     {0},
 };
 

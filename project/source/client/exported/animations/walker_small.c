@@ -43,13 +43,13 @@ unsigned char const walker_smallTileData[128] = // 4tiles x 32 bytes
 
 const BatchedAnimationSpriteStrip walker_smallFrame0SpriteStrips[] = 
 {
-    { 1, 0, 1, 0 },
+    { 1, -4, -3, 0 },
     {0},
 };
 
 const BatchedAnimationSpriteStrip walker_smallFrame1SpriteStrips[] = 
 {
-    { 1, 0, 0, 2 },
+    { 1, -4, -4, 2 },
     {0},
 };
 

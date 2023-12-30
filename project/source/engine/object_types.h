@@ -5,7 +5,6 @@
 #include "engine/animation_types.h"
 #include "engine/math_utils.h"
 #include "engine/resource_types.h"
-#include "engine/gameobject_template_types.h"
 
 #define OBJECTTYPE_PROJECTILE	0
 #define OBJECTTYPE_ENEMY		1
@@ -58,13 +57,5 @@ typedef struct game_object
 } GameObject;
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);
-
-
-typedef struct create_info
-{
-	s16 startX;
-	s16 startY;
-	const GameObjectTemplate* gameObjectTemplate;
-} CreateInfo;
 
 #endif

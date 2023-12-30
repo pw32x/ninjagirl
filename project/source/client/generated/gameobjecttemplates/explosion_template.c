@@ -1,6 +1,9 @@
 #include "..\..\..\engine\gameobject_template_types.h"
 #include "..\..\..\engine\object_types.h"
+#include "..\..\..\engine\createinfo_types.h"
 #include "..\resource_infos.h"
+
+GameObject* BasicEffect_Create(const CreateInfo* createInfo);
 
 const GameObjectTemplate explosion_template = 
 {
@@ -12,4 +15,5 @@ const GameObjectTemplate explosion_template =
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
     &explosionResourceInfo, // resource info
+    BasicEffect_Create, // create function
 };

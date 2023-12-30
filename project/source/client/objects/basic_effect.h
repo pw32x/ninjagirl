@@ -2,6 +2,7 @@
 #define BASIC_EFFECT_INCLUDE_H
 
 #include "engine/object_types.h"
+#include "engine/createinfo_types.h"
 
 GameObject* BasicEffect_Create(const CreateInfo* createInfo);
 

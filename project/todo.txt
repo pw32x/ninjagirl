@@ -57,7 +57,12 @@ Todo
 		
 		DONE export the game objects
 
-		add create function to template
+		DONE add create function to template in SceneMaster
+		
+		DONE add create function to template in engine
+		
+		use objectmanager to create effects with templates and not the create effect function directly
+		
 	
 		
 		editor types
