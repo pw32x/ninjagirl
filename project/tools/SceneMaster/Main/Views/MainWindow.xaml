@@ -20,6 +20,7 @@
         <KeyBinding Command="{Binding SaveCommand}" Gesture="Ctrl+S"/>
         <KeyBinding Command="{Binding SaveAsCommand}" Gesture="Ctrl+Shift+S"/>
         <KeyBinding Command="{Binding ImportTiledMapCommand}" Gesture="Ctrl+I"/>
+        <KeyBinding Command="{Binding ExportCFilesCommand}" Gesture="Ctrl+E"/>
         <KeyBinding Command="{Binding ExitCommand}" Gesture="Alt+F4"/>
         <KeyBinding Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand }" Gesture="Delete"/>
     </Window.InputBindings>
@@ -33,9 +34,11 @@
                 <MenuItem Header="_Save"  InputGestureText="Ctrl+S" Command="{Binding SaveCommand}"/>
                 <MenuItem Header="Save _As..." InputGestureText="Ctrl+Shift+S" Command="{Binding SaveAsCommand}"/>
                 <Separator />
+                <MenuItem Header="_Export scene to C files" InputGestureText="Ctrl+E" Command="{Binding ExportCFilesCommand}"/>
+                <Separator />
                 <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}"/>
                 <Separator />
-                <MenuItem Header="_Exit" InputGestureText="Alt+F4" Command="{Binding ExitCommand}"/>
+                <MenuItem Header="Exit" InputGestureText="Alt+F4" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Delete" InputGestureText="Del" Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand}"/>

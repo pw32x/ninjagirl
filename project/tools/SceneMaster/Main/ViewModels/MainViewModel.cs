@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Input;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.GameObjectTemplates.ViewModels;
+using SceneMaster.Export;
+using System.Windows.Forms;
 
 namespace SceneMaster.Main.ViewModels
 {
@@ -47,6 +49,7 @@ namespace SceneMaster.Main.ViewModels
             SaveAsCommand = new RelayCommand(SaveAs);
             ExitCommand = new RelayCommand(Exit);
             ImportTiledMapCommand = new RelayCommand(ImportGalFile);
+            ExportCFilesCommand = new RelayCommand(ExportCFiles);
         }
 
         public ICommand NewCommand { get; }
@@ -55,6 +58,8 @@ namespace SceneMaster.Main.ViewModels
         public ICommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
         public ICommand ImportTiledMapCommand { get; }
+        public ICommand ExportCFilesCommand { get; }
+
 
 
         private void New()
@@ -72,7 +77,7 @@ namespace SceneMaster.Main.ViewModels
             if (!CheckForSave())
                 return;
 
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
 
             SetSceneMasterFileExtensions(openFileDialog);
 
@@ -84,7 +89,7 @@ namespace SceneMaster.Main.ViewModels
 
             if (!CurrentDocument.Load(openFileDialog.FileName))
             {
-                MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
+                System.Windows.MessageBox.Show($"Loading {openFileDialog.FileName} failed.");
                 CurrentDocument?.Dispose();
                 CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
             }
@@ -106,7 +111,7 @@ namespace SceneMaster.Main.ViewModels
 
             if (!CurrentDocument.IsFilePathSet || forcePrompt)
             {
-                var saveFileDialog = new SaveFileDialog();
+                var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
 
                 SetSceneMasterFileExtensions(saveFileDialog);
 
@@ -120,14 +125,14 @@ namespace SceneMaster.Main.ViewModels
 
             if (!CurrentDocument.Save(filePath))
             {
-                MessageBox.Show($"Saving {filePath} failed.");
+                System.Windows.MessageBox.Show($"Saving {filePath} failed.");
                 return false;
             }
 
             return true;
         }
 
-        private void SetSceneMasterFileExtensions(FileDialog fileDialog)
+        private void SetSceneMasterFileExtensions(Microsoft.Win32.FileDialog fileDialog)
         {
             // Filter files by extension
             string extension = SceneMasterDocument.SceneMasterDocumentFileExtension;
@@ -136,7 +141,7 @@ namespace SceneMaster.Main.ViewModels
             fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
         }
 
-        private void SetTiledMapFileExtensions(FileDialog fileDialog)
+        private void SetTiledMapFileExtensions(Microsoft.Win32.FileDialog fileDialog)
         {
             // Filter files by extension
             string extension = SceneMasterDocument.TiledMapFileExtension;
@@ -158,7 +163,7 @@ namespace SceneMaster.Main.ViewModels
         {
             if (CurrentDocument.SceneViewModel.IsModified)
             {
-                var result = MessageBox.Show($"Do you want to save changes to {CurrentDocument.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
+                var result = System.Windows.MessageBox.Show($"Do you want to save changes to {CurrentDocument.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
 
                 switch (result)
                 {
@@ -182,11 +187,11 @@ namespace SceneMaster.Main.ViewModels
             if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
             {
                 string message = "Replace existing " + SceneMasterDocument.TiledMapFileTypeName + " with new " + SceneMasterDocument.TiledMapFileTypeName + " file?";
-                if (MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
+                if (System.Windows.MessageBox.Show(message, "Overwrite", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
                     return;
             }
 
-            var openFileDialog = new OpenFileDialog();
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
 
             SetTiledMapFileExtensions(openFileDialog);
 
@@ -194,6 +199,31 @@ namespace SceneMaster.Main.ViewModels
                 return;
 
             CurrentDocument.ImportTiledMap(openFileDialog.FileName);
+        }
+
+        private void ExportCFiles()
+        {
+            // use current contents of map
+            // export to folder
+
+            if (CurrentDocument.SceneViewModel.IsModified ||
+                !CurrentDocument.IsFilePathSet)
+            {
+                System.Windows.MessageBox.Show("The map needs to be saved before export.", "Saving Before Exporting");
+                if (!Save(true))
+                    return;
+            }
+
+            using var dialog = new FolderBrowserDialog();
+
+            if (dialog.ShowDialog() != DialogResult.OK) 
+                return;
+
+            string sceneName = Path.GetFileNameWithoutExtension(CurrentDocument.Filename).Replace(" ", "_");
+
+            SceneExporter.ExportScene(CurrentDocument.SceneViewModel.Scene, 
+                                      sceneName,
+                                      dialog.SelectedPath);
         }
     }
 }

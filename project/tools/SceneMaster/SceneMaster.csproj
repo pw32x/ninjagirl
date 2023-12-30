@@ -6,6 +6,7 @@
     <UseWPF>true</UseWPF>
     <StartupObject></StartupObject>
     <PlatformTarget>x86</PlatformTarget>
+    <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>

@@ -30,15 +30,34 @@ Todo
 		DONE convert the objects to use templates
 		
 		DONE apply template values to objects
-		
-		what about that stray CreateObject( call that doesn't use templates
-			isn't tile animator an object?
 
 	Scene Master
 
 		DONE load the rest of the template information
 		
-		call export scene to C functoin from menu item
+	Engine
+		
+		DONE what about that stray CreateObject( call that doesn't use templates
+			isn't tile animator an object?
+			RESULT
+				it's ok. no need to do anything.
+
+
+	SceneMaster
+
+		add export to C menu item
+		
+		create stub export-to-C function
+		
+		call export scene to C functoin from menu item		
+
+		when exporting a level, track which tileset uses resources for their tilset function
+			
+		where/how to set palettes in a level?
+
+	
+		
+
 			
 		
 		export scenes functoin
@@ -49,6 +68,11 @@ Todo
 			
 		a level is
 			the list of resources to load
+				map
+				map tilesets
+				animations
+				tile functions
+				palettes
 			the list of objects in a level, sorted by increasing x
 				or depending on the type of scroller object
 					increasing x
@@ -58,7 +82,9 @@ Todo
 					timer-based
 				
 		auto reload of imported map
-				
+			
+		animated tiles to into bank 0/1?
+			
 		detect that the game needs building before doing anything
 	
 		editor properties
