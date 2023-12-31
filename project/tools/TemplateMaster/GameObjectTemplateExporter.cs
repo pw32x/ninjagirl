@@ -30,7 +30,12 @@ namespace TemplateMaster
             AppendField(gameObjectTemplate.RectRight, sb, "0", "rect right");
             AppendField(gameObjectTemplate.RectBottom, sb, "0", "rect bottom");
             AppendField("OBJECTTYPE_" + gameObjectTemplate.GameObjectType.ToUpper(), sb, "Error", "object type");
-            AppendField("&" + gameObjectTemplate.ResourceInfo, sb, "Error", "resource info");
+
+            string resourceInfo = "NULL";
+            if (!string.IsNullOrEmpty(gameObjectTemplate.ResourceInfo))
+                resourceInfo = "&" + gameObjectTemplate.ResourceInfo;
+
+            AppendField(resourceInfo, sb, "Error", "resource info");
             AppendField(gameObjectTemplate.CreateFunction, sb, "Error", "create function");
             
             sb.AppendLine("};");
