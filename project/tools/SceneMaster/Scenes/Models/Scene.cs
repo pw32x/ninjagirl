@@ -185,11 +185,16 @@ namespace SceneMaster.Scenes.Models
             foreach (var tileset in m_tiledMapTilesets.Values)
             {
                 string source = tileset.Image.source;
-                BitmapImage bitmapImage = new BitmapImage(new Uri(m_tiledMapDirectory + source, UriKind.RelativeOrAbsolute));
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.UriSource = new Uri(m_tiledMapDirectory + source, UriKind.RelativeOrAbsolute);
+                bitmapImage.EndInit();
 
                 FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, PixelFormats.Bgr32, null, 0);
 
                 m_tilesetBitmaps.Add(source, convertedBitmap);
+
             }
 
             TiledMapBitmapSource = BuildTiledMapBitmapSource();
