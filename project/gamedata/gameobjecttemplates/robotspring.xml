@@ -1,6 +1,7 @@
 <GameObjectTemplate >
 	<Name value="Robot Spring"/>
 	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
 		<Visual>
 			<GraphicsGale filename="..\animations\standard\robotspring.gal" framenumber="0"/>
 		</Visual>

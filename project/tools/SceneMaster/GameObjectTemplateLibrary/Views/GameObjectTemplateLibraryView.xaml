@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SceneMaster.GameObjectTemplates.Views" xmlns:pt="http://propertytools.org/wpf"
+             xmlns:local="clr-namespace:SceneMaster.GameObjectTemplates.Views" 
+             xmlns:pt="http://propertytools.org/wpf"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -12,10 +13,15 @@
             <RowDefinition Height="5"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0"
-                 ItemsSource="{Binding GameObjectTemplateLibrary.GameObjectTemplates.Values}" 
+
+        <ListBox ItemsSource="{Binding GameObjectTemplateLibrary.GameObjectTemplatesCollectionView}"
                  SelectedItem="{Binding SelectedGameObjectTemplate}"
-                 DisplayMemberPath="Name"/>
+                 DisplayMemberPath="Name">
+            <ListBox.GroupStyle>
+                <GroupStyle/>
+            </ListBox.GroupStyle>
+        </ListBox>
+
         <GridSplitter Grid.Row="1" 
                       Height="5" 
                       HorizontalAlignment="Stretch"

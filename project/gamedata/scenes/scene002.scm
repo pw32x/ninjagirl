@@ -13,5 +13,6 @@
     <GameObject X="142" Y="22" GameObjectTemplateName="Walker (Small)" />
     <GameObject X="98" Y="75" GameObjectTemplateName="Walker" />
     <GameObject X="59" Y="75" GameObjectTemplateName="Walker" />
+    <GameObject X="-73.63999999999993" Y="4.920000000000004" GameObjectTemplateName="CommandRunner RightScroll" />
   </GameObjects>
 </Scene>

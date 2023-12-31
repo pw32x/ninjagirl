@@ -41,5 +41,27 @@ namespace SceneMaster.Utils
 
             return bitmapImage;
         }
+
+        public static BitmapImage LoadBitmapImage(string imagePath)
+        {
+            try
+            {
+                // Create a BitmapImage
+                BitmapImage bitmapImage = new BitmapImage();
+
+                // Set the UriSource to the file path
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(imagePath, UriKind.RelativeOrAbsolute);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+
+                return bitmapImage;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading image: {ex.Message}");
+                return null;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 <GameObjectTemplate >
 	<Name value="Ninja Girl"/>
 	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
 		<Visual>
 			<GraphicsGale filename="..\animations\streamed\ninja_girl.gal" framenumber="6"/>
 		</Visual>

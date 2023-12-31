@@ -1,6 +1,7 @@
 <GameObjectTemplate >
 	<Name value="Robot Runner"/>
 	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
 		<Visual>
 			<GraphicsGale filename="..\animations\standard\robotrunner.gal" framenumber="0"/>
 		</Visual>

@@ -21,6 +21,12 @@ namespace SceneMaster.GameObjectTemplates.Models
         Player
     }
 
+    public enum EditorObjectType
+    {
+        CommandRunner,
+        GameObject
+    }
+
     public class Visual
     {
         public int Width { get; private set; }
@@ -29,7 +35,17 @@ namespace SceneMaster.GameObjectTemplates.Models
 
         public void Load(XmlElement visualNode)
         {
-            if (visualNode["GraphicsGale"] is var graphicsGaleNode && graphicsGaleNode != null)
+            if (visualNode["Image"] is var imageNode && imageNode != null)
+            {
+                string imageFilename = XmlUtils.GetValue<string>(imageNode, "filename");
+                if (!string.IsNullOrEmpty(imageFilename)) 
+                {
+                    Image = BitmapUtils.LoadBitmapImage(imageFilename);
+                    Width = (int)Image.Width;
+                    Height = (int)Image.Height;
+                }
+            }
+            else if (visualNode["GraphicsGale"] is var graphicsGaleNode && graphicsGaleNode != null)
             {
                 string graphicsGaleFilename = XmlUtils.GetValue<string>(graphicsGaleNode, "filename");
                 int frameNumber = XmlUtils.GetValue<int>(graphicsGaleNode, "framenumber");
@@ -92,8 +108,14 @@ namespace SceneMaster.GameObjectTemplates.Models
         [System.ComponentModel.ReadOnly(true)]
         public string CreateFunction { get; set; }
 
+        [System.ComponentModel.ReadOnly(true)]
+        [SelectorStyle(SelectorStyle.ComboBox)]
+        public EditorObjectType EditorObjectType { get; set; }
+
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
+            EditorObjectType = XmlUtils.GetChildValue<EditorObjectType>(editorPropertiesNode, nameof(EditorObjectType));
+
             if (editorPropertiesNode["Visual"] is var visualNode && visualNode != null)
             {
                 Visual.Load(visualNode);

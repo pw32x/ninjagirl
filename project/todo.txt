@@ -63,15 +63,23 @@ Todo
 		
 		DONE convert Level to Scene
 		
+		
 		editor types
 			command runner
 			scroller
 			object
 			
+		Editor Object
+			CommandRunner
+			Background
+			SetTilesetProperties
+			GameObject
 			
+		how to add Command runner object?
+		how to add background
 		how to set MapManager_SetTilesetProperties_Command?
 		how to set the RightScroller_Create parameter?
-		how to add Command runner object?
+
 
 		use objectmanager to create effects with templates and not the create effect function directly
 
