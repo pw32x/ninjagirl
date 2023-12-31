@@ -45,12 +45,12 @@
 //const CreateInfo scene001_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
 //const CreateInfo scene001_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
 
-const CreateInfo scene001_createInfo003 = { 122, 110, &ninja_girl_template };
-const CreateInfo scene001_createInfo004 = { 64, 128, &walker_template };
-const CreateInfo scene001_createInfo005 = { 144, 32, &walker_big_template };
-const CreateInfo scene001_createInfo006 = { 96, 88, &walker_small_template };
-const CreateInfo scene001_createInfo007 = { 180, 32, &robotrunner_template };
-const CreateInfo scene001_createInfo008 = { 128, 8, &robotspring_template };
+const CreateInfo scene001_createInfo003 = { &ninja_girl_template, 122, 110 };
+const CreateInfo scene001_createInfo004 = { &walker_template, 64, 128 };
+const CreateInfo scene001_createInfo005 = { &walker_big_template, 144, 32 };
+const CreateInfo scene001_createInfo006 = { &walker_small_template, 96, 88 };
+const CreateInfo scene001_createInfo007 = { &robotrunner_template, 180, 32 };
+const CreateInfo scene001_createInfo008 = { &robotspring_template , 128, 8 };
 
 
 //const CreateInfo scene001_createInfo009 = { 234, 112, (const void*)&evil_eye };
