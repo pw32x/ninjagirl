@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* Bird_Create(const CreateInfo* createInfo);
+GameObject* Bird_Init(GameObject* object);
 
 #endif

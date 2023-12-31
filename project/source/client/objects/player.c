@@ -9,6 +9,7 @@
 #include "engine/resource_manager.h"
 #include "engine/math_utils.h"
 #include "engine/terrain_manager.h"
+#include "engine/createinfo_types.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -118,33 +119,20 @@ void setPlayerState(u8 newState)
 	stateChanged = TRUE;
 }
 
-GameObject* Player_Create(const CreateInfo* createInfo)
+GameObject* Player_Init(GameObject* object)
 {
-	ObjectManager_player.x = createInfo->startX;
-	ObjectManager_player.y = createInfo->startY;
-
-
-	playerX = P2V(createInfo->startX);
-	playerY = P2V(createInfo->startY);
+	playerX = P2V(object->x);
+	playerY = P2V(object->y);
 
 	ObjectManager_player.Update = Player_Update;
 	ObjectManager_player.Draw = Player_Draw;
-
-	ObjectManager_player.rectLeft = -3;
-	ObjectManager_player.rectTop = -12;
-	ObjectManager_player.rectRight = 3;
-	ObjectManager_player.rectBottom = 16;
-
 	ObjectManager_player.flipped = FALSE;
 
 	playerSpeedX = 0;
 
 	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
 
-	ResourceManager_SetupResource(&ObjectManager_player, createInfo->gameObjectTemplate->resourceInfo);
-
 	//ObjectManager_player.animationVdpTileIndex = 0xff;
-
 
 	//SMS_setBGPaletteColor(1, 0xffff);
 
@@ -160,12 +148,12 @@ void Player_FireWeapon(GameObject* player)
 
 	CreateInfo createInfo = 
 	{ 
-		player->x + (ObjectManager_player.flipped ? -10 : 10), 
-		player->y + offset, 
 		&kunai_template, 
+		player->x + (ObjectManager_player.flipped ? -10 : 10), 
+		player->y + offset
 	};
 
-	GameObject* kunai = Kunai_Create(&createInfo);
+	GameObject* kunai = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 	kunai->speedx = ObjectManager_player.flipped ? -3 : 3;
 	kunai->speedy = 0;

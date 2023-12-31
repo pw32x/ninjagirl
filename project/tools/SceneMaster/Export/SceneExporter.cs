@@ -40,8 +40,9 @@ namespace SceneMaster.Export
 
         private class ExportedCommandData
         {
-            public string Name { get; set; }
+            public string DataStructName { get; set; }
             public string ExportedString { get; set; }
+            public string CommandToUse { get; set; }
         }
 
 
@@ -58,6 +59,9 @@ namespace SceneMaster.Export
                     case GameObjectTemplates.Models.EditorObjectType.CommandRunner:
                     {
                         // do nothing
+                        var exportedCommandData = new ExportedCommandData();
+                        exportedCommandData.CommandToUse = gameObject.GameObjectTemplate.InitFunction;
+                        exportedCommandDatas.Add(gameObject, exportedCommandData);
                         break;
                     }
                     case GameObjectTemplates.Models.EditorObjectType.GameObject:
@@ -66,17 +70,17 @@ namespace SceneMaster.Export
                         counter++;
 
                         var exportedCommandData = new ExportedCommandData();
-                        exportedCommandData.Name = createInfoName;
+                        exportedCommandData.DataStructName = createInfoName;
 
                         StringBuilder sb = new();
                         sb.Append("const CreateInfo " + createInfoName + " = { ");
                         int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
                         int y = (int)(gameObject.Y < 0 ? 0 : gameObject.Y);
                         string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
-                        sb.Append(x + ", " + y + ", &" + templateName);
-                        sb.AppendLine("};");
+                        sb.Append("&" + templateName + ", " + x + ", " + y);
+                        sb.AppendLine(" };");
                         exportedCommandData.ExportedString = sb.ToString();
-
+                        exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
                         exportedCommandDatas.Add(gameObject, exportedCommandData);
                         break;
                     }
@@ -122,10 +126,15 @@ namespace SceneMaster.Export
                 int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
 
                 string finalExportedCommandData = "NULL";
+                string commandFunction = "";
                 if (exportedCommandDatas.TryGetValue(gameObject, out var exportedCommandData))
-                    finalExportedCommandData = "&" + exportedCommandData.Name;
+                {
+                    if (!string.IsNullOrEmpty(exportedCommandData.DataStructName))
+                        finalExportedCommandData = "&" + exportedCommandData.DataStructName;
+                    commandFunction = exportedCommandData.CommandToUse;
+                }
 
-                sb.AppendLine("    { " + x + ", (CommandFunction)" + gameObject.GameObjectTemplate.CreateFunction + ", " + finalExportedCommandData + " },");
+                sb.AppendLine("    { " + x + ", (CommandFunction)" + commandFunction + ", " + finalExportedCommandData + " },");
             }
         }
 
@@ -156,8 +165,16 @@ namespace SceneMaster.Export
             var sb = new StringBuilder();
 
             sb.AppendLine("#include \"" + sceneName + ".h\"");
-            sb.AppendLine("#include \"..\\..\\generated\\gameobjecttemplates\\gameobject_templates.h\"");
+            sb.AppendLine("#include \"client\\generated\\gameobjecttemplates\\gameobject_templates.h\"");
+
+            sb.AppendLine("#include \"engine\\object_manager.h\"");
+            sb.AppendLine("#include \"engine\\resource_manager.h\"");
+            sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
+            sb.AppendLine("#include \"engine\\createinfo_types.h\"");
             sb.AppendLine();
+
+            sb.AppendLine("#include \"engine/command_types.h\"");
+            sb.AppendLine("void CommandRunner_RightScroll_Init(const Command* commands);");
 
             // export exportedCommandDatas
             var exportedCommandDatas = BuildExportCommandDatas(gameObjects, sceneName);

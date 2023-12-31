@@ -17,8 +17,8 @@ namespace TemplateMaster
             sb.AppendLine("#include \"..\\resource_infos.h\"");
             sb.AppendLine();
 
-            // forward declare the create function
-            sb.AppendLine("GameObject* " + gameObjectTemplate.CreateFunction + "(const CreateInfo* createInfo);");
+            // forward declare the init function
+            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* gameObject);");
             sb.AppendLine();
 
             sb.AppendLine("const GameObjectTemplate " + templateName + " = ");
@@ -36,7 +36,7 @@ namespace TemplateMaster
                 resourceInfo = "&" + gameObjectTemplate.ResourceInfo;
 
             AppendField(resourceInfo, sb, "Error", "resource info");
-            AppendField(gameObjectTemplate.CreateFunction, sb, "Error", "create function");
+            AppendField(gameObjectTemplate.InitFunction, sb, "Error", "init function");
             
             sb.AppendLine("};");
             File.WriteAllText(destinationPath, sb.ToString());

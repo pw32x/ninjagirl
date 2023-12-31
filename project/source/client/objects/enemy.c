@@ -7,7 +7,7 @@
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
-
+#include "engine/createinfo_types.h"
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/basic_effect.h"
@@ -20,14 +20,8 @@ void Enemy_Update(GameObject* object);
 BOOL Enemy_Draw(GameObject* object);
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
-GameObject* Enemy_Create(const CreateInfo* createInfo)
+GameObject* Enemy_Init(GameObject* object)
 {
-	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
-	if (!object)
-		return NULL;
-
-	object->x = createInfo->startX;
-	object->y = createInfo->startY;
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 	object->HandleCollision = Enemy_HandleCollision;
@@ -95,12 +89,12 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 		
 		CreateInfo createInfo = 
 		{ 
+			&explosion_template,
 			gameObject->x, 
-			gameObject->y, 
-			&explosion_template
+			gameObject->y
 		};
 		
-		GameObject* effect = BasicEffect_Create(&createInfo);
+		ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 	}

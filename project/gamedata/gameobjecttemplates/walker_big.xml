@@ -15,6 +15,6 @@
 		<GameObjectType value="Enemy"/>
 		<Health value="4"/>
 		<ResourceInfo value="walker_bigResourceInfo"/>
-		<CreateFunction value="Enemy_Create"/>	
+		<InitFunction value="Enemy_Init"/>	
 	</GameProperties>
 </GameObjectTemplate>

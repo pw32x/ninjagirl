@@ -8,6 +8,6 @@
 	</EditorProperties>
 	<GameProperties>
 		<GameObjectType value="Effect" />
-		<CreateFunction value="CommandRunner_RightScroll_Create"/>		
+		<InitFunction value="CommandRunner_RightScroll_Init"/>		
 	</GameProperties>
 </GameObjectTemplate>

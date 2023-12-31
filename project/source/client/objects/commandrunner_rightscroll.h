@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/command_types.h"
 
-void CommandRunner_RightScroll_Create(const Command* commands);
+void CommandRunner_RightScroll_Init(const Command* commands);
 
 #endif

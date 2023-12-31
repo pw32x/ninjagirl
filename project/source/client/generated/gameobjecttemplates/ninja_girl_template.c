@@ -3,7 +3,7 @@
 #include "..\..\..\engine\createinfo_types.h"
 #include "..\resource_infos.h"
 
-GameObject* Player_Create(const CreateInfo* createInfo);
+GameObject* Player_Init(GameObject* gameObject);
 
 const GameObjectTemplate ninja_girl_template = 
 {
@@ -15,5 +15,5 @@ const GameObjectTemplate ninja_girl_template =
     16, // rect bottom
     OBJECTTYPE_PLAYER, // object type
     &ninja_girlResourceInfo, // resource info
-    Player_Create, // create function
+    Player_Init, // init function
 };

@@ -14,7 +14,7 @@ namespace TemplateMaster
         public string RectBottom { get; set; } = "0";
         public string GameObjectType { get; set; } = "";
         public string ResourceInfo { get; set; } = "";
-        public string CreateFunction { get; set; } = "";
+        public string InitFunction { get; set; } = "";
 
         public void LoadGameProperties(XmlElement gamePropertiesNode)
         {
@@ -28,7 +28,7 @@ namespace TemplateMaster
 
             GameObjectType = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(GameObjectType));
             ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
-            CreateFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(CreateFunction));
+            InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
         }
 
         public void Load(string filePath)

@@ -3,7 +3,7 @@
 #include "..\..\..\engine\createinfo_types.h"
 #include "..\resource_infos.h"
 
-GameObject* Kunai_Create(const CreateInfo* createInfo);
+GameObject* Kunai_Init(GameObject* gameObject);
 
 const GameObjectTemplate kunai_template = 
 {
@@ -15,5 +15,5 @@ const GameObjectTemplate kunai_template =
     4, // rect bottom
     OBJECTTYPE_PROJECTILE, // object type
     &kunaiResourceInfo, // resource info
-    Kunai_Create, // create function
+    Kunai_Init, // init function
 };

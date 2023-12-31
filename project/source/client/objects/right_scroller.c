@@ -17,7 +17,7 @@ u16 columnToUpdate;
 
 u8 terrainColumnToUpdate;
 
-GameObject* RightScroller_Create(const Map* map)
+GameObject* RightScroller_Init(const Map* map)
 {
 	columnToUpdate = 0;
 	terrainColumnToUpdate = 0;

@@ -3,6 +3,6 @@
 	<GameProperties>
 		<GameObjectType value="Effect" />
 		<ResourceInfo value="impactResourceInfo" />		
-		<CreateFunction value="BasicEffect_Create"/>
+		<InitFunction value="BasicEffect_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

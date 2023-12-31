@@ -106,7 +106,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         public string ResourceInfo { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
-        public string CreateFunction { get; set; }
+        public string InitFunction { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
         [SelectorStyle(SelectorStyle.ComboBox)]
@@ -131,10 +131,10 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectRight = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectRight));
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
             ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
-            CreateFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(CreateFunction));
+            InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
 
-            if (string.IsNullOrEmpty(CreateFunction))
-                throw new Exception("No create function in object template.");
+            if (string.IsNullOrEmpty(InitFunction))
+                throw new Exception("No init function in object template.");
         }
 
         public void Load(string filePath)

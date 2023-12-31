@@ -10,7 +10,7 @@ void* OnResourceLoaded(const ResourceInfo* resourceInfo)
 	switch (resourceType)
 	{
 	case TILE_ANIMATION_RESOURCE_TYPE:
-		TileAnimator_Create(resourceInfo);
+		TileAnimator_Init(resourceInfo);
 		break;
 	}
 

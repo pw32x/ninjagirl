@@ -25,15 +25,8 @@ void Kunai_Update(GameObject* object);
 BOOL Kunai_Draw(GameObject* object);
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Kunai_Create(const CreateInfo* createInfo)
+GameObject* Kunai_Init(GameObject* object)
 {
-	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
-	if (!object)
-		return NULL;
-
-	object->x = createInfo->startX;
-	object->y = createInfo->startY;
-
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 	object->HandleCollision = Kunai_HandleCollision;
@@ -82,12 +75,12 @@ void Kunai_Update(GameObject* object)
 	{
 		CreateInfo createInfo = 
 		{ 
-			object->x, 
-			object->y, 
 			&impact_template, 
+			object->x, 
+			object->y
 		};
 
-		GameObject* effect = BasicEffect_Create(&createInfo);
+		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 
 		u8 currentBank = SMS_getROMBank();
@@ -149,12 +142,12 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 
 	CreateInfo createInfo = 
 	{ 
-		gameObject->x, 
-		gameObject->y, 
 		&impact_template, 
+		gameObject->x, 
+		gameObject->y		
 	};
 
-	GameObject* effect = BasicEffect_Create(&createInfo);
+	GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 	effect->speedx = gameObject->speedx >> 2;
 	effect->speedy = gameObject->speedy >> 2;

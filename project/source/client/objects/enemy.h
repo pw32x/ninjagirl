@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* Enemy_Create(const CreateInfo* createInfo);
+GameObject* Enemy_Init(GameObject* object);
 
 #endif

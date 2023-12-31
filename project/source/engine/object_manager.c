@@ -414,6 +414,63 @@ GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameO
 	return NULL;
 }
 
+GameObject* FindFreeGameObject(u8 objectType)
+{
+	if (objectType == OBJECTTYPE_PLAYER)
+	{
+		return &ObjectManager_player;
+	}
+
+	GameObject* objectSlotRunner = ObjectManager_enemySlots;
+	u8 counter = NUM_ENEMY_SLOTS;
+
+	if (objectType == OBJECTTYPE_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_projectileSlots;
+		counter = NUM_PROJECTILE_SLOTS;	
+	}
+	else if (objectType == OBJECTTYPE_EFFECT)
+	{
+		// treat effects as a circular list. we overwrite the older effects without waiting
+		// if they're done.
+		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
+		ObjectManager_numEffects++;
+		return objectSlotRunner;
+	}
+
+	while (counter--)
+	{
+		if (!objectSlotRunner->alive)
+		{
+			objectSlotRunner->alive = TRUE;
+			return objectSlotRunner;
+		}
+
+		objectSlotRunner++;
+	}
+
+	return NULL;
+}
+
+GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
+{
+	GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
+	u8 objectType = gameObjectTemplate->objectType;
+
+	GameObject* gameObject = FindFreeGameObject(objectType);
+	if (gameObject == NULL)
+		return NULL;
+
+	gameObject->x = createInfo->startX;
+	gameObject->y = createInfo->startY;
+
+	ApplyGameObjectTemplate(gameObject, gameObjectTemplate);
+
+	gameObjectTemplate->initFunction(gameObject);
+
+	return gameObject;
+}
+
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
 	gameObject->Update = ObjectUtils_gameObjectDoNothing;

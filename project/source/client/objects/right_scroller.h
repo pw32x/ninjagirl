@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/map_types.h"
 
-GameObject* RightScroller_Create(const Map* map);
+GameObject* RightScroller_Init(const Map* map);
 
 #endif

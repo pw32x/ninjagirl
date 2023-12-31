@@ -14,7 +14,7 @@
 
 void TileAnimator_Update(GameObject* object);
 
-GameObject* TileAnimator_Create(const ResourceInfo* resourceInfo)
+GameObject* TileAnimator_Init(const ResourceInfo* resourceInfo)
 {
 	GameObject* object = ObjectManager_CreateObject(OBJECTTYPE_EFFECT);
 	if (!object)

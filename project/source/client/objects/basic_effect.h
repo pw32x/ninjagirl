@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* BasicEffect_Create(const CreateInfo* createInfo);
+GameObject* BasicEffect_Init(GameObject* object);
 
 #endif

@@ -10,7 +10,7 @@ u32 CommandRunner_counter;
 
 void CommandRunner_RightScroll_Update(void);
 
-void CommandRunner_RightScroll_Create(const Command* commands)
+void CommandRunner_RightScroll_Init(const Command* commands)
 {
 	CommandRunner_scrollX = 0;
 

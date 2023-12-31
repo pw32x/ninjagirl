@@ -11,14 +11,8 @@
 void Bird_Update(GameObject* object);
 BOOL Bird_Draw(GameObject* object);
 
-GameObject* Bird_Create(const CreateInfo* createInfo)
+GameObject* Bird_Init(GameObject* object)
 {
-	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
-	if (!object)
-		return NULL;
-
-	object->x = createInfo->startX;
-	object->y = createInfo->startY;
 	object->Update = Bird_Update;
 	object->Draw = Bird_Draw;
 

@@ -11,14 +11,8 @@
 void BasicEffect_Update(GameObject* object);
 BOOL BasicEffect_Draw(GameObject* object);
 
-GameObject* BasicEffect_Create(const CreateInfo* createInfo)
+GameObject* BasicEffect_Init(GameObject* object)
 {
-	GameObject* object = ObjectManager_CreateObjectByTemplate(createInfo->gameObjectTemplate);
-	if (!object)
-		return NULL;
-
-	object->x = createInfo->startX;
-	object->y = createInfo->startY;
 	object->speedx = 0;
 	object->speedy = 0;
 	object->Update = BasicEffect_Update;

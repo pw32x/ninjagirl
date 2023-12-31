@@ -3,6 +3,7 @@
 #include "engine/resource_types.h"
 #include "engine/terrain_manager.h"
 #include "engine/map_types.h"
+#include "engine/object_manager.h"
 
 #include "exported/animations/rock_particle.h"
 #include "exported/animations/explosion.h"
@@ -18,28 +19,28 @@ void breakable_rock_tileset_TilesetFunction(const Tileset* tileset,
 
 	CreateInfo createInfo = 
 	{ 
-		B2P(blockx) + 4, 
-		B2P(blocky) + 4, 
 		gameObjectTemplate,
+		B2P(blockx) + 4, 
+		B2P(blocky) + 4		
 	};
 
-	GameObject* effect = ParticleEffect_Create(&createInfo);
+	GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = -15;
 	effect->speedy = -60;
 
 
 	createInfo.startX += 8;
-	effect = ParticleEffect_Create(&createInfo);
+	effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = 15;
 	effect->speedy = -60;
 
 	createInfo.startY += 8;
-	effect = ParticleEffect_Create(&createInfo);
+	effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = 10;
 	effect->speedy = -50;
 
 	createInfo.startX -= 8;
-	effect = ParticleEffect_Create(&createInfo);
+	effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = -10;
 	effect->speedy = -50;
 }

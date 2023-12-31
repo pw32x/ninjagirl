@@ -3,6 +3,7 @@
 
 #include "engine/object_types.h"
 #include "engine/gameobject_template_types.h"
+#include "engine/createinfo_types.h"
 
 void ObjectManager_Init(void);
 
@@ -10,6 +11,10 @@ void ObjectManager_Update(void);
 
 GameObject* ObjectManager_CreateObject(u8 objectType);
 GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameObjectTemplate);
+
+
+GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo);
+
 void ObjectManager_DestroyObject(GameObject* gameObject);
 
 extern GameObject ObjectManager_player;

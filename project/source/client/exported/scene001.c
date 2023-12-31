@@ -11,7 +11,15 @@
 #include "engine/resource_manager.h"
 #include "engine/command_types.h"
 
-// game objects
+
+/*
+#include "engine/resource_manager.h"
+#include "engine/command_types.h"
+#include "client/generated/resource_infos.h"
+#include "client/generated/gameobjecttemplates/gameobject_templates.h"
+#include "engine\createinfo_types.h"
+
+
 #include "client/objects/commandrunner_rightscroll.h"
 #include "client/objects/player.h"
 #include "client/objects/kunai.h"
@@ -19,6 +27,12 @@
 #include "client/objects/right_scroller.h"
 //#include "client/objects/bird.h"
 #include "client/objects/tile_animator.h"
+*/
+
+
+// game objects
+#include "client/objects/commandrunner_rightscroll.h"
+#include "client/objects/right_scroller.h"
 
 #include "client/tileset_functions.h"
 
@@ -26,14 +40,6 @@
 #include "client/exported/global_palette.h"
 #include "client/generated/resource_infos.h"
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
-//#include "client/exported/animations/ninja_girl.h"
-//#include "client/exported/animations/kunai.h"
-//#include "client/exported/evil_eye.h"
-//#include "client/exported/birdidle.h"
-//#include "client/exported/maps/background3.h"
-//#include "client/exported/animations/explosion.h"
-//#include "client/exported/animations/impact.h"
-//#include "client/exported/animations/rock_particle.h"
 
 // generated
 #include "client/generated/bank2.h" // music
@@ -67,7 +73,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 
 Command scene001_commands[] = 
 {
-	{ 0, (CommandFunction)CommandRunner_RightScroll_Create, NULL },
+	{ 0, (CommandFunction)CommandRunner_RightScroll_Init, NULL },
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
@@ -87,19 +93,19 @@ Command scene001_commands[] =
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },			
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
 
-	{ 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
-	{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo004 },
-	//{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo005 },
-	{ 122, (CommandFunction)Player_Create, &scene001_createInfo003 }, 
+	{ 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
+	{ 24, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo004 },
+	//{ 24, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo005 },
+	{ 122, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo003 }, 
 	
 	
-	{ 24, (CommandFunction)Enemy_Create, &scene001_createInfo006 },
-	{ 64, (CommandFunction)Enemy_Create, &scene001_createInfo007 },
-	{ 128, (CommandFunction)Enemy_Create, &scene001_createInfo008 },
-	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo009 },
-	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo010 },
-	//{ 234, (CommandFunction)Enemy_Create, &scene001_createInfo011 },
-	//{ 654, (CommandFunction)Bird_Create, &scene001_createInfo012 },
+	{ 24, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo006 },
+	{ 64, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo007 },
+	{ 128, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo008 },
+	//{ 234, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo009 },
+	//{ 234, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo010 },
+	//{ 234, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo011 },
+	//{ 654, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo012 },
 	{ 0, (CommandFunction)NULL, NULL}
 };
 

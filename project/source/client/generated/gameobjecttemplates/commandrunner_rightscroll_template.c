@@ -3,7 +3,7 @@
 #include "..\..\..\engine\createinfo_types.h"
 #include "..\resource_infos.h"
 
-GameObject* CommandRunner_RightScroll_Create(const CreateInfo* createInfo);
+GameObject* CommandRunner_RightScroll_Init(GameObject* gameObject);
 
 const GameObjectTemplate commandrunner_rightscroll_template = 
 {
@@ -15,5 +15,5 @@ const GameObjectTemplate commandrunner_rightscroll_template =
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
     NULL, // resource info
-    CommandRunner_RightScroll_Create, // create function
+    CommandRunner_RightScroll_Init, // init function
 };

@@ -7,7 +7,7 @@
 
 struct create_info;
 
-typedef GameObject* (*ObjectCreateFunctionType)(const struct create_info* createInfo);
+typedef GameObject* (*InitObjectFunctionType)(GameObject* gameObject);
 
 typedef struct gameobject_template
 {
@@ -22,7 +22,7 @@ typedef struct gameobject_template
 	u8 objectType;
 	const ResourceInfo* resourceInfo;
 
-	ObjectCreateFunctionType createFunction;
+	InitObjectFunctionType initFunction;
 } GameObjectTemplate;
 
 #endif

@@ -8,6 +8,6 @@
 		<RectBottom value="4"/>
 		<GameObjectType value="Projectile" />
 		<ResourceInfo value="kunaiResourceInfo" />		
-		<CreateFunction value="Kunai_Create"/>
+		<InitFunction value="Kunai_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

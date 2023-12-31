@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/command_types.h"
 
-GameObject* CommandRunner_RunAll_Create(const Command* commands);
+GameObject* CommandRunner_RunAll_Init(const Command* commands);
 
 #endif
