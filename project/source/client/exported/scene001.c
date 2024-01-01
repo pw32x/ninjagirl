@@ -52,7 +52,7 @@
 //const CreateInfo scene001_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
 //const CreateInfo scene001_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
 
-const CreateInfo scene001_createInfo001 = { &commandrunner_runall_template, 0, 0 };
+const CommandRunnerCreateInfo scene001_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CreateInfo scene001_createInfo002 = { &commandrunner_rightscroll_template, 122, 110 };
 const CreateInfo scene001_createInfo003 = { &ninja_girl_template, 122, 110 };
 const CreateInfo scene001_createInfo004 = { &walker_template, 64, 128 };
@@ -77,7 +77,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 Command scene001_commands[] = 
 {
 	
-	{ 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo001 },
+	{ 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfoBootstrapper },
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },

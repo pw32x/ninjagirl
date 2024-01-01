@@ -107,8 +107,13 @@ namespace SceneMaster.Export
         }
 
         private static void ExportCommandDatas(StringBuilder sb,
-                                              Dictionary<GameObject, ExportedCommandData> exportedCommandDatas)
+                                              Dictionary<GameObject, ExportedCommandData> exportedCommandDatas,
+                                              string sceneName)
         {
+            // start with bootstrapper command runner
+            string bootStrapper = "const CommandRunnerCreateInfo " + sceneName + "_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };";
+            sb.AppendLine(bootStrapper);
+
             foreach (var exportedCommandData in exportedCommandDatas.Values.Where(e => !string.IsNullOrEmpty(e.ExportedString)))
             {
                 sb.Append(exportedCommandData.ExportedString);
@@ -118,11 +123,18 @@ namespace SceneMaster.Export
         }
 
 
-        private static void ExportResourceCommands(StringBuilder sb, IEnumerable<GameObject> gameObjects)
+        private static void ExportResourceCommands(StringBuilder sb, Scene scene, IEnumerable<GameObject> gameObjects)
         {
             string commandFunction = "ResourceManager_LoadResource";
 
             var resources = gameObjects.Select(g => g.GameObjectTemplate.ResourceInfo).Where(g => !string.IsNullOrEmpty(g)).Distinct();
+
+            // add the background
+            if (!string.IsNullOrEmpty(scene.TiledMapFilename))
+            {
+                string backgroundResourceInfoName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_mapResourceInfo";
+                sb.AppendLine("    { 0, (CommandFunction)ResourceManager_LoadResource, &" + backgroundResourceInfoName + "},");
+            }
 
             foreach (var resource in resources)
             {
@@ -160,7 +172,8 @@ namespace SceneMaster.Export
         }
 
 
-        private static void ExportCommands(StringBuilder sb, 
+        private static void ExportCommands(StringBuilder sb,
+                                           Scene scene,
                                            IEnumerable<GameObject> gameObjects, 
                                            string sceneName, 
                                            Dictionary<GameObject, ExportedCommandData> exportedCommandDatas)
@@ -168,7 +181,10 @@ namespace SceneMaster.Export
             sb.AppendLine("const Command " + sceneName + "_commands[] = ");
             sb.AppendLine("{");
 
-            ExportResourceCommands(sb, gameObjects);
+            // start with bootstrapper
+            sb.AppendLine("    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&" + sceneName + "_createInfoBootstrapper },");
+
+            ExportResourceCommands(sb, scene, gameObjects);
             ExportGameObjectCommands(sb, gameObjects, exportedCommandDatas);
 
             sb.AppendLine("    { 0, (CommandFunction)NULL, NULL}");
@@ -192,13 +208,14 @@ namespace SceneMaster.Export
             sb.AppendLine("#include \"engine\\resource_manager.h\"");
             sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
+            sb.AppendLine("#include \"engine\\commandrunner_runall.h\"");
             sb.AppendLine();
 
             // export exportedCommandDatas
             var exportedCommandDatas = BuildExportCommandDatas(gameObjects, sceneName);
-            ExportCommandDatas(sb, exportedCommandDatas);
+            ExportCommandDatas(sb, exportedCommandDatas, sceneName);
 
-            ExportCommands(sb, gameObjects, sceneName, exportedCommandDatas);
+            ExportCommands(sb, scene, gameObjects, sceneName, exportedCommandDatas);
 
             sb.AppendLine("const Scene " + sceneName + " = ");
             sb.AppendLine("{");

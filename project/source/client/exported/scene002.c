@@ -4,7 +4,9 @@
 #include "engine\resource_manager.h"
 #include "client\generated\resource_infos.h"
 #include "engine\createinfo_types.h"
+#include "engine\commandrunner_runall.h"
 
+const CommandRunnerCreateInfo scene002_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene002_createInfo0 = { &commandrunner_rightscroll_template, 0, 4, NULL };
 const CreateInfo scene002_createInfo1 = { &walker_template, 59, 75 };
 const CreateInfo scene002_createInfo2 = { &robotrunner_template, 64, 126 };
@@ -21,6 +23,8 @@ const CreateInfo scene002_createInfo12 = { &robotrunner_template, 287, 1 };
 
 const Command scene002_commands[] = 
 {
+    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene002_createInfoBootstrapper },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo},
     { 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &robotrunnerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
