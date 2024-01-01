@@ -3,7 +3,8 @@
 
 #include "engine/object_types.h"
 #include "engine/command_types.h"
+#include "engine/createinfo_types.h"
 
-void CommandRunner_RightScroll_Init(const Command* commands);
+GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunnerCreateInfo* createInfo);
 
 #endif

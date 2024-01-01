@@ -58,9 +58,23 @@ namespace SceneMaster.Export
                 {
                     case GameObjectTemplates.Models.EditorObjectType.CommandRunner:
                     {
+                        string createInfoName = sceneName + "_" + "createInfo" + counter;
+                        counter++;
+
                         // do nothing
                         var exportedCommandData = new ExportedCommandData();
-                        exportedCommandData.CommandToUse = gameObject.GameObjectTemplate.InitFunction;
+                        exportedCommandData.DataStructName = createInfoName;
+
+                        StringBuilder sb = new();
+                        sb.Append("const CommandRunnerCreateInfo " + createInfoName + " = { ");
+                        string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
+                        int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
+                        int y = (int)(gameObject.Y < 0 ? 0 : gameObject.Y);
+                        sb.Append("&" + templateName + ", " + x + ", " + y + ", NULL");
+                        sb.AppendLine(" };");
+                        exportedCommandData.ExportedString = sb.ToString();
+
+                        exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
                         exportedCommandDatas.Add(gameObject, exportedCommandData);
                         break;
                     }
@@ -74,9 +88,9 @@ namespace SceneMaster.Export
 
                         StringBuilder sb = new();
                         sb.Append("const CreateInfo " + createInfoName + " = { ");
+                        string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
                         int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
                         int y = (int)(gameObject.Y < 0 ? 0 : gameObject.Y);
-                        string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
                         sb.Append("&" + templateName + ", " + x + ", " + y);
                         sb.AppendLine(" };");
                         exportedCommandData.ExportedString = sb.ToString();
@@ -130,7 +144,14 @@ namespace SceneMaster.Export
                 if (exportedCommandDatas.TryGetValue(gameObject, out var exportedCommandData))
                 {
                     if (!string.IsNullOrEmpty(exportedCommandData.DataStructName))
+                    {
                         finalExportedCommandData = "&" + exportedCommandData.DataStructName;
+
+                        if (gameObject.GameObjectTemplate.GameObjectType == GameObjectTemplates.Models.GameObjectType.CommandRunner)
+                        {
+                            finalExportedCommandData = "(const CreateInfo*)" + finalExportedCommandData;
+                        }
+                    }
                     commandFunction = exportedCommandData.CommandToUse;
                 }
 
@@ -172,9 +193,6 @@ namespace SceneMaster.Export
             sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
             sb.AppendLine();
-
-            sb.AppendLine("#include \"engine/command_types.h\"");
-            sb.AppendLine("void CommandRunner_RightScroll_Init(const Command* commands);");
 
             // export exportedCommandDatas
             var exportedCommandDatas = BuildExportCommandDatas(gameObjects, sceneName);

@@ -20,8 +20,9 @@ void Enemy_Update(GameObject* object);
 BOOL Enemy_Draw(GameObject* object);
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
-GameObject* Enemy_Init(GameObject* object)
+GameObject* Enemy_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	object->Update = Enemy_Update;
 	object->Draw = Enemy_Draw;
 	object->HandleCollision = Enemy_HandleCollision;

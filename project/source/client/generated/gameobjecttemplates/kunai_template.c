@@ -1,9 +1,9 @@
-#include "..\..\..\engine\gameobject_template_types.h"
-#include "..\..\..\engine\object_types.h"
-#include "..\..\..\engine\createinfo_types.h"
-#include "..\resource_infos.h"
+#include "engine\gameobject_template_types.h"
+#include "engine\object_types.h"
+#include "engine\createinfo_types.h"
+#include "client\generated\resource_infos.h"
 
-GameObject* Kunai_Init(GameObject* gameObject);
+GameObject* Kunai_Init(GameObject* object, const CreateInfo* createInfo);
 
 const GameObjectTemplate kunai_template = 
 {

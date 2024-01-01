@@ -1,8 +1,11 @@
 #include "scene_manager.h"
 #include "SMSlib.h"
+#include "engine/command_manager.h"
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/vdptile_manager.h"
+#include "engine/createinfo_types.h"
+#include "engine/commandrunner_runall.h"
 
 void SceneManager_Init(const Scene* scene)
 {
@@ -10,11 +13,9 @@ void SceneManager_Init(const Scene* scene)
 	ObjectManager_Init();
 	VDPTileManager_Init();
 
-	// TODO
-	// use a "dumb" command runner go through all the commands.
-	// if it finds a new command runner, it'll switch over to it.
+	CommandManager_currentCommand = scene->commands;
 
 	// we assume the first item is a command processor
-	CommandFunction firstCommand = scene->commands->command;
-	firstCommand(scene->commands + 1);
+	CommandFunction firstCommand = CommandManager_currentCommand->command;
+	firstCommand(CommandManager_currentCommand->data);
 }

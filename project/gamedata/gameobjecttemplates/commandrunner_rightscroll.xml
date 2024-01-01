@@ -7,7 +7,7 @@
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
-		<GameObjectType value="Effect" />
+		<GameObjectType value="CommandRunner" />
 		<InitFunction value="CommandRunner_RightScroll_Init"/>		
 	</GameProperties>
 </GameObjectTemplate>

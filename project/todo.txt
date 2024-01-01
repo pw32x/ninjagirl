@@ -64,16 +64,23 @@ Todo
 		DONE convert Level to Scene
 		
 		
-		editor types
+		DONE introduce editor object types
 			command runner
 			scroller
 			object
 			
-		Editor Object
+		BLEH Editor Object
 			CommandRunner
 			Background
 			SetTilesetProperties
 			GameObject
+			
+			
+		don't reference object create functions directly in the command list
+			
+			
+			
+			
 			
 		how to add Command runner object?
 		how to add background

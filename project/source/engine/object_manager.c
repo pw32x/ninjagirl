@@ -30,6 +30,8 @@ GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
 GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
+u8 ObjectManager_objectId = 0;
+
 u8 ObjectManager_numEffects; // effects are treated as a circular list. older effects are overwritten.
 
 GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
@@ -59,6 +61,8 @@ void ObjectManager_Init(void)
 {
 	//ObjectManager_enemyIndex = 0;
 	//ObjectManager_oldProjectileDrawCounter = 0;
+
+	ObjectManager_objectId = 0;
 
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
 	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
@@ -123,7 +127,7 @@ void ObjectManager_Update(void)
 
 	ObjectManager_player.Update(&ObjectManager_player);
 	ScrollManager_Update(&ObjectManager_player);
-	CommandManager_Update();
+	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 
@@ -420,6 +424,10 @@ GameObject* FindFreeGameObject(u8 objectType)
 	{
 		return &ObjectManager_player;
 	}
+	else if (objectType == 	OBJECTTYPE_COMMANDRUNNER)
+	{
+		return &CommandManager_commandRunnerObject;
+	}
 
 	GameObject* objectSlotRunner = ObjectManager_enemySlots;
 	u8 counter = NUM_ENEMY_SLOTS;
@@ -454,19 +462,20 @@ GameObject* FindFreeGameObject(u8 objectType)
 
 GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 {
-	GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
+	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 	u8 objectType = gameObjectTemplate->objectType;
 
 	GameObject* gameObject = FindFreeGameObject(objectType);
 	if (gameObject == NULL)
 		return NULL;
 
+	gameObject->objectId = ObjectManager_objectId++;
 	gameObject->x = createInfo->startX;
 	gameObject->y = createInfo->startY;
 
 	ApplyGameObjectTemplate(gameObject, gameObjectTemplate);
 
-	gameObjectTemplate->initFunction(gameObject);
+	gameObjectTemplate->initFunction(gameObject, createInfo);
 
 	return gameObject;
 }

@@ -85,9 +85,6 @@
     <ClCompile Include="..\source\engine\object_utils.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\commandrunner_runall.c">
-      <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\scene001.c">
       <Filter>Source Files\client\exported</Filter>
     </ClCompile>
@@ -304,6 +301,15 @@
     <ClCompile Include="..\source\client\generated\tilesets\breakable_rock_tileset.c">
       <Filter>Source Files\client\generated\tilesets</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\waterfall.c">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\commandrunner_runall.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -353,9 +359,6 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\object_utils.h">
       <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\objects\commandrunner_runall.h">
-      <Filter>Source Files\client\objects</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\base_defines.h">
       <Filter>Source Files\engine</Filter>
@@ -466,6 +469,12 @@
       <Filter>Source Files\client\generated\tilesets</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\createinfo_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\waterfall.h">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\commandrunner_runall.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

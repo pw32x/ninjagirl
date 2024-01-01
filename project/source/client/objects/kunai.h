@@ -4,6 +4,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* Kunai_Init(GameObject* object);
+GameObject* Kunai_Init(GameObject* object, const CreateInfo* createInfo);
 
 #endif

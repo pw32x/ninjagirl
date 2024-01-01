@@ -15,8 +15,9 @@ BOOL ParticleEffect_Draw(GameObject* object);
 
 #define GRAVITY	5
 
-GameObject* ParticleEffect_Init(GameObject* object)
+GameObject* ParticleEffect_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
 

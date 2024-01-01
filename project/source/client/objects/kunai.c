@@ -25,8 +25,9 @@ void Kunai_Update(GameObject* object);
 BOOL Kunai_Draw(GameObject* object);
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Kunai_Init(GameObject* object)
+GameObject* Kunai_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	object->Update = Kunai_Update;
 	object->Draw = Kunai_Draw;
 	object->HandleCollision = Kunai_HandleCollision;

@@ -161,9 +161,11 @@
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
+    <ClCompile Include="..\source\client\exported\maps\waterfall.c" />
     <ClCompile Include="..\source\client\exported\scene001.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
@@ -183,7 +185,6 @@
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
     <ClCompile Include="..\source\client\objects\basic_effect.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
-    <ClCompile Include="..\source\client\objects\commandrunner_runall.c" />
     <ClCompile Include="..\source\client\objects\kunai.c" />
     <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c" />
     <ClCompile Include="..\source\client\objects\particle_effect.c" />
@@ -192,6 +193,7 @@
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
     <ClCompile Include="..\source\client\tileset_functions.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
+    <ClCompile Include="..\source\engine\commandrunner_runall.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\scene_manager.c" />
@@ -218,6 +220,7 @@
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
+    <ClInclude Include="..\source\client\exported\maps\waterfall.h" />
     <ClInclude Include="..\source\client\exported\scene001.h" />
     <ClInclude Include="..\source\client\exported\maps\background3.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
@@ -230,7 +233,6 @@
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\objects\basic_effect.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
-    <ClInclude Include="..\source\client\objects\commandrunner_runall.h" />
     <ClInclude Include="..\source\client\objects\kunai.h" />
     <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h" />
     <ClInclude Include="..\source\client\objects\particle_effect.h" />
@@ -241,6 +243,7 @@
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\animation_utils.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />
+    <ClInclude Include="..\source\engine\commandrunner_runall.h" />
     <ClInclude Include="..\source\engine\command_types.h" />
     <ClInclude Include="..\source\engine\createinfo_types.h" />
     <ClInclude Include="..\source\engine\draw_utils.h" />

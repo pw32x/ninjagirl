@@ -119,8 +119,9 @@ void setPlayerState(u8 newState)
 	stateChanged = TRUE;
 }
 
-GameObject* Player_Init(GameObject* object)
+GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	playerX = P2V(object->x);
 	playerY = P2V(object->y);
 

@@ -5,6 +5,6 @@
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
 
-GameObject* Player_Init(GameObject* object);
+GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo);
 
 #endif

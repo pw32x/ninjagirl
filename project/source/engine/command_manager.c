@@ -1,4 +1,6 @@
 #include "engine/command_manager.h"
 #include "engine/object_utils.h"
 
-void (*CommandManager_Update)(void) = ObjectUtils_doNothing;
+GameObject CommandManager_commandRunnerObject;
+const Command* CommandManager_currentCommand;
+u16 CommandRunner_counter;

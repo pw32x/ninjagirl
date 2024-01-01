@@ -18,7 +18,8 @@ namespace SceneMaster.GameObjectTemplates.Models
         Projectile,
         Enemy,
         Effect,
-        Player
+        Player,
+        CommandRunner
     }
 
     public enum EditorObjectType

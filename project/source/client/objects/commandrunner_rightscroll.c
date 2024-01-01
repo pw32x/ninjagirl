@@ -4,37 +4,57 @@
 #include "engine/command_manager.h"
 #include "engine/object_utils.h"
 
-u16 CommandRunner_scrollX;
-const Command* CommandRunner_currentCommand;
-u32 CommandRunner_counter;
+void CommandRunner_RightScroll_Update(GameObject* object);
 
-void CommandRunner_RightScroll_Update(void);
-
-void CommandRunner_RightScroll_Init(const Command* commands)
+GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunnerCreateInfo* createInfo)
 {
-	CommandRunner_scrollX = 0;
+	UNUSED(createInfo);
 
-	CommandRunner_currentCommand = commands;
+	// move to the next command because the current one is
+	// the one that created us.
+	CommandManager_currentCommand++;
 
-	while (CommandRunner_currentCommand->command != NULL && 
-		   CommandRunner_currentCommand->counter < SCREEN_WIDTH)
+	CommandRunner_counter = 0;
+
+	u8 objectId = object->objectId;
+
+	while (CommandManager_currentCommand->command != NULL && 
+		   CommandManager_currentCommand->counter < SCREEN_WIDTH)
 	{
-		CommandRunner_currentCommand->command(CommandRunner_currentCommand->data);
-		CommandRunner_currentCommand++;
+		CommandManager_currentCommand->command(CommandManager_currentCommand->data);
+
+		// check if the command runner changed while processing the
+		// commands.
+		if (objectId != object->objectId)
+			return NULL;
+
+		CommandManager_currentCommand++;
 	}
 
-	CommandManager_Update = CommandRunner_RightScroll_Update;
+	object->Update = CommandRunner_RightScroll_Update;
+
+	return object;
 }
 
 
-void CommandRunner_RightScroll_Update(void)
+void CommandRunner_RightScroll_Update(GameObject* object)
 {
-	CommandRunner_scrollX += ScrollManager_speedX;
+	UNUSED(object);
 
-	while (CommandRunner_currentCommand->command != NULL && 
-		   CommandRunner_currentCommand->counter < CommandRunner_scrollX + SCREEN_WIDTH)
+	CommandRunner_counter += ScrollManager_speedX;
+
+	u8 objectId = object->objectId;
+
+	while (CommandManager_currentCommand->command != NULL && 
+		   CommandManager_currentCommand->counter < CommandRunner_counter + SCREEN_WIDTH)
 	{
-		CommandRunner_currentCommand->command(CommandRunner_currentCommand->data);
-		CommandRunner_currentCommand++;		
+		CommandManager_currentCommand->command(CommandManager_currentCommand->data);
+
+		// check if the command runner changed while processing the
+		// commands.
+		if (objectId != object->objectId)
+			return;
+
+		CommandManager_currentCommand++;		
 	}
 }

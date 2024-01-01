@@ -11,8 +11,9 @@
 void BasicEffect_Update(GameObject* object);
 BOOL BasicEffect_Draw(GameObject* object);
 
-GameObject* BasicEffect_Init(GameObject* object)
+GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	object->speedx = 0;
 	object->speedy = 0;
 	object->Update = BasicEffect_Update;

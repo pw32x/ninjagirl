@@ -11,14 +11,14 @@ namespace TemplateMaster
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("#include \"..\\..\\..\\engine\\gameobject_template_types.h\"");
-            sb.AppendLine("#include \"..\\..\\..\\engine\\object_types.h\"");
-            sb.AppendLine("#include \"..\\..\\..\\engine\\createinfo_types.h\"");
-            sb.AppendLine("#include \"..\\resource_infos.h\"");
+            sb.AppendLine("#include \"engine\\gameobject_template_types.h\"");
+            sb.AppendLine("#include \"engine\\object_types.h\"");
+            sb.AppendLine("#include \"engine\\createinfo_types.h\"");
+            sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine();
 
             // forward declare the init function
-            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* gameObject);");
+            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* object, const CreateInfo* createInfo);");
             sb.AppendLine();
 
             sb.AppendLine("const GameObjectTemplate " + templateName + " = ");

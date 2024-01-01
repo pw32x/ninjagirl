@@ -11,6 +11,7 @@
 #include "engine/resource_manager.h"
 #include "engine/command_types.h"
 
+#include "engine/commandrunner_runall.h"
 
 /*
 #include "engine/resource_manager.h"
@@ -51,6 +52,8 @@
 //const CreateInfo scene001_createInfo007 = { 180, 32, (const void*)&robotrunnerResourceInfo };
 //const CreateInfo scene001_createInfo008 = { 128, 8, (const void*)&robotspringResourceInfo };
 
+const CreateInfo scene001_createInfo001 = { &commandrunner_runall_template, 0, 0 };
+const CreateInfo scene001_createInfo002 = { &commandrunner_rightscroll_template, 122, 110 };
 const CreateInfo scene001_createInfo003 = { &ninja_girl_template, 122, 110 };
 const CreateInfo scene001_createInfo004 = { &walker_template, 64, 128 };
 const CreateInfo scene001_createInfo005 = { &walker_big_template, 144, 32 };
@@ -73,7 +76,8 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 
 Command scene001_commands[] = 
 {
-	{ 0, (CommandFunction)CommandRunner_RightScroll_Init, NULL },
+	
+	{ 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo001 },
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
 	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
 	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
@@ -92,7 +96,7 @@ Command scene001_commands[] =
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_bigResourceInfo },			
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },			
 	//{ 0, (CommandFunction)ResourceManager_LoadResource, &birdidle },
-
+		{ 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo002 },
 	{ 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
 	{ 24, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo004 },
 	//{ 24, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfo005 },

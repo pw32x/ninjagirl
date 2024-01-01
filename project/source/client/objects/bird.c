@@ -11,8 +11,9 @@
 void Bird_Update(GameObject* object);
 BOOL Bird_Draw(GameObject* object);
 
-GameObject* Bird_Init(GameObject* object)
+GameObject* Bird_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	UNUSED(createInfo);
 	object->Update = Bird_Update;
 	object->Draw = Bird_Draw;
 
