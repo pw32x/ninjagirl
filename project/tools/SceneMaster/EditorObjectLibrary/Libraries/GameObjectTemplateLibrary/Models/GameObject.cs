@@ -1,5 +1,7 @@
-﻿using SceneMaster.EditorObjectLibrary.Models;
+﻿using SceneMaster.Commands.Models;
+using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
+using SceneMaster.Utils;
 using System.IO;
 using System.Text;
 using System.Xml;
@@ -11,8 +13,21 @@ namespace SceneMaster.GameObjectTemplates.Models
         public GameObject(double x, 
                           double y, 
                           string name, 
-                          EditorObjectInfo editorObjectInfo) : base(x, y, name, editorObjectInfo)
+                          GameObjectTemplate gameObjectTemplate) : base(x, y, name, gameObjectTemplate)
         {
+        }
+
+        public GameObject(XmlElement gameObjectNode, 
+                          GameObjectTemplateLibrary gameObjectTemplateLibrary) : base(gameObjectNode)
+        {
+            string gameObjectTemplateName = XmlUtils.GetValue<string>(gameObjectNode, nameof(GameObject.GameObjectTemplateName));
+
+            if (!gameObjectTemplateLibrary.GameObjectTemplates.TryGetValue(gameObjectTemplateName, out var gameObjectTemplate))
+            {
+                gameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
+            }
+
+            EditorObjectInfo = gameObjectTemplate;
         }
 
         public string GameObjectTemplateName => GameObjectTemplate.Name;

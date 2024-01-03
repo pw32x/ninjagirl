@@ -8,18 +8,20 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using SceneMaster.Utils;
+using SceneMaster.EditorObjectLibrary.Interfaces;
+using SceneMaster.GameObjectTemplates.Models;
 
 namespace SceneMaster.Commands.Models
 {
-    public class CommandLibrary
+    public class CommandLibrary : IEditorObjectInfoLibrary<CommandInfo>
     {
         private string m_commandsSourceDirectory;
 
-        private List<CommandInfo> m_commandInfos = new();
-        public List<CommandInfo> CommandInfos => m_commandInfos;
+        private Dictionary<string, CommandInfo> m_commandInfos = new();
+        public Dictionary<string, CommandInfo> CommandInfos => m_commandInfos;
 
-        private List<CommandInfo> m_failedCommandInfos = new();
-        public List<CommandInfo> FailedCommandInfos => m_failedCommandInfos;
+        private Dictionary<string, CommandInfo> m_failedCommandInfos = new();
+        public Dictionary<string, CommandInfo> FailedCommandInfos => m_failedCommandInfos;
 
         internal void Load(string commandsSourceDirectory)
         {
@@ -60,16 +62,24 @@ namespace SceneMaster.Commands.Models
                 if (string.IsNullOrEmpty(description) ||
                     string.IsNullOrEmpty(parameterTypeName))
                 {
-                    FailedCommandInfos.Add(commandInfo);
+                    FailedCommandInfos.Add(description,commandInfo);
                 }
                 else
                 {
-                    CommandInfos.Add(commandInfo);
+                    CommandInfos.Add(description, commandInfo);
                 }
 
                 // Move to the next match
                 match = match.NextMatch();
             }
+        }
+
+        CommandInfo IEditorObjectInfoLibrary<CommandInfo>.GetEditorObjectInfo(string editorObjectInfoName)
+        {
+            if (!CommandInfos.TryGetValue(editorObjectInfoName, out var commandInfo))
+                return null;
+
+            return commandInfo;
         }
 
         private void BuildCommandImages()
@@ -80,7 +90,7 @@ namespace SceneMaster.Commands.Models
             if (!Directory.Exists(cacheDirectory))
                 Directory.CreateDirectory(cacheDirectory);
 
-            foreach (var commandInfo in CommandInfos) 
+            foreach (var commandInfo in CommandInfos.Values) 
             {
                 string bitmapPath = StringUtils.EnsureTrailingSlash(cacheDirectory) + commandInfo.Name.Replace(" ", "_") + ".png";
 

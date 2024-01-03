@@ -38,7 +38,7 @@ namespace SceneMaster.EditorObjectLibrary.ViewModels
             CommandLibrary.Load(settings.CommandsSourceDirectory);
 
             EditorObjectInfos.AddRange(GameObjectTemplateLibrary.GameObjectTemplates.Values);
-            EditorObjectInfos.AddRange(CommandLibrary.CommandInfos);
+            EditorObjectInfos.AddRange(CommandLibrary.CommandInfos.Values);
 
 
             EditorObjectType[] allEditorObjectTypes = (EditorObjectType[])Enum.GetValues(typeof(EditorObjectType));

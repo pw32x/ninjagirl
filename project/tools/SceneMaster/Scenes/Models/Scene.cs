@@ -1,8 +1,10 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
+using SceneMaster.Commands.Models;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjectLibrary.ViewModels;
 using SceneMaster.EditorObjects.Models;
+using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
@@ -116,26 +118,20 @@ namespace SceneMaster.Scenes.Models
             {
                 foreach (var editorObjectNode in editorObjectsNode.ChildNodes.OfType<XmlElement>())
                 {
-                /*
-                    var gameObject = new GameObject();
+                    string nodeType = editorObjectNode.Name;
+                    EditorObject editorObject = null;
 
-                    gameObject.X = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.X));
-                    gameObject.Y = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.Y));
-
-                    string gameObjectTemplateName = XmlUtils.GetValue<string>(gameObjectNode, nameof(GameObject.GameObjectTemplateName));
-                    gameObject.GameObjectTemplateName = gameObjectTemplateName;
-
-                    if (gameObjectTemplateLibrary.GameObjectTemplates.TryGetValue(gameObjectTemplateName, out var gameObjectTemplate))
+                    switch (nodeType) 
                     {
-                        gameObject.GameObjectTemplate = gameObjectTemplate;
-                    }
-                    else
-                    {
-                        gameObject.GameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
+                    case nameof(EditorObjectType.GameObject):
+                        editorObject = new GameObject(editorObjectNode, editorObjectLibraryViewModel.GameObjectTemplateLibrary);
+                    break;
+                    case nameof(EditorObjectType.Command):
+                        editorObject = new CommandObject(editorObjectNode, editorObjectLibraryViewModel.CommandLibrary);
+                    break;
                     }
 
-                    EditorObjects.Add(gameObject);
-                    */
+                    EditorObjects.Add(editorObject);
                 }
             }
 

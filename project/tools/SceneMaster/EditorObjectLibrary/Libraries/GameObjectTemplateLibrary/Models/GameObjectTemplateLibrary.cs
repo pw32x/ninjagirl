@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SceneMaster.EditorObjectLibrary.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -11,7 +12,7 @@ namespace SceneMaster.GameObjectTemplates.Models
         public DefaultGameObjectTemplate() { IsEditorVisible = true; }
     }
 
-    public class GameObjectTemplateLibrary
+    public class GameObjectTemplateLibrary: IEditorObjectInfoLibrary<GameObjectTemplate>
     {
         public GameObjectTemplateLibrary() { }
 
@@ -50,6 +51,16 @@ namespace SceneMaster.GameObjectTemplates.Models
             }
         }
 
+        GameObjectTemplate IEditorObjectInfoLibrary<GameObjectTemplate>.GetEditorObjectInfo(string editorObjectInfoName)
+        {
+            if (!GameObjectTemplates.TryGetValue(editorObjectInfoName, out var gameObjectTemplate))
+            {
+                return DefaultGameObjectTemplate;
+            }
+
+            return gameObjectTemplate;
+        }
+
         private Dictionary<string, GameObjectTemplate> m_invisibleGameObjectTemplates = new(); 
         private Dictionary<string, GameObjectTemplate> m_failedGameObjectTemplates = new(); 
 
@@ -60,4 +71,6 @@ namespace SceneMaster.GameObjectTemplates.Models
 
         private string m_gameObjectTemplatesDirectory;
     }
+
+
 }
