@@ -1,11 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using SceneMaster.GameObjectTemplates.ViewModels;
+using SceneMaster.EditorObjectLibrary.ViewModels;
+using SceneMaster.EditorObjects.Models;
+using SceneMaster.EditorObjects.ViewModels;
 using SceneMaster.Scenes.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System.Xml.Linq;
 
 namespace SceneMaster.Scenes.ViewModels
 {
@@ -29,23 +32,23 @@ namespace SceneMaster.Scenes.ViewModels
             }
         }
 
-        public ObservableCollection<GameObjectViewModel> GameObjectViewModels { get; set; } = new();
+        public ObservableCollection<EditorObjectViewModel> EditorObjectViewModels { get; set; } = new();
 
-        private GameObjectViewModel m_selectedGameObjectViewModel;
-        public GameObjectViewModel SelectedGameObjectViewModel
+        private EditorObjectViewModel m_selectedEditorObjectViewModel;
+        public EditorObjectViewModel SelectedEditorObjectViewModel
         {
-            get => m_selectedGameObjectViewModel;
+            get => m_selectedEditorObjectViewModel;
 
             set
             {
                 m_ignoreChanges = true;
-                if (m_selectedGameObjectViewModel != null)
-                    m_selectedGameObjectViewModel.IsSelected = false;
+                if (m_selectedEditorObjectViewModel != null)
+                    m_selectedEditorObjectViewModel.IsSelected = false;
 
-                SetProperty(ref m_selectedGameObjectViewModel, value);
+                SetProperty(ref m_selectedEditorObjectViewModel, value);
 
-                if (m_selectedGameObjectViewModel != null)
-                    m_selectedGameObjectViewModel.IsSelected = true;
+                if (m_selectedEditorObjectViewModel != null)
+                    m_selectedEditorObjectViewModel.IsSelected = true;
 
                 m_ignoreChanges = false;
             }
@@ -54,52 +57,53 @@ namespace SceneMaster.Scenes.ViewModels
         private Scene m_scene;
         public Scene Scene { get => m_scene; private set => m_scene = value; }
 
-        GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; set; }
+        EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
 
-        public SceneViewModel(GameObjectTemplateLibraryViewModel gameObjectTemplateLibraryViewModel)
+        public SceneViewModel(EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel)
         {
-            GameObjectTemplateLibraryViewModel = gameObjectTemplateLibraryViewModel;
+            EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
             Scene = new Scene();
 
             // attach
             Scene.PropertyChanged += Scene_PropertyChanged;
-            Scene.GameObjects.CollectionChanged += GameObjects_CollectionChanged;
+            Scene.EditorObjects.CollectionChanged += EditorObjects_CollectionChanged;
 
-            foreach (var gameObject in Scene.GameObjects)
+            foreach (var editorObject in Scene.EditorObjects)
             {
-                var gameObjectViewModel = new GameObjectViewModel(gameObject, this);
-                gameObjectViewModel.PropertyChanged += Scene_PropertyChanged;
-                GameObjectViewModels.Add(gameObjectViewModel);
+                var editorObjectViewModel = new EditorObjectViewModel(editorObject, this);
+                editorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                EditorObjectViewModels.Add(editorObjectViewModel);
             }
 
-            DeleteCommand = new RelayCommand(DeleteSelectedGameObjectViewModel, CanDeleteSelectedGameObjectViewModel);
+            DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel, 
+                                             CanDeleteSelectedEditorObjectViewModel);
         }
 
         public ICommand DeleteCommand { get; }
 
-        private void DeleteSelectedGameObjectViewModel()
+        private void DeleteSelectedEditorObjectViewModel()
         {
-            if (SelectedGameObjectViewModel == null)
+            if (SelectedEditorObjectViewModel == null)
                 return;
 
-            Scene.GameObjects.Remove(SelectedGameObjectViewModel.GameObject);
+            Scene.EditorObjects.Remove(SelectedEditorObjectViewModel.EditorObject);
         }
 
-        private bool CanDeleteSelectedGameObjectViewModel()
+        private bool CanDeleteSelectedEditorObjectViewModel()
         {
-            return SelectedGameObjectViewModel != null;
+            return SelectedEditorObjectViewModel != null;
         }
 
-        private void DeleteGameObjectViewModel(GameObject gameObjectToDelete)
+        private void DeleteEditorObjectViewModel(EditorObject editorObjectToDelete)
         {
-            var gameObjectViewModel = GameObjectViewModels.FirstOrDefault(x => x.GameObject == gameObjectToDelete);
-            if (gameObjectViewModel == null)
+            var editorObjectViewModel = EditorObjectViewModels.FirstOrDefault(x => x.EditorObject == editorObjectToDelete);
+            if (editorObjectViewModel == null)
                 return;
 
-            GameObjectViewModels.Remove(gameObjectViewModel);
-            gameObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
+            EditorObjectViewModels.Remove(editorObjectViewModel);
+            editorObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
 
-            Deselect(gameObjectViewModel);
+            Deselect(editorObjectViewModel);
         }
 
         public void Dispose()
@@ -107,14 +111,14 @@ namespace SceneMaster.Scenes.ViewModels
             // detach
             if (Scene != null)
             {
-                foreach (var gameObjectViewMode in GameObjectViewModels)
+                foreach (var editorObjectViewModel in EditorObjectViewModels)
                 {
-                    gameObjectViewMode.PropertyChanged -= Scene_PropertyChanged;
+                    editorObjectViewModel.PropertyChanged -= Scene_PropertyChanged;
                 }
-                GameObjectViewModels.Clear();
+                EditorObjectViewModels.Clear();
 
                 Scene.PropertyChanged -= Scene_PropertyChanged;
-                Scene.GameObjects.CollectionChanged -= GameObjects_CollectionChanged;
+                Scene.EditorObjects.CollectionChanged -= EditorObjects_CollectionChanged;
                 Scene = null;
             }
         }
@@ -124,27 +128,27 @@ namespace SceneMaster.Scenes.ViewModels
             IsModified = true;
         }
 
-        private void GameObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private void EditorObjects_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             IsModified = true;
 
-            Deselect(SelectedGameObjectViewModel);
+            Deselect(SelectedEditorObjectViewModel);
 
             if (e.NewItems != null)
             {
-                foreach (var newGameObject in e.NewItems.OfType<GameObject>())
+                foreach (var newEditorObject in e.NewItems.OfType<EditorObject>())
                 {
-                    var newGameObjectViewModel = new GameObjectViewModel(newGameObject, this);
-                    newGameObjectViewModel.PropertyChanged += Scene_PropertyChanged;
-                    GameObjectViewModels.Add(newGameObjectViewModel);
+                    var newEditorObjectViewModel = new EditorObjectViewModel(newEditorObject, this);
+                    newEditorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                    EditorObjectViewModels.Add(newEditorObjectViewModel);
                 }
             }
 
             if (e.OldItems != null)
             {
-                foreach (var gameObjectToDelete in e.OldItems.OfType<GameObject>())
+                foreach (var editorObjectToDelete in e.OldItems.OfType<EditorObject>())
                 {
-                    DeleteGameObjectViewModel(gameObjectToDelete);
+                    DeleteEditorObjectViewModel(editorObjectToDelete);
                 }
             }
         }
@@ -152,7 +156,7 @@ namespace SceneMaster.Scenes.ViewModels
         internal void Load(string filePath)
         {
             m_ignoreChanges = true;
-            Scene.Load(filePath, GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary);
+            Scene.Load(filePath, EditorObjectInfoLibraryViewModel);
             m_ignoreChanges = false;
 
             IsModified = false;
@@ -165,28 +169,28 @@ namespace SceneMaster.Scenes.ViewModels
             IsModified = false;
         }
 
-        internal void Select(GameObjectViewModel gameObjectViewModel)
+        internal void Select(EditorObjectViewModel editorObjectViewModel)
         {
-            if (SelectedGameObjectViewModel == gameObjectViewModel)
+            if (SelectedEditorObjectViewModel == editorObjectViewModel)
                 return;
 
-            SelectedGameObjectViewModel = gameObjectViewModel;
+            SelectedEditorObjectViewModel = editorObjectViewModel;
         }
 
-        internal void Deselect(GameObjectViewModel gameObjectViewModel)
+        internal void Deselect(EditorObjectViewModel editorObjectViewModel)
         {
-            if (SelectedGameObjectViewModel == gameObjectViewModel)
+            if (SelectedEditorObjectViewModel == editorObjectViewModel)
             {
-                SelectedGameObjectViewModel = null;
+                SelectedEditorObjectViewModel = null;
             }
         }
 
-        internal void CreateGameObject(int mapX, int mapY)
+        internal void CreateEditorObject(int mapX, int mapY)
         {
-            if (GameObjectTemplateLibraryViewModel.SelectedGameObjectTemplate == null)
+            if (EditorObjectInfoLibraryViewModel.SelectedEditorObjectInfo == null)
                 return;
 
-            Scene.CreateGameObject(mapX, mapY, GameObjectTemplateLibraryViewModel.SelectedGameObjectTemplate);
+            Scene.CreateEditorObject(mapX, mapY, EditorObjectInfoLibraryViewModel.SelectedEditorObjectInfo);
         }
     }
 }

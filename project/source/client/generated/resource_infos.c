@@ -14,6 +14,7 @@
 #include "client\exported\animations\walker_big.h"
 #include "client\exported\animations\walker_small.h"
 #include "client\exported\animations\waterfall.h"
+#include "client\exported\palettes\globalPalette.h"
 #include "client\exported\maps\background3.h"
 #include "client\exported\maps\waterfall.h"
 
@@ -31,5 +32,6 @@ const ResourceInfo walkerResourceInfo = { /*bank*/ 2, (const Resource*)&walker }
 const ResourceInfo walker_bigResourceInfo = { /*bank*/ 2, (const Resource*)&walker_big };
 const ResourceInfo walker_smallResourceInfo = { /*bank*/ 2, (const Resource*)&walker_small };
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
+const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };
 const ResourceInfo waterfall_mapResourceInfo = { /*bank*/ 4, (const Resource*)&waterfall_map };

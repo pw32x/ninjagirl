@@ -1,12 +1,12 @@
 <GameObjectTemplate >
 	<Name value="Ninja Girl"/>
 	<EditorProperties>
-		<EditorObjectType value="GameObject"/>
 		<Visual>
 			<GraphicsGale filename="..\animations\streamed\ninja_girl.gal" framenumber="6"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
+		<GameObjectType value="Player"/>
 		<RectLeft value="-3"/>
 		<RectTop value="-12"/>
 		<RectRight value="3"/>

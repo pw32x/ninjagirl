@@ -12,7 +12,8 @@
 #define MAP_RESOURCE_TYPE							4
 #define TILESET_RESOURCE_TYPE						5
 #define ANIMATED_TILESET_RESOURCE_TYPE				6
-#define NUM_RESOURCE_TYPES							7
+#define PALETTE_RESOURCE_TYPE						7
+#define NUM_RESOURCE_TYPES							8
 
 
 typedef struct

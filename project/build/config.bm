@@ -19,6 +19,7 @@
 		<Tool name="SpriteMaster_streamed" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-streamed -updateonly" info="Export Streamed Animations"/>
 		<Tool name="SpriteMaster_standard" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-updateonly" info="Export Standard Animations"/>
 		<Tool name="SpriteMaster_animatedtilesets" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-animatedtileset -updateonly" info="Export Animated Tilesets"/>
+		<Tool name="SpriteMaster_palettes" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-palette -updateonly" info="Export Palettes"/>
 		<Tool name="tmx2c" path="..\..\tmx2c\bin\tmx2c.exe" info="Export backgrounds"/>
 		<Tool name="TemplateMaster" path="tools\TemplateMaster\bin\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
 
@@ -35,6 +36,7 @@
 		<ToolJob tool="SpriteMaster_streamed" source="gamedata\animations\streamed" destination="source\client\exported\animations" bank="2"/>
 		<ToolJob tool="SpriteMaster_standard" source="gamedata\animations\standard" destination="source\client\exported\animations" bank="2"/>
 		<ToolJob tool="SpriteMaster_animatedtilesets" source="gamedata\animations\animatedtilesets" destination="source\client\exported\animations" bank="2"/>
+		<ToolJob tool="SpriteMaster_palettes" source="gamedata\palettes" destination="source\client\exported\palettes"/>
 		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="4"/>
 		<ToolJob tool="tmx2c" source="gamedata\generated\themes" destination="source\client\exported\maps" bank="4"/>
 	</ToolJobs>

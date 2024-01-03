@@ -39,7 +39,7 @@
                                MouseLeftButtonDown="Image_MouseLeftButtonDown" 
                                Stretch="None" />
                         <Canvas x:Name="GridCanvas" IsHitTestVisible="False"/>
-                        <ItemsControl ItemsSource="{Binding GameObjectViewModels}" >
+                        <ItemsControl ItemsSource="{Binding EditorObjectViewModels}" >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <Canvas />
@@ -55,8 +55,8 @@
 
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <controls:GameObjectControl Canvas.Left="{Binding SnappedX}" 
-                                                                Canvas.Top="{Binding SnappedY}"/>
+                                    <controls:EditorObjectControl Canvas.Left="{Binding SnappedX}" 
+                                                                  Canvas.Top="{Binding SnappedY}"/>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>

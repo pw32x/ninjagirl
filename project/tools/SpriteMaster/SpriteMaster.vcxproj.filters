@@ -29,6 +29,9 @@
     <Filter Include="Source Files\AnimationTypes\Standard &amp; Streamed Animation">
       <UniqueIdentifier>{daafb527-3fa8-4760-a2cd-42f938c2ffe6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AnimationTypes\Palette">
+      <UniqueIdentifier>{7193db91-2226-4d30-afee-d87591adbdd0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="SpriteMaster.cpp">
@@ -70,9 +73,6 @@
     <ClCompile Include="Base\TileStore.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Base\palette.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="AnimationTypes\AnimationTypes.cpp">
       <Filter>Source Files\AnimationTypes</Filter>
     </ClCompile>
@@ -95,6 +95,12 @@
       <Filter>Source Files\AnimationTypes\Plane Animation</Filter>
     </ClCompile>
     <ClCompile Include="Base\SpriteStripStore.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationTypes\Palette.cpp">
+      <Filter>Source Files\AnimationTypes\Palette</Filter>
+    </ClCompile>
+    <ClCompile Include="Base\palette_utils.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
   </ItemGroup>
@@ -144,9 +150,6 @@
     <ClInclude Include="Base\TileStore.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Base\palette.h">
-      <Filter>Source Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="Base\errors.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
@@ -172,6 +175,12 @@
       <Filter>Source Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="Base\TileTypes.h">
+      <Filter>Source Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationTypes\Palette.h">
+      <Filter>Source Files\AnimationTypes\Palette</Filter>
+    </ClInclude>
+    <ClInclude Include="Base\palette_utils.h">
       <Filter>Source Files\Base</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,13 +1,9 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using GraphicsGaleWrapper;
-using PropertyTools.DataAnnotations;
-using SceneMaster.Scenes.Models;
+﻿using PropertyTools.DataAnnotations;
+using SceneMaster.EditorObjectLibrary.Models;
+using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
 using System;
 using System.IO;
-using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace SceneMaster.GameObjectTemplates.Models
@@ -22,66 +18,14 @@ namespace SceneMaster.GameObjectTemplates.Models
         CommandRunner
     }
 
-    public enum EditorObjectType
+    public class GameObjectTemplate : EditorObjectInfo
     {
-        CommandRunner,
-        GameObject
-    }
-
-    public class Visual
-    {
-        public int Width { get; private set; }
-        public int Height { get; private set; }
-        public BitmapImage Image { get; private set; }
-
-        public void Load(XmlElement visualNode)
+        public GameObjectTemplate() : base(EditorObjectType.GameObject)
         {
-            if (visualNode["Image"] is var imageNode && imageNode != null)
-            {
-                string imageFilename = XmlUtils.GetValue<string>(imageNode, "filename");
-                if (!string.IsNullOrEmpty(imageFilename)) 
-                {
-                    Image = BitmapUtils.LoadBitmapImage(imageFilename);
-                    Width = (int)Image.Width;
-                    Height = (int)Image.Height;
-                }
-            }
-            else if (visualNode["GraphicsGale"] is var graphicsGaleNode && graphicsGaleNode != null)
-            {
-                string graphicsGaleFilename = XmlUtils.GetValue<string>(graphicsGaleNode, "filename");
-                int frameNumber = XmlUtils.GetValue<int>(graphicsGaleNode, "framenumber");
-
-                if (!string.IsNullOrEmpty(graphicsGaleFilename)) 
-                {
-                    var galeFile = GaleFile.Open(graphicsGaleFilename);
-
-                    Width = GaleFile.GetWidth(galeFile);
-                    Height = GaleFile.GetHeight(galeFile);
-
-                    var frameBitmap = GaleFile._ggGetBitmap(galeFile, frameNumber, 0);
-                    var palette = GaleFile.GetPalette(galeFile, frameNumber);
-
-                    Image = BitmapUtils.ConvertHBitmapToBitmapImage(frameBitmap);
-
-                    GaleFile.Close(galeFile);
-                }
-            }
         }
-    }
-
-    public class GameObjectTemplate
-    {
-        public string Name { get; set; }
-
-        [Browsable(false)]
-        public bool IsEditorVisible { get; protected set; }
 
         [System.ComponentModel.ReadOnly(true)]
         public string FilePath { get; private set; }
-
-        // editor properties
-        [Browsable(false)]
-        public Visual Visual { get; } = new();
 
         // game properties
         [System.ComponentModel.ReadOnly(true)]
@@ -104,19 +48,10 @@ namespace SceneMaster.GameObjectTemplates.Models
         public GameObjectType GameObjectType { get; set; }
 
         [System.ComponentModel.ReadOnly(true)]
-        public string ResourceInfo { get; set; }
-
-        [System.ComponentModel.ReadOnly(true)]
         public string InitFunction { get; set; }
-
-        [System.ComponentModel.ReadOnly(true)]
-        [SelectorStyle(SelectorStyle.ComboBox)]
-        public EditorObjectType EditorObjectType { get; set; }
 
         public void LoadEditorProperties(XmlElement editorPropertiesNode)
         {
-            EditorObjectType = XmlUtils.GetChildValue<EditorObjectType>(editorPropertiesNode, nameof(EditorObjectType));
-
             if (editorPropertiesNode["Visual"] is var visualNode && visualNode != null)
             {
                 Visual.Load(visualNode);
@@ -133,6 +68,7 @@ namespace SceneMaster.GameObjectTemplates.Models
             RectBottom = XmlUtils.GetChildValue<int>(gamePropertiesNode, nameof(RectBottom));
             ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
+            GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
 
             if (string.IsNullOrEmpty(InitFunction))
                 throw new Exception("No init function in object template.");
@@ -168,5 +104,9 @@ namespace SceneMaster.GameObjectTemplates.Models
             Directory.SetCurrentDirectory(oldCurrentDirectory);
         }
 
+        internal override EditorObject CreateEditorObject(int x, int y)
+        {
+            return new GameObject(x, y, Name, this);
+        }
     }
 }

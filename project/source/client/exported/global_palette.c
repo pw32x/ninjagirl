@@ -1,6 +1,6 @@
 #include "global_palette.h"
 
-u8 globalPalette[16] = 
+const u8 globalPalette[16] = 
 {
 	0x00, 
 	0x01, 
@@ -18,4 +18,10 @@ u8 globalPalette[16] =
 	0x3D, 
 	0x1F, 
 	0x3F
+};
+
+RESOURCE() const PaletteResource globalPaletteResource =
+{
+	PALETTE_RESOURCE_TYPE,
+	globalPalette
 };

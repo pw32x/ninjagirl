@@ -1,8 +1,9 @@
 #ifndef GLOBAL_PALETTE_INCLUDE_H
 #define GLOBAL_PALETTE_INCLUDE_H
 
-#include "base_types.h"
+#include "engine/base_types.h"
+#include "engine/palette_types.h"
 
-extern u8 globalPalette[16];
+extern const u8 globalPaletteOld[16];
 
 #endif

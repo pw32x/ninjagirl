@@ -1,4 +1,4 @@
-#include "palette.h"
+#include "palette_utils.h"
 #include "..\stdafx.h"
 #include <iostream>
 #include <fstream>

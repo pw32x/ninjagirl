@@ -4,7 +4,7 @@
 #include "..\Utils\SpriteUtils.h"
 #include "..\Utils\TileUtils.h"
 #include <set>
-#include "..\Base\palette.h"
+#include "..\Base\palette_utils.h"
 #include "..\Base\TileStore.h"
 #include "..\GraphicsGale\GraphicsGaleObject.h"
 

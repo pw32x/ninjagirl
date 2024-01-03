@@ -17,7 +17,7 @@ ProgramArguments ParseArguments(int argc, char* argv[])
     group.add_argument("-s", "-streamed").flag();
     group.add_argument("-t", "-animatedtileset").flag();
     group.add_argument("-p", "-planeanimation").flag();
-    //group.add_argument("-pal", "-palette");
+    group.add_argument("-pal", "-palette").flag();
 
     std::vector<std::string> unknownArgs;
 
@@ -44,6 +44,8 @@ ProgramArguments ParseArguments(int argc, char* argv[])
         programArguments.m_animationType = AnimationType::AnimatedTileset;
     else if (program["-p"] == true)
         programArguments.m_animationType = AnimationType::PlaneAnimation;
+    else if (program["-pal"] == true)
+        programArguments.m_animationType = AnimationType::Palette;
 
     // get the bank number. it has a different format than what argparse handles.
     // -bank<NUMBER> and not -bank <NUMBER>

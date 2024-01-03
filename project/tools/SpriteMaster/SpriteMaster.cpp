@@ -4,6 +4,7 @@
 #include "AnimationTypes\AnimationProperties.h"
 #include "AnimationTypes\PlaneAnimation.h"
 #include "AnimationTypes\TileAnimation.h"
+#include "AnimationTypes\Palette.h"
 #include "GraphicsGale\GraphicsGaleObject.h"
 #include "Base\errors.h"
 #include "Utils\FileUtils.h"
@@ -75,6 +76,11 @@ int Main(int argc, char* argv[])
         case AnimationType::AnimatedTileset:
         {
             animation = new GGTileAnimation(ggo);
+            break;
+        }
+        case AnimationType::Palette:
+        {
+            animation = new GGPalette(ggo);
             break;
         }
         default:

@@ -1,15 +1,15 @@
-﻿<UserControl x:Class="SceneMaster.Controls.GameObjectControl"
+﻿<UserControl x:Class="SceneMaster.Controls.EditorObjectControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              d:DesignHeight="32" d:DesignWidth="32"
-             DataContextChanged="GameObjectControl_DataContextChanged"
-             MouseDown="GameObjectControl_MouseDown"
-             MouseMove="GameObjectControl_MouseMove"
-             MouseLeave="GameObjectControl_MouseLeave"
-             MouseUp="GameObjectControl_MouseUp">
+             DataContextChanged="EditorObjectControl_DataContextChanged"
+             MouseDown="EditorObjectControl_MouseDown"
+             MouseMove="EditorObjectControl_MouseMove"
+             MouseLeave="EditorObjectControl_MouseLeave"
+             MouseUp="EditorObjectControl_MouseUp">
     <UserControl.Resources>
         <Style x:Key="SelectionBorderStyle" TargetType="Border">
             <Setter Property="Visibility" Value="Hidden"/>
@@ -31,7 +31,7 @@
     </UserControl.Resources>
     
     <Grid>
-        <Image Source="{Binding GameObject.GameObjectTemplate.Visual.Image}"
+        <Image Source="{Binding EditorObject.EditorObjectInfo.Visual.Image}"
                 Width="{Binding Width}"
                 Height="{Binding Height}"
                 RenderOptions.BitmapScalingMode="NearestNeighbor"

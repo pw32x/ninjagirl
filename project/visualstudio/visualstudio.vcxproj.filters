@@ -50,6 +50,12 @@
     <Filter Include="Source Files\client\generated\gameobjecttemplates">
       <UniqueIdentifier>{ef4bb437-e4c0-4934-9e70-eff4fbb0c0c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\engine\commands">
+      <UniqueIdentifier>{de33f009-2b05-48dc-bfba-93eb427afebd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\client\exported\palettes">
+      <UniqueIdentifier>{16946b1e-cfbd-43d9-942e-3123a32bf684}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\scene_manager.c">
@@ -310,6 +316,12 @@
     <ClCompile Include="..\source\engine\commandrunner_runall.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\commands\set_palette_commands.c">
+      <Filter>Source Files\engine\commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\palettes\globalPalette.c">
+      <Filter>Source Files\client\exported\palettes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -476,6 +488,12 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\commandrunner_runall.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\palette_types.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\palettes\globalPalette.h">
+      <Filter>Source Files\client\exported\palettes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

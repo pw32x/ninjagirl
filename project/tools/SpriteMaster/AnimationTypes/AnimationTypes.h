@@ -13,7 +13,8 @@ enum class AnimationType
 {
     Standard,
     AnimatedTileset,
-    PlaneAnimation
+    PlaneAnimation,
+    Palette
 };
 
 class AnimationBase

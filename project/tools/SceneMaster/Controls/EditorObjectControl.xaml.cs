@@ -1,4 +1,5 @@
-﻿using SceneMaster.Scenes.ViewModels;
+﻿using SceneMaster.EditorObjects.ViewModels;
+using SceneMaster.Scenes.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -6,29 +7,29 @@ using System.Windows.Input;
 namespace SceneMaster.Controls
 {
     /// <summary>
-    /// Interaction logic for GameObjectControl.xaml
+    /// Interaction logic for EditorObjectControl.xaml
     /// </summary>
-    public partial class GameObjectControl : UserControl
+    public partial class EditorObjectControl : UserControl
     {
         private Point m_startPoint;
         private bool m_isDragging = false;
-        private GameObjectViewModel m_gameObjectViewModel;
+        private EditorObjectViewModel m_editorObjectViewModel;
 
-        public GameObjectControl()
+        public EditorObjectControl()
         {
             InitializeComponent();
         }
 
-        private void GameObjectControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void EditorObjectControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            m_gameObjectViewModel = (GameObjectViewModel)e.NewValue;
+            m_editorObjectViewModel = (EditorObjectViewModel)e.NewValue;
         }
 
-        private void GameObjectControl_MouseDown(object sender, MouseButtonEventArgs e)
+        private void EditorObjectControl_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
-                m_gameObjectViewModel.Select();
+                m_editorObjectViewModel.Select();
 
                 m_startPoint = e.GetPosition(Parent as UIElement);
                 m_isDragging = true;
@@ -40,7 +41,7 @@ namespace SceneMaster.Controls
             }
         }
 
-        private void GameObjectControl_MouseMove(object sender, MouseEventArgs e)
+        private void EditorObjectControl_MouseMove(object sender, MouseEventArgs e)
         {
             if (m_isDragging)
             {
@@ -55,14 +56,14 @@ namespace SceneMaster.Controls
                 if (offsetX == 0 && offsetY == 0)
                     return;
 
-                m_gameObjectViewModel.X += offsetX;
-                m_gameObjectViewModel.Y += offsetY;
+                m_editorObjectViewModel.X += offsetX;
+                m_editorObjectViewModel.Y += offsetY;
 
                 m_startPoint = currentPoint;
             }
         }
 
-        private void GameObjectControl_MouseUp(object sender, MouseButtonEventArgs e)
+        private void EditorObjectControl_MouseUp(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
             {
@@ -71,13 +72,13 @@ namespace SceneMaster.Controls
             }
         }
 
-        private void GameObjectControl_MouseLeave(object sender, MouseEventArgs e)
+        private void EditorObjectControl_MouseLeave(object sender, MouseEventArgs e)
         {
             //isDragging = false;
-            //var gameObjectViewModel = (GameObjectViewModel)DataContext;
-            //if (gameObjectViewModel != null)
+            //var editorObjectViewModel = (EditorObjectViewModel)DataContext;
+            //if (editorObjectViewModel != null)
             //{ 
-            //    gameObjectViewModel.IsSelected = false;
+            //    editorObjectViewModel.IsSelected = false;
             //}
         }
 

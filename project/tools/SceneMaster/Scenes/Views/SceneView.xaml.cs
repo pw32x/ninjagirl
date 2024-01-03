@@ -36,7 +36,7 @@ namespace SceneMaster.Scenes.Views
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                m_sceneViewModel.CreateGameObject(mapX, mapY);
+                m_sceneViewModel.CreateEditorObject(mapX, mapY);
             }
         }
 

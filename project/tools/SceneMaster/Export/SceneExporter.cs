@@ -1,12 +1,10 @@
-﻿using GraphicsGaleWrapper;
+﻿using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SceneMaster.Export
 {
@@ -38,96 +36,49 @@ namespace SceneMaster.Export
             File.WriteAllText(destinationFilename, sb.ToString());
         }
 
-        private class ExportedCommandData
+
+
+        private static Dictionary<EditorObject, ExportedCommandData> BuildExportCommandDatas(IEnumerable<EditorObject> editorObjects, 
+                                                                                             string sceneName)
         {
-            public string DataStructName { get; set; }
-            public string ExportedString { get; set; }
-            public string CommandToUse { get; set; }
-        }
+            Dictionary<EditorObject, ExportedCommandData> exportedCommandDatas = new();
 
-
-        private static Dictionary<GameObject, ExportedCommandData> BuildExportCommandDatas(IEnumerable<GameObject> gameObjects, 
-                                                                                           string sceneName)
-        {
-            Dictionary<GameObject, ExportedCommandData> exportedCommandDatas = new();
-
-            int counter = 0;
-            foreach (var gameObject in gameObjects)
+            int exportCounter = 0;
+            foreach (var editorObject in editorObjects)
             {
-                switch (gameObject.GameObjectTemplate.EditorObjectType)
-                {
-                    case GameObjectTemplates.Models.EditorObjectType.CommandRunner:
-                    {
-                        string createInfoName = sceneName + "_" + "createInfo" + counter;
-                        counter++;
+                var exportedCommandData = editorObject.BuildExportCommandData(sceneName, exportCounter);
+                exportCounter++;
 
-                        // do nothing
-                        var exportedCommandData = new ExportedCommandData();
-                        exportedCommandData.DataStructName = createInfoName;
-
-                        StringBuilder sb = new();
-                        sb.Append("const CommandRunnerCreateInfo " + createInfoName + " = { ");
-                        string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
-                        int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
-                        int y = (int)(gameObject.Y < 0 ? 0 : gameObject.Y);
-                        sb.Append("&" + templateName + ", " + x + ", " + y + ", NULL");
-                        sb.AppendLine(" };");
-                        exportedCommandData.ExportedString = sb.ToString();
-
-                        exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
-                        exportedCommandDatas.Add(gameObject, exportedCommandData);
-                        break;
-                    }
-                    case GameObjectTemplates.Models.EditorObjectType.GameObject:
-                    {
-                        string createInfoName = sceneName + "_" + "createInfo" + counter;
-                        counter++;
-
-                        var exportedCommandData = new ExportedCommandData();
-                        exportedCommandData.DataStructName = createInfoName;
-
-                        StringBuilder sb = new();
-                        sb.Append("const CreateInfo " + createInfoName + " = { ");
-                        string templateName = Path.GetFileNameWithoutExtension(gameObject.GameObjectTemplate.FilePath) + "_template";
-                        int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
-                        int y = (int)(gameObject.Y < 0 ? 0 : gameObject.Y);
-                        sb.Append("&" + templateName + ", " + x + ", " + y);
-                        sb.AppendLine(" };");
-                        exportedCommandData.ExportedString = sb.ToString();
-                        exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
-                        exportedCommandDatas.Add(gameObject, exportedCommandData);
-                        break;
-                    }
-                }
-
-
+                exportedCommandDatas.Add(editorObject, exportedCommandData);
             }
 
             return exportedCommandDatas;
         }
 
         private static void ExportCommandDatas(StringBuilder sb,
-                                              Dictionary<GameObject, ExportedCommandData> exportedCommandDatas,
+                                              Dictionary<EditorObject, ExportedCommandData> exportedCommandDatas,
                                               string sceneName)
         {
             // start with bootstrapper command runner
             string bootStrapper = "const CommandRunnerCreateInfo " + sceneName + "_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };";
             sb.AppendLine(bootStrapper);
 
-            foreach (var exportedCommandData in exportedCommandDatas.Values.Where(e => !string.IsNullOrEmpty(e.ExportedString)))
+            foreach (var exportedCommandData in exportedCommandDatas.Values.Where(e => !string.IsNullOrEmpty(e.ExportedCreateInfo)))
             {
-                sb.Append(exportedCommandData.ExportedString);
+                sb.Append(exportedCommandData.ExportedCreateInfo);
             }
 
             sb.AppendLine();
         }
 
 
-        private static void ExportResourceCommands(StringBuilder sb, Scene scene, IEnumerable<GameObject> gameObjects)
+        private static void ExportResourceCommands(StringBuilder sb, 
+                                                   Scene scene, 
+                                                   IEnumerable<EditorObject> editorObjects)
         {
             string commandFunction = "ResourceManager_LoadResource";
 
-            var resources = gameObjects.Select(g => g.GameObjectTemplate.ResourceInfo).Where(g => !string.IsNullOrEmpty(g)).Distinct();
+            var resources = editorObjects.Select(e => e.EditorObjectInfo.ResourceInfo).Where(e => !string.IsNullOrEmpty(e)).Distinct();
 
             // add the background
             if (!string.IsNullOrEmpty(scene.TiledMapFilename))
@@ -143,40 +94,30 @@ namespace SceneMaster.Export
             }
         }
 
-        private static void ExportGameObjectCommands(StringBuilder sb, 
-                                                     IEnumerable<GameObject> gameObjects,
-                                                     Dictionary<GameObject, ExportedCommandData> exportedCommandDatas)
+        private static void ExportSceneCommands(StringBuilder sb, 
+                                                IEnumerable<EditorObject> editorObjects,
+                                                Dictionary<EditorObject, ExportedCommandData> exportedCommandDatas)
         {
-            foreach (var gameObject in gameObjects)
+            foreach (var editorObject in editorObjects)
             {
-                int x = (int)(gameObject.X < 0 ? 0 : gameObject.X);
-
-                string finalExportedCommandData = "NULL";
-                string commandFunction = "";
-                if (exportedCommandDatas.TryGetValue(gameObject, out var exportedCommandData))
+                if (exportedCommandDatas.TryGetValue(editorObject, out var exportedCommandData))
                 {
-                    if (!string.IsNullOrEmpty(exportedCommandData.DataStructName))
-                    {
-                        finalExportedCommandData = "&" + exportedCommandData.DataStructName;
-
-                        if (gameObject.GameObjectTemplate.GameObjectType == GameObjectTemplates.Models.GameObjectType.CommandRunner)
-                        {
-                            finalExportedCommandData = "(const CreateInfo*)" + finalExportedCommandData;
-                        }
-                    }
-                    commandFunction = exportedCommandData.CommandToUse;
+                    string sceneCommand = editorObject.BuildSceneCommand(exportedCommandData);
+                    sb.AppendLine("    " + sceneCommand);
                 }
-
-                sb.AppendLine("    { " + x + ", (CommandFunction)" + commandFunction + ", " + finalExportedCommandData + " },");
+                else
+                {
+                    sb.AppendLine("    Error exporting object");
+                }
             }
         }
 
 
         private static void ExportCommands(StringBuilder sb,
                                            Scene scene,
-                                           IEnumerable<GameObject> gameObjects, 
+                                           IEnumerable<EditorObject> editorObjects, 
                                            string sceneName, 
-                                           Dictionary<GameObject, ExportedCommandData> exportedCommandDatas)
+                                           Dictionary<EditorObject, ExportedCommandData> exportedCommandDatas)
         {
             sb.AppendLine("const Command " + sceneName + "_commands[] = ");
             sb.AppendLine("{");
@@ -184,8 +125,8 @@ namespace SceneMaster.Export
             // start with bootstrapper
             sb.AppendLine("    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&" + sceneName + "_createInfoBootstrapper },");
 
-            ExportResourceCommands(sb, scene, gameObjects);
-            ExportGameObjectCommands(sb, gameObjects, exportedCommandDatas);
+            ExportResourceCommands(sb, scene, editorObjects);
+            ExportSceneCommands(sb, editorObjects, exportedCommandDatas);
 
             sb.AppendLine("    { 0, (CommandFunction)NULL, NULL}");
 
@@ -197,7 +138,7 @@ namespace SceneMaster.Export
         {
             string destinationFilename = StringUtils.EnsureTrailingSlash(destinationFolder) + sceneName + ".c";
 
-            var gameObjects = scene.GameObjects.OrderBy(g => g.X);
+            var editorObjects = scene.EditorObjects.OrderBy(g => g.X);
 
             var sb = new StringBuilder();
 
@@ -212,10 +153,10 @@ namespace SceneMaster.Export
             sb.AppendLine();
 
             // export exportedCommandDatas
-            var exportedCommandDatas = BuildExportCommandDatas(gameObjects, sceneName);
+            var exportedCommandDatas = BuildExportCommandDatas(editorObjects, sceneName);
             ExportCommandDatas(sb, exportedCommandDatas, sceneName);
 
-            ExportCommands(sb, scene, gameObjects, sceneName, exportedCommandDatas);
+            ExportCommands(sb, scene, editorObjects, sceneName, exportedCommandDatas);
 
             sb.AppendLine("const Scene " + sceneName + " = ");
             sb.AppendLine("{");

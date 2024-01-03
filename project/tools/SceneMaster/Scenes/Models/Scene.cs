@@ -1,6 +1,8 @@
 ﻿
 using CommunityToolkit.Mvvm.ComponentModel;
-using SceneMaster.GameObjectTemplates.Models;
+using SceneMaster.EditorObjectLibrary.Models;
+using SceneMaster.EditorObjectLibrary.ViewModels;
+using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
@@ -20,12 +22,11 @@ namespace SceneMaster.Scenes.Models
     {
         BitmapImage m_defaultImage;
 
-        private ObservableCollection<GameObject> m_gameObjects = new ObservableCollection<GameObject>();
-        public ObservableCollection<GameObject> GameObjects { get => m_gameObjects; }
+        private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
+        public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
 
         private const string TiledMapFilePathNodeName = "TiledMapFilePath";
-        private const string GameObjectsNodeName = "GameObjects";
-        private const string GameObjectNodeName = "GameObject";
+        private const string EditorObjectsNodeName = "EditorObjects";
 
         private string m_tiledMapFilePath = "";
         public string TiledMapFilePath
@@ -99,7 +100,7 @@ namespace SceneMaster.Scenes.Models
             LoadTiledMap(tiledMapFilePath);
         }
 
-        public bool Load(string filePath, GameObjectTemplateLibrary gameObjectTemplateLibrary)
+        public bool Load(string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
 
@@ -110,11 +111,12 @@ namespace SceneMaster.Scenes.Models
                 LoadTiledMap(TiledMapFilePath);
             }
 
-            var gameObjectsNode = root[GameObjectsNodeName];
-            if (gameObjectsNode != null)
+            var editorObjectsNode = root[EditorObjectsNodeName];
+            if (editorObjectsNode != null)
             {
-                foreach (var gameObjectNode in gameObjectsNode.ChildNodes.OfType<XmlElement>())
+                foreach (var editorObjectNode in editorObjectsNode.ChildNodes.OfType<XmlElement>())
                 {
+                /*
                     var gameObject = new GameObject();
 
                     gameObject.X = XmlUtils.GetValue<double>(gameObjectNode, nameof(GameObject.X));
@@ -132,7 +134,8 @@ namespace SceneMaster.Scenes.Models
                         gameObject.GameObjectTemplate = gameObjectTemplateLibrary.DefaultGameObjectTemplate;
                     }
 
-                    GameObjects.Add(gameObject);
+                    EditorObjects.Add(gameObject);
+                    */
                 }
             }
 
@@ -153,17 +156,13 @@ namespace SceneMaster.Scenes.Models
             root.AppendChild(ggFilePathNode);
 
             // gameobjects
-            var gameObjectsNode = doc.CreateElement(GameObjectsNodeName);
-            root.AppendChild(gameObjectsNode);
+            var editorObjectsNode = doc.CreateElement(EditorObjectsNodeName);
+            root.AppendChild(editorObjectsNode);
 
-            foreach (var gameObject in GameObjects)
+            foreach (var editorObject in EditorObjects)
             {
-                var gameObjectNode = doc.CreateElement(GameObjectNodeName);
-                gameObjectsNode.AppendChild(gameObjectNode);
-
-                gameObjectNode.SetAttribute(nameof(GameObject.X), gameObject.X.ToString());
-                gameObjectNode.SetAttribute(nameof(GameObject.Y), gameObject.Y.ToString());
-                gameObjectNode.SetAttribute(nameof(GameObject.GameObjectTemplateName), gameObject.GameObjectTemplateName);
+                var editorObjectNode = editorObject.ExportToXml(doc);
+                editorObjectsNode.AppendChild(editorObjectNode);
             }
 
             // Save
@@ -291,18 +290,14 @@ namespace SceneMaster.Scenes.Models
                                         0);
         }
 
-        internal GameObject CreateGameObject(int x, int y, GameObjectTemplate gameObjectTemplate)
+        internal EditorObject CreateEditorObject(int x, int y, EditorObjectInfo editorObjectInfo)
         {
-            var gameObject = new GameObject();
-            gameObject.X = x;
-            gameObject.Y = y;
-            gameObject.GameObjectTemplateName = gameObjectTemplate.Name;
-            gameObject.GameObjectTemplate = gameObjectTemplate;
-            GameObjects.Add(gameObject);
+            var editorObject = editorObjectInfo.CreateEditorObject(x, y);
 
-            OnPropertyChanged(nameof(GameObjects));
+            EditorObjects.Add(editorObject);
+            OnPropertyChanged(nameof(EditorObjects));
 
-            return gameObject;
+            return editorObject;
         }
     }
 }

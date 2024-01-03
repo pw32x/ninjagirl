@@ -1,7 +1,6 @@
 <GameObjectTemplate >
 	<Name value="Walker (Small)"/>
 	<EditorProperties>
-		<EditorObjectType value="GameObject"/>
 		<Visual>
 			<GraphicsGale filename="..\animations\standard\walker_small.gal" framenumber="1"/>
 		</Visual>

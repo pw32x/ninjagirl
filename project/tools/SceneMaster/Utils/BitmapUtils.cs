@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using System.Drawing.Imaging;
+using System.Drawing;
 
 namespace SceneMaster.Utils
 {
@@ -40,6 +42,25 @@ namespace SceneMaster.Utils
             }
 
             return bitmapImage;
+        }
+
+        public static BitmapImage ConvertBitmapToBitmapImage(Bitmap bitmap)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                // Save the bitmap to the memory stream in PNG format
+                bitmap.Save(memoryStream, ImageFormat.Png);
+                memoryStream.Position = 0;
+
+                // Create a BitmapImage and set its stream source to the memory stream
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = memoryStream;
+                bitmapImage.EndInit();
+
+                return bitmapImage;
+            }
         }
 
         public static BitmapImage LoadBitmapImage(string imagePath)

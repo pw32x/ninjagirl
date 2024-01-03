@@ -1,15 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.Win32;
 using SceneMaster.Documents.ViewModels;
+using SceneMaster.EditorObjectLibrary.ViewModels;
+using SceneMaster.Export;
 using System;
 using System.IO;
 using System.Windows;
-using System.Windows.Input;
-using SceneMaster.GameObjectTemplates.Models;
-using SceneMaster.GameObjectTemplates.ViewModels;
-using SceneMaster.Export;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace SceneMaster.Main.ViewModels
 {
@@ -18,7 +16,7 @@ namespace SceneMaster.Main.ViewModels
         public string Title => "Scene Master";
 
         public Settings Settings { get; } = new();
-        private GameObjectTemplateLibraryViewModel GameObjectTemplateLibraryViewModel { get; } = new();
+        private EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; } = new();
 
         private SceneMasterDocument m_currentDocument;
 
@@ -37,7 +35,7 @@ namespace SceneMaster.Main.ViewModels
             var dllDirectory = baseDirectory + @"thirdparty\GraphicsGale"; // ensures galefile.dll gets loaded.
             Environment.SetEnvironmentVariable("PATH", Environment.GetEnvironmentVariable("PATH") + ";" + dllDirectory);
 
-            GameObjectTemplateLibraryViewModel.GameObjectTemplateLibrary.Load(Settings.GameObjectTemplatesDirectory);
+            EditorObjectLibraryViewModel.LoadLibraries(Settings);
 
             bool openedScene = false;
             if (Settings.ReloadLastScene && 
@@ -77,7 +75,7 @@ namespace SceneMaster.Main.ViewModels
         private void NewHelper()
         {
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+            CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
             
             Settings.LastLoadedSceneFilename = "";
         }
@@ -93,13 +91,13 @@ namespace SceneMaster.Main.ViewModels
         private bool OpenHelper(string filePath)
         {
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+            CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
 
             if (!CurrentDocument.Load(filePath))
             {
                 System.Windows.MessageBox.Show($"Loading {filePath} failed.");
                 CurrentDocument?.Dispose();
-                CurrentDocument = new SceneMasterDocument(GameObjectTemplateLibraryViewModel);
+                CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
                 Settings.LastLoadedSceneFilename = "";
                 return false;
             }

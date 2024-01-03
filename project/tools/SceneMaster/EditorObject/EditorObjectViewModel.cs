@@ -1,14 +1,15 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using SceneMaster.Scenes.Models;
+using SceneMaster.EditorObjects.Models;
+using SceneMaster.Scenes.ViewModels;
 
-namespace SceneMaster.Scenes.ViewModels
+namespace SceneMaster.EditorObjects.ViewModels
 {
-    public class GameObjectViewModel : ObservableObject
+    public class EditorObjectViewModel : ObservableObject
     {
-        public GameObjectViewModel(GameObject gameObject,
-                                   SceneViewModel sceneViewModel)
+        public EditorObjectViewModel(EditorObject editorObject,
+                                     SceneViewModel sceneViewModel)
         {
-            GameObject = gameObject;
+            EditorObject = editorObject;
             SceneViewModel = sceneViewModel;
         }
 
@@ -24,10 +25,10 @@ namespace SceneMaster.Scenes.ViewModels
 
         public double X
         {
-            get => GameObject.X;
+            get => EditorObject.X;
             set
             {
-                GameObject.X = value;
+                EditorObject.X = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedX));
             }
@@ -35,22 +36,22 @@ namespace SceneMaster.Scenes.ViewModels
 
         public double Y
         {
-            get => GameObject.Y;
+            get => EditorObject.Y;
             set
             {
-                GameObject.Y = value;
+                EditorObject.Y = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(SnappedY));
             }
         }
 
-        public double SnappedX { get => (int)GameObject.X; }
-        public double SnappedY { get => (int)GameObject.Y; }
+        public double SnappedX { get => (int)EditorObject.X; }
+        public double SnappedY { get => (int)EditorObject.Y; }
 
-        public double Width { get => GameObject.GameObjectTemplate.Visual.Width; }
-        public double Height { get => GameObject.GameObjectTemplate.Visual.Height; }
+        public double Width { get => EditorObject.EditorObjectInfo.Visual.Width; }
+        public double Height { get => EditorObject.EditorObjectInfo.Visual.Height; }
 
-        public GameObject GameObject { get; set; }
+        public EditorObject EditorObject { get; set; }
 
         public SceneViewModel SceneViewModel { get; internal set; }
 

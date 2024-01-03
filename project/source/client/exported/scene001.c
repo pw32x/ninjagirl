@@ -79,8 +79,8 @@ Command scene001_commands[] =
 	
 	{ 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene001_createInfoBootstrapper },
 	//{ 0, (CommandFunction)PSGPlay, song_psg },
-	{ 0, (CommandFunction)SMS_loadBGPalette, globalPalette },
-	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPalette },
+	{ 0, (CommandFunction)SMS_loadBGPalette, globalPaletteOld },
+	{ 0, (CommandFunction)SMS_loadSpritePalette, globalPaletteOld },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo },
 	{ 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams },
 	{ 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
