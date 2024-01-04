@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.ViewModels;
+using System.ComponentModel;
 
 namespace SceneMaster.EditorObjects.ViewModels
 {
@@ -51,11 +52,18 @@ namespace SceneMaster.EditorObjects.ViewModels
         public double Width { get => EditorObject.EditorObjectInfo.Visual.Width; }
         public double Height { get => EditorObject.EditorObjectInfo.Visual.Height; }
 
+        [DisplayName("Editor Object Type")]
+        public string EditorObjectTypeName => EditorObject.EditorObjectType.ToString();
+
+        [System.ComponentModel.Browsable(false)]
         public EditorObject EditorObject { get; set; }
 
+        [System.ComponentModel.Browsable(false)]
         public SceneViewModel SceneViewModel { get; internal set; }
 
         private bool m_isSelected = false;
+
+        [System.ComponentModel.Browsable(false)]
         public bool IsSelected
         {
             get => m_isSelected;

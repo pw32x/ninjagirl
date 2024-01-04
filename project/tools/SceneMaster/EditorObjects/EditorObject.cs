@@ -17,7 +17,6 @@ namespace SceneMaster.EditorObjects.Models
 
     abstract public class EditorObject
     {
-
         public EditorObject(double x, 
                             double y, 
                             string name, 

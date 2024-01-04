@@ -252,7 +252,8 @@ namespace SceneMaster.Main.ViewModels
 
             SceneExporter.ExportScene(CurrentDocument.SceneViewModel.Scene, 
                                       sceneName,
-                                      dialog.SelectedPath);
+                                      dialog.SelectedPath,
+                                      EditorObjectLibraryViewModel.CommandLibrary);
         }
     }
 }

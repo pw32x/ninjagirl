@@ -75,38 +75,46 @@ Todo
 			SetTilesetProperties
 			GameObject
 			
-			
-		don't reference object create functions directly in the command list
-			
-			
-			
-			
-			
-		how to add Command runner object?
-		how to add background
-		how to set MapManager_SetTilesetProperties_Command?
-		how to set the RightScroller_Create parameter?
-
-
-		use objectmanager to create effects with templates and not the create effect function directly
-
+		DONE add command runner
+			template				
 		
-		add command runner
-			template
-				
-		
-		add palettes
-			template
-
-		when exporting a level, track which tileset uses resources for their tilset function
+		DONE add palettes
+			NO template
 			
-		where/how to set palettes in a level?
+		DONE where/how to set palettes in a level?
 		
-		export scenes functoin
+		DONE export scenes functoin
 			export templates
 				per template
 					#include "resource_infos.h"
 			export scenes
+			
+			
+		DONE how to add Command runner object?
+
+		DONE use objectmanager to create effects with templates and not the create effect function directly
+				
+		how to export reference to background/set a map
+		
+		how to export MapManager_SetTilesetProperties_Command?
+		
+		how to set the RightScroller_Create parameter?
+			
+
+		setting the command data of exported command 
+			
+			better discoverability of resources in the client so that it's easier to
+			populate a resource library in SceneMaster
+
+			list objects in the scene
+			list all the availble resources
+				improve tagging of resources to make them easier to parse
+			change the resource property of command functions
+			export the resource to command functions
+
+				
+		when exporting a level, track which tileset uses resources for their tilset function
+			
 			
 		a level is
 			the list of resources to load

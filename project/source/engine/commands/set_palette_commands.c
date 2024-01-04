@@ -1,7 +1,5 @@
-#include "engine/resource_types.h"
-#include "engine/palette_types.h"
+#include "set_palette_commands.h"
 
-#include "SMSLib.h"
 
 // [COMMAND "Set Background Palette" PALETTE_RESOURCE_TYPE]
 void SetBackgroundPalette(const PaletteResource* palette)

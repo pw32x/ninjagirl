@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:SceneMaster.Scenes.Views"
              xmlns:viewmodels="clr-namespace:SceneMaster.Scenes.ViewModels" 
-             xmlns:eoiviews="clr-namespace:SceneMaster.EditorObjectLibrary.Views"
+             xmlns:eoiviews="clr-namespace:SceneMaster.EditorObjectLibrary.Views" xmlns:views="clr-namespace:SceneMaster.EditorObjects.Views"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance viewmodels:SceneViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -16,8 +16,14 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!--<Button Command="{Binding ModifyDocumentCommand}" Width="60" Height="20"/>-->
-        <eoiviews:EditorObjectInfoLibraryView DataContext="{Binding EditorObjectLibraryViewModel}" 
-                                              Grid.Column="0"/>
+        <TabControl Grid.Column="0">
+            <TabItem Header="Templates">
+                <eoiviews:EditorObjectInfoLibraryView DataContext="{Binding EditorObjectLibraryViewModel}" />
+            </TabItem>
+            <TabItem Header="Editor Objects" >
+                <views:EditorObjectsView DataContext="{Binding SceneViewModel}"/>
+            </TabItem>
+        </TabControl>
         <GridSplitter Grid.Column="1" 
                       Width="5" 
                       HorizontalAlignment="Left"

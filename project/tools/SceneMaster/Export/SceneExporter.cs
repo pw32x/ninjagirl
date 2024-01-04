@@ -1,6 +1,8 @@
-﻿using SceneMaster.EditorObjects.Models;
+﻿using SceneMaster.Commands.Models;
+using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,10 +14,11 @@ namespace SceneMaster.Export
     {
         public static void ExportScene(Scene scene, 
                                        string sceneName, 
-                                       string destinationFolder)
+                                       string destinationFolder,
+                                       CommandLibrary commandLibrary)
         {
             ExportHeader(scene, sceneName, destinationFolder);
-            ExportSource(scene, sceneName, destinationFolder);
+            ExportSource(scene, sceneName, destinationFolder, commandLibrary);
         }
 
         private static void ExportHeader(Scene scene, string sceneName, string destinationFolder)
@@ -47,6 +50,10 @@ namespace SceneMaster.Export
             foreach (var editorObject in editorObjects)
             {
                 var exportedCommandData = editorObject.BuildExportCommandData(sceneName, exportCounter);
+
+                if (exportedCommandData == null)
+                    continue;
+
                 exportCounter++;
 
                 exportedCommandDatas.Add(editorObject, exportedCommandData);
@@ -134,7 +141,27 @@ namespace SceneMaster.Export
             sb.AppendLine();
         }
 
-        private static void ExportSource(Scene scene, string sceneName, string destinationFolder)
+        private static void ExportCommandHeaders(StringBuilder sb, CommandLibrary commandLibrary)
+        {
+            var headers = new HashSet<string>();
+
+            foreach (var commandInfo in commandLibrary.CommandInfos.Values)
+            {
+                headers.Add(commandInfo.Filename);
+            }
+
+            foreach (var header in headers)
+            {
+                sb.AppendLine("#include \"" + header + "\"");
+            }
+
+            sb.AppendLine();
+        }
+
+        private static void ExportSource(Scene scene, 
+                                         string sceneName, 
+                                         string destinationFolder,
+                                         CommandLibrary commandLibrary)
         {
             string destinationFilename = StringUtils.EnsureTrailingSlash(destinationFolder) + sceneName + ".c";
 
@@ -144,13 +171,15 @@ namespace SceneMaster.Export
 
             sb.AppendLine("#include \"" + sceneName + ".h\"");
             sb.AppendLine("#include \"client\\generated\\gameobjecttemplates\\gameobject_templates.h\"");
+            sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
 
             sb.AppendLine("#include \"engine\\object_manager.h\"");
             sb.AppendLine("#include \"engine\\resource_manager.h\"");
-            sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
             sb.AppendLine("#include \"engine\\commandrunner_runall.h\"");
             sb.AppendLine();
+
+            ExportCommandHeaders(sb, commandLibrary);
 
             // export exportedCommandDatas
             var exportedCommandDatas = BuildExportCommandDatas(editorObjects, sceneName);

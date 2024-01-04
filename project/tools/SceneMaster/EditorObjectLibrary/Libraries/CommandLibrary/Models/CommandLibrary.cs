@@ -27,27 +27,34 @@ namespace SceneMaster.Commands.Models
         {
             m_commandsSourceDirectory = commandsSourceDirectory;
 
-            var files = Directory.GetFiles(m_commandsSourceDirectory, "*.*", SearchOption.AllDirectories)
-                                           .Where(s => s.EndsWith(".c", StringComparison.OrdinalIgnoreCase) ||
-                                                  s.EndsWith(".h", StringComparison.OrdinalIgnoreCase));
+            var filenames = Directory.GetFiles(m_commandsSourceDirectory, "*.*", SearchOption.AllDirectories)
+                                           .Where(s => s.EndsWith(".h", StringComparison.OrdinalIgnoreCase));
 
 
-            foreach (var file in files)
+            foreach (var filename in filenames)
             {
-                FindCommands(file);
+                FindCommands(filename);
             }
 
             // build bitmaps for each command
             BuildCommandImages();
         }
 
-        private void FindCommands(string file)
+        private void FindCommands(string filename)
         {
-            string contents = File.ReadAllText(file);
+            string contents = File.ReadAllText(filename);
             string pattern = @"\[COMMAND\s+""([^""]+)""\s+(\w+)?\]";
 
             // Use Regex.Match to find the first match
             Match match = Regex.Match(contents, pattern);
+
+            string prettyFilename = "";
+
+            int engineIndex = filename.IndexOf("engine");
+            if (engineIndex != -1)
+            {
+                prettyFilename = filename.Substring(engineIndex);
+            }
 
             // Loop through all matches
             while (match.Success)
@@ -57,7 +64,8 @@ namespace SceneMaster.Commands.Models
                 string parameterTypeName = match.Groups[2].Value;
 
                 var commandInfo = new CommandInfo() { Name = description,
-                                                      ParameterTypeName = parameterTypeName };
+                                                      ParameterTypeName = parameterTypeName,
+                                                      Filename = prettyFilename };
 
                 if (string.IsNullOrEmpty(description) ||
                     string.IsNullOrEmpty(parameterTypeName))

@@ -1,14 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using SceneMaster.Commands.Models;
 using SceneMaster.EditorObjectLibrary.ViewModels;
+using SceneMaster.EditorObjects.CommandLibrary.ViewModels;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.EditorObjects.ViewModels;
+using SceneMaster.GameObjectTemplates.Models;
+using SceneMaster.GameObjectTemplates.ViewModels;
 using SceneMaster.Scenes.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
-using System.Xml.Linq;
 
 namespace SceneMaster.Scenes.ViewModels
 {
@@ -70,8 +73,7 @@ namespace SceneMaster.Scenes.ViewModels
 
             foreach (var editorObject in Scene.EditorObjects)
             {
-                var editorObjectViewModel = new EditorObjectViewModel(editorObject, this);
-                editorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                var editorObjectViewModel = CreateEditorObjectViewModel(editorObject);
                 EditorObjectViewModels.Add(editorObjectViewModel);
             }
 
@@ -138,8 +140,7 @@ namespace SceneMaster.Scenes.ViewModels
             {
                 foreach (var newEditorObject in e.NewItems.OfType<EditorObject>())
                 {
-                    var newEditorObjectViewModel = new EditorObjectViewModel(newEditorObject, this);
-                    newEditorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+                    var newEditorObjectViewModel = CreateEditorObjectViewModel(newEditorObject);
                     EditorObjectViewModels.Add(newEditorObjectViewModel);
                 }
             }
@@ -151,6 +152,23 @@ namespace SceneMaster.Scenes.ViewModels
                     DeleteEditorObjectViewModel(editorObjectToDelete);
                 }
             }
+        }
+
+        private EditorObjectViewModel CreateEditorObjectViewModel(EditorObject newEditorObject)
+        {
+            EditorObjectViewModel newEditorObjectViewModel = null;
+
+            if (newEditorObject is CommandObject commandObject)
+            {
+                newEditorObjectViewModel = new CommandObjectViewModel(commandObject, this);
+            }
+            else if (newEditorObject is GameObject gameObject)
+            {
+                newEditorObjectViewModel = new GameObjectViewModel(gameObject, this);
+            }
+
+            newEditorObjectViewModel.PropertyChanged += Scene_PropertyChanged;
+            return newEditorObjectViewModel;
         }
 
         internal void Load(string filePath)

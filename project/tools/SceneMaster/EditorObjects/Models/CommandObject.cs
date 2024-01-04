@@ -14,6 +14,9 @@ namespace SceneMaster.Commands.Models
         {
         }
 
+        public string m_commandValue = "";
+        public string CommandValue { get => m_commandValue; set => m_commandValue = value; }
+
         public string CommandName => CommandInfo.Name;
         public CommandInfo CommandInfo => EditorObjectInfo as CommandInfo;
 
@@ -36,7 +39,10 @@ namespace SceneMaster.Commands.Models
 
         internal override string BuildSceneCommand(ExportedCommandData exportedCommandData)
         {
-            throw new System.NotImplementedException();
+            // clamp to 0
+            int x = (int)(X < 0 ? 0 : X);
+
+            return "{ " + x + ", (CommandFunction)" + CommandInfo.Name.Replace(" ", "") + ", " + CommandValue + " },";
         }
 
 

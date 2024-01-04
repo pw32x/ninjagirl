@@ -28,4 +28,9 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EditorObjectLibrary\Libraries\CommandLibrary\ViewModels\" />
+    <Folder Include="EditorObjectLibrary\Libraries\GameObjectTemplateLibrary\ViewModels\" />
+  </ItemGroup>
+
 </Project>

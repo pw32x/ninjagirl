@@ -103,7 +103,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                 }
             }
 
-            return x + ", (CommandFunction)" + exportedCommandData.CommandToUse + ", " + finalExportedCommandData + " },";
+            return "{ " + x + ", (CommandFunction)" + exportedCommandData.CommandToUse + ", " + finalExportedCommandData + " },";
         }
 
         internal override XmlElement ExportToXml(XmlDocument doc)
