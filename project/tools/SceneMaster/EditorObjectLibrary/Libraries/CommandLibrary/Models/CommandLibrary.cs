@@ -1,15 +1,13 @@
-﻿using System;
+﻿using SceneMaster.EditorObjectLibrary.Interfaces;
+using SceneMaster.Utils;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Windows.Documents;
-using SceneMaster.Utils;
-using SceneMaster.EditorObjectLibrary.Interfaces;
-using SceneMaster.GameObjectTemplates.Models;
 
 namespace SceneMaster.Commands.Models
 {
@@ -50,10 +48,15 @@ namespace SceneMaster.Commands.Models
 
             string prettyFilename = "";
 
-            int engineIndex = filename.IndexOf("engine");
-            if (engineIndex != -1)
+            int index = filename.IndexOf("engine");
+            if (index != -1)
             {
-                prettyFilename = filename.Substring(engineIndex);
+                prettyFilename = filename.Substring(index);
+            }
+            else
+            {
+                index = filename.IndexOf("client");
+                prettyFilename = filename.Substring(index);
             }
 
             // Loop through all matches

@@ -19,7 +19,7 @@ namespace SceneMaster.Main
         private string m_gameObjectTemplatesDirectory = "..\\..\\..\\..\\..\\gamedata\\gameobjecttemplates";
         public string GameObjectTemplatesDirectory { get => m_gameObjectTemplatesDirectory; set => SetProperty(ref m_gameObjectTemplatesDirectory, value); }
 
-        private string m_commandsSourceDirectory = "..\\..\\..\\..\\..\\source\\engine";
+        private string m_commandsSourceDirectory = "..\\..\\..\\..\\..\\source";
         public string CommandsSourceDirectory { get => m_commandsSourceDirectory; set => SetProperty(ref m_commandsSourceDirectory, value); }
 
         public void Load()

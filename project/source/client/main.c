@@ -13,9 +13,9 @@
 // levels
 //#include "exported/level001.h"
 #include "exported/scene001.h"
-#include "exported/scene002.h"
+#include "exported/scene003.h"
 	
-#define SCENE_TO_RUN scene002
+#define SCENE_TO_RUN scene003
 
 void PSGUpdate(void)
 {
