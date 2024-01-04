@@ -28,6 +28,8 @@ namespace SceneMaster.Commands.Models
             if (!commandLibrary.CommandInfos.TryGetValue(commandInfoName, out var commandInfo))
                 throw new System.Exception("No command info for \" " + commandInfoName + " found.");
 
+            CommandValue = XmlUtils.GetValue<string>(commandObjectNode, nameof(CommandValue));
+
             EditorObjectInfo = commandInfo;
         }
 
@@ -50,6 +52,7 @@ namespace SceneMaster.Commands.Models
         {
             var newNode = base.ExportToXml(doc);
             newNode.SetAttribute(nameof(CommandInfo.Name), CommandInfo.Name);
+            newNode.SetAttribute(nameof(CommandValue), CommandValue);
             return newNode;
         }
     }
