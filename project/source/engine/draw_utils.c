@@ -10,6 +10,8 @@ u8 DrawUtils_vdpTileIndex;
 s16 DrawUtils_screenX;
 s16 DrawUtils_screenY;
 
+u8 DrawUtils_spritesDrawn;
+
 #define MAXSPRITES      64
 
 void DrawUtils_addSprite(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 

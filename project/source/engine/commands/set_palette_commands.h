@@ -1,12 +1,13 @@
 #ifndef SET_PALETTE_COMMANDS_INCLUDE_H
 #define SET_PALETTE_COMMANDS_INCLUDE_H
 
-#include "engine/palette_types.h"
+#include "engine/resource_types.h"
+
 
 // [COMMAND "Set Background Palette" PALETTE_RESOURCE_TYPE]
-void SetBackgroundPalette(const PaletteResource* palette);
+void SetBackgroundPalette(const ResourceInfo* resourceInfo);
 
 // [COMMAND "Set Sprite Palette " PALETTE_RESOURCE_TYPE]
-void SetSpritePalette(const PaletteResource* palette);
+void SetSpritePalette(const ResourceInfo* resourceInfo);
 
 #endif

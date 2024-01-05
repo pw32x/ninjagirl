@@ -89,6 +89,7 @@
 
 	<SourceSet>
 		<Source path = "source/engine"/>
+		<Source path = "source/engine/commands"/>
 	</SourceSet>
 
 
