@@ -17,6 +17,9 @@ namespace SceneMaster.Commands.Models
         public string m_commandValue = "";
         public string CommandValue { get => m_commandValue; set => m_commandValue = value; }
 
+        public string m_preCommandData = ""; // declares a struct or anything before the list of commands in the exported scene
+        public string PreCommandData { get => m_preCommandData; set => m_preCommandData = value; }
+
         public string CommandName => CommandInfo.Name;
         public CommandInfo CommandInfo => EditorObjectInfo as CommandInfo;
 
@@ -26,9 +29,10 @@ namespace SceneMaster.Commands.Models
             string commandInfoName = XmlUtils.GetValue<string>(commandObjectNode, nameof(CommandInfo.Name));
 
             if (!commandLibrary.CommandInfos.TryGetValue(commandInfoName, out var commandInfo))
-                throw new System.Exception("No command info for \" " + commandInfoName + " found.");
+                throw new System.Exception("No command info for \"" + commandInfoName + " found.");
 
             CommandValue = XmlUtils.GetValue<string>(commandObjectNode, nameof(CommandValue));
+            PreCommandData = XmlUtils.GetValue<string>(commandObjectNode, nameof(PreCommandData));
 
             EditorObjectInfo = commandInfo;
         }
@@ -53,6 +57,7 @@ namespace SceneMaster.Commands.Models
             var newNode = base.ExportToXml(doc);
             newNode.SetAttribute(nameof(CommandInfo.Name), CommandInfo.Name);
             newNode.SetAttribute(nameof(CommandValue), CommandValue);
+            newNode.SetAttribute(nameof(PreCommandData), PreCommandData);
             return newNode;
         }
     }

@@ -66,14 +66,30 @@ namespace SceneMaster.Commands.Models
                 string description = match.Groups[1].Value;
                 string parameterTypeName = match.Groups[2].Value;
 
+                bool failedToLoad = false;
+
+                if (string.IsNullOrEmpty(description))
+                {
+                    description = "";
+                    failedToLoad = true;
+                }
+
+                if (string.IsNullOrEmpty(parameterTypeName))
+                {
+                    parameterTypeName = "";
+                    failedToLoad = true;
+                }
+
+                description = description.Trim();
+                parameterTypeName = parameterTypeName.Trim();
+
                 var commandInfo = new CommandInfo() { Name = description,
                                                       ParameterTypeName = parameterTypeName,
                                                       Filename = prettyFilename };
 
-                if (string.IsNullOrEmpty(description) ||
-                    string.IsNullOrEmpty(parameterTypeName))
+                if (failedToLoad)
                 {
-                    FailedCommandInfos.Add(description,commandInfo);
+                    FailedCommandInfos.Add(description, commandInfo);
                 }
                 else
                 {

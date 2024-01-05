@@ -1,6 +1,7 @@
 ﻿using SceneMaster.Commands.Models;
 using SceneMaster.EditorObjects.ViewModels;
 using SceneMaster.Scenes.ViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace SceneMaster.EditorObjects.CommandLibrary.ViewModels
 {
@@ -17,6 +18,17 @@ namespace SceneMaster.EditorObjects.CommandLibrary.ViewModels
             {
                 (EditorObject as CommandObject).CommandValue = value;
                 OnPropertyChanged(nameof(CommandValue));
+            }
+        }
+
+        [DataType(DataType.MultilineText)]
+        public string PreCommandData
+        { 
+            get => (EditorObject as CommandObject).PreCommandData;
+            set 
+            {
+                (EditorObject as CommandObject).PreCommandData = value;
+                OnPropertyChanged(nameof(PreCommandData));
             }
         }
     }

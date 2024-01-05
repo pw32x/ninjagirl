@@ -1,4 +1,5 @@
 ﻿using SceneMaster.Commands.Models;
+using SceneMaster.EditorObjects.CommandLibrary.ViewModels;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
@@ -185,6 +186,8 @@ namespace SceneMaster.Export
             var exportedCommandDatas = BuildExportCommandDatas(editorObjects, sceneName);
             ExportCommandDatas(sb, exportedCommandDatas, sceneName);
 
+            ExportPreCommandData(sb, editorObjects.OfType<CommandObject>());
+
             ExportCommands(sb, scene, editorObjects, sceneName, exportedCommandDatas);
 
             sb.AppendLine("const Scene " + sceneName + " = ");
@@ -195,7 +198,16 @@ namespace SceneMaster.Export
             File.WriteAllText(destinationFilename, sb.ToString());
         }
 
+        private static void ExportPreCommandData(StringBuilder sb, IEnumerable<CommandObject> commandObjectViewModels)
+        {
+            foreach (var commandObjectViewModel in commandObjectViewModels) 
+            {
+                if (string.IsNullOrEmpty(commandObjectViewModel.PreCommandData))
+                    continue;
 
-
+                sb.AppendLine(commandObjectViewModel.PreCommandData);
+                sb.AppendLine();
+            }
+        }
     }
 }

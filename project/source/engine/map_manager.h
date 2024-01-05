@@ -34,6 +34,8 @@ typedef struct
 	const GameObjectTemplate* gameObjectTemplate;
 } SetTilesetProperties_Params;
 
+
+// [COMMAND "MapManager_SetTilesetProperties_Command" SetTilesetProperties_Params]
 void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params);
 
 #endif

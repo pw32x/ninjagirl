@@ -2,9 +2,9 @@ Todo
 
 		DONE how to init background scrolling
 		
-		how to export MapManager_SetTilesetProperties_Command?
+		DONE how to export MapManager_SetTilesetProperties_Command?
 		
-		how to set the RightScroller_Create parameter?
+		DONE how to set the RightScroller_Create parameter?
 			
 		load kunai, effects, etc resources
 
