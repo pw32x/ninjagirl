@@ -3,7 +3,6 @@
 
 #include "smslib.h"
 
-// [COMMAND "Set Background Palette" PALETTE_RESOURCE_TYPE]
 void SetBackgroundPalette(const ResourceInfo* resourceInfo)
 {
 	if (resourceInfo->bankNumber != 0)
@@ -13,7 +12,6 @@ void SetBackgroundPalette(const ResourceInfo* resourceInfo)
 	SMS_loadBGPalette(palette->palette);
 }
 
-// [COMMAND "Set Sprite Palette " PALETTE_RESOURCE_TYPE]
 void SetSpritePalette(const ResourceInfo* resourceInfo)
 {
 	if (resourceInfo->bankNumber != 0)

@@ -7,7 +7,7 @@
 // [COMMAND "Set Background Palette" PALETTE_RESOURCE_TYPE]
 void SetBackgroundPalette(const ResourceInfo* resourceInfo);
 
-// [COMMAND "Set Sprite Palette " PALETTE_RESOURCE_TYPE]
+// [COMMAND "Set Sprite Palette" PALETTE_RESOURCE_TYPE]
 void SetSpritePalette(const ResourceInfo* resourceInfo);
 
 #endif
