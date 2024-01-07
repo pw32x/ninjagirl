@@ -1,6 +1,26 @@
 	
 Completed
 
+		DONE how to init background scrolling
+		
+		DONE how to export MapManager_SetTilesetProperties_Command?
+		
+		DONE how to set the RightScroller_Create parameter?
+			
+		DONE load kunai, effects, etc resources
+
+					
+		DONE display list of placed objects
+			
+	SceneMaster
+	
+		DONE templates decide which resources to export and build	
+	
+		options
+			DONE automatically reload last file
+			DONE enemy template location
+			DONE last save map location
+
 Scene Master
 		
 		DONE create object templates

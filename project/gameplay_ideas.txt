@@ -1,0 +1,64 @@
+
+Gameplay
+
+	climbing walls?
+
+	hybrid sprite/tile animations
+
+	thingie that contains items
+		lamp?
+		balloon?
+		enemy?
+		
+	hidden items
+		trigger bounding box
+		when hit enough
+		call setVisbielTrue() on hidden item
+		
+	boss drops
+		upgrade items 
+		coins
+		
+		choose one
+
+	hearts
+	
+	coins
+	
+ press attack button near enough to an enemy, do a slash attack
+	
+
+Game Design Ideas	
+	
+	enemy types
+		popcorn
+		flying
+		running
+		bouncing
+		peek-a-boo
+		coming out of holes
+		throwing/shooting from afar
+		
+	upgrades
+		double jump
+		slide
+		familiar (doubles shooting shurikens)
+	
+	boss
+	
+effects
+
+	rain	
+
+ideas
+
+	double jump
+	slide (with invincibility frames)
+	shoot up
+	shoot eight directions
+	option/familiar
+	stronger projectiles
+	health upgrade
+	extra kunai (start with two, get a third one)
+	hold to float down
+	wall running. ubisoft prince of persia style, or run up walls Mario World style.

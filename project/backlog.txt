@@ -1,67 +1,67 @@
+SpriteMaster
 
-	SpriteMaster C#
-			
-		Import Graphics Gale File
-		
-		add a file change watch on the gale file
-			if changed, 
-				ask to 
-					reload gal file
-					save sm file?
-						the frame infos will have changed
-							create ones that are missing
-							delete the ones that are too much
-							
-		origin/offset
-		
-		get and store the hash of the gale file
-		
-		Display one GG frame
-		
-		Display GG frames 
-		
-		choose split type
-		
-		export button
-		
-		export command line mode
-			how to not display a window when run?
-			
+	be more agressive with sprite reduction during conversion
+		there are a lot of duplicate sprites or sequences that I don't deduplicate
 
-		completely new GUI application for splitting sprites
+	add option to gg2c to slice sprite in 16 pixel high rows starting from y = 0
+
+
+Build Master 
+	
+		if the config file is newer
+		how to update assets if the bank changed?
+		how to tell what files the exporter created?\
+			look at the destination folder. listen for new files.
+
+	backup action? 
+		back up of whole project folder into zip file
 		
-			SpriteMaster
-			every gal file will have a corresponding .sm file
-			gui mode and command line mode
+		copy backup locations	
+
+
+SceneMaster
+		editing modes
+			selection
+			add
+		show template with pointer
+		option to snap to grid	
+	
+		setting the command data of exported command 
 			
-			8x8 or 8x16 tiles
-			
-			multiple inputs
-				.gal importer
+			better discoverability of resources in the client so that it's easier to
+			populate a resource library in SceneMaster
+
+			list objects in the scene
+			list all the availble resources
+				improve tagging of resources to make them easier to parse
+			change the resource property of command functions
+			export the resource to command functions
+
 				
+		when exporting a level, track which tileset uses resources for their tilset function
+			
+			
+		a level is
+			the list of resources to load
+				map
+				map tilesets
+				animations
+				tile functions
+				palettes
+			the list of objects in a level, sorted by increasing x
+				or depending on the type of scroller object
+					increasing x
+					decreasing x
+					increasing y
+					decreasing y
+					timer-based	
+	
 
-			choose multiple split styles
-			choose split style per frame
-			display how the sprite will be split
-			show the results
 
-			show animations
-			choose animations
-			play animations
 
-			object placement tool
-				SceneMaster
-
-			show results in different tabs
-				imported
-				converted to 8x16 sprites
-				the Tilemap
-				
-			file format
-				.gal file name
-				.gal file checksum			
-				streamed
-				batched
-				8x16
-				num frames
-					sprite split style
+		
+		template maker
+			choose functions
+				functions are marked
+			choose resource
+				resources are gotten from resource_infos.h
