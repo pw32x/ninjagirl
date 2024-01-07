@@ -31,6 +31,8 @@ namespace SceneMaster.GameObjectTemplates.Models
             string[] fileExtensions = { ".xml" };
             var foundFileInfos = fileInfos.Where(file => fileExtensions.Contains(file.Extension, StringComparer.OrdinalIgnoreCase));
 
+            Dictionary<string, GameObjectTemplate> gameObjectTemplateByShortName = new();
+
             foreach (var fileInfo in foundFileInfos)
             {
                 var gameObjectTemplate = new GameObjectTemplate();
@@ -38,6 +40,8 @@ namespace SceneMaster.GameObjectTemplates.Models
                 try
                 {
                     gameObjectTemplate.Load(fileInfo.FullName);
+
+                    gameObjectTemplateByShortName.Add(fileInfo.Name, gameObjectTemplate);
 
                     if (gameObjectTemplate.IsEditorVisible)
                         GameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
@@ -47,6 +51,22 @@ namespace SceneMaster.GameObjectTemplates.Models
                 catch (Exception) 
                 {
                     m_failedGameObjectTemplates.Add(gameObjectTemplate.Name, gameObjectTemplate);
+                }
+            }
+
+            BuildResourceReferences(gameObjectTemplateByShortName);
+        }
+
+        private void BuildResourceReferences(Dictionary<string, GameObjectTemplate> gameObjectTemplateByShortName)
+        {
+            foreach (var gameObjectTemplate in GameObjectTemplates.Values)
+            {
+                foreach (var templateReferenceName in gameObjectTemplate.TemplateNameReferences)
+                {
+                    if (gameObjectTemplateByShortName.TryGetValue(templateReferenceName, out var outTemplate))
+                    {
+                        gameObjectTemplate.TemplateReferences.Add(outTemplate);
+                    }
                 }
             }
         }

@@ -1,4 +1,4 @@
-<GameObjectTemplate >
+<GameObjectTemplate>
 	<Name value="Ninja Girl"/>
 	<EditorProperties>
 		<Visual>
@@ -16,9 +16,9 @@
 		<ResourceInfo value="ninja_girlResourceInfo" />		
 		<InitFunction value="Player_Init"/>
 	</GameProperties>
-	<Requires>
+	<References>
 		<Template value="explosion.xml"/>
 		<Template value="impact.xml"/>
 		<Template value="kunai.xml"/>
-	</Requires>	
+	</References>	
 </GameObjectTemplate>

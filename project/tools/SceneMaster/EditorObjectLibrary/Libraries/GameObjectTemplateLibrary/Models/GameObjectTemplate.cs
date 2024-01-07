@@ -3,6 +3,7 @@ using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 
@@ -84,6 +85,16 @@ namespace SceneMaster.GameObjectTemplates.Models
 
             Directory.SetCurrentDirectory(Path.GetDirectoryName(filePath));
 
+            LoadContents(root);
+
+
+            Directory.SetCurrentDirectory(oldCurrentDirectory);
+        }
+
+        protected override void LoadContents(XmlElement root)
+        {
+            base.LoadContents(root);
+
             Name = "UnnamedGameObjectTemplate";
             if (root[nameof(Name)] is var nameNode && nameNode != null)
             {
@@ -100,8 +111,6 @@ namespace SceneMaster.GameObjectTemplates.Models
             {
                 LoadGameProperties(gamePropertiesNode);
             }
-
-            Directory.SetCurrentDirectory(oldCurrentDirectory);
         }
 
         internal override EditorObject CreateEditorObject(int x, int y)

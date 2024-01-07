@@ -86,7 +86,7 @@ namespace SceneMaster.Export
         {
             string commandFunction = "ResourceManager_LoadResource";
 
-            var resources = editorObjects.Select(e => e.EditorObjectInfo.ResourceInfo).Where(e => !string.IsNullOrEmpty(e)).Distinct();
+            var resources = editorObjects.SelectMany(e => e.EditorObjectInfo.ResourceInfos()).Where(e => !string.IsNullOrEmpty(e)).Distinct();
 
             // add the background
             if (!string.IsNullOrEmpty(scene.TiledMapFilename))
