@@ -2,25 +2,31 @@ Todo
 
 	SceneMaster
 			
-		auto reload of Tiled map on change
-			
-		animated tiles to into bank 0/1?
+		DONE auto reload of Tiled map on change
 			
 		detect that the game needs building before doing anything
+			any file in 
+				source 
+				gamedata 
+				assets
+				that is newer than the rom
 	
 		editor properties
 			IsUnique - only one instance is allowed
 				player
-
 	
-		run application as command line tool
-				
-		A toolbar buttong to Build and run level
+		A toolbar button to Build and run level
+			generates a header with a define to tell which scene to 
+			reference in the game's main function
 				
 		remember last camera position and zoom
 
 		make sprites from graphic gale frames transparent
 
+		run application as command line tool
+			integrate into config.bm
+
+	start work on a real level
 
 	what kind of game objects?
 		visible game objects (enemies, pick ups, effects, etc)
@@ -28,9 +34,17 @@ Todo
 		invisible objects like a music manager
 		tile animator
 
-	have object switch to their animation's bank when calling update function?
+	have object always switch to their animation's bank when calling update function?
+		and the draw function?
+		do both at the same time?
 
-
+	Game
+	
+		rock particles don't appear in the correct position on screen when spawned
+	
+	Engine
+	
+		store animated tiles only in bank 0/1?
 
 	space pass
 
@@ -45,7 +59,11 @@ Todo
 			for streaming animations, only store the tile differences in an animation
 			copy the tile differences only to 
 
-
+	BuildMaster
+	
+		building .c files seems to eat warnings and some errors, causing a freeze
+		
+		compile using multiple parallel processes
 	
 	performance pass
 
@@ -68,18 +86,16 @@ Todo
 	
 	that thing where I swap in and out parts of the background
 		the ground and the sky need to be separate tilesets
-		
-		build a map out of multiple tilesets
-		
+	
 		ground/sky/animated
-
-		
-	make gg2c not suck
-	make gal2tmx not suck	
-		
+	
 	compress map data
+		where do I uncompress it? ram? is there room?
 		
 	store map data column first
+	
+	move sprites into the first half of tile vdp memory
+		reduce the handling of resourceinfo index size from 16bit to 8 bit
 	
 	don't do everything at the same time during vblank
 		- update player animation

@@ -20,9 +20,11 @@ using TiledCS;
 
 namespace SceneMaster.Scenes.Models
 {
-    public class Scene : ObservableObject
+    public class Scene : ObservableObject, IDisposable
     {
         BitmapImage m_defaultImage;
+
+        FileSystemWatcher m_tiledMapFileWatcher = null;
 
         private ObservableCollection<EditorObject> m_editorObjects = new ObservableCollection<EditorObject>();
         public ObservableCollection<EditorObject> EditorObjects { get => m_editorObjects; }
@@ -167,8 +169,50 @@ namespace SceneMaster.Scenes.Models
             return true;
         }
 
+        public void StartWatchingTiledMap(string filePath)
+        {
+            m_tiledMapFileWatcher = new FileSystemWatcher(Path.GetDirectoryName(Path.GetFullPath(filePath)));
+            m_tiledMapFileWatcher.Filter = Path.GetFileName(filePath);
+            
+            // When saving a Tiled map, it saves it under a temporary filename, deletes the original
+            // and renames it to the same filename. 
+            m_tiledMapFileWatcher.Renamed += M_tiledMapFileWatcher_Renamed;
+            m_tiledMapFileWatcher.Changed += M_tiledMapFileWatcher_Changed;
+            
+
+            m_tiledMapFileWatcher.EnableRaisingEvents = true;
+        }
+
+        private void M_tiledMapFileWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath); });
+        }
+
+        private void M_tiledMapFileWatcher_Renamed(object sender, RenamedEventArgs e)
+        {
+            Application.Current.Dispatcher.Invoke(() => { LoadTiledMap(TiledMapFilePath); });
+        }
+
+        public void StopWatchingTiledMap()
+        {
+            if (m_tiledMapFileWatcher == null)
+                return;
+
+            m_tiledMapFileWatcher.EnableRaisingEvents = false;
+            m_tiledMapFileWatcher.Changed -= tiledMapFileWatcher_Changed;
+            m_tiledMapFileWatcher.Dispose();
+            m_tiledMapFileWatcher = null;
+        }
+
+        private void tiledMapFileWatcher_Changed(object sender, FileSystemEventArgs e)
+        {
+            
+        }
+
         private void LoadTiledMap(string tiledMapFilePath)
         {
+            StopWatchingTiledMap();
+
             m_tiledMap = new TiledMap(tiledMapFilePath);
 
             m_tiledMapDirectory = StringUtils.EnsureTrailingSlash(Path.GetDirectoryName(tiledMapFilePath));
@@ -193,6 +237,8 @@ namespace SceneMaster.Scenes.Models
             }
 
             TiledMapBitmapSource = BuildTiledMapBitmapSource();
+
+            StartWatchingTiledMap(tiledMapFilePath);
         }
 
         private WriteableBitmap BuildTiledMapBitmapSource()
@@ -294,6 +340,11 @@ namespace SceneMaster.Scenes.Models
             OnPropertyChanged(nameof(EditorObjects));
 
             return editorObject;
+        }
+
+        public void Dispose()
+        {
+            StopWatchingTiledMap();
         }
     }
 }

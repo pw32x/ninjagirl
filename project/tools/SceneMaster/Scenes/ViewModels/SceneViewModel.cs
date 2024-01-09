@@ -121,6 +121,7 @@ namespace SceneMaster.Scenes.ViewModels
 
                 Scene.PropertyChanged -= Scene_PropertyChanged;
                 Scene.EditorObjects.CollectionChanged -= EditorObjects_CollectionChanged;
+                Scene.Dispose();
                 Scene = null;
             }
         }
