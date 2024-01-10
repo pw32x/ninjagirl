@@ -22,6 +22,21 @@ namespace SceneMaster.Main
         private string m_commandsSourceDirectory = "..\\..\\..\\..\\..\\source";
         public string CommandsSourceDirectory { get => m_commandsSourceDirectory; set => SetProperty(ref m_commandsSourceDirectory, value); }
 
+        private string m_sourceExportDirectory = "..\\..\\..\\..\\..\\source\\client\\exported";
+        public string SourceExportDirectory { get => m_sourceExportDirectory; set => SetProperty(ref m_sourceExportDirectory, value); }
+
+        private string m_gameBuildDirectory = "..\\..\\..\\..\\..\\build";
+        public string GameBuildDirectory { get => m_gameBuildDirectory; set => SetProperty(ref m_gameBuildDirectory, value); }
+
+        private string m_buildMasterPath = "..\\..\\..\\..\\BuildMaster\\bin\\Release\\net8.0\\BuildMaster.exe";
+        public string BuildMasterPath { get => m_buildMasterPath; set => SetProperty(ref m_buildMasterPath, value); }
+
+        private string m_emulatorPath = "..\\..\\..\\..\\..\\..\\..\\..\\Emulicious-with-Java64\\Emulicious.exe";
+        public string EmulatorPath { get => m_emulatorPath; set => SetProperty(ref m_emulatorPath, value); }
+
+        private string m_pathToGameRom = "..\\..\\..\\..\\..\\out\\NinjaGirl.sms";
+        public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
+
         public void Load()
         {
             string appFolder = StringUtils.EnsureTrailingSlash(AppDomain.CurrentDomain.BaseDirectory);

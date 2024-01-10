@@ -75,7 +75,7 @@ namespace SceneMaster.Main.ViewModels
         private void NewHelper()
         {
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
+            CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
             
             Settings.LastLoadedSceneFilename = "";
         }
@@ -91,13 +91,13 @@ namespace SceneMaster.Main.ViewModels
         private bool OpenHelper(string filePath)
         {
             CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
+            CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
 
             if (!CurrentDocument.Load(filePath))
             {
                 System.Windows.MessageBox.Show($"Loading {filePath} failed.");
                 CurrentDocument?.Dispose();
-                CurrentDocument = new SceneMasterDocument(EditorObjectLibraryViewModel);
+                CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
                 Settings.LastLoadedSceneFilename = "";
                 return false;
             }

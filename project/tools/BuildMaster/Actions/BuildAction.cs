@@ -6,15 +6,20 @@
 
         public static BuildAction Create() { return new BuildAction(); }
 
-        public void Perform(Config config)
+        public bool Perform(Config config)
         {
             Steps.RunAllTools(config);
 
             NewSteps.GenerateResourceInfos(config);
 
-            Utils.BenchmarkStep(NewSteps.BuildCode, config, "New Build Code");
+            bool result = Utils.BenchmarkStep(NewSteps.BuildCode, config, "New Build Code");
 
-            Steps.CopyToDailyFolder(config);
+            if (result)
+            {
+                Steps.CopyToDailyFolder(config);
+            }
+
+            return result;
         }
     }
 }

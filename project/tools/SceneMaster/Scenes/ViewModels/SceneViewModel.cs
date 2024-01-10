@@ -5,12 +5,17 @@ using SceneMaster.EditorObjectLibrary.ViewModels;
 using SceneMaster.EditorObjects.CommandLibrary.ViewModels;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.EditorObjects.ViewModels;
+using SceneMaster.Export;
 using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.GameObjectTemplates.ViewModels;
+using SceneMaster.Main;
 using SceneMaster.Scenes.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SceneMaster.Scenes.ViewModels
@@ -60,10 +65,14 @@ namespace SceneMaster.Scenes.ViewModels
         private Scene m_scene;
         public Scene Scene { get => m_scene; private set => m_scene = value; }
 
+        private Settings m_settings;
+
         EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
 
-        public SceneViewModel(EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel)
+        public SceneViewModel(Settings settings,
+                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel)
         {
+            m_settings = settings;
             EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
             Scene = new Scene();
 
@@ -79,9 +88,99 @@ namespace SceneMaster.Scenes.ViewModels
 
             DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel, 
                                              CanDeleteSelectedEditorObjectViewModel);
+
+            RunSceneCommand = new RelayCommand(RunScene);
+        }
+
+        private void RunScene()
+        {
+            string tempLevelName = "sceneMasterTemp";
+
+            // export to temporary file
+            SceneExporter.ExportScene(Scene, 
+                                      tempLevelName, 
+                                      m_settings.SourceExportDirectory, 
+                                      EditorObjectInfoLibraryViewModel.CommandLibrary);
+
+            string buildMasterPath = Path.GetFullPath(m_settings.BuildMasterPath);
+            string workingDirectory = Path.GetFullPath(m_settings.GameBuildDirectory);
+            string emulatorPath = Path.GetFullPath(m_settings.EmulatorPath);
+            string pathToGameRom = Path.GetFullPath(m_settings.PathToGameRom);
+            
+            ProcessStartInfo buildMasterProcess = new ProcessStartInfo
+            {
+                FileName = buildMasterPath,
+                Arguments = "config.bm build -DSCENE_TO_RUN=" + tempLevelName,
+                WorkingDirectory = workingDirectory,
+                UseShellExecute = false, // Set this to true if you want to use the system's default shell
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+            };
+
+            // Start the BuildMaster process
+            try
+            {
+                using (Process process = Process.Start(buildMasterProcess))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    StreamReader errorReader = process.StandardError;
+                    var errorString = errorReader.ReadToEnd();
+                    // Wait for the process to exit
+                    process.WaitForExit();
+                    // Get the return code
+                    int exitCode = process.ExitCode;
+
+                    if (exitCode != 0) 
+                    {
+                        MessageBox.Show("BuildMaster build error. Error code: " + exitCode);
+                        return;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error running BuildMaster process. Error: " + ex.Message);
+                return;
+            }
+
+            /*
+            // kill all the instances of the emulator
+            var processes = Process.GetProcesses();
+            var matchingProcesses = processes.Where(p => p.MainWindowTitle.Contains("Emulicious", StringComparison.OrdinalIgnoreCase));
+            foreach (var process in processes)
+            { 
+                process.Kill(); 
+            }
+            */
+
+            // start the game
+            ProcessStartInfo emulatorProcess = new ProcessStartInfo
+            {
+                FileName = emulatorPath,
+                Arguments = pathToGameRom,
+                UseShellExecute = false, // Set this to true if you want to use the system's default shell
+                RedirectStandardOutput = true
+            };
+
+            try
+            {
+                using (Process process = Process.Start(emulatorProcess))
+                {
+                    string output = process.StandardOutput.ReadToEnd();
+                    // Wait for the process to exit
+                    process.WaitForExit();
+                    // Get the return code
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error running emulator process. Error: " + ex.Message);
+                return;
+            }
         }
 
         public ICommand DeleteCommand { get; }
+        public ICommand RunSceneCommand { get; }
 
         private void DeleteSelectedEditorObjectViewModel()
         {

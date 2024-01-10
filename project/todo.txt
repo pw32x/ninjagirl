@@ -4,7 +4,14 @@ Todo
 			
 		DONE auto reload of Tiled map on change
 			
-		detect that the game needs building before doing anything
+		Play button on toolbar builds and runs the game
+			
+			export the level
+			
+			build the level
+			
+			
+		NAH detect that the game needs building before doing anything
 			any file in 
 				source 
 				gamedata 

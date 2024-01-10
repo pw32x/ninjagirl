@@ -14,8 +14,12 @@
 //#include "exported/level001.h"
 #include "exported/scene001.h"
 #include "exported/scene003.h"
-	
+
+#include "exported/sceneMasterTemp.h"
+
+#ifndef SCENE_TO_RUN
 #define SCENE_TO_RUN scene003
+#endif
 
 void PSGUpdate(void)
 {

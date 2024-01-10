@@ -6,18 +6,26 @@ namespace BuildMaster
     {
         static int Main(string[] args)
         {
+            bool result = false;
+
             try
             {
                 var buildMaster = new BuildMaster();
-                buildMaster.Run(args);
+                result = buildMaster.Run(args);
             }
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return -1;
             }
 
-            return 0;
+            int exitCode = result ? 0 : -1;
+
+            if (result)
+                Console.WriteLine("Run Successful");
+            else
+                Console.WriteLine("Run Failed. Exit Code: " + exitCode);
+
+            return exitCode;
         }
     }
 }

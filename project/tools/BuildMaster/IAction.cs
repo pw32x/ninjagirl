@@ -3,6 +3,6 @@
     interface IAction
     {
         string Name { get; }
-        void Perform(Config config);
+        bool Perform(Config config);
     }
 }

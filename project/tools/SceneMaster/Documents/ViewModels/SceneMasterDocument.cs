@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SceneMaster.EditorObjectLibrary.ViewModels;
+using SceneMaster.Main;
 using SceneMaster.Scenes.ViewModels;
 using System;
 using System.IO;
+using System.Runtime;
 using System.Windows;
 
 namespace SceneMaster.Documents.ViewModels
@@ -36,6 +38,8 @@ namespace SceneMaster.Documents.ViewModels
         }
 
         private SceneViewModel m_sceneViewModel;
+        private Settings m_settings;
+
         public SceneViewModel SceneViewModel
         {
             get => m_sceneViewModel;
@@ -47,11 +51,14 @@ namespace SceneMaster.Documents.ViewModels
 
         public EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; private set; }
 
-        public SceneMasterDocument(EditorObjectLibraryViewModel editorObjectLibraryViewModel)
+        public SceneMasterDocument(Settings settings,
+                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
+            m_settings = settings;
             EditorObjectLibraryViewModel = editorObjectLibraryViewModel;
 
-            SceneViewModel = new SceneViewModel(EditorObjectLibraryViewModel);
+            SceneViewModel = new SceneViewModel(m_settings, 
+                                                EditorObjectLibraryViewModel);
 
             FilePath = DefaultFilename;
         }
@@ -65,7 +72,7 @@ namespace SceneMaster.Documents.ViewModels
         public bool Load(string filePath)
         {
             SceneViewModel.Dispose();
-            SceneViewModel = new SceneViewModel(EditorObjectLibraryViewModel);
+            SceneViewModel = new SceneViewModel(m_settings, EditorObjectLibraryViewModel);
             SceneViewModel.Load(filePath);
 
             FilePath = filePath;

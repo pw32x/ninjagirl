@@ -6,10 +6,12 @@
 
         public static CleanAction Create() { return new CleanAction(); }
 
-        public void Perform(Config config)
+        public bool Perform(Config config)
         {
             NewSteps.CleanOutputFolder(config);
             NewSteps.CleanExportFolder(config);
+
+            return true;
         }
     }
 }

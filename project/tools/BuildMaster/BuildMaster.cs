@@ -21,6 +21,20 @@ namespace BuildMaster
             m_config.Load(args[0]);
 
             m_actionToPerform = GetActionByName(args[1]);
+
+            List<string> defines = new();
+
+            // check for additional parameters
+            if (args.Length > 2)
+            {
+                for (int i = 2; i < args.Length; i++) 
+                {
+                    if (args[i].StartsWith("-D"))
+                    {
+                        m_config.CompilationSettings.Defines.Add(args[i]);
+                   }
+                }
+            }
         }
 
         private IAction GetActionByName(string actionName)
@@ -31,7 +45,7 @@ namespace BuildMaster
             return m_actions[actionName]; // calls the static Create function on the Action
         }
 
-        internal void Run(string[] args)
+        internal bool Run(string[] args)
         {
             CollectActions();
             ProcessArgs(args);
@@ -43,12 +57,14 @@ namespace BuildMaster
 
             var startTime = DateTime.Now;
 
-            m_actionToPerform.Perform(m_config);
+            bool result = m_actionToPerform.Perform(m_config);
 
             var elapsedTime = DateTime.Now - startTime;
 
             Console.WriteLine("Action \"" + m_actionToPerform.Name + "\" complete.");
             Console.WriteLine("Elapsed time: " + elapsedTime.Duration());
+
+            return result;
         }
 
         private void CollectActions()

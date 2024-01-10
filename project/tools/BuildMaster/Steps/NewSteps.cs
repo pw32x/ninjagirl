@@ -10,7 +10,7 @@ namespace BuildMaster
 {
     class NewSteps
     {
-        public static void BuildCode(Config config)
+        public static bool BuildCode(Config config)
         {
             Console.WriteLine("Step: Build code (New Method):");
 
@@ -19,7 +19,7 @@ namespace BuildMaster
 
             Utils.CreateFolders(sourceDestinationFolders);
 
-            BuildProject(sourceFilesToBuild, config);
+            return BuildProject(sourceFilesToBuild, config);
         }
 
         internal static void GenerateResourceInfos(Config config)
@@ -130,7 +130,7 @@ namespace BuildMaster
             }
         }
 
-        private static void BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
+        private static bool BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
         {
             Action<StreamWriter> buildProject = (StreamWriter sw) =>
             {
@@ -157,7 +157,7 @@ namespace BuildMaster
 
             if (containsError)
             {
-                return;
+                return false;
             }
 
             Action<StreamWriter> linkProject = (StreamWriter sw) =>
@@ -180,6 +180,9 @@ namespace BuildMaster
             };
 
             outputString = Utils.RunProcess(linkProject);
+            containsError = ProcessErrorString(outputString, config);
+
+            return !containsError;
         }
 
         static (string, int, string) ExtractErrorInfo(string line)

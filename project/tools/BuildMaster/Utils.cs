@@ -157,16 +157,18 @@ namespace BuildMaster
             }
         }
 
-        public static void BenchmarkStep(Action<Config> step, Config config, string stepDescription)
+        public static bool BenchmarkStep(Func<Config, bool> step, Config config, string stepDescription)
         {
             var startTime = DateTime.Now;
 
-            step(config);
+            bool result = step(config);
 
             var elapsedTime = DateTime.Now - startTime;
 
             Console.WriteLine("Step: " + stepDescription + " complete.");
             Console.WriteLine("Elapsed time: " + elapsedTime.Duration());
+
+            return result;
         }
 
         public static IEnumerable<string> GetFilesFromWildcardPath(string path)

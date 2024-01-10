@@ -25,6 +25,8 @@ namespace BuildMaster
             PsgLib_LibraryPath = PsgLib_BasePath + "/PSGlib.rel";
         }
 
+        public List<string> Defines { get; } = new();
+
         public string DevkitSmsPath { get; }
         public string OutFolder { get; }
 
@@ -59,6 +61,11 @@ namespace BuildMaster
             foreach (var includeFolder in includeFolders)
             {
                 addFlag("-I" + includeFolder);
+            }
+
+            foreach (var define in Defines)
+            {
+                addFlag(define);
             }
 
             return sb.ToString();

@@ -6,13 +6,17 @@
 
         public static RebuildAction Create() { return new RebuildAction(); }
 
-        public void Perform(Config config)
+        public bool Perform(Config config)
         {
             var cleanAction = new CleanAction();
-            cleanAction.Perform(config);
+            if (!cleanAction.Perform(config))
+                return false;
 
             var buildAction = new BuildAction();
-            buildAction.Perform(config);
+            if (!buildAction.Perform(config))
+                return false;
+
+            return true;
         }
     }
 }

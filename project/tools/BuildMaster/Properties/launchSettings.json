@@ -2,7 +2,7 @@
   "profiles": {
     "BuildMaster": {
       "commandName": "Project",
-      "commandLineArgs": "config.bm build",
+      "commandLineArgs": "config.bm build -DSCENE_TO_RUN=sceneMasterTemp",
       "workingDirectory": "..\\..\\build"
     }
   }

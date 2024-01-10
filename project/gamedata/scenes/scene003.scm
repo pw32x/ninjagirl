@@ -8,11 +8,11 @@
     <GameObject Name="Ninja Girl" X="61" Y="15" GameObjectTemplateName="Ninja Girl" />
     <GameObject Name="Robot Spring" X="137" Y="20" GameObjectTemplateName="Robot Spring" />
     <GameObject Name="Walker (Small)" X="56" Y="130" GameObjectTemplateName="Walker (Small)" />
-    <GameObject Name="Walker (Small)" X="90" Y="81" GameObjectTemplateName="Walker (Small)" />
-    <GameObject Name="Walker (Small)" X="116" Y="72" GameObjectTemplateName="Walker (Small)" />
-    <GameObject Name="Walker" X="128" Y="119" GameObjectTemplateName="Walker" />
-    <GameObject Name="Walker" X="102" Y="126" GameObjectTemplateName="Walker" />
-    <GameObject Name="Walker" X="58" Y="68" GameObjectTemplateName="Walker" />
+    <GameObject Name="Walker (Small)" X="165" Y="118" GameObjectTemplateName="Walker (Small)" />
+    <GameObject Name="Walker (Small)" X="161" Y="56" GameObjectTemplateName="Walker (Small)" />
+    <GameObject Name="Walker" X="164" Y="140" GameObjectTemplateName="Walker" />
+    <GameObject Name="Walker" X="166" Y="171" GameObjectTemplateName="Walker" />
+    <GameObject Name="Walker" X="80" Y="73" GameObjectTemplateName="Walker" />
     <GameObject Name="Robot Runner" X="182" Y="30" GameObjectTemplateName="Robot Runner" />
     <Command Name="MapManager_SetTilesetProperties_Command" X="-87.54399999999976" Y="221.6960000000002" CommandValue="&amp;setTilesetPropertiesParams " PreCommandData="#include &quot;client/tileset_functions.h&quot;&#xD;&#xA;const SetTilesetProperties_Params setTilesetPropertiesParams = &#xD;&#xA;{ &#xD;&#xA; 1, &#xD;&#xA; breakable_rock_tileset_TilesetFunction, &#xD;&#xA; &amp;rock_particle_template&#xD;&#xA;};" />
   </EditorObjects>

@@ -10,6 +10,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\Play.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="thirdparty\GraphicsGale\galefile.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -31,6 +35,12 @@
   <ItemGroup>
     <Folder Include="EditorObjectLibrary\Libraries\CommandLibrary\ViewModels\" />
     <Folder Include="EditorObjectLibrary\Libraries\GameObjectTemplateLibrary\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
