@@ -112,9 +112,10 @@ namespace SceneMaster.Scenes.ViewModels
                 FileName = buildMasterPath,
                 Arguments = "config.bm build -DUSE_SCENEMASTER_LEVEL -SProjectName=" + Settings.GameRomName + " -SCopyToDailyFolder=false",
                 WorkingDirectory = workingDirectory,
-                UseShellExecute = false, // Set this to true if you want to use the system's default shell
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
+                UseShellExecute = true, // Set this to true if you want to use the system's default shell
+                //RedirectStandardOutput = true,
+                //RedirectStandardError = true,
+                //CreateNoWindow = true
             };
 
             // Start the BuildMaster process
@@ -122,9 +123,17 @@ namespace SceneMaster.Scenes.ViewModels
             {
                 using (Process process = Process.Start(buildMasterProcess))
                 {
-                    string output = process.StandardOutput.ReadToEnd();
-                    StreamReader errorReader = process.StandardError;
-                    var errorString = errorReader.ReadToEnd();
+                    //string output = process.StandardOutput.ReadToEnd();
+                    //StreamReader errorReader = process.StandardError;
+                    //var errorString = errorReader.ReadToEnd();
+
+                    //while (!process.StandardOutput.EndOfStream)
+                    //{
+                    //    string outputLine = process.StandardOutput.ReadLine();
+                    //    Console.WriteLine(outputLine);
+                    //}
+
+
                     // Wait for the process to exit
                     process.WaitForExit();
                     // Get the return code

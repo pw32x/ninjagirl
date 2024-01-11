@@ -12,34 +12,17 @@ Todo
 
 		DONE how to add the scene master temp level header file to main? 
 			
-		show the build text
+		DONE show the build text
 		
-		show a log
-		
+		NAH center the emulator window when opening
+			
 		the sprite offsets are wrong
 			load them from the gal file
-			
-		center the emulator window when opening
-			
-		
-
-			
-			
-		NAH detect that the game needs building before doing anything
-			any file in 
-				source 
-				gamedata 
-				assets
-				that is newer than the rom
 	
 		editor properties
 			IsUnique - only one instance is allowed
 				player
 	
-		A toolbar button to Build and run level
-			generates a header with a define to tell which scene to 
-			reference in the game's main function
-				
 		remember last camera position and zoom
 
 		make sprites from graphic gale frames transparent

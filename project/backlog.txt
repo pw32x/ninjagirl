@@ -5,7 +5,16 @@ SpriteMaster
 
 	add option to gg2c to slice sprite in 16 pixel high rows starting from y = 0
 
-
+	show a BuildMaster log in a window
+	
+	detect that the game needs building on start up
+		any file in 
+			source 
+			gamedata 
+			assets
+			that is newer than the rom
+	
+ 
 Build Master 
 	
 		if the config file is newer
