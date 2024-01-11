@@ -32,7 +32,13 @@ namespace BuildMaster
                     if (args[i].StartsWith("-D"))
                     {
                         m_config.CompilationSettings.Defines.Add(args[i]);
-                   }
+                    }
+                    else if (args[i].StartsWith("-S"))
+                    {
+                        var tokens = args[i].Split('=');
+
+                        m_config.AddOrOverrideSetting(tokens[0].Substring(2), tokens[1]);
+                    }
                 }
             }
         }

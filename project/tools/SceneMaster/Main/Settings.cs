@@ -34,7 +34,9 @@ namespace SceneMaster.Main
         private string m_emulatorPath = "..\\..\\..\\..\\..\\..\\..\\..\\Emulicious-with-Java64\\Emulicious.exe";
         public string EmulatorPath { get => m_emulatorPath; set => SetProperty(ref m_emulatorPath, value); }
 
-        private string m_pathToGameRom = "..\\..\\..\\..\\..\\out\\NinjaGirl.sms";
+        public const string GameRomName = "SceneMasterTemp";
+
+        private string m_pathToGameRom = "..\\..\\..\\..\\..\\out\\" + GameRomName + ".sms";
         public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
 
         public void Load()

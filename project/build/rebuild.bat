@@ -1,1 +1,1 @@
-..\tools\BuildMaster\bin\Release\net5.0\BuildMaster.exe config.bm rebuild
+..\tools\BuildMaster\bin\Release\net8.0\BuildMaster.exe config.bm rebuild

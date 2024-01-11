@@ -13,6 +13,8 @@
 		<Setting name="outFolder" value="out"/>
 		<Setting name="UseVisualStudioStylePaths" value="true"/>
 		<Setting name="resourceInfoExportFolder" value="source/client/generated" />
+		<Setting name="CopyToDailyFolder" value="true" />
+		
     </Settings>
 
 	<Tools>

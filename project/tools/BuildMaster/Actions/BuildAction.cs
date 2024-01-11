@@ -14,7 +14,7 @@
 
             bool result = Utils.BenchmarkStep(NewSteps.BuildCode, config, "New Build Code");
 
-            if (result)
+            if (result && config.GetSetting("CopyToDailyFolder") == "true")
             {
                 Steps.CopyToDailyFolder(config);
             }

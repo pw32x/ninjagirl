@@ -110,7 +110,7 @@ namespace SceneMaster.Scenes.ViewModels
             ProcessStartInfo buildMasterProcess = new ProcessStartInfo
             {
                 FileName = buildMasterPath,
-                Arguments = "config.bm build -DSCENE_TO_RUN=" + tempLevelName,
+                Arguments = "config.bm build -DUSE_SCENEMASTER_LEVEL -SProjectName=" + Settings.GameRomName + " -SCopyToDailyFolder=false",
                 WorkingDirectory = workingDirectory,
                 UseShellExecute = false, // Set this to true if you want to use the system's default shell
                 RedirectStandardOutput = true,

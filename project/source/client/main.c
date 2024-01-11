@@ -15,7 +15,10 @@
 #include "exported/scene001.h"
 #include "exported/scene003.h"
 
+#ifdef USE_SCENEMASTER_LEVEL
 #include "exported/sceneMasterTemp.h"
+#define SCENE_TO_RUN sceneMasterTemp
+#endif
 
 #ifndef SCENE_TO_RUN
 #define SCENE_TO_RUN scene003

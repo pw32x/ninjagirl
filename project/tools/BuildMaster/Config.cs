@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace BuildMaster
 {
@@ -560,7 +561,10 @@ namespace BuildMaster
             m_toolDestinationFolders = uniqueDirectories.ToList();
         }
 
-
+        internal void AddOrOverrideSetting(string settingName, string value)
+        {
+            m_settings[settingName.ToLower()] = value;
+        }
     }
 
 }
