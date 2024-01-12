@@ -5,7 +5,7 @@
     <Command Name="RightScroller_Init" X="-83.68981481481494" Y="74.58796296296276" CommandValue="&amp;background3_mapResourceInfo" PreCommandData="" />
     <Command Name="Set Background Palette" X="-88.89351851851863" Y="-67.60185185185179" CommandValue="&amp;globalPaletteResourceInfo" PreCommandData="" />
     <Command Name="Set Sprite Palette" X="-84.24537037037054" Y="143.59722222222243" CommandValue="&amp;globalPaletteResourceInfo" PreCommandData="" />
-    <GameObject Name="Ninja Girl" X="61" Y="15" GameObjectTemplateName="Ninja Girl" />
+    <GameObject Name="Ninja Girl" X="16.580644342384563" Y="-0.6415269422686027" GameObjectTemplateName="Ninja Girl" />
     <GameObject Name="Robot Spring" X="137" Y="20" GameObjectTemplateName="Robot Spring" />
     <GameObject Name="Walker (Small)" X="56" Y="130" GameObjectTemplateName="Walker (Small)" />
     <GameObject Name="Walker (Small)" X="165" Y="118" GameObjectTemplateName="Walker (Small)" />

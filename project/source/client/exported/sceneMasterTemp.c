@@ -12,15 +12,15 @@
 
 const CommandRunnerCreateInfo sceneMasterTemp_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo sceneMasterTemp_createInfo2 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo sceneMasterTemp_createInfo5 = { &walker_small_template, 56, 130 };
-const CreateInfo sceneMasterTemp_createInfo6 = { &walker_template, 80, 73 };
-const CreateInfo sceneMasterTemp_createInfo7 = { &ninja_girl_template, 104, 112 };
-const CreateInfo sceneMasterTemp_createInfo8 = { &robotspring_template, 137, 20 };
-const CreateInfo sceneMasterTemp_createInfo9 = { &walker_small_template, 161, 56 };
-const CreateInfo sceneMasterTemp_createInfo10 = { &walker_template, 164, 140 };
-const CreateInfo sceneMasterTemp_createInfo11 = { &walker_small_template, 165, 118 };
-const CreateInfo sceneMasterTemp_createInfo12 = { &walker_template, 166, 171 };
-const CreateInfo sceneMasterTemp_createInfo13 = { &robotrunner_template, 182, 30 };
+const CreateInfo sceneMasterTemp_createInfo5 = { &ninja_girl_template, 36, 16 };
+const CreateInfo sceneMasterTemp_createInfo6 = { &walker_small_template, 60, 134 };
+const CreateInfo sceneMasterTemp_createInfo7 = { &walker_template, 88, 81 };
+const CreateInfo sceneMasterTemp_createInfo8 = { &robotspring_template, 145, 28 };
+const CreateInfo sceneMasterTemp_createInfo9 = { &walker_small_template, 165, 60 };
+const CreateInfo sceneMasterTemp_createInfo10 = { &walker_template, 172, 148 };
+const CreateInfo sceneMasterTemp_createInfo11 = { &walker_small_template, 169, 122 };
+const CreateInfo sceneMasterTemp_createInfo12 = { &walker_template, 174, 179 };
+const CreateInfo sceneMasterTemp_createInfo13 = { &robotrunner_template, 194, 46 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -34,12 +34,12 @@ const Command sceneMasterTemp_commands[] =
 {
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfoBootstrapper },
     { 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo},
-    { 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &kunaiResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &robotrunnerResourceInfo },
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
@@ -47,9 +47,9 @@ const Command sceneMasterTemp_commands[] =
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfo2 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
-    { 56, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo5 },
-    { 80, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo6 },
-    { 104, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo7 },
+    { 16, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo5 },
+    { 56, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo6 },
+    { 80, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo7 },
     { 137, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo8 },
     { 161, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo9 },
     { 164, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo10 },

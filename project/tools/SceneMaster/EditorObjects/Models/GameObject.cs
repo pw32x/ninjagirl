@@ -66,8 +66,8 @@ namespace SceneMaster.GameObjectTemplates.Models
                 StringBuilder sb = new();
                 sb.Append("const CreateInfo " + createInfoName + " = { ");
                 string templateName = Path.GetFileNameWithoutExtension(GameObjectTemplate.FilePath) + "_template";
-                int x = (int)(X < 0 ? 0 : X);
-                int y = (int)(Y < 0 ? 0 : Y);
+                int x = (int)(X < 0 ? 0 : X) + GameObjectTemplate.Visual.OffsetX;
+                int y = (int)(Y < 0 ? 0 : Y) + GameObjectTemplate.Visual.OffsetY;
                 sb.Append("&" + templateName + ", " + x + ", " + y);
                 sb.AppendLine(" };");
                 exportedCommandData.ExportedCreateInfo = sb.ToString();
