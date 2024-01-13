@@ -1,5 +1,6 @@
 ﻿using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
+using SceneMaster.Scenes.Models;
 
 namespace SceneMaster.Commands.Models
 {
@@ -14,7 +15,7 @@ namespace SceneMaster.Commands.Models
 
         }
 
-        internal override EditorObject CreateEditorObject(int x, int y)
+        internal override EditorObject CreateEditorObject(int x, int y, Scene scene)
         {
             return new CommandObject(x, y, Name, this);
         }

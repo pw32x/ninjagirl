@@ -1,10 +1,12 @@
 ﻿using PropertyTools.DataAnnotations;
 using SceneMaster.EditorObjectLibrary.Models;
 using SceneMaster.EditorObjects.Models;
+using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
 
 namespace SceneMaster.GameObjectTemplates.Models
@@ -27,6 +29,9 @@ namespace SceneMaster.GameObjectTemplates.Models
 
         [System.ComponentModel.ReadOnly(true)]
         public string FilePath { get; private set; }
+
+        [System.ComponentModel.ReadOnly(true)]
+        public bool IsUnique { get; private set; } = false;
 
         // game properties
         [System.ComponentModel.ReadOnly(true)]
@@ -71,6 +76,8 @@ namespace SceneMaster.GameObjectTemplates.Models
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
             GameObjectType = XmlUtils.GetChildValue<GameObjectType>(gamePropertiesNode, nameof(GameObjectType));
 
+            IsUnique = XmlUtils.HasChild(gamePropertiesNode, nameof(IsUnique));
+
             if (string.IsNullOrEmpty(InitFunction))
                 throw new Exception("No init function in object template.");
         }
@@ -113,8 +120,13 @@ namespace SceneMaster.GameObjectTemplates.Models
             }
         }
 
-        internal override EditorObject CreateEditorObject(int x, int y)
+        internal override EditorObject CreateEditorObject(int x, int y, Scene scene)
         {
+            if (IsUnique && scene.EditorObjects.FirstOrDefault(e => e is GameObject g && g.GameObjectTemplate == this) != null)
+            { 
+                return null; 
+            }
+
             return new GameObject(x, y, Name, this);
         }
     }

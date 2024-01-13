@@ -1,6 +1,7 @@
 ﻿using PropertyTools.DataAnnotations;
 using SceneMaster.EditorObjects.Models;
 using SceneMaster.GameObjectTemplates.Models;
+using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace SceneMaster.EditorObjectLibrary.Models
                 yield return resourceInfo.ResourceInfo;
         }
 
-        abstract internal EditorObject CreateEditorObject(int x, int y);
+        abstract internal EditorObject CreateEditorObject(int x, int y, Scene scene);
 
         private void LoadReferences(XmlElement referencesNode)
         {

@@ -16,7 +16,7 @@ Todo
 		
 		NAH center the emulator window when opening
 			
-		the sprite offsets are wrong
+		DONE the sprite offsets are wrong
 			load them from the gal file
 	
 		editor properties
@@ -29,6 +29,10 @@ Todo
 
 		run application as command line tool
 			integrate into config.bm
+
+		fix player running when placed on ground in SceneMaster
+
+		choose to only build when clicking play button
 
 	start work on a real level
 

@@ -6,6 +6,7 @@
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
+		<IsUnique/>
 		<GameObjectType value="Player"/>
 		<RectLeft value="-3"/>
 		<RectTop value="-12"/>

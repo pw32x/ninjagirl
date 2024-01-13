@@ -334,7 +334,10 @@ namespace SceneMaster.Scenes.Models
 
         internal EditorObject CreateEditorObject(int x, int y, EditorObjectInfo editorObjectInfo)
         {
-            var editorObject = editorObjectInfo.CreateEditorObject(x, y);
+            var editorObject = editorObjectInfo.CreateEditorObject(x, y, this);
+
+            if (editorObject == null)
+                return null;
 
             EditorObjects.Add(editorObject);
             OnPropertyChanged(nameof(EditorObjects));

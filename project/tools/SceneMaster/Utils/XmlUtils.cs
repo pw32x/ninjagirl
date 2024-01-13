@@ -71,5 +71,12 @@ namespace SceneMaster.Utils
                 return false;
             }
         }
+
+        internal static bool HasChild(XmlElement node, string childNodeName)
+        {
+            var childNode = node[childNodeName];
+
+            return (childNode != null);
+        }
     }
 }
