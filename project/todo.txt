@@ -19,7 +19,7 @@ Todo
 		DONE the sprite offsets are wrong
 			load them from the gal file
 	
-		editor properties
+		DONE editor properties
 			IsUnique - only one instance is allowed
 				player
 	
@@ -33,6 +33,8 @@ Todo
 		fix player running when placed on ground in SceneMaster
 
 		choose to only build when clicking play button
+		choose to not block SceneMaster when opening emulator
+			next runs just build the rom
 
 	start work on a real level
 

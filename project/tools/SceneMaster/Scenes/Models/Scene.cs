@@ -104,10 +104,8 @@ namespace SceneMaster.Scenes.Models
             LoadTiledMap(tiledMapFilePath);
         }
 
-        public bool Load(string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
+        public void LoadFromXml(XmlElement root, string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
-            var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
-
             var ggFilePathNode = root[TiledMapFilePathNodeName];
             if (ggFilePathNode != null && !string.IsNullOrEmpty(ggFilePathNode.InnerText))
             {
@@ -136,18 +134,10 @@ namespace SceneMaster.Scenes.Models
                     EditorObjects.Add(editorObject);
                 }
             }
-
-            return true;
         }
 
-        public bool Save(string filePath)
+        internal void SaveToXmlElement(XmlDocument doc, XmlElement root, string filePath)
         {
-            var doc = new XmlDocument();
-
-            // root
-            var root = doc.CreateElement(nameof(Scene));
-            doc.AppendChild(root);
-
             // tiled map file path
             var ggFilePathNode = doc.CreateElement(TiledMapFilePathNodeName);
             ggFilePathNode.InnerText = string.IsNullOrEmpty(TiledMapFilePath) ? "" : Path.GetRelativePath(Path.GetDirectoryName(filePath), TiledMapFilePath);
@@ -162,11 +152,6 @@ namespace SceneMaster.Scenes.Models
                 var editorObjectNode = editorObject.ExportToXml(doc);
                 editorObjectsNode.AppendChild(editorObjectNode);
             }
-
-            // Save
-            doc.Save(filePath);
-
-            return true;
         }
 
         public void StartWatchingTiledMap(string filePath)

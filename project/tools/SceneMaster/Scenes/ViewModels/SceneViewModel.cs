@@ -10,6 +10,7 @@ using SceneMaster.GameObjectTemplates.Models;
 using SceneMaster.GameObjectTemplates.ViewModels;
 using SceneMaster.Main;
 using SceneMaster.Scenes.Models;
+using SceneMaster.Utils;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -17,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml;
 
 namespace SceneMaster.Scenes.ViewModels
 {
@@ -63,7 +65,7 @@ namespace SceneMaster.Scenes.ViewModels
         }
 
         private Scene m_scene;
-        public Scene Scene { get => m_scene; private set => m_scene = value; }
+        public Scene Scene { get => m_scene; private set => SetProperty(ref m_scene, value); }
 
         private Settings m_settings;
 
@@ -283,7 +285,11 @@ namespace SceneMaster.Scenes.ViewModels
         internal void Load(string filePath)
         {
             m_ignoreChanges = true;
-            Scene.Load(filePath, EditorObjectInfoLibraryViewModel);
+
+            var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
+
+            Scene.LoadFromXml(root, filePath, EditorObjectInfoLibraryViewModel);
+
             m_ignoreChanges = false;
 
             IsModified = false;
@@ -292,7 +298,14 @@ namespace SceneMaster.Scenes.ViewModels
 
         internal void Save(string filePath)
         {
-            Scene.Save(filePath);
+            var doc = new XmlDocument();
+
+            var root = doc.CreateElement(nameof(Scene));
+            doc.AppendChild(root);
+
+            Scene.SaveToXmlElement(doc, root, filePath);
+
+            doc.Save(filePath);
             IsModified = false;
         }
 
