@@ -32,13 +32,17 @@ Todo
 		DONE run application as command line tool
 			DONE integrate into config.bm
 
+		Move the two external tools to tools folder 
+
+		Create tools bin folder and make all the tools build to there
+		
+		Script that builds everything 
+
+	game
+
+		start work on a real level
+
 		fix player running when placed on ground in SceneMaster
-
-		choose to only build when clicking play button
-		choose to not block SceneMaster when opening emulator
-			next runs just build the rom
-
-	start work on a real level
 
 	what kind of game objects?
 		visible game objects (enemies, pick ups, effects, etc)

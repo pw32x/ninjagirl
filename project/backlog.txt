@@ -13,7 +13,10 @@ SpriteMaster
 			gamedata 
 			assets
 			that is newer than the rom
-	
+
+	choose to only build when clicking play button
+	choose to not block SceneMaster when opening emulator
+		next runs just build the rom	
  
 Build Master 
 	
