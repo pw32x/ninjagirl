@@ -20,6 +20,10 @@ SpriteMaster
 	choose to not block SceneMaster when opening emulator
 		next runs just build the rom	
  
+Misc
+
+	 Script that builds everything  
+ 
 Build Master 
 	
 		if the config file is newer

@@ -1,6 +1,45 @@
 	
 Completed
 
+SceneMaster
+			
+		DONE auto reload of Tiled map on change
+			
+		DONE Play button on toolbar builds and runs the game
+			
+			export the level
+			
+			build the level
+
+		DONE how to add the scene master temp level header file to main? 
+			
+		DONE show the build text
+		
+		NAH center the emulator window when opening
+			
+		DONE the sprite offsets are wrong
+			load them from the gal file
+	
+		DONE editor properties
+			IsUnique - only one instance is allowed
+				player
+	
+		FAIL remember last camera position and zoom
+			RESULT 
+				Can't make it work
+
+		NAH make sprites from graphic gale frames transparent
+
+		DONE run application as command line tool
+			DONE integrate into config.bm
+
+		DONE Move the two external tools to tools folder 
+
+		DONE Create tools bin folder and make all the tools build to there
+		
+		NAH 
+
+
 		DONE how to init background scrolling
 		
 		DONE how to export MapManager_SetTilesetProperties_Command?
