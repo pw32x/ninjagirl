@@ -32,7 +32,7 @@ Todo
 		DONE run application as command line tool
 			DONE integrate into config.bm
 
-		Move the two external tools to tools folder 
+		DONE Move the two external tools to tools folder 
 
 		Create tools bin folder and make all the tools build to there
 		

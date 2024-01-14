@@ -1,5 +1,7 @@
 SpriteMaster
 
+	make it work standalone
+
 	be more agressive with sprite reduction during conversion
 		there are a lot of duplicate sprites or sequences that I don't deduplicate
 

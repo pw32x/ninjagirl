@@ -18,15 +18,15 @@
     </Settings>
 
 	<Tools>
-		<Tool name="SpriteMaster_streamed" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-streamed -updateonly" info="Export Streamed Animations"/>
-		<Tool name="SpriteMaster_standard" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-updateonly" info="Export Standard Animations"/>
-		<Tool name="SpriteMaster_animatedtilesets" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-animatedtileset -updateonly" info="Export Animated Tilesets"/>
-		<Tool name="SpriteMaster_palettes" path="tools\SpriteMaster\bin\Release\SpriteMaster.exe" flags="-palette -updateonly" info="Export Palettes"/>
-		<Tool name="tmx2c" path="tools\tmx2c\bin\tmx2c.exe" info="Export backgrounds"/>
-		<Tool name="TemplateMaster" path="tools\TemplateMaster\bin\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
-		<Tool name="SceneMaster_export" path="tools\SceneMaster\bin\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
+		<Tool name="SpriteMaster_streamed" path="tools\bin\SpriteMaster\SpriteMaster.exe" flags="-streamed -updateonly" info="Export Streamed Animations"/>
+		<Tool name="SpriteMaster_standard" path="tools\bin\SpriteMaster\SpriteMaster.exe" flags="-updateonly" info="Export Standard Animations"/>
+		<Tool name="SpriteMaster_animatedtilesets" path="tools\bin\SpriteMaster\SpriteMaster.exe" flags="-animatedtileset -updateonly" info="Export Animated Tilesets"/>
+		<Tool name="SpriteMaster_palettes" path="tools\bin\SpriteMaster\SpriteMaster.exe" flags="-palette -updateonly" info="Export Palettes"/>
+		<Tool name="tmx2c" path="tools\bin\tmx2c\tmx2c.exe" info="Export backgrounds"/>
+		<Tool name="TemplateMaster" path="tools\bin\TemplateMaster\Release\net8.0\TemplateMaster.exe" info="Export Game Object Templates"/>
+		<Tool name="SceneMaster_export" path="tools\bin\SceneMaster\Release\net8.0-windows7.0\SceneMaster.exe" info="Export Scenes"/>
 
-		<Tool name="gal2tmx" path="tools\gal2tmx\bin\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
+		<Tool name="gal2tmx" path="tools\bin\gal2tmx\gal2tmx.exe" info="Export theme backgrounds and tilesets" flags="-tiletypes assets\tiletypes\tiletypes.gal">
 			<AdditionalExportFolderFlag flag="tilesetdest" useasincludefolder="true"/>
 		</Tool>
 	</Tools>
