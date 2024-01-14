@@ -16,27 +16,27 @@ namespace SceneMaster.Main
         private string m_lastLoadedSceneFilename = "";
         public string LastLoadedSceneFilename { get => m_lastLoadedSceneFilename; set => SetProperty(ref m_lastLoadedSceneFilename, value); }
 
-        private string m_gameObjectTemplatesDirectory = "..\\..\\..\\..\\..\\gamedata\\gameobjecttemplates";
+        private string m_gameObjectTemplatesDirectory = "gamedata\\gameobjecttemplates";
         public string GameObjectTemplatesDirectory { get => m_gameObjectTemplatesDirectory; set => SetProperty(ref m_gameObjectTemplatesDirectory, value); }
 
-        private string m_commandsSourceDirectory = "..\\..\\..\\..\\..\\source";
+        private string m_commandsSourceDirectory = "source";
         public string CommandsSourceDirectory { get => m_commandsSourceDirectory; set => SetProperty(ref m_commandsSourceDirectory, value); }
 
-        private string m_sourceExportDirectory = "..\\..\\..\\..\\..\\source\\client\\exported";
+        private string m_sourceExportDirectory = "source\\client\\exported";
         public string SourceExportDirectory { get => m_sourceExportDirectory; set => SetProperty(ref m_sourceExportDirectory, value); }
 
-        private string m_gameBuildDirectory = "..\\..\\..\\..\\..\\build";
+        private string m_gameBuildDirectory = "build";
         public string GameBuildDirectory { get => m_gameBuildDirectory; set => SetProperty(ref m_gameBuildDirectory, value); }
 
         private string m_buildMasterPath = "..\\..\\..\\..\\BuildMaster\\bin\\Release\\net8.0\\BuildMaster.exe";
         public string BuildMasterPath { get => m_buildMasterPath; set => SetProperty(ref m_buildMasterPath, value); }
 
-        private string m_emulatorPath = "..\\..\\..\\..\\..\\..\\..\\..\\Emulicious-with-Java64\\Emulicious.exe";
+        private string m_emulatorPath = "..\\..\\..\\Emulicious-with-Java64\\Emulicious.exe";
         public string EmulatorPath { get => m_emulatorPath; set => SetProperty(ref m_emulatorPath, value); }
 
         public const string GameRomName = "SceneMasterTemp";
 
-        private string m_pathToGameRom = "..\\..\\..\\..\\..\\out\\" + GameRomName + ".sms";
+        private string m_pathToGameRom = "out\\" + GameRomName + ".sms";
         public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
 
         public void Load()

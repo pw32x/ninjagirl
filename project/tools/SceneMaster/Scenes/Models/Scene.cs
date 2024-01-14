@@ -54,11 +54,13 @@ namespace SceneMaster.Scenes.Models
         {
             //ImportTiledMap(@"C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\generated\themes\background3.tmx");
 
+            string appFolder = StringUtils.EnsureTrailingSlash(AppDomain.CurrentDomain.BaseDirectory);
+
             m_defaultImage = new BitmapImage();
             // Set the image source to a file stream
             m_defaultImage.BeginInit();
             m_defaultImage.CacheOption = BitmapCacheOption.OnLoad;
-            m_defaultImage.UriSource = new Uri("sprite.png", UriKind.RelativeOrAbsolute);
+            m_defaultImage.UriSource = new Uri(appFolder + "sprite.png", UriKind.RelativeOrAbsolute);
             m_defaultImage.EndInit();
 
             /*

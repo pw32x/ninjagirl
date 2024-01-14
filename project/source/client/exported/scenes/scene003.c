@@ -12,15 +12,15 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo2 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo scene003_createInfo5 = { &walker_small_template, 56, 130 };
-const CreateInfo scene003_createInfo6 = { &ninja_girl_template, 61, 15 };
-const CreateInfo scene003_createInfo7 = { &robotspring_template, 137, 20 };
-const CreateInfo scene003_createInfo8 = { &walker_template, 159, 85 };
-const CreateInfo scene003_createInfo9 = { &walker_small_template, 161, 56 };
-const CreateInfo scene003_createInfo10 = { &walker_template, 164, 140 };
-const CreateInfo scene003_createInfo11 = { &walker_small_template, 165, 118 };
-const CreateInfo scene003_createInfo12 = { &walker_template, 166, 171 };
-const CreateInfo scene003_createInfo13 = { &robotrunner_template, 182, 30 };
+const CreateInfo scene003_createInfo5 = { &ninja_girl_template, 36, 16 };
+const CreateInfo scene003_createInfo6 = { &walker_small_template, 60, 134 };
+const CreateInfo scene003_createInfo7 = { &walker_template, 88, 81 };
+const CreateInfo scene003_createInfo8 = { &robotspring_template, 145, 28 };
+const CreateInfo scene003_createInfo9 = { &walker_small_template, 165, 60 };
+const CreateInfo scene003_createInfo10 = { &walker_template, 172, 148 };
+const CreateInfo scene003_createInfo11 = { &walker_small_template, 169, 122 };
+const CreateInfo scene003_createInfo12 = { &walker_template, 174, 179 };
+const CreateInfo scene003_createInfo13 = { &robotrunner_template, 194, 46 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -34,23 +34,23 @@ const Command scene003_commands[] =
 {
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfoBootstrapper },
     { 0, (CommandFunction)ResourceManager_LoadResource, &background3_mapResourceInfo},
-    { 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &ninja_girlResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &kunaiResourceInfo },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &walker_smallResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &robotspringResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &robotrunnerResourceInfo },
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams  },
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfo2 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
-    { 56, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo5 },
-    { 61, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
-    { 137, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
-    { 159, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
+    { 16, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo5 },
+    { 56, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
+    { 80, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
+    { 137, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
     { 161, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
     { 164, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo10 },
     { 165, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo11 },

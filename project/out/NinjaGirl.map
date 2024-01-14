@@ -112,28 +112,28 @@ _CODE                               00000200    000048EA =       18666. bytes (R
      000007D0  _walker_big_template               walker_big_template
      000007DB  _walker_small_template             walker_small_template
      000007E6  _walker_template                   walker_template
-     000007F1  _globalPaletteValues               globalPalette
-     00000801  _globalPalette                     globalPalette
-     00000804  _PSGUpdate                         main
-     0000080A  _main                              main
-     000008D4  _breakable_rock_tileset_TilesetF   tileset_functions
-     000009A7  _globalPaletteOld                  global_palette
-     000009B7  _scene001_createInfoBootstrapper   scene001
-     000009BF  _scene001_createInfo002            scene001
-     000009C5  _scene001_createInfo003            scene001
-     000009CB  _scene001_createInfo004            scene001
-     000009D1  _scene001_createInfo005            scene001
-     000009D7  _scene001_createInfo006            scene001
-     000009DD  _scene001_createInfo007            scene001
-     000009E3  _scene001_createInfo008            scene001
-     000009EE  _scene001                          scene001
-     000009F0  _scene003_createInfoBootstrapper   scene003
-     000009F8  _scene003_createInfo2              scene003
-     00000A00  _scene003_createInfo5              scene003
-     00000A06  _scene003_createInfo6              scene003
-     00000A0C  _scene003_createInfo7              scene003
-     00000A12  _scene003_createInfo8              scene003
-     00000A18  _scene003_createInfo9              scene003
+     000007F1  _scene001_createInfoBootstrapper   scene001
+     000007F9  _scene001_createInfo002            scene001
+     000007FF  _scene001_createInfo003            scene001
+     00000805  _scene001_createInfo004            scene001
+     0000080B  _scene001_createInfo005            scene001
+     00000811  _scene001_createInfo006            scene001
+     00000817  _scene001_createInfo007            scene001
+     0000081D  _scene001_createInfo008            scene001
+     00000828  _scene001                          scene001
+     0000082A  _scene003_createInfoBootstrapper   scene003
+     00000832  _scene003_createInfo2              scene003
+     0000083A  _scene003_createInfo5              scene003
+     00000840  _scene003_createInfo6              scene003
+     00000846  _scene003_createInfo7              scene003
+     0000084C  _scene003_createInfo8              scene003
+     00000852  _scene003_createInfo9              scene003
+     00000858  _scene003_createInfo10             scene003
+     0000085E  _scene003_createInfo11             scene003
+     00000864  _scene003_createInfo12             scene003
+     0000086A  _scene003_createInfo13             scene003
+     00000875  _scene003_commands                 scene003
+     0000090B  _scene003                          scene003
 ASxxxx Linker V03.00/V05.40 + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -143,12 +143,12 @@ _CODE                               00000200    000048EA =       18666. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000A1E  _scene003_createInfo10             scene003
-     00000A24  _scene003_createInfo11             scene003
-     00000A2A  _scene003_createInfo12             scene003
-     00000A30  _scene003_createInfo13             scene003
-     00000A3B  _scene003_commands                 scene003
-     00000AD1  _scene003                          scene003
+     0000090D  _globalPaletteValues               globalPalette
+     0000091D  _globalPalette                     globalPalette
+     00000920  _PSGUpdate                         main
+     00000926  _main                              main
+     000009F0  _breakable_rock_tileset_TilesetF   tileset_functions
+     00000AC3  _globalPaletteOld                  global_palette
      00000AD3  _sceneMasterTemp_createInfoBoots   sceneMasterTemp
      00000ADB  _sceneMasterTemp_createInfo2       sceneMasterTemp
      00000AE3  _sceneMasterTemp_createInfo5       sceneMasterTemp
@@ -915,14 +915,16 @@ out\source\client\generated\gameobjecttemplates\walker_small_template.rel
                                           [ walker_small_template ]
 out\source\client\generated\gameobjecttemplates\walker_template.rel
                                           [ walker_template ]
+out\source\client\exported\scenes\scene001.rel
+                                          [ scene001 ]
+out\source\client\exported\scenes\scene003.rel
+                                          [ scene003 ]
 out\source\client\exported\palettes\globalPalette.rel
                                           [ globalPalette ]
 out\source\client\main.rel                [ main ]
 out\source\client\tileset_functions.rel   [ tileset_functions ]
 out\source\client\exported\global_palette.rel
                                           [ global_palette ]
-out\source\client\exported\scene001.rel   [ scene001 ]
-out\source\client\exported\scene003.rel   [ scene003 ]
 out\source\client\exported\sceneMasterTemp.rel
                                           [ sceneMasterTemp ]
 out\source\client\generated\bank2.rel     [ bank2 ]

@@ -10,6 +10,8 @@ namespace BuildMaster
     {
         public static void RunCommandLine(string command, string commandParameters)
         {
+            Console.WriteLine("CommandParameters: " + commandParameters);
+
             ProcessStartInfo psi = new ProcessStartInfo
             {
                 FileName = command,

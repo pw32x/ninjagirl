@@ -23,12 +23,14 @@ Todo
 			IsUnique - only one instance is allowed
 				player
 	
-		remember last camera position and zoom
+		FAIL remember last camera position and zoom
+			RESULT 
+				Can't make it work
 
-		make sprites from graphic gale frames transparent
+		NAH make sprites from graphic gale frames transparent
 
-		run application as command line tool
-			integrate into config.bm
+		DONE run application as command line tool
+			DONE integrate into config.bm
 
 		fix player running when placed on ground in SceneMaster
 

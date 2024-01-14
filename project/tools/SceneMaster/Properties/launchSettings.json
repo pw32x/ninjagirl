@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "SceneMaster": {
+      "commandName": "Project",
+      "commandLineArgs": "/batch C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project\\gamedata\\scenes C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project\\source\\client\\exported\\scenes",
+      "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project"
+    }
+  }
+}

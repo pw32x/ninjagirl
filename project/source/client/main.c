@@ -12,8 +12,8 @@
 
 // levels
 //#include "exported/level001.h"
-#include "exported/scene001.h"
-#include "exported/scene003.h"
+#include "exported/scenes/scene001.h"
+#include "exported/scenes/scene003.h"
 
 #ifdef USE_SCENEMASTER_LEVEL
 #include "exported/sceneMasterTemp.h"
