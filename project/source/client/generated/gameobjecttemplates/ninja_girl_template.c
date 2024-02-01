@@ -14,6 +14,6 @@ const GameObjectTemplate ninja_girl_template =
     3, // rect right
     16, // rect bottom
     OBJECTTYPE_PLAYER, // object type
-    &ninja_girlResourceInfo, // resource info
+    &gun_girlResourceInfo, // resource info
     Player_Init, // init function
 };

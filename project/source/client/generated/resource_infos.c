@@ -3,10 +3,11 @@
 #include "background3_tileset.h"
 #include "breakable_rock_tileset.h"
 #include "waterfall_tileset.h"
+#include "client\exported\animations\bullet.h"
 #include "client\exported\animations\explosion.h"
+#include "client\exported\animations\gun_girl.h"
 #include "client\exported\animations\impact.h"
 #include "client\exported\animations\kunai.h"
-#include "client\exported\animations\ninja_girl.h"
 #include "client\exported\animations\robotrunner.h"
 #include "client\exported\animations\robotspring.h"
 #include "client\exported\animations\rock_particle.h"
@@ -21,10 +22,11 @@
 const ResourceInfo background3_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&background3_tileset };
 const ResourceInfo breakable_rock_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&breakable_rock_tileset };
 const ResourceInfo waterfall_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&waterfall_tileset };
+const ResourceInfo bulletResourceInfo = { /*bank*/ 2, (const Resource*)&bullet };
 const ResourceInfo explosionResourceInfo = { /*bank*/ 2, (const Resource*)&explosion };
+const ResourceInfo gun_girlResourceInfo = { /*bank*/ 2, (const Resource*)&gun_girl };
 const ResourceInfo impactResourceInfo = { /*bank*/ 2, (const Resource*)&impact };
 const ResourceInfo kunaiResourceInfo = { /*bank*/ 2, (const Resource*)&kunai };
-const ResourceInfo ninja_girlResourceInfo = { /*bank*/ 2, (const Resource*)&ninja_girl };
 const ResourceInfo robotrunnerResourceInfo = { /*bank*/ 2, (const Resource*)&robotrunner };
 const ResourceInfo robotspringResourceInfo = { /*bank*/ 2, (const Resource*)&robotspring };
 const ResourceInfo rock_particleResourceInfo = { /*bank*/ 2, (const Resource*)&rock_particle };

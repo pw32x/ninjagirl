@@ -2,7 +2,7 @@
 	<Name value="Ninja Girl"/>
 	<EditorProperties>
 		<Visual>
-			<GraphicsGale filename="..\animations\streamed\ninja_girl.gal" framenumber="6"/>
+			<GraphicsGale filename="..\animations\streamed\gun_girl.gal" framenumber="6"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
@@ -14,12 +14,12 @@
 		<RectBottom value="16"/>		
 		<GameObjectType value="Player" />
 		<Health value="2"/>
-		<ResourceInfo value="ninja_girlResourceInfo" />		
+		<ResourceInfo value="gun_girlResourceInfo" />		
 		<InitFunction value="Player_Init"/>
 	</GameProperties>
 	<References>
 		<Template value="explosion.xml"/>
 		<Template value="impact.xml"/>
-		<Template value="kunai.xml"/>
+		<Template value="bullet.xml"/>
 	</References>	
 </GameObjectTemplate>

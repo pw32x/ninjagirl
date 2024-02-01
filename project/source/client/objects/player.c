@@ -15,10 +15,10 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
-//kunai
-#include "client/objects/kunai.h"
-//#include "client/exported/animations/kunai.h"
-#include "client/exported/animations/ninja_girl.h"
+//bullet
+#include "client/objects/bullet.h"
+//#include "client/exported/animations/bullet.h"
+#include "client/exported/animations/gun_girl.h"
 
 //#include "client/generated/resource_infos.h"
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
@@ -44,8 +44,8 @@ u8 isPlayerMoving;
 u8 isPlayerShooting;
 
 #define PLAYER_SPEED_X	24
-#define PLAYER_GRAVITY	5
-#define JUMP_SPEED 95
+#define PLAYER_GRAVITY	4
+#define JUMP_SPEED 75
 
 #define PLAYER_STATE_STAND	0
 #define PLAYER_STATE_RUN	1
@@ -60,44 +60,46 @@ void setPlayerAnimation(void)
 {
 	u8 flipped = ObjectManager_player.flipped;
 	animationChanged = TRUE;
+	/*
 	if (isPlayerShooting)
 	{
 		if (playerState == PLAYER_STATE_DUCK)
 		{
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? NINJA_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
+													flipped ? GUN_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
 
 		}
 		else
 		{
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? NINJA_GIRL_SHOOT_LEFT_FRAME_INDEX : NINJA_GIRL_SHOOT_RIGHT_FRAME_INDEX);
+													flipped ? GUN_GIRL_SHOOT_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_RIGHT_FRAME_INDEX);
 		}
 
 		return;
 	}
+	*/
 
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? NINJA_GIRL_STAND_LEFT_FRAME_INDEX : NINJA_GIRL_STAND_RIGHT_FRAME_INDEX);
+												flipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? NINJA_GIRL_RUN_LEFT_FRAME_INDEX : NINJA_GIRL_RUN_RIGHT_FRAME_INDEX);
+												flipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_FALL:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? NINJA_GIRL_FALL_LEFT_FRAME_INDEX : NINJA_GIRL_FALL_RIGHT_FRAME_INDEX);
+												flipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? NINJA_GIRL_JUMP_LEFT_FRAME_INDEX : NINJA_GIRL_JUMP_RIGHT_FRAME_INDEX);
+												flipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_DUCK:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? NINJA_GIRL_DUCK_LEFT_FRAME_INDEX : NINJA_GIRL_DUCK_RIGHT_FRAME_INDEX);
+												flipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}
 }
@@ -113,7 +115,7 @@ void setPlayerState(u8 newState)
 
 	playerState = newState;
 
-	if (!isPlayerShooting)
+	//if (!isPlayerShooting)
 		setPlayerAnimation();
 
 	stateChanged = TRUE;
@@ -145,26 +147,26 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 void Player_FireWeapon(GameObject* player)
 {
 
-	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 1 : -6;
+	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
 	CreateInfo createInfo = 
 	{ 
-		&kunai_template, 
-		player->x + (ObjectManager_player.flipped ? -10 : 10), 
+		&bullet_template, 
+		player->x + (ObjectManager_player.flipped ? -16 : 16), 
 		player->y + offset
 	};
 
-	GameObject* kunai = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
-	kunai->speedx = ObjectManager_player.flipped ? -3 : 3;
-	kunai->speedy = 0;
+	bullet->speedx = ObjectManager_player.flipped ? -3 : 3;
+	bullet->speedy = 0;
 
-	if (ObjectManager_player.flipped)
-		AnimationUtils_setBatchedAnimationFrame(kunai, 1);
+	//if (ObjectManager_player.flipped)
+	//	AnimationUtils_setBatchedAnimationFrame(bullet, 1);
 
-	isPlayerShooting = TRUE;
-	stateChanged = TRUE;
-	setPlayerAnimation();
+	//isPlayerShooting = TRUE;
+	//stateChanged = TRUE;
+	//setPlayerAnimation();
 }
 
 u32 buttonState;
@@ -423,9 +425,9 @@ void Player_Update(GameObject* player)
 		{
 			ObjectManager_player.flipped = TRUE;
 
-			if (isPlayerShooting && isPlayerOnGround)
-				playerSpeedX = 0;
-			else
+			//if (isPlayerShooting && isPlayerOnGround)
+			//	playerSpeedX = 0;
+			//else
 				playerSpeedX = -PLAYER_SPEED_X;
 
 			isPlayerMoving = MOVING_LEFT;
@@ -442,9 +444,9 @@ void Player_Update(GameObject* player)
 		{
 			ObjectManager_player.flipped = FALSE;
 
-			if (isPlayerShooting && isPlayerOnGround)
-				playerSpeedX = 0;
-			else
+			//if (isPlayerShooting && isPlayerOnGround)
+			//	playerSpeedX = 0;
+			//else
 				playerSpeedX = PLAYER_SPEED_X;
 
 			isPlayerMoving = MOVING_RIGHT;
@@ -460,16 +462,17 @@ void Player_Update(GameObject* player)
 			//	setPlayerState(PLAYER_STATE_STAND);
 		}
 
-		if (oldIsPlayerMoving != isPlayerMoving && !isPlayerShooting)
+		if (oldIsPlayerMoving != isPlayerMoving/* && !isPlayerShooting*/)
 			setPlayerAnimation();
 	}
 
-	if (buttonsPressed & PORT_A_KEY_1  && !isPlayerShooting)
+	if (buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
 		Player_FireWeapon(player);
 
-	if (buttonsPressed & PORT_A_KEY_2  && 
-		isPlayerOnGround &&
-		!isPlayerShooting)
+	if (buttonsPressed & PORT_A_KEY_2 
+		&& isPlayerOnGround 
+		//&& !isPlayerShooting
+		)
 	{
 		playerSpeedY -= JUMP_SPEED;
 
@@ -501,11 +504,11 @@ void Player_Update(GameObject* player)
 
 	u8 updateResult = ObjectManager_player.UpdateAnimation(&ObjectManager_player);
 
-	if (isPlayerShooting && updateResult == ANIMATION_FINISHED)
-	{
-		isPlayerShooting = FALSE;
-		setPlayerAnimation();
-	}
+	//if (isPlayerShooting && updateResult == ANIMATION_FINISHED)
+	//{
+	//	isPlayerShooting = FALSE;
+	//	setPlayerAnimation();
+	//}
 
 	if (updateResult == ANIMATION_CHANGED_FRAME || 
 		stateChanged ||

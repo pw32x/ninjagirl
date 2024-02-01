@@ -175,7 +175,7 @@ u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceIn
 
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {
-	SMS_setBackdropColor(COLOR_ORANGE);
+	//SMS_setBackdropColor(COLOR_ORANGE);
 
 	const BatchedAnimationFrame* batchedAnimationFrame = gameObject->currentBatchedAnimationFrame;
 	const u8* tileData = gameObject->batchedAnimation->tileData;

@@ -30,7 +30,7 @@ GameObject* TileAnimator_Init(const ResourceInfo* resourceInfo)
 
 void UpdateTiles(GameObject* object)
 {
-	SMS_setBackdropColor(COLOR_PINK);
+	//SMS_setBackdropColor(COLOR_PINK);
 
 	// update for tiles at once
 	const u8* sourceTileRunner = object->tileAnimation->tileData + 
@@ -42,7 +42,7 @@ void UpdateTiles(GameObject* object)
 		UNSAFE_SMS_load4Tiles(sourceTileRunner, *object->tileAnimation->vdpLocation);
 	}
 
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 }
 
 void TileAnimator_Update(GameObject* object)

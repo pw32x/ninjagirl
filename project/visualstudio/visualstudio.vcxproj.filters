@@ -250,9 +250,6 @@
     <ClCompile Include="..\source\client\exported\animations\kunai.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\ninja_girl.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
@@ -321,6 +318,18 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\palettes\globalPalette.c">
       <Filter>Source Files\client\exported\palettes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\gun_girl.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\bullet.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\bullet.c">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -447,9 +456,6 @@
     <ClInclude Include="..\source\client\exported\animations\kunai.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\ninja_girl.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
@@ -494,6 +500,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\palettes\globalPalette.h">
       <Filter>Source Files\client\exported\palettes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\gun_girl.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\bullet.h">
+      <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\bullet.h">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

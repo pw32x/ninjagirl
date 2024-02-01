@@ -153,10 +153,11 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
+    <ClCompile Include="..\source\client\exported\animations\bullet.c" />
     <ClCompile Include="..\source\client\exported\animations\explosion.c" />
+    <ClCompile Include="..\source\client\exported\animations\gun_girl.c" />
     <ClCompile Include="..\source\client\exported\animations\impact.c" />
     <ClCompile Include="..\source\client\exported\animations\kunai.c" />
-    <ClCompile Include="..\source\client\exported\animations\ninja_girl.c" />
     <ClCompile Include="..\source\client\exported\animations\robotrunner.c" />
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
@@ -166,6 +167,7 @@
     <ClCompile Include="..\source\client\exported\scene001.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
@@ -183,6 +185,7 @@
     <ClCompile Include="..\source\client\generated\tilesets\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
+    <ClCompile Include="..\source\client\objects\bullet.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
     <ClCompile Include="..\source\client\objects\basic_effect.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
@@ -214,10 +217,11 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
+    <ClInclude Include="..\source\client\exported\animations\bullet.h" />
     <ClInclude Include="..\source\client\exported\animations\explosion.h" />
+    <ClInclude Include="..\source\client\exported\animations\gun_girl.h" />
     <ClInclude Include="..\source\client\exported\animations\impact.h" />
     <ClInclude Include="..\source\client\exported\animations\kunai.h" />
-    <ClInclude Include="..\source\client\exported\animations\ninja_girl.h" />
     <ClInclude Include="..\source\client\exported\animations\robotrunner.h" />
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
@@ -233,6 +237,7 @@
     <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
+    <ClInclude Include="..\source\client\objects\bullet.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\objects\basic_effect.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />

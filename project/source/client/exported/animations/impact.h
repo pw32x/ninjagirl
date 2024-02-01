@@ -7,5 +7,9 @@
 
 RESOURCE(BANK2) extern const BatchedAnimation impact;
 
+// frame numbers for specific animations.
+#define IMPACT_8_FRAME_INDEX 0
+#define IMPACT_8_FRAME_INDEX 0
+
 #endif
 
