@@ -45,6 +45,7 @@ u8 isPlayerShooting;
 
 #define PLAYER_SPEED_X	24
 #define PLAYER_GRAVITY	4
+#define PLAYER_GRAVITY_HEAVY 12
 #define JUMP_SPEED 75
 
 #define PLAYER_STATE_STAND	0
@@ -260,7 +261,14 @@ update_x:
 
 void Player_UpdateY(void)
 {
-	playerSpeedY += PLAYER_GRAVITY;
+	if (playerState == PLAYER_STATE_JUMP) // jumping
+	{
+		playerSpeedY += (buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
+	}
+	else 
+	{
+		playerSpeedY += PLAYER_GRAVITY;
+	}
 
 	playerY += playerSpeedY;
 
@@ -274,6 +282,7 @@ void Player_UpdateY(void)
 
 		s16 blockY = V2B(ySensor);
 
+		// don't do any collisions if our feet are offscreen
 		if (blockY < 0)
 			return;
 
@@ -284,12 +293,12 @@ void Player_UpdateY(void)
 			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
-
 			
+
 
 			if (buttonState & PORT_A_KEY_DOWN && 
 				isPlayerOnGround)
-			{
+		{
 				setPlayerState(PLAYER_STATE_DUCK);
 			}
 			else
@@ -299,7 +308,7 @@ void Player_UpdateY(void)
 				else 
 					setPlayerState(PLAYER_STATE_STAND);
 			}
-			
+
 			return;
 		}
 
@@ -311,11 +320,11 @@ void Player_UpdateY(void)
 			playerSpeedY = 0;
 			isPlayerOnGround = TRUE;
 
-			if (buttonState & PORT_A_KEY_DOWN && 
-				isPlayerOnGround)
-			{
-				setPlayerState(PLAYER_STATE_DUCK);
-			}
+		if (buttonState & PORT_A_KEY_DOWN && 
+			isPlayerOnGround)
+		{
+			setPlayerState(PLAYER_STATE_DUCK);
+		}
 
 			if (playerState != PLAYER_STATE_DUCK && isPlayerMoving) 
 				setPlayerState(PLAYER_STATE_RUN);
@@ -361,13 +370,6 @@ void Player_UpdateY(void)
 
 
 	}
-
-	//char output[255];
-	//sprintf(output, "%d, %d, %d     ", blockX, blockY, tileType);
-	//SMS_printatXY(1, 0, output); 
-	//
-	//sprintf(output, "%d", MapManager_mapWidth);
-	//SMS_printatXY(1, 1, output); 
 }
 
 #define NOT_MOVING		0

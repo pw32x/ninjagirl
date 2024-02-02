@@ -1,5 +1,5 @@
 <GameObjectTemplate>
-	<Name value="Ninja Girl"/>
+	<Name value="Gun Girl"/>
 	<EditorProperties>
 		<Visual>
 			<GraphicsGale filename="..\animations\streamed\gun_girl.gal" framenumber="6"/>

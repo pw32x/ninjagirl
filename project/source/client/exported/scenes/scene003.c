@@ -12,7 +12,7 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo2 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo scene003_createInfo5 = { &ninja_girl_template, 27, 128 };
+const CreateInfo scene003_createInfo5 = { &gun_girl_template, 125, 128 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -35,7 +35,7 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfo2 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
-    { 7, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo5 },
+    { 105, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo5 },
     { 0, (CommandFunction)NULL, NULL}
 };
 

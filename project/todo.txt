@@ -10,16 +10,17 @@ Todo
 		
 		DONE don't jump up so fast
 		
-		variable jump height
+		DONE variable jump height
 		
-		bullet needs to be more visible/contrasty
+		DONE bullet needs to be more visible/contrasty
 		
-		change ninjagirl template to gungirl template
+		DONE change ninjagirl template to gungirl template
+		
+		jump on semi-solid doesn't feel right. player gets on it even though
+		they're below it.
 		
 		I need a purple
 		
-		can't duck if on the right edge of something
-
 		fix spawner		
 		
 		in-game color tweaker
@@ -51,7 +52,7 @@ Todo
 				
 				animate when jumping, running
 		
-	fix scenemaster build
+	fix scenemaster game build button
 		
 	sprties
 	

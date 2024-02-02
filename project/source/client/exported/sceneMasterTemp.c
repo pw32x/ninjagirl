@@ -12,7 +12,7 @@
 
 const CommandRunnerCreateInfo sceneMasterTemp_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo sceneMasterTemp_createInfo2 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo sceneMasterTemp_createInfo5 = { &ninja_girl_template, 129, 124 };
+const CreateInfo sceneMasterTemp_createInfo5 = { &gun_girl_template, 129, 124 };
 const CreateInfo sceneMasterTemp_createInfo6 = { &walker_template, 169, 57 };
 const CreateInfo sceneMasterTemp_createInfo7 = { &robotrunner_template, 236, 128 };
 const CreateInfo sceneMasterTemp_createInfo8 = { &walker_big_template, 301, 16 };

@@ -5,7 +5,7 @@
 
 GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo);
 
-const GameObjectTemplate ninja_girl_template = 
+const GameObjectTemplate gun_girl_template = 
 {
     2, // health
     0, // damage
