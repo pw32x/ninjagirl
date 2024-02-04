@@ -11,13 +11,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\NewDocument.png" />
+    <None Remove="Icons\OpenfileDialog.png" />
     <None Remove="Icons\Play.png" />
+    <None Remove="Icons\Save.png" />
+    <None Remove="Icons\SaveAs.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="thirdparty\GraphicsGale\galefile.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\NewDocument.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\OpenfileDialog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Save.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
@@ -44,6 +60,9 @@
 
   <ItemGroup>
     <Resource Include="Icons\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\SaveAs.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

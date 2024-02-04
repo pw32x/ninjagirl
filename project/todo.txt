@@ -16,12 +16,35 @@ Todo
 		
 		DONE change ninjagirl template to gungirl template
 		
-		jump on semi-solid doesn't feel right. player gets on it even though
+		DONE jump on semi-solid doesn't feel right. player gets on it even though
 		they're below it.
 		
-		I need a purple
+		NAH I need a purple
 		
-		fix spawner		
+		DONE fix spawner		
+		
+		DONE fix entities not getting destroyed when off screen
+		
+		SceneMaster
+		
+			DONE fix SceneMaster to work with levels other than the theme's level
+			
+			DONE handle crash when the level doesn't exist anymore
+			
+			add toolbar with open/save/import buttons
+			
+			fix the build button
+		
+		remove binaries and raw files
+		
+		jump doesn't always work after hitting the ground
+		
+		when spawning an object, only spawn it when it is almost entirely visible
+		
+			spawn point is  X
+			spawn position is X - (width of sprite - 8 pixels because of left column)
+			width is visible area of sprite, not entire frame
+		
 		
 		in-game color tweaker
 		

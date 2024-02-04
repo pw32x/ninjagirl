@@ -47,9 +47,13 @@ void Enemy_Update(GameObject* object)
 	}
 	*/
 
+	object->screenx = object->x - ScrollManager_horizontalScroll;
+	object->screeny = object->y - ScrollManager_verticalScroll;
+
 	// if offscreen die
-	if (object->x + 14 < SCREEN_LEFT)
+	if (object->screenx < SCREEN_LEFT)
 	{
+		SMS_debugPrintf("object->screenx: %d\n", object->screenx);
 		goto destroy_object;
 	}
 	
@@ -62,16 +66,14 @@ void Enemy_Update(GameObject* object)
 	return;
 
 destroy_object:
+	SMS_debugPrintf("Destroy Object\n");
 	ObjectManager_DestroyObject(object);
 }
 
 BOOL Enemy_Draw(GameObject* object)
 {
-	s16 screenLeft = object->x - ScrollManager_horizontalScroll;
-	s16 screenRight = screenLeft + 14;//object->rectRight;
-
-	DRAWUTILS_SETUP_BATCH(screenLeft,
-						  object->y,
+	DRAWUTILS_SETUP_BATCH(object->screenx,
+						  object->screeny,
 						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 

@@ -12,6 +12,8 @@ extern u8 ScrollManager_vdpHorizontalScroll;
 
 extern u16 ScrollManager_horizontalScrollLimit;
 
+extern u16 ScrollManager_verticalScroll;
+
 extern GameObject* ScrollManager_TrackedObject;
 
 #define SCROLLMANAGER_BUFFER_HEIGHT 24
@@ -19,8 +21,8 @@ extern u16 ScrollManager_columnBuffer[SCROLLMANAGER_BUFFER_HEIGHT];
 
 extern u8 ScrollManager_updateMapVDP;
 
-extern u8 ScrollManager_speedX;
-extern u8 ScrollManager_speedY;
+//extern u8 ScrollManager_speedX;
+//extern u8 ScrollManager_speedY;
 
 
 

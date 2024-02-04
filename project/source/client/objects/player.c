@@ -175,8 +175,6 @@ void Player_UpdateX(void)
 {
 	s16 offset = 0;
 
-
-
 	POSITION projectedX = playerX + playerSpeedX;
 
 	POSITION xSensor = projectedX;

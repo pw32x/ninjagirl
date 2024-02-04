@@ -4,6 +4,8 @@
 #include "engine/command_manager.h"
 #include "engine/object_utils.h"
 
+#include "SMSlib.h"
+
 void CommandRunner_RightScroll_Update(GameObject* object);
 
 GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CommandRunnerCreateInfo* createInfo)
@@ -41,12 +43,12 @@ void CommandRunner_RightScroll_Update(GameObject* object)
 {
 	UNUSED(object);
 
-	CommandRunner_counter += ScrollManager_speedX;
+	CommandRunner_counter = ScrollManager_horizontalScroll + SCREEN_WIDTH;
 
 	u8 objectId = object->objectId;
 
 	while (CommandManager_currentCommand->command != NULL && 
-		   CommandManager_currentCommand->counter < CommandRunner_counter + SCREEN_WIDTH)
+		   CommandManager_currentCommand->counter < CommandRunner_counter)
 	{
 		CommandManager_currentCommand->command(CommandManager_currentCommand->data);
 

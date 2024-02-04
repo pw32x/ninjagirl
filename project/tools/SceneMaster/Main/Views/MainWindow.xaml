@@ -47,16 +47,45 @@
                 <MenuItem Header="Load last scene on startup" IsCheckable="True" IsChecked="{Binding Settings.ReloadLastScene}"/>
             </MenuItem>
         </Menu>
-        <TabControl>
-            <TabItem>
-                <TabItem.Header>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="*" Visibility="{Binding CurrentDocument.SceneViewModel.IsModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                        <TextBlock Text="{Binding CurrentDocument.Filename}"/>
-                    </StackPanel>
-                </TabItem.Header>
-                <documents:SceneMasterDocumentView DataContext="{Binding CurrentDocument}" />
-            </TabItem>
-        </TabControl>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0"
+                        Orientation="Horizontal">
+                <Button Command="{Binding NewCommand}">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/NewDocument.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding OpenCommand}">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/OpenfileDialog.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding SaveCommand}">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/Save.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding SaveAsCommand}">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/SaveAs.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+            <TabControl Grid.Row="1">
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="*" Visibility="{Binding CurrentDocument.SceneViewModel.IsModified, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <TextBlock Text="{Binding CurrentDocument.Filename}"/>
+                        </StackPanel>
+                    </TabItem.Header>
+                    <documents:SceneMasterDocumentView DataContext="{Binding CurrentDocument}" />
+                </TabItem>
+            </TabControl>
+        </Grid>
     </DockPanel>
 </Window>

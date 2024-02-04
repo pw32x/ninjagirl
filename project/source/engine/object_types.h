@@ -34,6 +34,8 @@ typedef struct game_object
 
 	s16 x;
 	s16 y;
+	s16 screenx;
+	s16 screeny;
 
 	s16 speedx;
 	s16 speedy;

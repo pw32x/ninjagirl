@@ -19,6 +19,7 @@ namespace TiledCS
         /// The tileset name
         /// </summary>
         public string Name { get; set; }
+        public string FilePath { get; set; }
         /// <summary>
         /// The tileset class
         /// </summary>
@@ -87,6 +88,8 @@ namespace TiledCS
                 throw new TiledException($"{path} not found");
             }
             
+            FilePath = Path.GetFullPath(path);
+
             var content = File.ReadAllText(path);
 
             if (path.EndsWith(".tsx"))

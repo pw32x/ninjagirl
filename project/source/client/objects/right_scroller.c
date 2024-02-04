@@ -50,23 +50,26 @@ void RightScroll_Update(GameObject* target)
 
 	// tile map
 
-	ScrollManager_speedX = 0;
+	u8 scrollSpeedX = 0;
 
 	u8 oldColumn = columnToUpdate;
 	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
 	if (target->x > ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH)
 	{
-		ScrollManager_speedX = target->x - (ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH);
+		scrollSpeedX = target->x - (ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH);
 	}
 
 	// here we move the vdp scrolling and logical map scrolling to the same speed
-	ScrollManager_horizontalScroll += ScrollManager_speedX; // scrolling towards the right into the map
+	ScrollManager_horizontalScroll += scrollSpeedX; // scrolling towards the right into the map
+
+	//SMS_debugPrintf("scroll: %d\n", ScrollManager_horizontalScroll);
+	//SMS_debugPrintf("scroll speed: %d\n", scrollSpeedX);
 
 	if (ScrollManager_horizontalScroll >= ScrollManager_horizontalScrollLimit)
 	{
 		// some kind of limit
-		ScrollManager_speedX = (ScrollManager_horizontalScrollLimit - 1) - ScrollManager_horizontalScroll;
+		scrollSpeedX = (ScrollManager_horizontalScrollLimit - 1) - ScrollManager_horizontalScroll;
 		ScrollManager_horizontalScroll = ScrollManager_horizontalScrollLimit - 1;
 	}
 

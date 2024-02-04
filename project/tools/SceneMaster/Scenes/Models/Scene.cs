@@ -196,36 +196,57 @@ namespace SceneMaster.Scenes.Models
             
         }
 
+        private void ShutdownTiledMap()
+        {
+            m_tiledMap = null;
+            m_tiledMapDirectory = null;
+            m_tileMapTileLayers = null;
+            m_tiledMapTilesets = null;
+            m_tilesetBitmaps = null;
+            TiledMapBitmapSource = null;
+        }
+
         private void LoadTiledMap(string tiledMapFilePath)
         {
             StopWatchingTiledMap();
 
-            m_tiledMap = new TiledMap(tiledMapFilePath);
-
-            m_tiledMapDirectory = StringUtils.EnsureTrailingSlash(Path.GetDirectoryName(tiledMapFilePath));
-
-            m_tiledMapTilesets = m_tiledMap.GetTiledTilesets(m_tiledMapDirectory);
-            m_tileMapTileLayers = m_tiledMap.Layers.Where(x => x.type == TiledLayerType.TileLayer);
-
-            m_tilesetBitmaps = new Dictionary<string, BitmapSource>();
-            foreach (var tileset in m_tiledMapTilesets.Values)
+            try
             {
-                string source = tileset.Image.source;
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
-                bitmapImage.UriSource = new Uri(m_tiledMapDirectory + source, UriKind.RelativeOrAbsolute);
-                bitmapImage.EndInit();
+                ShutdownTiledMap();
 
-                FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, PixelFormats.Bgr32, null, 0);
+                m_tiledMap = new TiledMap(tiledMapFilePath);
 
-                m_tilesetBitmaps.Add(source, convertedBitmap);
+                m_tiledMapDirectory = StringUtils.EnsureTrailingSlash(Path.GetDirectoryName(tiledMapFilePath));
 
+                m_tiledMapTilesets = m_tiledMap.GetTiledTilesets(m_tiledMapDirectory);
+                m_tileMapTileLayers = m_tiledMap.Layers.Where(x => x.type == TiledLayerType.TileLayer);
+
+                m_tilesetBitmaps = new Dictionary<string, BitmapSource>();
+                foreach (var tileset in m_tiledMapTilesets.Values)
+                {
+                    string tilesetFolder = StringUtils.EnsureTrailingSlash(Path.GetDirectoryName(tileset.FilePath));
+                    string source = tileset.Image.source;
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmapImage.UriSource = new Uri(tilesetFolder + source, UriKind.RelativeOrAbsolute);
+                    bitmapImage.EndInit();
+
+                    FormatConvertedBitmap convertedBitmap = new FormatConvertedBitmap(bitmapImage, PixelFormats.Bgr32, null, 0);
+
+                    m_tilesetBitmaps.Add(source, convertedBitmap);
+
+                }
+
+                TiledMapBitmapSource = BuildTiledMapBitmapSource();
+
+                StartWatchingTiledMap(tiledMapFilePath);
             }
-
-            TiledMapBitmapSource = BuildTiledMapBitmapSource();
-
-            StartWatchingTiledMap(tiledMapFilePath);
+            catch (Exception e) 
+            {
+                ShutdownTiledMap();
+                MessageBox.Show("Failed loading " + tiledMapFilePath + ". Error: " + e.Message);
+            }
         }
 
         private WriteableBitmap BuildTiledMapBitmapSource()
