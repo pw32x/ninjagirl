@@ -406,11 +406,3 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-project/tools/bin/SceneMaster/Release/net8.0-windows7.0/CommandInfoCache
-project/tools/bin/SceneMaster/Debug/net8.0-windows7.0/CommandInfoCache
-!/project/tools/bin/
-!/project/tools/bin/BuildMaster/*
-!/project/tools/bin/SceneMaster/*
-!/project/tools/bin/TemplateMaster/*
-project/tools/bin/SceneMaster/Debug/net8.0-windows7.0/settings.xml
-project/tools/bin/SceneMaster/Release/net8.0-windows7.0/settings.xml
