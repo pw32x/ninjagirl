@@ -16,6 +16,7 @@
 
 # out folder
 project/out/*
+project/raw
 
 # except this file
 !/project/out/NinjaGirl.map
@@ -405,4 +406,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
 
