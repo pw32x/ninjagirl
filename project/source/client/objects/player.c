@@ -17,17 +17,13 @@
 
 //bullet
 #include "client/objects/bullet.h"
-//#include "client/exported/animations/bullet.h"
 #include "client/exported/animations/gun_girl.h"
 
-//#include "client/generated/resource_infos.h"
+
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 
 #include <stdio.h>
 
-
-
-void Player_Update(GameObject* player);
 BOOL Player_Draw(GameObject* player);
 void Player_FireWeapon(GameObject* player);
 
@@ -39,46 +35,45 @@ s16 playerSpeedY;
 
 u8 playerState;
 
-u8 isPlayerOnGround;
-u8 isPlayerMoving;
 u8 isPlayerShooting;
 
 #define PLAYER_SPEED_X	24
 #define PLAYER_GRAVITY	4
-#define PLAYER_GRAVITY_HEAVY 12
-#define JUMP_SPEED 75
+#define PLAYER_GRAVITY_HEAVY 14
+#define JUMP_SPEED 81
 
-#define PLAYER_STATE_STAND	0
-#define PLAYER_STATE_RUN	1
-#define PLAYER_STATE_FALL	2
-#define PLAYER_STATE_JUMP	3
-#define PLAYER_STATE_DUCK	4
+#define PLAYER_STATE_STAND		0
+#define PLAYER_STATE_RUN		1
+#define PLAYER_STATE_FALL		2
+#define PLAYER_STATE_JUMP		3
+#define PLAYER_STATE_DUCK		4
+#define PLAYER_STATE_NOTHING	5
+#define PLAYER_NUM_STATES		6
 
-u8 stateChanged;
-u8 animationChanged;
+void Player_Update(GameObject* player);
+void Player_UpdateStand(GameObject* player);
+void Player_UpdateRun(GameObject* player);
+void Player_UpdateFall(GameObject* player);
+void Player_UpdateJump(GameObject* player);
+void Player_UpdateDuck(GameObject* player);
+
+ObjectFunctionType player_SubUpdate;
+
+const ObjectFunctionType playerStateFunctions[PLAYER_NUM_STATES] = 
+{
+	Player_UpdateStand,
+	Player_UpdateRun,
+	Player_UpdateFall,
+	Player_UpdateJump,
+	Player_UpdateDuck,
+	ObjectUtils_gameObjectDoNothing
+};
+
+u8 updateAnimationStream = FALSE;
 
 void setPlayerAnimation(void)
 {
 	u8 flipped = ObjectManager_player.flipped;
-	animationChanged = TRUE;
-	/*
-	if (isPlayerShooting)
-	{
-		if (playerState == PLAYER_STATE_DUCK)
-		{
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_DUCK_SHOOT_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_SHOOT_RIGHT_FRAME_INDEX);
-
-		}
-		else
-		{
-			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_SHOOT_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_RIGHT_FRAME_INDEX);
-		}
-
-		return;
-	}
-	*/
 
 	switch (playerState)
 	{
@@ -103,23 +98,37 @@ void setPlayerAnimation(void)
 												flipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}
+
+	updateAnimationStream = TRUE;
 }
 
 void setPlayerState(u8 newState)
 {
-	stateChanged = FALSE;
-
-	if (playerState == newState)
-	{
-		return;
-	}
-
 	playerState = newState;
 
-	//if (!isPlayerShooting)
-		setPlayerAnimation();
+	player_SubUpdate = playerStateFunctions[playerState];
 
-	stateChanged = TRUE;
+	switch (playerState)
+	{
+	case PLAYER_STATE_STAND:
+		playerSpeedX = 0;
+		playerSpeedY = 0;
+		break;
+	case PLAYER_STATE_RUN:
+		playerSpeedY = 0;
+		break;
+	case PLAYER_STATE_FALL:
+		break;
+	case PLAYER_STATE_JUMP:
+		playerSpeedY -= JUMP_SPEED;
+		break;
+	case PLAYER_STATE_DUCK:
+		playerSpeedX = 0;
+		playerSpeedY = 0;
+		break;
+	}
+
+	setPlayerAnimation();
 }
 
 GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
@@ -132,22 +141,17 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	ObjectManager_player.Draw = Player_Draw;
 	ObjectManager_player.flipped = FALSE;
 
+	updateAnimationStream = FALSE;
+
 	playerSpeedX = 0;
-
-	//AnimationUtils_setupAnimation(&ObjectManager_player, (const AnimationBatched*)spawnInfo->payload, *((u8*)spawnInfo->additionalPayload));
-
-	//ObjectManager_player.animationVdpTileIndex = 0xff;
-
-	//SMS_setBGPaletteColor(1, 0xffff);
-
-	ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
+	playerSpeedY = 0;
+	setPlayerState(PLAYER_STATE_STAND);
 
 	return &ObjectManager_player;
 }
 
 void Player_FireWeapon(GameObject* player)
 {
-
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
 	CreateInfo createInfo = 
@@ -161,13 +165,6 @@ void Player_FireWeapon(GameObject* player)
 
 	bullet->speedx = ObjectManager_player.flipped ? -3 : 3;
 	bullet->speedy = 0;
-
-	//if (ObjectManager_player.flipped)
-	//	AnimationUtils_setBatchedAnimationFrame(bullet, 1);
-
-	//isPlayerShooting = TRUE;
-	//stateChanged = TRUE;
-	//setPlayerAnimation();
 }
 
 u32 buttonState;
@@ -178,15 +175,17 @@ void Player_UpdateX(void)
 {
 	s16 offset = 0;
 
+
+
 	POSITION projectedX = playerX + playerSpeedX;
 
 	POSITION xSensor = projectedX;
 
-	if (playerSpeedX > 0)
+	if (!ObjectManager_player.flipped)
 	{
 		offset = P2V(ObjectManager_player.rectRight + 1);
 	}
-	else if (playerSpeedX < 0)
+	else
 	{
 		offset = P2V(ObjectManager_player.rectLeft);
 	}
@@ -204,7 +203,6 @@ void Player_UpdateX(void)
 
 	s16 blockX = V2B(xSensor);
 	s16 blockY = V2B(playerY + P2V(ObjectManager_player.rectTop));
-		
 
 	if (blockY < 0)
 		goto update_x;
@@ -213,7 +211,7 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (playerSpeedX < 0)
+		if (ObjectManager_player.flipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
@@ -230,11 +228,12 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (playerSpeedX < 0)
+		if (ObjectManager_player.flipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
 		playerSpeedX = projectedX - playerX;
+
 		return;
 	}
 	
@@ -247,11 +246,12 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (playerSpeedX < 0)
+		if (ObjectManager_player.flipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
 		playerSpeedX = projectedX - playerX;
+
 		return;
 	}
 	
@@ -259,269 +259,254 @@ update_x:
 	playerX = projectedX;
 }
 
-void Player_UpdateY(void)
+u16 oldBottomTileTypeLeft = TERRAIN_SOLID;
+u16 oldBottomTileTypeRight = TERRAIN_SOLID;
+s16 oldBlockY = 0;
+
+
+void Player_UpdateStand(GameObject* player)
 {
-	if (playerState == PLAYER_STATE_JUMP) // jumping
+	if (buttonState & PORT_A_KEY_LEFT || buttonState & PORT_A_KEY_RIGHT)
 	{
-		playerSpeedY += (buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
+		setPlayerState(PLAYER_STATE_RUN);
+		return;
 	}
-	else 
+	else if (buttonState & PORT_A_KEY_DOWN)
 	{
-		playerSpeedY += PLAYER_GRAVITY;
+		setPlayerState(PLAYER_STATE_DUCK);
+		return;
+	}
+
+	if (buttonsPressed & PORT_A_KEY_2)
+	{
+		setPlayerState(PLAYER_STATE_JUMP);
+		return;
+	}
+
+	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+
+	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 blockY = V2B(ySensor);
+
+	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
+	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
+	{
+		setPlayerState(PLAYER_STATE_FALL);
+	}
+}
+
+void Player_UpdateRun(GameObject* player)
+{
+	if (buttonsPressed & PORT_A_KEY_2)
+	{
+		setPlayerState(PLAYER_STATE_JUMP);
+		return;
+	}
+	else if (buttonState & PORT_A_KEY_DOWN)
+	{
+		setPlayerState(PLAYER_STATE_DUCK);
+		return;
+	}
+	else if (buttonState & PORT_A_KEY_LEFT)
+	{
+		ObjectManager_player.flipped = TRUE;
+		playerSpeedX = -PLAYER_SPEED_X;
+	}
+	else if (buttonState & PORT_A_KEY_RIGHT)
+	{
+		ObjectManager_player.flipped = FALSE;
+		playerSpeedX = PLAYER_SPEED_X;
+	}
+	else
+	{
+		setPlayerState(PLAYER_STATE_STAND);
+		return;
+	}
+
+	Player_UpdateX();
+
+	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+
+	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 blockY = V2B(ySensor);
+
+	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
+	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
+	{
+		setPlayerState(PLAYER_STATE_FALL);
+	}
+}
+
+void Player_UpdateFall(GameObject* player)
+{
+	if (buttonState & PORT_A_KEY_LEFT)
+	{
+		ObjectManager_player.flipped = TRUE;
+		playerSpeedX = -PLAYER_SPEED_X;
+	}
+	else if (buttonState & PORT_A_KEY_RIGHT)
+	{
+		ObjectManager_player.flipped = FALSE;
+		playerSpeedX = PLAYER_SPEED_X;
+	}
+	else
+	{
+		playerSpeedX = 0;
+	}
+
+	Player_UpdateX();
+
+	playerSpeedY += PLAYER_GRAVITY;
+	playerY += playerSpeedY;
+
+	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+
+	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+
+	s16 blockY = V2B(ySensor);
+
+	// don't do any collisions if our feet are offscreen
+	if (blockY < 0)
+		return;
+
+	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
+	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (bottomTileTypeLeft == TERRAIN_SOLID || 
+		bottomTileTypeRight == TERRAIN_SOLID ||
+		(oldBlockY != blockY && // don't detect topsolid tiles if we're on the same block as previous
+			(
+				(oldBottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeLeft == TERRAIN_TOPSOLID) ||
+				(oldBottomTileTypeRight == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_TOPSOLID)
+			)
+		 ))
+	{
+		playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
+		playerSpeedY = 0;
+		setPlayerState(PLAYER_STATE_STAND);
+
+	}
+
+	oldBottomTileTypeLeft = bottomTileTypeLeft;
+	oldBottomTileTypeRight = bottomTileTypeRight;
+	oldBlockY = blockY;
+}
+
+void Player_UpdateJump(GameObject* player)
+{
+	if (buttonState & PORT_A_KEY_LEFT)
+	{
+		ObjectManager_player.flipped = TRUE;
+		playerSpeedX = -PLAYER_SPEED_X;
+	}
+	else if (buttonState & PORT_A_KEY_RIGHT)
+	{
+		ObjectManager_player.flipped = FALSE;
+		playerSpeedX = PLAYER_SPEED_X;
+	}
+	else
+	{
+		playerSpeedX = 0;
+	}
+
+	Player_UpdateX();
+
+	playerSpeedY += (buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
+
+	if (playerSpeedY > 0)
+	{
+		playerSpeedY = 0;
+		setPlayerState(PLAYER_STATE_FALL);
+		return;
 	}
 
 	playerY += playerSpeedY;
 
-	s16 blockX1 = V2B(playerX + P2V(ObjectManager_player.rectRight));
-	s16 blockX2 = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	// falling
-	if (playerSpeedY > 0)
+	POSITION ySensor = playerY + P2V(ObjectManager_player.rectTop);
+
+	s16 blockY = V2B(ySensor);
+
+	// don't do any collisions if the head is offscreen
+	if (blockY < 0)
+		return;
+
+	u16 topTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
+	u16 topTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (topTileTypeLeft == TERRAIN_SOLID  || topTileTypeRight == TERRAIN_SOLID)
 	{
-		POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
-
-		s16 blockY = V2B(ySensor);
-
-		// don't do any collisions if our feet are offscreen
-		if (blockY < 0)
-			return;
-
-		u16 tileType = GET_TERRAIN(blockX1, blockY);
-
-		if (tileType == TERRAIN_SOLID || tileType == TERRAIN_TOPSOLID)
-		{
-			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
-			playerSpeedY = 0;
-			isPlayerOnGround = TRUE;
-			
-
-
-			if (buttonState & PORT_A_KEY_DOWN && 
-				isPlayerOnGround)
-		{
-				setPlayerState(PLAYER_STATE_DUCK);
-			}
-			else
-			{
-				if (isPlayerMoving) 
-					setPlayerState(PLAYER_STATE_RUN);
-				else 
-					setPlayerState(PLAYER_STATE_STAND);
-			}
-
-			return;
-		}
-
-		tileType = GET_TERRAIN(blockX2, blockY);
-
-		if (tileType == TERRAIN_SOLID || tileType == TERRAIN_TOPSOLID)
-		{
-			playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
-			playerSpeedY = 0;
-			isPlayerOnGround = TRUE;
-
-		if (buttonState & PORT_A_KEY_DOWN && 
-			isPlayerOnGround)
-		{
-			setPlayerState(PLAYER_STATE_DUCK);
-		}
-
-			if (playerState != PLAYER_STATE_DUCK && isPlayerMoving) 
-				setPlayerState(PLAYER_STATE_RUN);
-			else 
-				setPlayerState(PLAYER_STATE_STAND);
-
-			return;
-		}
-
-		isPlayerOnGround = FALSE;
+		playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
+		playerSpeedY = 0;
 		setPlayerState(PLAYER_STATE_FALL);
-	}
-	else if (playerSpeedY < 0) // jump up
-	{
-		isPlayerOnGround = FALSE;
-
-		POSITION ySensor = playerY + P2V(ObjectManager_player.rectTop);
-
-		s16 blockY = V2B(ySensor);
-
-		if (blockY < 0)
-			return;
-
-		u16 tileType = GET_TERRAIN(blockX1, blockY);
-
-		if (tileType == TERRAIN_SOLID)
-		{
-			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
-			playerSpeedY = 0;
-			setPlayerState(PLAYER_STATE_FALL);
-			return;
-		}
-
-		tileType = GET_TERRAIN(blockX2, blockY);
-
-		if (tileType == TERRAIN_SOLID)
-		{
-			playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
-			playerSpeedY = 0;
-			setPlayerState(PLAYER_STATE_FALL);
-			return;
-		}
-
-
 	}
 }
 
-#define NOT_MOVING		0
-#define MOVING_LEFT		1
-#define MOVING_RIGHT	2
+void Player_UpdateDuck(GameObject* player)
+{
+	if (!(buttonState & PORT_A_KEY_DOWN))
+	{
+		setPlayerState(PLAYER_STATE_STAND);
+		return;
+	}
+	else if (buttonState & PORT_A_KEY_LEFT)
+	{
+		ObjectManager_player.flipped = TRUE;
+	}
+	else if (buttonState & PORT_A_KEY_RIGHT)
+	{
+		ObjectManager_player.flipped = FALSE;
+	}
+
+	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
+	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+
+	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 blockY = V2B(ySensor);
+
+	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
+	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
+	{
+		setPlayerState(PLAYER_STATE_FALL);
+	}
+}
 
 void Player_Update(GameObject* player)
 {
-	/*
-	gameObject->x++;
-	gameObject->x %= 255;
-*/
-	u8 oldIsPlayerMoving = isPlayerMoving;
-	
-	isPlayerMoving = NOT_MOVING;
-
 	buttonState = SMS_getKeysStatus();
 	buttonsPressed = SMS_getKeysPressed();
 	buttonsReleased = SMS_getKeysReleased();
 
-	//if (buttonsReleased & PORT_A_KEY_DOWN && playerState == PLAYER_STATE_DUCK)
-	//{
-	//	setPlayerState(PLAYER_STATE_STAND);
-	//}
+	u8 oldFlip = ObjectManager_player.flipped;
 
-	u8 flippedChanged = FALSE;
-	
-	if (playerState == PLAYER_STATE_DUCK)
-	{
-		playerSpeedX = 0;
-
-		if (buttonState & PORT_A_KEY_LEFT)
-		{
-			if (!ObjectManager_player.flipped)
-			{
-				ObjectManager_player.flipped = TRUE;
-				flippedChanged = TRUE;
-				setPlayerAnimation();
-			}
-		}
-		else if (buttonState & PORT_A_KEY_RIGHT)
-		{
-			if (ObjectManager_player.flipped)
-			{
-				ObjectManager_player.flipped = FALSE;
-				flippedChanged = TRUE;
-				setPlayerAnimation();
-			}
-		}
-	}
-
-	else
-	{
-		if (buttonState & PORT_A_KEY_LEFT)
-		{
-			ObjectManager_player.flipped = TRUE;
-
-			//if (isPlayerShooting && isPlayerOnGround)
-			//	playerSpeedX = 0;
-			//else
-				playerSpeedX = -PLAYER_SPEED_X;
-
-			isPlayerMoving = MOVING_LEFT;
-
-			// if state is not run
-			// if on ground
-			//		setstate(run)
-			//			set animation
-
-			//if (isPlayerOnGround)
-			//	setPlayerState(PLAYER_STATE_RUN);
-		}
-		else if (buttonState & PORT_A_KEY_RIGHT)
-		{
-			ObjectManager_player.flipped = FALSE;
-
-			//if (isPlayerShooting && isPlayerOnGround)
-			//	playerSpeedX = 0;
-			//else
-				playerSpeedX = PLAYER_SPEED_X;
-
-			isPlayerMoving = MOVING_RIGHT;
-
-			//if (isPlayerOnGround)
-			//	setPlayerState(PLAYER_STATE_RUN);
-		}
-		else
-		{
-			playerSpeedX = 0;
-
-			//if (isPlayerOnGround)
-			//	setPlayerState(PLAYER_STATE_STAND);
-		}
-
-		if (oldIsPlayerMoving != isPlayerMoving/* && !isPlayerShooting*/)
-			setPlayerAnimation();
-	}
+	player_SubUpdate(player);
 
 	if (buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
 		Player_FireWeapon(player);
 
-	if (buttonsPressed & PORT_A_KEY_2 
-		&& isPlayerOnGround 
-		//&& !isPlayerShooting
-		)
-	{
-		playerSpeedY -= JUMP_SPEED;
-
-		if (isPlayerOnGround && playerState != PLAYER_STATE_JUMP)
-			setPlayerState(PLAYER_STATE_JUMP);
-	}
-
-
-	Player_UpdateX();
-	Player_UpdateY();
-
 	player->x = V2P(playerX);
 	player->y = V2P(playerY);
 
-	//char output[255];
-	//sprintf(output, " %d, %d     ", player->x, playerX);
-	//SMS_printatXY(1, 0, output); 
-	//
-	//sprintf(output, "%d", MapManager_mapWidth);
-	//SMS_printatXY(1, 1, output); 
+	if (ObjectManager_player.flipped != oldFlip)
+		setPlayerAnimation();
 
-	//char output[255];
-	//sprintf(output, 
-	//		" %d, %d, %d   ", 
-	//		ObjectManager_player.currentBatchedAnimationFrame->frameTime,
-	//		ObjectManager_player.currentBatchedAnimationFrame->tileIndex,
-	//		ObjectManager_player.animationTime);
-	//SMS_printatXY(1, 0, output); 
 
-	u8 updateResult = ObjectManager_player.UpdateAnimation(&ObjectManager_player);
-
-	//if (isPlayerShooting && updateResult == ANIMATION_FINISHED)
-	//{
-	//	isPlayerShooting = FALSE;
-	//	setPlayerAnimation();
-	//}
-
-	if (updateResult == ANIMATION_CHANGED_FRAME || 
-		stateChanged ||
-		flippedChanged ||
-		animationChanged ||
-		oldIsPlayerMoving != isPlayerMoving)
+	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) == ANIMATION_CHANGED_FRAME || 
+		updateAnimationStream)
 	{
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}
-
-	animationChanged = FALSE;
 }
 
 BOOL Player_Draw(GameObject* object)
@@ -531,7 +516,6 @@ BOOL Player_Draw(GameObject* object)
 						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 
-	// why would the player sprite ever be clipped?
 	DrawUtils_DrawStreamedBatched();
 
 	return TRUE;
