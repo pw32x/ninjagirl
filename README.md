@@ -3,10 +3,9 @@ A Sega Master System game of some kind.
 
 Follow along as I try to build a game for the Sega Master System. It'll be fun!
 
+The project is still in flux, under development, and therefore far from being ideal for human consumption. Does any of this work? Who knows!
 
-# Building
-
-You'll need: 
+# Tools and Technologies Used
 
 DevkitSMS
 https://github.com/sverx/devkitSMS
@@ -14,10 +13,14 @@ https://github.com/sverx/devkitSMS
 SDCC
 https://sdcc.sourceforge.net/
 
-Use the batch files in /build to perform build actions (build/clean/rebuild/etc)
+Tiled Map Editor
+https://www.mapeditor.org/
 
-# BuildMasterSystem
+Graphics Gale
+https://graphicsgale.com/us/
 
-The project uses the BuildMasterSystem. It is the primary interface with which to manage the project. The BMS handles generating gamedata and building code. The build folder contains batch files that call the BMS to perform various actions like build, clean, rebuild, etc.
+Visual Studio
+https://visualstudio.microsoft.com/
 
-The BuildMasterSystem project is located in project/tools/BuildMasterSystem
+# Daily Rom builds
+In progress versions of the game rom are located in the Daily Versions folder.
