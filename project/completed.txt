@@ -1,6 +1,41 @@
 	
 Completed
 
+	new player sprite
+	
+		DONE fix boots when ducking
+		
+		DONE remove attack animations
+		
+		DONE shoot 8x16 bullets
+		
+		DONE don't jump up so fast
+		
+		DONE variable jump height
+		
+		DONE bullet needs to be more visible/contrasty
+		
+		DONE change ninjagirl template to gungirl template
+		
+	DONE jump on semi-solid doesn't feel right. player gets on it even though
+	they're below it.
+	
+	NAH I need a purple
+	
+	DONE fix spawner		
+	
+	DONE fix entities not getting destroyed when off screen
+		
+	SceneMaster
+	
+		DONE fix SceneMaster to work with levels other than the theme's level
+		
+		DONE handle crash when the level doesn't exist anymore
+		
+		DONE add toolbar with open/save/import buttons
+		
+	DONE remove binaries 
+
 SceneMaster
 			
 		DONE auto reload of Tiled map on change
