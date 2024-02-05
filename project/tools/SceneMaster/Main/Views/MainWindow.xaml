@@ -74,6 +74,13 @@
                         <Image Source="/SceneMaster;component/Icons/SaveAs.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
+                <Button Command="{Binding RunSceneCommand}"
+                        ToolTip="Save, build and run current scene"
+                        Margin="30,0">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/Play.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
             </StackPanel>
             <TabControl Grid.Row="1">
                 <TabItem>

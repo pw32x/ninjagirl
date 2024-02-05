@@ -13,21 +13,10 @@
              SizeChanged="SceneMasterSceneView_SizeChanged">
     <Grid  x:Name="ParentGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0"
-                    Orientation="Horizontal">
-            <Button Width="25"
-                    Height="25"
-                    Command="{Binding RunSceneCommand}">
-                <Button.Content>
-                    <Image Source="/SceneMaster;component/Icons/Play.png" Width="24" Height="24" />
-                </Button.Content>
-            </Button>
-        </StackPanel>
-        <ScrollViewer Grid.Row="1"
+        <ScrollViewer Grid.Row="0"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Auto">
 
@@ -76,7 +65,7 @@
                 </controls:ZoomBorderCustom>
         </ScrollViewer>
 
-        <StatusBar Grid.Row="2">
+        <StatusBar Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Scene.TiledMapFilename}" d:Text="Path To Tiled Map"/>
                 <Button Content="Reset" Click="Button_ClickReset"/>

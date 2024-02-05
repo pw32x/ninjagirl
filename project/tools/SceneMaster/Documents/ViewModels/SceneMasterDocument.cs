@@ -4,7 +4,6 @@ using SceneMaster.Main;
 using SceneMaster.Scenes.ViewModels;
 using System;
 using System.IO;
-using System.Runtime;
 using System.Windows;
 
 namespace SceneMaster.Documents.ViewModels

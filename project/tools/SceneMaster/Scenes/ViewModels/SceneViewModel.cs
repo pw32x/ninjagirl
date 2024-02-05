@@ -16,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
@@ -91,10 +92,10 @@ namespace SceneMaster.Scenes.ViewModels
             DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel, 
                                              CanDeleteSelectedEditorObjectViewModel);
 
-            RunSceneCommand = new RelayCommand(RunScene);
+            
         }
 
-        private void RunScene()
+        public void RunScene()
         {
             string tempLevelName = "sceneMasterTemp";
 
@@ -104,7 +105,9 @@ namespace SceneMaster.Scenes.ViewModels
                                       m_settings.SourceExportDirectory, 
                                       EditorObjectInfoLibraryViewModel.CommandLibrary);
 
-            string buildMasterPath = Path.GetFullPath(m_settings.BuildMasterPath);
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string buildMasterPath = Path.GetFullPath(baseDirectory + m_settings.BuildMasterPath);
+
             string workingDirectory = Path.GetFullPath(m_settings.GameBuildDirectory);
             string emulatorPath = Path.GetFullPath(m_settings.EmulatorPath);
             string pathToGameRom = Path.GetFullPath(m_settings.PathToGameRom);
@@ -114,26 +117,29 @@ namespace SceneMaster.Scenes.ViewModels
                 FileName = buildMasterPath,
                 Arguments = "config.bm build -DUSE_SCENEMASTER_LEVEL -SProjectName=" + Settings.GameRomName + " -SCopyToDailyFolder=false",
                 WorkingDirectory = workingDirectory,
-                UseShellExecute = true, // Set this to true if you want to use the system's default shell
-                //RedirectStandardOutput = true,
-                //RedirectStandardError = true,
+                UseShellExecute = false, // Set this to true if you want to use the system's default shell
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
                 //CreateNoWindow = true
             };
+
+            StringBuilder sb = new StringBuilder();
 
             // Start the BuildMaster process
             try
             {
                 using (Process process = Process.Start(buildMasterProcess))
                 {
-                    //string output = process.StandardOutput.ReadToEnd();
-                    //StreamReader errorReader = process.StandardError;
-                    //var errorString = errorReader.ReadToEnd();
+                    string output = process.StandardOutput.ReadToEnd();
+                    StreamReader errorReader = process.StandardError;
+                    var errorString = errorReader.ReadToEnd();
 
-                    //while (!process.StandardOutput.EndOfStream)
-                    //{
-                    //    string outputLine = process.StandardOutput.ReadLine();
-                    //    Console.WriteLine(outputLine);
-                    //}
+                    while (!process.StandardOutput.EndOfStream)
+                    {
+                        string outputLine = process.StandardOutput.ReadLine();
+                        Console.WriteLine(outputLine);
+                        sb.Append(outputLine);
+                    }
 
 
                     // Wait for the process to exit
@@ -191,7 +197,7 @@ namespace SceneMaster.Scenes.ViewModels
         }
 
         public ICommand DeleteCommand { get; }
-        public ICommand RunSceneCommand { get; }
+
 
         private void DeleteSelectedEditorObjectViewModel()
         {

@@ -55,6 +55,7 @@ namespace SceneMaster.Main.ViewModels
             ExitCommand = new RelayCommand(Exit);
             ImportTiledMapCommand = new RelayCommand(ImportGalFile);
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
+            RunSceneCommand = new RelayCommand(RunScene);
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -69,6 +70,7 @@ namespace SceneMaster.Main.ViewModels
         public ICommand ExitCommand { get; }
         public ICommand ImportTiledMapCommand { get; }
         public ICommand ExportCFilesCommand { get; }
+        public ICommand RunSceneCommand { get; }
 
 
 
@@ -254,6 +256,12 @@ namespace SceneMaster.Main.ViewModels
                                       sceneName,
                                       dialog.SelectedPath,
                                       EditorObjectLibraryViewModel.CommandLibrary);
+        }
+
+        private void RunScene()
+        {
+            if (Save())
+                CurrentDocument.SceneViewModel.RunScene();
         }
     }
 }
