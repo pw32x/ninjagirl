@@ -17,6 +17,7 @@
 #include "client\exported\animations\waterfall.h"
 #include "client\exported\palettes\globalPalette.h"
 #include "client\exported\maps\background3.h"
+#include "client\exported\maps\background3_test.h"
 #include "client\exported\maps\waterfall.h"
 
 const ResourceInfo background3_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&background3_tileset };
@@ -36,4 +37,5 @@ const ResourceInfo walker_smallResourceInfo = { /*bank*/ 2, (const Resource*)&wa
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
 const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };
+const ResourceInfo background3_test_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_test_map };
 const ResourceInfo waterfall_mapResourceInfo = { /*bank*/ 4, (const Resource*)&waterfall_map };

@@ -20,6 +20,7 @@ extern const ResourceInfo walker_smallResourceInfo;
 extern const ResourceInfo waterfallResourceInfo;
 extern const ResourceInfo globalPaletteResourceInfo;
 extern const ResourceInfo background3_mapResourceInfo;
+extern const ResourceInfo background3_test_mapResourceInfo;
 extern const ResourceInfo waterfall_mapResourceInfo;
 
 #endif

@@ -1,14 +1,21 @@
 Todo
 
-	
-		
+		DONE remove raw art files
+
+
+
 		SceneMaster
 		
 			fix the build button
-		
-		remove raw art files
+
+C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\scenes\ C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\client\exported\scenes\   
+C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\scenes\ C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\client\exported\scenes\   
 		
 		jump doesn't always work after hitting the ground
+	
+		
+
+		
 		
 		when spawning an object, only spawn it when it is almost entirely visible
 		
