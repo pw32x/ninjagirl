@@ -48,7 +48,7 @@ namespace tmx2c
         internal void LoadTilesetInfo(string path, string sourceFolder)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(sourceFolder + Path.GetFileName(path));
+            doc.Load(sourceFolder + path);
 
             XmlNode tilesetNode = doc["tileset"];
 
