@@ -1,6 +1,17 @@
 	
 Completed
 
+	game
+
+		DONE fix player running when placed on ground in SceneMaster
+
+	DONE remove raw art files
+
+
+	SceneMaster
+	
+		DONE fix the build button
+
 	new player sprite
 	
 		DONE fix boots when ducking

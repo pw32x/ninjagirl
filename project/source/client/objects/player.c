@@ -35,6 +35,9 @@ s16 playerSpeedY;
 
 u8 playerState;
 
+u16 jumpPressCounter;
+u8 jumpWhenLanding;
+
 u8 isPlayerShooting;
 
 #define PLAYER_SPEED_X	24
@@ -120,6 +123,7 @@ void setPlayerState(u8 newState)
 	case PLAYER_STATE_FALL:
 		break;
 	case PLAYER_STATE_JUMP:
+		jumpWhenLanding = FALSE;
 		playerSpeedY -= JUMP_SPEED;
 		break;
 	case PLAYER_STATE_DUCK:
@@ -133,6 +137,9 @@ void setPlayerState(u8 newState)
 
 GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	jumpPressCounter = 0;
+	jumpWhenLanding = FALSE;
+
 	UNUSED(createInfo);
 	playerX = P2V(object->x);
 	playerY = P2V(object->y);
@@ -264,6 +271,12 @@ s16 oldBlockY = 0;
 
 void Player_UpdateStand(GameObject* player)
 {
+	if (buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
+	{
+		setPlayerState(PLAYER_STATE_JUMP);
+		return;
+	}
+
 	if (buttonState & PORT_A_KEY_LEFT || buttonState & PORT_A_KEY_RIGHT)
 	{
 		setPlayerState(PLAYER_STATE_RUN);
@@ -275,11 +288,7 @@ void Player_UpdateStand(GameObject* player)
 		return;
 	}
 
-	if (buttonsPressed & PORT_A_KEY_2)
-	{
-		setPlayerState(PLAYER_STATE_JUMP);
-		return;
-	}
+
 
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
@@ -298,7 +307,7 @@ void Player_UpdateStand(GameObject* player)
 
 void Player_UpdateRun(GameObject* player)
 {
-	if (buttonsPressed & PORT_A_KEY_2)
+	if (buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
 		setPlayerState(PLAYER_STATE_JUMP);
 		return;
@@ -343,6 +352,11 @@ void Player_UpdateRun(GameObject* player)
 
 void Player_UpdateFall(GameObject* player)
 {
+	if (buttonsPressed & PORT_A_KEY_2)
+		jumpPressCounter = 0;
+
+	jumpPressCounter++;
+
 	if (buttonState & PORT_A_KEY_LEFT)
 	{
 		ObjectManager_player.flipped = TRUE;
@@ -388,6 +402,9 @@ void Player_UpdateFall(GameObject* player)
 	{
 		playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 		playerSpeedY = 0;
+
+		jumpWhenLanding = (jumpPressCounter < 7);
+
 		setPlayerState(PLAYER_STATE_STAND);
 
 	}
@@ -505,6 +522,8 @@ void Player_Update(GameObject* player)
 	{
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}
+
+
 }
 
 BOOL Player_Draw(GameObject* object)

@@ -1,59 +1,45 @@
 Todo
 
-		DONE remove raw art files
+	jump doesn't always work after hitting the ground
 
-
-
-		SceneMaster
-		
-			fix the build button
-
-C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\scenes\ C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\client\exported\scenes\   
-C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\scenes\ C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\client\exported\scenes\   
-		
-		jump doesn't always work after hitting the ground
+	when spawning an object, only spawn it when it is almost entirely visible
 	
+		spawn point is  X
+		spawn position is X - (width of sprite - 8 pixels because of left column)
+		width is visible area of sprite, not entire frame
+	
+	use visible area and not collision box to determine visibility and de-spawn
+	
+	in-game color tweaker
+	
+	portal to go to next area
+	
+	fight to open the portal
 		
+	export Graphics Gale layers to separate files
+		player
+			gun_girl_bottom.gal
+			gun_girl_top.gal
+			gun_girl_ponytail.gal
 
-		
-		
-		when spawning an object, only spawn it when it is almost entirely visible
-		
-			spawn point is  X
-			spawn position is X - (width of sprite - 8 pixels because of left column)
-			width is visible area of sprite, not entire frame
-		
-		
-		in-game color tweaker
-		
-		portal to go to next area
-		
-		fight to open the portal
+		build a resource packs out of them
+
+	draw player in parts
+
+		legs
+	
+		torso
+
+			move player torso when shooting?
+				Contra: up and down
+				Gunstar Heroes: only the arms move
+	
+
+		ponytail
 			
-		export Graphics Gale layers to separate files
-			player
-				gun_girl_bottom.gal
-				gun_girl_top.gal
-				gun_girl_ponytail.gal
+			animate when jumping, running
 	
-			build a resource packs out of them
 
-		draw player in parts
-
-			legs
-		
-			torso
-
-				move player torso when shooting?
-					Contra: up and down
-					Gunstar Heroes: only the arms move
-		
-	
-			ponytail
-				
-				animate when jumping, running
-		
-	fix scenemaster game build button
 		
 	sprties
 	
@@ -66,8 +52,6 @@ C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\gamedata\scenes\ C:\Dropb
 		wall
 
 	game
-
-		fix player running when placed on ground in SceneMaster
 
 		start work on a real level
 
