@@ -37,6 +37,10 @@ u8 playerState;
 
 u16 jumpPressCounter;
 u8 jumpWhenLanding;
+u8 canStillJumpFrames;
+
+#define NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP	4
+#define NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING	7
 
 u8 isPlayerShooting;
 
@@ -301,6 +305,7 @@ void Player_UpdateStand(GameObject* player)
 
 	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
 	{
+		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
 }
@@ -346,16 +351,31 @@ void Player_UpdateRun(GameObject* player)
 
 	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
 	{
+		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
 }
 
 void Player_UpdateFall(GameObject* player)
 {
-	if (buttonsPressed & PORT_A_KEY_2)
-		jumpPressCounter = 0;
+	if (canStillJumpFrames)
+	{
+		if (buttonsPressed & PORT_A_KEY_2)
+		{
+			playerSpeedY = 0;
+			setPlayerState(PLAYER_STATE_JUMP);
+			return;
+		}
 
-	jumpPressCounter++;
+		canStillJumpFrames--;
+	}
+	else
+	{
+		if (buttonsPressed & PORT_A_KEY_2)
+			jumpPressCounter = 0;
+
+		jumpPressCounter++;
+	}
 
 	if (buttonState & PORT_A_KEY_LEFT)
 	{
@@ -403,7 +423,7 @@ void Player_UpdateFall(GameObject* player)
 		playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
 		playerSpeedY = 0;
 
-		jumpWhenLanding = (jumpPressCounter < 7);
+		jumpWhenLanding = (jumpPressCounter < NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING);
 
 		setPlayerState(PLAYER_STATE_STAND);
 
@@ -438,6 +458,7 @@ void Player_UpdateJump(GameObject* player)
 	if (playerSpeedY > 0)
 	{
 		playerSpeedY = 0;
+		canStillJumpFrames = 0;
 		setPlayerState(PLAYER_STATE_FALL);
 		return;
 	}
@@ -462,6 +483,7 @@ void Player_UpdateJump(GameObject* player)
 	{
 		playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
 		playerSpeedY = 0;
+		canStillJumpFrames = 0;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
 }
@@ -493,6 +515,7 @@ void Player_UpdateDuck(GameObject* player)
 
 	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
 	{
+		canStillJumpFrames = NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP;
 		setPlayerState(PLAYER_STATE_FALL);
 	}
 }
