@@ -334,6 +334,9 @@
     <ClCompile Include="..\source\client\exported\scenes\scene003.c">
       <Filter>Source Files\client\exported\scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

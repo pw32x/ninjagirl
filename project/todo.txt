@@ -1,18 +1,11 @@
 Todo
 
-	jump doesn't always work after hitting the ground
 
-	when spawning an object, only spawn it when it is almost entirely visible
-	
-		spawn point is  X
-		spawn position is X - (width of sprite - 8 pixels because of left column)
-		width is visible area of sprite, not entire frame
-	
-	use visible area and not collision box to determine visibility and de-spawn
-	
 	in-game color tweaker
 	
 	portal to go to next area
+
+	redo bottom half of spider animation to be reusable when moving in both direction
 	
 	fight to open the portal
 		

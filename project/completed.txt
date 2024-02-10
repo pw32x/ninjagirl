@@ -1,6 +1,18 @@
 	
 Completed
 
+	DONE jump doesn't always work after hitting the ground
+	
+	DONE still be able to jump after leaving a ledge for a certain amount of frames
+
+	DONE when spawning an object, only spawn it when it is almost entirely visible
+	
+		spawn point is  X
+		spawn position is X - (width of sprite - 8 pixels because of left column)
+		width is visible area of sprite, not entire frame
+	
+	NAH use visible area and not collision box to determine visibility and de-spawn
+
 	game
 
 		DONE fix player running when placed on ground in SceneMaster

@@ -12,6 +12,7 @@ extern const GameObjectTemplate kunai_template;
 extern const GameObjectTemplate robotrunner_template;
 extern const GameObjectTemplate robotspring_template;
 extern const GameObjectTemplate rock_particle_template;
+extern const GameObjectTemplate test_block_template;
 extern const GameObjectTemplate walker_template;
 extern const GameObjectTemplate walker_big_template;
 extern const GameObjectTemplate walker_small_template;

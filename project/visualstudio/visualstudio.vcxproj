@@ -176,6 +176,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c" />

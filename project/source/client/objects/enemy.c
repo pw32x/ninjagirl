@@ -51,7 +51,7 @@ void Enemy_Update(GameObject* object)
 	object->screeny = object->y - ScrollManager_verticalScroll;
 
 	// if offscreen die
-	if (object->screenx < SCREEN_LEFT)
+	if (object->screenx + object->rectLeft < SCREEN_LEFT)
 	{
 		SMS_debugPrintf("object->screenx: %d\n", object->screenx);
 		goto destroy_object;
