@@ -56,6 +56,11 @@ namespace SceneMaster.Commands.Models
             else
             {
                 index = filename.IndexOf("client");
+
+                // the file isn't in either engine or client, so bail
+                if (index == -1)
+                    return;
+
                 prettyFilename = filename.Substring(index);
             }
 

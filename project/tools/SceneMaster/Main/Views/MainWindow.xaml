@@ -7,7 +7,7 @@
         xmlns:documents="clr-namespace:SceneMaster.Documents.Views"
         xmlns:viewmodels="clr-namespace:SceneMaster.Main.ViewModels"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="450" Width="800"
+        Title="{Binding WindowTitle}" Height="450" Width="800"
         d:DataContext="{d:DesignInstance viewmodels:MainViewModel, IsDesignTimeCreatable=True}"
         Closing="Window_Closing">
     <Window.Resources>
@@ -29,19 +29,50 @@
         <Menu DockPanel.Dock="Top">
             <!-- File Menu -->
             <MenuItem Header="_File">
-                <MenuItem Header="_New" InputGestureText="Ctrl+N" Command="{Binding NewCommand}"/>
-                <MenuItem Header="_Open" InputGestureText="Ctrl+O" Command="{Binding OpenCommand}"/>
-                <MenuItem Header="_Save"  InputGestureText="Ctrl+S" Command="{Binding SaveCommand}"/>
-                <MenuItem Header="Save _As..." InputGestureText="Ctrl+Shift+S" Command="{Binding SaveAsCommand}"/>
+                <MenuItem Header="_New" InputGestureText="Ctrl+N" Command="{Binding NewCommand}" >
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/NewDocument.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Open" InputGestureText="Ctrl+O" Command="{Binding OpenCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/OpenfileDialog.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Save"  InputGestureText="Ctrl+S" Command="{Binding SaveCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/Save.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Save _As..." InputGestureText="Ctrl+Shift+S" Command="{Binding SaveAsCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/SaveAs.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="_Export scene to C files" InputGestureText="Ctrl+E" Command="{Binding ExportCFilesCommand}"/>
+                <MenuItem Header="_Export scene to C files" InputGestureText="Ctrl+E" Command="{Binding ExportCFilesCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/Export.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}"/>
+                <MenuItem Header="_Import .tmx File" InputGestureText="Ctrl+I" Command="{Binding ImportTiledMapCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/Import.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
                 <MenuItem Header="Exit" InputGestureText="Alt+F4" Command="{Binding ExitCommand}"/>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Delete" InputGestureText="Del" Command="{Binding CurrentDocument.SceneViewModel.DeleteCommand}"/>
+            </MenuItem>
+            <MenuItem Header="Scene">
+                <MenuItem Header="Save, build and run current scene" InputGestureText="Ctrl+R" Command="{Binding RunSceneCommand}">
+                    <MenuItem.Icon>
+                        <Image Source="/SceneMaster;component/Icons/Play.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>                
             </MenuItem>
             <MenuItem Header="Settings">
                 <MenuItem Header="Load last scene on startup" IsCheckable="True" IsChecked="{Binding Settings.ReloadLastScene}"/>
@@ -54,33 +85,48 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"
                         Orientation="Horizontal">
-                <Button Command="{Binding NewCommand}">
+                <Button Command="{Binding NewCommand}" Margin="1, 1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/NewDocument.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding OpenCommand}">
+                <Button Command="{Binding OpenCommand}" Margin="1, 1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/OpenfileDialog.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding SaveCommand}">
+                <Button Command="{Binding SaveCommand}" Margin="1, 1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/Save.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding SaveAsCommand}">
+                <Button Command="{Binding SaveAsCommand}" Margin="1, 1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/SaveAs.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
+                <Button Command="{Binding ImportTiledMapCommand}"
+                        ToolTip="Import .tmx File"
+                        Margin="30,1,0,1">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/Import.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding ExportCFilesCommand}"
+                        ToolTip="Export scene to C files"
+                        Margin="1,1">
+                    <Button.Content>
+                        <Image Source="/SceneMaster;component/Icons/Export.png" Width="24" Height="24" />
+                    </Button.Content>
+                </Button>
                 <Button Command="{Binding RunSceneCommand}"
                         ToolTip="Save, build and run current scene"
-                        Margin="30,0">
+                        Margin="30,1,0,1">
                     <Button.Content>
                         <Image Source="/SceneMaster;component/Icons/Play.png" Width="24" Height="24" />
                     </Button.Content>
                 </Button>
+
             </StackPanel>
             <TabControl Grid.Row="1">
                 <TabItem>

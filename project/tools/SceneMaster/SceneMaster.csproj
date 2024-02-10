@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icons\Export.png" />
+    <None Remove="Icons\Import.png" />
     <None Remove="Icons\NewDocument.png" />
     <None Remove="Icons\OpenfileDialog.png" />
     <None Remove="Icons\Play.png" />
@@ -25,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icons\Export.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Import.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Icons\NewDocument.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

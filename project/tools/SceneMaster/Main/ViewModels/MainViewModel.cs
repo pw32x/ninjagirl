@@ -1,8 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
 using SceneMaster.Documents.ViewModels;
 using SceneMaster.EditorObjectLibrary.ViewModels;
 using SceneMaster.Export;
+using SceneMaster.Scenes.ViewModels;
+using SceneMaster.Utils;
 using System;
 using System.IO;
 using System.Windows;
@@ -13,7 +16,10 @@ namespace SceneMaster.Main.ViewModels
 {
     public class MainViewModel : ObservableObject
     {
-        public string Title => "Scene Master";
+        public string ApplicationName => "Scene Master";
+        public string WindowTitle => ApplicationName + " - " + 
+                                     (CurrentDocument.SceneViewModel.IsModified ? "*" : "") + 
+                                     CurrentDocument.FilePath;
 
         public Settings Settings { get; } = new();
         private EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; } = new();
@@ -53,7 +59,7 @@ namespace SceneMaster.Main.ViewModels
             SaveCommand = new RelayCommand(SaveNoReturn);
             SaveAsCommand = new RelayCommand(SaveAs);
             ExitCommand = new RelayCommand(Exit);
-            ImportTiledMapCommand = new RelayCommand(ImportGalFile);
+            ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
             RunSceneCommand = new RelayCommand(RunScene);
         }
@@ -72,12 +78,52 @@ namespace SceneMaster.Main.ViewModels
         public ICommand ExportCFilesCommand { get; }
         public ICommand RunSceneCommand { get; }
 
+        private SceneMasterDocument InitDocument()
+        {
+            var newDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
+            newDocument.PropertyChanging += Document_PropertyChanging;
+            newDocument.PropertyChanged += Document_PropertyChanged;
 
+            return newDocument;
+        }
+
+        private void Document_PropertyChanging(object sender, System.ComponentModel.PropertyChangingEventArgs e)
+        {
+            if (e.PropertyName == nameof(SceneMasterDocument.SceneViewModel))
+            {
+                CurrentDocument.SceneViewModel.PropertyChanged -= SceneViewModel_PropertyChanged;
+            }
+        }
+
+        private void Document_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SceneMasterDocument.SceneViewModel))
+            {
+                CurrentDocument.SceneViewModel.PropertyChanged += SceneViewModel_PropertyChanged;
+            }
+        }
+
+        private void SceneViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(SceneViewModel.IsModified))
+                OnPropertyChanged(nameof(WindowTitle));
+        }
+
+        private void ShutdownDocument()
+        {
+            if (CurrentDocument != null && CurrentDocument.SceneViewModel != null)
+            {
+                CurrentDocument.PropertyChanged -= Document_PropertyChanged;
+                CurrentDocument.PropertyChanging -= Document_PropertyChanging;
+            }
+
+            CurrentDocument?.Dispose();
+        }
 
         private void NewHelper()
         {
-            CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
+            ShutdownDocument();
+            CurrentDocument = InitDocument();
             
             Settings.LastLoadedSceneFilename = "";
         }
@@ -92,14 +138,14 @@ namespace SceneMaster.Main.ViewModels
 
         private bool OpenHelper(string filePath)
         {
-            CurrentDocument?.Dispose();
-            CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
+            ShutdownDocument();
+            CurrentDocument = InitDocument();
 
             if (!CurrentDocument.Load(filePath))
             {
                 System.Windows.MessageBox.Show($"Loading {filePath} failed.");
-                CurrentDocument?.Dispose();
-                CurrentDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
+                ShutdownDocument();
+                CurrentDocument = InitDocument();
                 Settings.LastLoadedSceneFilename = "";
                 return false;
             }
@@ -115,6 +161,7 @@ namespace SceneMaster.Main.ViewModels
                 return;
 
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.LastSceneLocation;
 
             SetSceneMasterFileExtensions(openFileDialog);
 
@@ -122,6 +169,9 @@ namespace SceneMaster.Main.ViewModels
                 return;
 
             OpenHelper(openFileDialog.FileName);
+
+            Settings.LastSceneLocation = Path.GetDirectoryName(openFileDialog.FileName);
+
         }
 
         private void SaveAs()
@@ -141,6 +191,7 @@ namespace SceneMaster.Main.ViewModels
             if (!CurrentDocument.IsFilePathSet || forcePrompt)
             {
                 var saveFileDialog = new Microsoft.Win32.SaveFileDialog();
+                saveFileDialog.InitialDirectory = Settings.LastSceneLocation;
 
                 SetSceneMasterFileExtensions(saveFileDialog);
 
@@ -150,6 +201,8 @@ namespace SceneMaster.Main.ViewModels
                     return false;
 
                 filePath = saveFileDialog.FileName;
+
+                Settings.LastSceneLocation = Path.GetDirectoryName(filePath);
             }
 
             if (!CurrentDocument.Save(filePath))
@@ -213,7 +266,7 @@ namespace SceneMaster.Main.ViewModels
         }
 
 
-        private void ImportGalFile()
+        private void ImportTiledMap()
         {
             if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
             {
@@ -223,11 +276,14 @@ namespace SceneMaster.Main.ViewModels
             }
 
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.LastImportLocation;
 
             SetTiledMapFileExtensions(openFileDialog);
 
             if (openFileDialog.ShowDialog() == false)
                 return;
+
+            Settings.LastImportLocation = Path.GetDirectoryName(openFileDialog.FileName);
 
             CurrentDocument.ImportTiledMap(openFileDialog.FileName);
         }
@@ -246,11 +302,23 @@ namespace SceneMaster.Main.ViewModels
             }
 
             using var dialog = new FolderBrowserDialog();
+            dialog.InitialDirectory = Settings.LastExportLocation;
 
             if (dialog.ShowDialog() != DialogResult.OK) 
                 return;
 
             string sceneName = Path.GetFileNameWithoutExtension(CurrentDocument.Filename).Replace(" ", "_");
+
+            string destinationHeaderFilename = StringUtils.EnsureTrailingSlash(dialog.SelectedPath) + sceneName + ".h";
+            string destinationSourceFilename = StringUtils.EnsureTrailingSlash(dialog.SelectedPath) + sceneName + ".c";
+
+            if (File.Exists(destinationHeaderFilename) || File.Exists(destinationSourceFilename))
+            {
+                if (System.Windows.MessageBox.Show("Overwrite existing files?", "Confirmation", MessageBoxButton.YesNoCancel) != MessageBoxResult.Yes)
+                    return;
+            }
+
+            Settings.LastExportLocation = dialog.SelectedPath;
 
             SceneExporter.ExportScene(CurrentDocument.SceneViewModel.Scene, 
                                       sceneName,

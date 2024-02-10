@@ -36,6 +36,17 @@ namespace SceneMaster.Main
 
         public const string GameRomName = "SceneMasterTemp";
 
+        private string m_lastSceneSaveLocation = "";
+        public string LastSceneLocation { get => m_lastSceneSaveLocation; set => SetProperty(ref m_lastSceneSaveLocation, value); }
+
+
+        private string m_lastImportLocation = "";
+        public string LastImportLocation { get => m_lastImportLocation; set => SetProperty(ref m_lastImportLocation, value); }
+
+        private string m_lastExportLocation = "";
+        public string LastExportLocation { get => m_lastExportLocation; set => SetProperty(ref m_lastExportLocation, value); }
+
+
         private string m_pathToGameRom = "out\\" + GameRomName + ".sms";
         public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
 
