@@ -39,7 +39,10 @@ namespace SceneMaster.Scenes.ViewModels
             private set
             {
                 if (!m_ignoreChanges)
-                    SetProperty(ref m_isModified, value);
+                {
+                    m_isModified = value; // always set it.
+                    OnPropertyChanged(nameof(IsModified));
+                }
             }
         }
 
