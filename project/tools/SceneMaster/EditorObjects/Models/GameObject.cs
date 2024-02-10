@@ -92,6 +92,12 @@ namespace SceneMaster.GameObjectTemplates.Models
             // clamp to 0
             int x = (int)(X < 0 ? 0 : X);
 
+            // only works for the right scroller for now:
+            // offset the spawn offset by the rect right of the object so that it'll
+            // pop appear on screen. Becaues SMS has no clipping, the sprite will appear
+            // half on each side of the screen, which we want to avoid.
+            x += GameObjectTemplate.RectRight + GameObjectTemplate.Visual.OffsetX;
+
             string finalExportedCommandData = "NULL";
             if (!string.IsNullOrEmpty(exportedCommandData.CreateInfoTypeName))
             {
