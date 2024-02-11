@@ -12,52 +12,57 @@
 #define OBJECTTYPE_PLAYER			3
 #define OBJECTTYPE_COMMANDRUNNER	4
 
+#define GAME_OBJECT_FIELDS \
+	void (*Update)(struct game_object* gameObject);\
+	BOOL (*Draw)(struct game_object* gameObject);\
+	BOOL (*UpdateAnimation)(struct game_object* gameObject);\
+	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);\
+	union\
+	{\
+		const BatchedAnimation* batchedAnimation;\
+		const PlaneAnimation* planeAnimation;\
+		const TileAnimation* tileAnimation;\
+	};\
+\
+	union\
+	{\
+		const BatchedAnimationFrame* currentBatchedAnimationFrame;\
+		const PlaneAnimationFrame* currentPlaneAnimationFrame;\
+		const TileAnimationFrame* currentTileAnimationFrame;\
+	};\
+	\
+	s16 x;\
+	s16 y;\
+	s16 screenx;\
+	s16 screeny;\
+	\
+	s16 speedx;\
+	s16 speedy;\
+	\
+	u8 currentAnimationFrameIndex;\
+	u8 animationTime;\
+	u8 alive;\
+	u8 flipped;\
+	\
+	s8 health;\
+	s8 damage;\
+	\
+	s8 rectLeft;\
+	s8 rectTop;\
+	s8 rectRight;\
+	s8 rectBottom;\
+	\
+	u8 objectId;\
+	u8 pixelWidth; \
+	u8 pixelHeight; \
+	u8 objectType
+
 typedef struct game_object
 {
-	void (*Update)(struct game_object* gameObject);
-	BOOL (*Draw)(struct game_object* gameObject);
-	BOOL (*UpdateAnimation)(struct game_object* gameObject);
-	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);
-	union
-	{
-		const BatchedAnimation* batchedAnimation;
-		const PlaneAnimation* planeAnimation;
-		const TileAnimation* tileAnimation;
-	};
+	GAME_OBJECT_FIELDS;	
 
-	union
-	{
-		const BatchedAnimationFrame* currentBatchedAnimationFrame;
-		const PlaneAnimationFrame* currentPlaneAnimationFrame;
-		const TileAnimationFrame* currentTileAnimationFrame;
-	};
-
-	s16 x;
-	s16 y;
-	s16 screenx;
-	s16 screeny;
-
-	s16 speedx;
-	s16 speedy;
-
-	u8 currentAnimationFrameIndex;
-	u8 animationTime;
-	u8 alive;
-	u8 flipped;
-
-	s8 health;
-	s8 damage;
-
-	s8 rectLeft;
-	s8 rectTop;
-	s8 rectRight;
-	s8 rectBottom;
-
-	u8 objectId;
-	u8 pixelWidth; // remove me
-	u8 pixelHeight;// remove me
-	u8 objectType;
-
+	// pre-allocate space for extra data other types
+	// of objects might want to use.
 	u16 extraData1;
 	u16 extraData2;
 	u16 extraData3;

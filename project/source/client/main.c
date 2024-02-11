@@ -7,6 +7,7 @@
 #include "engine/object_manager.h"
 #include "engine/scroll_manager.h"
 #include "engine/resource_manager.h"
+#include "engine/joystick_manager.h"
 
 #include "objects/on_resource_loaded_callback.h"
 
@@ -58,6 +59,7 @@ void main(void)
 	for(;;) 
 	{ 
 		//SMS_setBackdropColor(COLOR_DARK_GREEN);
+		JoystickManager_Update();
 		ObjectManager_Update();
 		//SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK

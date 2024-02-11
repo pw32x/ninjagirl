@@ -343,6 +343,9 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\joystick_manager.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -524,6 +527,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\color_tweaker.h">
       <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\joystick_manager.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

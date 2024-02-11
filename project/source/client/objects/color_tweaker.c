@@ -16,32 +16,8 @@ GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo)
 	ResourceManager_LoadResource(createInfo->gameObjectTemplate->extraResources[0]);
 	object->cursorAnimation = (u16)createInfo->gameObjectTemplate->extraResources[0]->resource;
 
-	/*
-	// move to the next command because the current one is
-	// the one that created us.
-	CommandManager_currentCommand++;
-
-	ColorTweaker_counter = 0;
-
-	u8 objectId = object->objectId;
-
-	while (CommandManager_currentCommand->command != NULL && 
-		   CommandManager_currentCommand->counter <= SCREEN_WIDTH)
-	{
-		CommandManager_currentCommand->command(CommandManager_currentCommand->data);
-
-		// check if the command runner changed while processing the
-		// commands.
-		if (objectId != object->objectId)
-			return NULL;
-
-		CommandManager_currentCommand++;
-	}
-	*/
 	object->Update = ColorTweaker_Update;
 	object->Draw = ColorTweaker_Draw;
-
-
 
 	return object;
 }

@@ -9,6 +9,7 @@
 #include "engine/resource_manager.h"
 #include "engine/math_utils.h"
 #include "engine/terrain_manager.h"
+#include "engine/joystick_manager.h"
 #include "engine/createinfo_types.h"
 
 // music and sfx
@@ -178,10 +179,6 @@ void Player_FireWeapon(GameObject* player)
 	bullet->speedy = 0;
 }
 
-u32 buttonState;
-u32 buttonsPressed;
-u32 buttonsReleased;
-
 void Player_UpdateX(void)
 {
 	s16 offset = 0;
@@ -275,18 +272,18 @@ s16 oldBlockY = 0;
 
 void Player_UpdateStand(GameObject* player)
 {
-	if (buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
 		setPlayerState(PLAYER_STATE_JUMP);
 		return;
 	}
 
-	if (buttonState & PORT_A_KEY_LEFT || buttonState & PORT_A_KEY_RIGHT)
+	if (JoystickManager_buttonState & PORT_A_KEY_LEFT || JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
 		setPlayerState(PLAYER_STATE_RUN);
 		return;
 	}
-	else if (buttonState & PORT_A_KEY_DOWN)
+	else if (JoystickManager_buttonState & PORT_A_KEY_DOWN)
 	{
 		setPlayerState(PLAYER_STATE_DUCK);
 		return;
@@ -312,22 +309,22 @@ void Player_UpdateStand(GameObject* player)
 
 void Player_UpdateRun(GameObject* player)
 {
-	if (buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
 		setPlayerState(PLAYER_STATE_JUMP);
 		return;
 	}
-	else if (buttonState & PORT_A_KEY_DOWN)
+	else if (JoystickManager_buttonState & PORT_A_KEY_DOWN)
 	{
 		setPlayerState(PLAYER_STATE_DUCK);
 		return;
 	}
-	else if (buttonState & PORT_A_KEY_LEFT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
 		ObjectManager_player.flipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
-	else if (buttonState & PORT_A_KEY_RIGHT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
 		ObjectManager_player.flipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
@@ -360,7 +357,7 @@ void Player_UpdateFall(GameObject* player)
 {
 	if (canStillJumpFrames)
 	{
-		if (buttonsPressed & PORT_A_KEY_2)
+		if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
 		{
 			playerSpeedY = 0;
 			setPlayerState(PLAYER_STATE_JUMP);
@@ -371,18 +368,18 @@ void Player_UpdateFall(GameObject* player)
 	}
 	else
 	{
-		if (buttonsPressed & PORT_A_KEY_2)
+		if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
 			jumpPressCounter = 0;
 
 		jumpPressCounter++;
 	}
 
-	if (buttonState & PORT_A_KEY_LEFT)
+	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
 		ObjectManager_player.flipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
-	else if (buttonState & PORT_A_KEY_RIGHT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
 		ObjectManager_player.flipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
@@ -436,12 +433,12 @@ void Player_UpdateFall(GameObject* player)
 
 void Player_UpdateJump(GameObject* player)
 {
-	if (buttonState & PORT_A_KEY_LEFT)
+	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
 		ObjectManager_player.flipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
-	else if (buttonState & PORT_A_KEY_RIGHT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
 		ObjectManager_player.flipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
@@ -453,7 +450,7 @@ void Player_UpdateJump(GameObject* player)
 
 	Player_UpdateX();
 
-	playerSpeedY += (buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
+	playerSpeedY += (JoystickManager_buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
 
 	if (playerSpeedY > 0)
 	{
@@ -490,16 +487,16 @@ void Player_UpdateJump(GameObject* player)
 
 void Player_UpdateDuck(GameObject* player)
 {
-	if (!(buttonState & PORT_A_KEY_DOWN))
+	if (!(JoystickManager_buttonState & PORT_A_KEY_DOWN))
 	{
 		setPlayerState(PLAYER_STATE_STAND);
 		return;
 	}
-	else if (buttonState & PORT_A_KEY_LEFT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
 		ObjectManager_player.flipped = TRUE;
 	}
-	else if (buttonState & PORT_A_KEY_RIGHT)
+	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
 		ObjectManager_player.flipped = FALSE;
 	}
@@ -522,15 +519,12 @@ void Player_UpdateDuck(GameObject* player)
 
 void Player_Update(GameObject* player)
 {
-	buttonState = SMS_getKeysStatus();
-	buttonsPressed = SMS_getKeysPressed();
-	buttonsReleased = SMS_getKeysReleased();
 
 	u8 oldFlip = ObjectManager_player.flipped;
 
 	player_SubUpdate(player);
 
-	if (buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
 		Player_FireWeapon(player);
 
 	player->x = V2P(playerX);
