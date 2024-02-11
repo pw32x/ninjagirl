@@ -57,6 +57,11 @@ typedef struct game_object
 	u8 pixelWidth; // remove me
 	u8 pixelHeight;// remove me
 	u8 objectType;
+
+	u16 extraData1;
+	u16 extraData2;
+	u16 extraData3;
+	u16 extraData4;
 } GameObject;
 
 typedef void (*ObjectFunctionType)(GameObject* gameObject);
