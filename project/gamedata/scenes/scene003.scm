@@ -15,5 +15,6 @@
     <GameObject Name="Test Block" X="0.9676063100136763" Y="112.87987654320987" GameObjectTemplateName="Test Block" />
     <GameObject Name="Test Block" X="551.5476175060327" Y="48.46449753991371" GameObjectTemplateName="Test Block" />
     <GameObject Name="Test Block" X="608.0698981195699" Y="112.27908164723365" GameObjectTemplateName="Test Block" />
+    <GameObject Name="Color Tweaker" X="23" Y="36" GameObjectTemplateName="Color Tweaker" />
   </EditorObjects>
 </Scene>

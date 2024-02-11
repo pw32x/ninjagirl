@@ -1,0 +1,13 @@
+<GameObjectTemplate >
+	<Name value="Color Tweaker"/>
+	<EditorProperties>
+		<Visual>
+			<Image filename="colortweaker.png"/>
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<GameObjectType value="Effect" />
+		<InitFunction value="ColorTweaker_Init"/>		
+		<ResourceInfo value="colorTweakerResourceInfo" />	
+	</GameProperties>
+</GameObjectTemplate>

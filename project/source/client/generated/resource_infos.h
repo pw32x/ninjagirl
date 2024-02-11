@@ -7,6 +7,7 @@ extern const ResourceInfo background3_tilesetResourceInfo;
 extern const ResourceInfo breakable_rock_tilesetResourceInfo;
 extern const ResourceInfo waterfall_tilesetResourceInfo;
 extern const ResourceInfo bulletResourceInfo;
+extern const ResourceInfo colorTweakerResourceInfo;
 extern const ResourceInfo explosionResourceInfo;
 extern const ResourceInfo gun_girlResourceInfo;
 extern const ResourceInfo impactResourceInfo;

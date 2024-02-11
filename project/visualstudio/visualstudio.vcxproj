@@ -187,6 +187,7 @@
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
     <ClCompile Include="..\source\client\objects\bullet.c" />
+    <ClCompile Include="..\source\client\objects\color_tweaker.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
     <ClCompile Include="..\source\client\objects\basic_effect.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
@@ -239,6 +240,7 @@
     <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\bullet.h" />
+    <ClInclude Include="..\source\client\objects\color_tweaker.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\objects\basic_effect.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
