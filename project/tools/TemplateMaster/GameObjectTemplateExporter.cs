@@ -16,8 +16,8 @@ namespace TemplateMaster
             sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine();
 
-            // declare the resource infos used
-            ExportResourceInfos(gameObjectTemplate, templateName, sb);
+            // declare the extra resource infos used
+            ExportExtraResourceInfos(gameObjectTemplate, templateName, sb);
 
             // forward declare the init function
             sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* object, const CreateInfo* createInfo);");
@@ -39,13 +39,13 @@ namespace TemplateMaster
 
             AppendField(resourceInfo, sb, "Error", "resource info");
 
-            string resourceInfos = "NULL";
-            if (gameObjectTemplate.ResourceInfos.Count > 0)
+            string extraResourceInfos = "NULL";
+            if (gameObjectTemplate.ExtraResourceInfos.Count > 0)
             {
-                resourceInfos = templateName + "ResourceInfos";
+                extraResourceInfos = templateName + "ExtraResourceInfos";
             }
 
-            AppendField(resourceInfos, sb, "Error", "resource infos");
+            AppendField(extraResourceInfos, sb, "Error", "extra resource infos");
 
             AppendField(gameObjectTemplate.InitFunction, sb, "Error", "init function");
             
@@ -62,15 +62,15 @@ namespace TemplateMaster
             }
         }
 
-        private static void ExportResourceInfos(GameObjectTemplate gameObjectTemplate, string templateName, StringBuilder sb)
+        private static void ExportExtraResourceInfos(GameObjectTemplate gameObjectTemplate, string templateName, StringBuilder sb)
         {
-            if (gameObjectTemplate.ResourceInfos.Count == 0)
+            if (gameObjectTemplate.ExtraResourceInfos.Count == 0)
                 return;
 
-            sb.AppendLine("ResourceInfo* " + templateName + "ResourceInfos[] = ");
+            sb.AppendLine("ResourceInfo* " + templateName + "ExtraResourceInfos[] = ");
             sb.AppendLine("{");
 
-            foreach (var resourceInfo in gameObjectTemplate.ResourceInfos)
+            foreach (var resourceInfo in gameObjectTemplate.ExtraResourceInfos)
             {
                 sb.AppendLine("    &" + resourceInfo + ",");
             }

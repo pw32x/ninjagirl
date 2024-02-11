@@ -340,6 +340,9 @@
     <ClCompile Include="..\source\client\objects\color_tweaker.c">
       <Filter>Source Files\client\objects</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

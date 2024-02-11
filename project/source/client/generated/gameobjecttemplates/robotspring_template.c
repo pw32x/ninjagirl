@@ -15,6 +15,6 @@ const GameObjectTemplate robotspring_template =
     11, // rect bottom
     OBJECTTYPE_ENEMY, // object type
     &robotspringResourceInfo, // resource info
-    NULL, // resource infos
+    NULL, // extra resource infos
     Enemy_Init, // init function
 };

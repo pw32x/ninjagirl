@@ -15,6 +15,6 @@ const GameObjectTemplate walker_small_template =
     4, // rect bottom
     OBJECTTYPE_ENEMY, // object type
     &walker_smallResourceInfo, // resource info
-    NULL, // resource infos
+    NULL, // extra resource infos
     Enemy_Init, // init function
 };

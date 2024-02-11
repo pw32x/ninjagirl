@@ -168,6 +168,7 @@
     <ClCompile Include="..\source\client\exported\scenes\scene003.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />

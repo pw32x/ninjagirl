@@ -3,9 +3,9 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-ResourceInfo* colortweaker_templateResourceInfos[] = 
+ResourceInfo* colortweaker_templateExtraResourceInfos[] = 
 {
-&colorTweakerCursorResourceInfo,
+    &colorTweakerCursorResourceInfo,
 };
 
 GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo);
@@ -20,6 +20,6 @@ const GameObjectTemplate colortweaker_template =
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
     &colorTweakerResourceInfo, // resource info
-    colortweaker_templateResourceInfos, // resource infos
+    colortweaker_templateExtraResourceInfos, // extra resource infos
     ColorTweaker_Init, // init function
 };

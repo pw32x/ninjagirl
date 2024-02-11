@@ -9,9 +9,8 @@
 		<GameObjectType value="Effect" />
 		<InitFunction value="ColorTweaker_Init"/>		
 		<ResourceInfo value="colorTweakerResourceInfo" />	
-		<ResourceInfos>
+		<ExtraResourceInfos>
 			<ResourceInfo value="colorTweakerCursorResourceInfo" />	
-		</ResourceInfos>		
+		</ExtraResourceInfos>		
 	</GameProperties>
-
 </GameObjectTemplate>
