@@ -6,6 +6,7 @@
 ResourceInfo* colortweaker_templateExtraResourceInfos[] = 
 {
     &colorTweakerCursorResourceInfo,
+    &globalPaletteResourceInfo,
 };
 
 GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo);

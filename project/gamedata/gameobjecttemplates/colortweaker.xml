@@ -11,6 +11,12 @@
 		<ResourceInfo value="colorTweakerResourceInfo" />	
 		<ExtraResourceInfos>
 			<ResourceInfo value="colorTweakerCursorResourceInfo" />	
+			<ResourceInfo value="globalPaletteResourceInfo" />	
 		</ExtraResourceInfos>		
+		<ExtraData>
+			<Data value="const BatchedAnimation* cursor"/>
+			<Data value="u8 cursorX"/>
+			<Data value="u8 cursorY"/>
+		</ExtraData>
 	</GameProperties>
 </GameObjectTemplate>
