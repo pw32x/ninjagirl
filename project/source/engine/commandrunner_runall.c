@@ -12,6 +12,7 @@ const GameObjectTemplate commandrunner_runall_template =
 	0, // rect bottom
 	OBJECTTYPE_COMMANDRUNNER, // object type
 	NULL, // resource info
+	NULL, // resource infos
 	(InitObjectFunctionType)CommandRunner_RunAll_Init, // init function
 };
 

@@ -15,6 +15,7 @@ namespace TemplateMaster
         public string GameObjectType { get; set; } = "";
         public string ResourceInfo { get; set; } = "";
         public string InitFunction { get; set; } = "";
+        public List<string> ResourceInfos { get; set; } = new List<string>();
 
         public void LoadGameProperties(XmlElement gamePropertiesNode)
         {
@@ -29,6 +30,24 @@ namespace TemplateMaster
             GameObjectType = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(GameObjectType));
             ResourceInfo = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(ResourceInfo));
             InitFunction = XmlUtils.GetChildValue<string>(gamePropertiesNode, nameof(InitFunction));
+
+            if (gamePropertiesNode["ResourceInfos"] is var resourceInfosNode && resourceInfosNode != null) 
+            {
+                foreach (var resourceInfoNode in resourceInfosNode.ChildNodes.OfType<XmlElement>())
+                {
+                    string nodeType = resourceInfoNode.Name;
+
+                    if (nodeType != "ResourceInfo")
+                        continue;
+
+                    var value = XmlUtils.GetValue<string>(resourceInfoNode);
+
+                    if (string.IsNullOrEmpty(value))
+                        continue;
+
+                    ResourceInfos.Add(value);
+                }
+            }
         }
 
         public void Load(string filePath)

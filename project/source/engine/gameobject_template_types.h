@@ -21,6 +21,7 @@ typedef struct gameobject_template
 
 	u8 objectType;
 	const ResourceInfo* resourceInfo;
+	const ResourceInfo** resourceInfos;
 
 	InitObjectFunctionType initFunction;
 } GameObjectTemplate;

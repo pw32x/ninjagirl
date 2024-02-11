@@ -15,5 +15,6 @@ const GameObjectTemplate bullet_template =
     4, // rect bottom
     OBJECTTYPE_PROJECTILE, // object type
     &bulletResourceInfo, // resource info
+    NULL, // resource infos
     Bullet_Init, // init function
 };

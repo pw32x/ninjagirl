@@ -5,6 +5,7 @@
 #include "waterfall_tileset.h"
 #include "client\exported\animations\bullet.h"
 #include "client\exported\animations\colorTweaker.h"
+#include "client\exported\animations\colorTweakerCursor.h"
 #include "client\exported\animations\explosion.h"
 #include "client\exported\animations\gun_girl.h"
 #include "client\exported\animations\impact.h"
@@ -27,6 +28,7 @@ const ResourceInfo breakable_rock_tilesetResourceInfo = { /*bank*/ 3, (const Res
 const ResourceInfo waterfall_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&waterfall_tileset };
 const ResourceInfo bulletResourceInfo = { /*bank*/ 2, (const Resource*)&bullet };
 const ResourceInfo colorTweakerResourceInfo = { /*bank*/ 2, (const Resource*)&colorTweaker };
+const ResourceInfo colorTweakerCursorResourceInfo = { /*bank*/ 2, (const Resource*)&colorTweakerCursor };
 const ResourceInfo explosionResourceInfo = { /*bank*/ 2, (const Resource*)&explosion };
 const ResourceInfo gun_girlResourceInfo = { /*bank*/ 2, (const Resource*)&gun_girl };
 const ResourceInfo impactResourceInfo = { /*bank*/ 2, (const Resource*)&impact };

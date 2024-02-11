@@ -15,5 +15,6 @@ const GameObjectTemplate gun_girl_template =
     16, // rect bottom
     OBJECTTYPE_PLAYER, // object type
     &gun_girlResourceInfo, // resource info
+    NULL, // resource infos
     Player_Init, // init function
 };

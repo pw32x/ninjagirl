@@ -15,5 +15,6 @@ const GameObjectTemplate test_block_template =
     16, // rect bottom
     OBJECTTYPE_ENEMY, // object type
     &test_blockResourceInfo, // resource info
+    NULL, // resource infos
     Enemy_Init, // init function
 };

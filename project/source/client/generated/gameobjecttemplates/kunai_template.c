@@ -15,5 +15,6 @@ const GameObjectTemplate kunai_template =
     4, // rect bottom
     OBJECTTYPE_PROJECTILE, // object type
     &kunaiResourceInfo, // resource info
+    NULL, // resource infos
     Kunai_Init, // init function
 };

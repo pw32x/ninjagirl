@@ -15,5 +15,6 @@ const GameObjectTemplate robotrunner_template =
     16, // rect bottom
     OBJECTTYPE_ENEMY, // object type
     &robotrunnerResourceInfo, // resource info
+    NULL, // resource infos
     Enemy_Init, // init function
 };

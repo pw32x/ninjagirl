@@ -10,12 +10,14 @@ namespace TemplateMaster
                                     string destinationPath)
         {
             var sb = new StringBuilder();
-
             sb.AppendLine("#include \"engine\\gameobject_template_types.h\"");
             sb.AppendLine("#include \"engine\\object_types.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
             sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
             sb.AppendLine();
+
+            // declare the resource infos used
+            ExportResourceInfos(gameObjectTemplate, templateName, sb);
 
             // forward declare the init function
             sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* object, const CreateInfo* createInfo);");
@@ -36,6 +38,15 @@ namespace TemplateMaster
                 resourceInfo = "&" + gameObjectTemplate.ResourceInfo;
 
             AppendField(resourceInfo, sb, "Error", "resource info");
+
+            string resourceInfos = "NULL";
+            if (gameObjectTemplate.ResourceInfos.Count > 0)
+            {
+                resourceInfos = templateName + "ResourceInfos";
+            }
+
+            AppendField(resourceInfos, sb, "Error", "resource infos");
+
             AppendField(gameObjectTemplate.InitFunction, sb, "Error", "init function");
             
             sb.AppendLine("};");
@@ -49,6 +60,24 @@ namespace TemplateMaster
                     
                 sb.AppendLine("    " + fieldToUse + ", // " + description);
             }
+        }
+
+        private static void ExportResourceInfos(GameObjectTemplate gameObjectTemplate, string templateName, StringBuilder sb)
+        {
+            if (gameObjectTemplate.ResourceInfos.Count == 0)
+                return;
+
+            sb.AppendLine("ResourceInfo* " + templateName + "ResourceInfos[] = ");
+            sb.AppendLine("{");
+
+            foreach (var resourceInfo in gameObjectTemplate.ResourceInfos)
+            {
+                sb.AppendLine("    &" + resourceInfo + ",");
+            }
+
+            sb.AppendLine("};");
+
+            sb.AppendLine();
         }
 
         internal static void ExportAllHeader(IEnumerable<string> templateNames, 

@@ -15,5 +15,6 @@ const GameObjectTemplate commandrunner_rightscroll_template =
     0, // rect bottom
     OBJECTTYPE_COMMANDRUNNER, // object type
     NULL, // resource info
+    NULL, // resource infos
     CommandRunner_RightScroll_Init, // init function
 };
