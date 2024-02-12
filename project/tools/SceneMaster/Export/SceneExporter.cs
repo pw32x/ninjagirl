@@ -88,17 +88,17 @@ namespace SceneMaster.Export
 
             var resources = editorObjects.SelectMany(e => e.EditorObjectInfo.ResourceInfos()).Where(e => !string.IsNullOrEmpty(e)).Distinct();
 
+            foreach (var resource in resources)
+            {
+                // { 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
+                sb.AppendLine("    { 0, (CommandFunction)" + commandFunction + ", &" + resource + " },");
+            }
+
             // add the background
             if (!string.IsNullOrEmpty(scene.TiledMapFilename))
             {
                 string backgroundResourceInfoName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_mapResourceInfo";
                 sb.AppendLine("    { 0, (CommandFunction)ResourceManager_LoadResource, &" + backgroundResourceInfoName + "},");
-            }
-
-            foreach (var resource in resources)
-            {
-                // { 0, (CommandFunction)RightScroller_Create, &background3_mapResourceInfo },
-                sb.AppendLine("    { 0, (CommandFunction)" + commandFunction + ", &" + resource + " },");
             }
         }
 

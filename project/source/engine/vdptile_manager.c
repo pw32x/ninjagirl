@@ -73,11 +73,11 @@ u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData,
 	//	}
 	//}
 
-	SMS_loadTiles(tileData, VDPTileManager_backgroundTileLocation, tileCount * 32);
+	SMS_loadTiles(tileData, VDPTileManager_spriteTileLocation, tileCount * 32);
 
-	*vdpLocation = VDPTileManager_backgroundTileLocation;
+	*vdpLocation = VDPTileManager_spriteTileLocation;
 
-	VDPTileManager_backgroundTileLocation += tileCount;
+	VDPTileManager_spriteTileLocation += tileCount;
 
 	return *vdpLocation;
 }
