@@ -179,7 +179,7 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 
 	const BatchedAnimationFrame* batchedAnimationFrame = gameObject->currentBatchedAnimationFrame;
 	const u8* tileData = gameObject->batchedAnimation->tileData;
-	u16 vdpIndex = *gameObject->batchedAnimation->vdpLocation + 256;
+	u8 vdpIndex = *gameObject->batchedAnimation->vdpLocation;
 
 	const BatchedAnimationSpriteStrip* runner = batchedAnimationFrame->spriteStrips;
 

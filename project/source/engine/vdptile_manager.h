@@ -7,7 +7,6 @@
 
 void VDPTileManager_Init(void);
 
-// returns the sprite arearelative vdp index (ie returns 0 for the first sprite tile, not 256)
 u8 VDPTileManager_LoadSpriteTiles(const u8* tileData, 
 								  u8 tileCount,
 								  u8* vdpLocation); 

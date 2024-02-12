@@ -1,7 +1,9 @@
 Todo
 
 
-	in-game color tweaker
+	DONE load sprites in the first half of vdp
+	
+	rework background graphics
 	
 	portal to go to next area
 

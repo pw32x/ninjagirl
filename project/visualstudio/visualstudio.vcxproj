@@ -162,6 +162,7 @@
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
+    <ClCompile Include="..\source\client\exported\maps\background3_test.c" />
     <ClCompile Include="..\source\client\exported\maps\waterfall.c" />
     <ClCompile Include="..\source\client\exported\palettes\globalPalette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
@@ -230,6 +231,7 @@
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
+    <ClInclude Include="..\source\client\exported\maps\background3_test.h" />
     <ClInclude Include="..\source\client\exported\maps\waterfall.h" />
     <ClInclude Include="..\source\client\exported\palettes\globalPalette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3.h" />

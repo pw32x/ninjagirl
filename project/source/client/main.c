@@ -39,6 +39,8 @@ void main(void)
 
 	SMS_setFrameInterruptHandler(PSGUpdate);
 
+	SMS_useFirstHalfTilesforSprites(TRUE);
+
 	ResourceManager_Init((OnResourceLoadedCallback)OnResourceLoaded);
 
 	/* Clear VRAM */

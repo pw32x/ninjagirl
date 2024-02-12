@@ -1,6 +1,8 @@
 	
 Completed
 
+	DONE in-game color tweaker
+
 	DONE jump doesn't always work after hitting the ground
 	
 	DONE still be able to jump after leaving a ledge for a certain amount of frames

@@ -25,7 +25,7 @@ void ScrollUtils_buildColumn(u8* buffer)
 	u16 metatile_index;
 	u8 tileset_index;
 	const u16* metatileLut;
-	u8 vdpLocation;
+	u16 vdpLocation;
 	u16 metatileMapItem;
 
 #define FILL_COLUMN()\

@@ -72,7 +72,7 @@ typedef struct
     u8 numFrames;
     u8 tilesPerFrame;
     u8 totalTileCount;
-    u8* vdpLocation;
+    u16* vdpLocation;
 } TileAnimation;
 
 

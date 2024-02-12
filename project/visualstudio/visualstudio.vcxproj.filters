@@ -346,6 +346,9 @@
     <ClCompile Include="..\source\engine\joystick_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\background3_test.c">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -530,6 +533,9 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\joystick_manager.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\background3_test.h">
+      <Filter>Source Files\client\exported\maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
