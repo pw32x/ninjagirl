@@ -32,7 +32,6 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 const Command sceneMasterTemp_commands[] = 
 {
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfoBootstrapper },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &background3_test_mapResourceInfo},
     { 0, (CommandFunction)ResourceManager_LoadResource, &gun_girlResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
@@ -40,6 +39,7 @@ const Command sceneMasterTemp_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &robotrunnerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &walkerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &walker_bigResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &field_mapResourceInfo},
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams  },
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfo2 },

@@ -163,6 +163,7 @@
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3_test.c" />
+    <ClCompile Include="..\source\client\exported\maps\field.c" />
     <ClCompile Include="..\source\client\exported\maps\waterfall.c" />
     <ClCompile Include="..\source\client\exported\palettes\globalPalette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
@@ -185,6 +186,7 @@
     <ClCompile Include="..\source\client\generated\resource_infos.c" />
     <ClCompile Include="..\source\client\generated\tilesets\background3_tileset.c" />
     <ClCompile Include="..\source\client\generated\tilesets\breakable_rock_tileset.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c" />
     <ClCompile Include="..\source\client\generated\tilesets\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
@@ -232,6 +234,7 @@
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3_test.h" />
+    <ClInclude Include="..\source\client\exported\maps\field.h" />
     <ClInclude Include="..\source\client\exported\maps\waterfall.h" />
     <ClInclude Include="..\source\client\exported\palettes\globalPalette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3.h" />
@@ -241,6 +244,7 @@
     <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\client\generated\tilesets\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\bullet.h" />

@@ -1,5 +1,5 @@
 <Scene>
-  <TiledMapFilePath>..\maps\background3_test.tmx</TiledMapFilePath>
+  <TiledMapFilePath>..\generated\themes\field.tmx</TiledMapFilePath>
   <EditorObjects>
     <GameObject Name="CommandRunner RightScroll" X="-84.53703703703701" Y="3.4768518518518445" GameObjectTemplateName="CommandRunner RightScroll" />
     <Command Name="RightScroller_Init" X="-83.68981481481494" Y="74.58796296296276" CommandValue="&amp;background3_mapResourceInfo" PreCommandData="" />

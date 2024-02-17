@@ -5,6 +5,7 @@
 
 extern const ResourceInfo background3_tilesetResourceInfo;
 extern const ResourceInfo breakable_rock_tilesetResourceInfo;
+extern const ResourceInfo field_tilesetResourceInfo;
 extern const ResourceInfo waterfall_tilesetResourceInfo;
 extern const ResourceInfo bulletResourceInfo;
 extern const ResourceInfo colorTweakerResourceInfo;
@@ -24,6 +25,7 @@ extern const ResourceInfo waterfallResourceInfo;
 extern const ResourceInfo globalPaletteResourceInfo;
 extern const ResourceInfo background3_mapResourceInfo;
 extern const ResourceInfo background3_test_mapResourceInfo;
+extern const ResourceInfo field_mapResourceInfo;
 extern const ResourceInfo waterfall_mapResourceInfo;
 
 #endif

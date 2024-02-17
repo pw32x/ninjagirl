@@ -2,6 +2,7 @@
 
 #include "background3_tileset.h"
 #include "breakable_rock_tileset.h"
+#include "field_tileset.h"
 #include "waterfall_tileset.h"
 #include "client\exported\animations\bullet.h"
 #include "client\exported\animations\colorTweaker.h"
@@ -21,10 +22,12 @@
 #include "client\exported\palettes\globalPalette.h"
 #include "client\exported\maps\background3.h"
 #include "client\exported\maps\background3_test.h"
+#include "client\exported\maps\field.h"
 #include "client\exported\maps\waterfall.h"
 
 const ResourceInfo background3_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&background3_tileset };
 const ResourceInfo breakable_rock_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&breakable_rock_tileset };
+const ResourceInfo field_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&field_tileset };
 const ResourceInfo waterfall_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&waterfall_tileset };
 const ResourceInfo bulletResourceInfo = { /*bank*/ 2, (const Resource*)&bullet };
 const ResourceInfo colorTweakerResourceInfo = { /*bank*/ 2, (const Resource*)&colorTweaker };
@@ -44,4 +47,5 @@ const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&water
 const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };
 const ResourceInfo background3_test_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_test_map };
+const ResourceInfo field_mapResourceInfo = { /*bank*/ 4, (const Resource*)&field_map };
 const ResourceInfo waterfall_mapResourceInfo = { /*bank*/ 4, (const Resource*)&waterfall_map };
