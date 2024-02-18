@@ -38,17 +38,17 @@
   </tile>
   <tile id="7">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="8">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="9">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="10">
@@ -78,12 +78,12 @@
   </tile>
   <tile id="15">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="16">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="17">
@@ -98,17 +98,17 @@
   </tile>
   <tile id="19">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="20">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="21">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="22">
@@ -123,32 +123,32 @@
   </tile>
   <tile id="24">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="25">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="26">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="27">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="28">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="29">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="30">
@@ -208,7 +208,7 @@
   </tile>
   <tile id="41">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="42">
@@ -218,12 +218,12 @@
   </tile>
   <tile id="43">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="44">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="45">
@@ -273,37 +273,37 @@
   </tile>
   <tile id="54">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="55">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="56">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="57">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="58">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="59">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="60">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="61">
@@ -318,17 +318,17 @@
   </tile>
   <tile id="63">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="64">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="65">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="66">
@@ -353,12 +353,12 @@
   </tile>
   <tile id="70">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="71">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="72">
@@ -433,17 +433,17 @@
   </tile>
   <tile id="86">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="87">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="88">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="89">
@@ -503,12 +503,12 @@
   </tile>
   <tile id="100">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="101">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="102">
@@ -518,37 +518,37 @@
   </tile>
   <tile id="103">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="104">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="105">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="106">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="107">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="108">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="109">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="110">
@@ -568,37 +568,37 @@
   </tile>
   <tile id="113">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="114">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="115">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="116">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="117">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="118">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="119">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="120">
@@ -608,27 +608,27 @@
   </tile>
   <tile id="121">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="122">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="123">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="124">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="125">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
   <tile id="126">

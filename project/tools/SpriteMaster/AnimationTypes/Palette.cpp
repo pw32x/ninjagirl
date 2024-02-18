@@ -29,9 +29,9 @@ GGPalette::GGPalette(const GraphicsGaleObject& ggo)
     {
         PALETTEENTRY* paletteEntry = &paletteEntries[loop];
 
-        byte red = (byte)((float)(paletteEntry->peRed + 8) / 256.0f * 4.0f);
-        byte green = (byte)((float)(paletteEntry->peGreen + 8) / 256.0f * 4.0f);
-        byte blue = (byte)((float)(paletteEntry->peBlue + 8) / 256.0f * 4.0f);
+        byte red = (byte)((float)(paletteEntry->peRed + 8) / 255.0f * 3.0f);
+        byte green = (byte)((float)(paletteEntry->peGreen + 8) / 255.0f * 3.0f);
+        byte blue = (byte)((float)(paletteEntry->peBlue + 8) / 255.0f * 3.0f);
         m_palette[loop] = red | (green << 2) | (blue << 4);
     }
 }

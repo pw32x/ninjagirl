@@ -1,9 +1,22 @@
 Todo
 
-
 	DONE load sprites in the first half of vdp
 	
-	rework background graphics
+	DONE rework background graphics
+	
+	DONE a function to set a  vertical scroll value
+	
+	DONE scroll up by 4 pixels
+		
+	DONE tweak the colors
+	
+	DONE load the background tiles from the top going to the bottom
+	
+	DONE Fix the sprites and background with the new palette
+	
+		ie do something about the purple
+		
+	fix color tweaker reset
 	
 	portal to go to next area
 

@@ -204,6 +204,7 @@
     <ClCompile Include="..\source\client\tileset_functions.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\commandrunner_runall.c" />
+    <ClCompile Include="..\source\engine\commands\background_commands.c" />
     <ClCompile Include="..\source\engine\commands\set_palette_commands.c" />
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
@@ -263,6 +264,7 @@
     <ClInclude Include="..\source\engine\animation_utils.h" />
     <ClInclude Include="..\source\engine\base_defines.h" />
     <ClInclude Include="..\source\engine\commandrunner_runall.h" />
+    <ClInclude Include="..\source\engine\commands\background_commands.h" />
     <ClInclude Include="..\source\engine\command_types.h" />
     <ClInclude Include="..\source\engine\createinfo_types.h" />
     <ClInclude Include="..\source\engine\draw_utils.h" />

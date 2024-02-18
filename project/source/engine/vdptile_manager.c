@@ -7,7 +7,7 @@ u16 VDPTileManager_backgroundTileLocation;
 
 #define MAX_TOTAL_TILES 512
 #define SPRITE_TILES_START_INDEX 0
-#define BACKGROUND_TILES_START_INDEX 256
+#define BACKGROUND_TILES_START_INDEX 448 // 256
 
 void VDPTileManager_Init(void)
 {
@@ -73,11 +73,11 @@ u16 VDPTileManager_LoadBackgroundTileset(const u8* tileData,
 	//	}
 	//}
 
-	SMS_loadTiles(tileData, VDPTileManager_spriteTileLocation, tileCount * 32);
+	VDPTileManager_backgroundTileLocation -= tileCount;
 
-	*vdpLocation = VDPTileManager_spriteTileLocation;
+	SMS_loadTiles(tileData, VDPTileManager_backgroundTileLocation, tileCount * 32);
 
-	VDPTileManager_spriteTileLocation += tileCount;
+	*vdpLocation = VDPTileManager_backgroundTileLocation;
 
 	return *vdpLocation;
 }

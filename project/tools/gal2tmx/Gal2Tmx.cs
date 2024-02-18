@@ -240,10 +240,10 @@ namespace gal2tmx
 
             Bitmap tilesetBitmap = null;
 
-            tilesetBitmap = BitmapUtils.PackTilesetBitmap(tilesetSplitBitmap.UniqueBitmapTiles, 2, tileWidth, tileHeight);
+            tilesetBitmap = BitmapUtils.PackTilesetBitmap(tilesetSplitBitmap.UniqueBitmapTiles, 1, tileWidth, tileHeight);
 
             // uncomment to save the contents of the 8x8 tile set bitmap
-            //tilesetBitmap.Save(TilesetBmpDestinationPath, ImageFormat.Bmp);
+            tilesetBitmap.Save(jobSpec.TilesetBmpDestinationPath, ImageFormat.Bmp);
 
             TilesetUtils.ExportTileset(TilesetDestinationFolder,
                                        jobSpec.TilesetFilename,

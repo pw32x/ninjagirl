@@ -120,6 +120,6 @@ void RightScroll_UpdateVDP(void)
 	if (ScrollManager_updateMapVDP)
 	{
 		ScrollManager_updateMapVDP = FALSE;
-		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 24);
+		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 26);
 	}
 }

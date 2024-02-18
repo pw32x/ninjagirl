@@ -46,7 +46,7 @@ GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo)
 	object->Draw = ColorTweaker_Draw;
 
 	object->cursorY = 0;
-	object->colorIndex = 2;
+	object->colorIndex = 0;
 	AnimationUtils_setBatchedAnimationFrame(object, object->colorIndex);
 
 	return object;

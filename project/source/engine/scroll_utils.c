@@ -53,6 +53,7 @@ columnRunner += 2
 	FILL_COLUMN();
 	FILL_COLUMN();
 	FILL_COLUMN();
+	FILL_COLUMN();
 }
 
 void ScrollUtils_InitTilemap(void)
@@ -67,7 +68,7 @@ void ScrollUtils_InitTilemap(void)
 		ScrollUtils_mapColumnToBuild = loop;
 
 		ScrollUtils_buildColumn(ScrollManager_columnBuffer);
-		SMS_loadTileMapColumn(loop, 0, ScrollManager_columnBuffer, SCROLLMANAGER_BUFFER_HEIGHT);
+		SMS_loadTileMapColumn(loop, 0, ScrollManager_columnBuffer, SCROLLMANAGER_COLUMNBUFFER_HEIGHT);
 	}
 
 	// prep the next column to be visible where the first column is.
@@ -76,7 +77,7 @@ void ScrollUtils_InitTilemap(void)
 	// We won't see it anyway.
 	ScrollUtils_mapColumnToBuild = 32;
 	ScrollUtils_buildColumn(ScrollManager_columnBuffer);
-	SMS_loadTileMapColumn(0, 0, ScrollManager_columnBuffer, SCROLLMANAGER_BUFFER_HEIGHT);
+	SMS_loadTileMapColumn(0, 0, ScrollManager_columnBuffer, SCROLLMANAGER_COLUMNBUFFER_HEIGHT);
 
 	SMS_mapROMBank(currentRomBank);
 }

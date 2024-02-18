@@ -3,7 +3,7 @@
 <image source="breakable_rock_tileset_tsx.bmp" width="16" height="16" />
   <tile id="0">
     <properties>
-      <property name = "solid" value = "" />
+      <property name = "" value = "" />
     </properties>
   </tile>
 </tileset>

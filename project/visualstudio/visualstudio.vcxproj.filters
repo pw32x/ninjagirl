@@ -355,6 +355,9 @@
     <ClCompile Include="..\source\client\exported\maps\field.c">
       <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\commands\background_commands.c">
+      <Filter>Source Files\engine\commands</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -548,6 +551,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\maps\field.h">
       <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\commands\background_commands.h">
+      <Filter>Source Files\engine\commands</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
