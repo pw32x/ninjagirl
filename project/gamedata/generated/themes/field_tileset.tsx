@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset name="field_tileset" tilewidth="16" tileheight="16" tilecount="110">
-<image source="field_tileset_tsx.bmp" width="160" height="176" />
+<tileset name="field_tileset" tilewidth="16" tileheight="16" tilecount="120">
+<image source="field_tileset_tsx.bmp" width="160" height="192" />
   <tile id="0">
     <properties>
       <property name = "" value = "" />
@@ -533,7 +533,7 @@
   </tile>
   <tile id="106">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="107">
@@ -547,6 +547,16 @@
     </properties>
   </tile>
   <tile id="109">
+    <properties>
+      <property name = "" value = "" />
+    </properties>
+  </tile>
+  <tile id="110">
+    <properties>
+      <property name = "" value = "" />
+    </properties>
+  </tile>
+  <tile id="111">
     <properties>
       <property name = "" value = "" />
     </properties>

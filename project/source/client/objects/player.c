@@ -501,6 +501,15 @@ void Player_UpdateDuck(GameObject* player)
 		ObjectManager_player.flipped = FALSE;
 	}
 
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
+	{
+		playerY++;
+		playerSpeedY = 0;
+		canStillJumpFrames = 0;
+		setPlayerState(PLAYER_STATE_FALL);
+		return;
+	}
+
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 

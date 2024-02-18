@@ -1,26 +1,35 @@
 Todo
 
-	DONE load sprites in the first half of vdp
+
 	
-	DONE rework background graphics
+	scene master to set map properties
+		tile priority
+		solid/not solid/etc
 	
-	DONE a function to set a  vertical scroll value
+
 	
-	DONE scroll up by 4 pixels
-		
-	DONE tweak the colors
+	weird jumping behavior at the end of the test map
 	
-	DONE load the background tiles from the top going to the bottom
-	
-	DONE Fix the sprites and background with the new palette
-	
-		ie do something about the purple
-		
-	fix color tweaker reset
+	tiled enemies use second palette?
+		or backgrounds use their own palette?
 	
 	portal to go to next area
 
+	performance pass...
+
+	finish updating the player colors
+
+	template manager exports per-object struct types
+
 	redo bottom half of spider animation to be reusable when moving in both direction
+	
+	flicker strategy
+	
+	make explosion cooler
+	
+	make bullets cooler
+	
+	make bullets have only one point as collision
 	
 	fight to open the portal
 		

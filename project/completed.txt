@@ -1,6 +1,28 @@
 	
 Completed
 
+	DONE load sprites in the first half of vdp
+	
+	DONE rework background graphics
+	
+	DONE a function to set a  vertical scroll value
+	
+	DONE scroll up by 4 pixels
+		
+	DONE tweak the colors
+	
+	DONE load the background tiles from the top going to the bottom
+	
+	DONE Fix the sprites and background with the new palette
+	
+		ie do something about the purple
+		
+	DONE fix color tweaker reset
+	
+	NAH cloud detailing?
+
+	DONE drop down from semi-solid platforms
+
 	DONE in-game color tweaker
 
 	DONE jump doesn't always work after hitting the ground

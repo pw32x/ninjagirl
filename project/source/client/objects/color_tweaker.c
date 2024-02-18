@@ -77,6 +77,14 @@ void ColorTweaker_Update(GameObject* object)
 	{
 		SMS_loadSpritePalette((void*)object->originalPalette);
 		SMS_loadBGPalette((void*)object->originalPalette);
+
+		for (int loop = 0; loop < 16; loop++)
+		{
+			redChannel[loop] = ((u8*)object->originalPalette)[loop] & 0x03;
+			greenChannel[loop] = (((u8*)object->originalPalette)[loop] & 0x0C) >> 2;
+			blueChannel[loop] = (((u8*)object->originalPalette)[loop] & 0x30) >> 4;
+			palette[loop] = ((u8*)object->originalPalette)[loop];
+		}
 	}
 
 	if (JoystickManager_buttonsPressed & PORT_B_KEY_LEFT)
