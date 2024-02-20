@@ -45,7 +45,7 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000200  s__CODE                         
      00000FB4  l__BANK4                        
      00001731  l__DATA                         
-     000037EA  l__BANK2                        
+     0000382A  l__BANK2                        
      00003CD8  l__BANK3                        
      000058FC  l__CODE                         
      00005AFC  s__HOME                         
@@ -698,7 +698,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK2                              00008000    000037EA =       14314. bytes (REL,CON)
+_BANK2                              00008000    0000382A =       14378. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -757,7 +757,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK2                              00008000    000037EA =       14314. bytes (REL,CON)
+_BANK2                              00008000    0000382A =       14378. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -817,7 +817,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK2                              00008000    000037EA =       14314. bytes (REL,CON)
+_BANK2                              00008000    0000382A =       14378. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -842,127 +842,127 @@ _BANK2                              00008000    000037EA =       14314. bytes (R
      00009D8B  _gun_girlFrames                    gun_girl
      00009DC3  _gun_girl                          gun_girl
      00009DCF  _impactTileData                    impact
-     00009F0F  _impactFrame0SpriteStrips          impact
-     00009F17  _impactFrame1SpriteStrips          impact
-     00009F1F  _impactFrame2SpriteStrips          impact
-     00009F27  _impactFrame0                      impact
-     00009F2C  _impactFrame1                      impact
-     00009F31  _impactFrame2                      impact
-     00009F36  _impactFrames                      impact
-     00009F3C  _impact                            impact
-     00009F48  _kunaiTileData                     kunai
-     0000A1C8  _kunaiFrame0SpriteStrips           kunai
-     0000A1D0  _kunaiFrame1SpriteStrips           kunai
-     0000A1D8  _kunaiFrame2SpriteStrips           kunai
-     0000A1E0  _kunaiFrame3SpriteStrips           kunai
-     0000A1E8  _kunaiFrame4SpriteStrips           kunai
-     0000A1F0  _kunaiFrame5SpriteStrips           kunai
-     0000A1F8  _kunaiFrame6SpriteStrips           kunai
-     0000A200  _kunaiFrame7SpriteStrips           kunai
-     0000A208  _kunaiFrame0                       kunai
-     0000A20D  _kunaiFrame1                       kunai
-     0000A212  _kunaiFrame2                       kunai
-     0000A217  _kunaiFrame3                       kunai
-     0000A21C  _kunaiFrame4                       kunai
-     0000A221  _kunaiFrame5                       kunai
-     0000A226  _kunaiFrame6                       kunai
-     0000A22B  _kunaiFrame7                       kunai
-     0000A230  _kunaiFrames                       kunai
-     0000A240  _kunai                             kunai
-     0000A24C  _robotrunnerTileData               robotrunner
-     0000A64C  _robotrunnerFrame0SpriteStrips     robotrunner
-     0000A658  _robotrunnerFrame1SpriteStrips     robotrunner
+     00009F4F  _impactFrame0SpriteStrips          impact
+     00009F57  _impactFrame1SpriteStrips          impact
+     00009F5F  _impactFrame2SpriteStrips          impact
+     00009F67  _impactFrame0                      impact
+     00009F6C  _impactFrame1                      impact
+     00009F71  _impactFrame2                      impact
+     00009F76  _impactFrames                      impact
+     00009F7C  _impact                            impact
+     00009F88  _kunaiTileData                     kunai
+     0000A208  _kunaiFrame0SpriteStrips           kunai
+     0000A210  _kunaiFrame1SpriteStrips           kunai
+     0000A218  _kunaiFrame2SpriteStrips           kunai
+     0000A220  _kunaiFrame3SpriteStrips           kunai
+     0000A228  _kunaiFrame4SpriteStrips           kunai
+     0000A230  _kunaiFrame5SpriteStrips           kunai
+     0000A238  _kunaiFrame6SpriteStrips           kunai
+     0000A240  _kunaiFrame7SpriteStrips           kunai
+     0000A248  _kunaiFrame0                       kunai
+     0000A24D  _kunaiFrame1                       kunai
+     0000A252  _kunaiFrame2                       kunai
+     0000A257  _kunaiFrame3                       kunai
+     0000A25C  _kunaiFrame4                       kunai
+     0000A261  _kunaiFrame5                       kunai
+     0000A266  _kunaiFrame6                       kunai
+     0000A26B  _kunaiFrame7                       kunai
+     0000A270  _kunaiFrames                       kunai
+     0000A280  _kunai                             kunai
+     0000A28C  _robotrunnerTileData               robotrunner
+     0000A68C  _robotrunnerFrame0SpriteStrips     robotrunner
+     0000A698  _robotrunnerFrame1SpriteStrips     robotrunner
 ASxxxx Linker V03.00/V05.40 + sdld,  page 28.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK2                              00008000    000037EA =       14314. bytes (REL,CON)
+_BANK2                              00008000    0000382A =       14378. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000A664  _robotrunnerFrame2SpriteStrips     robotrunner
-     0000A670  _robotrunnerFrame3SpriteStrips     robotrunner
-     0000A67C  _robotrunnerFrame0                 robotrunner
-     0000A681  _robotrunnerFrame1                 robotrunner
-     0000A686  _robotrunnerFrame2                 robotrunner
-     0000A68B  _robotrunnerFrame3                 robotrunner
-     0000A690  _robotrunnerFrames                 robotrunner
-     0000A698  _robotrunner                       robotrunner
-     0000A6A4  _robotspringTileData               robotspring
-     0000A8A4  _robotspringFrame0SpriteStrips     robotspring
-     0000A8B0  _robotspringFrame1SpriteStrips     robotspring
-     0000A8BC  _robotspringFrame2SpriteStrips     robotspring
-     0000A8C8  _robotspringFrame0                 robotspring
-     0000A8CD  _robotspringFrame1                 robotspring
-     0000A8D2  _robotspringFrame2                 robotspring
-     0000A8D7  _robotspringFrames                 robotspring
-     0000A8DD  _robotspring                       robotspring
-     0000A8E9  _rock_particleTileData             rock_particle
-     0000A9E9  _rock_particleFrame0SpriteStrips   rock_particle
-     0000A9F1  _rock_particleFrame1SpriteStrips   rock_particle
-     0000A9F9  _rock_particleFrame2SpriteStrips   rock_particle
-     0000AA01  _rock_particleFrame3SpriteStrips   rock_particle
-     0000AA09  _rock_particleFrame0               rock_particle
-     0000AA0E  _rock_particleFrame1               rock_particle
-     0000AA13  _rock_particleFrame2               rock_particle
-     0000AA18  _rock_particleFrame3               rock_particle
-     0000AA1D  _rock_particleFrames               rock_particle
-     0000AA25  _rock_particle                     rock_particle
-     0000AA31  _test_blockTileData                test_block
-     0000AB31  _test_blockFrame0SpriteStrips      test_block
-     0000AB3D  _test_blockFrame0                  test_block
-     0000AB42  _test_blockFrames                  test_block
-     0000AB44  _test_block                        test_block
-     0000AB50  _walkerTileData                    walker
-     0000AC50  _walkerFrame0SpriteStrips          walker
-     0000AC58  _walkerFrame1SpriteStrips          walker
-     0000AC60  _walkerFrame0                      walker
-     0000AC65  _walkerFrame1                      walker
-     0000AC6A  _walkerFrames                      walker
-     0000AC6E  _walker                            walker
-     0000AC7A  _walker_bigTileData                walker_big
-     0000B47A  _walker_bigFrame0SpriteStrips      walker_big
-     0000B486  _walker_bigFrame1SpriteStrips      walker_big
-     0000B492  _walker_bigFrame2SpriteStrips      walker_big
-     0000B49E  _walker_bigFrame3SpriteStrips      walker_big
-     0000B4AA  _walker_bigFrame4SpriteStrips      walker_big
-     0000B4B6  _walker_bigFrame5SpriteStrips      walker_big
-     0000B4C2  _walker_bigFrame6SpriteStrips      walker_big
-     0000B4CE  _walker_bigFrame7SpriteStrips      walker_big
-     0000B4DA  _walker_bigFrame0                  walker_big
-     0000B4DF  _walker_bigFrame1                  walker_big
+     0000A6A4  _robotrunnerFrame2SpriteStrips     robotrunner
+     0000A6B0  _robotrunnerFrame3SpriteStrips     robotrunner
+     0000A6BC  _robotrunnerFrame0                 robotrunner
+     0000A6C1  _robotrunnerFrame1                 robotrunner
+     0000A6C6  _robotrunnerFrame2                 robotrunner
+     0000A6CB  _robotrunnerFrame3                 robotrunner
+     0000A6D0  _robotrunnerFrames                 robotrunner
+     0000A6D8  _robotrunner                       robotrunner
+     0000A6E4  _robotspringTileData               robotspring
+     0000A8E4  _robotspringFrame0SpriteStrips     robotspring
+     0000A8F0  _robotspringFrame1SpriteStrips     robotspring
+     0000A8FC  _robotspringFrame2SpriteStrips     robotspring
+     0000A908  _robotspringFrame0                 robotspring
+     0000A90D  _robotspringFrame1                 robotspring
+     0000A912  _robotspringFrame2                 robotspring
+     0000A917  _robotspringFrames                 robotspring
+     0000A91D  _robotspring                       robotspring
+     0000A929  _rock_particleTileData             rock_particle
+     0000AA29  _rock_particleFrame0SpriteStrips   rock_particle
+     0000AA31  _rock_particleFrame1SpriteStrips   rock_particle
+     0000AA39  _rock_particleFrame2SpriteStrips   rock_particle
+     0000AA41  _rock_particleFrame3SpriteStrips   rock_particle
+     0000AA49  _rock_particleFrame0               rock_particle
+     0000AA4E  _rock_particleFrame1               rock_particle
+     0000AA53  _rock_particleFrame2               rock_particle
+     0000AA58  _rock_particleFrame3               rock_particle
+     0000AA5D  _rock_particleFrames               rock_particle
+     0000AA65  _rock_particle                     rock_particle
+     0000AA71  _test_blockTileData                test_block
+     0000AB71  _test_blockFrame0SpriteStrips      test_block
+     0000AB7D  _test_blockFrame0                  test_block
+     0000AB82  _test_blockFrames                  test_block
+     0000AB84  _test_block                        test_block
+     0000AB90  _walkerTileData                    walker
+     0000AC90  _walkerFrame0SpriteStrips          walker
+     0000AC98  _walkerFrame1SpriteStrips          walker
+     0000ACA0  _walkerFrame0                      walker
+     0000ACA5  _walkerFrame1                      walker
+     0000ACAA  _walkerFrames                      walker
+     0000ACAE  _walker                            walker
+     0000ACBA  _walker_bigTileData                walker_big
+     0000B4BA  _walker_bigFrame0SpriteStrips      walker_big
+     0000B4C6  _walker_bigFrame1SpriteStrips      walker_big
+     0000B4D2  _walker_bigFrame2SpriteStrips      walker_big
+     0000B4DE  _walker_bigFrame3SpriteStrips      walker_big
+     0000B4EA  _walker_bigFrame4SpriteStrips      walker_big
+     0000B4F6  _walker_bigFrame5SpriteStrips      walker_big
+     0000B502  _walker_bigFrame6SpriteStrips      walker_big
+     0000B50E  _walker_bigFrame7SpriteStrips      walker_big
+     0000B51A  _walker_bigFrame0                  walker_big
+     0000B51F  _walker_bigFrame1                  walker_big
 ASxxxx Linker V03.00/V05.40 + sdld,  page 29.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK2                              00008000    000037EA =       14314. bytes (REL,CON)
+_BANK2                              00008000    0000382A =       14378. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000B4E4  _walker_bigFrame2                  walker_big
-     0000B4E9  _walker_bigFrame3                  walker_big
-     0000B4EE  _walker_bigFrame4                  walker_big
-     0000B4F3  _walker_bigFrame5                  walker_big
-     0000B4F8  _walker_bigFrame6                  walker_big
-     0000B4FD  _walker_bigFrame7                  walker_big
-     0000B502  _walker_bigFrames                  walker_big
-     0000B512  _walker_big                        walker_big
-     0000B51E  _walker_smallTileData              walker_small
-     0000B59E  _walker_smallFrame0SpriteStrips    walker_small
-     0000B5A6  _walker_smallFrame1SpriteStrips    walker_small
-     0000B5AE  _walker_smallFrame0                walker_small
-     0000B5B3  _walker_smallFrame1                walker_small
-     0000B5B8  _walker_smallFrames                walker_small
-     0000B5BC  _walker_small                      walker_small
-     0000B5C8  _waterfallTileData                 waterfall
-     0000B7C8  _waterfallFrame0                   waterfall
-     0000B7CC  _waterfallFrame1                   waterfall
-     0000B7D0  _waterfallFrame2                   waterfall
-     0000B7D4  _waterfallFrame3                   waterfall
-     0000B7D8  _waterfallFrames                   waterfall
-     0000B7E0  _waterfall                         waterfall
+     0000B524  _walker_bigFrame2                  walker_big
+     0000B529  _walker_bigFrame3                  walker_big
+     0000B52E  _walker_bigFrame4                  walker_big
+     0000B533  _walker_bigFrame5                  walker_big
+     0000B538  _walker_bigFrame6                  walker_big
+     0000B53D  _walker_bigFrame7                  walker_big
+     0000B542  _walker_bigFrames                  walker_big
+     0000B552  _walker_big                        walker_big
+     0000B55E  _walker_smallTileData              walker_small
+     0000B5DE  _walker_smallFrame0SpriteStrips    walker_small
+     0000B5E6  _walker_smallFrame1SpriteStrips    walker_small
+     0000B5EE  _walker_smallFrame0                walker_small
+     0000B5F3  _walker_smallFrame1                walker_small
+     0000B5F8  _walker_smallFrames                walker_small
+     0000B5FC  _walker_small                      walker_small
+     0000B608  _waterfallTileData                 waterfall
+     0000B808  _waterfallFrame0                   waterfall
+     0000B80C  _waterfallFrame1                   waterfall
+     0000B810  _waterfallFrame2                   waterfall
+     0000B814  _waterfallFrame3                   waterfall
+     0000B818  _waterfallFrames                   waterfall
+     0000B820  _waterfall                         waterfall
 ASxxxx Linker V03.00/V05.40 + sdld,  page 30.
 Hexadecimal  [32-Bits]
 
