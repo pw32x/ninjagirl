@@ -71,6 +71,18 @@ namespace SceneMaster.Scenes.ViewModels
         private Scene m_scene;
         public Scene Scene { get => m_scene; private set => SetProperty(ref m_scene, value); }
 
+        private const uint EDITING_MODE_OBJECTPLACE = 0;
+        private const uint EDITING_MODE_OBJECTEDIT = 1;
+        private const uint EDITING_MODE_TERRAIN = 2;
+
+
+        private uint m_currentEditingMode = 0;
+        public uint CurrentEditingMode { get => m_currentEditingMode; set => SetProperty(ref m_currentEditingMode, value); }
+
+        private int m_currentTile = 0;
+        public int CurrentTile { get => m_currentTile; private set => SetProperty(ref m_currentTile, value); }
+
+
         private Settings m_settings;
 
         EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
@@ -341,5 +353,32 @@ namespace SceneMaster.Scenes.ViewModels
 
             Scene.CreateEditorObject(mapX, mapY, EditorObjectInfoLibraryViewModel.SelectedEditorObjectInfo);
         }
+
+        internal void MouseLeftButtonDown(int mapX, int mapY)
+        {
+            switch (CurrentEditingMode) 
+            {
+            case EDITING_MODE_OBJECTPLACE:
+            case EDITING_MODE_OBJECTEDIT:
+            {
+                CreateEditorObject(mapX, mapY);
+            }
+            break;
+            case EDITING_MODE_TERRAIN:
+
+                int tileX = mapX / Scene.TiledMap.TileWidth;
+                int tileY = mapY / Scene.TiledMap.TileHeight;
+
+                SetTileMapTile(tileX, tileY);
+
+            break;
+            }
+        }
+
+        public void SetTileMapTile(int tileX, int tileY)
+        {
+            m_scene.SetTileMapTile(tileX, tileY, m_currentTile);
+        }
+
     }
 }

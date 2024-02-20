@@ -1,6 +1,16 @@
 Todo
 
-
+	scene master
+	
+		import map
+		
+			build terrain map
+			
+		save terrain map in scene
+		
+		load scene
+		
+			restore the terrain map
 	
 	scene master to set map properties
 		tile priority
@@ -26,6 +36,8 @@ Todo
 	flicker strategy
 	
 	make explosion cooler
+		multiple with particle effects
+			explore 3x3 with four frames
 	
 	make bullets cooler
 	

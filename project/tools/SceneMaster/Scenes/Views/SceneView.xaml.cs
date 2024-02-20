@@ -33,10 +33,12 @@ namespace SceneMaster.Scenes.Views
                 // convert the position clicked on the TileMapBitmapImage 
                 // to a position on the tilemap.
                 var mapPos = e.GetPosition(TileMapBitmapImage);
+
                 int mapX = (int)((mapPos.X / TileMapBitmapImage.ActualWidth) * TileMapBitmapImage.Source.Width);
                 int mapY = (int)((mapPos.Y / TileMapBitmapImage.ActualHeight) * TileMapBitmapImage.Source.Height);
 
-                m_sceneViewModel.CreateEditorObject(mapX, mapY);
+
+                m_sceneViewModel.MouseLeftButtonDown(mapX, mapY);
             }
         }
 
