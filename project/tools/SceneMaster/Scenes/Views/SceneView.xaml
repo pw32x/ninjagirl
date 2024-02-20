@@ -38,6 +38,9 @@
                                LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown" 
                                Stretch="None" />
+                        <Image x:Name="TerrainBitmapSource"  Source="{Binding Scene.TerrainBitmapSource}"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   Stretch="None" />
                         <Canvas x:Name="GridCanvas" IsHitTestVisible="False"/>
                         <ItemsControl ItemsSource="{Binding EditorObjectViewModels}" >
                             <ItemsControl.ItemsPanel>

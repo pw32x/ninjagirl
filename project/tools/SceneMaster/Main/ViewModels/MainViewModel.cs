@@ -4,13 +4,17 @@ using Microsoft.Win32;
 using SceneMaster.Documents.ViewModels;
 using SceneMaster.EditorObjectLibrary.ViewModels;
 using SceneMaster.Export;
+using SceneMaster.Scenes.Models;
 using SceneMaster.Scenes.ViewModels;
 using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace SceneMaster.Main.ViewModels
 {
@@ -23,6 +27,8 @@ namespace SceneMaster.Main.ViewModels
 
         public Settings Settings { get; } = new();
         private EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; } = new();
+
+
 
         private SceneMasterDocument m_currentDocument;
 
@@ -43,6 +49,8 @@ namespace SceneMaster.Main.ViewModels
 
             EditorObjectLibraryViewModel.LoadLibraries(Settings);
 
+            LoadTileTypes();
+
             bool openedScene = false;
             if (Settings.ReloadLastScene && 
                 !string.IsNullOrEmpty(Settings.LastLoadedSceneFilename) &&
@@ -62,6 +70,30 @@ namespace SceneMaster.Main.ViewModels
             ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
             RunSceneCommand = new RelayCommand(RunScene);
+        }
+
+        private Dictionary<string, BitmapImage> TileTypeImages { get; set; } = new Dictionary<string, BitmapImage>();
+
+        private void LoadTileTypes()
+        {
+            string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+
+            var loadImage = (string name) => 
+            {
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri("pack://application:,,,/" + assemblyName + ";component/TileTypes/" + name + ".png");
+                bitmap.EndInit();
+
+                TileTypeImages[name] = bitmap;
+            };
+
+            foreach (var tileTypeName in Scene.TileTypeNameToInt.Keys)
+            {
+                if (string.IsNullOrEmpty(tileTypeName))
+                    continue;
+                loadImage(tileTypeName);
+            }
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
