@@ -52,11 +52,11 @@ namespace SceneMaster.Scenes.Models
             private set => SetProperty(ref m_tiledMapFilename, value);
         }
 
-        List<BitmapImage> m_tileTypeImages;
 
-        public Scene(List<BitmapImage> tileTypeImages)
+
+        public Scene(/*List<BitmapImage> tileTypeImages*/)
         {
-            m_tileTypeImages = tileTypeImages;
+            //m_tileTypeImages = tileTypeImages;
         }
 
         private TiledMap m_tiledMap;
@@ -76,7 +76,7 @@ namespace SceneMaster.Scenes.Models
 
 
 
-
+        /*
         public const int TILE_EMPTY = 0;
         public const int TILE_SOLID = 1;
         public const int TILE_TOPSOLID = 2;
@@ -126,13 +126,15 @@ namespace SceneMaster.Scenes.Models
             return "";
         }
 
+        List<BitmapImage> m_tileTypeImages;
+
         List<int> m_terrain = new List<int>();
         int m_terrainWidth = 0;
         int m_terrainHeight = 0;
 
         private WriteableBitmap m_terrainBitmapSource;
         public WriteableBitmap TerrainBitmapSource { get => m_terrainBitmapSource; private set => SetProperty(ref m_terrainBitmapSource, value); }
-
+        */
 
         public void ImportTiledMap(string tiledMapFilePath)
         {
@@ -141,9 +143,10 @@ namespace SceneMaster.Scenes.Models
 
             TiledMapFilePath = tiledMapFilePath;
             LoadTiledMap(tiledMapFilePath);
-            BuildTerrain();
+            //BuildTerrain();
         }
 
+        /*
         public void SetTerrainTileType(int tileX, int tileY, int tileType)
         {
             m_terrain[tileX + (tileY * m_terrainWidth)] = tileType;
@@ -223,7 +226,7 @@ namespace SceneMaster.Scenes.Models
 
             return writeableBitmap;
         }
-
+        
         private void DrawBitmapHelper(WriteableBitmap writeableBitmap, int tileX, int tileY, BitmapImage bitmapImage)
         {
             // Copy pixel data from the BitmapImage to the WriteableBitmap
@@ -246,6 +249,7 @@ namespace SceneMaster.Scenes.Models
                                         stride,
                                         0);
         }
+        */
 
         public void LoadFromXml(XmlElement root, string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
         {
@@ -254,7 +258,7 @@ namespace SceneMaster.Scenes.Models
             {
                 TiledMapFilePath = Path.Combine(Path.GetDirectoryName(filePath), ggFilePathNode.InnerText);
                 LoadTiledMap(TiledMapFilePath);
-                BuildTerrain();
+                //BuildTerrain();
             }
 
             var editorObjectsNode = root[EditorObjectsNodeName];
@@ -279,6 +283,7 @@ namespace SceneMaster.Scenes.Models
                 }
             }
 
+            /*
             var terrainNode = root[TerrainNodeName];
             if (terrainNode != null)
             {
@@ -308,6 +313,7 @@ namespace SceneMaster.Scenes.Models
                     BuildTerrain();
                 }
             }
+            */
         }
 
         internal void SaveToXmlElement(XmlDocument doc, XmlElement root, string filePath)
@@ -327,6 +333,7 @@ namespace SceneMaster.Scenes.Models
                 editorObjectsNode.AppendChild(editorObjectNode);
             }
 
+            /*
             // Terrain
             var terrainNode = doc.CreateElement(TerrainNodeName);
             root.AppendChild(terrainNode);
@@ -341,6 +348,7 @@ namespace SceneMaster.Scenes.Models
             }
 
             terrainNode.InnerText = sb.ToString().Trim();
+            */
         }
 
         public void StartWatchingTiledMap(string filePath)
@@ -391,7 +399,7 @@ namespace SceneMaster.Scenes.Models
             m_tiledMapTilesets = null;
             m_tilesetBitmaps = null;
             TiledMapBitmapSource = null;
-            m_terrain.Clear();
+            //m_terrain.Clear();
         }
 
         private void LoadTiledMap(string tiledMapFilePath)

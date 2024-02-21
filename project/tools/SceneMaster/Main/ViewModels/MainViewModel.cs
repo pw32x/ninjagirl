@@ -50,7 +50,7 @@ namespace SceneMaster.Main.ViewModels
 
             EditorObjectLibraryViewModel.LoadLibraries(Settings);
 
-            LoadTileTypes();
+            //LoadTileTypes();
 
             bool openedScene = false;
             if (Settings.ReloadLastScene && 
@@ -72,7 +72,7 @@ namespace SceneMaster.Main.ViewModels
             ExportCFilesCommand = new RelayCommand(ExportCFiles);
             RunSceneCommand = new RelayCommand(RunScene);
         }
-
+        /*
         private List<BitmapImage> TileTypeImages { get; set; } = new List<BitmapImage>();
 
         private void LoadTileTypes()
@@ -94,6 +94,7 @@ namespace SceneMaster.Main.ViewModels
                 loadImage(tileTypeName);
             }
         }
+        */
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -111,7 +112,7 @@ namespace SceneMaster.Main.ViewModels
 
         private SceneMasterDocument InitDocument()
         {
-            var newDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel, TileTypeImages);
+            var newDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel/*, TileTypeImages*/);
             newDocument.PropertyChanging += Document_PropertyChanging;
             newDocument.PropertyChanged += Document_PropertyChanged;
 

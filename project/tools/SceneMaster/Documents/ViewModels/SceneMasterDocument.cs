@@ -52,18 +52,18 @@ namespace SceneMaster.Documents.ViewModels
 
         public EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; private set; }
 
-        List<BitmapImage> m_tileTypeImages;
+        //List<BitmapImage> m_tileTypeImages;
 
         public SceneMasterDocument(Settings settings,
-                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel,
-                                   List<BitmapImage> tileTypeImages)
+                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel/*,
+                                   List<BitmapImage> tileTypeImages*/)
         {
             m_settings = settings;
             EditorObjectLibraryViewModel = editorObjectLibraryViewModel;
-            m_tileTypeImages = tileTypeImages;
+            //m_tileTypeImages = tileTypeImages;
             SceneViewModel = new SceneViewModel(m_settings, 
-                                                EditorObjectLibraryViewModel,
-                                                m_tileTypeImages);
+                                                EditorObjectLibraryViewModel/*,
+                                                m_tileTypeImages*/);
 
             FilePath = DefaultFilename;
         }
@@ -78,8 +78,8 @@ namespace SceneMaster.Documents.ViewModels
         {
             SceneViewModel.Dispose();
             SceneViewModel = new SceneViewModel(m_settings, 
-                                                EditorObjectLibraryViewModel, 
-                                                m_tileTypeImages);
+                                                EditorObjectLibraryViewModel/*, 
+                                                m_tileTypeImages*/);
             SceneViewModel.Load(filePath);
 
             FilePath = filePath;

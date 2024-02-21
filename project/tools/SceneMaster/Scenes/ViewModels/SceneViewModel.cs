@@ -75,7 +75,7 @@ namespace SceneMaster.Scenes.ViewModels
 
         private const uint EDITING_MODE_OBJECTPLACE = 0;
         private const uint EDITING_MODE_OBJECTEDIT = 1;
-        private const uint EDITING_MODE_TERRAIN = 2;
+        //private const uint EDITING_MODE_TERRAIN = 2;
 
 
         private uint m_currentEditingMode = 0;
@@ -90,12 +90,12 @@ namespace SceneMaster.Scenes.ViewModels
         EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
 
         public SceneViewModel(Settings settings,
-                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel,
-                              List<BitmapImage> tileTypeImages)
+                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel/*,
+                              List<BitmapImage> tileTypeImages*/)
         {
             m_settings = settings;
             EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
-            Scene = new Scene(tileTypeImages);
+            Scene = new Scene(/*tileTypeImages*/);
 
             // attach
             Scene.PropertyChanged += Scene_PropertyChanged;
@@ -367,6 +367,7 @@ namespace SceneMaster.Scenes.ViewModels
                 CreateEditorObject(mapX, mapY);
             }
             break;
+            /*
             case EDITING_MODE_TERRAIN:
 
                 int tileX = mapX / Scene.TiledMap.TileWidth;
@@ -375,13 +376,16 @@ namespace SceneMaster.Scenes.ViewModels
                 SetTerrainTileType(tileX, tileY);
 
             break;
+            */
             }
         }
 
+        /*
         public void SetTerrainTileType(int tileX, int tileY)
         {
             m_scene.SetTerrainTileType(tileX, tileY, m_currentTileType);
         }
+        */
 
     }
 }
