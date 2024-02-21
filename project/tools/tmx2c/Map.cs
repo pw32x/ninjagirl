@@ -48,7 +48,7 @@ namespace tmx2c
         int mTileHeight;
 
         private XmlNode mTilemapLayerNode = null;
-        private XmlNode mCollisionLayerNode = null;
+        private XmlNode mTerrainLayerNode = null;
         private XmlNode mPropertiesNode = null;
         private List<XmlNode> mTilesetNodes = new List<XmlNode>();
         private List<XmlNode> mObjectGroupNodes = new List<XmlNode>();
@@ -86,7 +86,7 @@ namespace tmx2c
                     tileset.TilesetName = Path.GetFileNameWithoutExtension(tileset.TilesetFilename);
 
                     if (tileset.TilesetFilename.Contains("gameobjects.tsx") ||
-                        tileset.TilesetFilename.Contains("tileattributes.tsx"))
+                        tileset.TilesetFilename.Contains("tiletypes.tsx"))
                     {
                         tileset.IsEditorTileset = true;
                     }
@@ -685,14 +685,12 @@ namespace tmx2c
 
                             if (nameAttribute != null)
                             {
-                                bool contains = nameAttribute.Value.IndexOf("collision", StringComparison.OrdinalIgnoreCase) >= 0;
-
-                                if (contains)
+                                if (nameAttribute.Value.ToLower().Contains("terrain"))
                                 {
-                                    if (mCollisionLayerNode == null)
-                                        mCollisionLayerNode = dataNode;
+                                    if (mTerrainLayerNode == null)
+                                        mTerrainLayerNode = dataNode;
                                     else
-                                        Console.WriteLine("tmx2c -  Multiple collision maps not supported. The layer " + nameAttribute.Value + " will be ignored.");
+                                        Console.WriteLine("tmx2c -  Multiple terrain maps not supported. The layer " + nameAttribute.Value + " will be ignored.");
                                     break;
                                 }
                             }
@@ -861,9 +859,9 @@ namespace tmx2c
         List<uint> mCollisionMap = new List<uint>();
         //internal int SpawnListCount;
 
-        void ParseCollisionLayer(XmlNode collisionLayerNode)
+        void ParseTerrainLayer(XmlNode collisionLayerNode)
         {
-            var tileAttributeTileset = Tilesets.FirstOrDefault(t => t.TilesetName.Contains("tileattributes"));
+            var tileAttributeTileset = Tilesets.FirstOrDefault(t => t.TilesetName.ToLower().Contains("tiletypes"));
 
             if (tileAttributeTileset == null)
             {
@@ -938,7 +936,7 @@ namespace tmx2c
             {
                 Tile tile = mTilemap[loop];
 
-                ExportTile(exported, tile);
+                ExportTile(exported, tile, loop);
 
                 counter++;
 
@@ -970,7 +968,7 @@ namespace tmx2c
                 {
                     Tile tile = mTilemap[widthLoop + (heightLoop * MapWidth)];
 
-                    ExportTile(exported, tile);
+                    ExportTile(exported, tile, widthLoop + (heightLoop * MapWidth));
                 }
 
                 exported.Append("\n    ");
@@ -994,7 +992,7 @@ namespace tmx2c
         const int TILE_SLOPE30LEFT2 = 10;
         const int TILE_WATER = 11;
 
-        private void ExportTile(StringBuilder exported, Tile tile)
+        private void ExportTile(StringBuilder exported, Tile tile, int mapLocationIndex)
         {
             uint tileAttribute = TILE_EMPTY;
             uint tileIndex = tile.Index;
@@ -1029,28 +1027,36 @@ namespace tmx2c
                 // tileset index
                 uint tilesetIndex = (tileset.TilesetIndex << 9);
 
-                // tile attribute
-                var tileAttributeString = "";
-
-                if (tileIndex < tileset.TileAttributes.Count())
+                // if we have a terrain layer, use the data from it.
+                // if not, use the default terrain from the tileset
+                if (mTerrainLayerNode != null)
                 {
-                    tileAttributeString = tileset.TileAttributes[tileIndex];
+                    tileAttribute = mCollisionMap[mapLocationIndex];
                 }
-
-
-                switch (tileAttributeString)
+                else
                 {
-                    case "solid": tileAttribute = TILE_SOLID; break;
-                    case "topsolid": tileAttribute = TILE_TOPSOLID; break;
-                    case "climb": tileAttribute = TILE_CLIMB; break;
-                    case "hurt": tileAttribute = TILE_HURT; break;
-                    case "slope45right": tileAttribute = TILE_SLOPE45RIGHT; break;
-                    case "slope45left": tileAttribute = TILE_SLOPE45LEFT; break;
-                    case "slope30right1": tileAttribute = TILE_SLOPE30RIGHT1; break;
-                    case "slope30right2": tileAttribute = TILE_SLOPE30RIGHT2; break;
-                    case "slope30left1": tileAttribute = TILE_SLOPE30LEFT1; break;
-                    case "slope30left2": tileAttribute = TILE_SLOPE30LEFT2; break;
-                    case "water": tileAttribute = TILE_WATER; break;
+                    // tile attribute
+                    var tileAttributeString = "";
+
+                    if (tileIndex < tileset.TileAttributes.Count())
+                    {
+                        tileAttributeString = tileset.TileAttributes[tileIndex];
+                    }
+
+                    switch (tileAttributeString)
+                    {
+                        case "solid": tileAttribute = TILE_SOLID; break;
+                        case "topsolid": tileAttribute = TILE_TOPSOLID; break;
+                        case "climb": tileAttribute = TILE_CLIMB; break;
+                        case "hurt": tileAttribute = TILE_HURT; break;
+                        case "slope45right": tileAttribute = TILE_SLOPE45RIGHT; break;
+                        case "slope45left": tileAttribute = TILE_SLOPE45LEFT; break;
+                        case "slope30right1": tileAttribute = TILE_SLOPE30RIGHT1; break;
+                        case "slope30right2": tileAttribute = TILE_SLOPE30RIGHT2; break;
+                        case "slope30left1": tileAttribute = TILE_SLOPE30LEFT1; break;
+                        case "slope30left2": tileAttribute = TILE_SLOPE30LEFT2; break;
+                        case "water": tileAttribute = TILE_WATER; break;
+                    }
                 }
 
                 tileIndex |= (tileAttribute << 12) | tilesetIndex;
@@ -1062,10 +1068,9 @@ namespace tmx2c
         }
         
 
-        /*
-        private void ExportCollisionMap(StringBuilder exported, string collisionMapArrayName)
+        private void ExportTerrainMap(StringBuilder exported, string terrainMapArrayName)
         {
-            if (string.IsNullOrEmpty(collisionMapArrayName))
+            if (string.IsNullOrEmpty(terrainMapArrayName))
                 return;
 
             exported.Append("\n");
@@ -1073,10 +1078,9 @@ namespace tmx2c
             int counter = 0;
             int totalSize = MapWidth * MapHeight;
 
-            exported.Append("unsigned short const " + collisionMapArrayName + "[" + totalSize + "] = \n");
+            exported.Append("unsigned short const " + terrainMapArrayName + "[" + totalSize + "] = \n");
             exported.Append("{\n");
             exported.Append("    ");
-
 
             for (int loop = 0; loop < totalSize; loop++)
             {
@@ -1096,12 +1100,13 @@ namespace tmx2c
             exported.Append("\n};\n");
             exported.Append("\n");
         }
-        */
 
         private void ExportTilesetArray(StringBuilder exported)
         {
+            var usedTilesets = Tilesets.Where(ts => ts.IsEditorTileset == false);
+
             exported.Append("\n");
-            foreach (var tileset in Tilesets)
+            foreach (var tileset in usedTilesets)
             {
                 exported.Append("extern ");
                 //exported.Append(tileset.IsAnimated ? "AnimatedTileset" : "Tileset");
@@ -1114,7 +1119,7 @@ namespace tmx2c
             exported.Append("const ResourceInfo* " + MapName + "_tilesetResourceInfos[" + Tilesets.Count + "] = \n");
             exported.Append("{\n");
 
-            foreach (var tileset in Tilesets)
+            foreach (var tileset in usedTilesets)
             {
                 exported.Append("    &" + tileset.TilesetName + "ResourceInfo, // ");
                 exported.Append(tileset.IsAnimated ? "AnimatedTileset" : "Tileset");
@@ -1127,13 +1132,15 @@ namespace tmx2c
 
         private void ExportMapStruct(StringBuilder exported, string tilemapArrayName, string bank)
         {
+            var usedTilesets = Tilesets.Where(ts => ts.IsEditorTileset == false);
+
             exported.Append("RESOURCE(" + bank + ") const Map const " + MapName + "_map = \n");
             exported.Append("{\n");
             exported.AppendLine("    MAP_RESOURCE_TYPE,");
             exported.Append("    " + tilemapArrayName + ", // metatile index map data\n");
             //exported.Append("    " + tilemapArrayName + "_terrain, // terrain\n");
             exported.Append("    " + MapName + "_tilesetResourceInfos, // tilesets used in the map\n");
-            exported.Append("    " + Tilesets.Count + ", // number of tilesets used by this map\n");
+            exported.Append("    " + usedTilesets.Count() + ", // number of tilesets used by this map\n");
             exported.Append("    " + MapWidth + ", // metatile map width\n");
             exported.Append("    " + MapHeight + ", // metatile map height\n");
             exported.Append("};\n");
@@ -1142,12 +1149,14 @@ namespace tmx2c
 
         private void ExportStripMapStruct(StringBuilder exported, string tilemapArrayName)
         {
+            var usedTilesets = Tilesets.Where(ts => ts.IsEditorTileset == false);
+
             exported.Append("const StripMap const " + MapName + "_stripmap = \n");
             exported.Append("{\n");
             exported.Append("    " + tilemapArrayName + ", // map data\n");
             exported.Append("    " + MapName + "_blocksets, // list of blocksets used by this map \n");
             exported.Append("    " + MapName + "_blockset_tile_offsets, // list of block offsets in number of tiles (not blocks) used by this map \n");
-            exported.Append("    " + Tilesets.Count + ", // number of blocksets used by this map\n");
+            exported.Append("    " + usedTilesets.Count() + ", // number of blocksets used by this map\n");
             exported.Append("    " + MapWidth + ", // map width\n");
             exported.Append("    " + MapHeight + ", // map height\n");
             exported.Append("};\n");
@@ -1160,7 +1169,13 @@ namespace tmx2c
             StringBuilder exported = new StringBuilder();
             ExportInclude(exported);
 
-            //string collisionMapArrayName = (mCollisionLayerNode != null) ? MapName + "_collisionmap_array" : "";
+            // uncomment to debug
+            /*
+            if (mTerrainLayerNode != null)
+            {
+                ExportTerrainMap(exported, MapName + "_terrainmap_array");
+            }
+            */
 
             //ExportBlocksets(exported);
             //ExportBlocksetSizes(exported, tileCounts);
@@ -1265,8 +1280,8 @@ namespace tmx2c
 
             ParseTileMapLayer(mTilemapLayerNode);
 
-            if (mCollisionLayerNode != null)
-                ParseCollisionLayer(mCollisionLayerNode);
+            if (mTerrainLayerNode != null)
+                ParseTerrainLayer(mTerrainLayerNode);
 
             ExportHeaderFile(bank);
             ExportSourceFile(tileCounts, bank);

@@ -39,8 +39,8 @@ Area                                    Addr        Size        Decimal Bytes (A
      0000001F  l__HEADER2                      
      0000002B  l__CABS3                        
      0000002B  l__HEADER3                      
-     00000030  l__INITIALIZED                  
-     00000030  l__INITIALIZER                  
+     00000032  l__INITIALIZED                  
+     00000032  l__INITIALIZER                  
      00000104  l__HEADER4                      
      00000200  s__CODE                         
      00000FB4  l__BANK4                        
@@ -50,8 +50,8 @@ Area                                    Addr        Size        Decimal Bytes (A
      0000590B  l__CODE                         
      00005B0B  s__HOME                         
      00005B0B  s__INITIALIZER                  
-     00005B3B  s__GSINIT                       
-     00005B4A  s__GSFINAL                      
+     00005B3D  s__GSINIT                       
+     00005B4C  s__GSFINAL                      
      00008000  _SMS_SRAM                          SMSlib_textrenderer
      00008000  s__BANK2                        
      00008000  s__BANK3                        
@@ -67,9 +67,9 @@ Area                                    Addr        Size        Decimal Bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      0000D731  s__INITIALIZED                  
-     0000D761  s__BSEG                         
-     0000D761  s__BSS                          
-     0000D761  s__HEAP                         
+     0000D763  s__BSEG                         
+     0000D763  s__BSS                          
+     0000D763  s__HEAP                         
      0000FFFC  _SRAM_bank_to_be_mapped_on_slot2   SMSlib_textrenderer
      0000FFFD  _ROM_bank_to_be_mapped_on_slot0    SMSlib_textrenderer
      0000FFFE  _ROM_bank_to_be_mapped_on_slot1    SMSlib_textrenderer
@@ -428,7 +428,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_INITIALIZER                        00005B0B    00000030 =          48. bytes (REL,CON)
+_INITIALIZER                        00005B0B    00000032 =          50. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -437,18 +437,18 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSINIT                             00005B3B    0000000F =          15. bytes (REL,CON)
+_GSINIT                             00005B3D    0000000F =          15. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00005B3B  gsinit                             crt0
+     00005B3D  gsinit                             crt0
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_GSFINAL                            00005B4A    00000001 =           1. bytes (REL,CON)
+_GSFINAL                            00005B4C    00000001 =           1. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -610,7 +610,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_INITIALIZED                        0000D731    00000030 =          48. bytes (REL,CON)
+_INITIALIZED                        0000D731    00000032 =          50. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -632,11 +632,11 @@ _INITIALIZED                        0000D731    00000030 =          48. bytes (R
      0000D754  _background3_tilesetResourceInfo   background3
      0000D756  _background3_test_tilesetResourc   background3_test
      0000D758  _field_tilesetResourceInfos        field
-     0000D75A  _waterfall_tilesetResourceInfos    waterfall
-     0000D75C  _VDPReg                            SMSlib
-     0000D75E  _spritesHeight                     SMSlib
-     0000D75F  _spritesWidth                      SMSlib
-     0000D760  _spritesTileOffset                 SMSlib
+     0000D75C  _waterfall_tilesetResourceInfos    waterfall
+     0000D75E  _VDPReg                            SMSlib
+     0000D760  _spritesHeight                     SMSlib
+     0000D761  _spritesWidth                      SMSlib
+     0000D762  _spritesTileOffset                 SMSlib
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 20.
 Hexadecimal  [32-Bits]
