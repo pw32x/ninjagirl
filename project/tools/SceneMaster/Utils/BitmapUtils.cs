@@ -84,5 +84,44 @@ namespace SceneMaster.Utils
                 return null;
             }
         }
+
+
+    public static BitmapImage Load4BppImage(string filePath)
+    {
+        // Load the 4bpp image into a Bitmap object
+        using (Bitmap bitmap = new Bitmap(filePath))
+        {
+            // Convert the 4bpp Bitmap to a 32bpp ARGB Bitmap
+            Bitmap convertedBitmap = new Bitmap(bitmap.Width, bitmap.Height, PixelFormat.Format32bppArgb);
+            using (Graphics g = Graphics.FromImage(convertedBitmap))
+            {
+                g.DrawImage(bitmap, 0, 0);
+            }
+
+            // Convert the Bitmap to a BitmapSource
+            BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHBitmap(
+                convertedBitmap.GetHbitmap(),
+                IntPtr.Zero,
+                Int32Rect.Empty,
+                BitmapSizeOptions.FromEmptyOptions());
+
+            // Create a Bgr32 BitmapImage
+            BitmapImage bitmapImage = new BitmapImage();
+            using (MemoryStream stream = new MemoryStream())
+            {
+                BitmapEncoder encoder = new BmpBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+                encoder.Save(stream);
+                stream.Seek(0, SeekOrigin.Begin);
+
+                bitmapImage.BeginInit();
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.StreamSource = stream;
+                bitmapImage.EndInit();
+            }
+
+            return bitmapImage;
+        }
+    }
     }
 }

@@ -501,15 +501,6 @@ void Player_UpdateDuck(GameObject* player)
 		ObjectManager_player.flipped = FALSE;
 	}
 
-	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
-	{
-		playerY++;
-		playerSpeedY = 0;
-		canStillJumpFrames = 0;
-		setPlayerState(PLAYER_STATE_FALL);
-		return;
-	}
-
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
@@ -518,6 +509,17 @@ void Player_UpdateDuck(GameObject* player)
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
 	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
+
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 && 
+		(bottomTileTypeLeft == TERRAIN_TOPSOLID ||
+		 bottomTileTypeRight == TERRAIN_TOPSOLID)) // this might make the player drop down through solid tiles. design levels accordingly?
+	{
+		playerY++;
+		playerSpeedY = 0;
+		canStillJumpFrames = 0;
+		setPlayerState(PLAYER_STATE_FALL);
+		return;
+	}
 
 	if (bottomTileTypeLeft == TERRAIN_EMPTY && bottomTileTypeRight == TERRAIN_EMPTY)
 	{

@@ -52,8 +52,11 @@ namespace SceneMaster.Scenes.Models
             private set => SetProperty(ref m_tiledMapFilename, value);
         }
 
-        public Scene()
+        List<BitmapImage> m_tileTypeImages;
+
+        public Scene(List<BitmapImage> tileTypeImages)
         {
+            m_tileTypeImages = tileTypeImages;
         }
 
         private TiledMap m_tiledMap;
@@ -89,7 +92,7 @@ namespace SceneMaster.Scenes.Models
 
         static public Dictionary<string, int> TileTypeNameToInt = new Dictionary<string, int>()
         {
-            {"",                0}, // empty
+            {"empty",           0},
             {"solid",           1},
             {"topsolid",        2},
             {"climb",           3},
@@ -141,11 +144,14 @@ namespace SceneMaster.Scenes.Models
             BuildTerrain();
         }
 
-        public void SetTileMapTile(int tileX, int tileY, int tileIndex)
+        public void SetTerrainTileType(int tileX, int tileY, int tileType)
         {
-            DrawTileToBitmap(m_tiledMapBitmapSource, tileX, tileY, tileIndex);
+            m_terrain[tileX + (tileY * m_terrainWidth)] = tileType;
+            var bitmapImage = m_tileTypeImages[tileType];
 
-            OnPropertyChanged(nameof(TiledMapBitmapSource));
+            DrawBitmapHelper(TerrainBitmapSource, tileX, tileY, bitmapImage);
+
+            OnPropertyChanged(nameof(TerrainBitmapSource));
         }
 
         private void BuildTerrain()
@@ -190,6 +196,55 @@ namespace SceneMaster.Scenes.Models
                         m_terrain.Add(TILE_EMPTY);
                 }
             }
+
+            TerrainBitmapSource = BuildTerrainImage(m_tileTypeImages);
+        }
+
+        private WriteableBitmap BuildTerrainImage(List<BitmapImage> tileTypeImages)
+        {
+            WriteableBitmap writeableBitmap = new WriteableBitmap(m_tiledMap.Width * m_tiledMap.TileWidth,
+                                                                 m_tiledMap.Height * m_tiledMap.TileHeight,
+                                                                 96,
+                                                                 96,
+                                                                 PixelFormats.Bgra32,
+                                                                 null);
+
+            for (var tileY = 0; tileY < m_terrainHeight; tileY++)
+            {
+                for (var tileX = 0; tileX < m_terrainWidth; tileX++)
+                {
+
+                    var tileType = m_terrain[tileX + (tileY * m_terrainWidth)];
+
+                    var bitmapImage = tileTypeImages[tileType];
+                    DrawBitmapHelper(writeableBitmap, tileX, tileY, bitmapImage);
+                }
+            }
+
+            return writeableBitmap;
+        }
+
+        private void DrawBitmapHelper(WriteableBitmap writeableBitmap, int tileX, int tileY, BitmapImage bitmapImage)
+        {
+            // Copy pixel data from the BitmapImage to the WriteableBitmap
+            Int32Rect sourceRect = new Int32Rect(0,
+                                                 0,
+                                                 m_tiledMap.TileWidth,
+                                                 m_tiledMap.TileHeight);
+            var stride = (sourceRect.Width * bitmapImage.Format.BitsPerPixel + 7) / 8; // here
+
+            byte[] pixelData = new byte[stride * sourceRect.Height];
+            bitmapImage.CopyPixels(sourceRect, pixelData, stride, 0);
+
+            Int32Rect destRect = new Int32Rect(tileX * m_tiledMap.TileWidth,
+                                               tileY * m_tiledMap.TileHeight,
+                                               m_tiledMap.TileWidth,
+                                               m_tiledMap.TileHeight);
+
+            writeableBitmap.WritePixels(destRect,
+                                        pixelData,
+                                        stride,
+                                        0);
         }
 
         public void LoadFromXml(XmlElement root, string filePath, EditorObjectLibraryViewModel editorObjectLibraryViewModel)
@@ -245,6 +300,8 @@ namespace SceneMaster.Scenes.Models
                     {
                         m_terrain.Add(int.Parse(token));
                     }
+
+                    TerrainBitmapSource = BuildTerrainImage(m_tileTypeImages);
                 }
                 catch (Exception)
                 {

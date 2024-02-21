@@ -109,7 +109,7 @@ namespace SceneMaster
 
                 var root = XmlUtils.OpenXmlDocument(fileInfo.FullName, nameof(Scene));
 
-                var scene = new Scene();
+                var scene = new Scene(null);
                 scene.LoadFromXml(root, fileInfo.FullName, editorObjectLibraryViewModel);
                 SceneExporter.ExportScene(scene, sceneName, destinationFolder, editorObjectLibraryViewModel.CommandLibrary);
 

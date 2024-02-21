@@ -16,7 +16,7 @@ const CommandRunnerCreateInfo sceneMasterTemp_createInfo3 = { &commandrunner_rig
 const CreateInfo sceneMasterTemp_createInfo6 = { &gun_girl_template, 27, 16 };
 const CreateInfo sceneMasterTemp_createInfo7 = { &robotrunner_template, 76, 144 };
 const CreateInfo sceneMasterTemp_createInfo8 = { &colortweaker_template, 88, 7 };
-const CreateInfo sceneMasterTemp_createInfo9 = { &robotrunner_template, 156, 112 };
+const CreateInfo sceneMasterTemp_createInfo9 = { &robotrunner_template, 139, 112 };
 const CreateInfo sceneMasterTemp_createInfo10 = { &walker_template, 248, 152 };
 const CreateInfo sceneMasterTemp_createInfo11 = { &walker_template, 360, 40 };
 const CreateInfo sceneMasterTemp_createInfo12 = { &robotrunner_template, 380, 80 };
@@ -52,7 +52,7 @@ const Command sceneMasterTemp_commands[] =
     { 30, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo6 },
     { 85, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo7 },
     { 88, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo8 },
-    { 165, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo9 },
+    { 148, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo9 },
     { 256, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo10 },
     { 368, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo11 },
     { 389, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo12 },

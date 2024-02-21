@@ -2,15 +2,21 @@ Todo
 
 	scene master
 	
-		import map
+		DONE import map
 		
 			build terrain map
 			
-		save terrain map in scene
+		DONE save terrain map in scene
 		
-		load scene
+		DONE load scene
 		
 			restore the terrain map
+
+	DONE only duck if on semi-solid tiles
+			
+	export the map with terrain
+		the map is exported through tmx2c
+		I also have to export the map
 	
 	scene master to set map properties
 		tile priority

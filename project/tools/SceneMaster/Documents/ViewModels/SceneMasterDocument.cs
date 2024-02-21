@@ -3,8 +3,10 @@ using SceneMaster.EditorObjectLibrary.ViewModels;
 using SceneMaster.Main;
 using SceneMaster.Scenes.ViewModels;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace SceneMaster.Documents.ViewModels
 {
@@ -50,14 +52,18 @@ namespace SceneMaster.Documents.ViewModels
 
         public EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; private set; }
 
+        List<BitmapImage> m_tileTypeImages;
+
         public SceneMasterDocument(Settings settings,
-                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel)
+                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel,
+                                   List<BitmapImage> tileTypeImages)
         {
             m_settings = settings;
             EditorObjectLibraryViewModel = editorObjectLibraryViewModel;
-
+            m_tileTypeImages = tileTypeImages;
             SceneViewModel = new SceneViewModel(m_settings, 
-                                                EditorObjectLibraryViewModel);
+                                                EditorObjectLibraryViewModel,
+                                                m_tileTypeImages);
 
             FilePath = DefaultFilename;
         }
@@ -71,7 +77,9 @@ namespace SceneMaster.Documents.ViewModels
         public bool Load(string filePath)
         {
             SceneViewModel.Dispose();
-            SceneViewModel = new SceneViewModel(m_settings, EditorObjectLibraryViewModel);
+            SceneViewModel = new SceneViewModel(m_settings, 
+                                                EditorObjectLibraryViewModel, 
+                                                m_tileTypeImages);
             SceneViewModel.Load(filePath);
 
             FilePath = filePath;

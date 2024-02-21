@@ -14,6 +14,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SceneMaster.Main.ViewModels
@@ -72,7 +73,7 @@ namespace SceneMaster.Main.ViewModels
             RunSceneCommand = new RelayCommand(RunScene);
         }
 
-        private Dictionary<string, BitmapImage> TileTypeImages { get; set; } = new Dictionary<string, BitmapImage>();
+        private List<BitmapImage> TileTypeImages { get; set; } = new List<BitmapImage>();
 
         private void LoadTileTypes()
         {
@@ -85,13 +86,11 @@ namespace SceneMaster.Main.ViewModels
                 bitmap.UriSource = new Uri("pack://application:,,,/" + assemblyName + ";component/TileTypes/" + name + ".png");
                 bitmap.EndInit();
 
-                TileTypeImages[name] = bitmap;
+                TileTypeImages.Add(bitmap);
             };
 
             foreach (var tileTypeName in Scene.TileTypeNameToInt.Keys)
             {
-                if (string.IsNullOrEmpty(tileTypeName))
-                    continue;
                 loadImage(tileTypeName);
             }
         }
@@ -112,7 +111,7 @@ namespace SceneMaster.Main.ViewModels
 
         private SceneMasterDocument InitDocument()
         {
-            var newDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel);
+            var newDocument = new SceneMasterDocument(Settings, EditorObjectLibraryViewModel, TileTypeImages);
             newDocument.PropertyChanging += Document_PropertyChanging;
             newDocument.PropertyChanged += Document_PropertyChanged;
 

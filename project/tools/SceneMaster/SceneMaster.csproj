@@ -19,6 +19,7 @@
     <None Remove="Icons\Save.png" />
     <None Remove="Icons\SaveAs.png" />
     <None Remove="TileTypes\climb.png" />
+    <None Remove="TileTypes\empty.png" />
     <None Remove="TileTypes\hurt.png" />
     <None Remove="TileTypes\slope30left1.png" />
     <None Remove="TileTypes\slope30left2.png" />
@@ -85,6 +86,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="TileTypes\climb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\empty.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="TileTypes\hurt.png">

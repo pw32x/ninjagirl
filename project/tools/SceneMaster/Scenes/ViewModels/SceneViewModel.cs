@@ -12,6 +12,7 @@ using SceneMaster.Main;
 using SceneMaster.Scenes.Models;
 using SceneMaster.Utils;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
@@ -19,6 +20,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace SceneMaster.Scenes.ViewModels
@@ -79,8 +81,8 @@ namespace SceneMaster.Scenes.ViewModels
         private uint m_currentEditingMode = 0;
         public uint CurrentEditingMode { get => m_currentEditingMode; set => SetProperty(ref m_currentEditingMode, value); }
 
-        private int m_currentTile = 0;
-        public int CurrentTile { get => m_currentTile; private set => SetProperty(ref m_currentTile, value); }
+        private int m_currentTileType = 0;
+        public int CurrentTileType { get => m_currentTileType; set => SetProperty(ref m_currentTileType, value); }
 
 
         private Settings m_settings;
@@ -88,11 +90,12 @@ namespace SceneMaster.Scenes.ViewModels
         EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
 
         public SceneViewModel(Settings settings,
-                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel)
+                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel,
+                              List<BitmapImage> tileTypeImages)
         {
             m_settings = settings;
             EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
-            Scene = new Scene();
+            Scene = new Scene(tileTypeImages);
 
             // attach
             Scene.PropertyChanged += Scene_PropertyChanged;
@@ -369,15 +372,15 @@ namespace SceneMaster.Scenes.ViewModels
                 int tileX = mapX / Scene.TiledMap.TileWidth;
                 int tileY = mapY / Scene.TiledMap.TileHeight;
 
-                SetTileMapTile(tileX, tileY);
+                SetTerrainTileType(tileX, tileY);
 
             break;
             }
         }
 
-        public void SetTileMapTile(int tileX, int tileY)
+        public void SetTerrainTileType(int tileX, int tileY)
         {
-            m_scene.SetTileMapTile(tileX, tileY, m_currentTile);
+            m_scene.SetTerrainTileType(tileX, tileY, m_currentTileType);
         }
 
     }
