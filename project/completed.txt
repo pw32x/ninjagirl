@@ -1,6 +1,35 @@
 	
 Completed
 
+	DONE finish updating the player colors
+
+	DONE weird jumping behavior at the end of the test map
+
+	scene master
+	
+		DONE import map
+		
+			build terrain map
+			
+		DONE save terrain map in scene
+		
+		DONE load scene
+		
+			restore the terrain map
+
+	DONE only duck if on semi-solid tiles
+			
+	DONE export the map with terrain
+		the map is exported through tmx2c
+		I also have to export the map
+	
+	NOPE scene master to set map properties
+		tile priority
+		solid/not solid/etc
+		
+		using Tiled to edit terrain is still better
+		now using old code to merge a terrain layer with the main layer when exporting
+
 	DONE load sprites in the first half of vdp
 	
 	DONE rework background graphics

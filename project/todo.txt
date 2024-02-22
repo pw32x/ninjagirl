@@ -1,45 +1,20 @@
 Todo
 
-	scene master
-	
-		DONE import map
-		
-			build terrain map
-			
-		DONE save terrain map in scene
-		
-		DONE load scene
-		
-			restore the terrain map
-
-	DONE only duck if on semi-solid tiles
-			
-	export the map with terrain
-		the map is exported through tmx2c
-		I also have to export the map
-	
-	scene master to set map properties
-		tile priority
-		solid/not solid/etc
-	
-
-	
-	weird jumping behavior at the end of the test map
-	
 	tiled enemies use second palette?
 		or backgrounds use their own palette?
 	
-	portal to go to next area
+	portal/trigger/something to go to next area
 
-	performance pass...
-
-	finish updating the player colors
 
 	template manager exports per-object struct types
 
 	redo bottom half of spider animation to be reusable when moving in both direction
 	
 	flicker strategy
+
+	performance pass...
+
+	animation sequencer
 	
 	make explosion cooler
 		multiple with particle effects

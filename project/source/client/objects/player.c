@@ -456,6 +456,10 @@ void Player_UpdateJump(GameObject* player)
 	{
 		playerSpeedY = 0;
 		canStillJumpFrames = 0;
+
+		oldBottomTileTypeLeft = TERRAIN_INVALID;
+		oldBottomTileTypeRight = TERRAIN_INVALID;
+
 		setPlayerState(PLAYER_STATE_FALL);
 		return;
 	}

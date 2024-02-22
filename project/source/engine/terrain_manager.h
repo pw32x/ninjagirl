@@ -29,6 +29,9 @@ void TerrainManager_UpdateTerrain(u16 mapColumnIndex);
 #define TERRAIN_SLOPE30RIGHT2		9
 #define TERRAIN_SLOPE30LEFT1		10
 #define TERRAIN_SLOPE30LEFT2		11
+
+#define TERRAIN_INVALID	((u8)-1)
+
 // #define TERRAIN_12
 // #define TERRAIN_13
 // #define TERRAIN_14
