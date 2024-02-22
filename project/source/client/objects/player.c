@@ -175,7 +175,7 @@ void Player_FireWeapon(GameObject* player)
 
 	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
-	bullet->speedx = ObjectManager_player.flipped ? -3 : 3;
+	bullet->speedx = ObjectManager_player.flipped ? -4 : 4;
 	bullet->speedy = 0;
 }
 
