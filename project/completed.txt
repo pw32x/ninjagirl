@@ -1,6 +1,8 @@
 	
 Completed
 
+	DONE make bullets faster
+
 	DONE finish updating the player colors
 
 	DONE weird jumping behavior at the end of the test map

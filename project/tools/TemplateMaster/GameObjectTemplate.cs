@@ -16,6 +16,7 @@ namespace TemplateMaster
         public string ResourceInfo { get; set; } = "";
         public string InitFunction { get; set; } = "";
         public List<string> ExtraResourceInfos { get; set; } = new List<string>();
+        public List<string> CustomDataFields { get; set; } = new List<string>();
 
         public void LoadGameProperties(XmlElement gamePropertiesNode)
         {
@@ -46,6 +47,24 @@ namespace TemplateMaster
                         continue;
 
                     ExtraResourceInfos.Add(value);
+                }
+            }
+
+            if (gamePropertiesNode["CustomData"] is var customDataNode && customDataNode != null)
+            {
+                foreach (var dataNode in customDataNode.ChildNodes.OfType<XmlElement>())
+                {
+                     string nodeType = dataNode.Name;
+
+                    if (nodeType != "Data")
+                        continue;
+
+                    var value = XmlUtils.GetValue<string>(dataNode);
+
+                    if (string.IsNullOrEmpty(value))
+                        continue;
+
+                    CustomDataFields.Add(value);
                 }
             }
         }

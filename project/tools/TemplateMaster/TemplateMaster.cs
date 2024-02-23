@@ -46,16 +46,25 @@ namespace TemplateMaster
             foreach (var fileInfo in foundFileInfos)
             {
                 string templateName = Path.GetFileNameWithoutExtension(fileInfo.Name) + "_template";
-                string destinationPath = DestinationFolder + templateName + ".c";
+                string sourceDestinationPath = DestinationFolder + templateName + ".c";
+                string headerDestinationPath = DestinationFolder + templateName + ".h";
+
+                // we'd need to load the game object template to know if we have custom
+                // data to know if we need to export a header. I don't want to read the 
+                // templates every time, so we'll just rely on just the source for now.
 
                 // get source and destination file times
                 DateTime sourceLastWriteTime = File.GetLastWriteTime(fileInfo.FullName);
-                DateTime destinationLastWriteTime = File.GetLastWriteTime(destinationPath);
+                DateTime sourceDestinationLastWriteTime = File.GetLastWriteTime(sourceDestinationPath);
+                //DateTime headerDestinationLastWriteTime = File.GetLastWriteTime(headerDestinationPath);
 
                 // only build if the source file is newer.
                 // or the app is newer.
-                if (destinationLastWriteTime > sourceLastWriteTime &&
-                    destinationLastWriteTime > lastApplicationWriteTime)
+                if (sourceDestinationLastWriteTime > sourceLastWriteTime &&
+                    sourceDestinationLastWriteTime > lastApplicationWriteTime 
+                    //&& headerDestinationLastWriteTime > sourceLastWriteTime 
+                    //&& headerDestinationLastWriteTime > lastApplicationWriteTime
+                    )
                 {
                     Console.WriteLine(fileInfo.Name + " is already up to date.");
                     continue;
@@ -68,7 +77,8 @@ namespace TemplateMaster
 
                 GameObjectTemplateExporter.Export(gameObjectTemplate, 
                                                   templateName, 
-                                                  destinationPath);
+                                                  sourceDestinationPath,
+                                                  headerDestinationPath);
 
                 processedAtLeastOne = true;
             }

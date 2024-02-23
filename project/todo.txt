@@ -1,20 +1,13 @@
 Todo
 
-	tiled enemies use second palette?
-		or backgrounds use their own palette?
-	
-	portal/trigger/something to go to next area
-
-
-	template manager exports per-object struct types
+	DONE template manager exports per-object struct types
 
 	redo bottom half of spider animation to be reusable when moving in both direction
 	
 	flicker strategy
 
-	performance pass...
-
 	animation sequencer
+		explosion sequences
 	
 	make explosion cooler
 		multiple with particle effects
@@ -23,8 +16,20 @@ Todo
 	make bullets cooler
 	
 	make bullets have only one point as collision
+
+
+	game level
 	
-	fight to open the portal
+		enemy AI
+
+
+	fight for portal/trigger/something to go to next area
+
+
+	performance pass...
+
+	tiled enemies use second palette?
+		or backgrounds use their own palette?
 		
 	export Graphics Gale layers to separate files
 		player

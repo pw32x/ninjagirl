@@ -11,13 +11,8 @@
 #include "SMSlib.h"
 #include <string.h>
 
-void ColorTweaker_Update(GameObject* object);
-BOOL ColorTweaker_Draw(GameObject* object);
-
-#define cursorAnimation extraData1
-#define cursorY extraData2
-#define colorIndex extraData3
-#define originalPalette extraData4
+void ColorTweaker_Update(ColorTweakerObjectType* object);
+BOOL ColorTweaker_Draw(ColorTweakerObjectType* object);
 
 
 u8 redChannel[16];
@@ -25,7 +20,7 @@ u8 greenChannel[16];
 u8 blueChannel[16];
 u8 palette[16];
 
-GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* ColorTweaker_Init(ColorTweakerObjectType* object, const CreateInfo* createInfo)
 {
 	ResourceManager_LoadResource(createInfo->gameObjectTemplate->extraResources[0]);
 	object->cursorAnimation = (u16)createInfo->gameObjectTemplate->extraResources[0]->resource;
@@ -42,18 +37,18 @@ GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo)
 		palette[loop] = paletteResource->palette[loop];
 	}
 
-	object->Update = ColorTweaker_Update;
-	object->Draw = ColorTweaker_Draw;
+	object->Update = (ObjectFunctionType)ColorTweaker_Update;
+	object->Draw = (ObjectFunctionType)ColorTweaker_Draw;
 
 	object->cursorY = 0;
 	object->colorIndex = 0;
-	AnimationUtils_setBatchedAnimationFrame(object, object->colorIndex);
+	AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
 
-	return object;
+	return (GameObject*)object;
 }
 
 
-void ColorTweaker_Update(GameObject* object)
+void ColorTweaker_Update(ColorTweakerObjectType* object)
 {
 	object->screenx = 20;
 	object->screeny = 20;
@@ -96,7 +91,7 @@ void ColorTweaker_Update(GameObject* object)
 			else
 				object->colorIndex--;
 
-			AnimationUtils_setBatchedAnimationFrame(object, object->colorIndex);
+			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
 			printDebug = TRUE;
 		}
 		else if (object->cursorY == 1)
@@ -148,7 +143,7 @@ void ColorTweaker_Update(GameObject* object)
 			else
 				object->colorIndex++;
 
-			AnimationUtils_setBatchedAnimationFrame(object, object->colorIndex);
+			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
 			printDebug = TRUE;
 		}
 		else if (object->cursorY == 1)
@@ -202,7 +197,7 @@ void ColorTweaker_Update(GameObject* object)
 	}
 }
 
-BOOL ColorTweaker_Draw(GameObject* object)
+BOOL ColorTweaker_Draw(ColorTweakerObjectType* object)
 {
 	DRAWUTILS_SETUP_BATCH(object->screenx,
 						  object->screeny,
