@@ -5,22 +5,15 @@ using MotionMaster.EditorObjectLibrary.ViewModels;
 using MotionMaster.EditorObjects.CommandLibrary.ViewModels;
 using MotionMaster.EditorObjects.Models;
 using MotionMaster.EditorObjects.ViewModels;
-using MotionMaster.Export;
 using MotionMaster.GameObjectTemplates.Models;
 using MotionMaster.GameObjectTemplates.ViewModels;
 using MotionMaster.Main;
 using MotionMaster.Scenes.Models;
 using MotionMaster.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using System.Xml;
 
 namespace MotionMaster.Scenes.ViewModels
@@ -90,13 +83,42 @@ namespace MotionMaster.Scenes.ViewModels
         EditorObjectLibraryViewModel EditorObjectInfoLibraryViewModel { get; set; }
 
         public SceneViewModel(Settings settings,
-                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel/*,
-                              List<BitmapImage> tileTypeImages*/)
+                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel,
+                              string graphicsGaleFilename)
         {
+            if (string.IsNullOrEmpty(graphicsGaleFilename))
+                throw new Exception("Graphics Gale animation filename missing");
+
             m_settings = settings;
             EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
-            Scene = new Scene(/*tileTypeImages*/);
 
+            Scene = new Scene(graphicsGaleFilename);
+            SetupScene();
+
+            DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel,
+                                             CanDeleteSelectedEditorObjectViewModel);
+        }
+
+        public SceneViewModel(string filepath,
+                              Settings settings,
+                              EditorObjectLibraryViewModel editorObjectInfoLibraryViewModel)
+        {
+            if (string.IsNullOrEmpty(filepath))
+                throw new Exception("File path missing");
+
+            m_settings = settings;
+            EditorObjectInfoLibraryViewModel = editorObjectInfoLibraryViewModel;
+
+            Load(filepath);
+
+            SetupScene();
+
+            DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel, 
+                                             CanDeleteSelectedEditorObjectViewModel);
+        }
+
+        private void SetupScene()
+        {
             // attach
             Scene.PropertyChanged += Scene_PropertyChanged;
             Scene.EditorObjects.CollectionChanged += EditorObjects_CollectionChanged;
@@ -105,112 +127,6 @@ namespace MotionMaster.Scenes.ViewModels
             {
                 var editorObjectViewModel = CreateEditorObjectViewModel(editorObject);
                 EditorObjectViewModels.Add(editorObjectViewModel);
-            }
-
-            DeleteCommand = new RelayCommand(DeleteSelectedEditorObjectViewModel, 
-                                             CanDeleteSelectedEditorObjectViewModel);
-
-            
-        }
-
-        public void RunScene()
-        {
-            string tempLevelName = "motionMasterTemp";
-
-            // export to temporary file
-            SceneExporter.ExportScene(Scene, 
-                                      tempLevelName, 
-                                      m_settings.SourceExportDirectory, 
-                                      EditorObjectInfoLibraryViewModel.CommandLibrary);
-
-            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            string buildMasterPath = Path.GetFullPath(baseDirectory + m_settings.BuildMasterPath);
-
-            string workingDirectory = Path.GetFullPath(m_settings.GameBuildDirectory);
-            string emulatorPath = Path.GetFullPath(m_settings.EmulatorPath);
-            string pathToGameRom = Path.GetFullPath(m_settings.PathToGameRom);
-            
-            ProcessStartInfo buildMasterProcess = new ProcessStartInfo
-            {
-                FileName = buildMasterPath,
-                Arguments = "config.bm build -DUSE_SCENEMASTER_LEVEL -SProjectName=" + Settings.GameRomName + " -SCopyToDailyFolder=false",
-                WorkingDirectory = workingDirectory,
-                UseShellExecute = false, // Set this to true if you want to use the system's default shell
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                //CreateNoWindow = true
-            };
-
-            StringBuilder sb = new StringBuilder();
-
-            // Start the BuildMaster process
-            try
-            {
-                using (Process process = Process.Start(buildMasterProcess))
-                {
-                    string output = process.StandardOutput.ReadToEnd();
-                    StreamReader errorReader = process.StandardError;
-                    var errorString = errorReader.ReadToEnd();
-
-                    while (!process.StandardOutput.EndOfStream)
-                    {
-                        string outputLine = process.StandardOutput.ReadLine();
-                        Console.WriteLine(outputLine);
-                        sb.Append(outputLine);
-                    }
-
-
-                    // Wait for the process to exit
-                    process.WaitForExit();
-                    // Get the return code
-                    int exitCode = process.ExitCode;
-
-                    if (exitCode != 0) 
-                    {
-                        MessageBox.Show("BuildMaster build error. Error code: " + exitCode);
-                        return;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error running BuildMaster process. Error: " + ex.Message);
-                return;
-            }
-
-            /*
-            // kill all the instances of the emulator
-            var processes = Process.GetProcesses();
-            var matchingProcesses = processes.Where(p => p.MainWindowTitle.Contains("Emulicious", StringComparison.OrdinalIgnoreCase));
-            foreach (var process in processes)
-            { 
-                process.Kill(); 
-            }
-            */
-
-            // start the game
-            ProcessStartInfo emulatorProcess = new ProcessStartInfo
-            {
-                FileName = emulatorPath,
-                Arguments = pathToGameRom,
-                UseShellExecute = false, // Set this to true if you want to use the system's default shell
-                RedirectStandardOutput = true
-            };
-
-            try
-            {
-                using (Process process = Process.Start(emulatorProcess))
-                {
-                    string output = process.StandardOutput.ReadToEnd();
-                    // Wait for the process to exit
-                    process.WaitForExit();
-                    // Get the return code
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error running emulator process. Error: " + ex.Message);
-                return;
             }
         }
 
@@ -306,11 +222,13 @@ namespace MotionMaster.Scenes.ViewModels
             return newEditorObjectViewModel;
         }
 
-        internal void Load(string filePath)
+        private void Load(string filePath)
         {
             m_ignoreChanges = true;
 
             var root = XmlUtils.OpenXmlDocument(filePath, nameof(Scene));
+
+            Scene = new Scene();
 
             Scene.LoadFromXml(root, filePath, EditorObjectInfoLibraryViewModel);
 
@@ -367,25 +285,7 @@ namespace MotionMaster.Scenes.ViewModels
                 CreateEditorObject(mapX, mapY);
             }
             break;
-            /*
-            case EDITING_MODE_TERRAIN:
-
-                int tileX = mapX / Scene.TiledMap.TileWidth;
-                int tileY = mapY / Scene.TiledMap.TileHeight;
-
-                SetTerrainTileType(tileX, tileY);
-
-            break;
-            */
             }
         }
-
-        /*
-        public void SetTerrainTileType(int tileX, int tileY)
-        {
-            m_scene.SetTerrainTileType(tileX, tileY, m_currentTileType);
-        }
-        */
-
     }
 }

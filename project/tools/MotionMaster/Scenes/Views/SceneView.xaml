@@ -33,7 +33,7 @@
                           Background="Beige" 
                           HorizontalAlignment="Center" 
                           VerticalAlignment="Center">
-                        <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
+                        <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapManager.TiledMapBitmapSource}"
                                RenderOptions.BitmapScalingMode="NearestNeighbor"
                                LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
                                MouseLeftButtonDown="Image_MouseLeftButtonDown" 
@@ -73,8 +73,7 @@
 
         <StatusBar Grid.Row="1">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Scene.TiledMapFilename}" d:Text="Path To Tiled Map"/>
-                <Button Content="Reset" Click="Button_ClickReset"/>
+                <Button Content="Reset Cam" Click="Button_ClickReset"/>
             </StackPanel>
         </StatusBar>
     </Grid>

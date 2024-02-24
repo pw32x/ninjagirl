@@ -13,8 +13,8 @@ namespace MotionMaster.Documents.ViewModels
         public static string MotionMasterDocumentFileExtension => ".mm";
         public static string DocumentTypeName => "Motion Master Document";
 
-        public static string TiledMapFileExtension => ".tmx";
-        public static string TiledMapFileTypeName => "Tiled map";
+        public static string GraphicsGaleFileExtension => ".gal";
+        public static string GraphicsGaleFileTypeName => "Graphics Gale animation file";
 
         public string DefaultFilename => "Untitled " + DocumentTypeName + MotionMasterDocumentFileExtension;
 
@@ -53,15 +53,23 @@ namespace MotionMaster.Documents.ViewModels
         //List<BitmapImage> m_tileTypeImages;
 
         public MotionMasterDocument(Settings settings,
-                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel/*,
-                                   List<BitmapImage> tileTypeImages*/)
+                                   EditorObjectLibraryViewModel editorObjectLibraryViewModel,
+                                   string graphicsGaleFilename)
         {
             m_settings = settings;
             EditorObjectLibraryViewModel = editorObjectLibraryViewModel;
-            //m_tileTypeImages = tileTypeImages;
             SceneViewModel = new SceneViewModel(m_settings, 
-                                                EditorObjectLibraryViewModel/*,
-                                                m_tileTypeImages*/);
+                                                EditorObjectLibraryViewModel,
+                                                graphicsGaleFilename);
+
+            FilePath = DefaultFilename;
+        }
+
+        public MotionMasterDocument(Settings settings,
+                                    EditorObjectLibraryViewModel editorObjectLibraryViewModel)
+        {
+            m_settings = settings;
+            EditorObjectLibraryViewModel = editorObjectLibraryViewModel;
 
             FilePath = DefaultFilename;
         }
@@ -74,11 +82,9 @@ namespace MotionMaster.Documents.ViewModels
 
         public bool Load(string filePath)
         {
-            SceneViewModel.Dispose();
-            SceneViewModel = new SceneViewModel(m_settings, 
-                                                EditorObjectLibraryViewModel/*, 
-                                                m_tileTypeImages*/);
-            SceneViewModel.Load(filePath);
+            SceneViewModel = new SceneViewModel(filePath, 
+                                                m_settings, 
+                                                EditorObjectLibraryViewModel);
 
             FilePath = filePath;
             IsFilePathSet = true;

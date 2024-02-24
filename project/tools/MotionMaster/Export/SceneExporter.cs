@@ -95,9 +95,9 @@ namespace MotionMaster.Export
             }
 
             // add the background
-            if (!string.IsNullOrEmpty(scene.TiledMapFilename))
+            if (!string.IsNullOrEmpty(scene.TiledMapManager.TiledMapFilename))
             {
-                string backgroundResourceInfoName = Path.GetFileNameWithoutExtension(scene.TiledMapFilename) + "_mapResourceInfo";
+                string backgroundResourceInfoName = Path.GetFileNameWithoutExtension(scene.TiledMapManager.TiledMapFilename) + "_mapResourceInfo";
                 sb.AppendLine("    { 0, (CommandFunction)ResourceManager_LoadResource, &" + backgroundResourceInfoName + "},");
             }
         }

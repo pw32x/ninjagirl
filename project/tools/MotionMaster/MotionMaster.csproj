@@ -18,18 +18,6 @@
     <None Remove="Icons\Play.png" />
     <None Remove="Icons\Save.png" />
     <None Remove="Icons\SaveAs.png" />
-    <None Remove="TileTypes\climb.png" />
-    <None Remove="TileTypes\empty.png" />
-    <None Remove="TileTypes\hurt.png" />
-    <None Remove="TileTypes\slope30left1.png" />
-    <None Remove="TileTypes\slope30left2.png" />
-    <None Remove="TileTypes\slope30right1.png" />
-    <None Remove="TileTypes\slope30right2.png" />
-    <None Remove="TileTypes\slope45left.png" />
-    <None Remove="TileTypes\slope45right.png" />
-    <None Remove="TileTypes\solid.png" />
-    <None Remove="TileTypes\topsolid.png" />
-    <None Remove="TileTypes\water.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -80,42 +68,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Icons\SaveAs.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\climb.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\empty.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\hurt.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope30left1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope30left2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope30right1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope30right2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope45left.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\slope45right.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\solid.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\topsolid.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="TileTypes\water.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

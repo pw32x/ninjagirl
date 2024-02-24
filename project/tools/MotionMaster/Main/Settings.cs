@@ -25,30 +25,17 @@ namespace MotionMaster.Main
         private string m_sourceExportDirectory = "source\\client\\exported";
         public string SourceExportDirectory { get => m_sourceExportDirectory; set => SetProperty(ref m_sourceExportDirectory, value); }
 
-        private string m_gameBuildDirectory = "build";
-        public string GameBuildDirectory { get => m_gameBuildDirectory; set => SetProperty(ref m_gameBuildDirectory, value); }
-
-        private string m_buildMasterPath = "..\\..\\..\\tools\\bin\\BuildMaster\\Release\\net8.0\\BuildMaster.exe";
-        public string BuildMasterPath { get => m_buildMasterPath; set => SetProperty(ref m_buildMasterPath, value); }
-
-        private string m_emulatorPath = "..\\..\\..\\Emulicious-with-Java64\\Emulicious.exe";
-        public string EmulatorPath { get => m_emulatorPath; set => SetProperty(ref m_emulatorPath, value); }
-
-        public const string GameRomName = "SceneMasterTemp";
-
         private string m_lastSceneSaveLocation = "";
         public string LastSceneLocation { get => m_lastSceneSaveLocation; set => SetProperty(ref m_lastSceneSaveLocation, value); }
 
+        private string m_lastGraphicsGaleImportLocation = "";
+        public string LastGraphicsGaleImportLocation { get => m_lastGraphicsGaleImportLocation; set => SetProperty(ref m_lastGraphicsGaleImportLocation, value); }
 
-        private string m_lastImportLocation = "";
-        public string LastImportLocation { get => m_lastImportLocation; set => SetProperty(ref m_lastImportLocation, value); }
+        private string m_lastTiledMapLocation = "";
+        public string loadTiledMapLocation { get => m_lastTiledMapLocation; set => SetProperty(ref m_lastTiledMapLocation, value); }
 
         private string m_lastExportLocation = "";
         public string LastExportLocation { get => m_lastExportLocation; set => SetProperty(ref m_lastExportLocation, value); }
-
-
-        private string m_pathToGameRom = "out\\" + GameRomName + ".sms";
-        public string PathToGameRom { get => m_pathToGameRom; set => SetProperty(ref m_pathToGameRom, value); }
 
         public void Load()
         {

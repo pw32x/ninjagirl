@@ -23,8 +23,8 @@ namespace MotionMaster.Main.ViewModels
     {
         public string ApplicationName => "Motion Master";
         public string WindowTitle => ApplicationName + " - " + 
-                                     (CurrentDocument.SceneViewModel.IsModified ? "*" : "") + 
-                                     CurrentDocument.FilePath;
+                                     (CurrentDocument != null && CurrentDocument.SceneViewModel.IsModified ? "*" : "") + 
+                                     CurrentDocument?.FilePath;
 
         public Settings Settings { get; } = new();
         private EditorObjectLibraryViewModel EditorObjectLibraryViewModel { get; } = new();
@@ -33,10 +33,16 @@ namespace MotionMaster.Main.ViewModels
 
         private MotionMasterDocument m_currentDocument;
 
+        public bool HasCurrentDocument => CurrentDocument != null;
+
         public MotionMasterDocument CurrentDocument
         {
             get => m_currentDocument;
-            private set => SetProperty(ref m_currentDocument, value);
+            private set
+            {
+                SetProperty(ref m_currentDocument, value);
+                OnPropertyChanged(nameof(HasCurrentDocument));
+            }
         }
 
         public MainViewModel()
@@ -60,41 +66,17 @@ namespace MotionMaster.Main.ViewModels
                 openedScene = OpenHelper(Settings.LastLoadedSceneFilename);
             }
             
-            if (!openedScene)
-                NewHelper();
+            //if (!openedScene)
+            //    NewHelper();
 
             NewCommand = new RelayCommand(New);
             OpenCommand = new RelayCommand(Open);
-            SaveCommand = new RelayCommand(SaveNoReturn);
-            SaveAsCommand = new RelayCommand(SaveAs);
+            SaveCommand = new RelayCommand(SaveNoReturn, () => CurrentDocument != null);
+            SaveAsCommand = new RelayCommand(SaveAs, () => CurrentDocument != null);
             ExitCommand = new RelayCommand(Exit);
-            ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
-            ExportCFilesCommand = new RelayCommand(ExportCFiles);
-            RunSceneCommand = new RelayCommand(RunScene);
+            //ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
+            ExportCFilesCommand = new RelayCommand(ExportCFiles, () => CurrentDocument != null);
         }
-        /*
-        private List<BitmapImage> TileTypeImages { get; set; } = new List<BitmapImage>();
-
-        private void LoadTileTypes()
-        {
-            string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
-
-            var loadImage = (string name) => 
-            {
-                BitmapImage bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri("pack://application:,,,/" + assemblyName + ";component/TileTypes/" + name + ".png");
-                bitmap.EndInit();
-
-                TileTypeImages.Add(bitmap);
-            };
-
-            foreach (var tileTypeName in Scene.TileTypeNameToInt.Keys)
-            {
-                loadImage(tileTypeName);
-            }
-        }
-        */
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
@@ -106,17 +88,13 @@ namespace MotionMaster.Main.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
-        public ICommand ImportTiledMapCommand { get; }
+        //public ICommand ImportTiledMapCommand { get; }
         public ICommand ExportCFilesCommand { get; }
-        public ICommand RunSceneCommand { get; }
 
-        private MotionMasterDocument InitDocument()
+        private void InitDocument()
         {
-            var newDocument = new MotionMasterDocument(Settings, EditorObjectLibraryViewModel/*, TileTypeImages*/);
-            newDocument.PropertyChanging += Document_PropertyChanging;
-            newDocument.PropertyChanged += Document_PropertyChanged;
-
-            return newDocument;
+            CurrentDocument.PropertyChanging += Document_PropertyChanging;
+            CurrentDocument.PropertyChanged += Document_PropertyChanged;
         }
 
         private void Document_PropertyChanging(object sender, System.ComponentModel.PropertyChangingEventArgs e)
@@ -150,14 +128,26 @@ namespace MotionMaster.Main.ViewModels
             }
 
             CurrentDocument?.Dispose();
+            CurrentDocument = null;
         }
 
         private void NewHelper()
         {
             ShutdownDocument();
-            CurrentDocument = InitDocument();
-            
-            Settings.LastLoadedSceneFilename = "";
+
+            // load a graphics gale file
+            string graphicsGaleFilename = PromptForGraphicsGaleFilename();
+
+            if (string.IsNullOrEmpty(graphicsGaleFilename))
+                return;
+
+            CurrentDocument = new MotionMasterDocument(Settings, EditorObjectLibraryViewModel, graphicsGaleFilename);
+
+            if (CurrentDocument != null) 
+            {
+                InitDocument();
+                Settings.LastLoadedSceneFilename = "";
+            }
         }
 
         private void New()
@@ -171,13 +161,18 @@ namespace MotionMaster.Main.ViewModels
         private bool OpenHelper(string filePath)
         {
             ShutdownDocument();
-            CurrentDocument = InitDocument();
 
-            if (!CurrentDocument.Load(filePath))
+            var newDocument = new MotionMasterDocument(Settings, EditorObjectLibraryViewModel);
+
+            if (newDocument.Load(filePath))
+            {
+                CurrentDocument = newDocument;
+                InitDocument();
+            }
+            else
             {
                 System.Windows.MessageBox.Show($"Loading {filePath} failed.");
                 ShutdownDocument();
-                CurrentDocument = InitDocument();
                 Settings.LastLoadedSceneFilename = "";
                 return false;
             }
@@ -260,8 +255,8 @@ namespace MotionMaster.Main.ViewModels
         private void SetTiledMapFileExtensions(Microsoft.Win32.FileDialog fileDialog)
         {
             // Filter files by extension
-            string extension = MotionMasterDocument.TiledMapFileExtension;
-            string documentType = MotionMasterDocument.TiledMapFileTypeName;
+            string extension = MotionMasterDocument.GraphicsGaleFileExtension;
+            string documentType = MotionMasterDocument.GraphicsGaleFileTypeName;
             fileDialog.DefaultExt = extension;
             fileDialog.Filter = $"{documentType} Files (*{extension})|*{extension}|All Files (*.*)|*.*";
         }
@@ -277,6 +272,8 @@ namespace MotionMaster.Main.ViewModels
 
         public bool CheckForSave()
         {
+            if (CurrentDocument == null) return true;
+
             if (CurrentDocument.SceneViewModel.IsModified)
             {
                 var result = System.Windows.MessageBox.Show($"Do you want to save changes to {CurrentDocument.FilePath}?", "Confirmation", MessageBoxButton.YesNoCancel);
@@ -297,7 +294,22 @@ namespace MotionMaster.Main.ViewModels
             return true;
         }
 
+        private string PromptForGraphicsGaleFilename()
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.InitialDirectory = Settings.LastGraphicsGaleImportLocation;
 
+            SetTiledMapFileExtensions(openFileDialog);
+
+            if (openFileDialog.ShowDialog() == false)
+                return "";
+
+            Settings.LastGraphicsGaleImportLocation = Path.GetDirectoryName(openFileDialog.FileName);
+
+            return openFileDialog.FileName;
+        }
+
+        /*
         private void ImportTiledMap()
         {
             if (!string.IsNullOrEmpty(CurrentDocument.SceneViewModel.Scene.TiledMapFilePath))
@@ -308,17 +320,18 @@ namespace MotionMaster.Main.ViewModels
             }
 
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.LastImportLocation;
+            openFileDialog.InitialDirectory = Settings.loadTiledMapLocation;
 
             SetTiledMapFileExtensions(openFileDialog);
 
             if (openFileDialog.ShowDialog() == false)
                 return;
 
-            Settings.LastImportLocation = Path.GetDirectoryName(openFileDialog.FileName);
+            Settings.loadTiledMapLocation = Path.GetDirectoryName(openFileDialog.FileName);
 
             CurrentDocument.ImportTiledMap(openFileDialog.FileName);
         }
+        */
 
         private void ExportCFiles()
         {
@@ -356,12 +369,6 @@ namespace MotionMaster.Main.ViewModels
                                       sceneName,
                                       dialog.SelectedPath,
                                       EditorObjectLibraryViewModel.CommandLibrary);
-        }
-
-        private void RunScene()
-        {
-            if (Save())
-                CurrentDocument.SceneViewModel.RunScene();
         }
     }
 }
