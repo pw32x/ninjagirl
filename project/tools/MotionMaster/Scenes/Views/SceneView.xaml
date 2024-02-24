@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="MotionMaster.Scenes.Views.SceneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:MotionMaster.Controls"
+             xmlns:viewmodels="clr-namespace:MotionMaster.Scenes.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext ="{d:DesignInstance viewmodels:SceneViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="301" d:DesignWidth="512"
+             x:Name="MotionMasterSceneView"
+             DataContextChanged="MotionMasterSceneView_DataContextChanged"
+             SizeChanged="MotionMasterSceneView_SizeChanged">
+    <Grid  x:Name="ParentGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="0"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+
+                <controls:ZoomBorderCustom x:Name="ZoomBorder" 
+                                ZoomSpeed="1.2"
+                                Background="SlateBlue" 
+                                ClipToBounds="True" 
+                                Focusable="True"
+                                PanButton="Middle" 
+                                Stretch="None"
+                                VerticalAlignment="Stretch" 
+                                HorizontalAlignment="Stretch">
+                    <Grid x:Name="MainGrid" 
+                          Background="Beige" 
+                          HorizontalAlignment="Center" 
+                          VerticalAlignment="Center">
+                        <Image x:Name="TileMapBitmapImage"  Source="{Binding Scene.TiledMapBitmapSource}"
+                               RenderOptions.BitmapScalingMode="NearestNeighbor"
+                               LayoutUpdated="TileMapBitmapImage_LayoutUpdated"
+                               MouseLeftButtonDown="Image_MouseLeftButtonDown" 
+                               Stretch="None" />
+                        <!--
+                        <Image x:Name="TerrainBitmapSource"  Source="{Binding Scene.TerrainBitmapSource}"
+                                   RenderOptions.BitmapScalingMode="NearestNeighbor"
+                                   Stretch="None"
+                               IsHitTestVisible="False"/>
+                        -->
+                        <Canvas x:Name="GridCanvas" IsHitTestVisible="False"/>
+                        <ItemsControl ItemsSource="{Binding EditorObjectViewModels}" >
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <Canvas />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Canvas.Left" Value="{Binding SnappedX}" />
+                                    <Setter Property="Canvas.Top" Value="{Binding SnappedY}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:EditorObjectControl Canvas.Left="{Binding SnappedX}" 
+                                                                  Canvas.Top="{Binding SnappedY}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </Grid>
+                </controls:ZoomBorderCustom>
+        </ScrollViewer>
+
+        <StatusBar Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Scene.TiledMapFilename}" d:Text="Path To Tiled Map"/>
+                <Button Content="Reset" Click="Button_ClickReset"/>
+            </StackPanel>
+        </StatusBar>
+    </Grid>
+</UserControl>

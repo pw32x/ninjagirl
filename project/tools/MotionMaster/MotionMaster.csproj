@@ -1,0 +1,131 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <StartupObject></StartupObject>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseWindowsForms>True</UseWindowsForms>
+    <BaseOutputPath>..\bin\MotionMaster</BaseOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\Export.png" />
+    <None Remove="Icons\Import.png" />
+    <None Remove="Icons\NewDocument.png" />
+    <None Remove="Icons\OpenfileDialog.png" />
+    <None Remove="Icons\Play.png" />
+    <None Remove="Icons\Save.png" />
+    <None Remove="Icons\SaveAs.png" />
+    <None Remove="TileTypes\climb.png" />
+    <None Remove="TileTypes\empty.png" />
+    <None Remove="TileTypes\hurt.png" />
+    <None Remove="TileTypes\slope30left1.png" />
+    <None Remove="TileTypes\slope30left2.png" />
+    <None Remove="TileTypes\slope30right1.png" />
+    <None Remove="TileTypes\slope30right2.png" />
+    <None Remove="TileTypes\slope45left.png" />
+    <None Remove="TileTypes\slope45right.png" />
+    <None Remove="TileTypes\solid.png" />
+    <None Remove="TileTypes\topsolid.png" />
+    <None Remove="TileTypes\water.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="thirdparty\GraphicsGale\galefile.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\Export.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Import.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\NewDocument.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\OpenfileDialog.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\Save.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="PropertyTools.Wpf" Version="3.1.0" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.0" />
+    <PackageReference Include="Wpf.Controls.PanAndZoom" Version="2.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EditorObjectLibrary\Libraries\CommandLibrary\ViewModels\" />
+    <Folder Include="EditorObjectLibrary\Libraries\GameObjectTemplateLibrary\ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Icons\SaveAs.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\climb.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\empty.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\hurt.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope30left1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope30left2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope30right1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope30right2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope45left.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\slope45right.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\solid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\topsolid.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="TileTypes\water.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MotionMaster", "MotionMaster.csproj", "{9B9822B6-2796-41DB-A5FD-81C061BABF2A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B9822B6-2796-41DB-A5FD-81C061BABF2A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9B9822B6-2796-41DB-A5FD-81C061BABF2A}.Debug|x86.Build.0 = Debug|Any CPU
+		{9B9822B6-2796-41DB-A5FD-81C061BABF2A}.Release|x86.ActiveCfg = Release|Any CPU
+		{9B9822B6-2796-41DB-A5FD-81C061BABF2A}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B7D60C3-D9CE-4E94-8FBB-A0C1AC0B3432}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "MotionMaster": {
+      "commandName": "Project",
+      "commandLineArgs": "\r\n",
+      "workingDirectory": "C:\\Dropbox\\SegaMasterSystem\\projects\\ninjagirl\\project"
+    }
+  }
+}

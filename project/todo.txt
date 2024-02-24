@@ -2,12 +2,31 @@ Todo
 
 	DONE template manager exports per-object struct types
 
-	redo bottom half of spider animation to be reusable when moving in both direction
+	FAIL redo bottom half of spider animation to be reusable when moving in both direction
+		REASON
+			could'nt find a good animation
+	
+	DONE expand and prep wheeler robot for animation sequencer
 	
 	flicker strategy
 
 	animation sequencer
 		explosion sequences
+		AnimationSequencePack
+			array of animation sequences
+			
+			animation sequence
+				array of 
+					time, function, value, control (go to next immediate, wait until next tick, jump, frame end)
+					  u8,      u16,   u16,     u16
+					functions
+						set animation frame
+						jump to sequence index
+						trigger (die, effect, etc)
+		
+	animation sequencer is another type of animation
+		
+	add exploding head and wheel to wheeler
 	
 	make explosion cooler
 		multiple with particle effects
