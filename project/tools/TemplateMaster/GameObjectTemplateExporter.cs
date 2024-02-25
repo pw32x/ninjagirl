@@ -60,7 +60,7 @@ namespace TemplateMaster
         {
 
             // declare the template struct
-            sb.AppendLine("typedef struct");
+            sb.AppendLine("typedef struct " + gameObjectTemplate.Name.Replace(" ", "_").ToLower() + "_object");
             sb.AppendLine("{");
             sb.AppendLine("    GAME_OBJECT_FIELDS;");
 
