@@ -17,5 +17,6 @@ extern const GameObjectTemplate test_block_template;
 extern const GameObjectTemplate walker_template;
 extern const GameObjectTemplate walker_big_template;
 extern const GameObjectTemplate walker_small_template;
+extern const GameObjectTemplate wheeler_template;
 
 #endif

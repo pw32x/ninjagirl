@@ -19,10 +19,12 @@
 #include "client\exported\animations\walker_big.h"
 #include "client\exported\animations\walker_small.h"
 #include "client\exported\animations\waterfall.h"
+#include "client\exported\animations\wheeler.h"
 #include "client\exported\palettes\globalPalette.h"
 #include "client\exported\maps\background3.h"
 #include "client\exported\maps\background3_test.h"
 #include "client\exported\maps\field.h"
+#include "client\exported\maps\level_001.h"
 #include "client\exported\maps\waterfall.h"
 
 const ResourceInfo background3_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&background3_tileset };
@@ -44,8 +46,10 @@ const ResourceInfo walkerResourceInfo = { /*bank*/ 2, (const Resource*)&walker }
 const ResourceInfo walker_bigResourceInfo = { /*bank*/ 2, (const Resource*)&walker_big };
 const ResourceInfo walker_smallResourceInfo = { /*bank*/ 2, (const Resource*)&walker_small };
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
+const ResourceInfo wheelerResourceInfo = { /*bank*/ 2, (const Resource*)&wheeler };
 const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };
 const ResourceInfo background3_test_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_test_map };
 const ResourceInfo field_mapResourceInfo = { /*bank*/ 4, (const Resource*)&field_map };
+const ResourceInfo level_001_mapResourceInfo = { /*bank*/ 4, (const Resource*)&level_001_map };
 const ResourceInfo waterfall_mapResourceInfo = { /*bank*/ 4, (const Resource*)&waterfall_map };

@@ -1,0 +1,20 @@
+<GameObjectTemplate >
+	<Name value="Wheeler"/>
+	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
+		<Visual>
+			<GraphicsGale filename="..\animations\standard\wheeler.gal" framenumber="2"/>
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<RectLeft value="-4"/>
+		<RectTop value="-15"/>
+		<RectRight value="4"/>
+		<RectBottom value="16"/>
+		<Damage value="1"/>
+		<GameObjectType value="Enemy" />
+		<Health value="3"/>
+		<ResourceInfo value="wheelerResourceInfo" />	
+		<InitFunction value="Enemy_Init"/>	
+	</GameProperties>
+</GameObjectTemplate>

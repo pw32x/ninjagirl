@@ -518,7 +518,7 @@
   </tile>
   <tile id="103">
     <properties>
-      <property name = "topsolid" value = "" />
+      <property name = "solid" value = "" />
     </properties>
   </tile>
   <tile id="104">
@@ -538,7 +538,7 @@
   </tile>
   <tile id="107">
     <properties>
-      <property name = "" value = "" />
+      <property name = "topsolid" value = "" />
     </properties>
   </tile>
   <tile id="108">
@@ -557,6 +557,11 @@
     </properties>
   </tile>
   <tile id="111">
+    <properties>
+      <property name = "" value = "" />
+    </properties>
+  </tile>
+  <tile id="112">
     <properties>
       <property name = "" value = "" />
     </properties>
