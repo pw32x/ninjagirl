@@ -472,6 +472,8 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 	gameObject->objectId = ObjectManager_objectId++;
 	gameObject->x = createInfo->startX;
 	gameObject->y = createInfo->startY;
+	gameObject->resourceInfo = createInfo->gameObjectTemplate->resourceInfo;
+	gameObject->extraResources = createInfo->gameObjectTemplate->extraResources;
 
 	ApplyGameObjectTemplate(gameObject, gameObjectTemplate);
 

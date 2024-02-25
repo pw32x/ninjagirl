@@ -3,11 +3,11 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Enemy_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Wheeler_Init(GameObject* object, const CreateInfo* createInfo);
 
 const GameObjectTemplate wheeler_template = 
 {
-    3, // health
+    4, // health
     1, // damage
     -4, // rect left
     -15, // rect top
@@ -16,5 +16,5 @@ const GameObjectTemplate wheeler_template =
     OBJECTTYPE_ENEMY, // object type
     &wheelerResourceInfo, // resource info
     NULL, // extra resource infos
-    Enemy_Init, // init function
+    Wheeler_Init, // init function
 };

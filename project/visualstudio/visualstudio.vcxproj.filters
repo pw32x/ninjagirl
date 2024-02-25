@@ -358,6 +358,12 @@
     <ClCompile Include="..\source\engine\commands\background_commands.c">
       <Filter>Source Files\engine\commands</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\objects\wheeler.c">
+      <Filter>Source Files\client\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\wheeler.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -554,6 +560,12 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\commands\background_commands.h">
       <Filter>Source Files\engine\commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\wheeler.h">
+      <Filter>Source Files\client\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\wheeler.h">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

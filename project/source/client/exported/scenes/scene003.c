@@ -13,7 +13,7 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo3 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo scene003_createInfo6 = { &gun_girl_template, 110, 119 };
+const CreateInfo scene003_createInfo6 = { &gun_girl_template, 63, 101 };
 const CreateInfo scene003_createInfo7 = { &wheeler_template, 280, 144 };
 const CreateInfo scene003_createInfo8 = { &wheeler_template, 355, 144 };
 const CreateInfo scene003_createInfo9 = { &wheeler_template, 383, 96 };
@@ -47,7 +47,7 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfo3 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
-    { 113, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
+    { 66, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
     { 284, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
     { 359, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
     { 387, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },

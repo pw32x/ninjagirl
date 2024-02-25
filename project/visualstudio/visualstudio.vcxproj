@@ -161,6 +161,7 @@
     <ClCompile Include="..\source\client\exported\animations\robotrunner.c" />
     <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
     <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
+    <ClCompile Include="..\source\client\exported\animations\wheeler.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3_test.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
@@ -201,6 +202,7 @@
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
+    <ClCompile Include="..\source\client\objects\wheeler.c" />
     <ClCompile Include="..\source\client\tileset_functions.c" />
     <ClCompile Include="..\source\engine\animation_utils.c" />
     <ClCompile Include="..\source\engine\commandrunner_runall.c" />
@@ -233,6 +235,7 @@
     <ClInclude Include="..\source\client\exported\animations\robotrunner.h" />
     <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
     <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
+    <ClInclude Include="..\source\client\exported\animations\wheeler.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3_test.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />
@@ -259,6 +262,7 @@
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />
+    <ClInclude Include="..\source\client\objects\wheeler.h" />
     <ClInclude Include="..\source\client\tileset_functions.h" />
     <ClInclude Include="..\source\engine\animation_types.h" />
     <ClInclude Include="..\source\engine\animation_utils.h" />

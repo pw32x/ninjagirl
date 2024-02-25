@@ -41,6 +41,8 @@ GameObject* RightScroller_Init(const Map* map)
 
 extern s16 playerSpeedX;
 
+#define SCROLL_START_POINT 100
+
 void RightScroll_Update(GameObject* target)
 {
 	if (!playerSpeedX)
@@ -55,9 +57,9 @@ void RightScroll_Update(GameObject* target)
 	u8 oldColumn = columnToUpdate;
 	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
-	if (target->x > ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH)
+	if (target->x > ScrollManager_horizontalScroll + SCROLL_START_POINT)
 	{
-		scrollSpeedX = target->x - (ScrollManager_horizontalScroll + HALF_SCREEN_WIDTH);
+		scrollSpeedX = target->x - (ScrollManager_horizontalScroll + SCROLL_START_POINT);
 	}
 
 	// here we move the vdp scrolling and logical map scrolling to the same speed

@@ -55,7 +55,9 @@
 	u8 objectId;\
 	u8 pixelWidth; \
 	u8 pixelHeight; \
-	u8 objectType
+	u8 objectType; \
+	const ResourceInfo* resourceInfo;\
+	const ResourceInfo** extraResources
 
 typedef struct game_object
 {

@@ -720,28 +720,28 @@ const BatchedAnimationFrame wheelerFrame7 =
 {
     wheelerFrame7SpriteStrips,
     6, // frame time
-    &wheelerFrame8, // next frame
+    &wheelerFrame7, // next frame
 };
 
 const BatchedAnimationFrame wheelerFrame8 = 
 {
     wheelerFrame8SpriteStrips,
     6, // frame time
-    &wheelerFrame9, // next frame
+    &wheelerFrame8, // next frame
 };
 
 const BatchedAnimationFrame wheelerFrame9 = 
 {
     wheelerFrame9SpriteStrips,
     6, // frame time
-    &wheelerFrame10, // next frame
+    &wheelerFrame9, // next frame
 };
 
 const BatchedAnimationFrame wheelerFrame10 = 
 {
     wheelerFrame10SpriteStrips,
     6, // frame time
-    &wheelerFrame7, // next frame
+    &wheelerFrame10, // next frame
 };
 const BatchedAnimationFrame* const wheelerFrames[11] = 
 {
