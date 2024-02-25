@@ -136,7 +136,7 @@ void setPlayerState(u8 newState)
 		playerSpeedY = 0;
 		break;
 	}
-
+	SMS_mapROMBank(ObjectManager_player.resourceInfo->bankNumber);
 	setPlayerAnimation();
 }
 
@@ -165,7 +165,7 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
-	/*
+
 	CreateInfo createInfo = 
 	{ 
 		&bullet_template, 
@@ -177,8 +177,9 @@ void Player_FireWeapon(GameObject* player)
 
 	bullet->speedx = ObjectManager_player.flipped ? -4 : 4;
 	bullet->speedy = 0;
-	*/
 
+
+	/*
 	CreateInfo createInfo = 
 	{ 
 		&shotgun_template, 
@@ -190,6 +191,7 @@ void Player_FireWeapon(GameObject* player)
 
 	shotgun->speedx = ObjectManager_player.flipped ? -4 : 4;
 	shotgun->speedy = 0;
+	*/
 }
 
 void Player_UpdateX(void)
@@ -545,6 +547,12 @@ void Player_UpdateDuck(GameObject* player)
 	}
 }
 
+void AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked(GameObject* gameObject)
+{
+	SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
+	AnimationUtils_UpdateStreamedBatchedAnimationFrame(gameObject);
+}
+
 void Player_Update(GameObject* player)
 {
 
@@ -558,6 +566,9 @@ void Player_Update(GameObject* player)
 	player->x = V2P(playerX);
 	player->y = V2P(playerY);
 
+	// update animation
+	SMS_mapROMBank(player->resourceInfo->bankNumber);
+
 	if (ObjectManager_player.flipped != oldFlip)
 		setPlayerAnimation();
 
@@ -565,7 +576,7 @@ void Player_Update(GameObject* player)
 	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) == ANIMATION_CHANGED_FRAME || 
 		updateAnimationStream)
 	{
-		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
+		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
 	}
 
 
@@ -573,13 +584,16 @@ void Player_Update(GameObject* player)
 
 BOOL Player_Draw(GameObject* object)
 {
+	//SMS_debugPrintf("Switching to Bank %d.\n", object->resourceInfo->bankNumber);
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
+	//SMS_debugPrintf("Switched\n");
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
-
+	//SMS_debugPrintf("batch start\n");
 	DrawUtils_DrawStreamedBatched();
-
+	//SMS_debugPrintf("batch end\n");
 	return TRUE;
 }
 

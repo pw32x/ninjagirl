@@ -35,12 +35,14 @@ void BasicEffect_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
 }
 
 BOOL BasicEffect_Draw(GameObject* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentBatchedAnimationFrame->spriteStrips,

@@ -46,11 +46,13 @@ void ParticleEffect_Update(GameObject* object)
 		ObjectManager_DestroyObject(object);
 	}
 
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->UpdateAnimation(object);
 }
 
 BOOL ParticleEffect_Draw(GameObject* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	DRAWUTILS_SETUP_BATCH(V2P(object->x) - ScrollManager_horizontalScroll,
 						  V2P(object->y),
 						  object->currentBatchedAnimationFrame->spriteStrips,

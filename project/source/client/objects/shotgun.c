@@ -57,12 +57,14 @@ void Shotgun_Update(GameObject* object)
 	s16 blockX = P2B(object->x);
 	s16 blockY = P2B(object->y);
 
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
 }
 
 BOOL Shotgun_Draw(GameObject* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentBatchedAnimationFrame->spriteStrips,

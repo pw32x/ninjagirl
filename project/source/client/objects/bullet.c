@@ -126,7 +126,7 @@ BOOL Bullet_Draw(GameObject* object)
 	//
 	//if (!object->data1)
 	//	return FALSE;
-
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
 						  object->y,
 						  object->currentBatchedAnimationFrame->spriteStrips,

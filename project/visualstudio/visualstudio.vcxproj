@@ -153,15 +153,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
-    <ClCompile Include="..\source\client\exported\animations\bullet.c" />
-    <ClCompile Include="..\source\client\exported\animations\explosion.c" />
-    <ClCompile Include="..\source\client\exported\animations\gun_girl.c" />
-    <ClCompile Include="..\source\client\exported\animations\impact.c" />
-    <ClCompile Include="..\source\client\exported\animations\kunai.c" />
-    <ClCompile Include="..\source\client\exported\animations\robotrunner.c" />
-    <ClCompile Include="..\source\client\exported\animations\rock_particle.c" />
-    <ClCompile Include="..\source\client\exported\animations\waterfall.c" />
-    <ClCompile Include="..\source\client\exported\animations\wheeler.c" />
+    <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3_test.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
@@ -228,15 +220,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
-    <ClInclude Include="..\source\client\exported\animations\bullet.h" />
-    <ClInclude Include="..\source\client\exported\animations\explosion.h" />
-    <ClInclude Include="..\source\client\exported\animations\gun_girl.h" />
-    <ClInclude Include="..\source\client\exported\animations\impact.h" />
-    <ClInclude Include="..\source\client\exported\animations\kunai.h" />
-    <ClInclude Include="..\source\client\exported\animations\robotrunner.h" />
-    <ClInclude Include="..\source\client\exported\animations\rock_particle.h" />
-    <ClInclude Include="..\source\client\exported\animations\waterfall.h" />
-    <ClInclude Include="..\source\client\exported\animations\wheeler.h" />
+    <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3_test.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />

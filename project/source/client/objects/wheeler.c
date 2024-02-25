@@ -39,6 +39,7 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	object->UpdatePhysics = Wheeler_Roll;
 	object->HandleCollision = Wheeler_HandleCollision;
 
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < object->x)
 	{
 		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
@@ -54,6 +55,7 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 
 void Wheeler_Update(WheelerObjectType* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->UpdateAnimation((GameObject*)object);
 
 	object->UpdatePhysics(object);
@@ -131,6 +133,7 @@ void Wheeler_Fall(WheelerObjectType* object)
 
 BOOL Wheeler_Draw(GameObject* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	DRAWUTILS_SETUP_BATCH(object->screenx,
 						  object->screeny,
 						  object->currentBatchedAnimationFrame->spriteStrips,
@@ -148,7 +151,7 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 	if (gameObject->health <= 0)
 	{
 		ObjectManager_DestroyObject(gameObject);
-		
+
 		CreateInfo createInfo = 
 		{ 
 			&explosion_template,
@@ -170,6 +173,7 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 		createInfo.startX = V2P(gameObject->x);
 		createInfo.startY = V2P(gameObject->y);
 
+		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_HEAD_FRAME_INDEX);
 		effect->speedx = 0;
