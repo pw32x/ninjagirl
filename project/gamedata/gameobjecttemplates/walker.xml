@@ -2,7 +2,7 @@
 	<Name value="Walker"/>
 	<EditorProperties>
 		<Visual>
-			<GraphicsGale filename="..\animations\standard\walker.gal" framenumber="1"/>
+			<GraphicsGale filename="..\animations\enemies\walker.gal" framenumber="1"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>

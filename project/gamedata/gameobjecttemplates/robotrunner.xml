@@ -3,7 +3,7 @@
 	<EditorProperties>
 		<EditorObjectType value="GameObject"/>
 		<Visual>
-			<GraphicsGale filename="..\animations\standard\robotrunner.gal" framenumber="0"/>
+			<GraphicsGale filename="..\animations\enemies\robotrunner.gal" framenumber="0"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>

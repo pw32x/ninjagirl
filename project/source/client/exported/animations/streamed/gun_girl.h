@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation gun_girl;
+RESOURCE(BANK7) extern const BatchedAnimation gun_girl;
 
 // frame numbers for specific animations.
 #define GUN_GIRL_RUN_RIGHT_FRAME_INDEX 0

@@ -18,7 +18,7 @@
 
 //bullet
 #include "client/objects/bullet.h"
-#include "client/exported/animations/gun_girl.h"
+#include "client/exported/animations/streamed/gun_girl.h"
 
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
@@ -165,7 +165,7 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
-
+	/*
 	CreateInfo createInfo = 
 	{ 
 		&bullet_template, 
@@ -177,6 +177,19 @@ void Player_FireWeapon(GameObject* player)
 
 	bullet->speedx = ObjectManager_player.flipped ? -4 : 4;
 	bullet->speedy = 0;
+	*/
+
+	CreateInfo createInfo = 
+	{ 
+		&shotgun_template, 
+		player->x + (ObjectManager_player.flipped ? -16 : 16), 
+		player->y + offset
+	};
+
+	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+
+	shotgun->speedx = ObjectManager_player.flipped ? -4 : 4;
+	shotgun->speedy = 0;
 }
 
 void Player_UpdateX(void)

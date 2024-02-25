@@ -21,5 +21,6 @@
 		<Template value="explosion.xml"/>
 		<Template value="impact.xml"/>
 		<Template value="bullet.xml"/>
+		<Template value="shotgun.xml"/>
 	</References>	
 </GameObjectTemplate>

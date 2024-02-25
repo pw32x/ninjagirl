@@ -3,7 +3,7 @@
 	<EditorProperties>
 		<EditorObjectType value="GameObject"/>
 		<Visual>
-			<GraphicsGale filename="..\animations\standard\wheeler.gal" framenumber="2"/>
+			<GraphicsGale filename="..\animations\enemies\wheeler.gal" framenumber="2"/>
 		</Visual>
 	</EditorProperties>
 	<GameProperties>
@@ -16,5 +16,8 @@
 		<Health value="4"/>
 		<ResourceInfo value="wheelerResourceInfo" />	
 		<InitFunction value="Wheeler_Init"/>	
+		<CustomData>
+			<Data value="void (*UpdatePhysics)(struct wheeler_object* gameObject)"/>
+		</CustomData>		
 	</GameProperties>
 </GameObjectTemplate>

@@ -8,6 +8,7 @@
 #include "engine/animation_utils.h"
 #include "engine/resource_manager.h"
 #include "engine/createinfo_types.h"
+#include "engine/terrain_manager.h"
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/particle_effect.h"
@@ -16,73 +17,117 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
-#include "client/exported/animations/wheeler.h"
+#include "client/exported/animations/enemies/wheeler.h"
 
-void Wheeler_Update(GameObject* object);
+void Wheeler_Update(WheelerObjectType* object);
+
+void Wheeler_Roll(WheelerObjectType* object);
+void Wheeler_Fall(WheelerObjectType* object);
+
 BOOL Wheeler_Draw(GameObject* object);
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 
-GameObject* Wheeler_Init(GameObject* object, const CreateInfo* createInfo)
+#define SPEEDX 12
+
+GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->Update = Wheeler_Update;
+	object->x = P2V(object->x);
+	object->y = P2V(object->y);
+	object->Update = (ObjectFunctionType)Wheeler_Update;
 	object->Draw = Wheeler_Draw;
+	object->UpdatePhysics = Wheeler_Roll;
 	object->HandleCollision = Wheeler_HandleCollision;
 
 	if (ObjectManager_player.x < object->x)
 	{
-		AnimationUtils_setBatchedAnimationFrame(object, WHEELER_RUN_LEFT_FRAME_INDEX);
-		object->speedx = -1;
+		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
+		object->speedx = -SPEEDX;
 	}
 	else
 	{
-		object->speedx = 1;
+		object->speedx = 12;
 	}	
 
-	return object;
+	return (GameObject*)object;
 }
 
-void Wheeler_Update(GameObject* object)
+void Wheeler_Update(WheelerObjectType* object)
 {
-	object->UpdateAnimation(object);
+	object->UpdateAnimation((GameObject*)object);
 
-	object->x += object->speedx;
+	object->UpdatePhysics(object);
 
-	//ObjectManagerUtils_updateObjectScreenRect(object);
+	// world to screen transformation
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
-	/*
-	// player collision
-	if (ObjectManager_playerLeft < ObjectManager_objectRight &&
-		ObjectManager_playerRight > ObjectManager_objectLeft &&
-		ObjectManager_playerTop < ObjectManager_objectBottom &&
-		ObjectManager_playerBottom > ObjectManager_objectTop)
-	{
-		goto destroy_object;
-	}
-	*/
-
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
-
-	// if offscreen die
+	// if offscreen destroy
 	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
 	{
-		SMS_debugPrintf("object->screenx: %d\n", object->screenx);
-		goto destroy_object;
+		ObjectManager_DestroyObject((GameObject*)object);
+		return;
 	}
-	
-	//if (ObjectManagerUtils_collidesWithProjectiles(object))
-	//{
-	//	goto destroy_object;
-	//}
 
-
-	return;
-
-destroy_object:
-	SMS_debugPrintf("Destroy Object\n");
-	ObjectManager_DestroyObject(object);
+	/*
+	// if hits the sides of the screen, turn around
+	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
+	{
+		object->speedx = -object->speedx;
+		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
+	}
+	else if (object->screenx + object->rectRight > SCREEN_RIGHT)
+	{
+		object->speedx = -object->speedx;
+		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
+	}
+	*/
 }
+
+void Wheeler_Roll(WheelerObjectType* object)
+{
+	object->x += object->speedx;
+
+	s16 blockX = V2B(object->x);
+
+	s16 ySensor = object->y + P2V(object->rectBottom);
+	s16 blockY = V2B(ySensor);
+
+	u16 bottomTileType = GET_TERRAIN(blockX, blockY);
+
+	if (bottomTileType == TERRAIN_EMPTY)
+	{
+		object->speedy = 0;
+		object->UpdatePhysics = Wheeler_Fall;
+	}
+}
+
+#define GRAVITY	3
+
+void Wheeler_Fall(WheelerObjectType* object)
+{
+	object->speedy += GRAVITY;
+
+	object->x += object->speedx;
+	object->y += object->speedy;
+
+	s16 blockX = V2B(object->x);
+
+	s16 ySensor = object->y + P2V(object->rectBottom);
+	s16 blockY = V2B(ySensor);
+
+	u16 bottomTileType = GET_TERRAIN(blockX, blockY);
+
+	if (bottomTileType != TERRAIN_EMPTY)
+	{
+		object->y = B2V(blockY) - P2V(object->rectBottom);
+		object->speedy = 0;
+
+		object->UpdatePhysics = Wheeler_Roll;
+	}
+
+}
+
 
 BOOL Wheeler_Draw(GameObject* object)
 {
@@ -107,8 +152,8 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 		CreateInfo createInfo = 
 		{ 
 			&explosion_template,
-			gameObject->x, 
-			gameObject->y
+			V2P(gameObject->x), 
+			V2P(gameObject->y)
 		};
 		
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);
@@ -122,8 +167,8 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 
 
 		createInfo.gameObjectTemplate = &effectGameTemplate;
-		createInfo.startX = gameObject->x;
-		createInfo.startY = gameObject->y;
+		createInfo.startX = V2P(gameObject->x);
+		createInfo.startY = V2P(gameObject->y);
 
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_HEAD_FRAME_INDEX);

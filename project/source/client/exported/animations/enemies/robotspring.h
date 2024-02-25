@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation robotspring;
+RESOURCE(BANK6) extern const BatchedAnimation robotspring;
 
 #endif
 

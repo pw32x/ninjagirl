@@ -1,0 +1,13 @@
+<GameObjectTemplate >
+	<Name value="Bullet"/>
+	<GameProperties>
+		<Damage value="3"/>
+		<RectLeft value="-6"/>
+		<RectTop value="-6"/>
+		<RectRight value="6"/>
+		<RectBottom value="6"/>
+		<GameObjectType value="Projectile" />
+		<ResourceInfo value="shotgunResourceInfo" />		
+		<InitFunction value="Shotgun_Init"/>
+	</GameProperties>
+</GameObjectTemplate>

@@ -3,7 +3,8 @@
 
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
+#include "client/generated/gameobjecttemplates/wheeler_template.h"
 
-GameObject* Wheeler_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo);
 
 #endif

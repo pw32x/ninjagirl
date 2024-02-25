@@ -57,6 +57,10 @@ void Bullet_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
+	// world to screen transformation
+	object->screenx = object->x - ScrollManager_horizontalScroll;
+	object->screeny = object->y - ScrollManager_verticalScroll;
+
 	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
 		object->y > SCREEN_BOTTOM ||
 		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||

@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation walker_big;
+RESOURCE(BANK6) extern const BatchedAnimation walker_big;
 
 // frame numbers for specific animations.
 #define WALKER_BIG_RUN_RIGHT_FRAME_INDEX 0

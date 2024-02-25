@@ -10,12 +10,37 @@ Todo
 	
 	DONE add exploding head and wheel to wheeler
 	
-	make Wheeler follow gravity
+	DONE make Wheeler follow gravity
 	
-	make Wheeler turn around when hitting wall/edge of the screen
+	DONE make Wheeler turn around when hitting wall/edge of the screen
+		RESULT
+			unsure if I want that.
 	
+	power up
+	
+		second weapon
+		
+			spread gun
+			
+	health
+	
+	health pick up
+	
+	health box
+	
+	enemy-player collisions
+	
+	simplify bullet collisions
+	
+	shoot up
+	
+	shoot down
 	
 	flicker strategy
+
+	wheelers coming from the left side of the screen
+		add feature to SceneMaster to place object when spawning
+	
 
 	PAUSE animation sequencer
 		explosion sequences

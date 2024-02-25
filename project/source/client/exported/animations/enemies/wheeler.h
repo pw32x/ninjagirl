@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation wheeler;
+RESOURCE(BANK6) extern const BatchedAnimation wheeler;
 
 // frame numbers for specific animations.
 #define WHEELER_RUN_RIGHT_FRAME_INDEX 0

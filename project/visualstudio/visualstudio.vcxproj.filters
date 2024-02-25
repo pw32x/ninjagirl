@@ -59,6 +59,9 @@
     <Filter Include="Source Files\client\exported\scenes">
       <UniqueIdentifier>{e6233a8a-115f-4c7c-b358-bbd18e7571e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\objects\weapons">
+      <UniqueIdentifier>{784880d8-2a18-418e-9f71-0bec3c57fb48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\scene_manager.c">
@@ -322,9 +325,6 @@
     <ClCompile Include="..\source\client\exported\animations\gun_girl.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\bullet.c">
-      <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
@@ -363,6 +363,12 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\wheeler.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\bullet.c">
+      <Filter>Source Files\client\objects\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\shotgun.c">
+      <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -534,9 +540,6 @@
     <ClInclude Include="..\source\client\exported\animations\gun_girl.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\bullet.h">
-      <Filter>Source Files\client\objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\bullet.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
@@ -566,6 +569,18 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\wheeler.h">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\bullet.h">
+      <Filter>Source Files\client\objects\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\shotgun.h">
+      <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

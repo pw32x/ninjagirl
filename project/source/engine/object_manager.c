@@ -494,18 +494,18 @@ BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)
 	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
 	u8 counter = NUM_PROJECTILE_SLOTS;
 
-	s16 left = gameObject->x + gameObject->rectLeft;
-	s16 top = gameObject->y + gameObject->rectTop;
-	s16 right = gameObject->x + gameObject->rectRight;
-	s16 bottom = gameObject->y + gameObject->rectBottom;
+	s16 left = gameObject->screenx + gameObject->rectLeft;
+	s16 top = gameObject->screeny + gameObject->rectTop;
+	s16 right = gameObject->screenx + gameObject->rectRight;
+	s16 bottom = gameObject->screeny + gameObject->rectBottom;
 
 	while (counter--)
 	{
 		if (objectSlotRunner->alive &&
-			left < objectSlotRunner->x + objectSlotRunner->rectRight &&
-			right > objectSlotRunner->x + objectSlotRunner->rectLeft &&
-			top < objectSlotRunner->y + objectSlotRunner->rectBottom &&
-			bottom > objectSlotRunner->y + objectSlotRunner->rectTop
+			left < objectSlotRunner->screenx + objectSlotRunner->rectRight &&
+			right > objectSlotRunner->screenx + objectSlotRunner->rectLeft &&
+			top < objectSlotRunner->screeny + objectSlotRunner->rectBottom &&
+			bottom > objectSlotRunner->screeny + objectSlotRunner->rectTop
 			)
 		{
 			objectSlotRunner->HandleCollision(objectSlotRunner, gameObject);

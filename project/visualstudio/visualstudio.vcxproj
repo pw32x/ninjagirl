@@ -201,6 +201,7 @@
     <ClCompile Include="..\source\client\objects\particle_effect.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
+    <ClCompile Include="..\source\client\objects\shotgun.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
     <ClCompile Include="..\source\client\objects\wheeler.c" />
     <ClCompile Include="..\source\client\tileset_functions.c" />
@@ -244,7 +245,9 @@
     <ClInclude Include="..\source\client\exported\maps\background3.h" />
     <ClInclude Include="..\source\client\exported\scenes\scene003.h" />
     <ClInclude Include="..\source\client\generated\bank2.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h" />
     <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\client\generated\tilesets\background3_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h" />
@@ -261,6 +264,7 @@
     <ClInclude Include="..\source\client\objects\particle_effect.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
+    <ClInclude Include="..\source\client\objects\shotgun.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />
     <ClInclude Include="..\source\client\objects\wheeler.h" />
     <ClInclude Include="..\source\client\tileset_functions.h" />

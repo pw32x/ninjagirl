@@ -5,8 +5,8 @@
 #include "engine/map_types.h"
 #include "engine/object_manager.h"
 
-#include "exported/animations/rock_particle.h"
-#include "exported/animations/explosion.h"
+#include "exported/animations/standard/rock_particle.h"
+#include "exported/animations/standard/explosion.h"
 
 #include "objects/particle_effect.h"
 

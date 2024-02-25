@@ -3,7 +3,7 @@
 
 #include "engine\object_types.h"
 
-typedef struct
+typedef struct color_tweaker_object
 {
     GAME_OBJECT_FIELDS;
     const BatchedAnimation* cursorAnimation;
