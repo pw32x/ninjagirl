@@ -32,7 +32,7 @@ namespace MotionMaster.Main
         public string LastGraphicsGaleImportLocation { get => m_lastGraphicsGaleImportLocation; set => SetProperty(ref m_lastGraphicsGaleImportLocation, value); }
 
         private string m_lastTiledMapLocation = "";
-        public string loadTiledMapLocation { get => m_lastTiledMapLocation; set => SetProperty(ref m_lastTiledMapLocation, value); }
+        public string LastImportLocation { get => m_lastTiledMapLocation; set => SetProperty(ref m_lastTiledMapLocation, value); }
 
         private string m_lastExportLocation = "";
         public string LastExportLocation { get => m_lastExportLocation; set => SetProperty(ref m_lastExportLocation, value); }

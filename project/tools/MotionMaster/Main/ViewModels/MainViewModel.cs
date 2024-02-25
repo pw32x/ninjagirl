@@ -34,6 +34,7 @@ namespace MotionMaster.Main.ViewModels
         private MotionMasterDocument m_currentDocument;
 
         public bool HasCurrentDocument => CurrentDocument != null;
+        public bool HasValidCurrentDocument() { return HasCurrentDocument; }
 
         public MotionMasterDocument CurrentDocument
         {
@@ -41,7 +42,13 @@ namespace MotionMaster.Main.ViewModels
             private set
             {
                 SetProperty(ref m_currentDocument, value);
+                CommandManager.InvalidateRequerySuggested();
                 OnPropertyChanged(nameof(HasCurrentDocument));
+                OnPropertyChanged(nameof(WindowTitle));
+
+                SaveCommand.NotifyCanExecuteChanged();
+                SaveAsCommand.NotifyCanExecuteChanged();
+                ExportCFilesCommand.NotifyCanExecuteChanged();
             }
         }
 
@@ -71,11 +78,11 @@ namespace MotionMaster.Main.ViewModels
 
             NewCommand = new RelayCommand(New);
             OpenCommand = new RelayCommand(Open);
-            SaveCommand = new RelayCommand(SaveNoReturn, () => CurrentDocument != null);
-            SaveAsCommand = new RelayCommand(SaveAs, () => CurrentDocument != null);
+            SaveCommand = new RelayCommand(SaveNoReturn, HasValidCurrentDocument);
+            SaveAsCommand = new RelayCommand(SaveAs, HasValidCurrentDocument);
             ExitCommand = new RelayCommand(Exit);
             //ImportTiledMapCommand = new RelayCommand(ImportTiledMap);
-            ExportCFilesCommand = new RelayCommand(ExportCFiles, () => CurrentDocument != null);
+            ExportCFilesCommand = new RelayCommand(ExportCFiles, HasValidCurrentDocument);
         }
 
         private void Settings_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -85,11 +92,11 @@ namespace MotionMaster.Main.ViewModels
 
         public ICommand NewCommand { get; }
         public ICommand OpenCommand { get; }
-        public ICommand SaveCommand { get; }
-        public ICommand SaveAsCommand { get; }
+        public RelayCommand SaveCommand { get; }
+        public RelayCommand SaveAsCommand { get; }
         public ICommand ExitCommand { get; }
         //public ICommand ImportTiledMapCommand { get; }
-        public ICommand ExportCFilesCommand { get; }
+        public RelayCommand ExportCFilesCommand { get; }
 
         private void InitDocument()
         {
@@ -240,6 +247,8 @@ namespace MotionMaster.Main.ViewModels
 
             Settings.LastLoadedSceneFilename = CurrentDocument.FilePath;
 
+            OnPropertyChanged(nameof(WindowTitle));
+
             return true;
         }
 
@@ -320,14 +329,14 @@ namespace MotionMaster.Main.ViewModels
             }
 
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.InitialDirectory = Settings.loadTiledMapLocation;
+            openFileDialog.InitialDirectory = Settings.LastImportLocation;
 
             SetTiledMapFileExtensions(openFileDialog);
 
             if (openFileDialog.ShowDialog() == false)
                 return;
 
-            Settings.loadTiledMapLocation = Path.GetDirectoryName(openFileDialog.FileName);
+            Settings.LastImportLocation = Path.GetDirectoryName(openFileDialog.FileName);
 
             CurrentDocument.ImportTiledMap(openFileDialog.FileName);
         }
