@@ -23,6 +23,7 @@ extern const ResourceInfo walker_smallResourceInfo;
 extern const ResourceInfo wheelerResourceInfo;
 extern const ResourceInfo bulletResourceInfo;
 extern const ResourceInfo shotgunResourceInfo;
+extern const ResourceInfo shotgun_itemResourceInfo;
 extern const ResourceInfo waterfallResourceInfo;
 extern const ResourceInfo globalPaletteResourceInfo;
 extern const ResourceInfo background3_mapResourceInfo;

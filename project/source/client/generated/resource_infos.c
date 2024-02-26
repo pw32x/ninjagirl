@@ -20,6 +20,7 @@
 #include "client\exported\animations\enemies\wheeler.h"
 #include "client\exported\animations\weapons\bullet.h"
 #include "client\exported\animations\weapons\shotgun.h"
+#include "client\exported\animations\weapons\shotgun_item.h"
 #include "client\exported\animations\animatedtilesets\waterfall.h"
 #include "client\exported\palettes\globalPalette.h"
 #include "client\exported\maps\background3.h"
@@ -48,6 +49,7 @@ const ResourceInfo walker_smallResourceInfo = { /*bank*/ 6, (const Resource*)&wa
 const ResourceInfo wheelerResourceInfo = { /*bank*/ 6, (const Resource*)&wheeler };
 const ResourceInfo bulletResourceInfo = { /*bank*/ 5, (const Resource*)&bullet };
 const ResourceInfo shotgunResourceInfo = { /*bank*/ 5, (const Resource*)&shotgun };
+const ResourceInfo shotgun_itemResourceInfo = { /*bank*/ 5, (const Resource*)&shotgun_item };
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
 const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
 const ResourceInfo background3_mapResourceInfo = { /*bank*/ 4, (const Resource*)&background3_map };

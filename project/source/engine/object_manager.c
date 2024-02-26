@@ -9,6 +9,7 @@
 #include "engine/draw_utils.h"
 
 GameObject ObjectManager_player;
+GameObject ObjectManager_Item;
 
 //s16 ObjectManager_objectLeft;
 //s16 ObjectManager_objectTop;
@@ -29,6 +30,8 @@ GameObject ObjectManager_player;
 GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
 GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
+
+
 
 u8 ObjectManager_objectId = 0;
 
@@ -250,6 +253,27 @@ void ObjectManager_Update(void)
 	ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
 	ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
 
+	ObjectManager_Item.Update(&ObjectManager_Item);
+
+	if (ObjectManager_Item.alive)
+	{
+		
+
+		s16 left = ObjectManager_player.screenx + ObjectManager_player.rectLeft;
+		s16 top = ObjectManager_player.screeny + ObjectManager_player.rectTop;
+		s16 right = ObjectManager_player.screenx + ObjectManager_player.rectRight;
+		s16 bottom = ObjectManager_player.screeny + ObjectManager_player.rectBottom;
+
+		if (left < ObjectManager_Item.screenx + ObjectManager_Item.rectRight &&
+			right > ObjectManager_Item.screenx + ObjectManager_Item.rectLeft &&
+			top < ObjectManager_Item.screeny + ObjectManager_Item.rectBottom &&
+			bottom > ObjectManager_Item.screeny + ObjectManager_Item.rectTop)
+		{
+			ObjectManager_Item.HandleCollision(&ObjectManager_Item, &ObjectManager_player);
+		}
+	}
+
+
 	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 
@@ -292,6 +316,8 @@ void ObjectManager_Update(void)
 	ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
 	ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
 	ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
+
+	ObjectManager_Item.Draw(&ObjectManager_Item);
 
 	/*
 
@@ -348,6 +374,11 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
+	else if (objectType == OBJECTTYPE_ITEM)
+	{
+		ObjectManager_Item.alive = TRUE;
+		return &ObjectManager_Item;
+	}
 
 	while (counter--)
 	{
@@ -401,6 +432,11 @@ GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameO
 		ApplyGameObjectTemplate(objectSlotRunner, gameObjectTemplate);
 		return objectSlotRunner;
 	}
+	else if (objectType == OBJECTTYPE_ITEM)
+	{
+		ObjectManager_Item.alive = TRUE;
+		return &ObjectManager_Item;
+	}
 
 	while (counter--)
 	{
@@ -444,6 +480,11 @@ GameObject* FindFreeGameObject(u8 objectType)
 		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
+	}
+	else if (objectType == OBJECTTYPE_ITEM)
+	{
+		ObjectManager_Item.alive = TRUE;
+		return &ObjectManager_Item;
 	}
 
 	while (counter--)

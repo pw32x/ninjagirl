@@ -166,6 +166,7 @@ void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
+	/*
 	CreateInfo createInfo = 
 	{ 
 		&bullet_template, 
@@ -177,9 +178,10 @@ void Player_FireWeapon(GameObject* player)
 
 	bullet->speedx = ObjectManager_player.flipped ? -4 : 4;
 	bullet->speedy = 0;
+	*/
 
+	player->speedx = 0;
 
-	/*
 	CreateInfo createInfo = 
 	{ 
 		&shotgun_template, 
@@ -189,9 +191,17 @@ void Player_FireWeapon(GameObject* player)
 
 	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
-	shotgun->speedx = ObjectManager_player.flipped ? -4 : 4;
+	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
 	shotgun->speedy = 0;
-	*/
+
+	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
+	shotgun->speedy = -1;
+
+	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
+	shotgun->speedy = 1;
+
 }
 
 void Player_UpdateX(void)
@@ -579,6 +589,8 @@ void Player_Update(GameObject* player)
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
 	}
 
+	player->screenx = player->x - ScrollManager_horizontalScroll;
+	player->screeny = player->y;
 
 }
 
@@ -587,8 +599,8 @@ BOOL Player_Draw(GameObject* object)
 	//SMS_debugPrintf("Switching to Bank %d.\n", object->resourceInfo->bankNumber);
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	//SMS_debugPrintf("Switched\n");
-	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
-						  object->y,
+	DRAWUTILS_SETUP_BATCH(object->screenx,
+						  object->screeny,
 						  object->currentBatchedAnimationFrame->spriteStrips,
 						  *object->batchedAnimation->vdpLocation);
 	//SMS_debugPrintf("batch start\n");

@@ -16,12 +16,14 @@ Todo
 		RESULT
 			unsure if I want that.
 	
-	power up
+	DONE power up
 	
 		second weapon
 		
 			spread gun
-			
+		
+	weapon pick up
+		
 	health
 	
 	health pick up
@@ -37,6 +39,14 @@ Todo
 	shoot down
 	
 	flicker strategy
+
+	make bullets move relative to the screen, not the world
+		because when the player runs, the bullets (like the shotgun) don't appear to go 
+		as far.
+
+	have bank number as part of a resource
+	have a function that uses a resource switch to that bank before doing anything
+	in the bank switch function, cache the bank and check it before doing the switch
 
 	wheelers coming from the left side of the screen
 		add feature to SceneMaster to place object when spawning

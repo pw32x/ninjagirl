@@ -1,0 +1,19 @@
+<GameObjectTemplate >
+	<Name value="ShotgunItem"/>
+	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
+		<Visual>
+			<GraphicsGale filename="..\animations\weapons\shotgun_item.gal" framenumber="0"/>
+		</Visual>
+	</EditorProperties>	
+	<GameProperties>
+		<Damage value="0"/>
+		<RectLeft value="-8"/>
+		<RectTop value="-8"/>
+		<RectRight value="8"/>
+		<RectBottom value="8"/>
+		<GameObjectType value="Item" />
+		<ResourceInfo value="shotgun_itemResourceInfo" />		
+		<InitFunction value="ShotgunItem_Init"/>
+	</GameProperties>
+</GameObjectTemplate>

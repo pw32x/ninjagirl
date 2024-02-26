@@ -8,7 +8,7 @@ GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo);
 const GameObjectTemplate shotgun_template = 
 {
     0, // health
-    3, // damage
+    2, // damage
     -6, // rect left
     -6, // rect top
     6, // rect right

@@ -11,6 +11,7 @@
 #define OBJECTTYPE_EFFECT			2
 #define OBJECTTYPE_PLAYER			3
 #define OBJECTTYPE_COMMANDRUNNER	4
+#define OBJECTTYPE_ITEM				5
 
 #define GAME_OBJECT_FIELDS \
 	void (*Update)(struct game_object* gameObject);\

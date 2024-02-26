@@ -86,7 +86,7 @@ void* ResourceManager_LoadResource(const ResourceInfo* resourceInfo)
 
 	if (currentBank != bankNumber)
 	{
-		SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
+		//SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
 		SMS_mapROMBank(currentBank);
 	}
 
@@ -122,7 +122,7 @@ void* ResourceManager_SetupResource(struct game_object* gameObject, const Resour
 
 	if (currentBank != bankNumber)
 	{
-		SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
+		//SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
 		SMS_mapROMBank(currentBank);
 	}
 

@@ -346,6 +346,12 @@
     <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\objects\shotgun_item.c">
+      <Filter>Source Files\client\objects\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -533,6 +539,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\shotgun_item.h">
+      <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

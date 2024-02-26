@@ -18,5 +18,6 @@
     <GameObject Name="Wheeler" X="803.584184123037" Y="47.14347029321042" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="736.744598765434" Y="81.45756172839519" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="212" Y="130" GameObjectTemplateName="Wheeler" />
+    <GameObject Name="ShotgunItem" X="129.34897976680386" Y="144.45224622770965" GameObjectTemplateName="ShotgunItem" />
   </EditorObjects>
 </Scene>
