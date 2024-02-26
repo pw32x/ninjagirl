@@ -22,7 +22,9 @@ Todo
 		
 			spread gun
 		
-	weapon pick up
+	DONE weapon pick up
+	
+	weapon pick up delivery robot
 		
 	health
 	

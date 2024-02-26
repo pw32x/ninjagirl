@@ -358,6 +358,15 @@
     <ClCompile Include="..\source\client\managers\weapon_manager.c">
       <Filter>Source Files\client\managers</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\deliveryrobot.c">
+      <Filter>Source Files\client\objects\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -551,6 +560,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\managers\weapon_manager.h">
       <Filter>Source Files\client\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\deliveryrobot.h">
+      <Filter>Source Files\client\objects\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

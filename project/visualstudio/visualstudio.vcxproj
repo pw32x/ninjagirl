@@ -154,6 +154,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
     <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c" />
+    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3_test.c" />
     <ClCompile Include="..\source\client\exported\maps\field.c" />
@@ -165,6 +166,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
@@ -189,6 +191,7 @@
     <ClCompile Include="..\source\client\objects\color_tweaker.c" />
     <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
     <ClCompile Include="..\source\client\objects\basic_effect.c" />
+    <ClCompile Include="..\source\client\objects\deliveryrobot.c" />
     <ClCompile Include="..\source\client\objects\enemy.c" />
     <ClCompile Include="..\source\client\objects\kunai.c" />
     <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c" />
@@ -224,6 +227,7 @@
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h" />
+    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
     <ClInclude Include="..\source\client\exported\maps\background3_test.h" />
     <ClInclude Include="..\source\client\exported\maps\field.h" />
@@ -234,6 +238,7 @@
     <ClInclude Include="..\source\client\generated\bank2.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h" />
     <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\client\generated\tilesets\background3_tileset.h" />
@@ -246,6 +251,7 @@
     <ClInclude Include="..\source\client\objects\color_tweaker.h" />
     <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
     <ClInclude Include="..\source\client\objects\basic_effect.h" />
+    <ClInclude Include="..\source\client\objects\deliveryrobot.h" />
     <ClInclude Include="..\source\client\objects\enemy.h" />
     <ClInclude Include="..\source\client\objects\kunai.h" />
     <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h" />

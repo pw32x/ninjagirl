@@ -47,7 +47,7 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	}
 	else
 	{
-		object->speedx = 12;
+		object->speedx = SPEEDX;
 	}	
 
 	return (GameObject*)object;

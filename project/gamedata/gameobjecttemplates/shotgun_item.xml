@@ -15,5 +15,8 @@
 		<GameObjectType value="Item" />
 		<ResourceInfo value="shotgun_itemResourceInfo" />		
 		<InitFunction value="ShotgunItem_Init"/>
+		<CustomData>
+			<Data value="void (*UpdatePhysics)(struct shotgunitem_object* gameObject)"/>
+		</CustomData>
 	</GameProperties>
 </GameObjectTemplate>

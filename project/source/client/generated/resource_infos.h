@@ -22,6 +22,7 @@ extern const ResourceInfo walker_bigResourceInfo;
 extern const ResourceInfo walker_smallResourceInfo;
 extern const ResourceInfo wheelerResourceInfo;
 extern const ResourceInfo bulletResourceInfo;
+extern const ResourceInfo deliveryrobotResourceInfo;
 extern const ResourceInfo shotgunResourceInfo;
 extern const ResourceInfo shotgun_itemResourceInfo;
 extern const ResourceInfo waterfallResourceInfo;

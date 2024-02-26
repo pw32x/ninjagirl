@@ -101,6 +101,8 @@ void ObjectManager_Init(void)
 		ObjectManager_DestroyObject(objectSlotRunner);
 		objectSlotRunner++;
 	}
+
+	ObjectManager_DestroyObject(&ObjectManager_Item);
 }
 
 //void ObjectManagerUtils_updatePlayerScreenRect(void)

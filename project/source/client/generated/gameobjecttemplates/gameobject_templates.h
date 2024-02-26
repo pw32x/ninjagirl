@@ -6,6 +6,7 @@
 extern const GameObjectTemplate bullet_template;
 extern const GameObjectTemplate colortweaker_template;
 extern const GameObjectTemplate commandrunner_rightscroll_template;
+extern const GameObjectTemplate deliveryrobot_template;
 extern const GameObjectTemplate explosion_template;
 extern const GameObjectTemplate gun_girl_template;
 extern const GameObjectTemplate impact_template;

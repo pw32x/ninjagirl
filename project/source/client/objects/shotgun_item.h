@@ -3,7 +3,8 @@
 
 #include "engine/object_types.h"
 #include "engine/createinfo_types.h"
+#include "client/generated/gameobjecttemplates/shotgun_item_template.h"
 
-GameObject* ShotgunItem_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* ShotgunItem_Init(ShotgunItemObjectType* object, const CreateInfo* createInfo);
 
 #endif

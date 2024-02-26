@@ -14,17 +14,19 @@
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo3 = { &commandrunner_rightscroll_template, 0, 3, NULL };
 const CreateInfo scene003_createInfo6 = { &gun_girl_template, 63, 101 };
-const CreateInfo scene003_createInfo7 = { &shotgun_item_template, 133, 152 };
-const CreateInfo scene003_createInfo8 = { &wheeler_template, 224, 146 };
-const CreateInfo scene003_createInfo9 = { &wheeler_template, 295, 145 };
-const CreateInfo scene003_createInfo10 = { &wheeler_template, 355, 144 };
-const CreateInfo scene003_createInfo11 = { &wheeler_template, 383, 96 };
-const CreateInfo scene003_createInfo12 = { &wheeler_template, 467, 97 };
-const CreateInfo scene003_createInfo13 = { &wheeler_template, 480, 145 };
+const CreateInfo scene003_createInfo7 = { &wheeler_template, 260, 145 };
+const CreateInfo scene003_createInfo8 = { &wheeler_template, 321, 145 };
+const CreateInfo scene003_createInfo9 = { &wheeler_template, 383, 96 };
+const CreateInfo scene003_createInfo10 = { &wheeler_template, 412, 143 };
+const CreateInfo scene003_createInfo11 = { &wheeler_template, 467, 97 };
+const CreateInfo scene003_createInfo12 = { &wheeler_template, 498, 142 };
+const CreateInfo scene003_createInfo13 = { &deliveryrobot_template, 541, 93 };
 const CreateInfo scene003_createInfo14 = { &wheeler_template, 601, 145 };
-const CreateInfo scene003_createInfo15 = { &wheeler_template, 717, 144 };
-const CreateInfo scene003_createInfo16 = { &wheeler_template, 748, 97 };
-const CreateInfo scene003_createInfo17 = { &wheeler_template, 815, 63 };
+const CreateInfo scene003_createInfo15 = { &wheeler_template, 643, 72 };
+const CreateInfo scene003_createInfo16 = { &wheeler_template, 717, 144 };
+const CreateInfo scene003_createInfo17 = { &wheeler_template, 748, 97 };
+const CreateInfo scene003_createInfo18 = { &wheeler_template, 815, 63 };
+const CreateInfo scene003_createInfo19 = { &wheeler_template, 943, 146 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -42,8 +44,9 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &bulletResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &shotgunResourceInfo },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun_itemResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &wheelerResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &deliveryrobotResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun_itemResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &level_001_mapResourceInfo},
     { 0, (CommandFunction)SetBackgroundVerticalScroll, 4 },
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
@@ -52,17 +55,19 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &background3_mapResourceInfo },
     { 66, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
-    { 141, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
-    { 228, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
-    { 299, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
-    { 359, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo10 },
-    { 387, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo11 },
-    { 471, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo12 },
-    { 484, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo13 },
+    { 264, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
+    { 325, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
+    { 387, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
+    { 416, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo10 },
+    { 471, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo11 },
+    { 502, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo12 },
+    { 553, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo13 },
     { 605, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo14 },
-    { 721, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo15 },
-    { 752, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo16 },
-    { 819, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo17 },
+    { 647, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo15 },
+    { 721, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo16 },
+    { 752, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo17 },
+    { 819, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo18 },
+    { 947, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo19 },
     { 0, (CommandFunction)NULL, NULL}
 };
 
