@@ -11,6 +11,7 @@
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/basic_effect.h"
+#include "client/managers/weapon_manager.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -68,4 +69,6 @@ BOOL ShotgunItem_Draw(GameObject* object)
 void ShotgunItem_HandleCollision(GameObject* gameObject, GameObject* other)
 {
 	ObjectManager_DestroyObject(gameObject);
+
+	WeaponManager_SwitchWeapon(WEAPON_SHOTGUN);
 }

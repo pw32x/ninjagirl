@@ -16,6 +16,8 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
+#include "client/managers/weapon_manager.h"
+
 //bullet
 #include "client/objects/bullet.h"
 #include "client/exported/animations/streamed/gun_girl.h"
@@ -166,42 +168,9 @@ void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
-	/*
-	CreateInfo createInfo = 
-	{ 
-		&bullet_template, 
-		player->x + (ObjectManager_player.flipped ? -16 : 16), 
-		player->y + offset
-	};
-
-	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-
-	bullet->speedx = ObjectManager_player.flipped ? -4 : 4;
-	bullet->speedy = 0;
-	*/
-
-	player->speedx = 0;
-
-	CreateInfo createInfo = 
-	{ 
-		&shotgun_template, 
-		player->x + (ObjectManager_player.flipped ? -16 : 16), 
-		player->y + offset
-	};
-
-	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-
-	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
-	shotgun->speedy = 0;
-
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
-	shotgun->speedy = -1;
-
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-	shotgun->speedx = player->speedx + ObjectManager_player.flipped ? -3 : 3;
-	shotgun->speedy = 1;
-
+	WeaponManager_FireWeapon(player->x + (ObjectManager_player.flipped ? -16 : 16), 
+							 player->y + offset,
+							 ObjectManager_player.flipped);
 }
 
 void Player_UpdateX(void)

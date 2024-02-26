@@ -89,6 +89,7 @@
 
 	<SourceSet>
 		<Source path = "source/client"/>
+		<Source path = "source/client/managers"/>
 		<Source path = "source/client/exported"/>
 		<Source path = "source/client/generated"/>
 		<Source path = "source/client/objects"/>

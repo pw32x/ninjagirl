@@ -62,6 +62,9 @@
     <Filter Include="Source Files\client\objects\weapons">
       <UniqueIdentifier>{784880d8-2a18-418e-9f71-0bec3c57fb48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\managers">
+      <UniqueIdentifier>{e1d89867-73dd-4024-89a2-d178d408f311}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\scene_manager.c">
@@ -352,6 +355,9 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\managers\weapon_manager.c">
+      <Filter>Source Files\client\managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -542,6 +548,9 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\shotgun_item.h">
       <Filter>Source Files\client\objects\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\managers\weapon_manager.h">
+      <Filter>Source Files\client\managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

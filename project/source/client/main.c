@@ -9,6 +9,8 @@
 #include "engine/resource_manager.h"
 #include "engine/joystick_manager.h"
 
+#include "client/managers/weapon_manager.h"
+
 #include "objects/on_resource_loaded_callback.h"
 
 // levels
@@ -46,8 +48,9 @@ void main(void)
 	/* Clear VRAM */
 	SMS_VRAMmemsetW(0, 0x0000, 16384);
 
-	SMS_autoSetUpTextRenderer();
+	WeaponManager_InitGame();
 
+	SMS_autoSetUpTextRenderer();
 
 	SceneManager_Init(&SCENE_TO_RUN);
 		
