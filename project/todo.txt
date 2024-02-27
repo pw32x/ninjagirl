@@ -1,46 +1,32 @@
 Todo
 
-	DONE template manager exports per-object struct types
+	
+	NAH simplify bullet collisions
+		shotgun bullets can't be a point. has to be a rect.
+		
+	
+	DONE shoot up standing
+	DONE shoot up running
+	shoot up jumping/falling
+	
+	cut the point up sprites so to reuse the leg sprites
+	
+	shoot down when jumping/falling
 
-	FAIL redo bottom half of spider animation to be reusable when moving in both direction
-		REASON
-			could'nt find a good animation
-	
-	DONE expand and prep wheeler robot for animation sequencer
-	
-	DONE add exploding head and wheel to wheeler
-	
-	DONE make Wheeler follow gravity
-	
-	DONE make Wheeler turn around when hitting wall/edge of the screen
-		RESULT
-			unsure if I want that.
-	
-	DONE power up
-	
-		second weapon
-		
-			spread gun
-		
-	DONE weapon pick up
-	
-	weapon pick up delivery robot
-		
-	health
-	
-	health pick up
-	
-	health box
-	
-	enemy-player collisions
-	
-	simplify bullet collisions
-	
-	shoot up
-	
-	shoot down
-	
 	flicker strategy
+
+	sometimes bullets hit phantom enemies
+
+	motion paths
+	
+	object states
+	
+		spawn object in a certain state
+		expose available states
+		how to set states in SceneMaster?
+		CreateInfoWithState ?
+		Declare available states in template
+
 
 	make bullets move relative to the screen, not the world
 		because when the player runs, the bullets (like the shotgun) don't appear to go 
@@ -53,6 +39,27 @@ Todo
 	wheelers coming from the left side of the screen
 		add feature to SceneMaster to place object when spawning
 	
+	game/level handling
+	
+		lives
+		
+		lives pick up
+		
+		lives hud indicator
+		
+		lose life
+		
+		death pits
+		
+		respawn
+			don't respawn on top of a hole
+			
+		spawn in animation
+		
+		enemy-player collisions	
+	
+		level has intro action
+			opening doors
 
 	PAUSE animation sequencer
 		explosion sequences

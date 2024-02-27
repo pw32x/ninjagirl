@@ -1,6 +1,32 @@
 	
 Completed
 
+	DONE template manager exports per-object struct types
+
+	FAIL redo bottom half of spider animation to be reusable when moving in both direction
+		REASON
+			could'nt find a good animation
+	
+	DONE expand and prep wheeler robot for animation sequencer
+	
+	DONE add exploding head and wheel to wheeler
+	
+	DONE make Wheeler follow gravity
+	
+	DONE make Wheeler turn around when hitting wall/edge of the screen
+		RESULT
+			unsure if I want that.
+	
+	DONE power up
+	
+		second weapon
+		
+			spread gun
+		
+	DONE weapon pick up
+	
+	DONE weapon pick up delivery robot
+
 	DONE make bullets faster
 
 	DONE finish updating the player colors

@@ -41,6 +41,7 @@ u8 playerState;
 u16 jumpPressCounter;
 u8 jumpWhenLanding;
 u8 canStillJumpFrames;
+u8 pointingUp;
 
 #define NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP	4
 #define NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING	7
@@ -88,12 +89,21 @@ void setPlayerAnimation(void)
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
+		if (!pointingUp)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
+		else
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_UP_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
+		if (!pointingUp)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
+		else
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_UP_FRAME_INDEX);
+
 		break;
 	case PLAYER_STATE_FALL:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
@@ -168,9 +178,17 @@ void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
-	WeaponManager_FireWeapon(player->x + (ObjectManager_player.flipped ? -16 : 16), 
-							 player->y + offset,
-							 ObjectManager_player.flipped);
+	if (!pointingUp)
+	{
+		WeaponManager_FireWeapon(player->x + (ObjectManager_player.flipped ? -13 : 13), 
+								 player->y + offset,
+								 ObjectManager_player.flipped);
+	}
+	else
+	{
+		WeaponManager_FireWeaponUp(player->x + (ObjectManager_player.flipped ? -6 : 6), 
+								 player->y - 22);
+	}
 }
 
 void Player_UpdateX(void)
@@ -283,6 +301,7 @@ void Player_UpdateStand(GameObject* player)
 		return;
 	}
 
+	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
 
 
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
@@ -328,6 +347,8 @@ void Player_UpdateRun(GameObject* player)
 		setPlayerState(PLAYER_STATE_STAND);
 		return;
 	}
+
+	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
 
 	Player_UpdateX();
 
@@ -536,6 +557,7 @@ void Player_Update(GameObject* player)
 {
 
 	u8 oldFlip = ObjectManager_player.flipped;
+	u8 oldPointingUp = pointingUp;
 
 	player_SubUpdate(player);
 
@@ -548,7 +570,8 @@ void Player_Update(GameObject* player)
 	// update animation
 	SMS_mapROMBank(player->resourceInfo->bankNumber);
 
-	if (ObjectManager_player.flipped != oldFlip)
+	if (ObjectManager_player.flipped != oldFlip ||
+		oldPointingUp != pointingUp)
 		setPlayerAnimation();
 
 

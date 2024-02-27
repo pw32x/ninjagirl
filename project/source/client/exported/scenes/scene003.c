@@ -13,7 +13,7 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo3 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo scene003_createInfo6 = { &gun_girl_template, 63, 101 };
+const CreateInfo scene003_createInfo6 = { &gun_girl_template, 63, 117 };
 const CreateInfo scene003_createInfo7 = { &wheeler_template, 260, 145 };
 const CreateInfo scene003_createInfo8 = { &wheeler_template, 321, 145 };
 const CreateInfo scene003_createInfo9 = { &wheeler_template, 383, 96 };
