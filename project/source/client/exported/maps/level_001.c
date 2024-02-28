@@ -26,7 +26,7 @@ const unsigned short const level_001_metatile_map[1120] =
 extern ResourceInfo field_tilesetResourceInfo;
 
 
-const ResourceInfo* level_001_tilesetResourceInfos[1] = 
+const ResourceInfo* level_001_tilesetResourceInfos[2] = 
 {
     &field_tilesetResourceInfo, // Tileset
 };

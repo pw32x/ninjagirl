@@ -7,9 +7,11 @@ Todo
 	
 	DONE shoot up standing
 	DONE shoot up running
-	shoot up jumping/falling
+	DONE shoot up jumping/falling
 	
-	cut the point up sprites so to reuse the leg sprites
+	cut the pointing up sprites so to reuse the leg sprites
+	
+	SpriteMaster, export the resulting bitmap for inspection
 	
 	shoot down when jumping/falling
 

@@ -276,6 +276,9 @@ void ObjectManager_Update(void)
 	}
 
 
+	ObjectManager_player.screenx = ObjectManager_player.x - ScrollManager_horizontalScroll;
+	ObjectManager_player.screeny = ObjectManager_player.y;
+
 	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 

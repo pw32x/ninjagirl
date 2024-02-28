@@ -9,10 +9,9 @@
 
 
 typedef void (*WeaponManager_FireFunction)(s16 x, s16 y, u8 flipped);
-typedef void (*WeaponManager_FireUpFunction)(s16 x, s16 y);
 
 void WeaponManager_SwitchWeapon(u8 weaponType);
 extern WeaponManager_FireFunction WeaponManager_FireWeapon;
-extern WeaponManager_FireUpFunction WeaponManager_FireWeaponUp;
+extern WeaponManager_FireFunction WeaponManager_FireWeaponVertical;
 
 #endif

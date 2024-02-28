@@ -42,6 +42,7 @@ u16 jumpPressCounter;
 u8 jumpWhenLanding;
 u8 canStillJumpFrames;
 u8 pointingUp;
+u8 pointingDown;
 
 #define NUM_FRAMES_AFTER_LEAVING_LEDGE_TO_JUMP	4
 #define NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING	7
@@ -106,12 +107,27 @@ void setPlayerAnimation(void)
 
 		break;
 	case PLAYER_STATE_FALL:
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
+		if (pointingUp)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_UP_FRAME_INDEX);
+		else if (pointingDown)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+		else
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
-		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
+		if (pointingUp)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_UP_FRAME_INDEX);
+		else if (pointingDown)
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+		else
+			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
+													flipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
+
 		break;
 	case PLAYER_STATE_DUCK:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
@@ -178,16 +194,23 @@ void Player_FireWeapon(GameObject* player)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
-	if (!pointingUp)
+	if (pointingUp)
+	{
+		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -6 : 6), 
+										 player->y - 22,
+										 FALSE);
+	}
+	else if (pointingDown)
+	{
+		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -6 : 6), 
+										 player->y + 14,
+										 TRUE);
+	}
+	else
 	{
 		WeaponManager_FireWeapon(player->x + (ObjectManager_player.flipped ? -13 : 13), 
 								 player->y + offset,
 								 ObjectManager_player.flipped);
-	}
-	else
-	{
-		WeaponManager_FireWeaponUp(player->x + (ObjectManager_player.flipped ? -6 : 6), 
-								 player->y - 22);
 	}
 }
 
@@ -302,6 +325,7 @@ void Player_UpdateStand(GameObject* player)
 	}
 
 	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
+	pointingDown = FALSE;
 
 
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
@@ -349,6 +373,7 @@ void Player_UpdateRun(GameObject* player)
 	}
 
 	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
+	pointingDown = FALSE;
 
 	Player_UpdateX();
 
@@ -403,6 +428,9 @@ void Player_UpdateFall(GameObject* player)
 	{
 		playerSpeedX = 0;
 	}
+
+	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
+	pointingDown = (JoystickManager_buttonState & PORT_A_KEY_DOWN);
 
 	Player_UpdateX();
 
@@ -463,6 +491,9 @@ void Player_UpdateJump(GameObject* player)
 		playerSpeedX = 0;
 	}
 
+	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
+	pointingDown = (JoystickManager_buttonState & PORT_A_KEY_DOWN);
+
 	Player_UpdateX();
 
 	playerSpeedY += (JoystickManager_buttonState & PORT_A_KEY_2) ? PLAYER_GRAVITY : PLAYER_GRAVITY_HEAVY;
@@ -520,6 +551,9 @@ void Player_UpdateDuck(GameObject* player)
 		ObjectManager_player.flipped = FALSE;
 	}
 
+	pointingUp = FALSE;
+	pointingDown = FALSE;
+
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
@@ -558,6 +592,7 @@ void Player_Update(GameObject* player)
 
 	u8 oldFlip = ObjectManager_player.flipped;
 	u8 oldPointingUp = pointingUp;
+	u8 oldPointingDown = pointingDown;
 
 	player_SubUpdate(player);
 
@@ -571,7 +606,8 @@ void Player_Update(GameObject* player)
 	SMS_mapROMBank(player->resourceInfo->bankNumber);
 
 	if (ObjectManager_player.flipped != oldFlip ||
-		oldPointingUp != pointingUp)
+		oldPointingUp != pointingUp ||
+		oldPointingDown != pointingDown)
 		setPlayerAnimation();
 
 
@@ -580,10 +616,6 @@ void Player_Update(GameObject* player)
 	{
 		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
 	}
-
-	player->screenx = player->x - ScrollManager_horizontalScroll;
-	player->screeny = player->y;
-
 }
 
 BOOL Player_Draw(GameObject* object)

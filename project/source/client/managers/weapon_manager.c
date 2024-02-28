@@ -11,16 +11,16 @@
 u8 WeaponManager_currentWeaponType;
 
 WeaponManager_FireFunction WeaponManager_FireWeapon;
-WeaponManager_FireUpFunction WeaponManager_FireWeaponUp;
+WeaponManager_FireFunction WeaponManager_FireWeaponVertical;
 
 WeaponManager_FireFunction weaponFunctions[WEAPON_NUM_WEAPONS];
-WeaponManager_FireUpFunction weaponUpFunctions[WEAPON_NUM_WEAPONS];
+WeaponManager_FireFunction weaponVerticalFunctions[WEAPON_NUM_WEAPONS];
 
 void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped);
-void WeaponManager_FireDefaultUp(s16 x, s16 y);
+void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped);
 
 void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped);
-void WeaponManager_FireShotgunUp(s16 x, s16 y);
+void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped);
 
 
 void WeaponManager_InitGame(void)
@@ -30,8 +30,8 @@ void WeaponManager_InitGame(void)
 	weaponFunctions[WEAPON_DEFAULT] = WeaponManager_FireDefault;
 	weaponFunctions[WEAPON_SHOTGUN] = WeaponManager_FireShotgun;
 
-	weaponUpFunctions[WEAPON_DEFAULT] = WeaponManager_FireDefaultUp;
-	weaponUpFunctions[WEAPON_SHOTGUN] = WeaponManager_FireShotgunUp;
+	weaponVerticalFunctions[WEAPON_DEFAULT] = WeaponManager_FireDefaultVertical;
+	weaponVerticalFunctions[WEAPON_SHOTGUN] = WeaponManager_FireShotgunVertical;
 
 	WeaponManager_SwitchWeapon(WEAPON_DEFAULT);
 }
@@ -46,7 +46,7 @@ void WeaponManager_SwitchWeapon(u8 weaponType)
 	//SMS_debugPrintf("Switch Weapon %d\n", weaponType);
 	WeaponManager_currentWeaponType = weaponType;
 	WeaponManager_FireWeapon = weaponFunctions[weaponType];
-	WeaponManager_FireWeaponUp = weaponUpFunctions[weaponType];
+	WeaponManager_FireWeaponVertical = weaponVerticalFunctions[weaponType];
 }
 
 void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
@@ -67,7 +67,7 @@ void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
 }
 
 
-void WeaponManager_FireDefaultUp(s16 x, s16 y)
+void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Default");
 	CreateInfo createInfo = 
@@ -80,7 +80,7 @@ void WeaponManager_FireDefaultUp(s16 x, s16 y)
 	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 	bullet->speedx = 0;
-	bullet->speedy = -4;
+	bullet->speedy = flipped ? 4 : -4;
 
 }
 
@@ -109,7 +109,7 @@ void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 }
 
 
-void WeaponManager_FireShotgunUp(s16 x, s16 y)
+void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
 {
 	//SMS_debugPrintf("Shotgun");
 	CreateInfo createInfo = 
@@ -122,14 +122,14 @@ void WeaponManager_FireShotgunUp(s16 x, s16 y)
 	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 	shotgun->speedx = 0;
-	shotgun->speedy = -3;
+	shotgun->speedy = flipped ? 3 : -3;
 
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	shotgun->speedx = -1;
-	shotgun->speedy = -3;
+	shotgun->speedy = flipped ? 3 : -3;
 
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	shotgun->speedx = 1;
-	shotgun->speedy = -3;
+	shotgun->speedy = flipped ? 3 : -3;
 }
 
