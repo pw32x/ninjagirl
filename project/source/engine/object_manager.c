@@ -124,6 +124,8 @@ void ObjectManager_Init(void)
 
 u8 projectileFlicker = 0;
 
+u8 drawOrderToggle = FALSE;
+
 void ObjectManager_Update(void)
 {
 	ObjectManager_numVdpDrawItems = 0;
@@ -243,9 +245,6 @@ void ObjectManager_Update(void)
 	ObjectManager_enemySlots[6].Update(&ObjectManager_enemySlots[6]);
 	ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
 
-
-	
-
 	ObjectManager_effectSlots[0].Update(&ObjectManager_effectSlots[0]);
 	ObjectManager_effectSlots[1].Update(&ObjectManager_effectSlots[1]);
 	ObjectManager_effectSlots[2].Update(&ObjectManager_effectSlots[2]);
@@ -259,8 +258,6 @@ void ObjectManager_Update(void)
 
 	if (ObjectManager_Item.alive)
 	{
-		
-
 		s16 left = ObjectManager_player.screenx + ObjectManager_player.rectLeft;
 		s16 top = ObjectManager_player.screeny + ObjectManager_player.rectTop;
 		s16 right = ObjectManager_player.screenx + ObjectManager_player.rectRight;
@@ -313,14 +310,46 @@ void ObjectManager_Update(void)
 	}
 	*/
 
-	ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
-	ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
-	ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
-	ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
-	ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
-	ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
-	ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
-	ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
+	if (drawOrderToggle)
+	{
+		ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
+		ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
+		ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
+		ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
+		ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
+		ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
+		ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
+		ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
+
+		ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
+		ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
+		ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
+		ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
+		ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
+		ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
+		ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
+		ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
+	}
+	else
+	{
+		ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
+		ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
+		ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
+		ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
+		ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
+		ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
+		ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
+		ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
+
+		ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
+		ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
+		ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
+		ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
+		ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
+		ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
+		ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
+		ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
+	}
 
 	ObjectManager_Item.Draw(&ObjectManager_Item);
 
@@ -351,14 +380,7 @@ void ObjectManager_Update(void)
 	}
 	*/
 
-	ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
-	ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
-	ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
-	ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
-	ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
-	ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
-	ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
-	ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
+	drawOrderToggle = !drawOrderToggle;
 }
 
 GameObject* ObjectManager_CreateObject(u8 objectType)

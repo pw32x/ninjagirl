@@ -11,7 +11,7 @@ Todo
 
 
 
-	flicker strategy
+	DONE flicker strategy
 
 	sometimes bullets hit phantom enemies
 
@@ -103,6 +103,12 @@ Todo
 
 
 	performance pass...
+	
+		collisions are especially slow
+		
+		max number of active sprites?
+			the spawner checks the limit?
+				but only for enemies, not triggers, etc.
 
 	tiled enemies use second palette?
 		or backgrounds use their own palette?
