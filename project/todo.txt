@@ -1,25 +1,24 @@
 Todo
 
+	DONE when ducking on solid tiles and jumping, player does weird action
 	
-	NAH simplify bullet collisions
-		shotgun bullets can't be a point. has to be a rect.
-		
+	DONE add a feature to cut up a frame with Sprite Master so that
+	the pointing up sprites can reuse the normal leg sprites 
 	
-	DONE shoot up standing
-	DONE shoot up running
-	DONE shoot up jumping/falling
-	
-	cut the pointing up sprites so to reuse the leg sprites
-	
-	SpriteMaster, export the resulting bitmap for inspection
-	
-	shoot down when jumping/falling
+	NAH SpriteMaster, export the resulting bitmap for inspection
+
+		 a strip of sprites like a GG time bar, but only showing the unique sprites
+
+
 
 	flicker strategy
 
 	sometimes bullets hit phantom enemies
 
-	motion paths
+	motion path for shotgun
+	
+
+	motion path for delivery robot
 	
 	object states
 	
@@ -33,13 +32,20 @@ Todo
 	make bullets move relative to the screen, not the world
 		because when the player runs, the bullets (like the shotgun) don't appear to go 
 		as far.
+		
+		just add the player speed to the projectile
 
-	have bank number as part of a resource
+	NOPE have bank number as part of a resource
+	
+	Work with resourcesinfos and not resources so to better handle banking
+	
 	have a function that uses a resource switch to that bank before doing anything
 	in the bank switch function, cache the bank and check it before doing the switch
 
 	wheelers coming from the left side of the screen
 		add feature to SceneMaster to place object when spawning
+	
+	enemies from up top to shoot at. monkeys? bomb lobbing monkeys?
 	
 	game/level handling
 	

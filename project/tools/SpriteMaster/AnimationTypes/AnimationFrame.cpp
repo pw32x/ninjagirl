@@ -49,7 +49,7 @@ void GGAnimationFrame::SliceImageIntoStrips(BYTE* bitmap,
 											SpriteStripStore& spriteStripStore,
 											std::vector<GGAnimationFrame::Sprite>& sprites)
 {
-	int topMost;
+	int topMost = m_sliceStartTop;
 	int bottomMost;
 
 	SpriteUtils::FindTopAndBottomExtents(bitmap, 
@@ -84,7 +84,7 @@ void GGAnimationFrame::SliceImageIntoStrips(BYTE* bitmap,
 		}
 
 		// get the left and right most positions for the row.
-		int leftMost;
+		int leftMost = m_sliceStartLeft;
 		int rightMost;
 
 		SpriteUtils::FindLeftRightExtentsForSlice(bitmap, 

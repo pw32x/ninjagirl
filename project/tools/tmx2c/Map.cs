@@ -685,7 +685,7 @@ namespace tmx2c
 
                             if (nameAttribute != null)
                             {
-                                if (nameAttribute.Value.ToLower().Contains("terrain"))
+                                if (nameAttribute.Value.ToLower().Contains("terrain") || nameAttribute.Value.ToLower().Contains("collision"))
                                 {
                                     if (mTerrainLayerNode == null)
                                         mTerrainLayerNode = dataNode;

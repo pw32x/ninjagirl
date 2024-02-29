@@ -78,6 +78,18 @@ void AnimationFrameBase::GetGGInfo(const GraphicsGaleObject& ggo,
 			mNextFrame = stoi(token);
 			tokens.pop();
 		}
+		else if (token == "SLICE_START_LEFT")
+		{
+			token = tokens.front();
+			m_sliceStartLeft = stoi(token);
+			tokens.pop();
+		}
+		else if (token == "SLICE_START_TOP")
+		{
+			token = tokens.front();
+			m_sliceStartTop = stoi(token);
+			tokens.pop();
+		}
 		else
 		{
 			animationProperties.animationFrameNames.insert({mFrameNumber, token});

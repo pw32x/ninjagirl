@@ -1,6 +1,17 @@
 	
 Completed
 
+	
+	NAH simplify bullet collisions
+		shotgun bullets can't be a point. has to be a rect.
+		
+	
+	DONE shoot up standing
+	DONE shoot up running
+	DONE shoot up jumping/falling
+	DONE shoot down when jumping/falling
+
+
 	DONE template manager exports per-object struct types
 
 	FAIL redo bottom half of spider animation to be reusable when moving in both direction

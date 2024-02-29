@@ -564,8 +564,8 @@ void Player_UpdateDuck(GameObject* player)
 	u16 bottomTileTypeRight = GET_TERRAIN(blockRight, blockY);
 
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 && 
-		(bottomTileTypeLeft == TERRAIN_TOPSOLID ||
-		 bottomTileTypeRight == TERRAIN_TOPSOLID)) // this might make the player drop down through solid tiles. design levels accordingly?
+		(bottomTileTypeLeft == TERRAIN_TOPSOLID &&
+		 bottomTileTypeRight == TERRAIN_TOPSOLID)) 
 	{
 		playerY++;
 		playerSpeedY = 0;

@@ -22,6 +22,25 @@ void SpriteUtils::FindTopAndBottomExtents(BYTE* byteData,
 		return;
 	}
 
+	if (topMost != -1)
+	{
+		for (int loopy = height; loopy >= 0; loopy--)
+		{
+			for (int loopx = 0; loopx < width; loopx++)
+			{
+				BYTE byte = byteData[loopx + (loopy * width)];
+
+				if (byte > 0)
+				{
+					bottomMost = loopy;
+					return;
+				}
+			}
+		}
+
+		return;
+	}
+
     // find top and bottom extents of image within bitmap
     topMost = height;
     bottomMost = 0;
@@ -63,30 +82,48 @@ void SpriteUtils::FindLeftRightExtentsForSlice(BYTE* byteData,
 		// if slicing on the grid, then the width is the full width of the image.
 		leftMost = 0;
 		rightMost = width;
+		return;
 	}
-	else
-	{
-		leftMost = width;
-		rightMost = 0;
 
-		// find the smallest width taken up by the pixel data and so to later cut that
-		// into 32x32.
+	if (leftMost != -1)
+	{
 		for (int loopy = sliceTop; loopy < sliceBottom; loopy++)
 		{
-			for (int loopx = 0; loopx < width; loopx++)
+			for (int loopx = width -1; loopx >= 0; loopx--)
 			{
 				BYTE byte = byteData[loopx + (loopy * width)];
 
 				if (byte > 0)
 				{
-					if (loopx < leftMost) leftMost = loopx;
-					if (loopx > rightMost) rightMost = loopx;
+					rightMost = loopx;
+					return;
 				}
 			}
 		}
 
-		rightMost++;
+		return;
 	}
+	
+	leftMost = width;
+	rightMost = 0;
+
+	// find the smallest width taken up by the pixel data and so to later cut that
+	// into 32x32.
+	for (int loopy = sliceTop; loopy < sliceBottom; loopy++)
+	{
+		for (int loopx = 0; loopx < width; loopx++)
+		{
+			BYTE byte = byteData[loopx + (loopy * width)];
+
+			if (byte > 0)
+			{
+				if (loopx < leftMost) leftMost = loopx;
+				if (loopx > rightMost) rightMost = loopx;
+			}
+		}
+	}
+
+	rightMost++;
 }
 
 bool SpriteUtils::CopyTileFromByteData(BYTE* byteData, 

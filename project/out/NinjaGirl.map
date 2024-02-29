@@ -45,10 +45,10 @@ Area                                    Addr        Size        Decimal Bytes (A
      00000200  s__CODE                         
      000006E5  l__BANK5                        
      0000159A  l__BANK2                        
+     0000174C  l__BANK7                        
      000017CA  l__DATA                         
      0000187E  l__BANK4                        
      000019E2  l__BANK6                        
-     0000220C  l__BANK7                        
      00003CB8  l__BANK3                        
      00006D8E  l__CODE                         
      00006F8E  s__HOME                         
@@ -1083,102 +1083,102 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK7                              00008000    0000220C =        8716. bytes (REL,CON)
+_BANK7                              00008000    0000174C =        5964. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00008000  _gun_girlTileData                  gun_girl
-     00009EC0  _gun_girlFrame0SpriteStrips        gun_girl
-     00009ECC  _gun_girlFrame1SpriteStrips        gun_girl
-     00009ED8  _gun_girlFrame2SpriteStrips        gun_girl
-     00009EE4  _gun_girlFrame3SpriteStrips        gun_girl
-     00009EF0  _gun_girlFrame4SpriteStrips        gun_girl
-     00009EFC  _gun_girlFrame5SpriteStrips        gun_girl
-     00009F08  _gun_girlFrame6SpriteStrips        gun_girl
-     00009F14  _gun_girlFrame7SpriteStrips        gun_girl
-     00009F20  _gun_girlFrame8SpriteStrips        gun_girl
-     00009F2C  _gun_girlFrame9SpriteStrips        gun_girl
-     00009F38  _gun_girlFrame10SpriteStrips       gun_girl
-     00009F44  _gun_girlFrame11SpriteStrips       gun_girl
-     00009F50  _gun_girlFrame12SpriteStrips       gun_girl
-     00009F5C  _gun_girlFrame13SpriteStrips       gun_girl
-     00009F6C  _gun_girlFrame14SpriteStrips       gun_girl
-     00009F78  _gun_girlFrame15SpriteStrips       gun_girl
-     00009F88  _gun_girlFrame16SpriteStrips       gun_girl
-     00009F94  _gun_girlFrame17SpriteStrips       gun_girl
-     00009FA0  _gun_girlFrame18SpriteStrips       gun_girl
-     00009FAC  _gun_girlFrame19SpriteStrips       gun_girl
-     00009FB8  _gun_girlFrame20SpriteStrips       gun_girl
-     00009FC4  _gun_girlFrame21SpriteStrips       gun_girl
-     00009FD0  _gun_girlFrame22SpriteStrips       gun_girl
-     00009FE0  _gun_girlFrame23SpriteStrips       gun_girl
-     00009FF0  _gun_girlFrame24SpriteStrips       gun_girl
-     0000A000  _gun_girlFrame25SpriteStrips       gun_girl
-     0000A010  _gun_girlFrame26SpriteStrips       gun_girl
-     0000A020  _gun_girlFrame27SpriteStrips       gun_girl
-     0000A030  _gun_girlFrame28SpriteStrips       gun_girl
-     0000A040  _gun_girlFrame29SpriteStrips       gun_girl
-     0000A050  _gun_girlFrame30SpriteStrips       gun_girl
-     0000A060  _gun_girlFrame31SpriteStrips       gun_girl
-     0000A070  _gun_girlFrame32SpriteStrips       gun_girl
-     0000A080  _gun_girlFrame33SpriteStrips       gun_girl
-     0000A090  _gun_girlFrame34SpriteStrips       gun_girl
-     0000A0A0  _gun_girlFrame35SpriteStrips       gun_girl
-     0000A0B0  _gun_girlFrame36SpriteStrips       gun_girl
-     0000A0C0  _gun_girlFrame37SpriteStrips       gun_girl
-     0000A0D0  _gun_girlFrame38SpriteStrips       gun_girl
-     0000A0DC  _gun_girlFrame39SpriteStrips       gun_girl
-     0000A0E8  _gun_girlFrame0                    gun_girl
-     0000A0ED  _gun_girlFrame1                    gun_girl
-     0000A0F2  _gun_girlFrame2                    gun_girl
-     0000A0F7  _gun_girlFrame3                    gun_girl
-     0000A0FC  _gun_girlFrame4                    gun_girl
-     0000A101  _gun_girlFrame5                    gun_girl
-     0000A106  _gun_girlFrame6                    gun_girl
-     0000A10B  _gun_girlFrame7                    gun_girl
-     0000A110  _gun_girlFrame8                    gun_girl
+     00009400  _gun_girlFrame0SpriteStrips        gun_girl
+     0000940C  _gun_girlFrame1SpriteStrips        gun_girl
+     00009418  _gun_girlFrame2SpriteStrips        gun_girl
+     00009424  _gun_girlFrame3SpriteStrips        gun_girl
+     00009430  _gun_girlFrame4SpriteStrips        gun_girl
+     0000943C  _gun_girlFrame5SpriteStrips        gun_girl
+     00009448  _gun_girlFrame6SpriteStrips        gun_girl
+     00009454  _gun_girlFrame7SpriteStrips        gun_girl
+     00009460  _gun_girlFrame8SpriteStrips        gun_girl
+     0000946C  _gun_girlFrame9SpriteStrips        gun_girl
+     00009478  _gun_girlFrame10SpriteStrips       gun_girl
+     00009484  _gun_girlFrame11SpriteStrips       gun_girl
+     00009490  _gun_girlFrame12SpriteStrips       gun_girl
+     0000949C  _gun_girlFrame13SpriteStrips       gun_girl
+     000094AC  _gun_girlFrame14SpriteStrips       gun_girl
+     000094B8  _gun_girlFrame15SpriteStrips       gun_girl
+     000094C8  _gun_girlFrame16SpriteStrips       gun_girl
+     000094D4  _gun_girlFrame17SpriteStrips       gun_girl
+     000094E0  _gun_girlFrame18SpriteStrips       gun_girl
+     000094EC  _gun_girlFrame19SpriteStrips       gun_girl
+     000094F8  _gun_girlFrame20SpriteStrips       gun_girl
+     00009504  _gun_girlFrame21SpriteStrips       gun_girl
+     00009510  _gun_girlFrame22SpriteStrips       gun_girl
+     00009520  _gun_girlFrame23SpriteStrips       gun_girl
+     00009530  _gun_girlFrame24SpriteStrips       gun_girl
+     00009540  _gun_girlFrame25SpriteStrips       gun_girl
+     00009550  _gun_girlFrame26SpriteStrips       gun_girl
+     00009560  _gun_girlFrame27SpriteStrips       gun_girl
+     00009570  _gun_girlFrame28SpriteStrips       gun_girl
+     00009580  _gun_girlFrame29SpriteStrips       gun_girl
+     00009590  _gun_girlFrame30SpriteStrips       gun_girl
+     000095A0  _gun_girlFrame31SpriteStrips       gun_girl
+     000095B0  _gun_girlFrame32SpriteStrips       gun_girl
+     000095C0  _gun_girlFrame33SpriteStrips       gun_girl
+     000095D0  _gun_girlFrame34SpriteStrips       gun_girl
+     000095E0  _gun_girlFrame35SpriteStrips       gun_girl
+     000095F0  _gun_girlFrame36SpriteStrips       gun_girl
+     00009600  _gun_girlFrame37SpriteStrips       gun_girl
+     00009610  _gun_girlFrame38SpriteStrips       gun_girl
+     0000961C  _gun_girlFrame39SpriteStrips       gun_girl
+     00009628  _gun_girlFrame0                    gun_girl
+     0000962D  _gun_girlFrame1                    gun_girl
+     00009632  _gun_girlFrame2                    gun_girl
+     00009637  _gun_girlFrame3                    gun_girl
+     0000963C  _gun_girlFrame4                    gun_girl
+     00009641  _gun_girlFrame5                    gun_girl
+     00009646  _gun_girlFrame6                    gun_girl
+     0000964B  _gun_girlFrame7                    gun_girl
+     00009650  _gun_girlFrame8                    gun_girl
 ASxxxx Linker V03.00/V05.40 + sdld,  page 35.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK7                              00008000    0000220C =        8716. bytes (REL,CON)
+_BANK7                              00008000    0000174C =        5964. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000A115  _gun_girlFrame9                    gun_girl
-     0000A11A  _gun_girlFrame10                   gun_girl
-     0000A11F  _gun_girlFrame11                   gun_girl
-     0000A124  _gun_girlFrame12                   gun_girl
-     0000A129  _gun_girlFrame13                   gun_girl
-     0000A12E  _gun_girlFrame14                   gun_girl
-     0000A133  _gun_girlFrame15                   gun_girl
-     0000A138  _gun_girlFrame16                   gun_girl
-     0000A13D  _gun_girlFrame17                   gun_girl
-     0000A142  _gun_girlFrame18                   gun_girl
-     0000A147  _gun_girlFrame19                   gun_girl
-     0000A14C  _gun_girlFrame20                   gun_girl
-     0000A151  _gun_girlFrame21                   gun_girl
-     0000A156  _gun_girlFrame22                   gun_girl
-     0000A15B  _gun_girlFrame23                   gun_girl
-     0000A160  _gun_girlFrame24                   gun_girl
-     0000A165  _gun_girlFrame25                   gun_girl
-     0000A16A  _gun_girlFrame26                   gun_girl
-     0000A16F  _gun_girlFrame27                   gun_girl
-     0000A174  _gun_girlFrame28                   gun_girl
-     0000A179  _gun_girlFrame29                   gun_girl
-     0000A17E  _gun_girlFrame30                   gun_girl
-     0000A183  _gun_girlFrame31                   gun_girl
-     0000A188  _gun_girlFrame32                   gun_girl
-     0000A18D  _gun_girlFrame33                   gun_girl
-     0000A192  _gun_girlFrame34                   gun_girl
-     0000A197  _gun_girlFrame35                   gun_girl
-     0000A19C  _gun_girlFrame36                   gun_girl
-     0000A1A1  _gun_girlFrame37                   gun_girl
-     0000A1A6  _gun_girlFrame38                   gun_girl
-     0000A1AB  _gun_girlFrame39                   gun_girl
-     0000A1B0  _gun_girlFrames                    gun_girl
-     0000A200  _gun_girl                          gun_girl
+     00009655  _gun_girlFrame9                    gun_girl
+     0000965A  _gun_girlFrame10                   gun_girl
+     0000965F  _gun_girlFrame11                   gun_girl
+     00009664  _gun_girlFrame12                   gun_girl
+     00009669  _gun_girlFrame13                   gun_girl
+     0000966E  _gun_girlFrame14                   gun_girl
+     00009673  _gun_girlFrame15                   gun_girl
+     00009678  _gun_girlFrame16                   gun_girl
+     0000967D  _gun_girlFrame17                   gun_girl
+     00009682  _gun_girlFrame18                   gun_girl
+     00009687  _gun_girlFrame19                   gun_girl
+     0000968C  _gun_girlFrame20                   gun_girl
+     00009691  _gun_girlFrame21                   gun_girl
+     00009696  _gun_girlFrame22                   gun_girl
+     0000969B  _gun_girlFrame23                   gun_girl
+     000096A0  _gun_girlFrame24                   gun_girl
+     000096A5  _gun_girlFrame25                   gun_girl
+     000096AA  _gun_girlFrame26                   gun_girl
+     000096AF  _gun_girlFrame27                   gun_girl
+     000096B4  _gun_girlFrame28                   gun_girl
+     000096B9  _gun_girlFrame29                   gun_girl
+     000096BE  _gun_girlFrame30                   gun_girl
+     000096C3  _gun_girlFrame31                   gun_girl
+     000096C8  _gun_girlFrame32                   gun_girl
+     000096CD  _gun_girlFrame33                   gun_girl
+     000096D2  _gun_girlFrame34                   gun_girl
+     000096D7  _gun_girlFrame35                   gun_girl
+     000096DC  _gun_girlFrame36                   gun_girl
+     000096E1  _gun_girlFrame37                   gun_girl
+     000096E6  _gun_girlFrame38                   gun_girl
+     000096EB  _gun_girlFrame39                   gun_girl
+     000096F0  _gun_girlFrames                    gun_girl
+     00009740  _gun_girl                          gun_girl
 
 ASxxxx Linker V03.00/V05.40 + sdld,  page 36.
 

@@ -57,6 +57,8 @@ protected:
 
     bool m_startsAnimation = false;
 
+    int m_sliceStartLeft = -1;
+    int m_sliceStartTop = -1;
 };
 
 
