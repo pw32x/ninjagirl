@@ -1,24 +1,11 @@
 Todo
 
-	DONE when ducking on solid tiles and jumping, player does weird action
-	
-	DONE add a feature to cut up a frame with Sprite Master so that
-	the pointing up sprites can reuse the normal leg sprites 
-	
-	NAH SpriteMaster, export the resulting bitmap for inspection
 
-		 a strip of sprites like a GG time bar, but only showing the unique sprites
-
-
-
-	DONE flicker strategy
-
-	sometimes bullets hit phantom enemies
 
 	motion path for shotgun
 	
-
 	motion path for delivery robot
+		flies in, waits, flies out
 	
 	object states
 	
@@ -68,6 +55,10 @@ Todo
 	
 		level has intro action
 			opening doors
+
+	Motion Master
+	
+		build motion paths by capturing mouse movement
 
 	PAUSE animation sequencer
 		explosion sequences

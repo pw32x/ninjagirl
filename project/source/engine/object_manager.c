@@ -134,7 +134,7 @@ void ObjectManager_Update(void)
 
 	ObjectManager_player.Update(&ObjectManager_player);
 	ScrollManager_Update(&ObjectManager_player);
-	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
+
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 
@@ -210,7 +210,9 @@ void ObjectManager_Update(void)
 		break;
 	}
 
-
+	// add new objects and enemies only after we've done the collision checks for the currently 
+	// active ones.
+	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
 
 	//SMS_setBackdropColor(COLOR_ORANGE);
 

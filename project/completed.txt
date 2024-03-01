@@ -1,6 +1,22 @@
 	
 Completed
 
+	DONE sometimes bullets hit phantom enemies
+		old inactive enemies?
+
+	DONE when ducking on solid tiles and jumping, player does weird action
+	
+	DONE add a feature to cut up a frame with Sprite Master so that
+	the pointing up sprites can reuse the normal leg sprites 
+	
+	NAH SpriteMaster, export the resulting bitmap for inspection
+
+		 a strip of sprites like a GG time bar, but only showing the unique sprites
+
+
+
+	DONE flicker strategy
+	
 	
 	NAH simplify bullet collisions
 		shotgun bullets can't be a point. has to be a rect.
