@@ -196,14 +196,14 @@ void Player_FireWeapon(GameObject* player)
 
 	if (pointingUp)
 	{
-		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -6 : 6), 
-										 player->y - 22,
+		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -5 : 5), 
+										 player->y - 19,
 										 FALSE);
 	}
 	else if (pointingDown)
 	{
-		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -6 : 6), 
-										 player->y + 14,
+		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -5 : 5), 
+										 player->y + 12,
 										 TRUE);
 	}
 	else

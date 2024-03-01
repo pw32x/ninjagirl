@@ -103,21 +103,21 @@ extern const BatchedAnimationFrame shotgunFrame2;
 const BatchedAnimationFrame shotgunFrame0 = 
 {
     shotgunFrame0SpriteStrips,
-    3, // frame time
+    2, // frame time
     &shotgunFrame1, // next frame
 };
 
 const BatchedAnimationFrame shotgunFrame1 = 
 {
     shotgunFrame1SpriteStrips,
-    2, // frame time
+    7, // frame time
     &shotgunFrame2, // next frame
 };
 
 const BatchedAnimationFrame shotgunFrame2 = 
 {
     shotgunFrame2SpriteStrips,
-    7, // frame time
+    2, // frame time
     &shotgunFrame0, // next frame
 };
 const BatchedAnimationFrame* const shotgunFrames[3] = 

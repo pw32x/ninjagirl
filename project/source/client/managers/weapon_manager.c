@@ -96,15 +96,17 @@ void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 
 	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
-	shotgun->speedx = flipped ? -3 : 3;
+	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = 0;
 
+	createInfo.startY -= 4;
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-	shotgun->speedx = flipped ? -3 : 3;
+	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = -1;
 
+	createInfo.startY += 8;
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-	shotgun->speedx = flipped ? -3 : 3;
+	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = 1;
 }
 
@@ -122,14 +124,16 @@ void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
 	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 	shotgun->speedx = 0;
-	shotgun->speedy = flipped ? 3 : -3;
+	shotgun->speedy = flipped ? 4 : -4;
 
+	createInfo.startX -= 4;
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	shotgun->speedx = -1;
-	shotgun->speedy = flipped ? 3 : -3;
+	shotgun->speedy = flipped ? 4 : -4;
 
+	createInfo.startX += 8;
 	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	shotgun->speedx = 1;
-	shotgun->speedy = flipped ? 3 : -3;
+	shotgun->speedy = flipped ? 4 : -4;
 }
 
