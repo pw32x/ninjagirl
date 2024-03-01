@@ -119,6 +119,8 @@ void DeliveryRobot_Update(GameObject* object)
 
 	MotionUtils_updateMotion(object);
 
+	object->x += object->speedx;
+
 	// world to screen transformation
 	object->screenx = V2P(object->x) + currentMotionNode->x - ScrollManager_horizontalScroll;
 	object->screeny = V2P(object->y) + currentMotionNode->y - ScrollManager_verticalScroll;
