@@ -2,7 +2,8 @@ Todo
 
 
 
-	motion path for shotgun
+	NAH motion path for shotgun
+		INSTEAD tweaked animation and spawn positions
 	
 	motion path for delivery robot
 		flies in, waits, flies out

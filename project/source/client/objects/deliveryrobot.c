@@ -26,6 +26,44 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other);
 
 #define SPEEDX 6
 
+
+typedef struct
+{
+	s16 x;
+	s16 y;
+	u8 time;
+} MotionNode;
+
+typedef struct
+{
+	MotionNode* motionNodes;
+	u16 numMotionNodes;
+	u8 loopMotion;
+} Motion;
+
+const MotionNode deliveryRobotMotionNodes[] =
+{
+	{0, 0, 5},
+	{0, -1, 5},
+	{0, -2, 5},
+	{0, -1, 5},
+	{0, 0, 5},
+	{0, 1, 5},
+	{0, 2, 5},
+	{0, 1, 5},
+	{0, 0, (u8)-1},
+};
+
+const Motion deliveryRobotMotion = 
+{
+	deliveryRobotMotionNodes,
+	9,
+	TRUE
+};
+
+const MotionNode* currentMotionNode;
+u8 currentMotionNodeTime;
+
 GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
@@ -46,7 +84,32 @@ GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 		object->speedx = SPEEDX;
 	}	
 
+	currentMotionNode = deliveryRobotMotionNodes;
+	currentMotionNodeTime = currentMotionNode->time;
+
 	return object;
+}
+
+#define MOTION_NO_CHANGE			0
+#define MOTION_CHANGED_FRAME		1
+#define MOTION_FINISHED				2
+
+u8 MotionUtils_updateMotion(struct game_object* gameObject)
+{
+	if (!currentMotionNodeTime--)
+	{
+		currentMotionNode++;
+
+		if (currentMotionNode->time == (u8)-1)
+		{
+			currentMotionNode = deliveryRobotMotionNodes;
+		}
+
+		currentMotionNodeTime = currentMotionNode->time;
+		return MOTION_CHANGED_FRAME;
+	}
+
+	return MOTION_NO_CHANGE;
 }
 
 void DeliveryRobot_Update(GameObject* object)
@@ -54,9 +117,11 @@ void DeliveryRobot_Update(GameObject* object)
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->UpdateAnimation(object);
 
+	MotionUtils_updateMotion(object);
+
 	// world to screen transformation
-	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
-	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) + currentMotionNode->x - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) + currentMotionNode->y - ScrollManager_verticalScroll;
 
 	// if offscreen destroy
 	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
