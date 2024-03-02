@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="SceneMaster.Controls.EditorObjectSpawnPointControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="32" d:DesignWidth="32"
+             DataContextChanged="EditorObjectSpawnPointControl_DataContextChanged"
+             MouseDown="EditorObjectSpawnPointControl_MouseDown"
+             MouseMove="EditorObjectSpawnPointControl_MouseMove"
+             MouseLeave="EditorObjectSpawnPointControl_MouseLeave"
+             MouseUp="EditorObjectSpawnPointControl_MouseUp">
+    <UserControl.Resources>
+        <Style x:Key="SelectionBorderStyle" TargetType="Border">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ImageStyle" TargetType="Image">
+            <Setter Property="Opacity" Value="1"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSelected}" Value="True">
+                    <Setter Property="Opacity" Value="0.75"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Image Source="/SceneMaster;component/Icons/SpawnPoint.png"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                Stretch="Fill"
+                RenderOptions.BitmapScalingMode="NearestNeighbor"
+                Style="{StaticResource ImageStyle}">
+        </Image>
+        <Border Style="{StaticResource SelectionBorderStyle}"
+                Width="{Binding Width}"
+                Height="{Binding Height}"
+                BorderThickness="1">
+            <Border.BorderBrush>
+                <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing Brush="White">
+                                <GeometryDrawing.Geometry>
+                                    <GeometryGroup>
+                                        <RectangleGeometry Rect="0,0,50,50" />
+                                        <RectangleGeometry Rect="50,50,50,50" />
+                                    </GeometryGroup>
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.BorderBrush>
+        </Border>
+    </Grid>
+</UserControl>

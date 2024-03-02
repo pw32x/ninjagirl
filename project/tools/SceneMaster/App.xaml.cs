@@ -71,7 +71,7 @@ namespace SceneMaster
             string appPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var lastApplicationWriteTime = System.IO.File.GetLastWriteTime(appPath);
 
-            bool processedAtLeastOne = false;
+            //bool processedAtLeastOne = false;
 
             var settings = new Settings();
             settings.Load();
@@ -113,7 +113,7 @@ namespace SceneMaster
                 scene.LoadFromXml(root, fileInfo.FullName, editorObjectLibraryViewModel);
                 SceneExporter.ExportScene(scene, sceneName, destinationFolder, editorObjectLibraryViewModel.CommandLibrary);
 
-                processedAtLeastOne = true;
+                //processedAtLeastOne = true;
             }
 
             /*

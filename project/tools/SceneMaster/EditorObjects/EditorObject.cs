@@ -32,14 +32,22 @@ namespace SceneMaster.EditorObjects.Models
         {
             X = XmlUtils.GetValue<double>(commandObjectNode, nameof(X));
             Y = XmlUtils.GetValue<double>(commandObjectNode, nameof(Y));
+            SpawnX = XmlUtils.GetValue<double>(commandObjectNode, nameof(SpawnX), X);
+            SpawnY = XmlUtils.GetValue<double>(commandObjectNode, nameof(SpawnY), Y);
+            SpawnPointIsIndependant = XmlUtils.GetValue<bool>(commandObjectNode, nameof(SpawnPointIsIndependant), false);
             Name = XmlUtils.GetValue<string>(commandObjectNode, nameof(Name));
         }
 
         public double X { get; set; }
         public double Y { get; set; }
+
+        public double SpawnX { get; set; }
+        public double SpawnY { get; set; }
+
         public string Name { get; private set; }
         public EditorObjectType EditorObjectType => EditorObjectInfo.EditorObjectType;
         public EditorObjectInfo EditorObjectInfo { get; protected set; }
+        public bool SpawnPointIsIndependant { get; internal set; }
 
         abstract internal ExportedCommandData BuildExportCommandData(string sceneName, 
                                                                      int exportCounter);
@@ -52,6 +60,9 @@ namespace SceneMaster.EditorObjects.Models
             newNode.SetAttribute(nameof(Name), Name);
             newNode.SetAttribute(nameof(X), X.ToString());
             newNode.SetAttribute(nameof(Y), Y.ToString());
+            newNode.SetAttribute(nameof(SpawnX), SpawnX.ToString());
+            newNode.SetAttribute(nameof(SpawnY), SpawnY.ToString());
+            newNode.SetAttribute(nameof(SpawnPointIsIndependant), SpawnPointIsIndependant.ToString());
             return newNode;
         }
     }

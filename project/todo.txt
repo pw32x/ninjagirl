@@ -1,12 +1,31 @@
 Todo
 
-
+	NOPE have bank number as part of a resource
 
 	NAH motion path for shotgun
 		INSTEAD tweaked animation and spawn positions
+
+	make bullets move relative to the screen, not the world
+		because when the player runs, the bullets (like the shotgun) don't appear to go 
+		as far.
+		
+		or just add the player speed to the projectile
 	
-	motion path for delivery robot
-		flies in, waits, flies out
+	DONE basic motion path for delivery robot
+	
+	add feature to SceneMaster to set an objects position on screen when spawning
+
+	make wheelers appear from the left side of the screen
+	
+	enemies from up top to shoot at. monkeys? bomb lobbing monkeys?
+
+	performance pass...
+	
+		collisions are especially slow
+		
+		max number of active sprites?
+			the spawner checks the limit?
+				but only for enemies, not triggers, etc.
 	
 	object states
 	
@@ -15,25 +34,21 @@ Todo
 		how to set states in SceneMaster?
 		CreateInfoWithState ?
 		Declare available states in template
-
-
-	make bullets move relative to the screen, not the world
-		because when the player runs, the bullets (like the shotgun) don't appear to go 
-		as far.
 		
-		just add the player speed to the projectile
-
-	NOPE have bank number as part of a resource
+	SceneMaster
 	
+		set data to an object, like a motion path
+
+	Motion Master
+		more complex motion path for delivery robot		
+			flies in, waits, flies out
+
+
 	Work with resourcesinfos and not resources so to better handle banking
 	
 	have a function that uses a resource switch to that bank before doing anything
 	in the bank switch function, cache the bank and check it before doing the switch
 
-	wheelers coming from the left side of the screen
-		add feature to SceneMaster to place object when spawning
-	
-	enemies from up top to shoot at. monkeys? bomb lobbing monkeys?
 	
 	game/level handling
 	
@@ -94,13 +109,7 @@ Todo
 	fight for portal/trigger/something to go to next area
 
 
-	performance pass...
 	
-		collisions are especially slow
-		
-		max number of active sprites?
-			the spawner checks the limit?
-				but only for enemies, not triggers, etc.
 
 	tiled enemies use second palette?
 		or backgrounds use their own palette?

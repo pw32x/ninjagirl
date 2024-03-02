@@ -18,9 +18,7 @@ namespace SceneMaster.Utils
             return root;
         }
 
-
-
-        public static T GetValue<T>(XmlElement node, string attributeName = "value")
+        public static T GetValue<T>(XmlElement node, string attributeName = "value", T defaultValue = default(T))
         {
             string attributeValue = node.Attributes[attributeName]?.Value ?? "";
 
@@ -30,7 +28,7 @@ namespace SceneMaster.Utils
             }
             else
             {
-                return default(T);
+                return defaultValue;
             }
         }
 
