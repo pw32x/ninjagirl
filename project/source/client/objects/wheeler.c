@@ -12,6 +12,7 @@
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/particle_effect.h"
+#include "client/managers/physics_manager.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -28,6 +29,14 @@ BOOL Wheeler_Draw(GameObject* object);
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 
 #define SPEEDX 12
+
+// update x
+// update y
+// update visibility
+// update wall collisions
+// update projectile collisions
+
+// queue for drawing
 
 GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo)
 {
@@ -59,76 +68,77 @@ void Wheeler_Update(WheelerObjectType* object)
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->UpdateAnimation((GameObject*)object);
 
+	// init physics work variables
+	PhysicsVars_X = object->x + object->speedx;
+	PhysicsVars_Y = object->y + object->speedy;
+
+	PhysicsVars_GroundBlockX = V2B(PhysicsVars_X);
+	PhysicsVars_GroundBlockY = V2B(PhysicsVars_Y + P2V(object->rectBottom));
+
+	// update x position. 
+	//
+
+	// turn around if hit a wall
+	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY - 1) != TERRAIN_EMPTY)
+	{
+		object->speedx = -object->speedx;
+
+		if (object->speedx > 0)
+		{
+			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
+		}
+		else
+		{
+			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
+		}	
+	}
+
+	// update Y position
 	object->UpdatePhysics(object);
 
-	// world to screen transformation
-	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
-	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
+	// update object 
+	//
 
-	// if offscreen destroy
-	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
+	// world to screen transformation
+	object->screenx = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(PhysicsVars_Y) - ScrollManager_verticalScroll;
+
+	// update position
+	object->x = PhysicsVars_X;
+	object->y = PhysicsVars_Y;
+
+	// destroy if hitting the side edges of the screen
+	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE ||
+		object->screenx + object->rectRight > SCREEN_WIDTH)
 	{
 		ObjectManager_DestroyObject((GameObject*)object);
 		return;
-	}
-
-	/*
-	// if hits the sides of the screen, turn around
-	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
-	{
-		object->speedx = -object->speedx;
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
-	}
-	else if (object->screenx + object->rectRight > SCREEN_RIGHT)
-	{
-		object->speedx = -object->speedx;
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
-	}
-	*/
-}
-
-void Wheeler_Roll(WheelerObjectType* object)
-{
-	object->x += object->speedx;
-
-	s16 blockX = V2B(object->x);
-
-	s16 ySensor = object->y + P2V(object->rectBottom);
-	s16 blockY = V2B(ySensor);
-
-	u16 bottomTileType = GET_TERRAIN(blockX, blockY);
-
-	if (bottomTileType == TERRAIN_EMPTY)
-	{
-		object->speedy = 0;
-		object->UpdatePhysics = Wheeler_Fall;
 	}
 }
 
 #define GRAVITY	3
 
+void Wheeler_Roll(WheelerObjectType* object)
+{
+	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY) == TERRAIN_EMPTY)
+	{
+		object->speedy = -30;
+		object->UpdatePhysics = Wheeler_Fall;
+	}
+}
+
+
 void Wheeler_Fall(WheelerObjectType* object)
 {
 	object->speedy += GRAVITY;
 
-	object->x += object->speedx;
-	object->y += object->speedy;
-
-	s16 blockX = V2B(object->x);
-
-	s16 ySensor = object->y + P2V(object->rectBottom);
-	s16 blockY = V2B(ySensor);
-
-	u16 bottomTileType = GET_TERRAIN(blockX, blockY);
-
-	if (bottomTileType != TERRAIN_EMPTY)
+	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY) != TERRAIN_EMPTY)
 	{
-		object->y = B2V(blockY) - P2V(object->rectBottom);
+		object->y = B2V(PhysicsVars_GroundBlockY) - P2V(object->rectBottom);
 		object->speedy = 0;
 
 		object->UpdatePhysics = Wheeler_Roll;
 	}
-
 }
 
 

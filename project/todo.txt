@@ -1,30 +1,60 @@
 Todo
 
-	NOPE have bank number as part of a resource
-
-	NAH motion path for shotgun
-		INSTEAD tweaked animation and spawn positions
-
-	DONE basic motion path for delivery robot
 	
-	DONE add feature to SceneMaster to set an objects position on screen when spawning
+	DONE wheelers use different functions depending on the direction it goes
+		YES bump against walls depends on direction
+		OHWELL screen visibility still uses all sides
+		YES wheelers jump when arriving at a ledge?
+	
+	enemies from up top to shoot at. 
+		monkeys? bomb lobbing monkeys?
+		machine gun robots?
 
-	DONE make wheelers appear from the left side of the screen
-
-	NAH sparks instead of falling debris?
-		go with small explosions for now.
-
-	make bullets move relative to the screen, not the world
-		because when the player runs, the bullets (like the shotgun) don't appear to go 
-		as far.
+	use Graphics Gale layers for different draw calls
+		complex explosions
+		player ponytail
+		spark effects
+		flying debris
+		smoke trails
 		
-		or just add the player speed to the projectile
+	why am I using two different variables for the player?
+		
+	frame layers indicate if they're background tiles
+		so to have mixed animations
+		
+	how to specify collision box of moving animation?
+		animation has array of collision boxes
+		it can be null for those that don't need/want it
 	
-
+	use animation visible area, not collision area, for visibility
+		per frame?
 	
-	enemies from up top to shoot at. monkeys? bomb lobbing monkeys?
+	base falling from the sky
+		lands on ground, blends into background tiles
+		smoke effects
+		launches mini enemies
+		explodes + leaves crater or rubble
 
-	explosions as sequences
+	make player move relative to the terrain instead of the world?
+		make the game objects do the same?
+		or use u16 for x position and not s16?
+
+	NAH explosions as animation sequences
+		reuse the explosion animation, but have different types of explosions
+		sequence has payload?
+			sequence:
+				array of resources to use
+				num resources
+				sequence items
+					time, num items
+						x, y, animation resource index, frame number // sort by animation for less bank switching
+						x, y, animation resource index, frame number
+					time, num items
+						x, y, animation resource index, frame number
+						x, y, animation resource index, frame number
+						x, y, animation resource index, frame number
+						x, y, animation resource index, frame number
+						
 
 	performance pass...
 	

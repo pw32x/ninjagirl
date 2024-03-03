@@ -18,14 +18,14 @@ const CreateInfo scene003_createInfo7 = { &wheeler_template, 35, 145 };
 const CreateInfo scene003_createInfo8 = { &wheeler_template, 321, 145 };
 const CreateInfo scene003_createInfo9 = { &wheeler_template, 383, 96 };
 const CreateInfo scene003_createInfo10 = { &wheeler_template, 412, 143 };
-const CreateInfo scene003_createInfo11 = { &wheeler_template, 467, 97 };
+const CreateInfo scene003_createInfo11 = { &wheeler_template, 464, 96 };
 const CreateInfo scene003_createInfo12 = { &wheeler_template, 498, 142 };
 const CreateInfo scene003_createInfo13 = { &deliveryrobot_template, 537, 34 };
 const CreateInfo scene003_createInfo14 = { &wheeler_template, 601, 145 };
 const CreateInfo scene003_createInfo15 = { &wheeler_template, 643, 72 };
 const CreateInfo scene003_createInfo16 = { &wheeler_template, 717, 144 };
 const CreateInfo scene003_createInfo17 = { &wheeler_template, 748, 97 };
-const CreateInfo scene003_createInfo18 = { &wheeler_template, 815, 63 };
+const CreateInfo scene003_createInfo18 = { &wheeler_template, 812, 55 };
 const CreateInfo scene003_createInfo19 = { &wheeler_template, 943, 146 };
 
 #include "client/tileset_functions.h"
@@ -59,14 +59,14 @@ const Command scene003_commands[] =
     { 325, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
     { 387, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
     { 416, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo10 },
-    { 471, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo11 },
+    { 468, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo11 },
     { 502, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo12 },
     { 549, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo13 },
     { 605, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo14 },
     { 647, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo15 },
     { 721, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo16 },
     { 752, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo17 },
-    { 819, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo18 },
+    { 816, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo18 },
     { 947, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo19 },
     { 0, (CommandFunction)NULL, NULL}
 };

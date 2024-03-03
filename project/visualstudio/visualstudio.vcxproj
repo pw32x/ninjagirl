@@ -185,6 +185,7 @@
     <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c" />
     <ClCompile Include="..\source\client\generated\tilesets\waterfall_tileset.c" />
     <ClCompile Include="..\source\client\main.c" />
+    <ClCompile Include="..\source\client\managers\physics_manager.c" />
     <ClCompile Include="..\source\client\managers\weapon_manager.c" />
     <ClCompile Include="..\source\client\objects\bird.c" />
     <ClCompile Include="..\source\client\objects\bullet.c" />
@@ -245,6 +246,7 @@
     <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h" />
     <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
+    <ClInclude Include="..\source\client\managers\physics_manager.h" />
     <ClInclude Include="..\source\client\managers\weapon_manager.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\bullet.h" />
