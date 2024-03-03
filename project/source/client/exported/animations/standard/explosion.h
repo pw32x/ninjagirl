@@ -7,5 +7,11 @@
 
 RESOURCE(BANK2) extern const BatchedAnimation explosion;
 
+// frame numbers for specific animations.
+#define EXPLOSION_16_FRAME_INDEX 3
+#define EXPLOSION_16_FRAME_INDEX 3
+#define EXPLOSION_16_FRAME_INDEX 6
+#define EXPLOSION_16_FRAME_INDEX 6
+
 #endif
 

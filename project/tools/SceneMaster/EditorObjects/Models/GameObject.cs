@@ -66,8 +66,21 @@ namespace SceneMaster.GameObjectTemplates.Models
                 StringBuilder sb = new();
                 sb.Append("const CreateInfo " + createInfoName + " = { ");
                 string templateName = Path.GetFileNameWithoutExtension(GameObjectTemplate.FilePath) + "_template";
-                int x = (int)(X < 0 ? 0 : X) + GameObjectTemplate.Visual.OffsetX;
-                int y = (int)(Y < 0 ? 0 : Y) + GameObjectTemplate.Visual.OffsetY;
+
+                int x = GameObjectTemplate.Visual.OffsetX;
+                int y = GameObjectTemplate.Visual.OffsetY;
+
+                if (SpawnPointIsIndependant)
+                {
+                    x += (int)(SpawnX < 0 ? 0 : SpawnX);
+                    y += (int)(SpawnY < 0 ? 0 : SpawnY);
+                }
+                else
+                {
+                    x += (int)(X < 0 ? 0 : X);
+                    y += (int)(Y < 0 ? 0 : Y);
+                }
+
                 sb.Append("&" + templateName + ", " + x + ", " + y);
                 sb.AppendLine(" };");
                 exportedCommandData.ExportedCreateInfo = sb.ToString();

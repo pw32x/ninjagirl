@@ -56,8 +56,19 @@ namespace SceneMaster.Controls
                 if (offsetX == 0 && offsetY == 0)
                     return;
 
+                if (m_editorObjectViewModel.SpawnX == m_editorObjectViewModel.X &&
+                    m_editorObjectViewModel.SpawnY == m_editorObjectViewModel.Y &&
+                    !m_editorObjectViewModel.SpawnPointIsIndependant)
+                {
+                    // move the spawn point to if it's the same spot and 
+                    // we're not using it.
+                    m_editorObjectViewModel.SpawnX += offsetX;
+                    m_editorObjectViewModel.SpawnY += offsetY;
+                }
+
                 m_editorObjectViewModel.X += offsetX;
                 m_editorObjectViewModel.Y += offsetY;
+
 
                 m_startPoint = currentPoint;
             }

@@ -5,19 +5,26 @@ Todo
 	NAH motion path for shotgun
 		INSTEAD tweaked animation and spawn positions
 
+	DONE basic motion path for delivery robot
+	
+	DONE add feature to SceneMaster to set an objects position on screen when spawning
+
+	DONE make wheelers appear from the left side of the screen
+
+	NAH sparks instead of falling debris?
+		go with small explosions for now.
+
 	make bullets move relative to the screen, not the world
 		because when the player runs, the bullets (like the shotgun) don't appear to go 
 		as far.
 		
 		or just add the player speed to the projectile
 	
-	DONE basic motion path for delivery robot
-	
-	add feature to SceneMaster to set an objects position on screen when spawning
 
-	make wheelers appear from the left side of the screen
 	
 	enemies from up top to shoot at. monkeys? bomb lobbing monkeys?
+
+	explosions as sequences
 
 	performance pass...
 	

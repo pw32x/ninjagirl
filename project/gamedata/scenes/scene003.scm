@@ -17,7 +17,7 @@
     <GameObject Name="Wheeler" X="705.4421772595633" Y="128.8371598031931" SpawnX="705.4421772595633" SpawnY="128.8371598031931" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="803.584184123037" Y="47.14347029321042" SpawnX="803.584184123037" SpawnY="47.14347029321042" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="736.744598765434" Y="81.45756172839519" SpawnX="736.744598765434" SpawnY="81.45756172839519" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
-    <GameObject Name="Wheeler" X="248" Y="129" SpawnX="248" SpawnY="129" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
+    <GameObject Name="Wheeler" X="248" Y="129" SpawnX="23.574074074074076" SpawnY="129" SpawnPointIsIndependant="True" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Delivery Robot" X="525" Y="18" SpawnX="525" SpawnY="18" SpawnPointIsIndependant="False" GameObjectTemplateName="Delivery Robot" />
     <GameObject Name="Wheeler" X="631" Y="56" SpawnX="631" SpawnY="56" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="931" Y="130" SpawnX="931" SpawnY="130" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />

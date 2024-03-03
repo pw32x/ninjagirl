@@ -40,14 +40,15 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	object->HandleCollision = Wheeler_HandleCollision;
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	if (ObjectManager_player.x < object->x)
+	if (ObjectManager_player.x < V2P(object->x))
 	{
 		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
 	{
-		object->speedx = SPEEDX;
+		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
+		object->speedx = 28;
 	}	
 
 	return (GameObject*)object;
@@ -162,7 +163,7 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
-
+		/*
 		GameObjectTemplate effectGameTemplate;
 		effectGameTemplate.objectType = OBJECTTYPE_EFFECT;
 		effectGameTemplate.resourceInfo = gameObject->resourceInfo;
@@ -196,6 +197,7 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_WHEEL_FRAME_INDEX);
 		effect->speedx = -10;
 		effect->speedy = -50;
+		*/
 
 
 	}
