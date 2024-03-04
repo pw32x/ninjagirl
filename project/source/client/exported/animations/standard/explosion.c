@@ -346,7 +346,7 @@ const BatchedAnimationFrame explosionFrame2 =
 {
     explosionFrame2SpriteStrips,
     2, // frame time
-    &explosionFrame0, // next frame
+    &explosionFrame3, // next frame
 };
 
 const BatchedAnimationFrame explosionFrame3 = 
@@ -367,7 +367,7 @@ const BatchedAnimationFrame explosionFrame5 =
 {
     explosionFrame5SpriteStrips,
     2, // frame time
-    &explosionFrame3, // next frame
+    &explosionFrame6, // next frame
 };
 
 const BatchedAnimationFrame explosionFrame6 = 
@@ -388,7 +388,7 @@ const BatchedAnimationFrame explosionFrame8 =
 {
     explosionFrame8SpriteStrips,
     2, // frame time
-    &explosionFrame6, // next frame
+    &explosionFrame0, // next frame
 };
 const BatchedAnimationFrame* const explosionFrames[9] = 
 {

@@ -12,6 +12,7 @@
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/particle_effect.h"
+#include "client/motion_sequence.h"
 
 // music and sfx
 #include "PSGlib.h"
@@ -27,21 +28,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other);
 #define SPEEDX 6
 
 
-typedef struct
-{
-	s16 x;
-	s16 y;
-	u8 time;
-} MotionNode;
-
-typedef struct
-{
-	MotionNode* motionNodes;
-	u16 numMotionNodes;
-	u8 loopMotion;
-} Motion;
-
-const MotionNode deliveryRobotMotionNodes[] =
+const MotionSequenceNode deliveryRobotMotionSequenceNodes[] =
 {
 	{0, 0, 5},
 	{0, -1, 5},
@@ -54,15 +41,15 @@ const MotionNode deliveryRobotMotionNodes[] =
 	{0, 0, (u8)-1},
 };
 
-const Motion deliveryRobotMotion = 
+const MotionSequence deliveryRobotMotion = 
 {
-	deliveryRobotMotionNodes,
+	deliveryRobotMotionSequenceNodes,
 	9,
 	TRUE
 };
 
-const MotionNode* currentMotionNode;
-u8 currentMotionNodeTime;
+const MotionSequenceNode* currentMotionSequenceNode;
+u8 currentMotionSequenceNodeTime;
 
 GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 {
@@ -84,8 +71,8 @@ GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 		object->speedx = SPEEDX;
 	}	
 
-	currentMotionNode = deliveryRobotMotionNodes;
-	currentMotionNodeTime = currentMotionNode->time;
+	currentMotionSequenceNode = deliveryRobotMotionSequenceNodes;
+	currentMotionSequenceNodeTime = currentMotionSequenceNode->time;
 
 	return object;
 }
@@ -96,16 +83,16 @@ GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 
 u8 MotionUtils_updateMotion(struct game_object* gameObject)
 {
-	if (!currentMotionNodeTime--)
+	if (!currentMotionSequenceNodeTime--)
 	{
-		currentMotionNode++;
+		currentMotionSequenceNode++;
 
-		if (currentMotionNode->time == (u8)-1)
+		if (currentMotionSequenceNode->time == (u8)-1)
 		{
-			currentMotionNode = deliveryRobotMotionNodes;
+			currentMotionSequenceNode = deliveryRobotMotionSequenceNodes;
 		}
 
-		currentMotionNodeTime = currentMotionNode->time;
+		currentMotionSequenceNodeTime = currentMotionSequenceNode->time;
 		return MOTION_CHANGED_FRAME;
 	}
 
@@ -122,8 +109,8 @@ void DeliveryRobot_Update(GameObject* object)
 	object->x += object->speedx;
 
 	// world to screen transformation
-	object->screenx = V2P(object->x) + currentMotionNode->x - ScrollManager_horizontalScroll;
-	object->screeny = V2P(object->y) + currentMotionNode->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) + currentMotionSequenceNode->x - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) + currentMotionSequenceNode->y - ScrollManager_verticalScroll;
 
 	// if offscreen destroy
 	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)

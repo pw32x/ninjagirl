@@ -17,6 +17,7 @@ extern const GameObjectTemplate rock_particle_template;
 extern const GameObjectTemplate shotgun_template;
 extern const GameObjectTemplate shotgun_item_template;
 extern const GameObjectTemplate test_block_template;
+extern const GameObjectTemplate threeshotflyer_template;
 extern const GameObjectTemplate walker_template;
 extern const GameObjectTemplate walker_big_template;
 extern const GameObjectTemplate walker_small_template;

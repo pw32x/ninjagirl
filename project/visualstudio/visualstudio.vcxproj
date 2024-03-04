@@ -176,6 +176,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c" />
@@ -201,6 +202,7 @@
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
     <ClCompile Include="..\source\client\objects\shotgun.c" />
     <ClCompile Include="..\source\client\objects\shotgun_item.c" />
+    <ClCompile Include="..\source\client\objects\threeshotflyer.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
     <ClCompile Include="..\source\client\objects\wheeler.c" />
     <ClCompile Include="..\source\client\tileset_functions.c" />
@@ -227,6 +229,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
+    <ClInclude Include="..\source\client\ai_sequence.h" />
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h" />
     <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />
@@ -240,6 +243,7 @@
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.h" />
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h" />
     <ClInclude Include="..\source\client\generated\resource_infos.h" />
     <ClInclude Include="..\source\client\generated\tilesets\background3_tileset.h" />
@@ -248,6 +252,7 @@
     <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
     <ClInclude Include="..\source\client\managers\physics_manager.h" />
     <ClInclude Include="..\source\client\managers\weapon_manager.h" />
+    <ClInclude Include="..\source\client\motion_sequence.h" />
     <ClInclude Include="..\source\client\objects\bird.h" />
     <ClInclude Include="..\source\client\objects\bullet.h" />
     <ClInclude Include="..\source\client\objects\color_tweaker.h" />
@@ -262,6 +267,7 @@
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
     <ClInclude Include="..\source\client\objects\shotgun.h" />
     <ClInclude Include="..\source\client\objects\shotgun_item.h" />
+    <ClInclude Include="..\source\client\objects\threeshotflyer.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />
     <ClInclude Include="..\source\client\objects\wheeler.h" />
     <ClInclude Include="..\source\client\tileset_functions.h" />

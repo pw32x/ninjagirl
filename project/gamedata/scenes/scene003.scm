@@ -21,5 +21,6 @@
     <GameObject Name="Delivery Robot" X="525" Y="18" SpawnX="525" SpawnY="18" SpawnPointIsIndependant="False" GameObjectTemplateName="Delivery Robot" />
     <GameObject Name="Wheeler" X="631" Y="56" SpawnX="631" SpawnY="56" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
     <GameObject Name="Wheeler" X="931" Y="130" SpawnX="931" SpawnY="130" SpawnPointIsIndependant="False" GameObjectTemplateName="Wheeler" />
+    <GameObject Name="Three Shot Flyer" X="139" Y="26" SpawnX="0" SpawnY="0" SpawnPointIsIndependant="False" GameObjectTemplateName="Three Shot Flyer" />
   </EditorObjects>
 </Scene>

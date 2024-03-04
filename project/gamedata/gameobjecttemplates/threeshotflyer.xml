@@ -1,0 +1,23 @@
+<GameObjectTemplate >
+	<Name value="Three Shot Flyer"/>
+	<EditorProperties>
+		<EditorObjectType value="GameObject"/>
+		<Visual>
+			<GraphicsGale filename="..\animations\enemies\threeshotflyer.gal" framenumber="0"/>
+		</Visual>
+	</EditorProperties>
+	<GameProperties>
+		<RectLeft value="-12"/>
+		<RectTop value="-12"/>
+		<RectRight value="12"/>
+		<RectBottom value="6"/>
+		<Damage value="1"/>
+		<GameObjectType value="Enemy" />
+		<Health value="2"/>
+		<ResourceInfo value="threeshotflyerResourceInfo" />	
+		<InitFunction value="ThreeShotFlyer_Init"/>	
+		<CustomData>
+			<Data value="const AISequence* aiSequence"/>
+		</CustomData>			
+	</GameProperties>
+</GameObjectTemplate>

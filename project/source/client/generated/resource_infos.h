@@ -17,6 +17,7 @@ extern const ResourceInfo rock_particleResourceInfo;
 extern const ResourceInfo test_blockResourceInfo;
 extern const ResourceInfo robotrunnerResourceInfo;
 extern const ResourceInfo robotspringResourceInfo;
+extern const ResourceInfo threeshotflyerResourceInfo;
 extern const ResourceInfo walkerResourceInfo;
 extern const ResourceInfo walker_bigResourceInfo;
 extern const ResourceInfo walker_smallResourceInfo;

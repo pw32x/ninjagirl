@@ -14,6 +14,7 @@
 #include "client\exported\animations\standard\test_block.h"
 #include "client\exported\animations\enemies\robotrunner.h"
 #include "client\exported\animations\enemies\robotspring.h"
+#include "client\exported\animations\enemies\threeshotflyer.h"
 #include "client\exported\animations\enemies\walker.h"
 #include "client\exported\animations\enemies\walker_big.h"
 #include "client\exported\animations\enemies\walker_small.h"
@@ -44,6 +45,7 @@ const ResourceInfo rock_particleResourceInfo = { /*bank*/ 2, (const Resource*)&r
 const ResourceInfo test_blockResourceInfo = { /*bank*/ 2, (const Resource*)&test_block };
 const ResourceInfo robotrunnerResourceInfo = { /*bank*/ 6, (const Resource*)&robotrunner };
 const ResourceInfo robotspringResourceInfo = { /*bank*/ 6, (const Resource*)&robotspring };
+const ResourceInfo threeshotflyerResourceInfo = { /*bank*/ 6, (const Resource*)&threeshotflyer };
 const ResourceInfo walkerResourceInfo = { /*bank*/ 6, (const Resource*)&walker };
 const ResourceInfo walker_bigResourceInfo = { /*bank*/ 6, (const Resource*)&walker_big };
 const ResourceInfo walker_smallResourceInfo = { /*bank*/ 6, (const Resource*)&walker_small };
