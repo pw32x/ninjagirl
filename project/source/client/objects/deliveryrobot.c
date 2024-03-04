@@ -20,7 +20,7 @@
 
 #include "client/exported/animations/weapons/deliveryrobot.h"
 
-void DeliveryRobot_Update(GameObject* object);
+void DeliveryRobot_Update(DeliveryRobotObjectType* object);
 
 BOOL DeliveryRobot_Draw(GameObject* object);
 void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other);
@@ -41,29 +41,26 @@ const MotionSequenceNode deliveryRobotMotionSequenceNodes[] =
 	{0, 0, (u8)-1},
 };
 
-const MotionSequence deliveryRobotMotion = 
+const MotionSequence deliveryRobotMotionSequence = 
 {
 	deliveryRobotMotionSequenceNodes,
 	9,
 	TRUE
 };
 
-const MotionSequenceNode* currentMotionSequenceNode;
-u8 currentMotionSequenceNodeTime;
-
-GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
-	object->Update = DeliveryRobot_Update;
+	object->Update = (ObjectFunctionType)DeliveryRobot_Update;
 	object->Draw = DeliveryRobot_Draw;
 	object->HandleCollision = DeliveryRobot_HandleCollision;
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < object->x)
 	{
-		AnimationUtils_setBatchedAnimationFrame(object, DELIVERYROBOT_LEFT_FRAME_INDEX);
+		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
@@ -71,46 +68,26 @@ GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo)
 		object->speedx = SPEEDX;
 	}	
 
-	currentMotionSequenceNode = deliveryRobotMotionSequenceNodes;
-	currentMotionSequenceNodeTime = currentMotionSequenceNode->time;
+	object->motionSequenceRunner.motionSequence = &deliveryRobotMotionSequence;
+	object->motionSequenceRunner.currentMotionSequenceNode = deliveryRobotMotionSequence.motionSequenceNodes;
+	object->motionSequenceRunner.currentMotionSequenceNodeTime = deliveryRobotMotionSequence.motionSequenceNodes->time;
 
-	return object;
+	return (GameObject*)object;
 }
 
-#define MOTION_NO_CHANGE			0
-#define MOTION_CHANGED_FRAME		1
-#define MOTION_FINISHED				2
 
-u8 MotionUtils_updateMotion(struct game_object* gameObject)
-{
-	if (!currentMotionSequenceNodeTime--)
-	{
-		currentMotionSequenceNode++;
-
-		if (currentMotionSequenceNode->time == (u8)-1)
-		{
-			currentMotionSequenceNode = deliveryRobotMotionSequenceNodes;
-		}
-
-		currentMotionSequenceNodeTime = currentMotionSequenceNode->time;
-		return MOTION_CHANGED_FRAME;
-	}
-
-	return MOTION_NO_CHANGE;
-}
-
-void DeliveryRobot_Update(GameObject* object)
+void DeliveryRobot_Update(DeliveryRobotObjectType* object)
 {
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	object->UpdateAnimation(object);
+	object->UpdateAnimation((GameObject*)object);
 
-	MotionUtils_updateMotion(object);
+	MotionUtils_updateMotion(&object->motionSequenceRunner);
 
 	object->x += object->speedx;
 
 	// world to screen transformation
-	object->screenx = V2P(object->x) + currentMotionSequenceNode->x - ScrollManager_horizontalScroll;
-	object->screeny = V2P(object->y) + currentMotionSequenceNode->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) + object->motionSequenceRunner.currentMotionSequenceNode->x - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) + object->motionSequenceRunner.currentMotionSequenceNode->y - ScrollManager_verticalScroll;
 
 	// if offscreen destroy
 	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
