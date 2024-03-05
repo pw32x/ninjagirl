@@ -20,6 +20,15 @@
 
 #include "client/exported/animations/enemies/threeshotflyer.h"
 
+/*
+const AICommandItem threeShotFlyerAICommandItems[] =
+{
+	// move left
+	// move right
+	// repeat
+};
+*/
+
 void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object);
 
 void ThreeShotFlyer_Roll(ThreeShotFlyerObjectType* object);
@@ -28,16 +37,6 @@ void ThreeShotFlyer_Fall(ThreeShotFlyerObjectType* object);
 BOOL ThreeShotFlyer_Draw(GameObject* object);
 void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other);
 
-#define SPEEDX 12
-
-// update x
-// update y
-// update visibility
-// update wall collisions
-// update projectile collisions
-
-// queue for drawing
-
 GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
@@ -45,22 +44,10 @@ GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateIn
 	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)ThreeShotFlyer_Update;
 	object->Draw = ThreeShotFlyer_Draw;
-	//object->UpdatePhysics = ThreeShotFlyer_Roll;
 	object->HandleCollision = ThreeShotFlyer_HandleCollision;
 
-	/*
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	if (ObjectManager_player.x < V2P(object->x))
-	{
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, THREESHOTFLYER_RUN_LEFT_FRAME_INDEX);
-		object->speedx = -SPEEDX;
-	}
-	else
-	{
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, THREESHOTFLYER_RUN_RIGHT_FRAME_INDEX);
-		object->speedx = 28;
-	}
-	*/
+	//object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems;
+	//object->aiCommandsRunner.waitTime = 0;
 
 	return (GameObject*)object;
 }
@@ -74,32 +61,9 @@ void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object)
 	PhysicsVars_X = object->x + object->speedx;
 	PhysicsVars_Y = object->y + object->speedy;
 
-	//PhysicsVars_GroundBlockX = V2B(PhysicsVars_X);
-
-/*	//PhysicsVars_GroundBlockY = V2B(PhysicsVars_Y + P2V(object->rectBottom));
-
-	/*
-	// update x position. 
-	//
-
-	// turn around if hit a wall
-	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY - 1) != TERRAIN_EMPTY)
-	{
-		object->speedx = -object->speedx;
-
-		if (object->speedx > 0)
-		{
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, THREESHOTFLYER_RUN_RIGHT_FRAME_INDEX);
-		}
-		else
-		{
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, THREESHOTFLYER_RUN_LEFT_FRAME_INDEX);
-		}	
-	}
 
 	// update Y position
-	object->UpdatePhysics(object);
-	*/
+	AICommandUtils_updateAICommandsRunner((GameObject*)object, &object->aiCommandsRunner);
 
 	// update object 
 	//
@@ -120,34 +84,6 @@ void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object)
 		return;
 	}
 }
-
-/*
-#define GRAVITY	3
-
-void ThreeShotFlyer_Roll(ThreeShotFlyerObjectType* object)
-{
-	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY) == TERRAIN_EMPTY)
-	{
-		object->speedy = -30;
-		object->UpdatePhysics = ThreeShotFlyer_Fall;
-	}
-}
-
-
-void ThreeShotFlyer_Fall(ThreeShotFlyerObjectType* object)
-{
-	object->speedy += GRAVITY;
-
-	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY) != TERRAIN_EMPTY)
-	{
-		object->y = B2V(PhysicsVars_GroundBlockY) - P2V(object->rectBottom);
-		object->speedy = 0;
-
-		object->UpdatePhysics = ThreeShotFlyer_Roll;
-	}
-}
-*/
-
 
 BOOL ThreeShotFlyer_Draw(GameObject* object)
 {

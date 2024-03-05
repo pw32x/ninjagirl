@@ -6,7 +6,7 @@
 typedef struct three_shot_flyer_object
 {
     GAME_OBJECT_FIELDS;
-    const AISequence* aiSequence;
+    AICommandsRunner aiCommandsRunner;
 } ThreeShotFlyerObjectType;
 
 #endif

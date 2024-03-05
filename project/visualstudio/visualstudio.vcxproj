@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_VRAMmemset.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
+    <ClCompile Include="..\source\client\ai_commands.c" />
     <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c" />
     <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c" />
     <ClCompile Include="..\source\client\exported\global_palette.c" />
@@ -230,7 +231,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
-    <ClInclude Include="..\source\client\ai_sequence.h" />
+    <ClInclude Include="..\source\client\ai_commands.h" />
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h" />
     <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h" />
     <ClInclude Include="..\source\client\exported\global_palette.h" />

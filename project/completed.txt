@@ -1,6 +1,17 @@
 	
 Completed
 
+	DONE wheelers use different functions depending on the direction it goes
+		YES bump against walls depends on direction
+		OHWELL screen visibility still uses all sides
+		YES wheelers jump when arriving at a ledge?
+	
+	DONE enemies from up top to shoot at. 
+		monkeys? bomb lobbing monkeys?
+		machine gun robots?
+		RESULT
+			added three shot flyer
+
 	NOPE have bank number as part of a resource
 
 	NAH motion path for shotgun

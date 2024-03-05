@@ -17,8 +17,11 @@
 		<ResourceInfo value="deliveryrobotResourceInfo" />	
 		<InitFunction value="DeliveryRobot_Init"/>	
 		<CustomData>
-			<Data value="const MotionSequenceRunner motionSequenceRunner"/>
+			<Data value="MotionSequenceRunner motionSequenceRunner"/>
 		</CustomData>			
+		<InstanceData>
+			<Data value="" />
+		</InstanceData>
 	</GameProperties>
 	<References>
 		<Template value="shotgun_item.xml"/>

@@ -17,7 +17,7 @@
 		<ResourceInfo value="threeshotflyerResourceInfo" />	
 		<InitFunction value="ThreeShotFlyer_Init"/>	
 		<CustomData>
-			<Data value="const AISequence* aiSequence"/>
+			<Data value="AICommandsRunner aiCommandsRunner"/>
 		</CustomData>			
 	</GameProperties>
 </GameObjectTemplate>

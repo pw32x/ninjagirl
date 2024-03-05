@@ -26,7 +26,7 @@ typedef struct
 
 
 #define MOTION_NO_CHANGE			0
-#define MOTION_CHANGED_FRAME		1
+#define MOTION_CHANGED_NODE		1
 #define MOTION_FINISHED				2
 
 u8 MotionUtils_updateMotion(MotionSequenceRunner* motionSequenceRunner);
