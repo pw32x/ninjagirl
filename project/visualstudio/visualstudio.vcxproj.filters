@@ -65,6 +65,9 @@
     <Filter Include="Source Files\client\managers">
       <UniqueIdentifier>{e1d89867-73dd-4024-89a2-d178d408f311}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\client\objects\enemies">
+      <UniqueIdentifier>{588afa27-1c54-4d09-a5ad-0011591ce835}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\engine\scene_manager.c">
@@ -99,9 +102,6 @@
     </ClCompile>
     <ClCompile Include="..\source\engine\object_utils.c">
       <Filter>Source Files\engine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\objects\enemy.c">
-      <Filter>Source Files\client\objects</Filter>
     </ClCompile>
     <ClCompile Include="..\source\engine\draw_utils.c">
       <Filter>Source Files\engine</Filter>
@@ -337,9 +337,6 @@
     <ClCompile Include="..\source\engine\commands\background_commands.c">
       <Filter>Source Files\engine\commands</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\wheeler.c">
-      <Filter>Source Files\client\objects</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\objects\bullet.c">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
@@ -366,6 +363,27 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\ai_commands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\managers\physics_manager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\motion_sequence.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\enemy.c">
+      <Filter>Source Files\client\objects\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\wheeler.c">
+      <Filter>Source Files\client\objects\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\threeshotflyer.c">
+      <Filter>Source Files\client\objects\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -419,9 +437,6 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\base_defines.h">
       <Filter>Source Files\engine</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\objects\enemy.h">
-      <Filter>Source Files\client\objects</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\draw_utils.h">
       <Filter>Source Files\engine</Filter>
@@ -537,9 +552,6 @@
     <ClInclude Include="..\source\engine\commands\background_commands.h">
       <Filter>Source Files\engine\commands</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\wheeler.h">
-      <Filter>Source Files\client\objects</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClInclude>
@@ -569,6 +581,18 @@
     </ClInclude>
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\ai_commands.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.h" />
+    <ClInclude Include="..\source\client\managers\physics_manager.h" />
+    <ClInclude Include="..\source\client\motion_sequence.h" />
+    <ClInclude Include="..\source\client\objects\threeshotflyer.h" />
+    <ClInclude Include="..\source\client\objects\enemy.h">
+      <Filter>Source Files\client\objects\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\wheeler.h">
+      <Filter>Source Files\client\objects\enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

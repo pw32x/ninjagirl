@@ -1,7 +1,7 @@
 Todo
 
 	
-
+	DONE rework AI Sequencer
 			
 	Use AI Sequencer to script the Three Shot Flyer actions
 		enter on screen
@@ -19,6 +19,8 @@ Todo
 			only with the player
 			
 	enemies add themselves to the list of things the player needs to test colisions against
+		the player doesn't need to collide with every enemy every frame
+		
 	enemies add themselves to the list of things the projectiles need to test collisions against
 
 	use Graphics Gale layers for different draw calls

@@ -20,4 +20,7 @@
 			<Data value="AICommandsRunner aiCommandsRunner"/>
 		</CustomData>			
 	</GameProperties>
+	<References>
+		<Template value="enemy_bullet.xml"/>
+	</References>	
 </GameObjectTemplate>

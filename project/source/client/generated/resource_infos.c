@@ -12,6 +12,7 @@
 #include "client\exported\animations\standard\kunai.h"
 #include "client\exported\animations\standard\rock_particle.h"
 #include "client\exported\animations\standard\test_block.h"
+#include "client\exported\animations\enemies\enemy_bullet.h"
 #include "client\exported\animations\enemies\robotrunner.h"
 #include "client\exported\animations\enemies\robotspring.h"
 #include "client\exported\animations\enemies\threeshotflyer.h"
@@ -43,6 +44,7 @@ const ResourceInfo impactResourceInfo = { /*bank*/ 2, (const Resource*)&impact }
 const ResourceInfo kunaiResourceInfo = { /*bank*/ 2, (const Resource*)&kunai };
 const ResourceInfo rock_particleResourceInfo = { /*bank*/ 2, (const Resource*)&rock_particle };
 const ResourceInfo test_blockResourceInfo = { /*bank*/ 2, (const Resource*)&test_block };
+const ResourceInfo enemy_bulletResourceInfo = { /*bank*/ 6, (const Resource*)&enemy_bullet };
 const ResourceInfo robotrunnerResourceInfo = { /*bank*/ 6, (const Resource*)&robotrunner };
 const ResourceInfo robotspringResourceInfo = { /*bank*/ 6, (const Resource*)&robotspring };
 const ResourceInfo threeshotflyerResourceInfo = { /*bank*/ 6, (const Resource*)&threeshotflyer };

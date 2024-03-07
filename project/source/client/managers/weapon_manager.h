@@ -7,6 +7,7 @@
 #define WEAPON_SHOTGUN		1
 #define WEAPON_NUM_WEAPONS	2
 
+void WeaponManager_InitGame(void);
 
 typedef void (*WeaponManager_FireFunction)(s16 x, s16 y, u8 flipped);
 

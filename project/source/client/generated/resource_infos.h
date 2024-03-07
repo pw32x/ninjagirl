@@ -15,6 +15,7 @@ extern const ResourceInfo impactResourceInfo;
 extern const ResourceInfo kunaiResourceInfo;
 extern const ResourceInfo rock_particleResourceInfo;
 extern const ResourceInfo test_blockResourceInfo;
+extern const ResourceInfo enemy_bulletResourceInfo;
 extern const ResourceInfo robotrunnerResourceInfo;
 extern const ResourceInfo robotspringResourceInfo;
 extern const ResourceInfo threeshotflyerResourceInfo;

@@ -20,14 +20,33 @@
 
 #include "client/exported/animations/enemies/threeshotflyer.h"
 
-/*
+void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot);
+
 const AICommandItem threeShotFlyerAICommandItems[] =
 {
-	// move left
-	// move right
-	// repeat
+	{(AICommand)AI_COMMAND_SET_SPEEDX, (void*)0},
+	{(AICommand)AI_COMMAND_SET_SPEEDY, (void*)5},
+	{(AICommand)AI_COMMAND_WAIT, (void*)60},
+	{(AICommand)AI_COMMAND_SET_SPEEDX, (void*)-5},
+	{(AICommand)AI_COMMAND_SET_SPEEDY, (void*)0},
+	{(AICommand)AI_COMMAND_WAIT, (void*)60},
+	{(AICommand)AI_COMMAND_SET_SPEEDX, (void*)0},
+	{(AICommand)AI_COMMAND_SET_SPEEDY, (void*)-5},
+	{(AICommand)AI_COMMAND_WAIT, (void*)60},
+	{(AICommand)AI_COMMAND_SET_SPEEDX, (void*)5},
+	{(AICommand)AI_COMMAND_SET_SPEEDY, (void*)0},
+	{(AICommand)AI_COMMAND_WAIT, (void*)60},
+	{(AICommand)AI_COMMAND_SET_SPEEDX, (void*)0},
+	{(AICommand)AI_COMMAND_SET_SPEEDY, (void*)0},
+	{(AICommand)ThreeShotFlyer_Fire, (void*)0},
+	{(AICommand)AI_COMMAND_WAIT, (void*)20},
+	{(AICommand)ThreeShotFlyer_Fire, (void*)1},
+	{(AICommand)AI_COMMAND_WAIT, (void*)20},
+	{(AICommand)ThreeShotFlyer_Fire, (void*)2},
+	{(AICommand)AI_COMMAND_WAIT, (void*)20},	
+	{(AICommand)AI_COMMAND_JUMP, (void*)-21},
 };
-*/
+
 
 void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object);
 
@@ -46,8 +65,8 @@ GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateIn
 	object->Draw = ThreeShotFlyer_Draw;
 	object->HandleCollision = ThreeShotFlyer_HandleCollision;
 
-	//object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems;
-	//object->aiCommandsRunner.waitTime = 0;
+	object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems;
+	object->aiCommandsRunner.waitTime = 1;
 
 	return (GameObject*)object;
 }
@@ -120,5 +139,37 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 	else
 	{
 		PSGSFXPlay(hit_psg, SFX_CHANNELS2AND3);
+	}
+}
+
+void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
+{
+	//SMS_debugPrintf("Default");
+	CreateInfo createInfo = 
+	{ 
+		&enemy_bullet_template, 
+		V2P(object->x),
+		V2P(object->y)
+	};
+
+	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+
+	switch (whichShot)
+	{
+	case 0:
+		SMS_debugPrintf("Fire one\n");
+		bullet->speedx = -2;
+		bullet->speedy = 2;
+		break;
+	case 1:
+		SMS_debugPrintf("Fire two\n");
+		bullet->speedx = 0;
+		bullet->speedy = 2;
+		break;
+	case 2:
+		SMS_debugPrintf("Fire three\n");
+		bullet->speedx = 2;
+		bullet->speedy = 2;
+		break;
 	}
 }

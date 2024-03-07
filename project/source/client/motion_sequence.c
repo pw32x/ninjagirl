@@ -12,7 +12,7 @@ u8 MotionUtils_updateMotion(MotionSequenceRunner* motionSequenceRunner)
 		}
 
 		motionSequenceRunner->currentMotionSequenceNodeTime = motionSequenceRunner->currentMotionSequenceNode->time;
-		return MOTION_CHANGED_FRAME;
+		return MOTION_CHANGED_NODE;
 	}
 
 	return MOTION_NO_CHANGE;

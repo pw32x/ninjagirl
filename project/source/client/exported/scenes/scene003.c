@@ -47,6 +47,7 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &bulletResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &shotgunResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &threeshotflyerResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &enemy_bulletResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &deliveryrobotResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun_itemResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &wheelerResourceInfo },
