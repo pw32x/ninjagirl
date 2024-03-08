@@ -13,6 +13,7 @@ namespace SpriteMaster
 
 		HBITMAP getBitmap(LONG frameNo, LONG layerNo) const;
 		DWORD getFrameCount() const;
+		DWORD getLayerCount(LONG frameNo) const;
 
 		LONG getFrameInfo(LONG frameNo, LONG nID) const;
 		LONG getFrameName(LONG frameNo, LPSTR pName, LONG len) const;

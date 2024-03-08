@@ -217,16 +217,21 @@ void GGAnimationFrame::BuildFrame(const GraphicsGaleObject& ggo,
 	HBITMAP				hBitmap;
 	BITMAP				bitmapInfo;
 
-	hBitmap = ggo.getBitmap(mFrameNumber, 0);
-	GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
-	BYTE* byteData = BitmapUtils::CreateByteDataFromBitmap(bitmapInfo);
+	DWORD layerCount = ggo.getLayerCount(mFrameNumber);
 
-	SliceImageIntoStrips(byteData, 
-						 bitmapInfo.bmWidth, 
-						 bitmapInfo.bmHeight, 
-						 spriteStripStore,
-						 m_sprites);
+	for (DWORD loop = 0; loop < layerCount; loop++)
+	{
+		hBitmap = ggo.getBitmap(mFrameNumber, loop);
+		GetObject(hBitmap, sizeof(BITMAP), &bitmapInfo);
+		BYTE* byteData = BitmapUtils::CreateByteDataFromBitmap(bitmapInfo);
 
-	delete [] byteData;
+		SliceImageIntoStrips(byteData, 
+							 bitmapInfo.bmWidth, 
+							 bitmapInfo.bmHeight, 
+							 spriteStripStore,
+							 m_sprites);
+
+		delete [] byteData;
+	}
 }
 }

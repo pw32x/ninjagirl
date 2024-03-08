@@ -47,6 +47,13 @@ const AICommandItem threeShotFlyerAICommandItems[] =
 	{(AICommand)AI_COMMAND_JUMP, (void*)-21},
 };
 
+const AICommandItem threeShotFlyerAICommandItems_Simple[] =
+{
+	{(AICommand)AI_COMMAND_WAIT, (void*)120},
+	{(AICommand)ThreeShotFlyer_Fire, (void*)1},
+	{(AICommand)AI_COMMAND_JUMP, (void*)-3},
+};
+
 
 void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object);
 
@@ -65,7 +72,7 @@ GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateIn
 	object->Draw = ThreeShotFlyer_Draw;
 	object->HandleCollision = ThreeShotFlyer_HandleCollision;
 
-	object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems;
+	object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems_Simple;
 	object->aiCommandsRunner.waitTime = 1;
 
 	return (GameObject*)object;

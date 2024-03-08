@@ -3,31 +3,41 @@ Todo
 	
 	DONE add enemy projectile type
 		
-	enemy bullet - player collisions
-		
-	enemies add themselves to the list of things the player needs to test colisions against
-		the player doesn't need to collide with every enemy every frame
-		
-	enemies add themselves to the list of things the projectiles need to test collisions against
-
-	use Graphics Gale layers for different draw calls
+	DONE use Graphics Gale layers for different draw calls
 		complex explosions
 		player ponytail
 		spark effects
 		flying debris
 		smoke trails
 		
+	make the clouds only be on top
+		or, make standalone puffy clouds
+		remove the duplicate tiles that have clouds in them
+		
+	re-add some of the elements of the old tile set into the new one
+		
 	why am I using two different variables for the player?
+		and two different point spaces?
 		
 	frame layers indicate if they're background tiles
 		so to have mixed animations
+		fixed cannons  with moving turrets or something
+
+	tool to animate paths
+		export to Motion Sequence or AI Sequence
+		- draw paths
+		- draw animation from capturing the mouse
+
+
 		
-	how to specify collision box of moving animation?
-		animation has array of collision boxes
-		it can be null for those that don't need/want it
-	
 	use animation visible area, not collision area, for visibility
 		per frame?
+
+
+	how to specify collision box of moving animation?
+		example: base falling from the sky
+		animation has array of collision boxes
+		it can be null for those that don't need/want it
 	
 	base falling from the sky
 		lands on ground, blends into background tiles
@@ -59,12 +69,25 @@ Todo
 	enemy-player collisions
 
 	performance pass...
+
+		the game idling with just the player takes 40% of the CPU
+		
+		the game with one enemy takes 50% of the time
 	
 		collisions are especially slow
 		
 		max number of active sprites?
 			the spawner checks the limit?
 				but only for enemies, not triggers, etc.
+
+	enemy bullet - player collisions
+		
+	enemies add themselves to the list of things the player needs to test colisions against
+		the player doesn't need to collide with every enemy every frame
+		
+	enemies add themselves to the list of things the projectiles need to test collisions against
+
+	trigger area to clear sprite tiles. and to reload new ones
 	
 	object states
 	
