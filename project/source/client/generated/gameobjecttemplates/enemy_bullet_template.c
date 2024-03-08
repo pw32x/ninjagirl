@@ -13,7 +13,7 @@ const GameObjectTemplate enemy_bullet_template =
     -4, // rect top
     4, // rect right
     4, // rect bottom
-    OBJECTTYPE_ENEMY, // object type
+    OBJECTTYPE_ENEMY_PROJECTILE, // object type
     &enemy_bulletResourceInfo, // resource info
     NULL, // extra resource infos
     Bullet_Init, // init function

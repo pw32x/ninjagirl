@@ -6,7 +6,7 @@
 		<RectTop value="-4"/>
 		<RectRight value="4"/>
 		<RectBottom value="4"/>
-		<GameObjectType value="Enemy" />
+		<GameObjectType value="Enemy_Projectile" />
 		<ResourceInfo value="enemy_bulletResourceInfo" />		
 		<InitFunction value="Bullet_Init"/>
 	</GameProperties>

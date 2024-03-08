@@ -1,6 +1,23 @@
 	
 Completed
 
+	DONE rework AI Sequencer
+			
+	DONE Use AI Sequencer to script the Three Shot Flyer actions
+		enter on screen
+		
+		float a while, going left to right
+		stop
+		fire bullet 1 (position, object type, direction)
+		fire bullet 2
+		fire bullet 3
+		loop
+		
+		FireBullet1 function or FireBullet(pointer to payload) function
+		
+		enemy bullets are enemies but don't get collided with bullets
+			only with the player
+
 	DONE wheelers use different functions depending on the direction it goes
 		YES bump against walls depends on direction
 		OHWELL screen visibility still uses all sides

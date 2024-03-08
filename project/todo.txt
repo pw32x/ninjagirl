@@ -1,23 +1,10 @@
 Todo
 
 	
-	DONE rework AI Sequencer
-			
-	Use AI Sequencer to script the Three Shot Flyer actions
-		enter on screen
+	DONE add enemy projectile type
 		
-		float a while, going left to right
-		stop
-		fire bullet 1 (position, object type, direction)
-		fire bullet 2
-		fire bullet 3
-		loop
+	enemy bullet - player collisions
 		
-		FireBullet1 function or FireBullet(pointer to payload) function
-		
-		enemy bullets are enemies but don't get collided with bullets
-			only with the player
-			
 	enemies add themselves to the list of things the player needs to test colisions against
 		the player doesn't need to collide with every enemy every frame
 		

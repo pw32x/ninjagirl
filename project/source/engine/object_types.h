@@ -6,12 +6,13 @@
 #include "engine/math_utils.h"
 #include "engine/resource_types.h"
 
-#define OBJECTTYPE_PROJECTILE		0
-#define OBJECTTYPE_ENEMY			1
-#define OBJECTTYPE_EFFECT			2
-#define OBJECTTYPE_PLAYER			3
-#define OBJECTTYPE_COMMANDRUNNER	4
-#define OBJECTTYPE_ITEM				5
+#define OBJECTTYPE_PROJECTILE			0
+#define OBJECTTYPE_ENEMY				1
+#define OBJECTTYPE_EFFECT				2
+#define OBJECTTYPE_PLAYER				3
+#define OBJECTTYPE_COMMANDRUNNER		4
+#define OBJECTTYPE_ITEM					5
+#define OBJECTTYPE_ENEMY_PROJECTILE		6
 
 #define GAME_OBJECT_FIELDS \
 	void (*Update)(struct game_object* gameObject);\

@@ -23,11 +23,13 @@ GameObject ObjectManager_Item;
 
 
 #define NUM_PROJECTILE_SLOTS 3
+#define NUM_ENEMY_PROJECTILE_SLOTS 3
 #define NUM_ENEMY_SLOTS 8
 #define NUM_EFFECT_SLOTS 8
 #define NUM_EFFECT_SLOTS_MASK 0x7
 
 GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
+GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
 GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
 GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
@@ -68,6 +70,7 @@ void ObjectManager_Init(void)
 	ObjectManager_objectId = 0;
 
 	memset(ObjectManager_projectileSlots, 0, sizeof(ObjectManager_projectileSlots));
+	memset(ObjectManager_enemyProjectileSlots, 0, sizeof(ObjectManager_enemyProjectileSlots));
 	memset(ObjectManager_enemySlots, 0, sizeof(ObjectManager_enemySlots));
 	memset(ObjectManager_effectSlots, 0,sizeof(ObjectManager_effectSlots));
 	ObjectManager_numEffects = 0;
@@ -81,6 +84,19 @@ void ObjectManager_Init(void)
 		ObjectManager_DestroyObject(objectSlotRunner);
 		objectSlotRunner++;
 	}
+
+
+
+	objectSlotRunner = ObjectManager_enemyProjectileSlots;
+	counter = NUM_ENEMY_PROJECTILE_SLOTS;
+
+	while (counter--)
+	{
+		ObjectManager_DestroyObject(objectSlotRunner);
+		objectSlotRunner++;
+	}
+
+
 
 	objectSlotRunner = ObjectManager_enemySlots;
 	counter = NUM_ENEMY_SLOTS;
@@ -167,6 +183,12 @@ void ObjectManager_Update(void)
 	ObjectManager_projectileSlots[0].Update(&ObjectManager_projectileSlots[0]);
 	ObjectManager_projectileSlots[1].Update(&ObjectManager_projectileSlots[1]);
 	ObjectManager_projectileSlots[2].Update(&ObjectManager_projectileSlots[2]);
+
+	ObjectManager_enemyProjectileSlots[0].Update(&ObjectManager_enemyProjectileSlots[0]);
+	ObjectManager_enemyProjectileSlots[1].Update(&ObjectManager_enemyProjectileSlots[1]);
+	ObjectManager_enemyProjectileSlots[2].Update(&ObjectManager_enemyProjectileSlots[2]);
+
+	
 
 	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
@@ -301,6 +323,12 @@ void ObjectManager_Update(void)
 	ObjectManager_projectileSlots[1].Draw(&ObjectManager_projectileSlots[1]);
 	ObjectManager_projectileSlots[2].Draw(&ObjectManager_projectileSlots[2]);
 
+	ObjectManager_enemyProjectileSlots[0].Draw(&ObjectManager_enemyProjectileSlots[0]);
+	ObjectManager_enemyProjectileSlots[1].Draw(&ObjectManager_enemyProjectileSlots[1]);
+	ObjectManager_enemyProjectileSlots[2].Draw(&ObjectManager_enemyProjectileSlots[2]);
+
+	
+
 	//SMS_setBackdropColor(COLOR_PINK);
 	/*
 	activeObjectRunner = ObjectManager_activeEnemies;
@@ -403,6 +431,11 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
+	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_enemyProjectileSlots;
+		counter = NUM_ENEMY_PROJECTILE_SLOTS;
+	}
 	else if (objectType == OBJECTTYPE_ITEM)
 	{
 		ObjectManager_Item.alive = TRUE;
@@ -461,6 +494,11 @@ GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameO
 		ApplyGameObjectTemplate(objectSlotRunner, gameObjectTemplate);
 		return objectSlotRunner;
 	}
+	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_enemyProjectileSlots;
+		counter = NUM_ENEMY_PROJECTILE_SLOTS;
+	}
 	else if (objectType == OBJECTTYPE_ITEM)
 	{
 		ObjectManager_Item.alive = TRUE;
@@ -509,6 +547,11 @@ GameObject* FindFreeGameObject(u8 objectType)
 		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
+	}
+	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
+	{
+		objectSlotRunner = ObjectManager_enemyProjectileSlots;
+		counter = NUM_ENEMY_PROJECTILE_SLOTS;
 	}
 	else if (objectType == OBJECTTYPE_ITEM)
 	{
