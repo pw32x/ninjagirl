@@ -8,11 +8,11 @@ typedef s16 POSITION_PIXEL;
 
 #define VIRTUAL_SIZE 4
 
-#define PIXEL_TO_VIRTUAL(value) ((value) << 4) // 16 virtual pixels per on screen pixel
+#define PIXEL_TO_VIRTUAL(value) ((value) << VIRTUAL_SIZE) // 16 virtual pixels per on screen pixel
 #define PIXEL_TO_TILE(value)    ((value) >> 3) // 8 pixels per tile
 #define PIXEL_TO_BLOCK(value)    ((value) >> 4) // 16 pixels per block
 
-#define VIRTUAL_TO_PIXEL(value) ((value) >> 4) // 16 virtual pixels per on screen pixel
+#define VIRTUAL_TO_PIXEL(value) ((value) >> VIRTUAL_SIZE) // 16 virtual pixels per on screen pixel
 #define VIRTUAL_TO_TILE(value)  ((value) >> 7) // 16 virtual pixels per pixel, 8 pixels per tile
 #define VIRTUAL_TO_BLOCK(value)  ((value) >> 8) // 16 virtual pixels per pixel, 8 pixels per tile, 2 tiles per block
 
