@@ -27,8 +27,8 @@
 
 #include <stdio.h>
 
-BOOL Player_Draw(GameObject* player);
-void Player_FireWeapon(GameObject* player);
+BOOL Player_Draw(GameObject* object);
+void Player_FireWeapon(GameObject* object);
 
 
 s16 playerX;
@@ -62,12 +62,12 @@ u8 isPlayerShooting;
 #define PLAYER_STATE_NOTHING	5
 #define PLAYER_NUM_STATES		6
 
-void Player_Update(GameObject* player);
-void Player_UpdateStand(GameObject* player);
-void Player_UpdateRun(GameObject* player);
-void Player_UpdateFall(GameObject* player);
-void Player_UpdateJump(GameObject* player);
-void Player_UpdateDuck(GameObject* player);
+void Player_Update(GameObject* object);
+void Player_UpdateStand(GameObject* object);
+void Player_UpdateRun(GameObject* object);
+void Player_UpdateFall(GameObject* object);
+void Player_UpdateJump(GameObject* object);
+void Player_UpdateDuck(GameObject* object);
 
 ObjectFunctionType player_SubUpdate;
 
@@ -190,26 +190,26 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	return &ObjectManager_player;
 }
 
-void Player_FireWeapon(GameObject* player)
+void Player_FireWeapon(GameObject* object)
 {
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
 	if (pointingUp)
 	{
-		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -5 : 5), 
-										 player->y - 19,
+		WeaponManager_FireWeaponVertical(object->x + (ObjectManager_player.flipped ? -5 : 5), 
+										 object->y - 19,
 										 FALSE);
 	}
 	else if (pointingDown)
 	{
-		WeaponManager_FireWeaponVertical(player->x + (ObjectManager_player.flipped ? -5 : 5), 
-										 player->y + 12,
+		WeaponManager_FireWeaponVertical(object->x + (ObjectManager_player.flipped ? -5 : 5), 
+										 object->y + 12,
 										 TRUE);
 	}
 	else
 	{
-		WeaponManager_FireWeapon(player->x + (ObjectManager_player.flipped ? -13 : 13), 
-								 player->y + offset,
+		WeaponManager_FireWeapon(object->x + (ObjectManager_player.flipped ? -13 : 13), 
+								 object->y + offset,
 								 ObjectManager_player.flipped);
 	}
 }
@@ -305,7 +305,7 @@ u16 oldBottomTileTypeRight = TERRAIN_SOLID;
 s16 oldBlockY = 0;
 
 
-void Player_UpdateStand(GameObject* player)
+void Player_UpdateStand(GameObject* object)
 {
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
@@ -344,7 +344,7 @@ void Player_UpdateStand(GameObject* player)
 	}
 }
 
-void Player_UpdateRun(GameObject* player)
+void Player_UpdateRun(GameObject* object)
 {
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2 || jumpWhenLanding)
 	{
@@ -393,7 +393,7 @@ void Player_UpdateRun(GameObject* player)
 	}
 }
 
-void Player_UpdateFall(GameObject* player)
+void Player_UpdateFall(GameObject* object)
 {
 	if (canStillJumpFrames)
 	{
@@ -474,7 +474,7 @@ void Player_UpdateFall(GameObject* player)
 	oldBlockY = blockY;
 }
 
-void Player_UpdateJump(GameObject* player)
+void Player_UpdateJump(GameObject* object)
 {
 	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
@@ -535,7 +535,7 @@ void Player_UpdateJump(GameObject* player)
 	}
 }
 
-void Player_UpdateDuck(GameObject* player)
+void Player_UpdateDuck(GameObject* object)
 {
 	if (!(JoystickManager_buttonState & PORT_A_KEY_DOWN))
 	{
@@ -581,29 +581,29 @@ void Player_UpdateDuck(GameObject* player)
 	}
 }
 
-void AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked(GameObject* gameObject)
+void AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked(GameObject* object)
 {
-	SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
-	AnimationUtils_UpdateStreamedBatchedAnimationFrame(gameObject);
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
+	AnimationUtils_UpdateStreamedBatchedAnimationFrame(object);
 }
 
-void Player_Update(GameObject* player)
+void Player_Update(GameObject* object)
 {
 
 	u8 oldFlip = ObjectManager_player.flipped;
 	u8 oldPointingUp = pointingUp;
 	u8 oldPointingDown = pointingDown;
 
-	player_SubUpdate(player);
+	player_SubUpdate(object);
 
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_1 /* && !isPlayerShooting*/)
-		Player_FireWeapon(player);
+		Player_FireWeapon(object);
 
-	player->x = V2P(playerX);
-	player->y = V2P(playerY);
+	object->x = V2P(playerX);
+	object->y = V2P(playerY);
 
 	// update animation
-	SMS_mapROMBank(player->resourceInfo->bankNumber);
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 
 	if (ObjectManager_player.flipped != oldFlip ||
 		oldPointingUp != pointingUp ||
