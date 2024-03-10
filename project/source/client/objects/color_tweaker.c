@@ -50,6 +50,7 @@ GameObject* ColorTweaker_Init(ColorTweakerObjectType* object, const CreateInfo* 
 
 void ColorTweaker_Update(ColorTweakerObjectType* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->screenx = 20;
 	object->screeny = 20;
 
@@ -199,6 +200,8 @@ void ColorTweaker_Update(ColorTweakerObjectType* object)
 
 BOOL ColorTweaker_Draw(ColorTweakerObjectType* object)
 {
+	SMS_mapROMBank(object->resourceInfo->bankNumber);
+
 	DRAWUTILS_SETUP_BATCH(object->screenx,
 						  object->screeny,
 						  object->currentBatchedAnimationFrame->spriteStrips,

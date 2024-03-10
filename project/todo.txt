@@ -10,9 +10,12 @@ Todo
 		flying debris
 		smoke trails
 		
-	make the clouds only be on top
+	NAH make the clouds only be on top
 		or, make standalone puffy clouds
 		remove the duplicate tiles that have clouds in them
+		REASON
+			I suck at clouds
+			there wasn't much of a savings
 		
 	re-add some of the elements of the old tile set into the new one
 		
