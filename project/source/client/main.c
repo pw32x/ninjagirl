@@ -69,14 +69,14 @@ void main(void)
 		//SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
-		//SMS_setBackdropColor(COLOR_DARK_GREY);
+		SMS_setBackdropColor(COLOR_DARK_GREY);
 		SMS_copySpritestoSAT();
 
 		ObjectManager_VDPDraw();
 
 		ScrollManager_UpdateVDP();
 
-		//SMS_setBackdropColor(COLOR_BLACK);
+		SMS_setBackdropColor(COLOR_BLACK);
 
 	}
 }

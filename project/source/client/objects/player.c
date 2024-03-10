@@ -36,6 +36,13 @@ s16 playerY;
 s16 playerSpeedX;
 s16 playerSpeedY;
 
+s16 playerRectLeftV;
+s16 playerRectRightV;
+s16 playerRectTopV;
+s16 playerRectBottomV;
+
+u8 playerFlipped;
+
 u8 playerState;
 
 u16 jumpPressCounter;
@@ -85,53 +92,51 @@ u8 updateAnimationStream = FALSE;
 
 void setPlayerAnimation(void)
 {
-	u8 flipped = ObjectManager_player.flipped;
-
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
 		if (!pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_UP_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		if (!pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_UP_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_FALL:
 		if (pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		if (pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													flipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_DUCK:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												flipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
+												playerFlipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}
 
@@ -147,7 +152,7 @@ void setPlayerState(u8 newState)
 	switch (playerState)
 	{
 	case PLAYER_STATE_STAND:
-		playerSpeedX = 0;
+		//playerSpeedX = 0;
 		playerSpeedY = 0;
 		break;
 	case PLAYER_STATE_RUN:
@@ -177,9 +182,10 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	playerX = P2V(object->x);
 	playerY = P2V(object->y);
 
-	ObjectManager_player.Update = Player_Update;
-	ObjectManager_player.Draw = Player_Draw;
-	ObjectManager_player.flipped = FALSE;
+	object->Update = Player_Update;
+	object->Draw = Player_Draw;
+
+	playerFlipped = FALSE;
 
 	updateAnimationStream = FALSE;
 
@@ -187,7 +193,12 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	playerSpeedY = 0;
 	setPlayerState(PLAYER_STATE_STAND);
 
-	return &ObjectManager_player;
+	playerRectLeftV = P2V(object->rectLeft);
+	playerRectRightV = P2V(object->rectRight);
+	playerRectTopV = P2V(object->rectTop);
+	playerRectBottomV = P2V(object->rectBottom);
+
+	return object;
 }
 
 void Player_FireWeapon(GameObject* object)
@@ -196,21 +207,21 @@ void Player_FireWeapon(GameObject* object)
 
 	if (pointingUp)
 	{
-		WeaponManager_FireWeaponVertical(object->x + (ObjectManager_player.flipped ? -5 : 5), 
+		WeaponManager_FireWeaponVertical(object->x + (playerFlipped ? -5 : 5), 
 										 object->y - 19,
 										 FALSE);
 	}
 	else if (pointingDown)
 	{
-		WeaponManager_FireWeaponVertical(object->x + (ObjectManager_player.flipped ? -5 : 5), 
+		WeaponManager_FireWeaponVertical(object->x + (playerFlipped ? -5 : 5), 
 										 object->y + 12,
 										 TRUE);
 	}
 	else
 	{
-		WeaponManager_FireWeapon(object->x + (ObjectManager_player.flipped ? -13 : 13), 
+		WeaponManager_FireWeapon(object->x + (playerFlipped ? -13 : 13), 
 								 object->y + offset,
-								 ObjectManager_player.flipped);
+								 playerFlipped);
 	}
 }
 
@@ -222,13 +233,13 @@ void Player_UpdateX(void)
 
 	s16 xSensor = projectedX;
 
-	if (!ObjectManager_player.flipped)
+	if (!playerFlipped)
 	{
 		offset = P2V(ObjectManager_player.rectRight + 1);
 	}
 	else
 	{
-		offset = P2V(ObjectManager_player.rectLeft);
+		offset = playerRectLeftV;
 	}
 
 	xSensor += offset;
@@ -243,7 +254,7 @@ void Player_UpdateX(void)
 	}
 
 	s16 blockX = V2B(xSensor);
-	s16 blockY = V2B(playerY + P2V(ObjectManager_player.rectTop));
+	s16 blockY = V2B(playerY + playerRectTopV);
 
 	if (blockY < 0)
 		goto update_x;
@@ -252,7 +263,7 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (ObjectManager_player.flipped)
+		if (playerFlipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
@@ -269,7 +280,7 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (ObjectManager_player.flipped)
+		if (playerFlipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
@@ -287,7 +298,7 @@ void Player_UpdateX(void)
 
 	if (tileType == TERRAIN_SOLID)
 	{
-		if (ObjectManager_player.flipped)
+		if (playerFlipped)
 			blockX++;
 
 		playerX = B2V(blockX) - offset;
@@ -328,10 +339,10 @@ void Player_UpdateStand(GameObject* object)
 	pointingDown = FALSE;
 
 
-	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
-	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+	s16 blockLeft = V2B(playerX + playerRectLeftV);
+	s16 blockRight = V2B(playerX + playerRectRightV);
 
-	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + playerRectBottomV;
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
@@ -358,12 +369,12 @@ void Player_UpdateRun(GameObject* object)
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
-		ObjectManager_player.flipped = TRUE;
+		playerFlipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
-		ObjectManager_player.flipped = FALSE;
+		playerFlipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
 	}
 	else
@@ -377,10 +388,10 @@ void Player_UpdateRun(GameObject* object)
 
 	Player_UpdateX();
 
-	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
-	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+	s16 blockLeft = V2B(playerX + playerRectLeftV);
+	s16 blockRight = V2B(playerX + playerRectRightV);
 
-	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + playerRectBottomV;
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
@@ -416,12 +427,12 @@ void Player_UpdateFall(GameObject* object)
 
 	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
-		ObjectManager_player.flipped = TRUE;
+		playerFlipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
-		ObjectManager_player.flipped = FALSE;
+		playerFlipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
 	}
 	else
@@ -437,10 +448,10 @@ void Player_UpdateFall(GameObject* object)
 	playerSpeedY += PLAYER_GRAVITY;
 	playerY += playerSpeedY;
 
-	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
-	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+	s16 blockLeft = V2B(playerX + playerRectLeftV);
+	s16 blockRight = V2B(playerX + playerRectRightV);
 
-	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + playerRectBottomV;
 
 	s16 blockY = V2B(ySensor);
 
@@ -460,7 +471,7 @@ void Player_UpdateFall(GameObject* object)
 			)
 		 ))
 	{
-		playerY = B2V(blockY) - P2V(ObjectManager_player.rectBottom);
+		playerY = B2V(blockY) - playerRectBottomV;
 		playerSpeedY = 0;
 
 		jumpWhenLanding = (jumpPressCounter < NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING);
@@ -478,12 +489,12 @@ void Player_UpdateJump(GameObject* object)
 {
 	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
-		ObjectManager_player.flipped = TRUE;
+		playerFlipped = TRUE;
 		playerSpeedX = -PLAYER_SPEED_X;
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
-		ObjectManager_player.flipped = FALSE;
+		playerFlipped = FALSE;
 		playerSpeedX = PLAYER_SPEED_X;
 	}
 	else
@@ -512,10 +523,10 @@ void Player_UpdateJump(GameObject* object)
 
 	playerY += playerSpeedY;
 
-	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
-	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+	s16 blockLeft = V2B(playerX + playerRectLeftV);
+	s16 blockRight = V2B(playerX + playerRectRightV);
 
-	s16 ySensor = playerY + P2V(ObjectManager_player.rectTop);
+	s16 ySensor = playerY + playerRectTopV;
 
 	s16 blockY = V2B(ySensor);
 
@@ -528,7 +539,7 @@ void Player_UpdateJump(GameObject* object)
 
 	if (topTileTypeLeft == TERRAIN_SOLID  || topTileTypeRight == TERRAIN_SOLID)
 	{
-		playerY = B2V(blockY + 1) - P2V(ObjectManager_player.rectTop);
+		playerY = B2V(blockY + 1) - playerRectTopV;
 		playerSpeedY = 0;
 		canStillJumpFrames = 0;
 		setPlayerState(PLAYER_STATE_FALL);
@@ -544,20 +555,20 @@ void Player_UpdateDuck(GameObject* object)
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
 	{
-		ObjectManager_player.flipped = TRUE;
+		playerFlipped = TRUE;
 	}
 	else if (JoystickManager_buttonState & PORT_A_KEY_RIGHT)
 	{
-		ObjectManager_player.flipped = FALSE;
+		playerFlipped = FALSE;
 	}
 
 	pointingUp = FALSE;
 	pointingDown = FALSE;
 
-	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
-	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
+	s16 blockLeft = V2B(playerX + playerRectLeftV);
+	s16 blockRight = V2B(playerX + playerRectRightV);
 
-	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + playerRectBottomV;
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
@@ -590,7 +601,7 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked(GameObject* object
 void Player_Update(GameObject* object)
 {
 
-	u8 oldFlip = ObjectManager_player.flipped;
+	u8 oldFlip = playerFlipped;
 	u8 oldPointingUp = pointingUp;
 	u8 oldPointingDown = pointingDown;
 
@@ -605,16 +616,16 @@ void Player_Update(GameObject* object)
 	// update animation
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 
-	if (ObjectManager_player.flipped != oldFlip ||
+	if (playerFlipped != oldFlip ||
 		oldPointingUp != pointingUp ||
 		oldPointingDown != pointingDown)
 		setPlayerAnimation();
 
 
-	if (ObjectManager_player.UpdateAnimation(&ObjectManager_player) == ANIMATION_CHANGED_FRAME || 
+	if (object->UpdateAnimation(object) == ANIMATION_CHANGED_FRAME || 
 		updateAnimationStream)
 	{
-		ObjectManager_QueueVDPDraw(&ObjectManager_player, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
+		ObjectManager_QueueVDPDraw(object, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
 	}
 }
 

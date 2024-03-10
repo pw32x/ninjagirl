@@ -146,15 +146,16 @@ void ObjectManager_Update(void)
 {
 	ObjectManager_numVdpDrawItems = 0;
 
-	//SMS_setBackdropColor(COLOR_RED);
+	SMS_setBackdropColor(COLOR_RED);
 
 	ObjectManager_player.Update(&ObjectManager_player);
+	SMS_setBackdropColor(COLOR_ORANGE);
 	ScrollManager_Update(&ObjectManager_player);
 
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 
-	//SMS_setBackdropColor(COLOR_ORANGE);
+	
 
 	// update objects
 
@@ -280,6 +281,9 @@ void ObjectManager_Update(void)
 
 	ObjectManager_Item.Update(&ObjectManager_Item);
 
+	ObjectManager_player.screenx = ObjectManager_player.x - ScrollManager_horizontalScroll;
+	ObjectManager_player.screeny = ObjectManager_player.y;
+
 	if (ObjectManager_Item.alive)
 	{
 		s16 left = ObjectManager_player.screenx + ObjectManager_player.rectLeft;
@@ -297,8 +301,7 @@ void ObjectManager_Update(void)
 	}
 
 
-	ObjectManager_player.screenx = ObjectManager_player.x - ScrollManager_horizontalScroll;
-	ObjectManager_player.screeny = ObjectManager_player.y;
+
 
 	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
