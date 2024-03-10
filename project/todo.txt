@@ -17,21 +17,45 @@ Todo
 			I suck at clouds
 			there wasn't much of a savings
 		
-	re-add some of the elements of the old tile set into the new one
+	DONE re-add some of the elements of the old tile set into the new one
+		
+	DONE fix the collision areas in updated field
+	
+	DONE sketch out idea for the level and player intro
 		
 	why am I using two different variables for the player?
 		and two different point spaces?
 		
-	frame layers indicate if they're background tiles
-		so to have mixed animations
-		fixed cannons  with moving turrets or something
+
+
+	enemy-player collisions
+
+	performance pass...
+
+		the game idling with just the player takes 40% of the CPU
+		
+		the game with one enemy takes 50% of the time
+	
+		collisions are especially slow
+		
+		max number of active sprites?
+			the spawner checks the limit?
+				but only for enemies, not triggers, etc.
 
 	tool to animate paths
 		export to Motion Sequence or AI Sequence
 		- draw paths
 		- draw animation from capturing the mouse
 
+	graphics gale frame layers indicate if they're background tiles
+		so to have mixed animations
+		fixed cannons  with moving turrets or something
 
+	animate player entrace
+	
+	animate scene open
+		slice screen in half at an angle,
+		then the scene opens while the two halves move towards the sides of the screen
 		
 	use animation visible area, not collision area, for visibility
 		per frame?
@@ -69,19 +93,7 @@ Todo
 						x, y, animation resource index, frame number
 						
 
-	enemy-player collisions
 
-	performance pass...
-
-		the game idling with just the player takes 40% of the CPU
-		
-		the game with one enemy takes 50% of the time
-	
-		collisions are especially slow
-		
-		max number of active sprites?
-			the spawner checks the limit?
-				but only for enemies, not triggers, etc.
 
 	enemy bullet - player collisions
 		

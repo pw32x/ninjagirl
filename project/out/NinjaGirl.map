@@ -48,7 +48,7 @@ Area                                    Addr        Size        Decimal Bytes (A
      00001504  l__BANK2                        
      0000174C  l__BANK7                        
      00001868  l__DATA                         
-     00001CBC  l__BANK3                        
+     00001CDC  l__BANK3                        
      00001D7E  l__BANK6                        
      00007406  l__CODE                         
      00007606  s__HOME                         
@@ -927,7 +927,7 @@ Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-_BANK3                              00008000    00001CBC =        7356. bytes (REL,CON)
+_BANK3                              00008000    00001CDC =        7388. bytes (REL,CON)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
@@ -936,10 +936,10 @@ _BANK3                              00008000    00001CBC =        7356. bytes (R
      00008088  _breakable_rock_tileset            breakable_rock_tileset
      00008094  _field_tileset_metatiles           field_tileset
      00008454  _field_tileset_tiles               field_tileset
-     00009C14  _field_tileset                     field_tileset
-     00009C20  _waterfall_tileset_metatiles       waterfall_tileset
-     00009C30  _waterfall_tileset_tiles           waterfall_tileset
-     00009CB0  _waterfall_tileset                 waterfall_tileset
+     00009C34  _field_tileset                     field_tileset
+     00009C40  _waterfall_tileset_metatiles       waterfall_tileset
+     00009C50  _waterfall_tileset_tiles           waterfall_tileset
+     00009CD0  _waterfall_tileset                 waterfall_tileset
 ASxxxx Linker V03.00/V05.40 + sdld,  page 30.
 Hexadecimal  [32-Bits]
 
