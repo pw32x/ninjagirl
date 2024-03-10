@@ -170,6 +170,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\ninja_girl_template.c" />
