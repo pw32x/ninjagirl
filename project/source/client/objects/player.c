@@ -31,8 +31,8 @@ BOOL Player_Draw(GameObject* player);
 void Player_FireWeapon(GameObject* player);
 
 
-POSITION playerX;
-POSITION playerY;
+s16 playerX;
+s16 playerY;
 s16 playerSpeedX;
 s16 playerSpeedY;
 
@@ -218,9 +218,9 @@ void Player_UpdateX(void)
 {
 	s16 offset = 0;
 
-	POSITION projectedX = playerX + playerSpeedX;
+	s16 projectedX = playerX + playerSpeedX;
 
-	POSITION xSensor = projectedX;
+	s16 xSensor = projectedX;
 
 	if (!ObjectManager_player.flipped)
 	{
@@ -233,7 +233,7 @@ void Player_UpdateX(void)
 
 	xSensor += offset;
 
-	POSITION horzScroll = P2V(ScrollManager_horizontalScroll + 16);
+	s16 horzScroll = P2V(ScrollManager_horizontalScroll + 16);
 
 	if (xSensor < horzScroll)
 	{
@@ -331,7 +331,7 @@ void Player_UpdateStand(GameObject* player)
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
@@ -380,7 +380,7 @@ void Player_UpdateRun(GameObject* player)
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
@@ -440,7 +440,7 @@ void Player_UpdateFall(GameObject* player)
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 
 	s16 blockY = V2B(ySensor);
 
@@ -515,7 +515,7 @@ void Player_UpdateJump(GameObject* player)
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	POSITION ySensor = playerY + P2V(ObjectManager_player.rectTop);
+	s16 ySensor = playerY + P2V(ObjectManager_player.rectTop);
 
 	s16 blockY = V2B(ySensor);
 
@@ -557,7 +557,7 @@ void Player_UpdateDuck(GameObject* player)
 	s16 blockLeft = V2B(playerX + P2V(ObjectManager_player.rectLeft));
 	s16 blockRight = V2B(playerX + P2V(ObjectManager_player.rectRight));
 
-	POSITION ySensor = playerY + P2V(ObjectManager_player.rectBottom);
+	s16 ySensor = playerY + P2V(ObjectManager_player.rectBottom);
 	s16 blockY = V2B(ySensor);
 
 	u16 bottomTileTypeLeft = GET_TERRAIN(blockLeft, blockY);
