@@ -23,7 +23,7 @@ Todo
 	
 	DONE sketch out idea for the level and player intro
 		
-	why am I using two different variables for the player?
+	DONE why am I using two different variables for the player?
 		and two different point spaces?
 		
 

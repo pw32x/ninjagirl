@@ -3,7 +3,7 @@
 
 #include "engine/base_types.h"
 
-void JoystickManager_Update(void);
+inline void JoystickManager_Update(void);
 
 
 extern u32 JoystickManager_buttonState;
