@@ -28,7 +28,7 @@ void Wheeler_Fall(WheelerObjectType* object);
 BOOL Wheeler_Draw(GameObject* object);
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 
-#define SPEEDX 12
+#define SPEEDX 0 //12
 
 // update x
 // update y
@@ -66,7 +66,7 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 void Wheeler_Update(WheelerObjectType* object)
 {
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	object->UpdateAnimation((GameObject*)object);
+	//object->UpdateAnimation((GameObject*)object);
 
 	// init physics work variables
 	PhysicsVars_X = object->x + object->speedx;
