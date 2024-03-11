@@ -55,6 +55,9 @@ namespace BuildMaster
 
             addFlag("--peep-file " + PeepRules_Path);
 
+            addFlag("--opt-code-speed");
+            addFlag("--vc");
+
             addFlag("-I" + SmsLib_IncludePath);
             addFlag("-I" + PsgLib_IncludePath);
 
