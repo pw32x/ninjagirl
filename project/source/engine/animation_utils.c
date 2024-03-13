@@ -173,10 +173,48 @@ u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceIn
 
 // streaming
 
+void OUTI32(const void *src) __z88dk_fastcall;
+void OUTI64(const void *src) __z88dk_fastcall;
+void OUTI128(const void *src) __z88dk_fastcall;
+void OUTI192(const void *src) __z88dk_fastcall;
+
+
+__sfr __at 0xBE VDPDataPort2;
+
+//extern __sfr __at 0xBE VDPDataPort;
+
+#define SETVDPDATAPORT2  __asm ld c,#_VDPDataPort2 __endasm
+
+
+
+
+/*
+// vdpIndex << 5, tileOffset
+
+void UNSAFE_SMS_VRAMmemcpy128_2 () {
+	SMS_setAddr(0x4000|(vdpIndex << 5));
+	SETVDPDATAPORT2;
+	OUTI128((const void*)tileOffset);
+}
+
+
+void UNSAFE_SMS_VRAMmemcpy192_2 () {
+	SMS_setAddr(0x4000|(vdpIndex << 5));
+	SETVDPDATAPORT2;
+	OUTI128((const void*)tileOffset);
+
+	__asm 
+	.rept 64
+		outi
+		.endm
+	__endasm;
+
+}
+*/
+
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {
 	//SMS_setBackdropColor(COLOR_ORANGE);
-
 	const BatchedAnimationFrame* batchedAnimationFrame = gameObject->currentBatchedAnimationFrame;
 	const u8* tileData = gameObject->batchedAnimation->tileData;
 	u8 vdpIndex = *gameObject->batchedAnimation->vdpLocation;
@@ -194,15 +232,18 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 		case 0:
 			return;
 		case 2:
-			UNSAFE_SMS_load2Tiles(tileOffset, vdpIndex);
+			UNSAFE_SMS_VRAMmemcpy64(vdpIndex << 5, tileOffset);
 			break;
 		case 4:
-			UNSAFE_SMS_load4Tiles(tileOffset, vdpIndex);
+		{
+			UNSAFE_SMS_VRAMmemcpy128(vdpIndex << 5, tileOffset);
 			break;
+		}
 		case 6:
-			UNSAFE_SMS_load2Tiles(tileOffset, vdpIndex);
-			UNSAFE_SMS_load4Tiles(tileOffset + 64, vdpIndex + 2);
+		{
+			UNSAFE_SMS_VRAMmemcpy192(vdpIndex << 5, tileOffset);
 			break;
+		}
 		case 8:
 			UNSAFE_SMS_load4Tiles(tileOffset, vdpIndex);
 			UNSAFE_SMS_load4Tiles(tileOffset + 128, vdpIndex + 4);
