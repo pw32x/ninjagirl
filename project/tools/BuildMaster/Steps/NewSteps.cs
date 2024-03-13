@@ -214,7 +214,7 @@ namespace BuildMaster
 
             if (!String.IsNullOrEmpty(errorString))
             {
-                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
+                bool useVSStylePaths = false;//config.GetSetting("UseVisualStudioStylePaths") == "true";
 
                 string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
