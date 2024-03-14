@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
+using System.Xml.Linq;
 
 namespace BuildMaster
 {
@@ -55,6 +57,8 @@ namespace BuildMaster
 
             addFlag("--peep-file " + PeepRules_Path);
 
+
+            //addFlag("--max-allocs-per-node 100000");
             addFlag("--opt-code-speed");
             addFlag("--vc");
 
