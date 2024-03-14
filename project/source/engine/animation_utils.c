@@ -3,22 +3,15 @@
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
 
-u8 AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
+void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 {
-	if (!gameObject->animationTime--)
+	if (!gameObject->animationTime)
 	{
 		gameObject->currentBatchedAnimationFrame = gameObject->currentBatchedAnimationFrame->nextFrame;
-
-		if (gameObject->currentBatchedAnimationFrame == NULL)
-		{
-			return ANIMATION_FINISHED;
-		}
-
 		gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
-		return ANIMATION_CHANGED_FRAME;
 	}
 
-	return ANIMATION_NO_CHANGE;
+	gameObject->animationTime--;
 }
 
 u8 AnimationUtils_updateBatchedAnimation_noLoop(GameObject* gameObject)
@@ -128,6 +121,8 @@ u16 Load_TileAnimationResource(const ResourceInfo* resourceInfo)
 }
 
 
+typedef BOOL (*UpdateAnimationFunctionType)(struct game_object* gameObject);
+
 u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
@@ -138,7 +133,7 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Resourc
 	gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
 	gameObject->pixelWidth = batchedAnimation->pixelWidth;
 	gameObject->pixelHeight = batchedAnimation->pixelHeight;
-	gameObject->UpdateAnimation = AnimationUtils_updateBatchedAnimation;
+	gameObject->UpdateAnimation = (UpdateAnimationFunctionType)AnimationUtils_updateBatchedAnimation;
 
 	return 0;
 }
