@@ -13,7 +13,7 @@ struct game_object;
 
 
 // update
-u8 AnimationUtils_updateBatchedAnimation(struct game_object* gameObject);
+void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject);
 u8 AnimationUtils_updateBatchedAnimation_noLoop(struct game_object* gameObject);
 u8 AnimationUtils_updatePlaneAnimation(struct game_object* gameObject);
 u8 AnimationUtils_updateTileAnimation(struct game_object* gameObject);

@@ -592,11 +592,6 @@ void Player_UpdateDuck(GameObject* object)
 	}
 }
 
-void AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	AnimationUtils_UpdateStreamedBatchedAnimationFrame(object);
-}
 
 void Player_Update(GameObject* object)
 {
@@ -626,7 +621,7 @@ void Player_Update(GameObject* object)
 		updateAnimationStream)
 	{
 		//updateAnimationStream = FALSE; // uncomment me to only update when needed, and not every frame.
-		ObjectManager_QueueVDPDraw(object, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
+		ObjectManager_QueueVDPDraw(object, AnimationUtils_UpdateStreamedBatchedAnimationFrame);
 	}
 }
 
