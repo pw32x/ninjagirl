@@ -66,12 +66,12 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 void Wheeler_Update(WheelerObjectType* object)
 {
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	//object->UpdateAnimation((GameObject*)object);
+	object->UpdateAnimation((GameObject*)object);
 
 	// init physics work variables
 	PhysicsVars_X = object->x + object->speedx;
 	PhysicsVars_Y = object->y + object->speedy;
-
+	
 	PhysicsVars_GroundBlockX = V2B(PhysicsVars_X);
 	PhysicsVars_GroundBlockY = V2B(PhysicsVars_Y + P2V(object->rectBottom));
 
@@ -98,6 +98,7 @@ void Wheeler_Update(WheelerObjectType* object)
 
 	// update object 
 	//
+	
 
 	// world to screen transformation
 	object->screenx = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;

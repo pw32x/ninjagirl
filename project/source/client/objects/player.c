@@ -625,6 +625,7 @@ void Player_Update(GameObject* object)
 	if (object->UpdateAnimation(object) == ANIMATION_CHANGED_FRAME || 
 		updateAnimationStream)
 	{
+		//updateAnimationStream = FALSE; // uncomment me to only update when needed, and not every frame.
 		ObjectManager_QueueVDPDraw(object, AnimationUtils_UpdateStreamedBatchedAnimationFrameBanked);
 	}
 }
