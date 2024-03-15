@@ -204,7 +204,8 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
         
 
         if (frame.getNextFrameIndex() == AnimationFrameBase::NO_LOOP)
-            nextFrameName = "NULL";
+            //nextFrameName = "NULL";
+            nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getFrameNumber());
         else
             nextFrameName = "&" + WriteUtils::BuildFrameName(outputName, frame.getNextFrameIndex());
 
