@@ -296,7 +296,7 @@ void (*drawSprite[]) (unsigned int y, unsigned int x_tile) __naked __preserves_r
 
 
 
-#define PARAM_COMBINER(x, tile) (((x)&0xff)<<8)|(((tile)&0xff))
+#define PARAM_COMBINER(x, tile) ((x<<8)|tile)
 
 void DrawUtils_DrawBatched(void)
 {
@@ -332,16 +332,12 @@ void DrawUtils_DrawBatched(void)
 
 void DrawUtils_DrawStreamedBatched(void)
 {
-    const BatchedAnimationSpriteStrip * runner = DrawUtils_currentSpriteStrips;
+    const BatchedAnimationSpriteStrip* runner = DrawUtils_currentSpriteStrips;
 
     int vdpOffset = DrawUtils_vdpTileIndex;
 
-    //SMS_debugPrintf("\n********* DrawStreamedBatched\n");
-
     while (runner->count)
     {
-        //SMS_debugPrintf("%d, ", vdpOffset + DrawUtils_vdpTileIndex);
-
         drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
                                   PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
                                                  vdpOffset));
