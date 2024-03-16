@@ -302,12 +302,9 @@ void DrawUtils_DrawBatched(void)
 {
 	const BatchedAnimationSpriteStrip* runner = DrawUtils_currentSpriteStrips;
 
-	while (runner->count)
-	{
+ DrawUtils_DrawBatched_loop:
         switch (runner->count)
         {
-        case 0:
-            break;
         case 1:     DrawUtils_addSprite(DrawUtils_screenY + runner->yOffset, 
                                         PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
                                                        runner->tileIndex + DrawUtils_vdpTileIndex));
@@ -327,7 +324,11 @@ void DrawUtils_DrawBatched(void)
         }
 
         runner++;
-	}
+
+        if (!runner->count)
+            return;
+
+    goto DrawUtils_DrawBatched_loop;
 }
 
 void DrawUtils_DrawStreamedBatched(void)
@@ -336,16 +337,21 @@ void DrawUtils_DrawStreamedBatched(void)
 
     int vdpOffset = DrawUtils_vdpTileIndex;
 
-    while (runner->count)
-    {
-        drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
-                                  PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                 vdpOffset));
+DrawUtils_DrawStreamedBatched_loop:
 
-        vdpOffset += (runner->count << 1);
 
-        runner++;
-    }
+    drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
+                                PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
+                                                vdpOffset));
+
+    vdpOffset += (runner->count << 1);
+
+    runner++;
+
+    if (!runner->count)
+        return;
+
+    goto DrawUtils_DrawStreamedBatched_loop;
 }
 
 __sfr __at 0xBF VDPControlPort2;
