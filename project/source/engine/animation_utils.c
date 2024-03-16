@@ -186,6 +186,9 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 
 		u16 tileOffset = tileData + (runner->tileIndex << 5);
 
+		// This is actually faster than a look-up table for some reason.
+		// Unlike DrawUtils_DrawStreamedBatched which uses one, this function
+		// gets slower with one. Maybe because of inlining?
 		switch (tileCount)
 		{
 		case 0:

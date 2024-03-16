@@ -287,12 +287,14 @@ _fourthSpriteClipped2:
 
 void (*drawSprite[]) (unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) = 
 {
-	NULL, // do nothing for 0 sprites
-	DrawUtils_addSprite,
-	DrawUtils_addTwoAdjoiningSprites,
-	DrawUtils_addThreeAdjoiningSprites,
-	DrawUtils_addFourAdjoiningSprites,
+    NULL, // do nothing for 0 sprites
+    DrawUtils_addSprite,
+    DrawUtils_addTwoAdjoiningSprites,
+    DrawUtils_addThreeAdjoiningSprites,
+    DrawUtils_addFourAdjoiningSprites,
 };
+
+
 
 #define PARAM_COMBINER(x, tile) (((x)&0xff)<<8)|(((tile)&0xff))
 
@@ -302,10 +304,29 @@ void DrawUtils_DrawBatched(void)
 
 	while (runner->count)
 	{
-		drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
-								  PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, runner->tileIndex + DrawUtils_vdpTileIndex));
+        switch (runner->count)
+        {
+        case 0:
+            break;
+        case 1:     DrawUtils_addSprite(DrawUtils_screenY + runner->yOffset, 
+                                        PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
+                                                       runner->tileIndex + DrawUtils_vdpTileIndex));
+            break;
+        case 2:     DrawUtils_addTwoAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
+                                                     PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
+                                                                    runner->tileIndex + DrawUtils_vdpTileIndex));
+            break;  
+        case 3:     DrawUtils_addThreeAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
+                                                       PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
+                                                                      runner->tileIndex + DrawUtils_vdpTileIndex));
+            break;
+        case 4:     DrawUtils_addFourAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
+                                                      PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
+                                                                     runner->tileIndex + DrawUtils_vdpTileIndex));
+            break;
+        }
 
-		runner++;
+        runner++;
 	}
 }
 
@@ -313,7 +334,7 @@ void DrawUtils_DrawStreamedBatched(void)
 {
     const BatchedAnimationSpriteStrip * runner = DrawUtils_currentSpriteStrips;
 
-    int vdpOffset = 0;
+    int vdpOffset = DrawUtils_vdpTileIndex;
 
     //SMS_debugPrintf("\n********* DrawStreamedBatched\n");
 
@@ -323,7 +344,7 @@ void DrawUtils_DrawStreamedBatched(void)
 
         drawSprite[runner->count](DrawUtils_screenY + runner->yOffset, 
                                   PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                 vdpOffset + DrawUtils_vdpTileIndex));
+                                                 vdpOffset));
 
         vdpOffset += (runner->count << 1);
 
