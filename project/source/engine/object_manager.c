@@ -38,7 +38,7 @@ u8 ObjectManager_activeProjectilesCount;
 
 u8 ObjectManager_currentEnemyIndex;
 
-#define NUM_VDP_DRAW_ITEMS 8
+#define NUM_VDP_DRAW_ITEMS 4
 GameObject* ObjectManager_vdpDrawGameObjects[NUM_VDP_DRAW_ITEMS];
 ObjectFunctionType ObjectManager_vdpDrawFunctions[NUM_VDP_DRAW_ITEMS];
 u8 ObjectManager_numVdpDrawItems;
@@ -693,10 +693,6 @@ void ObjectManager_VDPDraw(void)
 
 	switch (ObjectManager_numVdpDrawItems)
 	{
-	case 8: ObjectManager_vdpDrawFunctions[7](ObjectManager_vdpDrawGameObjects[7]);
-	case 7: ObjectManager_vdpDrawFunctions[6](ObjectManager_vdpDrawGameObjects[6]);
-	case 6: ObjectManager_vdpDrawFunctions[5](ObjectManager_vdpDrawGameObjects[5]);
-	case 5: ObjectManager_vdpDrawFunctions[4](ObjectManager_vdpDrawGameObjects[4]);
 	case 4: ObjectManager_vdpDrawFunctions[3](ObjectManager_vdpDrawGameObjects[3]);
 	case 3: ObjectManager_vdpDrawFunctions[2](ObjectManager_vdpDrawGameObjects[2]);
 	case 2: ObjectManager_vdpDrawFunctions[1](ObjectManager_vdpDrawGameObjects[1]);

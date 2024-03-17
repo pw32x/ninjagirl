@@ -175,43 +175,42 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 
 	//SMS_setBackdropColor(COLOR_ORANGE);
 	const BatchedAnimationFrame* batchedAnimationFrame = gameObject->currentBatchedAnimationFrame;
-	const u8* tileData = gameObject->batchedAnimation->tileData;
-	u8 vdpIndex = *gameObject->batchedAnimation->vdpLocation;
-
 	const BatchedAnimationSpriteStrip* runner = batchedAnimationFrame->spriteStrips;
 
-	while (runner->count)
-	{
-		u8 tileCount = runner->count << 1;
+	const BatchedAnimation* batchedAnimation = gameObject->batchedAnimation;
+	const u8* tileData = batchedAnimation->tileData;
+	u8 vdpIndex = *batchedAnimation->vdpLocation;
 
+
+
+	do 
+	{
 		u16 tileOffset = tileData + (runner->tileIndex << 5);
 
 		// This is actually faster than a look-up table for some reason.
 		// Unlike DrawUtils_DrawStreamedBatched which uses one, this function
 		// gets slower with one. Maybe because of inlining?
-		switch (tileCount)
+		switch (runner->count)
 		{
-		case 0:
-			return;
-		case 2:
+		case 1:
 			UNSAFE_SMS_VRAMmemcpy64(vdpIndex << 5, tileOffset);
 			break;
-		case 4:
+		case 2:
 		{
 			UNSAFE_SMS_VRAMmemcpy128(vdpIndex << 5, tileOffset);
 			break;
 		}
-		case 6:
+		case 3:
 		{
 			UNSAFE_SMS_VRAMmemcpy192(vdpIndex << 5, tileOffset);
 			break;
 		}
-		case 8:
+		case 4:
 			UNSAFE_SMS_VRAMmemcpy256(vdpIndex << 5, tileOffset);
 		}
 
-		vdpIndex += tileCount;
+		vdpIndex += runner->count << 1;
 
 		runner++;
-	}
+	} while (runner->count);
 }
