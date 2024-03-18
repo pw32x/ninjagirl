@@ -302,24 +302,22 @@ void DrawUtils_DrawBatched(void)
 {
 	const BatchedAnimationSpriteStrip* runner = DrawUtils_currentSpriteStrips;
 
- DrawUtils_DrawBatched_loop:
+DrawUtils_DrawBatched_loop:
+
+        const u8* runnerArray = (const u8*)runner;
+
+        u16 xtileParam = PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, runner->tileIndex + DrawUtils_vdpTileIndex);
+        u16 y = DrawUtils_screenY + runner->yOffset;
+
         switch (runner->count)
         {
-        case 1:     DrawUtils_addSprite(DrawUtils_screenY + runner->yOffset, 
-                                        PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                       runner->tileIndex + DrawUtils_vdpTileIndex));
+        case 1:     DrawUtils_addSprite(y, xtileParam);
             break;
-        case 2:     DrawUtils_addTwoAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
-                                                     PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                                    runner->tileIndex + DrawUtils_vdpTileIndex));
+        case 2:     DrawUtils_addTwoAdjoiningSprites(y, xtileParam);
             break;  
-        case 3:     DrawUtils_addThreeAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
-                                                       PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                                      runner->tileIndex + DrawUtils_vdpTileIndex));
+        case 3:     DrawUtils_addThreeAdjoiningSprites(y, xtileParam);
             break;
-        case 4:     DrawUtils_addFourAdjoiningSprites(DrawUtils_screenY + runner->yOffset, 
-                                                      PARAM_COMBINER(DrawUtils_screenX + runner->xOffset, 
-                                                                     runner->tileIndex + DrawUtils_vdpTileIndex));
+        case 4:     DrawUtils_addFourAdjoiningSprites(y, xtileParam);
             break;
         }
 
