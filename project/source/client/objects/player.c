@@ -335,6 +335,8 @@ void Player_UpdateStand(GameObject* object)
 		return;
 	}
 
+	playerSpeedX = 0;
+
 	pointingUp = (JoystickManager_buttonState & PORT_A_KEY_UP);
 	pointingDown = FALSE;
 
