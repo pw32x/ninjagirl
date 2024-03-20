@@ -13,11 +13,10 @@
 
 const CommandRunnerCreateInfo scene003_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo scene003_createInfo3 = { &commandrunner_rightscroll_template, 0, 3, NULL };
-const CreateInfo scene003_createInfo6 = { &colortweaker_template, 25, 35 };
-const CreateInfo scene003_createInfo7 = { &gun_girl_template, 49, 91 };
-const CreateInfo scene003_createInfo8 = { &wheeler_template, 107, 107 };
-const CreateInfo scene003_createInfo9 = { &wheeler_template, 136, 66 };
-const CreateInfo scene003_createInfo10 = { &wheeler_template, 148, 106 };
+const CreateInfo scene003_createInfo6 = { &gun_girl_template, 49, 91 };
+const CreateInfo scene003_createInfo7 = { &wheeler_template, 107, 107 };
+const CreateInfo scene003_createInfo8 = { &wheeler_template, 136, 66 };
+const CreateInfo scene003_createInfo9 = { &wheeler_template, 148, 106 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -30,7 +29,6 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 const Command scene003_commands[] = 
 {
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfoBootstrapper },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &colorTweakerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &gun_girlResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
@@ -44,11 +42,10 @@ const Command scene003_commands[] =
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&scene003_createInfo3 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &field_mapResourceInfo },
-    { 25, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
-    { 52, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
-    { 111, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
-    { 140, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
-    { 152, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo10 },
+    { 52, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo6 },
+    { 111, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo7 },
+    { 140, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo8 },
+    { 152, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &scene003_createInfo9 },
     { 0, (CommandFunction)NULL, NULL}
 };
 
