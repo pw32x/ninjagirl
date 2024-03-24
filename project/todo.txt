@@ -26,9 +26,30 @@ Todo
 	DONE why am I using two different variables for the player?
 		and two different point spaces?
 		
-
-
+	update devkitSMS
+	
+		DONE don't forget to integrate my changes
+		
+		DONE disable zoomed sprites
+		
+		DONE test out the current version
+		
+		DONE remove my versions of the functions
+		
+		try metasprites
+		
+	work on tool to determine data sizes in banks
+		
 	enemy-player collisions
+
+	updating the scroll column
+	
+	ObjectManager_Update
+	
+	how to reduce self time?
+	
+	why did having a pointer to the draw function in the strip not work?
+		because of streaming?
 
 	performance pass...
 

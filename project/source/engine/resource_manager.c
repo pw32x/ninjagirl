@@ -62,8 +62,6 @@ void* ResourceManager_LoadResource(const ResourceInfo* resourceInfo)
 	u8 currentBank = SMS_getROMBank();
 	u8 bankNumber = resourceInfo->bankNumber;
 
-	SMS_debugPrintf("ResourceManager_LoadResource().\n");
-
 	if (currentBank != bankNumber)
 	{
 		//SMS_debugPrintf("Switching to Bank %d.\n", bankNumber);
