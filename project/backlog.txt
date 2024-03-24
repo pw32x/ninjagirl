@@ -26,9 +26,7 @@ Misc
 	
 Animations + Collisions
 	
-	how to specify collision box of moving animation?
-		animation has array of collision boxes
-		it can be null for those that don't need/want it
+
 	 
  
 Build Master 

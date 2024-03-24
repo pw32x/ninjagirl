@@ -41,36 +41,36 @@ unsigned char const walker_smallTileData[128] = // 4tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip walker_smallFrame0SpriteStrips[] = 
+const s8 walker_smallFrame0MetaSprites[] = 
 {
-    { 1, -4, -3, 0 },
-    {0},
+    -4, -3, 0,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_smallFrame1SpriteStrips[] = 
+const s8 walker_smallFrame1MetaSprites[] = 
 {
-    { 1, -4, -4, 2 },
-    {0},
+    -4, -4, 2,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame walker_smallFrame0;
-extern const BatchedAnimationFrame walker_smallFrame1;
+extern const MetaSpriteAnimationFrame walker_smallFrame0;
+extern const MetaSpriteAnimationFrame walker_smallFrame1;
 
 
-const BatchedAnimationFrame walker_smallFrame0 = 
+const MetaSpriteAnimationFrame walker_smallFrame0 = 
 {
-    walker_smallFrame0SpriteStrips,
+    walker_smallFrame0MetaSprites,
     8, // frame time
     &walker_smallFrame1, // next frame
 };
 
-const BatchedAnimationFrame walker_smallFrame1 = 
+const MetaSpriteAnimationFrame walker_smallFrame1 = 
 {
-    walker_smallFrame1SpriteStrips,
+    walker_smallFrame1MetaSprites,
     8, // frame time
     &walker_smallFrame0, // next frame
 };
-const BatchedAnimationFrame* const walker_smallFrames[2] = 
+const MetaSpriteAnimationFrame* const walker_smallFrames[2] = 
 {
     &walker_smallFrame0,
     &walker_smallFrame1,
@@ -78,10 +78,10 @@ const BatchedAnimationFrame* const walker_smallFrames[2] =
 
 u8 walker_smallVdpLocation;
 
-const BatchedAnimation walker_small = 
+const MetaSpriteAnimation walker_small = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)walker_smallFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)walker_smallFrames,
     (unsigned char* const)walker_smallTileData, // start of the sprite data
     2, // number of frames
     8, // width in pixels

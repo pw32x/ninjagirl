@@ -22,14 +22,12 @@
 #include "client/generated/bank2.h"
 
 void Shotgun_Update(GameObject* object);
-BOOL Shotgun_Draw(GameObject* object);
 void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Shotgun_Update;
-	object->Draw = Shotgun_Draw;
 	object->HandleCollision = Shotgun_HandleCollision;
 
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
@@ -46,36 +44,19 @@ void Shotgun_Update(GameObject* object)
 	object->screenx = object->x - ScrollManager_horizontalScroll;
 	object->screeny = object->y - ScrollManager_verticalScroll;
 
-	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
-		object->y > SCREEN_BOTTOM ||
-		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||
-		object->y < SCREEN_TOP)
+	if (object->screenx > SCREEN_RIGHT ||
+		object->screeny > SCREEN_BOTTOM ||
+		object->screenx < SCREEN_LEFT ||
+		object->screeny < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
 	}
-
-	s16 blockX = P2B(object->x);
-	s16 blockY = P2B(object->y);
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
 }
 
-BOOL Shotgun_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
-						  object->y,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-
-	// should never be clipped
-	DrawUtils_DrawBatched();
-
-	return TRUE;
-}
 
 void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target)
 {

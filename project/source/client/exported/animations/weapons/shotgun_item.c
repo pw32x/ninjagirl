@@ -23,32 +23,32 @@ unsigned char const shotgun_itemTileData[64] = // 2tiles x 32 bytes
     0x00, 0x3c, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip shotgun_itemFrame0SpriteStrips[] = 
+const s8 shotgun_itemFrame0MetaSprites[] = 
 {
-    { 1, -4, -8, 0 },
-    {0},
+    -4, -8, 0,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame shotgun_itemFrame0;
+extern const MetaSpriteAnimationFrame shotgun_itemFrame0;
 
 
-const BatchedAnimationFrame shotgun_itemFrame0 = 
+const MetaSpriteAnimationFrame shotgun_itemFrame0 = 
 {
-    shotgun_itemFrame0SpriteStrips,
+    shotgun_itemFrame0MetaSprites,
     3, // frame time
     &shotgun_itemFrame0, // next frame
 };
-const BatchedAnimationFrame* const shotgun_itemFrames[1] = 
+const MetaSpriteAnimationFrame* const shotgun_itemFrames[1] = 
 {
     &shotgun_itemFrame0,
 };
 
 u8 shotgun_itemVdpLocation;
 
-const BatchedAnimation shotgun_item = 
+const MetaSpriteAnimation shotgun_item = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)shotgun_itemFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)shotgun_itemFrames,
     (unsigned char* const)shotgun_itemTileData, // start of the sprite data
     1, // number of frames
     8, // width in pixels

@@ -13,6 +13,7 @@ typedef struct
     u8 tileIndex;
 } BatchedAnimationSpriteStrip;
 
+
 typedef struct batched_animation_frame
 {
     const BatchedAnimationSpriteStrip* const spriteStrips;
@@ -34,6 +35,29 @@ typedef struct
     u8 maxTilesPerFrame;
     u8* vdpLocation;
 } BatchedAnimation;
+
+// devkitSMS metasprites
+typedef struct metasprite_animation_frame
+{
+    const s8* metaSprite;
+    u8 frameTime;
+    struct metasprite_animation_frame* nextFrame;
+} MetaSpriteAnimationFrame;
+
+
+typedef struct
+{
+    u8 resourceType;
+    const MetaSpriteAnimationFrame** const frames;
+    const u8* const tileData;
+
+    u8 numFrames;
+    u8 pixelWidth;
+    u8 pixelHeight;
+    u8 totalTileCount;
+    u8 maxTilesPerFrame;
+    u8* vdpLocation;
+} MetaSpriteAnimation;
 
 
 // plane

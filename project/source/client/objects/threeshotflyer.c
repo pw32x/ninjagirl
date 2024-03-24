@@ -60,7 +60,6 @@ void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object);
 void ThreeShotFlyer_Roll(ThreeShotFlyerObjectType* object);
 void ThreeShotFlyer_Fall(ThreeShotFlyerObjectType* object);
 
-BOOL ThreeShotFlyer_Draw(GameObject* object);
 void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo)
@@ -69,7 +68,6 @@ GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateIn
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)ThreeShotFlyer_Update;
-	object->Draw = ThreeShotFlyer_Draw;
 	object->HandleCollision = ThreeShotFlyer_HandleCollision;
 
 	object->aiCommandsRunner.currentAICommandItem = threeShotFlyerAICommandItems_Simple;
@@ -111,18 +109,6 @@ void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object)
 	}
 }
 
-BOOL ThreeShotFlyer_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-	DrawUtils_DrawBatched();
-
-	return TRUE;
-}
 
 void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 {

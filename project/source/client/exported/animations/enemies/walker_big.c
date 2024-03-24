@@ -581,128 +581,176 @@ unsigned char const walker_bigTileData[2048] = // 64tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame0SpriteStrips[] = 
+const s8 walker_bigFrame0MetaSprites[] = 
 {
-    { 4, -16, -16, 0 },
-    { 4, -16, 0, 8 },
-    {0},
+    -16, -16, 0,
+    -8, -16, 2,
+    0, -16, 4,
+    8, -16, 6,
+    -16, 0, 8,
+    -8, 0, 10,
+    0, 0, 12,
+    8, 0, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame1SpriteStrips[] = 
+const s8 walker_bigFrame1MetaSprites[] = 
 {
-    { 4, -16, -14, 0 },
-    { 4, -16, 2, 16 },
-    {0},
+    -16, -14, 0,
+    -8, -14, 2,
+    0, -14, 4,
+    8, -14, 6,
+    -16, 2, 16,
+    -8, 2, 18,
+    0, 2, 20,
+    8, 2, 22,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame2SpriteStrips[] = 
+const s8 walker_bigFrame2MetaSprites[] = 
 {
-    { 4, -16, -16, 0 },
-    { 4, -16, 0, 8 },
-    {0},
+    -16, -16, 0,
+    -8, -16, 2,
+    0, -16, 4,
+    8, -16, 6,
+    -16, 0, 8,
+    -8, 0, 10,
+    0, 0, 12,
+    8, 0, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame3SpriteStrips[] = 
+const s8 walker_bigFrame3MetaSprites[] = 
 {
-    { 4, -16, -14, 0 },
-    { 4, -16, 2, 24 },
-    {0},
+    -16, -14, 0,
+    -8, -14, 2,
+    0, -14, 4,
+    8, -14, 6,
+    -16, 2, 24,
+    -8, 2, 26,
+    0, 2, 28,
+    8, 2, 30,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame4SpriteStrips[] = 
+const s8 walker_bigFrame4MetaSprites[] = 
 {
-    { 4, -14, -16, 32 },
-    { 4, -14, 0, 40 },
-    {0},
+    -14, -16, 32,
+    -6, -16, 34,
+    2, -16, 36,
+    10, -16, 38,
+    -14, 0, 40,
+    -6, 0, 42,
+    2, 0, 44,
+    10, 0, 46,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame5SpriteStrips[] = 
+const s8 walker_bigFrame5MetaSprites[] = 
 {
-    { 4, -14, -14, 32 },
-    { 4, -16, 2, 48 },
-    {0},
+    -14, -14, 32,
+    -6, -14, 34,
+    2, -14, 36,
+    10, -14, 38,
+    -16, 2, 48,
+    -8, 2, 50,
+    0, 2, 52,
+    8, 2, 54,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame6SpriteStrips[] = 
+const s8 walker_bigFrame6MetaSprites[] = 
 {
-    { 4, -14, -16, 32 },
-    { 4, -14, 0, 40 },
-    {0},
+    -14, -16, 32,
+    -6, -16, 34,
+    2, -16, 36,
+    10, -16, 38,
+    -14, 0, 40,
+    -6, 0, 42,
+    2, 0, 44,
+    10, 0, 46,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip walker_bigFrame7SpriteStrips[] = 
+const s8 walker_bigFrame7MetaSprites[] = 
 {
-    { 4, -14, -14, 32 },
-    { 4, -16, 2, 56 },
-    {0},
+    -14, -14, 32,
+    -6, -14, 34,
+    2, -14, 36,
+    10, -14, 38,
+    -16, 2, 56,
+    -8, 2, 58,
+    0, 2, 60,
+    8, 2, 62,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame walker_bigFrame0;
-extern const BatchedAnimationFrame walker_bigFrame1;
-extern const BatchedAnimationFrame walker_bigFrame2;
-extern const BatchedAnimationFrame walker_bigFrame3;
-extern const BatchedAnimationFrame walker_bigFrame4;
-extern const BatchedAnimationFrame walker_bigFrame5;
-extern const BatchedAnimationFrame walker_bigFrame6;
-extern const BatchedAnimationFrame walker_bigFrame7;
+extern const MetaSpriteAnimationFrame walker_bigFrame0;
+extern const MetaSpriteAnimationFrame walker_bigFrame1;
+extern const MetaSpriteAnimationFrame walker_bigFrame2;
+extern const MetaSpriteAnimationFrame walker_bigFrame3;
+extern const MetaSpriteAnimationFrame walker_bigFrame4;
+extern const MetaSpriteAnimationFrame walker_bigFrame5;
+extern const MetaSpriteAnimationFrame walker_bigFrame6;
+extern const MetaSpriteAnimationFrame walker_bigFrame7;
 
 
-const BatchedAnimationFrame walker_bigFrame0 = 
+const MetaSpriteAnimationFrame walker_bigFrame0 = 
 {
-    walker_bigFrame0SpriteStrips,
+    walker_bigFrame0MetaSprites,
     14, // frame time
     &walker_bigFrame1, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame1 = 
+const MetaSpriteAnimationFrame walker_bigFrame1 = 
 {
-    walker_bigFrame1SpriteStrips,
+    walker_bigFrame1MetaSprites,
     14, // frame time
     &walker_bigFrame2, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame2 = 
+const MetaSpriteAnimationFrame walker_bigFrame2 = 
 {
-    walker_bigFrame2SpriteStrips,
+    walker_bigFrame2MetaSprites,
     14, // frame time
     &walker_bigFrame3, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame3 = 
+const MetaSpriteAnimationFrame walker_bigFrame3 = 
 {
-    walker_bigFrame3SpriteStrips,
+    walker_bigFrame3MetaSprites,
     14, // frame time
     &walker_bigFrame0, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame4 = 
+const MetaSpriteAnimationFrame walker_bigFrame4 = 
 {
-    walker_bigFrame4SpriteStrips,
+    walker_bigFrame4MetaSprites,
     14, // frame time
     &walker_bigFrame5, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame5 = 
+const MetaSpriteAnimationFrame walker_bigFrame5 = 
 {
-    walker_bigFrame5SpriteStrips,
+    walker_bigFrame5MetaSprites,
     14, // frame time
     &walker_bigFrame6, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame6 = 
+const MetaSpriteAnimationFrame walker_bigFrame6 = 
 {
-    walker_bigFrame6SpriteStrips,
+    walker_bigFrame6MetaSprites,
     14, // frame time
     &walker_bigFrame7, // next frame
 };
 
-const BatchedAnimationFrame walker_bigFrame7 = 
+const MetaSpriteAnimationFrame walker_bigFrame7 = 
 {
-    walker_bigFrame7SpriteStrips,
+    walker_bigFrame7MetaSprites,
     14, // frame time
     &walker_bigFrame4, // next frame
 };
-const BatchedAnimationFrame* const walker_bigFrames[8] = 
+const MetaSpriteAnimationFrame* const walker_bigFrames[8] = 
 {
     &walker_bigFrame0,
     &walker_bigFrame1,
@@ -716,10 +764,10 @@ const BatchedAnimationFrame* const walker_bigFrames[8] =
 
 u8 walker_bigVdpLocation;
 
-const BatchedAnimation walker_big = 
+const MetaSpriteAnimation walker_big = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)walker_bigFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)walker_bigFrames,
     (unsigned char* const)walker_bigTileData, // start of the sprite data
     8, // number of frames
     32, // width in pixels

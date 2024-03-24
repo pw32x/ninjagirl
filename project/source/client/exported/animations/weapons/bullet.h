@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK5) extern const BatchedAnimation bullet;
+RESOURCE(BANK5) extern const MetaSpriteAnimation bullet;
 
 #endif
 

@@ -17,14 +17,12 @@
 #include "client/generated/bank2.h"
 
 void Enemy_Update(GameObject* object);
-BOOL Enemy_Draw(GameObject* object);
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* Enemy_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Enemy_Update;
-	object->Draw = Enemy_Draw;
 	object->HandleCollision = Enemy_HandleCollision;
 
 	return object;
@@ -68,18 +66,6 @@ void Enemy_Update(GameObject* object)
 destroy_object:
 	SMS_debugPrintf("Destroy Object\n");
 	ObjectManager_DestroyObject(object);
-}
-
-BOOL Enemy_Draw(GameObject* object)
-{
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-	DrawUtils_DrawBatched();
-
-	return TRUE;
 }
 
 void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)

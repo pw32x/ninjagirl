@@ -18,14 +18,14 @@ struct game_object;
 void DrawUtils_DrawBatched(void);
 void DrawUtils_DrawStreamedBatched(void);
 
-extern char DrawUtils_spriteCounter;
 extern const BatchedAnimationSpriteStrip* DrawUtils_currentSpriteStrips;
 extern u8 DrawUtils_vdpTileIndex;
 extern s16 DrawUtils_screenX;
 extern s16 DrawUtils_screenY;
 
-extern u8 DrawUtils_spritesDrawn;
-
 void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject);
+
+void DrawUtils_drawNothing(struct game_object* gameObject);
+void DrawUtils_drawMetasprite(struct game_object* gameObject);
 
 #endif

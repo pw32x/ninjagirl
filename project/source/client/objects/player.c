@@ -27,7 +27,7 @@
 
 #include <stdio.h>
 
-BOOL Player_Draw(GameObject* object);
+void Player_Draw(GameObject* object);
 void Player_FireWeapon(GameObject* object);
 
 
@@ -627,7 +627,7 @@ void Player_Update(GameObject* object)
 	}
 }
 
-BOOL Player_Draw(GameObject* object)
+void Player_Draw(GameObject* object)
 {
 	//SMS_debugPrintf("Switching to Bank %d.\n", object->resourceInfo->bankNumber);
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
@@ -639,6 +639,5 @@ BOOL Player_Draw(GameObject* object)
 	//SMS_debugPrintf("batch start\n");
 	DrawUtils_DrawStreamedBatched();
 	//SMS_debugPrintf("batch end\n");
-	return TRUE;
 }
 

@@ -21,7 +21,7 @@ GameObject* TileAnimator_Init(const ResourceInfo* resourceInfo)
 		return NULL;
 
 	object->Update = TileAnimator_Update;
-	object->Draw = ObjectUtils_drawNothing;
+	object->Draw = DrawUtils_drawNothing;
 
 	ResourceManager_SetupResource(object, resourceInfo);
 

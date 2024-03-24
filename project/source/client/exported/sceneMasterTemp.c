@@ -32,12 +32,13 @@ const CreateInfo sceneMasterTemp_createInfo21 = { &wheeler_template, 812, 55 };
 const CreateInfo sceneMasterTemp_createInfo22 = { &wheeler_template, 943, 146 };
 
 #include "client/tileset_functions.h"
-const SetTilesetProperties_Params setTilesetPropertiesParams = 
+const SetTilesetProperties_Params setTilesetPropertiesParams2 = 
 { 
  1, 
  breakable_rock_tileset_TilesetFunction, 
  &rock_particle_template
 };
+
 
 const Command sceneMasterTemp_commands[] = 
 {
@@ -55,7 +56,7 @@ const Command sceneMasterTemp_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &field_mapResourceInfo},
     { 0, (CommandFunction)SetBackgroundVerticalScroll, 4 },
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
-    { 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams  },
+    { 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams2  },
     { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfo3 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &field_mapResourceInfo },

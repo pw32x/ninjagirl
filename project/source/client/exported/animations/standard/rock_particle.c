@@ -77,64 +77,64 @@ unsigned char const rock_particleTileData[256] = // 8tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip rock_particleFrame0SpriteStrips[] = 
+const s8 rock_particleFrame0MetaSprites[] = 
 {
-    { 1, -4, -5, 0 },
-    {0},
+    -4, -5, 0,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip rock_particleFrame1SpriteStrips[] = 
+const s8 rock_particleFrame1MetaSprites[] = 
 {
-    { 1, -4, -5, 2 },
-    {0},
+    -4, -5, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip rock_particleFrame2SpriteStrips[] = 
+const s8 rock_particleFrame2MetaSprites[] = 
 {
-    { 1, -4, -5, 4 },
-    {0},
+    -4, -5, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip rock_particleFrame3SpriteStrips[] = 
+const s8 rock_particleFrame3MetaSprites[] = 
 {
-    { 1, -4, -5, 6 },
-    {0},
+    -4, -5, 6,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame rock_particleFrame0;
-extern const BatchedAnimationFrame rock_particleFrame1;
-extern const BatchedAnimationFrame rock_particleFrame2;
-extern const BatchedAnimationFrame rock_particleFrame3;
+extern const MetaSpriteAnimationFrame rock_particleFrame0;
+extern const MetaSpriteAnimationFrame rock_particleFrame1;
+extern const MetaSpriteAnimationFrame rock_particleFrame2;
+extern const MetaSpriteAnimationFrame rock_particleFrame3;
 
 
-const BatchedAnimationFrame rock_particleFrame0 = 
+const MetaSpriteAnimationFrame rock_particleFrame0 = 
 {
-    rock_particleFrame0SpriteStrips,
+    rock_particleFrame0MetaSprites,
     4, // frame time
     &rock_particleFrame1, // next frame
 };
 
-const BatchedAnimationFrame rock_particleFrame1 = 
+const MetaSpriteAnimationFrame rock_particleFrame1 = 
 {
-    rock_particleFrame1SpriteStrips,
+    rock_particleFrame1MetaSprites,
     4, // frame time
     &rock_particleFrame2, // next frame
 };
 
-const BatchedAnimationFrame rock_particleFrame2 = 
+const MetaSpriteAnimationFrame rock_particleFrame2 = 
 {
-    rock_particleFrame2SpriteStrips,
+    rock_particleFrame2MetaSprites,
     4, // frame time
     &rock_particleFrame3, // next frame
 };
 
-const BatchedAnimationFrame rock_particleFrame3 = 
+const MetaSpriteAnimationFrame rock_particleFrame3 = 
 {
-    rock_particleFrame3SpriteStrips,
+    rock_particleFrame3MetaSprites,
     4, // frame time
     &rock_particleFrame0, // next frame
 };
-const BatchedAnimationFrame* const rock_particleFrames[4] = 
+const MetaSpriteAnimationFrame* const rock_particleFrames[4] = 
 {
     &rock_particleFrame0,
     &rock_particleFrame1,
@@ -144,10 +144,10 @@ const BatchedAnimationFrame* const rock_particleFrames[4] =
 
 u8 rock_particleVdpLocation;
 
-const BatchedAnimation rock_particle = 
+const MetaSpriteAnimation rock_particle = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)rock_particleFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)rock_particleFrames,
     (unsigned char* const)rock_particleTileData, // start of the sprite data
     4, // number of frames
     8, // width in pixels

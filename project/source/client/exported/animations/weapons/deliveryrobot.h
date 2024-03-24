@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK5) extern const BatchedAnimation deliveryrobot;
+RESOURCE(BANK5) extern const MetaSpriteAnimation deliveryrobot;
 
 // frame numbers for specific animations.
 #define DELIVERYROBOT_RIGHT_FRAME_INDEX 0

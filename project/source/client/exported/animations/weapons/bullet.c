@@ -23,32 +23,32 @@ unsigned char const bulletTileData[64] = // 2tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip bulletFrame0SpriteStrips[] = 
+const s8 bulletFrame0MetaSprites[] = 
 {
-    { 1, -3, -3, 0 },
-    {0},
+    -3, -3, 0,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame bulletFrame0;
+extern const MetaSpriteAnimationFrame bulletFrame0;
 
 
-const BatchedAnimationFrame bulletFrame0 = 
+const MetaSpriteAnimationFrame bulletFrame0 = 
 {
-    bulletFrame0SpriteStrips,
+    bulletFrame0MetaSprites,
     5, // frame time
     &bulletFrame0, // next frame
 };
-const BatchedAnimationFrame* const bulletFrames[1] = 
+const MetaSpriteAnimationFrame* const bulletFrames[1] = 
 {
     &bulletFrame0,
 };
 
 u8 bulletVdpLocation;
 
-const BatchedAnimation bullet = 
+const MetaSpriteAnimation bullet = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)bulletFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)bulletFrames,
     (unsigned char* const)bulletTileData, // start of the sprite data
     1, // number of frames
     8, // width in pixels

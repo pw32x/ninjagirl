@@ -9,7 +9,6 @@
 #include "engine/animation_utils.h"
 
 void BasicEffect_Update(GameObject* object);
-BOOL BasicEffect_Draw(GameObject* object);
 
 GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
 {
@@ -17,7 +16,6 @@ GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
 	object->speedx = 0;
 	object->speedy = 0;
 	object->Update = BasicEffect_Update;
-	object->Draw = BasicEffect_Draw;
 
 	return object;
 }
@@ -27,10 +25,12 @@ void BasicEffect_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
-		object->y > SCREEN_BOTTOM ||
-		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||
-		object->y < SCREEN_TOP)
+	object->screenx = object->x - ScrollManager_horizontalScroll;
+	object->screeny = object->y;
+	if (object->screenx > SCREEN_RIGHT ||
+		object->screeny > SCREEN_BOTTOM ||
+		object->screenx < SCREEN_LEFT ||
+		object->screeny < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
 	}
@@ -38,19 +38,4 @@ void BasicEffect_Update(GameObject* object)
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
-}
-
-BOOL BasicEffect_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
-						  object->y,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-
-	// should never be clipped
-	DrawUtils_DrawBatched();
-
-	return TRUE;
 }

@@ -7,8 +7,6 @@ void ObjectUtils_gameObjectDoNothing(GameObject* gameObject);
 void ObjectUtils_doNothing(void);
 void ObjectUtils_twoGameObjectsDoNothing(GameObject* gameObject, GameObject* other);
 
-BOOL ObjectUtils_drawNothing(GameObject* gameObject);
-
 //void ObjectUtils_updateObjectScreenRect(GameObject* gameObject);
 //void ObjectUtils_updatePlayerScreenRect(GameObject* gameObject);
 

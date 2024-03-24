@@ -257,140 +257,167 @@ unsigned char const explosionTileData[896] = // 28tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip explosionFrame0SpriteStrips[] = 
+const s8 explosionFrame0MetaSprites[] = 
 {
-    { 2, -16, 0, 0 },
-    {0},
+    -16, 0, 0,
+    -8, 0, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame1SpriteStrips[] = 
+const s8 explosionFrame1MetaSprites[] = 
 {
-    { 3, -19, -3, 4 },
-    { 3, -18, 13, 10 },
-    {0},
+    -19, -3, 4,
+    -11, -3, 6,
+    -3, -3, 8,
+    -18, 13, 10,
+    -10, 13, 12,
+    -2, 13, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame2SpriteStrips[] = 
+const s8 explosionFrame2MetaSprites[] = 
 {
-    { 3, -20, -4, 16 },
-    { 3, -19, 12, 22 },
-    {0},
+    -20, -4, 16,
+    -12, -4, 18,
+    -4, -4, 20,
+    -19, 12, 22,
+    -11, 12, 24,
+    -3, 12, 26,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame3SpriteStrips[] = 
+const s8 explosionFrame3MetaSprites[] = 
 {
-    { 2, -8, -16, 0 },
-    {0},
+    -8, -16, 0,
+    0, -16, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame4SpriteStrips[] = 
+const s8 explosionFrame4MetaSprites[] = 
 {
-    { 3, -11, -19, 4 },
-    { 3, -10, -3, 10 },
-    {0},
+    -11, -19, 4,
+    -3, -19, 6,
+    5, -19, 8,
+    -10, -3, 10,
+    -2, -3, 12,
+    6, -3, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame5SpriteStrips[] = 
+const s8 explosionFrame5MetaSprites[] = 
 {
-    { 3, -12, -20, 16 },
-    { 3, -11, -4, 22 },
-    {0},
+    -12, -20, 16,
+    -4, -20, 18,
+    4, -20, 20,
+    -11, -4, 22,
+    -3, -4, 24,
+    5, -4, 26,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame6SpriteStrips[] = 
+const s8 explosionFrame6MetaSprites[] = 
 {
-    { 2, 0, 0, 0 },
-    {0},
+    0, 0, 0,
+    8, 0, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame7SpriteStrips[] = 
+const s8 explosionFrame7MetaSprites[] = 
 {
-    { 3, -3, -3, 4 },
-    { 3, -2, 13, 10 },
-    {0},
+    -3, -3, 4,
+    5, -3, 6,
+    13, -3, 8,
+    -2, 13, 10,
+    6, 13, 12,
+    14, 13, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip explosionFrame8SpriteStrips[] = 
+const s8 explosionFrame8MetaSprites[] = 
 {
-    { 3, -4, -4, 16 },
-    { 3, -3, 12, 22 },
-    {0},
+    -4, -4, 16,
+    4, -4, 18,
+    12, -4, 20,
+    -3, 12, 22,
+    5, 12, 24,
+    13, 12, 26,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame explosionFrame0;
-extern const BatchedAnimationFrame explosionFrame1;
-extern const BatchedAnimationFrame explosionFrame2;
-extern const BatchedAnimationFrame explosionFrame3;
-extern const BatchedAnimationFrame explosionFrame4;
-extern const BatchedAnimationFrame explosionFrame5;
-extern const BatchedAnimationFrame explosionFrame6;
-extern const BatchedAnimationFrame explosionFrame7;
-extern const BatchedAnimationFrame explosionFrame8;
+extern const MetaSpriteAnimationFrame explosionFrame0;
+extern const MetaSpriteAnimationFrame explosionFrame1;
+extern const MetaSpriteAnimationFrame explosionFrame2;
+extern const MetaSpriteAnimationFrame explosionFrame3;
+extern const MetaSpriteAnimationFrame explosionFrame4;
+extern const MetaSpriteAnimationFrame explosionFrame5;
+extern const MetaSpriteAnimationFrame explosionFrame6;
+extern const MetaSpriteAnimationFrame explosionFrame7;
+extern const MetaSpriteAnimationFrame explosionFrame8;
 
 
-const BatchedAnimationFrame explosionFrame0 = 
+const MetaSpriteAnimationFrame explosionFrame0 = 
 {
-    explosionFrame0SpriteStrips,
+    explosionFrame0MetaSprites,
     2, // frame time
     &explosionFrame1, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame1 = 
+const MetaSpriteAnimationFrame explosionFrame1 = 
 {
-    explosionFrame1SpriteStrips,
+    explosionFrame1MetaSprites,
     2, // frame time
     &explosionFrame2, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame2 = 
+const MetaSpriteAnimationFrame explosionFrame2 = 
 {
-    explosionFrame2SpriteStrips,
+    explosionFrame2MetaSprites,
     2, // frame time
     &explosionFrame3, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame3 = 
+const MetaSpriteAnimationFrame explosionFrame3 = 
 {
-    explosionFrame3SpriteStrips,
+    explosionFrame3MetaSprites,
     2, // frame time
     &explosionFrame4, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame4 = 
+const MetaSpriteAnimationFrame explosionFrame4 = 
 {
-    explosionFrame4SpriteStrips,
+    explosionFrame4MetaSprites,
     2, // frame time
     &explosionFrame5, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame5 = 
+const MetaSpriteAnimationFrame explosionFrame5 = 
 {
-    explosionFrame5SpriteStrips,
+    explosionFrame5MetaSprites,
     2, // frame time
     &explosionFrame6, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame6 = 
+const MetaSpriteAnimationFrame explosionFrame6 = 
 {
-    explosionFrame6SpriteStrips,
+    explosionFrame6MetaSprites,
     2, // frame time
     &explosionFrame7, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame7 = 
+const MetaSpriteAnimationFrame explosionFrame7 = 
 {
-    explosionFrame7SpriteStrips,
+    explosionFrame7MetaSprites,
     2, // frame time
     &explosionFrame8, // next frame
 };
 
-const BatchedAnimationFrame explosionFrame8 = 
+const MetaSpriteAnimationFrame explosionFrame8 = 
 {
-    explosionFrame8SpriteStrips,
+    explosionFrame8MetaSprites,
     2, // frame time
     &explosionFrame0, // next frame
 };
-const BatchedAnimationFrame* const explosionFrames[9] = 
+const MetaSpriteAnimationFrame* const explosionFrames[9] = 
 {
     &explosionFrame0,
     &explosionFrame1,
@@ -405,10 +432,10 @@ const BatchedAnimationFrame* const explosionFrames[9] =
 
 u8 explosionVdpLocation;
 
-const BatchedAnimation explosion = 
+const MetaSpriteAnimation explosion = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)explosionFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)explosionFrames,
     (unsigned char* const)explosionTileData, // start of the sprite data
     9, // number of frames
     64, // width in pixels

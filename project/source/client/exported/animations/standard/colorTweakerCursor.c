@@ -95,78 +95,78 @@ unsigned char const colorTweakerCursorTileData[320] = // 10tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip colorTweakerCursorFrame0SpriteStrips[] = 
+const s8 colorTweakerCursorFrame0MetaSprites[] = 
 {
-    { 1, 1, 0, 0 },
-    {0},
+    1, 0, 0,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerCursorFrame1SpriteStrips[] = 
+const s8 colorTweakerCursorFrame1MetaSprites[] = 
 {
-    { 1, 1, 0, 2 },
-    {0},
+    1, 0, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerCursorFrame2SpriteStrips[] = 
+const s8 colorTweakerCursorFrame2MetaSprites[] = 
 {
-    { 1, 1, 0, 4 },
-    {0},
+    1, 0, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerCursorFrame3SpriteStrips[] = 
+const s8 colorTweakerCursorFrame3MetaSprites[] = 
 {
-    { 1, 1, 0, 6 },
-    {0},
+    1, 0, 6,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerCursorFrame4SpriteStrips[] = 
+const s8 colorTweakerCursorFrame4MetaSprites[] = 
 {
-    { 1, 1, 0, 8 },
-    {0},
+    1, 0, 8,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame colorTweakerCursorFrame0;
-extern const BatchedAnimationFrame colorTweakerCursorFrame1;
-extern const BatchedAnimationFrame colorTweakerCursorFrame2;
-extern const BatchedAnimationFrame colorTweakerCursorFrame3;
-extern const BatchedAnimationFrame colorTweakerCursorFrame4;
+extern const MetaSpriteAnimationFrame colorTweakerCursorFrame0;
+extern const MetaSpriteAnimationFrame colorTweakerCursorFrame1;
+extern const MetaSpriteAnimationFrame colorTweakerCursorFrame2;
+extern const MetaSpriteAnimationFrame colorTweakerCursorFrame3;
+extern const MetaSpriteAnimationFrame colorTweakerCursorFrame4;
 
 
-const BatchedAnimationFrame colorTweakerCursorFrame0 = 
+const MetaSpriteAnimationFrame colorTweakerCursorFrame0 = 
 {
-    colorTweakerCursorFrame0SpriteStrips,
+    colorTweakerCursorFrame0MetaSprites,
     59, // frame time
     &colorTweakerCursorFrame1, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerCursorFrame1 = 
+const MetaSpriteAnimationFrame colorTweakerCursorFrame1 = 
 {
-    colorTweakerCursorFrame1SpriteStrips,
+    colorTweakerCursorFrame1MetaSprites,
     59, // frame time
     &colorTweakerCursorFrame2, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerCursorFrame2 = 
+const MetaSpriteAnimationFrame colorTweakerCursorFrame2 = 
 {
-    colorTweakerCursorFrame2SpriteStrips,
+    colorTweakerCursorFrame2MetaSprites,
     59, // frame time
     &colorTweakerCursorFrame3, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerCursorFrame3 = 
+const MetaSpriteAnimationFrame colorTweakerCursorFrame3 = 
 {
-    colorTweakerCursorFrame3SpriteStrips,
+    colorTweakerCursorFrame3MetaSprites,
     59, // frame time
     &colorTweakerCursorFrame4, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerCursorFrame4 = 
+const MetaSpriteAnimationFrame colorTweakerCursorFrame4 = 
 {
-    colorTweakerCursorFrame4SpriteStrips,
+    colorTweakerCursorFrame4MetaSprites,
     59, // frame time
     &colorTweakerCursorFrame0, // next frame
 };
-const BatchedAnimationFrame* const colorTweakerCursorFrames[5] = 
+const MetaSpriteAnimationFrame* const colorTweakerCursorFrames[5] = 
 {
     &colorTweakerCursorFrame0,
     &colorTweakerCursorFrame1,
@@ -177,10 +177,10 @@ const BatchedAnimationFrame* const colorTweakerCursorFrames[5] =
 
 u8 colorTweakerCursorVdpLocation;
 
-const BatchedAnimation colorTweakerCursor = 
+const MetaSpriteAnimation colorTweakerCursor = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)colorTweakerCursorFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)colorTweakerCursorFrames,
     (unsigned char* const)colorTweakerCursorTileData, // start of the sprite data
     5, // number of frames
     8, // width in pixels

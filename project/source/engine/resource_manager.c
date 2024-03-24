@@ -20,6 +20,7 @@ const void printResourceTypeName(u8 resourceType)
 	switch (resourceType)
 	{
 	case BATCHED_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("Batched Animation"); return;
+	case METASPRITE_ANIMATION_RESOURCE_TYPE			: SMS_debugPrintf("MetaSprite Animation"); return;
 	case STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE	: SMS_debugPrintf("Streamed Batched Animation"); return;
 	case PLANE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Plane Animation"); return;
 	case TILE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Tile Animation"); return;
@@ -38,6 +39,7 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 
 	// Load
 	ResourceManager_loadFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_BatchedAnimationResource;
+	ResourceManager_loadFunctions[METASPRITE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_MetaSpriteBatchedAnimationResource;
 	ResourceManager_loadFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_StreamedBatchedAnimationResource;
 	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
 	ResourceManager_loadFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_TileAnimationResource;
@@ -47,6 +49,7 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 
 	// Setup
 	ResourceManager_setupFunctions[BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
+	ResourceManager_setupFunctions[METASPRITE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_MetaSpriteAnimationResource;
 	ResourceManager_setupFunctions[STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_BatchedAnimationResource;
 	ResourceManager_setupFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_PlaneAnimationResource;
 	ResourceManager_setupFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (SetupFunc)Setup_TileAnimationResource;

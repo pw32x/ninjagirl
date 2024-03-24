@@ -77,50 +77,51 @@ unsigned char const shotgunTileData[256] = // 8tiles x 32 bytes
     0xe0, 0x00, 0x00, 0xe0, 
 };
 
-const BatchedAnimationSpriteStrip shotgunFrame0SpriteStrips[] = 
+const s8 shotgunFrame0MetaSprites[] = 
 {
-    { 1, -3, -3, 0 },
-    {0},
+    -3, -3, 0,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip shotgunFrame1SpriteStrips[] = 
+const s8 shotgunFrame1MetaSprites[] = 
 {
-    { 1, -4, -4, 2 },
-    {0},
+    -4, -4, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip shotgunFrame2SpriteStrips[] = 
+const s8 shotgunFrame2MetaSprites[] = 
 {
-    { 2, -8, -8, 4 },
-    {0},
+    -8, -8, 4,
+    0, -8, 6,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame shotgunFrame0;
-extern const BatchedAnimationFrame shotgunFrame1;
-extern const BatchedAnimationFrame shotgunFrame2;
+extern const MetaSpriteAnimationFrame shotgunFrame0;
+extern const MetaSpriteAnimationFrame shotgunFrame1;
+extern const MetaSpriteAnimationFrame shotgunFrame2;
 
 
-const BatchedAnimationFrame shotgunFrame0 = 
+const MetaSpriteAnimationFrame shotgunFrame0 = 
 {
-    shotgunFrame0SpriteStrips,
+    shotgunFrame0MetaSprites,
     2, // frame time
     &shotgunFrame1, // next frame
 };
 
-const BatchedAnimationFrame shotgunFrame1 = 
+const MetaSpriteAnimationFrame shotgunFrame1 = 
 {
-    shotgunFrame1SpriteStrips,
+    shotgunFrame1MetaSprites,
     7, // frame time
     &shotgunFrame2, // next frame
 };
 
-const BatchedAnimationFrame shotgunFrame2 = 
+const MetaSpriteAnimationFrame shotgunFrame2 = 
 {
-    shotgunFrame2SpriteStrips,
+    shotgunFrame2MetaSprites,
     2, // frame time
     &shotgunFrame0, // next frame
 };
-const BatchedAnimationFrame* const shotgunFrames[3] = 
+const MetaSpriteAnimationFrame* const shotgunFrames[3] = 
 {
     &shotgunFrame0,
     &shotgunFrame1,
@@ -129,10 +130,10 @@ const BatchedAnimationFrame* const shotgunFrames[3] =
 
 u8 shotgunVdpLocation;
 
-const BatchedAnimation shotgun = 
+const MetaSpriteAnimation shotgun = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)shotgunFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)shotgunFrames,
     (unsigned char* const)shotgunTileData, // start of the sprite data
     3, // number of frames
     16, // width in pixels

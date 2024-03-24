@@ -293,68 +293,80 @@ unsigned char const robotrunnerTileData[1024] = // 32tiles x 32 bytes
     0x00, 0x40, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip robotrunnerFrame0SpriteStrips[] = 
+const s8 robotrunnerFrame0MetaSprites[] = 
 {
-    { 2, -8, -15, 0 },
-    { 3, -12, 1, 4 },
-    {0},
+    -8, -15, 0,
+    0, -15, 2,
+    -12, 1, 4,
+    -4, 1, 6,
+    4, 1, 8,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip robotrunnerFrame1SpriteStrips[] = 
+const s8 robotrunnerFrame1MetaSprites[] = 
 {
-    { 2, -8, -16, 0 },
-    { 3, -12, 0, 10 },
-    {0},
+    -8, -16, 0,
+    0, -16, 2,
+    -12, 0, 10,
+    -4, 0, 12,
+    4, 0, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip robotrunnerFrame2SpriteStrips[] = 
+const s8 robotrunnerFrame2MetaSprites[] = 
 {
-    { 2, -8, -15, 16 },
-    { 3, -11, 1, 20 },
-    {0},
+    -8, -15, 16,
+    0, -15, 18,
+    -11, 1, 20,
+    -3, 1, 22,
+    5, 1, 24,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip robotrunnerFrame3SpriteStrips[] = 
+const s8 robotrunnerFrame3MetaSprites[] = 
 {
-    { 2, -8, -16, 16 },
-    { 3, -11, 0, 26 },
-    {0},
+    -8, -16, 16,
+    0, -16, 18,
+    -11, 0, 26,
+    -3, 0, 28,
+    5, 0, 30,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame robotrunnerFrame0;
-extern const BatchedAnimationFrame robotrunnerFrame1;
-extern const BatchedAnimationFrame robotrunnerFrame2;
-extern const BatchedAnimationFrame robotrunnerFrame3;
+extern const MetaSpriteAnimationFrame robotrunnerFrame0;
+extern const MetaSpriteAnimationFrame robotrunnerFrame1;
+extern const MetaSpriteAnimationFrame robotrunnerFrame2;
+extern const MetaSpriteAnimationFrame robotrunnerFrame3;
 
 
-const BatchedAnimationFrame robotrunnerFrame0 = 
+const MetaSpriteAnimationFrame robotrunnerFrame0 = 
 {
-    robotrunnerFrame0SpriteStrips,
+    robotrunnerFrame0MetaSprites,
     5, // frame time
     &robotrunnerFrame1, // next frame
 };
 
-const BatchedAnimationFrame robotrunnerFrame1 = 
+const MetaSpriteAnimationFrame robotrunnerFrame1 = 
 {
-    robotrunnerFrame1SpriteStrips,
+    robotrunnerFrame1MetaSprites,
     5, // frame time
     &robotrunnerFrame0, // next frame
 };
 
-const BatchedAnimationFrame robotrunnerFrame2 = 
+const MetaSpriteAnimationFrame robotrunnerFrame2 = 
 {
-    robotrunnerFrame2SpriteStrips,
+    robotrunnerFrame2MetaSprites,
     5, // frame time
     &robotrunnerFrame3, // next frame
 };
 
-const BatchedAnimationFrame robotrunnerFrame3 = 
+const MetaSpriteAnimationFrame robotrunnerFrame3 = 
 {
-    robotrunnerFrame3SpriteStrips,
+    robotrunnerFrame3MetaSprites,
     5, // frame time
     &robotrunnerFrame2, // next frame
 };
-const BatchedAnimationFrame* const robotrunnerFrames[4] = 
+const MetaSpriteAnimationFrame* const robotrunnerFrames[4] = 
 {
     &robotrunnerFrame0,
     &robotrunnerFrame1,
@@ -364,10 +376,10 @@ const BatchedAnimationFrame* const robotrunnerFrames[4] =
 
 u8 robotrunnerVdpLocation;
 
-const BatchedAnimation robotrunner = 
+const MetaSpriteAnimation robotrunner = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)robotrunnerFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)robotrunnerFrames,
     (unsigned char* const)robotrunnerTileData, // start of the sprite data
     4, // number of frames
     24, // width in pixels

@@ -113,50 +113,53 @@ unsigned char const impactTileData[384] = // 12tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip impactFrame0SpriteStrips[] = 
+const s8 impactFrame0MetaSprites[] = 
 {
-    { 2, -6, -6, 0 },
-    {0},
+    -6, -6, 0,
+    2, -6, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip impactFrame1SpriteStrips[] = 
+const s8 impactFrame1MetaSprites[] = 
 {
-    { 2, -8, -8, 4 },
-    {0},
+    -8, -8, 4,
+    0, -8, 6,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip impactFrame2SpriteStrips[] = 
+const s8 impactFrame2MetaSprites[] = 
 {
-    { 2, -8, -8, 8 },
-    {0},
+    -8, -8, 8,
+    0, -8, 10,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame impactFrame0;
-extern const BatchedAnimationFrame impactFrame1;
-extern const BatchedAnimationFrame impactFrame2;
+extern const MetaSpriteAnimationFrame impactFrame0;
+extern const MetaSpriteAnimationFrame impactFrame1;
+extern const MetaSpriteAnimationFrame impactFrame2;
 
 
-const BatchedAnimationFrame impactFrame0 = 
+const MetaSpriteAnimationFrame impactFrame0 = 
 {
-    impactFrame0SpriteStrips,
+    impactFrame0MetaSprites,
     3, // frame time
     &impactFrame1, // next frame
 };
 
-const BatchedAnimationFrame impactFrame1 = 
+const MetaSpriteAnimationFrame impactFrame1 = 
 {
-    impactFrame1SpriteStrips,
+    impactFrame1MetaSprites,
     3, // frame time
     &impactFrame2, // next frame
 };
 
-const BatchedAnimationFrame impactFrame2 = 
+const MetaSpriteAnimationFrame impactFrame2 = 
 {
-    impactFrame2SpriteStrips,
+    impactFrame2MetaSprites,
     3, // frame time
     &impactFrame0, // next frame
 };
-const BatchedAnimationFrame* const impactFrames[3] = 
+const MetaSpriteAnimationFrame* const impactFrames[3] = 
 {
     &impactFrame0,
     &impactFrame1,
@@ -165,10 +168,10 @@ const BatchedAnimationFrame* const impactFrames[3] =
 
 u8 impactVdpLocation;
 
-const BatchedAnimation impact = 
+const MetaSpriteAnimation impact = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)impactFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)impactFrames,
     (unsigned char* const)impactTileData, // start of the sprite data
     3, // number of frames
     16, // width in pixels

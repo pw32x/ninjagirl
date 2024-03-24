@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK5) extern const BatchedAnimation shotgun_item;
+RESOURCE(BANK5) extern const MetaSpriteAnimation shotgun_item;
 
 #endif
 

@@ -7,7 +7,7 @@ void ObjectUtils_gameObjectDoNothing(GameObject* gameObject) { UNUSED(gameObject
 void ObjectUtils_doNothing(void) {}
 void ObjectUtils_twoGameObjectsDoNothing(GameObject* gameObject, GameObject* other) { UNUSED(gameObject); UNUSED(other); }
 
-BOOL ObjectUtils_drawNothing(GameObject* gameObject) { UNUSED(gameObject); return FALSE; }
+
 
 /*
 BOOL ObjectUtils_alwaysVisible(GameObject* gameObject)

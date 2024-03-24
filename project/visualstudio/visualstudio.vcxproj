@@ -132,6 +132,7 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_load1bppTiles.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapArea.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_loadTileMapColumn.c" />
+    <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_metasprite.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paddle.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteAdv.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_paletteSub.c" />
@@ -154,6 +155,9 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7.c" />
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c" />
     <ClCompile Include="..\source\client\ai_commands.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\wheeler.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweaker.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor.c" />
     <ClCompile Include="..\source\client\exported\animations\standard\explosion.c" />
     <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c" />
     <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c" />
@@ -163,6 +167,7 @@
     <ClCompile Include="..\source\client\exported\maps\waterfall.c" />
     <ClCompile Include="..\source\client\exported\palettes\globalPalette.c" />
     <ClCompile Include="..\source\client\exported\maps\background3.c" />
+    <ClCompile Include="..\source\client\exported\sceneMasterTemp.c" />
     <ClCompile Include="..\source\client\exported\scenes\scene003.c" />
     <ClCompile Include="..\source\client\generated\bank2.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
@@ -234,6 +239,9 @@
     <ClInclude Include="..\..\..\..\devkitSMS-master\PSGlib\src\PSGlib.h" />
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h" />
     <ClInclude Include="..\source\client\ai_commands.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\wheeler.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweakerCursor.h" />
     <ClInclude Include="..\source\client\exported\animations\standard\explosion.h" />
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h" />
     <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h" />

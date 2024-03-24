@@ -329,264 +329,264 @@ unsigned char const colorTweakerTileData[1152] = // 36tiles x 32 bytes
     0x00, 0xff, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame0SpriteStrips[] = 
+const s8 colorTweakerFrame0MetaSprites[] = 
 {
-    { 1, 4, 0, 0 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 0,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame1SpriteStrips[] = 
+const s8 colorTweakerFrame1MetaSprites[] = 
 {
-    { 1, 4, 0, 6 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 6,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame2SpriteStrips[] = 
+const s8 colorTweakerFrame2MetaSprites[] = 
 {
-    { 1, 4, 0, 8 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 8,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame3SpriteStrips[] = 
+const s8 colorTweakerFrame3MetaSprites[] = 
 {
-    { 1, 4, 0, 10 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 10,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame4SpriteStrips[] = 
+const s8 colorTweakerFrame4MetaSprites[] = 
 {
-    { 1, 4, 0, 12 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 12,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame5SpriteStrips[] = 
+const s8 colorTweakerFrame5MetaSprites[] = 
 {
-    { 1, 4, 0, 14 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 14,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame6SpriteStrips[] = 
+const s8 colorTweakerFrame6MetaSprites[] = 
 {
-    { 1, 4, 0, 16 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 16,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame7SpriteStrips[] = 
+const s8 colorTweakerFrame7MetaSprites[] = 
 {
-    { 1, 4, 0, 18 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 18,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame8SpriteStrips[] = 
+const s8 colorTweakerFrame8MetaSprites[] = 
 {
-    { 1, 4, 0, 20 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 20,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame9SpriteStrips[] = 
+const s8 colorTweakerFrame9MetaSprites[] = 
 {
-    { 1, 4, 0, 22 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 22,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame10SpriteStrips[] = 
+const s8 colorTweakerFrame10MetaSprites[] = 
 {
-    { 1, 4, 0, 24 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 24,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame11SpriteStrips[] = 
+const s8 colorTweakerFrame11MetaSprites[] = 
 {
-    { 1, 4, 0, 26 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 26,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame12SpriteStrips[] = 
+const s8 colorTweakerFrame12MetaSprites[] = 
 {
-    { 1, 4, 0, 28 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 28,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame13SpriteStrips[] = 
+const s8 colorTweakerFrame13MetaSprites[] = 
 {
-    { 1, 4, 0, 30 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 30,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame14SpriteStrips[] = 
+const s8 colorTweakerFrame14MetaSprites[] = 
 {
-    { 1, 4, 0, 32 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 32,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip colorTweakerFrame15SpriteStrips[] = 
+const s8 colorTweakerFrame15MetaSprites[] = 
 {
-    { 1, 4, 0, 34 },
-    { 1, 5, 16, 2 },
-    { 1, 5, 32, 4 },
-    {0},
+    4, 0, 34,
+    5, 16, 2,
+    5, 32, 4,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame colorTweakerFrame0;
-extern const BatchedAnimationFrame colorTweakerFrame1;
-extern const BatchedAnimationFrame colorTweakerFrame2;
-extern const BatchedAnimationFrame colorTweakerFrame3;
-extern const BatchedAnimationFrame colorTweakerFrame4;
-extern const BatchedAnimationFrame colorTweakerFrame5;
-extern const BatchedAnimationFrame colorTweakerFrame6;
-extern const BatchedAnimationFrame colorTweakerFrame7;
-extern const BatchedAnimationFrame colorTweakerFrame8;
-extern const BatchedAnimationFrame colorTweakerFrame9;
-extern const BatchedAnimationFrame colorTweakerFrame10;
-extern const BatchedAnimationFrame colorTweakerFrame11;
-extern const BatchedAnimationFrame colorTweakerFrame12;
-extern const BatchedAnimationFrame colorTweakerFrame13;
-extern const BatchedAnimationFrame colorTweakerFrame14;
-extern const BatchedAnimationFrame colorTweakerFrame15;
+extern const MetaSpriteAnimationFrame colorTweakerFrame0;
+extern const MetaSpriteAnimationFrame colorTweakerFrame1;
+extern const MetaSpriteAnimationFrame colorTweakerFrame2;
+extern const MetaSpriteAnimationFrame colorTweakerFrame3;
+extern const MetaSpriteAnimationFrame colorTweakerFrame4;
+extern const MetaSpriteAnimationFrame colorTweakerFrame5;
+extern const MetaSpriteAnimationFrame colorTweakerFrame6;
+extern const MetaSpriteAnimationFrame colorTweakerFrame7;
+extern const MetaSpriteAnimationFrame colorTweakerFrame8;
+extern const MetaSpriteAnimationFrame colorTweakerFrame9;
+extern const MetaSpriteAnimationFrame colorTweakerFrame10;
+extern const MetaSpriteAnimationFrame colorTweakerFrame11;
+extern const MetaSpriteAnimationFrame colorTweakerFrame12;
+extern const MetaSpriteAnimationFrame colorTweakerFrame13;
+extern const MetaSpriteAnimationFrame colorTweakerFrame14;
+extern const MetaSpriteAnimationFrame colorTweakerFrame15;
 
 
-const BatchedAnimationFrame colorTweakerFrame0 = 
+const MetaSpriteAnimationFrame colorTweakerFrame0 = 
 {
-    colorTweakerFrame0SpriteStrips,
+    colorTweakerFrame0MetaSprites,
     59, // frame time
     &colorTweakerFrame1, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame1 = 
+const MetaSpriteAnimationFrame colorTweakerFrame1 = 
 {
-    colorTweakerFrame1SpriteStrips,
+    colorTweakerFrame1MetaSprites,
     59, // frame time
     &colorTweakerFrame2, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame2 = 
+const MetaSpriteAnimationFrame colorTweakerFrame2 = 
 {
-    colorTweakerFrame2SpriteStrips,
+    colorTweakerFrame2MetaSprites,
     59, // frame time
     &colorTweakerFrame3, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame3 = 
+const MetaSpriteAnimationFrame colorTweakerFrame3 = 
 {
-    colorTweakerFrame3SpriteStrips,
+    colorTweakerFrame3MetaSprites,
     59, // frame time
     &colorTweakerFrame4, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame4 = 
+const MetaSpriteAnimationFrame colorTweakerFrame4 = 
 {
-    colorTweakerFrame4SpriteStrips,
+    colorTweakerFrame4MetaSprites,
     59, // frame time
     &colorTweakerFrame5, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame5 = 
+const MetaSpriteAnimationFrame colorTweakerFrame5 = 
 {
-    colorTweakerFrame5SpriteStrips,
+    colorTweakerFrame5MetaSprites,
     59, // frame time
     &colorTweakerFrame6, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame6 = 
+const MetaSpriteAnimationFrame colorTweakerFrame6 = 
 {
-    colorTweakerFrame6SpriteStrips,
+    colorTweakerFrame6MetaSprites,
     59, // frame time
     &colorTweakerFrame7, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame7 = 
+const MetaSpriteAnimationFrame colorTweakerFrame7 = 
 {
-    colorTweakerFrame7SpriteStrips,
+    colorTweakerFrame7MetaSprites,
     59, // frame time
     &colorTweakerFrame8, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame8 = 
+const MetaSpriteAnimationFrame colorTweakerFrame8 = 
 {
-    colorTweakerFrame8SpriteStrips,
+    colorTweakerFrame8MetaSprites,
     59, // frame time
     &colorTweakerFrame9, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame9 = 
+const MetaSpriteAnimationFrame colorTweakerFrame9 = 
 {
-    colorTweakerFrame9SpriteStrips,
+    colorTweakerFrame9MetaSprites,
     59, // frame time
     &colorTweakerFrame10, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame10 = 
+const MetaSpriteAnimationFrame colorTweakerFrame10 = 
 {
-    colorTweakerFrame10SpriteStrips,
+    colorTweakerFrame10MetaSprites,
     59, // frame time
     &colorTweakerFrame11, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame11 = 
+const MetaSpriteAnimationFrame colorTweakerFrame11 = 
 {
-    colorTweakerFrame11SpriteStrips,
+    colorTweakerFrame11MetaSprites,
     59, // frame time
     &colorTweakerFrame12, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame12 = 
+const MetaSpriteAnimationFrame colorTweakerFrame12 = 
 {
-    colorTweakerFrame12SpriteStrips,
+    colorTweakerFrame12MetaSprites,
     59, // frame time
     &colorTweakerFrame13, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame13 = 
+const MetaSpriteAnimationFrame colorTweakerFrame13 = 
 {
-    colorTweakerFrame13SpriteStrips,
+    colorTweakerFrame13MetaSprites,
     59, // frame time
     &colorTweakerFrame14, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame14 = 
+const MetaSpriteAnimationFrame colorTweakerFrame14 = 
 {
-    colorTweakerFrame14SpriteStrips,
+    colorTweakerFrame14MetaSprites,
     59, // frame time
     &colorTweakerFrame15, // next frame
 };
 
-const BatchedAnimationFrame colorTweakerFrame15 = 
+const MetaSpriteAnimationFrame colorTweakerFrame15 = 
 {
-    colorTweakerFrame15SpriteStrips,
+    colorTweakerFrame15MetaSprites,
     59, // frame time
     &colorTweakerFrame0, // next frame
 };
-const BatchedAnimationFrame* const colorTweakerFrames[16] = 
+const MetaSpriteAnimationFrame* const colorTweakerFrames[16] = 
 {
     &colorTweakerFrame0,
     &colorTweakerFrame1,
@@ -608,10 +608,10 @@ const BatchedAnimationFrame* const colorTweakerFrames[16] =
 
 u8 colorTweakerVdpLocation;
 
-const BatchedAnimation colorTweaker = 
+const MetaSpriteAnimation colorTweaker = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)colorTweakerFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)colorTweakerFrames,
     (unsigned char* const)colorTweakerTileData, // start of the sprite data
     16, // number of frames
     16, // width in pixels

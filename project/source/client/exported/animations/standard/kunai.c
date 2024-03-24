@@ -185,120 +185,122 @@ unsigned char const kunaiTileData[640] = // 20tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame0SpriteStrips[] = 
+const s8 kunaiFrame0MetaSprites[] = 
 {
-    { 2, -7, -2, 0 },
-    {0},
+    -7, -2, 0,
+    1, -2, 2,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame1SpriteStrips[] = 
+const s8 kunaiFrame1MetaSprites[] = 
 {
-    { 2, -7, -2, 4 },
-    {0},
+    -7, -2, 4,
+    1, -2, 6,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame2SpriteStrips[] = 
+const s8 kunaiFrame2MetaSprites[] = 
 {
-    { 1, -3, -7, 8 },
-    {0},
+    -3, -7, 8,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame3SpriteStrips[] = 
+const s8 kunaiFrame3MetaSprites[] = 
 {
-    { 1, -3, -7, 10 },
-    {0},
+    -3, -7, 10,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame4SpriteStrips[] = 
+const s8 kunaiFrame4MetaSprites[] = 
 {
-    { 1, -4, -6, 12 },
-    {0},
+    -4, -6, 12,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame5SpriteStrips[] = 
+const s8 kunaiFrame5MetaSprites[] = 
 {
-    { 1, -4, -6, 14 },
-    {0},
+    -4, -6, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame6SpriteStrips[] = 
+const s8 kunaiFrame6MetaSprites[] = 
 {
-    { 1, -4, -6, 16 },
-    {0},
+    -4, -6, 16,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip kunaiFrame7SpriteStrips[] = 
+const s8 kunaiFrame7MetaSprites[] = 
 {
-    { 1, -4, -6, 18 },
-    {0},
+    -4, -6, 18,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame kunaiFrame0;
-extern const BatchedAnimationFrame kunaiFrame1;
-extern const BatchedAnimationFrame kunaiFrame2;
-extern const BatchedAnimationFrame kunaiFrame3;
-extern const BatchedAnimationFrame kunaiFrame4;
-extern const BatchedAnimationFrame kunaiFrame5;
-extern const BatchedAnimationFrame kunaiFrame6;
-extern const BatchedAnimationFrame kunaiFrame7;
+extern const MetaSpriteAnimationFrame kunaiFrame0;
+extern const MetaSpriteAnimationFrame kunaiFrame1;
+extern const MetaSpriteAnimationFrame kunaiFrame2;
+extern const MetaSpriteAnimationFrame kunaiFrame3;
+extern const MetaSpriteAnimationFrame kunaiFrame4;
+extern const MetaSpriteAnimationFrame kunaiFrame5;
+extern const MetaSpriteAnimationFrame kunaiFrame6;
+extern const MetaSpriteAnimationFrame kunaiFrame7;
 
 
-const BatchedAnimationFrame kunaiFrame0 = 
+const MetaSpriteAnimationFrame kunaiFrame0 = 
 {
-    kunaiFrame0SpriteStrips,
+    kunaiFrame0MetaSprites,
     59, // frame time
     &kunaiFrame1, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame1 = 
+const MetaSpriteAnimationFrame kunaiFrame1 = 
 {
-    kunaiFrame1SpriteStrips,
+    kunaiFrame1MetaSprites,
     59, // frame time
     &kunaiFrame2, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame2 = 
+const MetaSpriteAnimationFrame kunaiFrame2 = 
 {
-    kunaiFrame2SpriteStrips,
+    kunaiFrame2MetaSprites,
     59, // frame time
     &kunaiFrame3, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame3 = 
+const MetaSpriteAnimationFrame kunaiFrame3 = 
 {
-    kunaiFrame3SpriteStrips,
+    kunaiFrame3MetaSprites,
     59, // frame time
     &kunaiFrame4, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame4 = 
+const MetaSpriteAnimationFrame kunaiFrame4 = 
 {
-    kunaiFrame4SpriteStrips,
+    kunaiFrame4MetaSprites,
     59, // frame time
     &kunaiFrame5, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame5 = 
+const MetaSpriteAnimationFrame kunaiFrame5 = 
 {
-    kunaiFrame5SpriteStrips,
+    kunaiFrame5MetaSprites,
     59, // frame time
     &kunaiFrame6, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame6 = 
+const MetaSpriteAnimationFrame kunaiFrame6 = 
 {
-    kunaiFrame6SpriteStrips,
+    kunaiFrame6MetaSprites,
     59, // frame time
     &kunaiFrame7, // next frame
 };
 
-const BatchedAnimationFrame kunaiFrame7 = 
+const MetaSpriteAnimationFrame kunaiFrame7 = 
 {
-    kunaiFrame7SpriteStrips,
+    kunaiFrame7MetaSprites,
     59, // frame time
     &kunaiFrame0, // next frame
 };
-const BatchedAnimationFrame* const kunaiFrames[8] = 
+const MetaSpriteAnimationFrame* const kunaiFrames[8] = 
 {
     &kunaiFrame0,
     &kunaiFrame1,
@@ -312,10 +314,10 @@ const BatchedAnimationFrame* const kunaiFrames[8] =
 
 u8 kunaiVdpLocation;
 
-const BatchedAnimation kunai = 
+const MetaSpriteAnimation kunai = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)kunaiFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
     8, // number of frames
     16, // width in pixels

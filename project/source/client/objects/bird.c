@@ -9,7 +9,7 @@
 #include "engine/resource_manager.h"
 
 void Bird_Update(GameObject* object);
-BOOL Bird_Draw(GameObject* object);
+void Bird_Draw(GameObject* object);
 
 GameObject* Bird_Init(GameObject* object, const CreateInfo* createInfo)
 {
@@ -40,10 +40,8 @@ void Bird_Update(GameObject* object)
 		ObjectManager_QueueVDPDraw(object, DrawUtils_DrawPlaneAnimationFrame);
 }
 
-BOOL Bird_Draw(GameObject* object)
+void Bird_Draw(GameObject* object)
 {
 	UNUSED(object);
-
-	return FALSE;
 }
 

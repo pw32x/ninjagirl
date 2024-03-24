@@ -41,36 +41,36 @@ unsigned char const enemy_bulletTileData[128] = // 4tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip enemy_bulletFrame0SpriteStrips[] = 
+const s8 enemy_bulletFrame0MetaSprites[] = 
 {
-    { 1, -4, -4, 0 },
-    {0},
+    -4, -4, 0,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip enemy_bulletFrame1SpriteStrips[] = 
+const s8 enemy_bulletFrame1MetaSprites[] = 
 {
-    { 1, -4, -4, 2 },
-    {0},
+    -4, -4, 2,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame enemy_bulletFrame0;
-extern const BatchedAnimationFrame enemy_bulletFrame1;
+extern const MetaSpriteAnimationFrame enemy_bulletFrame0;
+extern const MetaSpriteAnimationFrame enemy_bulletFrame1;
 
 
-const BatchedAnimationFrame enemy_bulletFrame0 = 
+const MetaSpriteAnimationFrame enemy_bulletFrame0 = 
 {
-    enemy_bulletFrame0SpriteStrips,
+    enemy_bulletFrame0MetaSprites,
     4, // frame time
     &enemy_bulletFrame1, // next frame
 };
 
-const BatchedAnimationFrame enemy_bulletFrame1 = 
+const MetaSpriteAnimationFrame enemy_bulletFrame1 = 
 {
-    enemy_bulletFrame1SpriteStrips,
+    enemy_bulletFrame1MetaSprites,
     4, // frame time
     &enemy_bulletFrame0, // next frame
 };
-const BatchedAnimationFrame* const enemy_bulletFrames[2] = 
+const MetaSpriteAnimationFrame* const enemy_bulletFrames[2] = 
 {
     &enemy_bulletFrame0,
     &enemy_bulletFrame1,
@@ -78,10 +78,10 @@ const BatchedAnimationFrame* const enemy_bulletFrames[2] =
 
 u8 enemy_bulletVdpLocation;
 
-const BatchedAnimation enemy_bullet = 
+const MetaSpriteAnimation enemy_bullet = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)enemy_bulletFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)enemy_bulletFrames,
     (unsigned char* const)enemy_bulletTileData, // start of the sprite data
     2, // number of frames
     8, // width in pixels

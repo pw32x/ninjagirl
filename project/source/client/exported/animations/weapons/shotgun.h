@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK5) extern const BatchedAnimation shotgun;
+RESOURCE(BANK5) extern const MetaSpriteAnimation shotgun;
 
 // frame numbers for specific animations.
 #define SHOTGUN_RUN_RIGHT_FRAME_INDEX 0

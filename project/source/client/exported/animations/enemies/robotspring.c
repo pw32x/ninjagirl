@@ -149,53 +149,59 @@ unsigned char const robotspringTileData[512] = // 16tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip robotspringFrame0SpriteStrips[] = 
+const s8 robotspringFrame0MetaSprites[] = 
 {
-    { 2, -8, -8, 0 },
-    { 2, -6, 8, 4 },
-    {0},
+    -8, -8, 0,
+    0, -8, 2,
+    -6, 8, 4,
+    2, 8, 6,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip robotspringFrame1SpriteStrips[] = 
+const s8 robotspringFrame1MetaSprites[] = 
 {
-    { 2, -8, -8, 0 },
-    { 2, -5, 8, 8 },
-    {0},
+    -8, -8, 0,
+    0, -8, 2,
+    -5, 8, 8,
+    3, 8, 10,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip robotspringFrame2SpriteStrips[] = 
+const s8 robotspringFrame2MetaSprites[] = 
 {
-    { 2, -8, -8, 0 },
-    { 2, -6, 8, 12 },
-    {0},
+    -8, -8, 0,
+    0, -8, 2,
+    -6, 8, 12,
+    2, 8, 14,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame robotspringFrame0;
-extern const BatchedAnimationFrame robotspringFrame1;
-extern const BatchedAnimationFrame robotspringFrame2;
+extern const MetaSpriteAnimationFrame robotspringFrame0;
+extern const MetaSpriteAnimationFrame robotspringFrame1;
+extern const MetaSpriteAnimationFrame robotspringFrame2;
 
 
-const BatchedAnimationFrame robotspringFrame0 = 
+const MetaSpriteAnimationFrame robotspringFrame0 = 
 {
-    robotspringFrame0SpriteStrips,
+    robotspringFrame0MetaSprites,
     5, // frame time
     &robotspringFrame1, // next frame
 };
 
-const BatchedAnimationFrame robotspringFrame1 = 
+const MetaSpriteAnimationFrame robotspringFrame1 = 
 {
-    robotspringFrame1SpriteStrips,
+    robotspringFrame1MetaSprites,
     4, // frame time
     &robotspringFrame2, // next frame
 };
 
-const BatchedAnimationFrame robotspringFrame2 = 
+const MetaSpriteAnimationFrame robotspringFrame2 = 
 {
-    robotspringFrame2SpriteStrips,
+    robotspringFrame2MetaSprites,
     24, // frame time
     &robotspringFrame0, // next frame
 };
-const BatchedAnimationFrame* const robotspringFrames[3] = 
+const MetaSpriteAnimationFrame* const robotspringFrames[3] = 
 {
     &robotspringFrame0,
     &robotspringFrame1,
@@ -204,10 +210,10 @@ const BatchedAnimationFrame* const robotspringFrames[3] =
 
 u8 robotspringVdpLocation;
 
-const BatchedAnimation robotspring = 
+const MetaSpriteAnimation robotspring = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)robotspringFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)robotspringFrames,
     (unsigned char* const)robotspringTileData, // start of the sprite data
     3, // number of frames
     16, // width in pixels

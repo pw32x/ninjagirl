@@ -167,38 +167,46 @@ unsigned char const threeshotflyerTileData[576] = // 18tiles x 32 bytes
     0xbf, 0x00, 0xc8, 0x36, 
 };
 
-const BatchedAnimationSpriteStrip threeshotflyerFrame0SpriteStrips[] = 
+const s8 threeshotflyerFrame0MetaSprites[] = 
 {
-    { 3, -11, -12, 0 },
-    { 3, -11, 4, 6 },
-    {0},
+    -11, -12, 0,
+    -3, -12, 2,
+    5, -12, 4,
+    -11, 4, 6,
+    -3, 4, 8,
+    5, 4, 10,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip threeshotflyerFrame1SpriteStrips[] = 
+const s8 threeshotflyerFrame1MetaSprites[] = 
 {
-    { 3, -12, -12, 12 },
-    { 3, -11, 4, 6 },
-    {0},
+    -12, -12, 12,
+    -4, -12, 14,
+    4, -12, 16,
+    -11, 4, 6,
+    -3, 4, 8,
+    5, 4, 10,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame threeshotflyerFrame0;
-extern const BatchedAnimationFrame threeshotflyerFrame1;
+extern const MetaSpriteAnimationFrame threeshotflyerFrame0;
+extern const MetaSpriteAnimationFrame threeshotflyerFrame1;
 
 
-const BatchedAnimationFrame threeshotflyerFrame0 = 
+const MetaSpriteAnimationFrame threeshotflyerFrame0 = 
 {
-    threeshotflyerFrame0SpriteStrips,
+    threeshotflyerFrame0MetaSprites,
     6, // frame time
     &threeshotflyerFrame1, // next frame
 };
 
-const BatchedAnimationFrame threeshotflyerFrame1 = 
+const MetaSpriteAnimationFrame threeshotflyerFrame1 = 
 {
-    threeshotflyerFrame1SpriteStrips,
+    threeshotflyerFrame1MetaSprites,
     6, // frame time
     &threeshotflyerFrame0, // next frame
 };
-const BatchedAnimationFrame* const threeshotflyerFrames[2] = 
+const MetaSpriteAnimationFrame* const threeshotflyerFrames[2] = 
 {
     &threeshotflyerFrame0,
     &threeshotflyerFrame1,
@@ -206,10 +214,10 @@ const BatchedAnimationFrame* const threeshotflyerFrames[2] =
 
 u8 threeshotflyerVdpLocation;
 
-const BatchedAnimation threeshotflyer = 
+const MetaSpriteAnimation threeshotflyer = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)threeshotflyerFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)threeshotflyerFrames,
     (unsigned char* const)threeshotflyerTileData, // start of the sprite data
     2, // number of frames
     24, // width in pixels

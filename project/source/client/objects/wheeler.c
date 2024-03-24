@@ -25,7 +25,6 @@ void Wheeler_Update(WheelerObjectType* object);
 void Wheeler_Roll(WheelerObjectType* object);
 void Wheeler_Fall(WheelerObjectType* object);
 
-BOOL Wheeler_Draw(GameObject* object);
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 
 #define SPEEDX 0 //12
@@ -44,7 +43,6 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)Wheeler_Update;
-	object->Draw = Wheeler_Draw;
 	object->UpdatePhysics = Wheeler_Roll;
 	object->HandleCollision = Wheeler_HandleCollision;
 
@@ -143,18 +141,6 @@ void Wheeler_Fall(WheelerObjectType* object)
 }
 
 
-BOOL Wheeler_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-	DrawUtils_DrawBatched();
-
-	return TRUE;
-}
 
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 {

@@ -329,96 +329,108 @@ unsigned char const deliveryrobotTileData[1152] = // 36tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame0SpriteStrips[] = 
+const s8 deliveryrobotFrame0MetaSprites[] = 
 {
-    { 3, -12, -16, 0 },
-    { 2, -8, 0, 6 },
-    {0},
+    -12, -16, 0,
+    -4, -16, 2,
+    4, -16, 4,
+    -8, 0, 6,
+    0, 0, 8,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame1SpriteStrips[] = 
+const s8 deliveryrobotFrame1MetaSprites[] = 
 {
-    { 3, -10, -16, 10 },
-    { 2, -8, 0, 6 },
-    {0},
+    -10, -16, 10,
+    -2, -16, 12,
+    6, -16, 14,
+    -8, 0, 6,
+    0, 0, 8,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame2SpriteStrips[] = 
+const s8 deliveryrobotFrame2MetaSprites[] = 
 {
-    { 3, -12, -16, 16 },
-    { 2, -8, 0, 22 },
-    {0},
+    -12, -16, 16,
+    -4, -16, 18,
+    4, -16, 20,
+    -8, 0, 22,
+    0, 0, 24,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame3SpriteStrips[] = 
+const s8 deliveryrobotFrame3MetaSprites[] = 
 {
-    { 3, -9, -16, 26 },
-    { 2, -8, 0, 22 },
-    {0},
+    -9, -16, 26,
+    -1, -16, 28,
+    7, -16, 30,
+    -8, 0, 22,
+    0, 0, 24,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame4SpriteStrips[] = 
+const s8 deliveryrobotFrame4MetaSprites[] = 
 {
-    { 1, -4, -6, 32 },
-    {0},
+    -4, -6, 32,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip deliveryrobotFrame5SpriteStrips[] = 
+const s8 deliveryrobotFrame5MetaSprites[] = 
 {
-    { 1, -4, -8, 34 },
-    {0},
+    -4, -8, 34,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame deliveryrobotFrame0;
-extern const BatchedAnimationFrame deliveryrobotFrame1;
-extern const BatchedAnimationFrame deliveryrobotFrame2;
-extern const BatchedAnimationFrame deliveryrobotFrame3;
-extern const BatchedAnimationFrame deliveryrobotFrame4;
-extern const BatchedAnimationFrame deliveryrobotFrame5;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame0;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame1;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame2;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame3;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame4;
+extern const MetaSpriteAnimationFrame deliveryrobotFrame5;
 
 
-const BatchedAnimationFrame deliveryrobotFrame0 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame0 = 
 {
-    deliveryrobotFrame0SpriteStrips,
+    deliveryrobotFrame0MetaSprites,
     4, // frame time
     &deliveryrobotFrame1, // next frame
 };
 
-const BatchedAnimationFrame deliveryrobotFrame1 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame1 = 
 {
-    deliveryrobotFrame1SpriteStrips,
+    deliveryrobotFrame1MetaSprites,
     4, // frame time
     &deliveryrobotFrame0, // next frame
 };
 
-const BatchedAnimationFrame deliveryrobotFrame2 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame2 = 
 {
-    deliveryrobotFrame2SpriteStrips,
+    deliveryrobotFrame2MetaSprites,
     4, // frame time
     &deliveryrobotFrame3, // next frame
 };
 
-const BatchedAnimationFrame deliveryrobotFrame3 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame3 = 
 {
-    deliveryrobotFrame3SpriteStrips,
+    deliveryrobotFrame3MetaSprites,
     4, // frame time
     &deliveryrobotFrame2, // next frame
 };
 
-const BatchedAnimationFrame deliveryrobotFrame4 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame4 = 
 {
-    deliveryrobotFrame4SpriteStrips,
+    deliveryrobotFrame4MetaSprites,
     4, // frame time
     &deliveryrobotFrame4, // next frame
 };
 
-const BatchedAnimationFrame deliveryrobotFrame5 = 
+const MetaSpriteAnimationFrame deliveryrobotFrame5 = 
 {
-    deliveryrobotFrame5SpriteStrips,
+    deliveryrobotFrame5MetaSprites,
     4, // frame time
     &deliveryrobotFrame5, // next frame
 };
-const BatchedAnimationFrame* const deliveryrobotFrames[6] = 
+const MetaSpriteAnimationFrame* const deliveryrobotFrames[6] = 
 {
     &deliveryrobotFrame0,
     &deliveryrobotFrame1,
@@ -430,10 +442,10 @@ const BatchedAnimationFrame* const deliveryrobotFrames[6] =
 
 u8 deliveryrobotVdpLocation;
 
-const BatchedAnimation deliveryrobot = 
+const MetaSpriteAnimation deliveryrobot = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)deliveryrobotFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)deliveryrobotFrames,
     (unsigned char* const)deliveryrobotTileData, // start of the sprite data
     6, // number of frames
     24, // width in pixels

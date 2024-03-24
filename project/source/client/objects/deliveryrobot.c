@@ -21,8 +21,6 @@
 #include "client/exported/animations/weapons/deliveryrobot.h"
 
 void DeliveryRobot_Update(DeliveryRobotObjectType* object);
-
-BOOL DeliveryRobot_Draw(GameObject* object);
 void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other);
 
 #define SPEEDX 6
@@ -54,7 +52,6 @@ GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)DeliveryRobot_Update;
-	object->Draw = DeliveryRobot_Draw;
 	object->HandleCollision = DeliveryRobot_HandleCollision;
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
@@ -95,19 +92,6 @@ void DeliveryRobot_Update(DeliveryRobotObjectType* object)
 		ObjectManager_DestroyObject((GameObject*)object);
 		return;
 	}
-}
-
-BOOL DeliveryRobot_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-	DrawUtils_DrawBatched();
-
-	return TRUE;
 }
 
 void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)

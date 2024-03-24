@@ -22,14 +22,12 @@
 #include "client/generated/bank2.h"
 
 void Kunai_Update(GameObject* object);
-BOOL Kunai_Draw(GameObject* object);
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Kunai_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Kunai_Update;
-	object->Draw = Kunai_Draw;
 	object->HandleCollision = Kunai_HandleCollision;
 
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
@@ -57,10 +55,13 @@ void Kunai_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	if (object->x > SCREEN_RIGHT + ScrollManager_horizontalScroll ||
-		object->y > SCREEN_BOTTOM ||
-		object->x < SCREEN_LEFT + ScrollManager_horizontalScroll ||
-		object->y < SCREEN_TOP)
+	object->screenx = object->x - ScrollManager_horizontalScroll;
+	object->screeny = object->y;
+
+	if (object->screenx > SCREEN_RIGHT ||
+		object->screeny > SCREEN_BOTTOM ||
+		object->screenx < SCREEN_LEFT ||
+		object->screeny < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
 	}
@@ -83,56 +84,8 @@ void Kunai_Update(GameObject* object)
 
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
-
-		u8 currentBank = SMS_getROMBank();
-		SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
-
-		u8 tilesetIndex = GET_TILESET_INDEX(blockX, blockY);
-		SMS_mapROMBank(currentBank);
-
-		const Tileset* tileset = &MapManager_tilesets[tilesetIndex];
-
-		if (tileset->breakable)
-		{
-			SMS_debugPrintf("Breakable\n");
-			SET_TERRAIN_VALUE(blockX, blockY, TERRAIN_EMPTY);
-			object->x = blockX;
-			object->y = blockY;
-			ObjectManager_QueueVDPDraw(object, EraseTiles);
-			object->Draw = ObjectUtils_drawNothing;
-
-			MapManager_tilesetFunctions[tilesetIndex](tileset, 
-													  MapManager_tilesetGameObjectTemplates[tilesetIndex],
-													  blockX, 
-													  blockY);
-		}
-		else
-		{
-			ObjectManager_DestroyObject(object);
-		}
-
-		//effect->speedx = object->speedx >> 2;
-		//effect->speedy = object->speedy >> 2;
+		ObjectManager_DestroyObject(object);
 	}
-}
-
-BOOL Kunai_Draw(GameObject* object)
-{
-	//object->data1 = !object->data1;
-	//
-	//if (!object->data1)
-	//	return FALSE;
-
-	DRAWUTILS_SETUP_BATCH(object->x - ScrollManager_horizontalScroll,
-						  object->y,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-
-	// should never be clipped
-	DrawUtils_DrawBatched();
-
-	return TRUE;
 }
 
 void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)

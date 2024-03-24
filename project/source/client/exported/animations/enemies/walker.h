@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK6) extern const BatchedAnimation walker;
+RESOURCE(BANK6) extern const MetaSpriteAnimation walker;
 
 #endif
 

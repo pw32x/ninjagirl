@@ -617,169 +617,191 @@ unsigned char const wheelerTileData[2176] = // 68tiles x 32 bytes
     0x00, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame0SpriteStrips[] = 
+const s8 wheelerFrame0MetaSprites[] = 
 {
-    { 2, -5, -16, 0 },
-    { 3, -10, 0, 4 },
-    {0},
+    -5, -16, 0,
+    3, -16, 2,
+    -10, 0, 4,
+    -2, 0, 6,
+    6, 0, 8,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame1SpriteStrips[] = 
+const s8 wheelerFrame1MetaSprites[] = 
 {
-    { 2, -5, -15, 0 },
-    { 3, -10, 1, 10 },
-    {0},
+    -5, -15, 0,
+    3, -15, 2,
+    -10, 1, 10,
+    -2, 1, 12,
+    6, 1, 14,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame2SpriteStrips[] = 
+const s8 wheelerFrame2MetaSprites[] = 
 {
-    { 2, -11, -16, 16 },
-    { 3, -12, 0, 20 },
-    {0},
+    -11, -16, 16,
+    -3, -16, 18,
+    -12, 0, 20,
+    -4, 0, 22,
+    4, 0, 24,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame3SpriteStrips[] = 
+const s8 wheelerFrame3MetaSprites[] = 
 {
-    { 2, -11, -15, 16 },
-    { 3, -12, 1, 26 },
-    {0},
+    -11, -15, 16,
+    -3, -15, 18,
+    -12, 1, 26,
+    -4, 1, 28,
+    4, 1, 30,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame4SpriteStrips[] = 
+const s8 wheelerFrame4MetaSprites[] = 
 {
-    { 3, -12, -16, 32 },
-    { 3, -9, 0, 38 },
-    {0},
+    -12, -16, 32,
+    -4, -16, 34,
+    4, -16, 36,
+    -9, 0, 38,
+    -1, 0, 40,
+    7, 0, 42,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame5SpriteStrips[] = 
+const s8 wheelerFrame5MetaSprites[] = 
 {
-    { 2, -8, -16, 44 },
-    { 2, -8, 0, 48 },
-    {0},
+    -8, -16, 44,
+    0, -16, 46,
+    -8, 0, 48,
+    0, 0, 50,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame6SpriteStrips[] = 
+const s8 wheelerFrame6MetaSprites[] = 
 {
-    { 2, -8, -16, 52 },
-    { 2, -8, 0, 48 },
-    {0},
+    -8, -16, 52,
+    0, -16, 54,
+    -8, 0, 48,
+    0, 0, 50,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame7SpriteStrips[] = 
+const s8 wheelerFrame7MetaSprites[] = 
 {
-    { 2, -8, -7, 56 },
-    {0},
+    -8, -7, 56,
+    0, -7, 58,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame8SpriteStrips[] = 
+const s8 wheelerFrame8MetaSprites[] = 
 {
-    { 1, -4, -5, 60 },
-    {0},
+    -4, -5, 60,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame9SpriteStrips[] = 
+const s8 wheelerFrame9MetaSprites[] = 
 {
-    { 1, -4, -5, 62 },
-    {0},
+    -4, -5, 62,
+    (s8)0x80 // end marker
 };
 
-const BatchedAnimationSpriteStrip wheelerFrame10SpriteStrips[] = 
+const s8 wheelerFrame10MetaSprites[] = 
 {
-    { 2, -6, -4, 64 },
-    {0},
+    -6, -4, 64,
+    2, -4, 66,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame wheelerFrame0;
-extern const BatchedAnimationFrame wheelerFrame1;
-extern const BatchedAnimationFrame wheelerFrame2;
-extern const BatchedAnimationFrame wheelerFrame3;
-extern const BatchedAnimationFrame wheelerFrame4;
-extern const BatchedAnimationFrame wheelerFrame5;
-extern const BatchedAnimationFrame wheelerFrame6;
-extern const BatchedAnimationFrame wheelerFrame7;
-extern const BatchedAnimationFrame wheelerFrame8;
-extern const BatchedAnimationFrame wheelerFrame9;
-extern const BatchedAnimationFrame wheelerFrame10;
+extern const MetaSpriteAnimationFrame wheelerFrame0;
+extern const MetaSpriteAnimationFrame wheelerFrame1;
+extern const MetaSpriteAnimationFrame wheelerFrame2;
+extern const MetaSpriteAnimationFrame wheelerFrame3;
+extern const MetaSpriteAnimationFrame wheelerFrame4;
+extern const MetaSpriteAnimationFrame wheelerFrame5;
+extern const MetaSpriteAnimationFrame wheelerFrame6;
+extern const MetaSpriteAnimationFrame wheelerFrame7;
+extern const MetaSpriteAnimationFrame wheelerFrame8;
+extern const MetaSpriteAnimationFrame wheelerFrame9;
+extern const MetaSpriteAnimationFrame wheelerFrame10;
 
 
-const BatchedAnimationFrame wheelerFrame0 = 
+const MetaSpriteAnimationFrame wheelerFrame0 = 
 {
-    wheelerFrame0SpriteStrips,
+    wheelerFrame0MetaSprites,
     6, // frame time
     &wheelerFrame1, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame1 = 
+const MetaSpriteAnimationFrame wheelerFrame1 = 
 {
-    wheelerFrame1SpriteStrips,
+    wheelerFrame1MetaSprites,
     6, // frame time
     &wheelerFrame0, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame2 = 
+const MetaSpriteAnimationFrame wheelerFrame2 = 
 {
-    wheelerFrame2SpriteStrips,
+    wheelerFrame2MetaSprites,
     6, // frame time
     &wheelerFrame3, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame3 = 
+const MetaSpriteAnimationFrame wheelerFrame3 = 
 {
-    wheelerFrame3SpriteStrips,
+    wheelerFrame3MetaSprites,
     6, // frame time
     &wheelerFrame2, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame4 = 
+const MetaSpriteAnimationFrame wheelerFrame4 = 
 {
-    wheelerFrame4SpriteStrips,
+    wheelerFrame4MetaSprites,
     29, // frame time
     &wheelerFrame4, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame5 = 
+const MetaSpriteAnimationFrame wheelerFrame5 = 
 {
-    wheelerFrame5SpriteStrips,
+    wheelerFrame5MetaSprites,
     59, // frame time
     &wheelerFrame6, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame6 = 
+const MetaSpriteAnimationFrame wheelerFrame6 = 
 {
-    wheelerFrame6SpriteStrips,
+    wheelerFrame6MetaSprites,
     59, // frame time
     &wheelerFrame5, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame7 = 
+const MetaSpriteAnimationFrame wheelerFrame7 = 
 {
-    wheelerFrame7SpriteStrips,
+    wheelerFrame7MetaSprites,
     6, // frame time
     &wheelerFrame7, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame8 = 
+const MetaSpriteAnimationFrame wheelerFrame8 = 
 {
-    wheelerFrame8SpriteStrips,
+    wheelerFrame8MetaSprites,
     6, // frame time
     &wheelerFrame8, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame9 = 
+const MetaSpriteAnimationFrame wheelerFrame9 = 
 {
-    wheelerFrame9SpriteStrips,
+    wheelerFrame9MetaSprites,
     6, // frame time
     &wheelerFrame9, // next frame
 };
 
-const BatchedAnimationFrame wheelerFrame10 = 
+const MetaSpriteAnimationFrame wheelerFrame10 = 
 {
-    wheelerFrame10SpriteStrips,
+    wheelerFrame10MetaSprites,
     6, // frame time
     &wheelerFrame10, // next frame
 };
-const BatchedAnimationFrame* const wheelerFrames[11] = 
+const MetaSpriteAnimationFrame* const wheelerFrames[11] = 
 {
     &wheelerFrame0,
     &wheelerFrame1,
@@ -796,10 +818,10 @@ const BatchedAnimationFrame* const wheelerFrames[11] =
 
 u8 wheelerVdpLocation;
 
-const BatchedAnimation wheeler = 
+const MetaSpriteAnimation wheeler = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)wheelerFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)wheelerFrames,
     (unsigned char* const)wheelerTileData, // start of the sprite data
     11, // number of frames
     24, // width in pixels

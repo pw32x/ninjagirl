@@ -77,33 +77,35 @@ unsigned char const test_blockTileData[256] = // 8tiles x 32 bytes
     0xff, 0x00, 0x00, 0x00, 
 };
 
-const BatchedAnimationSpriteStrip test_blockFrame0SpriteStrips[] = 
+const s8 test_blockFrame0MetaSprites[] = 
 {
-    { 2, -8, -16, 0 },
-    { 2, -8, 0, 4 },
-    {0},
+    -8, -16, 0,
+    0, -16, 2,
+    -8, 0, 4,
+    0, 0, 6,
+    (s8)0x80 // end marker
 };
 
-extern const BatchedAnimationFrame test_blockFrame0;
+extern const MetaSpriteAnimationFrame test_blockFrame0;
 
 
-const BatchedAnimationFrame test_blockFrame0 = 
+const MetaSpriteAnimationFrame test_blockFrame0 = 
 {
-    test_blockFrame0SpriteStrips,
+    test_blockFrame0MetaSprites,
     5, // frame time
     &test_blockFrame0, // next frame
 };
-const BatchedAnimationFrame* const test_blockFrames[1] = 
+const MetaSpriteAnimationFrame* const test_blockFrames[1] = 
 {
     &test_blockFrame0,
 };
 
 u8 test_blockVdpLocation;
 
-const BatchedAnimation test_block = 
+const MetaSpriteAnimation test_block = 
 {
-    BATCHED_ANIMATION_RESOURCE_TYPE, 
-    (const BatchedAnimationFrame** const)test_blockFrames,
+    METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    (const MetaSpriteAnimationFrame** const)test_blockFrames,
     (unsigned char* const)test_blockTileData, // start of the sprite data
     1, // number of frames
     32, // width in pixels

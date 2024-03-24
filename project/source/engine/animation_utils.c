@@ -2,6 +2,7 @@
 #include "engine/base_defines.h"
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
+#include "engine/draw_utils.h"
 
 void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 {
@@ -13,6 +14,19 @@ void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 
 	gameObject->animationTime--;
 }
+
+void AnimationUtils_updateMetaSpriteAnimation(struct game_object* gameObject)
+{
+	if (!gameObject->animationTime)
+	{
+		gameObject->currentMetaSpriteAnimationFrame = gameObject->currentMetaSpriteAnimationFrame->nextFrame;
+		gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
+	}
+
+	gameObject->animationTime--;
+}
+
+
 
 u8 AnimationUtils_updateBatchedAnimation_noLoop(GameObject* gameObject)
 {
@@ -94,6 +108,17 @@ u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 										  batchedAnimation->vdpLocation);
 }
 
+
+
+u16 Load_MetaSpriteBatchedAnimationResource(const ResourceInfo* resourceInfo)
+{
+	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resourceInfo->resource;
+
+	return VDPTileManager_LoadSpriteTiles(metaSpriteAnimation->tileData, 
+										  metaSpriteAnimation->totalTileCount,
+										  metaSpriteAnimation->vdpLocation);
+}
+
 u16 Load_StreamedBatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
@@ -138,6 +163,22 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Resourc
 	return 0;
 }
 
+u16 Setup_MetaSpriteAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
+{
+	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resourceInfo->resource;
+
+	gameObject->metaSpriteAnimation = metaSpriteAnimation;
+	gameObject->currentAnimationFrameIndex = 0;
+	gameObject->currentMetaSpriteAnimationFrame = metaSpriteAnimation->frames[0];
+	gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
+	gameObject->pixelWidth = metaSpriteAnimation->pixelWidth;
+	gameObject->pixelHeight = metaSpriteAnimation->pixelHeight;
+	gameObject->UpdateAnimation = (UpdateAnimationFunctionType)AnimationUtils_updateMetaSpriteAnimation;
+	gameObject->Draw = DrawUtils_drawMetasprite;
+
+	return 0;
+}
+
 u16 Setup_PlaneAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
 	const PlaneAnimation* planeAnimation = (const PlaneAnimation*)resourceInfo->resource;
@@ -168,6 +209,18 @@ u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceIn
 
 // streaming
 
+void* OUTI32(const void *src) __z88dk_fastcall;
+void* OUTI64(const void *src) __z88dk_fastcall;
+void* OUTI128(const void *src) __z88dk_fastcall;
+
+__sfr __at 0xBE VDPDataPort2;
+#define SETVDPDATAPORTb  __asm ld c,#_VDPDataPort2 __endasm
+
+void UNSAFE_SMS_VRAMmemcpy192b (unsigned int dst, const void *src) {
+	SMS_setAddr(0x4000|dst);
+	SETVDPDATAPORTb;
+	OUTI64(OUTI128(src));
+}
 
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {
@@ -193,20 +246,20 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 		switch (runner->count)
 		{
 		case 1:
-			UNSAFE_SMS_VRAMmemcpy64(vdpIndex << 5, tileOffset);
+			UNSAFE_SMS_VRAMmemcpy64(vdpIndex << 5, (const void *)tileOffset);
 			break;
 		case 2:
 		{
-			UNSAFE_SMS_VRAMmemcpy128(vdpIndex << 5, tileOffset);
+			UNSAFE_SMS_VRAMmemcpy128(vdpIndex << 5, (const void *)tileOffset);
 			break;
 		}
 		case 3:
 		{
-			UNSAFE_SMS_VRAMmemcpy192(vdpIndex << 5, tileOffset);
+			UNSAFE_SMS_VRAMmemcpy192b(vdpIndex << 5, (const void *)tileOffset);
 			break;
 		}
 		case 4:
-			UNSAFE_SMS_VRAMmemcpy256(vdpIndex << 5, tileOffset);
+			UNSAFE_SMS_VRAMmemcpy256(vdpIndex << 5, (const void *)tileOffset);
 		}
 
 		vdpIndex += runner->count << 1;

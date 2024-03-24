@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK6) extern const BatchedAnimation robotrunner;
+RESOURCE(BANK6) extern const MetaSpriteAnimation robotrunner;
 
 // frame numbers for specific animations.
 #define ROBOTRUNNER_RUN_RIGHT_FRAME_INDEX 0

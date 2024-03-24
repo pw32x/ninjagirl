@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation colorTweakerCursor;
+RESOURCE(BANK2) extern const MetaSpriteAnimation colorTweakerCursor;
 
 #endif
 

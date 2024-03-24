@@ -5,7 +5,7 @@
 #include "animation_types.h"
 #include "resource_types.h"
 
-RESOURCE(BANK2) extern const BatchedAnimation impact;
+RESOURCE(BANK2) extern const MetaSpriteAnimation impact;
 
 // frame numbers for specific animations.
 #define IMPACT_8_FRAME_INDEX 0

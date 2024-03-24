@@ -23,7 +23,6 @@ void ShotgunItem_Update(ShotgunItemObjectType* object);
 void ShotgunItem_Sit(ShotgunItemObjectType* object);
 void ShotgunItem_Fall(ShotgunItemObjectType* object);
 
-BOOL ShotgunItem_Draw(GameObject* object);
 void ShotgunItem_HandleCollision(GameObject* gameObject, GameObject* other);
 
 GameObject* ShotgunItem_Init(ShotgunItemObjectType* object, const CreateInfo* createInfo)
@@ -32,7 +31,6 @@ GameObject* ShotgunItem_Init(ShotgunItemObjectType* object, const CreateInfo* cr
 	object->x = P2V(object->x);
 	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)ShotgunItem_Update;
-	object->Draw = ShotgunItem_Draw;
 	object->UpdatePhysics = ShotgunItem_Fall;
 	object->HandleCollision = ShotgunItem_HandleCollision;
 
@@ -108,19 +106,6 @@ void ShotgunItem_Fall(ShotgunItemObjectType* object)
 		object->UpdatePhysics = ShotgunItem_Sit;
 	}
 
-}
-
-BOOL ShotgunItem_Draw(GameObject* object)
-{
-	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-
-	DrawUtils_DrawBatched();
-
-	return TRUE;
 }
 
 void ShotgunItem_HandleCollision(GameObject* gameObject, GameObject* other)
