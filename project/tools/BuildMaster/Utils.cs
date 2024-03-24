@@ -75,7 +75,7 @@ namespace BuildMaster
 
             // Get the process's input stream
             StreamWriter sw = process.StandardInput;
-            StreamReader errorReader = process.StandardError;
+            StreamReader errorReader = process.StandardError; 
 
             workerFunction(sw); 
 

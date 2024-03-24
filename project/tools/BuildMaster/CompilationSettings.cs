@@ -60,7 +60,7 @@ namespace BuildMaster
 
             //addFlag("--max-allocs-per-node 100000");
             addFlag("--opt-code-speed");
-            addFlag("--vc");
+            //addFlag("--vc");
 
             addFlag("-I" + SmsLib_IncludePath);
             addFlag("-I" + PsgLib_IncludePath);

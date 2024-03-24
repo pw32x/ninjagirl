@@ -205,7 +205,7 @@ namespace BuildMaster
                 return (filePath, lineNumber, restOfString);
             }
 
-            return ("", -1, "");
+            return ("", 0, line);
         }
 
         private static bool ProcessErrorString(string errorString, Config config)
@@ -214,7 +214,7 @@ namespace BuildMaster
 
             if (!String.IsNullOrEmpty(errorString))
             {
-                bool useVSStylePaths = false;//config.GetSetting("UseVisualStudioStylePaths") == "true";
+                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
 
                 string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
 
@@ -222,7 +222,7 @@ namespace BuildMaster
                 {
                     var (filePath, lineNumber, message) = ExtractErrorInfo(line);
 
-                    if (string.IsNullOrEmpty(filePath))
+                    if (string.IsNullOrEmpty(message))
                         continue;
 
                     if (!containsError)
@@ -230,7 +230,7 @@ namespace BuildMaster
                         containsError = message.ToLower().Contains("error");
                     }
 
-                    if (useVSStylePaths)
+                    if (useVSStylePaths && !string.IsNullOrEmpty(filePath))
                         Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
                     else
                         Console.WriteLine(line);
