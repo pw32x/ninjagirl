@@ -25,6 +25,7 @@ public:
     AnimationType m_animationType = AnimationType::Standard;
     bool m_updateOnly = false;
     bool m_isStreamed = false;
+    bool m_isMetaSprite = false;
 };
 
 ProgramArguments ParseArguments(int argc, char* argv[]);

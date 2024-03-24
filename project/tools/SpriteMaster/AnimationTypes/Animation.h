@@ -17,7 +17,8 @@ class GGAnimation : public AnimationBase
 {
 public:
 	GGAnimation(const GraphicsGaleObject& ggo, 
-				bool streamed);
+				bool streamed,
+				bool isMetaSprite);
 
 	void Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank);
 
@@ -44,6 +45,7 @@ private:
 	std::vector<GGAnimationFrame>	m_frames;
 	int								m_totalFrameTime = 0;
 	bool							m_isStreamed;
+	bool							m_isMetaSprite;
 	BITMAP							m_generalBitmapInfo;
 	int								m_maxTilesInFrame;
 };

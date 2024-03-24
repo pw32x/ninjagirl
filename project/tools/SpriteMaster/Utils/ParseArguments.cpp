@@ -15,6 +15,7 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 
     auto &group = program.add_mutually_exclusive_group();
     group.add_argument("-s", "-streamed").flag();
+    group.add_argument("-m", "-metasprite").flag();
     group.add_argument("-t", "-animatedtileset").flag();
     group.add_argument("-p", "-planeanimation").flag();
     group.add_argument("-pal", "-palette").flag();
@@ -40,6 +41,8 @@ ProgramArguments ParseArguments(int argc, char* argv[])
 
     if (program["-s"] == true)
         programArguments.m_isStreamed = true;
+    if (program["-m"] == true)
+        programArguments.m_isMetaSprite = true;
     else if (program["-t"] == true)
         programArguments.m_animationType = AnimationType::AnimatedTileset;
     else if (program["-p"] == true)

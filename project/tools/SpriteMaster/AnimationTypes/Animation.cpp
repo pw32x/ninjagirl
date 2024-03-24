@@ -14,9 +14,11 @@ namespace SpriteMaster
 {
 
 GGAnimation::GGAnimation(const GraphicsGaleObject& ggo, 
-                         bool streamed)
+                         bool streamed,
+                         bool isMetaSprite)
 : m_ggo(ggo)
 , m_isStreamed(streamed)
+, m_isMetaSprite(isMetaSprite)
 {
     HBITMAP bitmap = m_ggo.getBitmap(0, 0);
 
@@ -138,7 +140,10 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
 
 	// exported types
 
-    headerfile << "RESOURCE(" << bank << ") extern const BatchedAnimation " << outputName << ";\n"; 
+    if (m_isMetaSprite)
+        headerfile << "RESOURCE(" << bank << ") extern const MetaSpriteAnimation " << outputName << ";\n"; 
+    else
+        headerfile << "RESOURCE(" << bank << ") extern const BatchedAnimation " << outputName << ";\n"; 
 
     headerfile << "\n";
 
@@ -164,22 +169,51 @@ void GGAnimation::WriteSpritesBatched(const std::string& outputName, std::ofstre
 	{
 		const GGAnimationFrame& frame = m_frames[frameLoop];
 
-        std::string spriteStripName = WriteUtils::BuildFrameName(outputName, frameLoop) + "SpriteStrips";
-
-        sourceFile << "const BatchedAnimationSpriteStrip " << spriteStripName << "[] = \n";
-        sourceFile << "{\n";
-
-        for (const auto& sprite : frame.getSprites())
+        if (m_isMetaSprite)
         {
-            sourceFile << "    { ";
-            sourceFile << sprite.m_spriteStrip.count << ", ";
-            sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
-            sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
-            sourceFile << sprite.m_spriteStrip.tileStartIndex;
-            sourceFile << " },\n";
+            // devkitSMS metasprites
+            std::string metaSpriteName = WriteUtils::BuildFrameName(outputName, frameLoop) + "MetaSprites";
+            sourceFile << "const s8 " << metaSpriteName << "[] = \n";
+            sourceFile << "{\n";
+
+            for (const auto& sprite : frame.getSprites())
+            {
+                int x = sprite.m_xPositionOffset - m_animationProperties.mOffsetX;
+                int y = sprite.m_yPositionOffset - m_animationProperties.mOffsetY;
+                int tileIndex = sprite.m_spriteStrip.tileStartIndex;
+
+                for (int loop = 0; loop < sprite.m_spriteStrip.count; loop++)
+                {
+                    sourceFile << "    " << x << ", " << y << ", " << tileIndex << ",\n";
+                    x += 8;
+                    tileIndex += 2;
+                }
+            }
+
+            sourceFile << "    (s8)0x80 // end marker\n";
+            sourceFile << "};\n\n";
         }
-        sourceFile << "    {0},\n";
-        sourceFile << "};\n\n";
+        else
+        {
+            // strips
+
+            std::string spriteStripName = WriteUtils::BuildFrameName(outputName, frameLoop) + "SpriteStrips";
+
+            sourceFile << "const BatchedAnimationSpriteStrip " << spriteStripName << "[] = \n";
+            sourceFile << "{\n";
+
+            for (const auto& sprite : frame.getSprites())
+            {
+                sourceFile << "    { ";
+                sourceFile << sprite.m_spriteStrip.count << ", ";
+                sourceFile << sprite.m_xPositionOffset - m_animationProperties.mOffsetX << ", ";
+                sourceFile << sprite.m_yPositionOffset - m_animationProperties.mOffsetY << ", ";
+                sourceFile << sprite.m_spriteStrip.tileStartIndex;
+                sourceFile << " },\n";
+            }
+            sourceFile << "    {0},\n";
+            sourceFile << "};\n\n";
+        }
     }
 }
 
@@ -190,7 +224,10 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 		const GGAnimationFrame& frame = m_frames[frameLoop];
         std::string frameName = WriteUtils::BuildFrameName(outputName, frameLoop);
 
-        sourceFile << "extern const BatchedAnimationFrame " << frameName << ";\n";
+        if (m_isMetaSprite)
+            sourceFile << "extern const MetaSpriteAnimationFrame " << frameName << ";\n";
+        else
+            sourceFile << "extern const BatchedAnimationFrame " << frameName << ";\n";
 	}
 
     sourceFile << "\n";
@@ -211,10 +248,18 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 
 		sourceFile << "\n";
 
-		sourceFile << "const BatchedAnimationFrame " << frameName << " = \n";
+        if (m_isMetaSprite)
+            sourceFile << "const MetaSpriteAnimationFrame " << frameName << " = \n";
+        else
+		    sourceFile << "const BatchedAnimationFrame " << frameName << " = \n";
 
 		sourceFile << "{\n";
-        sourceFile << "    " << frameName << "SpriteStrips,\n";
+
+        if (m_isMetaSprite)
+            sourceFile << "    " << frameName << "MetaSprites,\n";
+        else
+            sourceFile << "    " << frameName << "SpriteStrips,\n";
+
 		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
         sourceFile << "    " << nextFrameName << ", // next frame\n";
 		sourceFile << "};\n";
@@ -223,8 +268,11 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 
 void GGAnimation::WriteFrameArrayBatched(const std::string& outputName, std::ofstream& sourceFile)
 {
+    if (m_isMetaSprite)
+        sourceFile << "const MetaSpriteAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
+    else
+        sourceFile << "const BatchedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
 
-    sourceFile << "const BatchedAnimationFrame* const " << outputName << "Frames[" << m_frames.size() << "] = \n";
     sourceFile << "{\n";
 
     for (size_t loop = 0; loop < m_frames.size(); loop++)
@@ -242,14 +290,25 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     sourceFile << "u8 " << outputName << "VdpLocation;\n\n";
 
     // final struct
-    sourceFile << "const BatchedAnimation " << outputName << " = \n";
+    if (m_isMetaSprite)
+        sourceFile << "const MetaSpriteAnimation " << outputName << " = \n";
+    else
+        sourceFile << "const BatchedAnimation " << outputName << " = \n";
+
     sourceFile << "{\n";
 
     if (m_isStreamed)
         sourceFile << "    STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, \n";
+    else if (m_isMetaSprite)
+        sourceFile << "    METASPRITE_ANIMATION_RESOURCE_TYPE, \n";
     else
         sourceFile << "    BATCHED_ANIMATION_RESOURCE_TYPE, \n";
-    sourceFile << "    (const BatchedAnimationFrame** const)" << outputName << "Frames,\n";
+
+    if (m_isMetaSprite)
+        sourceFile << "    (const MetaSpriteAnimationFrame** const)" << outputName << "Frames,\n";
+    else
+        sourceFile << "    (const BatchedAnimationFrame** const)" << outputName << "Frames,\n";
+
     sourceFile << "    (unsigned char* const)" << outputName << "TileData, // start of the sprite data\n";
     sourceFile << "    " << m_frames.size() << ", // number of frames\n";
     sourceFile << "    " << m_generalBitmapInfo.bmWidth << ", // width in pixels\n";

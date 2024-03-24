@@ -85,7 +85,7 @@ int Main(int argc, char* argv[])
         }
         default:
         {
-            animation = new GGAnimation(ggo, programArguments.m_isStreamed);
+            animation = new GGAnimation(ggo, programArguments.m_isStreamed, programArguments.m_isMetaSprite);
             break;
         }
         }
