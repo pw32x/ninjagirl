@@ -7,6 +7,8 @@
 
 RESOURCE(BANK5) extern const MetaSpriteAnimation deliveryrobot;
 
+#define DELIVERYROBOT_NUMFRAMES 6
+
 // frame numbers for specific animations.
 #define DELIVERYROBOT_RIGHT_FRAME_INDEX 0
 #define DELIVERYROBOT_LEFT_FRAME_INDEX 2

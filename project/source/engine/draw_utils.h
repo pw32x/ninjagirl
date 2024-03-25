@@ -26,6 +26,10 @@ extern s16 DrawUtils_screenY;
 void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject);
 
 void DrawUtils_drawNothing(struct game_object* gameObject);
+
+// variable in SMSLib for a prototype version of SMS_addMetaSprite.
+extern unsigned char MetaSpriteBaseTile;
+
 void DrawUtils_drawMetasprite(struct game_object* gameObject);
 
 #endif

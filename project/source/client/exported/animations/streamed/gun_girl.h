@@ -7,6 +7,8 @@
 
 RESOURCE(BANK7) extern const BatchedAnimation gun_girl;
 
+#define GUN_GIRL_NUMFRAMES 40
+
 // frame numbers for specific animations.
 #define GUN_GIRL_RUN_RIGHT_FRAME_INDEX 0
 #define GUN_GIRL_RUN_LEFT_FRAME_INDEX 6

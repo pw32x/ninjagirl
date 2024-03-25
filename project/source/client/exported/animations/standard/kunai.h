@@ -7,5 +7,7 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation kunai;
 
+#define KUNAI_NUMFRAMES 8
+
 #endif
 

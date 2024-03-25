@@ -7,5 +7,7 @@
 
 RESOURCE(BANK5) extern const MetaSpriteAnimation bullet;
 
+#define BULLET_NUMFRAMES 1
+
 #endif
 

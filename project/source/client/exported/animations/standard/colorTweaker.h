@@ -7,5 +7,7 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation colorTweaker;
 
+#define COLORTWEAKER_NUMFRAMES 16
+
 #endif
 

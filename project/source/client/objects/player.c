@@ -30,6 +30,10 @@
 void Player_Draw(GameObject* object);
 void Player_FireWeapon(GameObject* object);
 
+#define PLAYER_METASPRITE_MAX_SIZE 1024
+
+s8 playerMetaSprites[PLAYER_METASPRITE_MAX_SIZE];
+u16 playerMetaSpriteFrameIndexes[GUN_GIRL_NUMFRAMES];
 
 s16 playerX;
 s16 playerY;
@@ -75,6 +79,8 @@ void Player_UpdateRun(GameObject* object);
 void Player_UpdateFall(GameObject* object);
 void Player_UpdateJump(GameObject* object);
 void Player_UpdateDuck(GameObject* object);
+
+void Player_BuildMetaSprite(GameObject* object);
 
 ObjectFunctionType player_SubUpdate;
 
@@ -198,7 +204,83 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	playerRectTopV = P2V(object->rectTop);
 	playerRectBottomV = P2V(object->rectBottom);
 
+	Player_BuildMetaSprite(object);
+
 	return object;
+}
+
+void Player_BuildMetaSprite(GameObject* object)
+{
+	//playerMetaSprites
+	//playerMetaSpriteFrameIndexes
+
+	u16 currentMetaSpriteFrameIndex = 0;
+
+	const BatchedAnimation* animation = object->batchedAnimation;
+
+	u16 vdpLocation = *animation->vdpLocation;
+
+	s8* playerMetaSpritesRunner = playerMetaSprites;
+
+	for (u16 loop = 0; loop < animation->numFrames; loop++)
+	{
+		playerMetaSpriteFrameIndexes[loop] = currentMetaSpriteFrameIndex;
+
+		const BatchedAnimationFrame* frame = animation->frames[loop];
+
+		const BatchedAnimationSpriteStrip* stripRunner = frame->spriteStrips;
+
+		u8 tileIndex = 0;//*animation->vdpLocation;
+
+		while (stripRunner->count)
+		{
+			s8 xoffset = stripRunner->xOffset;
+			s8 yoffset = stripRunner->yOffset;
+
+
+			for (u8 stripLoop = 0; stripLoop < stripRunner->count; stripLoop++)
+			{
+				playerMetaSpritesRunner[0] = xoffset;
+				playerMetaSpritesRunner[1] = yoffset;
+				playerMetaSpritesRunner[2] = (s8)tileIndex;
+
+				xoffset += 8;
+				tileIndex += 2;
+
+				playerMetaSpritesRunner += 3;
+				currentMetaSpriteFrameIndex += 3;
+			}
+
+			stripRunner++;
+		}
+
+		playerMetaSpritesRunner[0] = (s8)METASPRITE_END;
+		playerMetaSpritesRunner++;
+		currentMetaSpriteFrameIndex++;
+	}
+
+	/*
+	SMS_debugPrintf("size: %d\n", playerMetaSpritesRunner - playerMetaSprites);
+
+	playerMetaSpritesRunner = playerMetaSprites;
+
+	for (u8 loop = 0; loop < animation->numFrames; loop++)
+	{
+		playerMetaSpritesRunner = &playerMetaSprites[playerMetaSpriteFrameIndexes[loop]];
+
+		SMS_debugPrintf("%d: ", loop);
+		SMS_debugPrintf("%d: ", playerMetaSpriteFrameIndexes[loop]);		
+
+		while (*playerMetaSpritesRunner != (s8)METASPRITE_END)
+		{
+			SMS_debugPrintf("%d, ", *playerMetaSpritesRunner);
+			playerMetaSpritesRunner++;
+		}
+
+		SMS_debugPrintf("\n");
+	}
+	*/
+
 }
 
 void Player_FireWeapon(GameObject* object)
@@ -629,15 +711,15 @@ void Player_Update(GameObject* object)
 
 void Player_Draw(GameObject* object)
 {
-	//SMS_debugPrintf("Switching to Bank %d.\n", object->resourceInfo->bankNumber);
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	//SMS_debugPrintf("Switched\n");
-	DRAWUTILS_SETUP_BATCH(object->screenx,
-						  object->screeny,
-						  object->currentBatchedAnimationFrame->spriteStrips,
-						  *object->batchedAnimation->vdpLocation);
-	//SMS_debugPrintf("batch start\n");
-	DrawUtils_DrawStreamedBatched();
-	//SMS_debugPrintf("batch end\n");
+
+	MetaSpriteBaseTile = *object->batchedAnimation->vdpLocation;
+
+	const s8* playerMetaSpritesStart = &playerMetaSprites[playerMetaSpriteFrameIndexes[object->currentBatchedAnimationFrame->frameNumber]];
+
+	SMS_addMetaSprite(object->screenx,
+					  object->screeny,
+					  playerMetaSpritesStart);
+
 }
 

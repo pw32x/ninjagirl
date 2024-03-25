@@ -1790,6 +1790,7 @@ const BatchedAnimationFrame gun_girlFrame0 =
     gun_girlFrame0SpriteStrips,
     5, // frame time
     &gun_girlFrame1, // next frame
+    0, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame1 = 
@@ -1797,6 +1798,7 @@ const BatchedAnimationFrame gun_girlFrame1 =
     gun_girlFrame1SpriteStrips,
     4, // frame time
     &gun_girlFrame2, // next frame
+    1, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame2 = 
@@ -1804,6 +1806,7 @@ const BatchedAnimationFrame gun_girlFrame2 =
     gun_girlFrame2SpriteStrips,
     4, // frame time
     &gun_girlFrame3, // next frame
+    2, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame3 = 
@@ -1811,6 +1814,7 @@ const BatchedAnimationFrame gun_girlFrame3 =
     gun_girlFrame3SpriteStrips,
     4, // frame time
     &gun_girlFrame4, // next frame
+    3, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame4 = 
@@ -1818,6 +1822,7 @@ const BatchedAnimationFrame gun_girlFrame4 =
     gun_girlFrame4SpriteStrips,
     4, // frame time
     &gun_girlFrame5, // next frame
+    4, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame5 = 
@@ -1825,6 +1830,7 @@ const BatchedAnimationFrame gun_girlFrame5 =
     gun_girlFrame5SpriteStrips,
     4, // frame time
     &gun_girlFrame0, // next frame
+    5, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame6 = 
@@ -1832,6 +1838,7 @@ const BatchedAnimationFrame gun_girlFrame6 =
     gun_girlFrame6SpriteStrips,
     4, // frame time
     &gun_girlFrame7, // next frame
+    6, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame7 = 
@@ -1839,6 +1846,7 @@ const BatchedAnimationFrame gun_girlFrame7 =
     gun_girlFrame7SpriteStrips,
     4, // frame time
     &gun_girlFrame8, // next frame
+    7, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame8 = 
@@ -1846,6 +1854,7 @@ const BatchedAnimationFrame gun_girlFrame8 =
     gun_girlFrame8SpriteStrips,
     4, // frame time
     &gun_girlFrame9, // next frame
+    8, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame9 = 
@@ -1853,6 +1862,7 @@ const BatchedAnimationFrame gun_girlFrame9 =
     gun_girlFrame9SpriteStrips,
     4, // frame time
     &gun_girlFrame10, // next frame
+    9, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame10 = 
@@ -1860,6 +1870,7 @@ const BatchedAnimationFrame gun_girlFrame10 =
     gun_girlFrame10SpriteStrips,
     4, // frame time
     &gun_girlFrame11, // next frame
+    10, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame11 = 
@@ -1867,6 +1878,7 @@ const BatchedAnimationFrame gun_girlFrame11 =
     gun_girlFrame11SpriteStrips,
     4, // frame time
     &gun_girlFrame6, // next frame
+    11, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame12 = 
@@ -1874,6 +1886,7 @@ const BatchedAnimationFrame gun_girlFrame12 =
     gun_girlFrame12SpriteStrips,
     4, // frame time
     &gun_girlFrame12, // next frame
+    12, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame13 = 
@@ -1881,6 +1894,7 @@ const BatchedAnimationFrame gun_girlFrame13 =
     gun_girlFrame13SpriteStrips,
     4, // frame time
     &gun_girlFrame13, // next frame
+    13, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame14 = 
@@ -1888,6 +1902,7 @@ const BatchedAnimationFrame gun_girlFrame14 =
     gun_girlFrame14SpriteStrips,
     4, // frame time
     &gun_girlFrame14, // next frame
+    14, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame15 = 
@@ -1895,6 +1910,7 @@ const BatchedAnimationFrame gun_girlFrame15 =
     gun_girlFrame15SpriteStrips,
     4, // frame time
     &gun_girlFrame15, // next frame
+    15, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame16 = 
@@ -1902,6 +1918,7 @@ const BatchedAnimationFrame gun_girlFrame16 =
     gun_girlFrame16SpriteStrips,
     4, // frame time
     &gun_girlFrame16, // next frame
+    16, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame17 = 
@@ -1909,6 +1926,7 @@ const BatchedAnimationFrame gun_girlFrame17 =
     gun_girlFrame17SpriteStrips,
     4, // frame time
     &gun_girlFrame17, // next frame
+    17, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame18 = 
@@ -1916,6 +1934,7 @@ const BatchedAnimationFrame gun_girlFrame18 =
     gun_girlFrame18SpriteStrips,
     4, // frame time
     &gun_girlFrame18, // next frame
+    18, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame19 = 
@@ -1923,6 +1942,7 @@ const BatchedAnimationFrame gun_girlFrame19 =
     gun_girlFrame19SpriteStrips,
     4, // frame time
     &gun_girlFrame19, // next frame
+    19, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame20 = 
@@ -1930,6 +1950,7 @@ const BatchedAnimationFrame gun_girlFrame20 =
     gun_girlFrame20SpriteStrips,
     4, // frame time
     &gun_girlFrame20, // next frame
+    20, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame21 = 
@@ -1937,6 +1958,7 @@ const BatchedAnimationFrame gun_girlFrame21 =
     gun_girlFrame21SpriteStrips,
     4, // frame time
     &gun_girlFrame21, // next frame
+    21, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame22 = 
@@ -1944,6 +1966,7 @@ const BatchedAnimationFrame gun_girlFrame22 =
     gun_girlFrame22SpriteStrips,
     5, // frame time
     &gun_girlFrame23, // next frame
+    22, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame23 = 
@@ -1951,6 +1974,7 @@ const BatchedAnimationFrame gun_girlFrame23 =
     gun_girlFrame23SpriteStrips,
     4, // frame time
     &gun_girlFrame24, // next frame
+    23, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame24 = 
@@ -1958,6 +1982,7 @@ const BatchedAnimationFrame gun_girlFrame24 =
     gun_girlFrame24SpriteStrips,
     4, // frame time
     &gun_girlFrame25, // next frame
+    24, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame25 = 
@@ -1965,6 +1990,7 @@ const BatchedAnimationFrame gun_girlFrame25 =
     gun_girlFrame25SpriteStrips,
     4, // frame time
     &gun_girlFrame26, // next frame
+    25, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame26 = 
@@ -1972,6 +1998,7 @@ const BatchedAnimationFrame gun_girlFrame26 =
     gun_girlFrame26SpriteStrips,
     4, // frame time
     &gun_girlFrame27, // next frame
+    26, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame27 = 
@@ -1979,6 +2006,7 @@ const BatchedAnimationFrame gun_girlFrame27 =
     gun_girlFrame27SpriteStrips,
     4, // frame time
     &gun_girlFrame22, // next frame
+    27, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame28 = 
@@ -1986,6 +2014,7 @@ const BatchedAnimationFrame gun_girlFrame28 =
     gun_girlFrame28SpriteStrips,
     4, // frame time
     &gun_girlFrame29, // next frame
+    28, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame29 = 
@@ -1993,6 +2022,7 @@ const BatchedAnimationFrame gun_girlFrame29 =
     gun_girlFrame29SpriteStrips,
     4, // frame time
     &gun_girlFrame30, // next frame
+    29, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame30 = 
@@ -2000,6 +2030,7 @@ const BatchedAnimationFrame gun_girlFrame30 =
     gun_girlFrame30SpriteStrips,
     4, // frame time
     &gun_girlFrame31, // next frame
+    30, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame31 = 
@@ -2007,6 +2038,7 @@ const BatchedAnimationFrame gun_girlFrame31 =
     gun_girlFrame31SpriteStrips,
     4, // frame time
     &gun_girlFrame32, // next frame
+    31, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame32 = 
@@ -2014,6 +2046,7 @@ const BatchedAnimationFrame gun_girlFrame32 =
     gun_girlFrame32SpriteStrips,
     4, // frame time
     &gun_girlFrame33, // next frame
+    32, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame33 = 
@@ -2021,6 +2054,7 @@ const BatchedAnimationFrame gun_girlFrame33 =
     gun_girlFrame33SpriteStrips,
     4, // frame time
     &gun_girlFrame28, // next frame
+    33, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame34 = 
@@ -2028,6 +2062,7 @@ const BatchedAnimationFrame gun_girlFrame34 =
     gun_girlFrame34SpriteStrips,
     4, // frame time
     &gun_girlFrame34, // next frame
+    34, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame35 = 
@@ -2035,6 +2070,7 @@ const BatchedAnimationFrame gun_girlFrame35 =
     gun_girlFrame35SpriteStrips,
     4, // frame time
     &gun_girlFrame35, // next frame
+    35, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame36 = 
@@ -2042,6 +2078,7 @@ const BatchedAnimationFrame gun_girlFrame36 =
     gun_girlFrame36SpriteStrips,
     4, // frame time
     &gun_girlFrame36, // next frame
+    36, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame37 = 
@@ -2049,6 +2086,7 @@ const BatchedAnimationFrame gun_girlFrame37 =
     gun_girlFrame37SpriteStrips,
     4, // frame time
     &gun_girlFrame37, // next frame
+    37, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame38 = 
@@ -2056,6 +2094,7 @@ const BatchedAnimationFrame gun_girlFrame38 =
     gun_girlFrame38SpriteStrips,
     4, // frame time
     &gun_girlFrame38, // next frame
+    38, // frame index
 };
 
 const BatchedAnimationFrame gun_girlFrame39 = 
@@ -2063,6 +2102,7 @@ const BatchedAnimationFrame gun_girlFrame39 =
     gun_girlFrame39SpriteStrips,
     4, // frame time
     &gun_girlFrame39, // next frame
+    39, // frame index
 };
 const BatchedAnimationFrame* const gun_girlFrames[40] = 
 {

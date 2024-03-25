@@ -7,5 +7,7 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation explosion;
 
+#define EXPLOSION_NUMFRAMES 9
+
 #endif
 

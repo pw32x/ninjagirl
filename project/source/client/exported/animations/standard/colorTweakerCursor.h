@@ -7,5 +7,7 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation colorTweakerCursor;
 
+#define COLORTWEAKERCURSOR_NUMFRAMES 5
+
 #endif
 

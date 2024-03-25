@@ -7,6 +7,8 @@
 
 RESOURCE(BANK5) extern const MetaSpriteAnimation shotgun;
 
+#define SHOTGUN_NUMFRAMES 3
+
 // frame numbers for specific animations.
 #define SHOTGUN_RUN_RIGHT_FRAME_INDEX 0
 

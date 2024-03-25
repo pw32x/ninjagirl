@@ -7,6 +7,8 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation robotrunner;
 
+#define ROBOTRUNNER_NUMFRAMES 4
+
 // frame numbers for specific animations.
 #define ROBOTRUNNER_RUN_RIGHT_FRAME_INDEX 0
 #define ROBOTRUNNER_RUN_LEFT_FRAME_INDEX 2

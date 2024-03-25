@@ -12,8 +12,7 @@ s16 DrawUtils_screenY;
 
 #define PARAM_COMBINER(x, tile) ((x<<8)|tile)
 
-// variable in SMSLib for a prototype version of SMS_addMetaSprite.
-extern unsigned char MetaSpriteBaseTile;
+
 
 void DrawUtils_drawNothing(GameObject* gameObject) { UNUSED(gameObject); }
 
@@ -21,11 +20,11 @@ void DrawUtils_drawMetasprite(GameObject* object)
 {
     SMS_mapROMBank(object->resourceInfo->bankNumber);
 
-    MetaSpriteBaseTile = *object->batchedAnimation->vdpLocation;
+    MetaSpriteBaseTile = *object->metaSpriteAnimation->vdpLocation;
 
     SMS_addMetaSprite(object->screenx,
                       object->screeny,
-                      object->currentBatchedAnimationFrame->spriteStrips);
+                      object->currentMetaSpriteAnimationFrame->metaSprite);
 }
 
 void DrawUtils_DrawBatched(void)

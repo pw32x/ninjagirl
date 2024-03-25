@@ -7,6 +7,8 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation wheeler;
 
+#define WHEELER_NUMFRAMES 11
+
 // frame numbers for specific animations.
 #define WHEELER_RUN_RIGHT_FRAME_INDEX 0
 #define WHEELER_RUN_LEFT_FRAME_INDEX 2

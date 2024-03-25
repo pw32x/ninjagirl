@@ -7,5 +7,7 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation robotspring;
 
+#define ROBOTSPRING_NUMFRAMES 3
+
 #endif
 

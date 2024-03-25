@@ -19,6 +19,7 @@ typedef struct batched_animation_frame
     const BatchedAnimationSpriteStrip* const spriteStrips;
     u8 frameTime;
     struct batched_animation_frame* nextFrame;
+    u8 frameNumber;
 } BatchedAnimationFrame;
 
 

@@ -7,5 +7,7 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation walker_small;
 
+#define WALKER_SMALL_NUMFRAMES 2
+
 #endif
 

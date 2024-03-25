@@ -7,6 +7,8 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation impact;
 
+#define IMPACT_NUMFRAMES 3
+
 // frame numbers for specific animations.
 #define IMPACT_8_FRAME_INDEX 0
 #define IMPACT_8_FRAME_INDEX 0

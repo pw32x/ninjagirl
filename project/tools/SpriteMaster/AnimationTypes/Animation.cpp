@@ -147,6 +147,10 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
 
     headerfile << "\n";
 
+    headerfile << "#define " << StringUtils::str_toupper(outputName) << "_NUMFRAMES " << m_frames.size() << "\n";
+
+    headerfile << "\n";
+
     if (m_animationProperties.animationFrameNames.size() > 0)
     {
         headerfile << "// frame numbers for specific animations.\n";
@@ -262,6 +266,10 @@ void GGAnimation::WriteFramesBatched(const std::string& outputName, std::ofstrea
 
 		sourceFile << "    " << frame.GetFrameDelayTime() << ", // frame time\n"; 
         sourceFile << "    " << nextFrameName << ", // next frame\n";
+
+        if (m_isStreamed)
+            sourceFile << "    " << frameLoop << ", // frame index\n";
+
 		sourceFile << "};\n";
 	}
 }

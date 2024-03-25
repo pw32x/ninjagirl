@@ -7,5 +7,7 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation threeshotflyer;
 
+#define THREESHOTFLYER_NUMFRAMES 2
+
 #endif
 

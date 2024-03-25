@@ -7,5 +7,7 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation rock_particle;
 
+#define ROCK_PARTICLE_NUMFRAMES 4
+
 #endif
 

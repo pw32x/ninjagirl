@@ -7,6 +7,8 @@
 
 RESOURCE(BANK2) extern const MetaSpriteAnimation test_block;
 
+#define TEST_BLOCK_NUMFRAMES 1
+
 // frame numbers for specific animations.
 #define TEST_BLOCK_RUN_RIGHT_FRAME_INDEX 0
 

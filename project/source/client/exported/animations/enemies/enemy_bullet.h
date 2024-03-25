@@ -7,5 +7,7 @@
 
 RESOURCE(BANK6) extern const MetaSpriteAnimation enemy_bullet;
 
+#define ENEMY_BULLET_NUMFRAMES 2
+
 #endif
 

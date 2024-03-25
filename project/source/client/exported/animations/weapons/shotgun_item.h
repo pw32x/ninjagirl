@@ -7,5 +7,7 @@
 
 RESOURCE(BANK5) extern const MetaSpriteAnimation shotgun_item;
 
+#define SHOTGUN_ITEM_NUMFRAMES 1
+
 #endif
 
