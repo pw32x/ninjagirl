@@ -36,21 +36,22 @@ Todo
 		
 		DONE remove my versions of the functions
 		
-		try metasprites
+		DONE try metasprites
+
+	DONE how to reduce self time in DrawUtils_draw?
 		
+
+	optimize updating the scroll column
+
 	work on tool to determine data sizes in banks
-		
+
+
 	enemy-player collisions
-
-	updating the scroll column
 	
-	ObjectManager_Update
+	optimize ObjectManager_Update
 	
-	how to reduce self time?
+		break apart into multiple files
 	
-	why did having a pointer to the draw function in the strip not work?
-		because of streaming?
-
 	performance pass...
 
 		the game idling with just the player takes 40% of the CPU

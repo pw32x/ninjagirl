@@ -122,7 +122,7 @@ void ObjectManager_Update(void)
 	SMS_setBackdropColor(COLOR_RED);
 
 	ObjectManager_player.Update(&ObjectManager_player);
-	SMS_setBackdropColor(COLOR_ORANGE);
+	SMS_setBackdropColor(COLOR_DARK_GREEN);
 	ScrollManager_Update(&ObjectManager_player);
 	SMS_setBackdropColor(COLOR_BLUE);
 
@@ -201,28 +201,6 @@ void ObjectManager_Update(void)
 
 	SMS_setBackdropColor(COLOR_ORANGE);
 
-	//objectSlotRunner = ObjectManager_enemySlots;
-	//counter = NUM_ENEMY_SLOTS;
-
-	/*
-	ObjectManager_activeEnemiesCount = 0;
-
-	while (counter--)
-	{
-	if (objectSlotRunner->alive)
-	{
-	objectSlotRunner->Update(objectSlotRunner);
-
-	if (objectSlotRunner->alive)
-	{
-	ObjectManager_activeEnemies[ObjectManager_activeEnemiesCount] = objectSlotRunner;
-	ObjectManager_activeEnemiesCount++;
-	}
-	}
-	objectSlotRunner++;
-	}
-	*/
-
 	switch (ObjectManager_numEnemies)
 	{
 	case 8: ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
@@ -235,27 +213,19 @@ void ObjectManager_Update(void)
 	case 1: ObjectManager_enemySlots[0].Update(&ObjectManager_enemySlots[0]);
 	}
 
-	/*
-	ObjectManager_enemySlots[0].Update(&ObjectManager_enemySlots[0]);
-	ObjectManager_enemySlots[1].Update(&ObjectManager_enemySlots[1]);
-	ObjectManager_enemySlots[2].Update(&ObjectManager_enemySlots[2]);
-	ObjectManager_enemySlots[3].Update(&ObjectManager_enemySlots[3]);
-	ObjectManager_enemySlots[4].Update(&ObjectManager_enemySlots[4]);
-	ObjectManager_enemySlots[5].Update(&ObjectManager_enemySlots[5]);
-	ObjectManager_enemySlots[6].Update(&ObjectManager_enemySlots[6]);
-	ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
-	*/
+	switch (ObjectManager_numEffects)
+	{
+	case 8: ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
+	case 7: ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
+	case 6: ObjectManager_effectSlots[5].Update(&ObjectManager_effectSlots[5]);
+	case 5: ObjectManager_effectSlots[4].Update(&ObjectManager_effectSlots[4]);
+	case 4: ObjectManager_effectSlots[3].Update(&ObjectManager_effectSlots[3]);
+	case 3: ObjectManager_effectSlots[2].Update(&ObjectManager_effectSlots[2]);
+	case 2: ObjectManager_effectSlots[1].Update(&ObjectManager_effectSlots[1]);
+	case 1: ObjectManager_effectSlots[0].Update(&ObjectManager_effectSlots[0]);
+	}
 
 	/*
-	ObjectManager_effectSlots[0].Update(&ObjectManager_effectSlots[0]);
-	ObjectManager_effectSlots[1].Update(&ObjectManager_effectSlots[1]);
-	ObjectManager_effectSlots[2].Update(&ObjectManager_effectSlots[2]);
-	ObjectManager_effectSlots[3].Update(&ObjectManager_effectSlots[3]);
-	ObjectManager_effectSlots[4].Update(&ObjectManager_effectSlots[4]);
-	ObjectManager_effectSlots[5].Update(&ObjectManager_effectSlots[5]);
-	ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
-	ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
-
 	ObjectManager_Item.Update(&ObjectManager_Item);
 	*/
 
@@ -285,7 +255,7 @@ void ObjectManager_Update(void)
 	SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 
-	DrawUtils_spritesDrawn = 0;
+	//DrawUtils_spritesDrawn = 0;
 
 	ObjectManager_player.Draw(&ObjectManager_player);
 
@@ -313,15 +283,6 @@ void ObjectManager_Update(void)
 
 
 	SMS_setBackdropColor(COLOR_PINK);
-	/*
-	activeObjectRunner = ObjectManager_activeEnemies;
-	counter = ObjectManager_activeEnemiesCount;
-	while (counter--)
-	{
-	(*activeObjectRunner)->Draw(*activeObjectRunner);
-	activeObjectRunner++;
-	}
-	*/
 
 	if (drawOrderToggle & 1)
 	{
@@ -338,62 +299,32 @@ void ObjectManager_Update(void)
 		case 1: objectSlotRunner->Draw(objectSlotRunner++);
 		}
 
-		/*
-		switch (ObjectManager_numEnemies)
+		objectSlotRunner =ObjectManager_effectSlots;
+		switch (ObjectManager_numEffects)
 		{
-		case 8: ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
-		case 7: ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
-		case 6: ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
-		case 5: ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
-		case 4: ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
-		case 3: ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
-		case 2: ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
-		case 1: ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
+		case 8: objectSlotRunner->Draw(objectSlotRunner++);
+		case 7: objectSlotRunner->Draw(objectSlotRunner++);
+		case 6: objectSlotRunner->Draw(objectSlotRunner++);
+		case 5: objectSlotRunner->Draw(objectSlotRunner++);
+		case 4: objectSlotRunner->Draw(objectSlotRunner++);
+		case 3: objectSlotRunner->Draw(objectSlotRunner++);
+		case 2: objectSlotRunner->Draw(objectSlotRunner++);
+		case 1: objectSlotRunner->Draw(objectSlotRunner++);
 		}
-		*/
-
-
-		/*
-		ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
-		ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
-		ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
-		ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
-		ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
-		ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
-		ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
-		ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
-		*/
-
-		//ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
-		//ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
-		//ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
-		//ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
-		//ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
-		//ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
-		//ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
-		//ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
 	}
 	else
 	{
-		//ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]);
-		//ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]);
-		//ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]);
-		//ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]);
-		//ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]);
-		//ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]);
-		//ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]);
-		//ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]);
-
-		/*
-		ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
-		ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
-		ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
-		ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
-		ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
-		ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
-		ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
-		ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
-		*/
+		switch (ObjectManager_numEffects)
+		{
+		case 8: ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]); 
+		case 7: ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]); 
+		case 6: ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]); 
+		case 5: ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]); 
+		case 4: ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]); 
+		case 3: ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]); 
+		case 2: ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]); 
+		case 1: ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]); 
+		}
 
 		switch (ObjectManager_numEnemies)
 		{
@@ -405,7 +336,6 @@ void ObjectManager_Update(void)
 		case 3: ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
 		case 2: ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
 		case 1: ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
-
 		}
 	}
 
@@ -640,7 +570,7 @@ void ObjectManager_DestroyObject(GameObject* gameObject)
 	else
 	{
 		gameObject->Update = ObjectUtils_gameObjectDoNothing;
-		gameObject->Draw = ObjectUtils_drawNothing;
+		gameObject->Draw = DrawUtils_drawNothing;
 		gameObject->alive = FALSE;
 	}
 }
