@@ -28,14 +28,25 @@ void TerrainManager_Init(void)
 
 void TerrainManager_UpdateTerrain(u16 mapColumnIndex)
 {
+	// 1496 cycles
+
 	const u16* mapRunner = MapManager_mapData + mapColumnIndex;
 	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_WIDTH_MINUS_ONE);
 
-	for (u8 loop = 0; loop < TERRAIN_HEIGHT; loop++)
-	{
-		*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
 
-		mapRunner += MapManager_mapWidth;
-		terrainRunner += TERRAIN_WIDTH;
-	}
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+
+	
 }

@@ -45,8 +45,12 @@ extern s16 playerSpeedX;
 
 void RightScroll_Update(GameObject* target)
 {
-	if (!playerSpeedX)
-		return;
+	//SMS_debugPrintf("playerSpeedX: %d\n", playerSpeedX);
+	//
+	//if (!playerSpeedX)
+	//	return;
+
+
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
@@ -109,6 +113,7 @@ void RightScroll_Update(GameObject* target)
 	}
 
 	SMS_mapROMBank(currentRomBank);
+
 
 	//SMS_setBackdropColor(COLOR_RED);
 }
