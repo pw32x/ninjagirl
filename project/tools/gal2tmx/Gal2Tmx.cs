@@ -236,6 +236,8 @@ namespace gal2tmx
                                    MetatileWidth, 
                                    MetatileHeight, 
                                    tiledTilesetSplitBitmap.BitmapTileMap);
+
+                TilesetUtils.ExportMetaTileLUT(DestinationFolder + jobSpec.TilesetFilename + ".info", tilesetSplitBitmap);
             }
 
             Bitmap tilesetBitmap = null;

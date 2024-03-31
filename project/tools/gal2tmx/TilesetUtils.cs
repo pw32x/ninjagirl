@@ -9,6 +9,37 @@ namespace gal2tmx
 {
     internal class TilesetUtils
     {
+
+        public static void ExportMetaTileLUT(string infoPath, SplitBitmap tilesetSplitBitmap)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            // header
+            stringBuilder.AppendLine(tilesetSplitBitmap.UniqueBitmapTiles.Count.ToString());
+            stringBuilder.AppendLine((tilesetSplitBitmap.BitmapTileMap.Map.Count / 4).ToString());
+
+            // metatiles
+            BitmapTileMap metaTileBitmapTileMap = tilesetSplitBitmap.BitmapTileMap;
+            var map = metaTileBitmapTileMap.Map;
+
+            for (int y = 0; y < metaTileBitmapTileMap.Height; y += 2)
+            {
+                for (int x = 0; x < metaTileBitmapTileMap.Width; x += 2)
+                {
+                    uint value1 = map[x + (y * metaTileBitmapTileMap.Width)];
+                    uint value2 = map[(x + 1) + (y * metaTileBitmapTileMap.Width)];
+                    uint value3 = map[x + ((y + 1) * metaTileBitmapTileMap.Width)];
+                    uint value4 = map[(x + 1) + ((y + 1) * metaTileBitmapTileMap.Width)];
+
+                    stringBuilder.AppendLine(value1 + "," + value2 + "," + value3 + "," + value4);
+                }
+            }
+
+            System.IO.StreamWriter file = new System.IO.StreamWriter(infoPath);
+            file.WriteLine(stringBuilder.ToString());
+            file.Close();
+        }
+
         internal static void ExportTileset(string destinationFolder, 
                                            string tilesetName, 
                                            string sourceName,
@@ -24,7 +55,6 @@ namespace gal2tmx
             WriteHeader(headerPath, tilesetName, bank, animated);
             WriteSource(sourcePath, headerName, tilesetName, sourceName, tilesetSplitBitmap, bank, animated, isBreakable);
         }
-
 
         private static void WriteHeader(string headerPath, 
                                         string tilesetName,
