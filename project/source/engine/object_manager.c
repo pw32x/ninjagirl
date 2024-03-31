@@ -119,12 +119,12 @@ void ObjectManager_Update(void)
 {
 	ObjectManager_numVdpDrawItems = 0;
 
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 
 	ObjectManager_player.Update(&ObjectManager_player);
-	SMS_setBackdropColor(COLOR_DARK_GREEN);
+	
 	ScrollManager_Update(&ObjectManager_player);
-	SMS_setBackdropColor(COLOR_BLUE);
+
 
 	//ObjectManagerUtils_updatePlayerScreenRect();
 
@@ -282,7 +282,7 @@ void ObjectManager_Update(void)
 	*/
 
 
-	SMS_setBackdropColor(COLOR_PINK);
+	//SMS_setBackdropColor(COLOR_PINK);
 
 	if (drawOrderToggle & 1)
 	{
@@ -619,7 +619,7 @@ void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDr
 
 void ObjectManager_VDPDraw(void)
 {
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 
 	switch (ObjectManager_numVdpDrawItems)
 	{
@@ -629,5 +629,5 @@ void ObjectManager_VDPDraw(void)
 	case 1: ObjectManager_vdpDrawFunctions[0](ObjectManager_vdpDrawGameObjects[0]);
 	}
 
-	SMS_setBackdropColor(COLOR_BLACK);
+	//SMS_setBackdropColor(COLOR_BLACK);
 }

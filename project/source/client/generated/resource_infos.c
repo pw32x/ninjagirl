@@ -25,9 +25,9 @@
 #include "client\exported\animations\weapons\shotgun_item.h"
 #include "client\exported\animations\animatedtilesets\waterfall.h"
 #include "client\exported\palettes\globalPalette.h"
-#include "client\exported\maps\field.h"
-#include "client\exported\maps\level_001.h"
-#include "client\exported\maps\waterfall.h"
+#include "client\exported\maps\bank8\level_001.h"
+#include "client\exported\maps\bank4\field.h"
+#include "client\exported\maps\bank4\waterfall.h"
 
 const ResourceInfo breakable_rock_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&breakable_rock_tileset };
 const ResourceInfo field_tilesetResourceInfo = { /*bank*/ 3, (const Resource*)&field_tileset };
@@ -54,6 +54,6 @@ const ResourceInfo shotgunResourceInfo = { /*bank*/ 5, (const Resource*)&shotgun
 const ResourceInfo shotgun_itemResourceInfo = { /*bank*/ 5, (const Resource*)&shotgun_item };
 const ResourceInfo waterfallResourceInfo = { /*bank*/ 2, (const Resource*)&waterfall };
 const ResourceInfo globalPaletteResourceInfo = { /*bank*/ 0, (const Resource*)&globalPalette };
+const ResourceInfo level_001_mapResourceInfo = { /*bank*/ 8, (const Resource*)&level_001_map };
 const ResourceInfo field_mapResourceInfo = { /*bank*/ 4, (const Resource*)&field_map };
-const ResourceInfo level_001_mapResourceInfo = { /*bank*/ 4, (const Resource*)&level_001_map };
 const ResourceInfo waterfall_mapResourceInfo = { /*bank*/ 4, (const Resource*)&waterfall_map };

@@ -42,8 +42,19 @@ Todo
 		
 
 	optimize updating the scroll column
+	
+		DONE add option to export map as a series of columns
+		DONE without metatile stuff
+		NAH array of bytes, max 256 tiles
+	
+		NAH remove all the metatile stuff
+		
+		don't use multiplication in RightScroll_Update_Strip and TerrainManager_UpdateTerrain_Strip
+			increment when hitting a new column
+		
+		export a plain map
 
-	work on tool to determine data sizes in banks
+	work on tool to determine data sizes in banks from .map file
 
 
 	enemy-player collisions

@@ -4,6 +4,6 @@
 
 #include "map_types.h"
 
-RESOURCE(BANK4) extern const Map const waterfall_map;
+RESOURCE(BANK4) extern const StripMap const waterfall_map;
 
 #endif

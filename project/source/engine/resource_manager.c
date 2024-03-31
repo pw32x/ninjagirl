@@ -25,6 +25,7 @@ const void printResourceTypeName(u8 resourceType)
 	case PLANE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Plane Animation"); return;
 	case TILE_ANIMATION_RESOURCE_TYPE				: SMS_debugPrintf("Tile Animation"); return;
 	case MAP_RESOURCE_TYPE							: SMS_debugPrintf("Map"); return;
+	case STRIP_MAP_RESOURCE_TYPE					: SMS_debugPrintf("StripMap"); return;
 	case TILESET_RESOURCE_TYPE						: SMS_debugPrintf("Tileset"); return;
 	case ANIMATED_TILESET_RESOURCE_TYPE				: SMS_debugPrintf("Animated Tileset"); return;
 	}
@@ -44,6 +45,7 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 	ResourceManager_loadFunctions[PLANE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_PlaneAnimationResource;
 	ResourceManager_loadFunctions[TILE_ANIMATION_RESOURCE_TYPE] = (LoadFunc)Load_TileAnimationResource;
 	ResourceManager_loadFunctions[MAP_RESOURCE_TYPE] = (LoadFunc)Load_MapResource;
+	ResourceManager_loadFunctions[STRIP_MAP_RESOURCE_TYPE] = (LoadFunc)Load_StripMapResource;
 	ResourceManager_loadFunctions[TILESET_RESOURCE_TYPE] = (LoadFunc)Load_TilesetResource;
 	ResourceManager_loadFunctions[ANIMATED_TILESET_RESOURCE_TYPE] = (LoadFunc)Load_AnimatedTilesetResource;
 

@@ -7,6 +7,7 @@
 
 void ScrollUtils_buildColumn(u8* buffer);
 void ScrollUtils_InitTilemap(void);
+void ScrollUtils_InitTilemapStrip(void);
 
 extern u16 ScrollUtils_mapColumnToBuild;
 

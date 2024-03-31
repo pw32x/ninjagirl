@@ -4,6 +4,6 @@
 
 #include "map_types.h"
 
-RESOURCE(BANK4) extern const Map const level_001_map;
+RESOURCE(BANK8) extern const StripMap const level_001_map;
 
 #endif

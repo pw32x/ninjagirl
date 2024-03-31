@@ -62,4 +62,18 @@ typedef struct
     u16 mapHeight;
 } Map;
 
+
+typedef struct
+{
+    u8 resourceType;
+    const u16* const stripMapData;
+    const ResourceInfo* const tilesetResourceInfo;
+    u16 mapWidth;
+    u16 mapHeight;
+    const u8* const terrainMap;
+    u16 terrainMapWidth;
+    u16 terrainMapHeight;
+} StripMap;
+
+
 #endif

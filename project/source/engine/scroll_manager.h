@@ -21,6 +21,8 @@ extern u16 ScrollManager_columnBuffer[SCROLLMANAGER_COLUMNBUFFER_HEIGHT];
 
 extern u8 ScrollManager_updateMapVDP;
 
+extern const u16* ScrollManager_currentMapStrip;
+
 //extern u8 ScrollManager_speedX;
 //extern u8 ScrollManager_speedY;
 

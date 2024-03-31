@@ -23,6 +23,10 @@ extern u16 MapManager_mapHeight;
 
 extern const u16* MapManager_mapData;
 
+extern const u8* MapManager_terrainMapStrips;
+extern u16 MapManager_terrainMapWidth;
+extern u16 MapManager_terrainMapHeight;
+
 extern const ResourceInfo* MapManager_mapResourceInfo;
 
 #define GET_TILESET_INDEX(x, y) ((MapManager_mapData[(x) + ((y) * MapManager_mapWidth)] & TILESET_INDEX_MASK) >> TILESET_INDEX_SHIFT)

@@ -22,5 +22,6 @@ u16 ScrollManager_verticalScroll = 0;
 // hard-coded column when we need to show more of the map. Replace
 // this with an actual larger map.
 u16 ScrollManager_columnBuffer[SCROLLMANAGER_COLUMNBUFFER_HEIGHT];
+const u16* ScrollManager_currentMapStrip;
 
 u8 ScrollManager_updateMapVDP = FALSE;

@@ -23,6 +23,10 @@ u16 MapManager_mapHeight;
 const u16* MapManager_mapData;
 const ResourceInfo* MapManager_mapResourceInfo;
 
+const u8* MapManager_terrainMapStrips;
+u16 MapManager_terrainMapWidth;
+u16 MapManager_terrainMapHeight;
+
 void MapManager_SetTilesetProperties_Command(SetTilesetProperties_Params* params)
 {
 	MapManager_tilesetFunctions[params->tilesetIndex] = params->tilesetFunction;

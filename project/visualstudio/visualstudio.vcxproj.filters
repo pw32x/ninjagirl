@@ -247,9 +247,6 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_zx7_VRAM.c">
       <Filter>SMSLib\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\maps\background3.c">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\resource_infos.c">
       <Filter>Source Files\client\generated</Filter>
     </ClCompile>
@@ -295,9 +292,6 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\maps\waterfall.c">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\engine\commandrunner_runall.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
@@ -325,14 +319,8 @@
     <ClCompile Include="..\source\engine\joystick_manager.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\maps\background3_test.c">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c">
       <Filter>Source Files\client\generated\tilesets</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\maps\field.c">
-      <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
     <ClCompile Include="..\source\engine\commands\background_commands.c">
       <Filter>Source Files\engine\commands</Filter>
@@ -405,6 +393,15 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank4\field.c">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank4\waterfall.c">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank8\level_001.c">
+      <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -516,9 +513,6 @@
     <ClInclude Include="..\source\engine\map_load.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\maps\background3.h">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\generated\resource_infos.h">
       <Filter>Source Files\client\generated</Filter>
     </ClInclude>
@@ -540,9 +534,6 @@
     <ClInclude Include="..\source\engine\createinfo_types.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\maps\waterfall.h">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\engine\commandrunner_runall.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
@@ -561,14 +552,8 @@
     <ClInclude Include="..\source\engine\joystick_manager.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\maps\background3_test.h">
-      <Filter>Source Files\client\exported\maps</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h">
       <Filter>Source Files\client\generated\tilesets</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\maps\field.h">
-      <Filter>Source Files\client\exported\maps</Filter>
     </ClInclude>
     <ClInclude Include="..\source\engine\commands\background_commands.h">
       <Filter>Source Files\engine\commands</Filter>
@@ -626,6 +611,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker.h">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank4\field.h">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank4\waterfall.h">
+      <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank8\level_001.h">
+      <Filter>Source Files\client\exported\maps</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

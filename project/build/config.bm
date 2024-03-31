@@ -44,8 +44,8 @@
 		<ToolJob tool="SpriteMaster_weapons" source="gamedata\animations\weapons" destination="source\client\exported\animations\weapons" bank="5"/>
 		<ToolJob tool="SpriteMaster_animatedtilesets" source="gamedata\animations\animatedtilesets" destination="source\client\exported\animations\animatedtilesets" bank="2"/>
 		<ToolJob tool="SpriteMaster_palettes" source="gamedata\palettes" destination="source\client\exported\palettes"/>
-		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps" bank="4"/>
-		<ToolJob tool="tmx2c" source="gamedata\generated\themes" destination="source\client\exported\maps" bank="4"/>
+		<ToolJob tool="tmx2c" source="gamedata\maps" destination="source\client\exported\maps\bank8" bank="8"/>
+		<ToolJob tool="tmx2c" source="gamedata\generated\themes" destination="source\client\exported\maps\bank4" bank="4"/>
 	</ToolJobs>
 
 	<!--
