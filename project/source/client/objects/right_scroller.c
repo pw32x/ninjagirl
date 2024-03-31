@@ -79,7 +79,7 @@ void RightScroll_Update(GameObject* target)
 {
 
 
-	SMS_setBackdropColor(COLOR_DARK_GREEN);
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	//SMS_debugPrintf("playerSpeedX: %d\n", playerSpeedX);
 	//
@@ -148,7 +148,7 @@ void RightScroll_Update(GameObject* target)
 
 	//SMS_setBackdropColor(COLOR_RED);
 
-	SMS_setBackdropColor(COLOR_BLUE);
+	//SMS_setBackdropColor(COLOR_BLUE);
 }
 
 
@@ -157,8 +157,9 @@ void RightScroll_Update_Strip(GameObject* target)
 	// 2836
 	// 2788 
 	// 2691
+	// 890
 
-	SMS_setBackdropColor(COLOR_DARK_GREEN);
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	//SMS_debugPrintf("playerSpeedX: %d\n", playerSpeedX);
 	//
@@ -225,12 +226,12 @@ void RightScroll_Update_Strip(GameObject* target)
 
 	//SMS_setBackdropColor(COLOR_RED);
 
-	SMS_setBackdropColor(COLOR_BLUE);
+	//SMS_setBackdropColor(COLOR_BLUE);
 }
 
 void RightScroll_UpdateVDP(void)
 {
-	SMS_setBackdropColor(COLOR_DARK_BLUE);
+	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 	
@@ -239,12 +240,12 @@ void RightScroll_UpdateVDP(void)
 		ScrollManager_updateMapVDP = FALSE;
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_columnBuffer, 26);
 	}
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 }
 
 void RightScroll_UpdateVDP_Strip(void)
 {
-	SMS_setBackdropColor(COLOR_DARK_BLUE);
+	//SMS_setBackdropColor(COLOR_DARK_BLUE);
 
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 
@@ -254,5 +255,5 @@ void RightScroll_UpdateVDP_Strip(void)
 		ScrollManager_updateMapVDP = FALSE;
 		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_currentMapStrip, 24);
 	}
-	SMS_setBackdropColor(COLOR_RED);
+	//SMS_setBackdropColor(COLOR_RED);
 }

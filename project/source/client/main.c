@@ -63,10 +63,10 @@ void main(void)
 	// game loop
 	for(;;) 
 	{ 
-		//SMS_setBackdropColor(COLOR_DARK_GREEN);
+		SMS_setBackdropColor(COLOR_DARK_GREEN);
 		JoystickManager_Update();
 		ObjectManager_Update();
-		//SMS_setBackdropColor(COLOR_LIGHT_GREEN);
+		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
 		//SMS_setBackdropColor(COLOR_DARK_BLUE);

@@ -199,7 +199,7 @@ void ObjectManager_Update(void)
 	// active ones.
 	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
 
-	SMS_setBackdropColor(COLOR_ORANGE);
+	//SMS_setBackdropColor(COLOR_ORANGE);
 
 	switch (ObjectManager_numEnemies)
 	{
@@ -252,7 +252,7 @@ void ObjectManager_Update(void)
 
 
 
-	SMS_setBackdropColor(COLOR_YELLOW);
+	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
 
 	//DrawUtils_spritesDrawn = 0;
