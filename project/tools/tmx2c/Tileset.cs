@@ -45,7 +45,21 @@ namespace tmx2c
         public uint TilesetIndex { get; internal set; } = uint.MinValue;
         public string[] TileAttributes { get; private set; }
 
-        internal void LoadTilesetInfo(string path, string sourceFolder)
+        public uint NumTiles { get; private set; }
+        public uint NumMetaTiles { get; private set; }
+
+        public List<Tuple<uint, uint, uint, uint>> MetaTiles = new List<Tuple<uint, uint, uint, uint>>();
+
+        internal void LoadTileset(string path, string sourceFolder)
+        {
+            LoadXml(path, sourceFolder);
+
+            string infoPath = Path.GetDirectoryName(path) + "\\" + Path.GetFileNameWithoutExtension(path) + ".info";
+            LoadInfo(infoPath, sourceFolder);
+        }
+
+
+        private void LoadXml(string path, string sourceFolder)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(sourceFolder + path);
@@ -122,6 +136,26 @@ namespace tmx2c
 
                     TileAttributes[tileId] = name;
                 }
+            }
+        }
+
+        private void LoadInfo(string infoPath, string sourceFolder)
+        {
+            var lines = File.ReadAllLines(sourceFolder + infoPath);
+
+            NumTiles = uint.Parse(lines[0]);
+            NumMetaTiles = uint.Parse(lines[1]);
+
+            for (uint loop = 2; loop < NumMetaTiles + 2; loop++) 
+            {
+                var elements = lines[loop].Split(',');
+
+                var values = new Tuple<uint, uint, uint, uint>(uint.Parse(elements[0]), 
+                                                               uint.Parse(elements[1]), 
+                                                               uint.Parse(elements[2]), 
+                                                               uint.Parse(elements[3]));
+
+                MetaTiles.Add(values);
             }
         }
     }

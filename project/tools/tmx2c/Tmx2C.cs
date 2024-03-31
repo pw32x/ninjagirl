@@ -126,9 +126,11 @@ namespace tmx2c
             if (mapsThatNeedUpdating.Count() > 0 && !Directory.Exists(DestinationFolder))
                 Directory.CreateDirectory(DestinationFolder);
 
+
+
             if (mapsThatNeedUpdating.Count > 0)
             {
-                ExportMaps(mapsThatNeedUpdating, DestinationFolder, null/*tileCounts*/, Bank);
+                ExportMaps(mapsThatNeedUpdating, DestinationFolder, null/*tileCounts*/, Bank, Map.ExportMode.StripMap);
             }
             else
             {
@@ -264,12 +266,13 @@ namespace tmx2c
         private void ExportMaps(List<Map> mapsToExport, 
                                 string mapsExportLocation, 
                                 Dictionary<string, Tuple<int, int, int>> tileCounts,
-                                string bank)
+                                string bank,
+                                Map.ExportMode exportMode)
         {
             foreach (var mapToExport in mapsToExport)
             {
                 Console.WriteLine("Exporting Map: \"" + mapToExport.MapName + "\"");
-                mapToExport.Export(tileCounts, bank);
+                mapToExport.Export(tileCounts, bank, exportMode);
             }
         }
 
