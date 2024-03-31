@@ -9,7 +9,7 @@
 #include <string.h>
 
 
-u8 TerrainManager_terrain[TERRAIN_WIDTH * TERRAIN_HEIGHT]; // 192 bytes
+u8 TerrainManager_terrain[TERRAIN_SIDE * TERRAIN_SIDE]; // 192 bytes
 const u8* TerrainManager_currentTerrainMapStrip;
 
 void TerrainManager_Init(void)
@@ -19,7 +19,7 @@ void TerrainManager_Init(void)
 	u8 currentRomBank = SMS_getROMBank();
 	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
 
-	for (u8 loop = 0; loop < TERRAIN_WIDTH; loop++)
+	for (u8 loop = 0; loop < TERRAIN_SIDE; loop++)
 	{
 		TerrainManager_UpdateTerrain(loop);
 	}
@@ -35,7 +35,7 @@ void TerrainManager_Init_Strip(void)
 	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
 	TerrainManager_currentTerrainMapStrip = MapManager_terrainMapStrips;
 
-	for (u8 loop = 0; loop < TERRAIN_WIDTH; loop++)
+	for (u8 loop = 0; loop < TERRAIN_SIDE; loop++)
 	{
 		TerrainManager_UpdateTerrain_Strip(loop);
 		TerrainManager_currentTerrainMapStrip += MapManager_terrainMapHeight;
@@ -49,28 +49,29 @@ void TerrainManager_UpdateTerrain(u16 mapColumnIndex)
 	// 1496 cycles
 
 	const u16* mapRunner = MapManager_mapData + mapColumnIndex;
-	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_WIDTH_MINUS_ONE);
+	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_SIDE_MINUS_ONE);
 
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
 
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
 
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
-	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_WIDTH;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
+	*terrainRunner = (*mapRunner) >> TERRAIN_TYPE_SHIFT; mapRunner += MapManager_mapWidth; terrainRunner += TERRAIN_SIDE;
 
 	
 }
 
 void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex)
 {
+	// 451
 	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
 
 	//SMS_debugPrintf("column: %d, %u, %u \n", mapColumnIndex, MapManager_terrainMapStrips, MapManager_terrainMapHeight);
@@ -78,34 +79,19 @@ void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex)
 	// as the level always goes forward, the runner could just be offset every time.
 	const u8* terrainStripRunner = TerrainManager_currentTerrainMapStrip;
 
-	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_WIDTH_MINUS_ONE);
+	u8* terrainRunner = TerrainManager_terrain + ((mapColumnIndex & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT);
 
-	//1182
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-	*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d\n", *terrainRunner)*/;terrainRunner += TERRAIN_WIDTH; 
-
-	// 973 if we worked with the terrain as YX and not XY
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d, ", *terrainRunner)*/;terrainRunner ++; 
-	//*terrainRunner = (*terrainStripRunner); terrainStripRunner++; /*SMS_debugPrintf("%d\n", *terrainRunner)*/;terrainRunner ++; 
 	
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
+	*terrainRunner++ = *terrainStripRunner++; 
 }

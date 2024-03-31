@@ -73,7 +73,7 @@ void Kunai_Update(GameObject* object)
 		// don't get affected by terrain at the edge of the screen if the block isn't
 		// completely visible on screen. otherwise we might hit the terrain of the other
 		// of the screen because of the wrapping.
-		blockX - (ScrollManager_horizontalScroll >> 4) < TERRAIN_WIDTH)
+		blockX - (ScrollManager_horizontalScroll >> 4) < TERRAIN_SIDE)
 	{
 		CreateInfo createInfo = 
 		{ 

@@ -3,12 +3,11 @@
 
 #include "engine/base_types.h"
 
-#define TERRAIN_WIDTH 16  // 256 / 16
-#define TERRAIN_WIDTH_MINUS_ONE 15  // 256 / 16
-#define TERRAIN_WIDTH_SHIFT 4
-#define TERRAIN_HEIGHT 12 // 192 / 16
+#define TERRAIN_SIDE 16
+#define TERRAIN_SIDE_MINUS_ONE 15
+#define TERRAIN_SIDE_SHIFT 4
 
-extern u8 TerrainManager_terrain[TERRAIN_WIDTH * TERRAIN_HEIGHT]; // in ram
+extern u8 TerrainManager_terrain[TERRAIN_SIDE * TERRAIN_SIDE]; // in ram
 
 extern const u8* TerrainManager_currentTerrainMapStrip;
 
@@ -18,8 +17,8 @@ void TerrainManager_Init_Strip(void);
 void TerrainManager_UpdateTerrain(u16 mapColumnIndex);
 void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex);
 
-#define GET_TERRAIN(terrain_x, terrain_y) (TerrainManager_terrain[(terrain_x & TERRAIN_WIDTH_MINUS_ONE) + ((terrain_y) << TERRAIN_WIDTH_SHIFT)])
-#define SET_TERRAIN_VALUE(terrain_x, terrain_y, value) (TerrainManager_terrain[(terrain_x & TERRAIN_WIDTH_MINUS_ONE) + ((terrain_y) << TERRAIN_WIDTH_SHIFT)] = value)
+#define GET_TERRAIN(terrain_x, terrain_y) (TerrainManager_terrain[(terrain_y & TERRAIN_SIDE_MINUS_ONE) + ((terrain_x & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)])
+#define SET_TERRAIN_VALUE(terrain_x, terrain_y, value) (TerrainManager_terrain[(terrain_y & TERRAIN_SIDE_MINUS_ONE) + ((terrain_x & TERRAIN_SIDE_MINUS_ONE) << TERRAIN_SIDE_SHIFT)] = value)
 
 // terrain types
 #define TERRAIN_EMPTY				0
@@ -36,11 +35,6 @@ void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex);
 #define TERRAIN_SLOPE30LEFT2		11
 
 #define TERRAIN_INVALID	((u8)-1)
-
-// #define TERRAIN_12
-// #define TERRAIN_13
-// #define TERRAIN_14
-// #define TERRAIN_15
 
 
 #endif
