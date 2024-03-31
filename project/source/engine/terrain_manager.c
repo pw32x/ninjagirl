@@ -10,6 +10,7 @@
 
 
 u8 TerrainManager_terrain[TERRAIN_WIDTH * TERRAIN_HEIGHT]; // 192 bytes
+const u8* TerrainManager_currentTerrainMapStrip;
 
 void TerrainManager_Init(void)
 {
@@ -32,10 +33,12 @@ void TerrainManager_Init_Strip(void)
 
 	//u8 currentRomBank = SMS_getROMBank();
 	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
+	TerrainManager_currentTerrainMapStrip = MapManager_terrainMapStrips;
 
 	for (u8 loop = 0; loop < TERRAIN_WIDTH; loop++)
 	{
 		TerrainManager_UpdateTerrain_Strip(loop);
+		TerrainManager_currentTerrainMapStrip += MapManager_terrainMapHeight;
 	}
 
 	//SMS_mapROMBank(currentRomBank);
@@ -66,14 +69,14 @@ void TerrainManager_UpdateTerrain(u16 mapColumnIndex)
 	
 }
 
-void TerrainManager_UpdateTerrain_Strip(u16 mapColumnIndex)
+void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex)
 {
 	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
 
 	//SMS_debugPrintf("column: %d, %u, %u \n", mapColumnIndex, MapManager_terrainMapStrips, MapManager_terrainMapHeight);
 
 	// as the level always goes forward, the runner could just be offset every time.
-	const u8* terrainStripRunner = MapManager_terrainMapStrips + (MapManager_terrainMapHeight * mapColumnIndex);
+	const u8* terrainStripRunner = TerrainManager_currentTerrainMapStrip;
 
 	u8* terrainRunner = TerrainManager_terrain + (mapColumnIndex & TERRAIN_WIDTH_MINUS_ONE);
 

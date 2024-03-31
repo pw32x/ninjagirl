@@ -46,6 +46,9 @@ GameObject* RightScroller_Init(const Map* map)
 		TerrainManager_Init_Strip();
 
 		ScrollManager_horizontalScrollLimit = (MapManager_mapWidth << 3) - SCREEN_WIDTH;
+
+		ScrollManager_currentMapStrip = MapManager_mapData + (32 * MapManager_mapHeight);
+		TerrainManager_currentTerrainMapStrip = MapManager_terrainMapStrips + (MapManager_terrainMapHeight * 15);
 	}
 	else
 	{
@@ -153,6 +156,7 @@ void RightScroll_Update_Strip(GameObject* target)
 {
 	// 2836
 	// 2788 
+	// 2691
 
 	SMS_setBackdropColor(COLOR_DARK_GREEN);
 
@@ -167,18 +171,18 @@ void RightScroll_Update_Strip(GameObject* target)
 
 	// tile map
 
-	u8 scrollSpeedX = 0;
+	//u8 scrollSpeedX = 0;
 
 	u8 oldColumn = columnToUpdate;
 	u8 oldTerrainColumnToUpdate = terrainColumnToUpdate;
 
 	if (target->x > ScrollManager_horizontalScroll + SCROLL_START_POINT)
 	{
-		scrollSpeedX = target->x - (ScrollManager_horizontalScroll + SCROLL_START_POINT);
+		ScrollManager_horizontalScroll += target->x - (ScrollManager_horizontalScroll + SCROLL_START_POINT);
 	}
 
 	// here we move the vdp scrolling and logical map scrolling to the same speed
-	ScrollManager_horizontalScroll += scrollSpeedX; // scrolling towards the right into the map
+	// ScrollManager_horizontalScroll += scrollSpeedX; // scrolling towards the right into the map
 
 	//SMS_debugPrintf("scroll: %d\n", ScrollManager_horizontalScroll);
 	//SMS_debugPrintf("scroll speed: %d\n", scrollSpeedX);
@@ -195,27 +199,24 @@ void RightScroll_Update_Strip(GameObject* target)
 	columnToUpdate = ScrollManager_horizontalScroll >> 3;
 
 
-	u8 tileDiff = columnToUpdate - oldColumn;
-
 	//u8 currentRomBank = SMS_getROMBank();
-	//if (tileDiff) // when we hit a new column, prep a new column to display
+	if (columnToUpdate - oldColumn) // when we hit a new column, prep a new column to display
 	{
-		// figure out the column to update
-		ScrollManager_currentMapStrip = MapManager_mapData + ((columnToUpdate + 32) * MapManager_mapHeight);
+		// move to the next column
+		ScrollManager_currentMapStrip += MapManager_mapHeight;
 		ScrollManager_updateMapVDP = TRUE;
 	}	
 
 	// terrain
 	terrainColumnToUpdate = ScrollManager_horizontalScroll >> 4;
-	u8 terrainDiff = terrainColumnToUpdate - oldTerrainColumnToUpdate;
-
 
 	//char output[255];	
 	//sprintf(output, "%d, %d     ", terrainColumnToUpdate, terrainColumnToUpdate & 15);
 	//SMS_printatXY(1, 0, output); 
 
-	//if (terrainDiff)
+	if (terrainColumnToUpdate - oldTerrainColumnToUpdate)
 	{
+		TerrainManager_currentTerrainMapStrip += MapManager_terrainMapHeight;
 		TerrainManager_UpdateTerrain_Strip(terrainColumnToUpdate + 15);
 	}
 
@@ -245,14 +246,13 @@ void RightScroll_UpdateVDP_Strip(void)
 {
 	SMS_setBackdropColor(COLOR_DARK_BLUE);
 
-	SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
-
 	SMS_setBGScrollX(ScrollManager_vdpHorizontalScroll);
 
 	if (ScrollManager_updateMapVDP)
 	{
+		SMS_mapROMBank(MapManager_mapResourceInfo->bankNumber);
 		ScrollManager_updateMapVDP = FALSE;
-		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_currentMapStrip, 26);
+		SMS_loadTileMapColumn(columnToUpdate & 31, 0, ScrollManager_currentMapStrip, 24);
 	}
 	SMS_setBackdropColor(COLOR_RED);
 }

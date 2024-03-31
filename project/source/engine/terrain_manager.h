@@ -10,11 +10,13 @@
 
 extern u8 TerrainManager_terrain[TERRAIN_WIDTH * TERRAIN_HEIGHT]; // in ram
 
+extern const u8* TerrainManager_currentTerrainMapStrip;
+
 void TerrainManager_Init(void); // inits from ScrollManager_map
 void TerrainManager_Init_Strip(void); 
 
 void TerrainManager_UpdateTerrain(u16 mapColumnIndex);
-void TerrainManager_UpdateTerrain_Strip(u16 mapColumnIndex);
+void TerrainManager_UpdateTerrain_Strip(u8 mapColumnIndex);
 
 #define GET_TERRAIN(terrain_x, terrain_y) (TerrainManager_terrain[(terrain_x & TERRAIN_WIDTH_MINUS_ONE) + ((terrain_y) << TERRAIN_WIDTH_SHIFT)])
 #define SET_TERRAIN_VALUE(terrain_x, terrain_y, value) (TerrainManager_terrain[(terrain_x & TERRAIN_WIDTH_MINUS_ONE) + ((terrain_y) << TERRAIN_WIDTH_SHIFT)] = value)
