@@ -1,4 +1,7 @@
 #include "robotrunner.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const robotrunnerTileData[1024] = // 32tiles x 32 bytes
@@ -374,11 +377,21 @@ const MetaSpriteAnimationFrame* const robotrunnerFrames[4] =
     &robotrunnerFrame3,
 };
 
+const AnimationSetup const robotrunnerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &robotrunnerFrame0,
+    0,
+    5,
+};
+
 u8 robotrunnerVdpLocation;
 
 const MetaSpriteAnimation robotrunner = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &robotrunnerSetup,
     (const MetaSpriteAnimationFrame** const)robotrunnerFrames,
     (unsigned char* const)robotrunnerTileData, // start of the sprite data
     4, // number of frames

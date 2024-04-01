@@ -1,4 +1,7 @@
 #include "colorTweaker.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const colorTweakerTileData[1152] = // 36tiles x 32 bytes
@@ -606,11 +609,21 @@ const MetaSpriteAnimationFrame* const colorTweakerFrames[16] =
     &colorTweakerFrame15,
 };
 
+const AnimationSetup const colorTweakerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &colorTweakerFrame0,
+    0,
+    59,
+};
+
 u8 colorTweakerVdpLocation;
 
 const MetaSpriteAnimation colorTweaker = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &colorTweakerSetup,
     (const MetaSpriteAnimationFrame** const)colorTweakerFrames,
     (unsigned char* const)colorTweakerTileData, // start of the sprite data
     16, // number of frames

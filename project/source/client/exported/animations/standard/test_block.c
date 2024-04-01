@@ -1,4 +1,7 @@
 #include "test_block.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const test_blockTileData[256] = // 8tiles x 32 bytes
@@ -100,11 +103,21 @@ const MetaSpriteAnimationFrame* const test_blockFrames[1] =
     &test_blockFrame0,
 };
 
+const AnimationSetup const test_blockSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &test_blockFrame0,
+    0,
+    5,
+};
+
 u8 test_blockVdpLocation;
 
 const MetaSpriteAnimation test_block = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &test_blockSetup,
     (const MetaSpriteAnimationFrame** const)test_blockFrames,
     (unsigned char* const)test_blockTileData, // start of the sprite data
     1, // number of frames

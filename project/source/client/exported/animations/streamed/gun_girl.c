@@ -1,4 +1,7 @@
 #include "gun_girl.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const gun_girlTileData[5120] = // 160tiles x 32 bytes

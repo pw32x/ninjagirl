@@ -3,6 +3,16 @@
 
 #include "engine/base_types.h"
 
+struct game_object;
+
+typedef struct
+{
+    void (*Draw)(struct game_object* gameObject);
+    void (*UpdateAnimation)(struct game_object* gameObject);
+    const void* startingAnimationFrame;
+    u8 startAnimationFrameIndex;
+    u8 animationTime;
+} AnimationSetup;
 
 // a sprite call contains multiple strips for use with the SMS_add***AdjoiningSprites functions.
 typedef struct 
@@ -49,6 +59,7 @@ typedef struct metasprite_animation_frame
 typedef struct
 {
     u8 resourceType;
+    const AnimationSetup* animationSetup;
     const MetaSpriteAnimationFrame** const frames;
     const u8* const tileData;
 

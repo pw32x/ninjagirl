@@ -1,4 +1,7 @@
 #include "shotgun.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const shotgunTileData[256] = // 8tiles x 32 bytes
@@ -128,11 +131,21 @@ const MetaSpriteAnimationFrame* const shotgunFrames[3] =
     &shotgunFrame2,
 };
 
+const AnimationSetup const shotgunSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &shotgunFrame0,
+    0,
+    2,
+};
+
 u8 shotgunVdpLocation;
 
 const MetaSpriteAnimation shotgun = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &shotgunSetup,
     (const MetaSpriteAnimationFrame** const)shotgunFrames,
     (unsigned char* const)shotgunTileData, // start of the sprite data
     3, // number of frames

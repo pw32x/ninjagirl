@@ -1,4 +1,7 @@
 #include "explosion.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const explosionTileData[896] = // 28tiles x 32 bytes
@@ -430,11 +433,21 @@ const MetaSpriteAnimationFrame* const explosionFrames[9] =
     &explosionFrame8,
 };
 
+const AnimationSetup const explosionSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &explosionFrame0,
+    0,
+    2,
+};
+
 u8 explosionVdpLocation;
 
 const MetaSpriteAnimation explosion = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &explosionSetup,
     (const MetaSpriteAnimationFrame** const)explosionFrames,
     (unsigned char* const)explosionTileData, // start of the sprite data
     9, // number of frames

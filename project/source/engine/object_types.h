@@ -16,23 +16,24 @@
 
 #define GAME_OBJECT_FIELDS \
 	void (*Update)(struct game_object* gameObject);\
+	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);\
 	void (*Draw)(struct game_object* gameObject);\
 	BOOL (*UpdateAnimation)(struct game_object* gameObject);\
-	void (*HandleCollision)(struct game_object* gameObject, struct game_object* other);\
-	union\
-	{\
-		const BatchedAnimation* batchedAnimation;\
-		const MetaSpriteAnimation* metaSpriteAnimation;\
-		const PlaneAnimation* planeAnimation;\
-		const TileAnimation* tileAnimation;\
-	};\
-\
 	union\
 	{\
 		const BatchedAnimationFrame* currentBatchedAnimationFrame;\
 		const MetaSpriteAnimationFrame* currentMetaSpriteAnimationFrame;\
 		const PlaneAnimationFrame* currentPlaneAnimationFrame;\
 		const TileAnimationFrame* currentTileAnimationFrame;\
+	};\
+	u8 currentAnimationFrameIndex;\
+	u8 animationTime;\
+	union\
+	{\
+		const BatchedAnimation* batchedAnimation;\
+		const MetaSpriteAnimation* metaSpriteAnimation;\
+		const PlaneAnimation* planeAnimation;\
+		const TileAnimation* tileAnimation;\
 	};\
 	\
 	s16 x;\
@@ -43,8 +44,6 @@
 	s16 speedx;\
 	s16 speedy;\
 	\
-	u8 currentAnimationFrameIndex;\
-	u8 animationTime;\
 	u8 alive;\
 	u8 flipped;\
 	\

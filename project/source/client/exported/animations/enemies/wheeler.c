@@ -1,4 +1,7 @@
 #include "wheeler.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const wheelerTileData[2176] = // 68tiles x 32 bytes
@@ -816,11 +819,21 @@ const MetaSpriteAnimationFrame* const wheelerFrames[11] =
     &wheelerFrame10,
 };
 
+const AnimationSetup const wheelerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &wheelerFrame0,
+    0,
+    6,
+};
+
 u8 wheelerVdpLocation;
 
 const MetaSpriteAnimation wheeler = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &wheelerSetup,
     (const MetaSpriteAnimationFrame** const)wheelerFrames,
     (unsigned char* const)wheelerTileData, // start of the sprite data
     11, // number of frames

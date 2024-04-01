@@ -1,4 +1,7 @@
 #include "impact.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const impactTileData[384] = // 12tiles x 32 bytes
@@ -166,11 +169,21 @@ const MetaSpriteAnimationFrame* const impactFrames[3] =
     &impactFrame2,
 };
 
+const AnimationSetup const impactSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &impactFrame0,
+    0,
+    3,
+};
+
 u8 impactVdpLocation;
 
 const MetaSpriteAnimation impact = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &impactSetup,
     (const MetaSpriteAnimationFrame** const)impactFrames,
     (unsigned char* const)impactTileData, // start of the sprite data
     3, // number of frames

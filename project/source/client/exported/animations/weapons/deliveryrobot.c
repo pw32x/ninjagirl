@@ -1,4 +1,7 @@
 #include "deliveryrobot.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const deliveryrobotTileData[1152] = // 36tiles x 32 bytes
@@ -440,11 +443,21 @@ const MetaSpriteAnimationFrame* const deliveryrobotFrames[6] =
     &deliveryrobotFrame5,
 };
 
+const AnimationSetup const deliveryrobotSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &deliveryrobotFrame0,
+    0,
+    4,
+};
+
 u8 deliveryrobotVdpLocation;
 
 const MetaSpriteAnimation deliveryrobot = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &deliveryrobotSetup,
     (const MetaSpriteAnimationFrame** const)deliveryrobotFrames,
     (unsigned char* const)deliveryrobotTileData, // start of the sprite data
     6, // number of frames

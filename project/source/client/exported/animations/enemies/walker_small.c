@@ -1,4 +1,7 @@
 #include "walker_small.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const walker_smallTileData[128] = // 4tiles x 32 bytes
@@ -76,11 +79,21 @@ const MetaSpriteAnimationFrame* const walker_smallFrames[2] =
     &walker_smallFrame1,
 };
 
+const AnimationSetup const walker_smallSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &walker_smallFrame0,
+    0,
+    8,
+};
+
 u8 walker_smallVdpLocation;
 
 const MetaSpriteAnimation walker_small = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &walker_smallSetup,
     (const MetaSpriteAnimationFrame** const)walker_smallFrames,
     (unsigned char* const)walker_smallTileData, // start of the sprite data
     2, // number of frames

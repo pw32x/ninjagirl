@@ -42,7 +42,7 @@ GameObject* ColorTweaker_Init(ColorTweakerObjectType* object, const CreateInfo* 
 
 	object->cursorY = 0;
 	object->colorIndex = 0;
-	AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
+	AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, object->colorIndex);
 
 	return (GameObject*)object;
 }
@@ -93,7 +93,7 @@ void ColorTweaker_Update(ColorTweakerObjectType* object)
 			else
 				object->colorIndex--;
 
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
+			AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, object->colorIndex);
 			printDebug = TRUE;
 		}
 		else if (object->cursorY == 1)
@@ -145,7 +145,7 @@ void ColorTweaker_Update(ColorTweakerObjectType* object)
 			else
 				object->colorIndex++;
 
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, object->colorIndex);
+			AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, object->colorIndex);
 			printDebug = TRUE;
 		}
 		else if (object->cursorY == 1)

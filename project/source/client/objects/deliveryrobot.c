@@ -58,7 +58,7 @@ GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < object->x)
 	{
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
@@ -131,7 +131,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX);
 		effect->speedx = 0;
 		effect->speedy = -90;
 
@@ -144,19 +144,19 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, DELIVERYROBOT_PARTS1_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS1_FRAME_INDEX);
 		effect->speedx = 0;
 		effect->speedy = -90;
 
 		createInfo.startY += 8;
 		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
 		effect->speedx = 10;
 		effect->speedy = -70;
 
 		createInfo.startX -= 8;
 		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
 		effect->speedx = -10;
 		effect->speedy = -70;
 

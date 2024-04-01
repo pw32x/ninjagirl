@@ -186,6 +186,12 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 	// one 3016/3016/3016.0
 	// max 532/3232/2397.5
 
+	// 2938/2938/2938.0
+	// max 532/3154/2062.5
+
+	// 2825/2825/2825.0
+	// 532/3041/2114.7
+
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 
 	GameObject* gameObject = ObjectManager_projectileSlots;

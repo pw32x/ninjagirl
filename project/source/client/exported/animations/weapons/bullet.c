@@ -1,4 +1,7 @@
 #include "bullet.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const bulletTileData[64] = // 2tiles x 32 bytes
@@ -43,11 +46,21 @@ const MetaSpriteAnimationFrame* const bulletFrames[1] =
     &bulletFrame0,
 };
 
+const AnimationSetup const bulletSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &bulletFrame0,
+    0,
+    5,
+};
+
 u8 bulletVdpLocation;
 
 const MetaSpriteAnimation bullet = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &bulletSetup,
     (const MetaSpriteAnimationFrame** const)bulletFrames,
     (unsigned char* const)bulletTileData, // start of the sprite data
     1, // number of frames

@@ -412,6 +412,12 @@
     <ClCompile Include="..\source\engine\object_manager_slots.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\test_block.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -638,6 +644,12 @@
     </ClInclude>
     <ClInclude Include="..\source\engine\object_manager_slots.h">
       <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\test_block.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker.h">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

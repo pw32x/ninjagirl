@@ -1,4 +1,7 @@
 #include "rock_particle.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const rock_particleTileData[256] = // 8tiles x 32 bytes
@@ -142,11 +145,21 @@ const MetaSpriteAnimationFrame* const rock_particleFrames[4] =
     &rock_particleFrame3,
 };
 
+const AnimationSetup const rock_particleSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &rock_particleFrame0,
+    0,
+    4,
+};
+
 u8 rock_particleVdpLocation;
 
 const MetaSpriteAnimation rock_particle = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &rock_particleSetup,
     (const MetaSpriteAnimationFrame** const)rock_particleFrames,
     (unsigned char* const)rock_particleTileData, // start of the sprite data
     4, // number of frames

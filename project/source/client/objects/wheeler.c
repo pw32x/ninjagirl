@@ -50,12 +50,14 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < V2P(object->x))
 	{
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
+		SMS_debugPrintf("left\n");
+		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
 	{
-		AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
+		SMS_debugPrintf("right\n");
+		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
 		object->speedx = 28;
 	}	
 
@@ -84,11 +86,11 @@ void Wheeler_Update(WheelerObjectType* object)
 
 		if (object->speedx > 0)
 		{
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
+			AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
 		}
 		else
 		{
-			AnimationUtils_setBatchedAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
+			AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
 		}	
 	}
 
@@ -174,25 +176,25 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_HEAD_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, WHEELER_PARTS_HEAD_FRAME_INDEX);
 		effect->speedx = 0;
 		effect->speedy = -90;
 
 		createInfo.startX += 8;
 		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_ARM1_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, WHEELER_PARTS_ARM1_FRAME_INDEX);
 		effect->speedx = 15;
 		effect->speedy = -60;
 
 		createInfo.startY += 8;
 		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_ARM2_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, WHEELER_PARTS_ARM2_FRAME_INDEX);
 		effect->speedx = 10;
 		effect->speedy = -50;
 
 		createInfo.startX -= 8;
 		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setBatchedAnimationFrame(effect, WHEELER_PARTS_WHEEL_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, WHEELER_PARTS_WHEEL_FRAME_INDEX);
 		effect->speedx = -10;
 		effect->speedy = -50;
 		*/

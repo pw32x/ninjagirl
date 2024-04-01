@@ -3,6 +3,7 @@
 #include "engine/object_types.h"
 #include "engine/vdptile_manager.h"
 #include "engine/draw_utils.h"
+#include <string.h>
 
 void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 {
@@ -99,6 +100,14 @@ void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 
 	gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
 }
 
+
+void AnimationUtils_setMetaSpriteAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex)
+{
+	gameObject->currentAnimationFrameIndex = animationFrameIndex;
+	gameObject->currentMetaSpriteAnimationFrame = gameObject->metaSpriteAnimation->frames[animationFrameIndex]; 
+	gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
+}
+
 u16 Load_BatchedAnimationResource(const ResourceInfo* resourceInfo)
 {
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
@@ -167,16 +176,11 @@ u16 Setup_MetaSpriteAnimationResource(struct game_object* gameObject, const Reso
 {
 	// 853
 	// 518
+	// 328
 	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resourceInfo->resource;
 
 	gameObject->metaSpriteAnimation = metaSpriteAnimation;
-	gameObject->currentAnimationFrameIndex = 0;
-	gameObject->currentMetaSpriteAnimationFrame = metaSpriteAnimation->frames[0];
-	gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
-	//gameObject->pixelWidth = metaSpriteAnimation->pixelWidth;
-	//gameObject->pixelHeight = metaSpriteAnimation->pixelHeight;
-	gameObject->UpdateAnimation = (UpdateAnimationFunctionType)AnimationUtils_updateMetaSpriteAnimation;
-	gameObject->Draw = DrawUtils_drawMetasprite;
+	memcpy(&gameObject->Draw, metaSpriteAnimation->animationSetup, sizeof(AnimationSetup));
 
 	return 0;
 }

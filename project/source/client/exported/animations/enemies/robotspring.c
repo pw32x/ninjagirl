@@ -1,4 +1,7 @@
 #include "robotspring.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const robotspringTileData[512] = // 16tiles x 32 bytes
@@ -208,11 +211,21 @@ const MetaSpriteAnimationFrame* const robotspringFrames[3] =
     &robotspringFrame2,
 };
 
+const AnimationSetup const robotspringSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &robotspringFrame0,
+    0,
+    5,
+};
+
 u8 robotspringVdpLocation;
 
 const MetaSpriteAnimation robotspring = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &robotspringSetup,
     (const MetaSpriteAnimationFrame** const)robotspringFrames,
     (unsigned char* const)robotspringTileData, // start of the sprite data
     3, // number of frames

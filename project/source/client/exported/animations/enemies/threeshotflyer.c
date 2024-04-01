@@ -1,4 +1,7 @@
 #include "threeshotflyer.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const threeshotflyerTileData[576] = // 18tiles x 32 bytes
@@ -212,11 +215,21 @@ const MetaSpriteAnimationFrame* const threeshotflyerFrames[2] =
     &threeshotflyerFrame1,
 };
 
+const AnimationSetup const threeshotflyerSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &threeshotflyerFrame0,
+    0,
+    6,
+};
+
 u8 threeshotflyerVdpLocation;
 
 const MetaSpriteAnimation threeshotflyer = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &threeshotflyerSetup,
     (const MetaSpriteAnimationFrame** const)threeshotflyerFrames,
     (unsigned char* const)threeshotflyerTileData, // start of the sprite data
     2, // number of frames

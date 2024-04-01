@@ -1,4 +1,7 @@
 #include "colorTweakerCursor.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const colorTweakerCursorTileData[320] = // 10tiles x 32 bytes
@@ -175,11 +178,21 @@ const MetaSpriteAnimationFrame* const colorTweakerCursorFrames[5] =
     &colorTweakerCursorFrame4,
 };
 
+const AnimationSetup const colorTweakerCursorSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &colorTweakerCursorFrame0,
+    0,
+    59,
+};
+
 u8 colorTweakerCursorVdpLocation;
 
 const MetaSpriteAnimation colorTweakerCursor = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &colorTweakerCursorSetup,
     (const MetaSpriteAnimationFrame** const)colorTweakerCursorFrames,
     (unsigned char* const)colorTweakerCursorTileData, // start of the sprite data
     5, // number of frames

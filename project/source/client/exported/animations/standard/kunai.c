@@ -1,4 +1,7 @@
 #include "kunai.h"
+#include "engine\draw_utils.h"
+#include "engine\animation_types.h"
+#include "engine\animation_utils.h"
 
 
 unsigned char const kunaiTileData[640] = // 20tiles x 32 bytes
@@ -312,11 +315,21 @@ const MetaSpriteAnimationFrame* const kunaiFrames[8] =
     &kunaiFrame7,
 };
 
+const AnimationSetup const kunaiSetup = 
+{
+    DrawUtils_drawMetasprite,
+    AnimationUtils_updateMetaSpriteAnimation,
+    &kunaiFrame0,
+    0,
+    59,
+};
+
 u8 kunaiVdpLocation;
 
 const MetaSpriteAnimation kunai = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
+    &kunaiSetup,
     (const MetaSpriteAnimationFrame** const)kunaiFrames,
     (unsigned char* const)kunaiTileData, // start of the sprite data
     8, // number of frames

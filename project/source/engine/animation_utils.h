@@ -39,6 +39,6 @@ void AnimationUtils_UpdateStreamedBatchedAnimationFrame(struct game_object* game
 // misc
 
 void AnimationUtils_setBatchedAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex);
-
+void AnimationUtils_setMetaSpriteAnimationFrame(struct game_object* gameObject, u8 animationFrameIndex);
 
 #endif
