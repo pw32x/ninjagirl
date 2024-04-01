@@ -3,7 +3,7 @@
 #include "SMSlib.h"
 
 #include "engine/createinfo_types.h"
-#include "engine/object_manager.h"
+#include "engine/object_manager_create.h"
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 

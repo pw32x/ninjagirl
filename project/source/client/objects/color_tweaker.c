@@ -23,7 +23,7 @@ u8 palette[16];
 GameObject* ColorTweaker_Init(ColorTweakerObjectType* object, const CreateInfo* createInfo)
 {
 	ResourceManager_LoadResource(createInfo->gameObjectTemplate->extraResources[0]);
-	object->cursorAnimation = (u16)createInfo->gameObjectTemplate->extraResources[0]->resource;
+	object->cursorAnimation = (const BatchedAnimation*)createInfo->gameObjectTemplate->extraResources[0]->resource;
 
 	const PaletteResource* paletteResource = (const PaletteResource*)createInfo->gameObjectTemplate->extraResources[1]->resource;
 

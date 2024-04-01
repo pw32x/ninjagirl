@@ -221,6 +221,9 @@
     <ClCompile Include="..\source\engine\command_types.c" />
     <ClCompile Include="..\source\engine\draw_utils.c" />
     <ClCompile Include="..\source\engine\joystick_manager.c" />
+    <ClCompile Include="..\source\engine\object_manager_create.c" />
+    <ClCompile Include="..\source\engine\object_manager_slots.c" />
+    <ClCompile Include="..\source\engine\object_manager_vdp.c" />
     <ClCompile Include="..\source\engine\scene_manager.c" />
     <ClCompile Include="..\source\engine\map_load.c" />
     <ClCompile Include="..\source\engine\map_manager.c" />
@@ -293,6 +296,9 @@
     <ClInclude Include="..\source\engine\draw_utils.h" />
     <ClInclude Include="..\source\engine\gameobject_template_types.h" />
     <ClInclude Include="..\source\engine\joystick_manager.h" />
+    <ClInclude Include="..\source\engine\object_manager_create.h" />
+    <ClInclude Include="..\source\engine\object_manager_slots.h" />
+    <ClInclude Include="..\source\engine\object_manager_vdp.h" />
     <ClInclude Include="..\source\engine\palette_types.h" />
     <ClInclude Include="..\source\engine\scene_manager.h" />
     <ClInclude Include="..\source\engine\scene_types.h" />

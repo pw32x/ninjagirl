@@ -5,6 +5,7 @@
 #include "engine/base_defines.h"
 #include "engine/scene_manager.h"
 #include "engine/object_manager.h"
+#include "engine/object_manager_vdp.h"
 #include "engine/scroll_manager.h"
 #include "engine/resource_manager.h"
 #include "engine/joystick_manager.h"

@@ -3,7 +3,7 @@
 #include "engine/resource_types.h"
 #include "engine/terrain_manager.h"
 #include "engine/map_types.h"
-#include "engine/object_manager.h"
+#include "engine/object_manager_create.h"
 
 #include "exported/animations/standard/rock_particle.h"
 #include "exported/animations/standard/explosion.h"

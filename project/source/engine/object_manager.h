@@ -1,23 +1,9 @@
 #ifndef OBJECT_MANAGER_INCLUDE_H
 #define OBJECT_MANAGER_INCLUDE_H
 
-#include "engine/object_types.h"
-#include "engine/gameobject_template_types.h"
-#include "engine/createinfo_types.h"
-
 void ObjectManager_Init(void);
-
 void ObjectManager_Update(void);
 
-GameObject* ObjectManager_CreateObject(u8 objectType);
-GameObject* ObjectManager_CreateObjectByTemplate(const GameObjectTemplate* gameObjectTemplate);
-
-
-GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo);
-
-void ObjectManager_DestroyObject(GameObject* gameObject);
-
-extern GameObject ObjectManager_player;
 
 // per-frame player screen position
 //extern s16 ObjectManager_playerLeft;
@@ -35,8 +21,5 @@ extern GameObject ObjectManager_player;
 //extern s16 ObjectManager_objectBottom;
 
 //void ObjectManagerUtils_updateObjectScreenRect(GameObject* gameObject);
-
-void ObjectManager_QueueVDPDraw(GameObject* gameObject, ObjectFunctionType vdpDrawFunction);
-void ObjectManager_VDPDraw(void);
 
 #endif

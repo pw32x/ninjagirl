@@ -3,7 +3,8 @@
 
 #include "engine/base_defines.h"
 #include "engine/draw_utils.h"
-#include "engine/object_manager.h"
+#include "engine/object_manager_create.h"
+#include "engine/object_manager_vdp.h"
 #include "engine/scroll_manager.h"
 #include "engine/object_utils.h"
 #include "engine/animation_utils.h"

@@ -403,6 +403,15 @@
     <ClCompile Include="..\source\client\exported\maps\bank8\level_001.c">
       <Filter>Source Files\client\exported\maps</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_vdp.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_create.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_slots.c">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">
@@ -620,6 +629,15 @@
     </ClInclude>
     <ClInclude Include="..\source\client\exported\maps\bank8\level_001.h">
       <Filter>Source Files\client\exported\maps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_vdp.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_create.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_slots.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

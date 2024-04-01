@@ -141,7 +141,7 @@ u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo)
 {
 	const AnimatedTileset* animatedTileset = (const AnimatedTileset*)resourceInfo->resource;
 
-	u16 vdpLocation = ResourceManager_LoadResource(animatedTileset->tileAnimationResourceInfo);
+	u16 vdpLocation = (u16)ResourceManager_LoadResource(animatedTileset->tileAnimationResourceInfo);
 
 
 	MapManager_metatileLuts[MapManager_numTilesets] = (u16*)(MapManager_metatileLutsData + MapManager_metatileLutsDataSize);

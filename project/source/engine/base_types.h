@@ -15,6 +15,7 @@ typedef unsigned int u32;
 #define TRUE 1
 #define FALSE 0
 
+#undef NULL
 #define NULL 0
 
 #define UNUSED(x) ((void)x)

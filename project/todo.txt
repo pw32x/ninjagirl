@@ -49,15 +49,22 @@ Todo
 	
 		NAH remove all the metatile stuff
 		
-		don't use multiplication in RightScroll_Update_Strip and TerrainManager_UpdateTerrain_Strip
+		DONE don't use multiplication in RightScroll_Update_Strip and TerrainManager_UpdateTerrain_Strip
 			increment when hitting a new column
 		
-		export a plain map
+		WHAT export a plain map
 
-	work on tool to determine data sizes in banks from .map file
+	turn on projectiles again
+	
+	benchmark projectiles
 
+	benchmark enemy-projectile collisions
+	
+	optimize enemy-projectile collisions
 
 	enemy-player collisions
+	
+	per-frame animation function?
 	
 	optimize ObjectManager_Update
 	
@@ -74,6 +81,9 @@ Todo
 		max number of active sprites?
 			the spawner checks the limit?
 				but only for enemies, not triggers, etc.
+
+	work on tool to determine data sizes in banks from .map file
+
 
 	tool to animate paths
 		export to Motion Sequence or AI Sequence
