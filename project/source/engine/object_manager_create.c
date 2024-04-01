@@ -81,23 +81,6 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	return NULL;
 }
 
-
-void ApplyGameObjectTemplate(GameObject* object, 
-							 const GameObjectTemplate* gameObjectTemplate)
-{
-	object->objectType = gameObjectTemplate->objectType;
-	object->health = gameObjectTemplate->startHealth;
-	object->damage = gameObjectTemplate->damage;
-
-	object->rectLeft = gameObjectTemplate->rectLeft;
-	object->rectTop = gameObjectTemplate->rectTop;
-	object->rectRight = gameObjectTemplate->rectRight;
-	object->rectBottom = gameObjectTemplate->rectBottom;
-
-	if (gameObjectTemplate->resourceInfo != NULL)
-		ResourceManager_SetupResource(object, gameObjectTemplate->resourceInfo);
-}
-
 GameObject* FindFreeGameObject(u8 objectType)
 {
 	// 108/738/481.1
@@ -167,6 +150,9 @@ GameObject* FindFreeGameObject(u8 objectType)
 
 GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 {
+	// 4880/359969/117125.2
+	// 3957/355303/115453.6
+
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 	u8 objectType = gameObjectTemplate->objectType;
 
@@ -175,12 +161,12 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 		return NULL;
 
 	gameObject->objectId = ObjectManager_objectId++;
-	gameObject->x = createInfo->startX;
-	gameObject->y = createInfo->startY;
-	gameObject->resourceInfo = createInfo->gameObjectTemplate->resourceInfo;
-	gameObject->extraResources = createInfo->gameObjectTemplate->extraResources;
 
-	ApplyGameObjectTemplate(gameObject, gameObjectTemplate);
+	memcpy(&gameObject->x, &createInfo->startX, 4);
+	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
+
+	if (gameObjectTemplate->resourceInfo != NULL)
+		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
 	gameObjectTemplate->initFunction(gameObject, createInfo);
 
