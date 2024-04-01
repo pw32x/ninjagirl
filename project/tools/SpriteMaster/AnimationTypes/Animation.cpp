@@ -311,10 +311,11 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     {
         sourceFile << "    METASPRITE_ANIMATION_RESOURCE_TYPE, \n";
         //const AnimationSetup* animationSetup;
-        sourceFile << "    &" << outputName << "Setup,\n";
     }
     else
         sourceFile << "    BATCHED_ANIMATION_RESOURCE_TYPE, \n";
+
+    sourceFile << "    &" << outputName << "Setup,\n";
 
     if (m_isMetaSprite)
         sourceFile << "    (const MetaSpriteAnimationFrame** const)" << outputName << "Frames,\n";
@@ -334,14 +335,20 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
 
 void GGAnimation::WriteAnimationSetup(const std::string& outputName, std::ofstream& sourceFile)
 {
-    if (!m_isMetaSprite)
-        return;
-
     sourceFile << "const AnimationSetup const " << outputName << "Setup = \n";
     sourceFile << "{\n";
 
-    sourceFile << "    DrawUtils_drawMetasprite,\n"; //void (*Draw)(struct game_object* gameObject);
-    sourceFile << "    AnimationUtils_updateMetaSpriteAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
+    if (m_isMetaSprite)
+    {
+        sourceFile << "    DrawUtils_drawMetasprite,\n"; //void (*Draw)(struct game_object* gameObject);
+        sourceFile << "    AnimationUtils_updateMetaSpriteAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
+    }
+    else
+    {
+        sourceFile << "    NULL,\n"; //void (*Draw)(struct game_object* gameObject);
+        sourceFile << "    AnimationUtils_updateBatchedAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
+    }
+
     sourceFile << "    &" << outputName << "Frame0,\n"; //const void* startingAnimationFrame;
     sourceFile << "    0,\n"; //u8 startAnimationFrameIndex;
     sourceFile << "    " << m_frames[0].GetFrameDelayTime() << ",\n"; //u8 animationTime;
