@@ -2151,11 +2151,21 @@ const BatchedAnimationFrame* const gun_girlFrames[40] =
     &gun_girlFrame39,
 };
 
+const AnimationSetup const gun_girlSetup = 
+{
+    NULL,
+    AnimationUtils_updateBatchedAnimation,
+    &gun_girlFrame0,
+    0,
+    5,
+};
+
 u8 gun_girlVdpLocation;
 
 const BatchedAnimation gun_girl = 
 {
     STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, 
+    &gun_girlSetup,
     (const BatchedAnimationFrame** const)gun_girlFrames,
     (unsigned char* const)gun_girlTileData, // start of the sprite data
     40, // number of frames

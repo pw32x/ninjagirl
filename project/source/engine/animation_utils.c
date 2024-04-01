@@ -159,15 +159,16 @@ typedef BOOL (*UpdateAnimationFunctionType)(struct game_object* gameObject);
 
 u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	// 807
+	// 328
+
 	const BatchedAnimation* batchedAnimation = (const BatchedAnimation*)resourceInfo->resource;
 
 	gameObject->batchedAnimation = batchedAnimation;
-	gameObject->currentAnimationFrameIndex = 0;
-	gameObject->currentBatchedAnimationFrame = batchedAnimation->frames[0];
-	gameObject->animationTime = gameObject->currentBatchedAnimationFrame->frameTime;
-	gameObject->pixelWidth = batchedAnimation->pixelWidth;
-	gameObject->pixelHeight = batchedAnimation->pixelHeight;
-	gameObject->UpdateAnimation = (UpdateAnimationFunctionType)AnimationUtils_updateBatchedAnimation;
+	memcpy(&gameObject->Draw, batchedAnimation->animationSetup, sizeof(AnimationSetup));
+
+	//gameObject->pixelWidth = batchedAnimation->pixelWidth;
+	//gameObject->pixelHeight = batchedAnimation->pixelHeight;
 
 	return 0;
 }

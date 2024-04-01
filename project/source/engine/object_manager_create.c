@@ -152,6 +152,8 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 {
 	// 4880/359969/117125.2
 	// 3957/355303/115453.6
+	// 3851/354986/115326.8
+	// 3778/354780/115244.4
 
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 	u8 objectType = gameObjectTemplate->objectType;

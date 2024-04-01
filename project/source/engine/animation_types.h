@@ -36,6 +36,7 @@ typedef struct batched_animation_frame
 typedef struct
 {
     u8 resourceType;
+    const AnimationSetup* animationSetup;
     const BatchedAnimationFrame** const frames;
     const u8* const tileData;
 

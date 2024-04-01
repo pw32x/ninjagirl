@@ -50,13 +50,11 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < V2P(object->x))
 	{
-		SMS_debugPrintf("left\n");
 		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else
 	{
-		SMS_debugPrintf("right\n");
 		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
 		object->speedx = 28;
 	}	
