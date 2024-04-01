@@ -61,75 +61,25 @@ void ResourceManager_Init(OnResourceLoadedCallback onResourceLoadedCallback)
 
 void* ResourceManager_LoadResource(const ResourceInfo* resourceInfo)
 {
-	u8 currentBank = SMS_getROMBank();
-	u8 bankNumber = resourceInfo->bankNumber;
+	//1153
+	//770
 
-	if (currentBank != bankNumber)
-	{
-		//SMS_debugPrintf("Switching to Bank %d.\n", bankNumber);
-		SMS_mapROMBank(bankNumber);
-	}
-
-	u8 resourceType = resourceInfo->resource->resourceType;
-
-	//SMS_debugPrintf("Load Resource 0x%x of type ", resourceInfo->resource);
-	//printResourceTypeName(resourceType);
-	//SMS_debugPrintf("\n");
-
-	if (ResourceManager_loadFunctions[resourceType] == 0)
-	{
-		SMS_debugPrintf("Load function for resource type %d not found.\n", resourceType);
-		while (1) {}
-	}
-
-	void* value = ResourceManager_loadFunctions[resourceType](resourceInfo);
+	SMS_mapROMBank(resourceInfo->bankNumber);
+	void* value = ResourceManager_loadFunctions[resourceInfo->resource->resourceType](resourceInfo);
 
 	if (ResourceManager_onResourceLoadedCallback != NULL)
 		ResourceManager_onResourceLoadedCallback(resourceInfo);
-
-	if (currentBank != bankNumber)
-	{
-		//SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
-		SMS_mapROMBank(currentBank);
-	}
 
 	return value;
 }
 
 void* ResourceManager_SetupResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
-	u8 currentBank = SMS_getROMBank();
-	u8 bankNumber = resourceInfo->bankNumber;
+	//1116
+	//821
 
-	//SMS_debugPrintf("ResourceManager_SetupResource().\n");
-
-	if (currentBank != bankNumber)
-	{
-		//SMS_debugPrintf("Switching to Bank %d.\n", bankNumber);
-		SMS_mapROMBank(bankNumber);
-	}
-
-	u8 resourceType = resourceInfo->resource->resourceType;
-
-	//SMS_debugPrintf("Setup Resource 0x%x of type ", resourceInfo->resource);
-	//printResourceTypeName(resourceType);
-	//SMS_debugPrintf("\n");
-
-	if (ResourceManager_setupFunctions[resourceType] == 0)
-	{
-		SMS_debugPrintf("Setup function for resource type %d not found.\n", resourceType);
-		while (1) {}
-	}
-
-	void* result = ResourceManager_setupFunctions[resourceType](gameObject, resourceInfo);
-
-	if (currentBank != bankNumber)
-	{
-		//SMS_debugPrintf("Switching back to Bank %d\n", currentBank);
-		SMS_mapROMBank(currentBank);
-	}
-
-	return result;
+	SMS_mapROMBank(resourceInfo->bankNumber);
+	return ResourceManager_setupFunctions[resourceInfo->resource->resourceType](gameObject, resourceInfo);
 }
 
 void ResourceManager_SetOnResourceLoadedCallback(OnResourceLoadedCallback callback)
