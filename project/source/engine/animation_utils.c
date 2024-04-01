@@ -165,14 +165,16 @@ u16 Setup_BatchedAnimationResource(struct game_object* gameObject, const Resourc
 
 u16 Setup_MetaSpriteAnimationResource(struct game_object* gameObject, const ResourceInfo* resourceInfo)
 {
+	// 853
+	// 518
 	const MetaSpriteAnimation* metaSpriteAnimation = (const MetaSpriteAnimation*)resourceInfo->resource;
 
 	gameObject->metaSpriteAnimation = metaSpriteAnimation;
 	gameObject->currentAnimationFrameIndex = 0;
 	gameObject->currentMetaSpriteAnimationFrame = metaSpriteAnimation->frames[0];
 	gameObject->animationTime = gameObject->currentMetaSpriteAnimationFrame->frameTime;
-	gameObject->pixelWidth = metaSpriteAnimation->pixelWidth;
-	gameObject->pixelHeight = metaSpriteAnimation->pixelHeight;
+	//gameObject->pixelWidth = metaSpriteAnimation->pixelWidth;
+	//gameObject->pixelHeight = metaSpriteAnimation->pixelHeight;
 	gameObject->UpdateAnimation = (UpdateAnimationFunctionType)AnimationUtils_updateMetaSpriteAnimation;
 	gameObject->Draw = DrawUtils_drawMetasprite;
 
