@@ -9,6 +9,8 @@ GameObject* ObjectManager_CreateObject(u8 objectType);
 GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo);
 void ObjectManager_DestroyObject(GameObject* gameObject);
 
+GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo);
+
 extern u8 ObjectManager_numEnemies;
 extern u8 ObjectManager_numEffects;
 

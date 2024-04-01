@@ -11,6 +11,7 @@ typedef GameObject* (*InitObjectFunctionType)(GameObject* gameObject, const stru
 
 typedef struct gameobject_template
 {
+	// match the order of decleration in object_types.h
 	s8 startHealth;
 	s8 damage;
 

@@ -59,7 +59,7 @@ void WeaponManager_FireDefault(s16 x, s16 y, u8 flipped)
 		y
 	};
 
-	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	GameObject* bullet = ObjectManager_CreatePlayerProjectile(&createInfo);
 
 	bullet->speedx = flipped ? -4 : 4;
 	bullet->speedy = 0;
@@ -77,7 +77,7 @@ void WeaponManager_FireDefaultVertical(s16 x, s16 y, u8 flipped)
 		y
 	};
 
-	GameObject* bullet = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	GameObject* bullet = ObjectManager_CreatePlayerProjectile(&createInfo);
 
 	bullet->speedx = 0;
 	bullet->speedy = flipped ? 4 : -4;
@@ -94,18 +94,18 @@ void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
 		y
 	};
 
-	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 
 	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = 0;
 
 	createInfo.startY -= 4;
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = -1;
 
 	createInfo.startY += 8;
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 	shotgun->speedx = flipped ? -4 : 4;
 	shotgun->speedy = 1;
 }
@@ -121,18 +121,18 @@ void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
 		y
 	};
 
-	GameObject* shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 
 	shotgun->speedx = 0;
 	shotgun->speedy = flipped ? 4 : -4;
 
 	createInfo.startX -= 4;
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 	shotgun->speedx = -1;
 	shotgun->speedy = flipped ? 4 : -4;
 
 	createInfo.startX += 8;
-	shotgun = ObjectManager_CreateObjectByCreateInfo(&createInfo);
+	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
 	shotgun->speedx = 1;
 	shotgun->speedy = flipped ? 4 : -4;
 }

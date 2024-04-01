@@ -50,18 +50,19 @@
 	\
 	s8 health;\
 	s8 damage;\
-	\
 	s8 rectLeft;\
 	s8 rectTop;\
 	s8 rectRight;\
 	s8 rectBottom;\
+	u8 objectType; \
+	const ResourceInfo* resourceInfo;\
+	const ResourceInfo** extraResources;\
 	\
 	u8 objectId;\
 	u8 pixelWidth; \
-	u8 pixelHeight; \
-	u8 objectType; \
-	const ResourceInfo* resourceInfo;\
-	const ResourceInfo** extraResources
+	u8 pixelHeight
+
+
 
 typedef struct game_object
 {

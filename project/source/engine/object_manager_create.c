@@ -100,6 +100,8 @@ void ApplyGameObjectTemplate(GameObject* object,
 
 GameObject* FindFreeGameObject(u8 objectType)
 {
+	// 108/738/481.1
+
 	GameObject* objectSlotRunner;
 
 	if (objectType == OBJECTTYPE_PLAYER)
@@ -179,6 +181,44 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 	gameObject->extraResources = createInfo->gameObjectTemplate->extraResources;
 
 	ApplyGameObjectTemplate(gameObject, gameObjectTemplate);
+
+	gameObjectTemplate->initFunction(gameObject, createInfo);
+
+	return gameObject;
+}
+
+GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
+{
+	// one bullet 3923/3923/3923.0 
+	// max 402/3985/2946.0
+	// one bullet 3849/3849/3849.0
+	// max 402/3985/2946.0
+
+	// one 3748/3748/3748.0
+	// max 516/3960/3075.5
+
+	// one 3016/3016/3016.0
+	// max 532/3232/2397.5
+
+	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
+
+	GameObject* gameObject = ObjectManager_projectileSlots;
+
+	if (!gameObject->alive)  goto create; gameObject++;
+	if (!gameObject->alive)  goto create; gameObject++;
+	if (!gameObject->alive)  goto create; 
+	return NULL;
+
+create:
+
+	gameObject->alive = TRUE;
+	gameObject->objectId = ObjectManager_objectId++;
+
+	memcpy(&gameObject->x, &createInfo->startX, 4);
+	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
+
+	if (gameObjectTemplate->resourceInfo != NULL)
+		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
 	gameObjectTemplate->initFunction(gameObject, createInfo);
 
