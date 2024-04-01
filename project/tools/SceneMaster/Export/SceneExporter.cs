@@ -174,7 +174,7 @@ namespace SceneMaster.Export
             sb.AppendLine("#include \"client\\generated\\gameobjecttemplates\\gameobject_templates.h\"");
             sb.AppendLine("#include \"client\\generated\\resource_infos.h\"");
 
-            sb.AppendLine("#include \"engine\\object_manager.h\"");
+            sb.AppendLine("#include \"engine\\object_manager_create.h\"");
             sb.AppendLine("#include \"engine\\resource_manager.h\"");
             sb.AppendLine("#include \"engine\\createinfo_types.h\"");
             sb.AppendLine("#include \"engine\\commandrunner_runall.h\"");
