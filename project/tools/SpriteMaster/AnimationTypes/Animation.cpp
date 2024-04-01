@@ -308,7 +308,11 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     if (m_isStreamed)
         sourceFile << "    STREAMED_BATCHED_ANIMATION_RESOURCE_TYPE, \n";
     else if (m_isMetaSprite)
+    {
         sourceFile << "    METASPRITE_ANIMATION_RESOURCE_TYPE, \n";
+        //const AnimationSetup* animationSetup;
+        sourceFile << "    &" << outputName << "Setup,\n";
+    }
     else
         sourceFile << "    BATCHED_ANIMATION_RESOURCE_TYPE, \n";
 
@@ -327,6 +331,24 @@ void GGAnimation:: WriteAnimationStructBatched(const std::string& outputName,
     sourceFile << "};\n";
 }
 
+
+void GGAnimation::WriteAnimationSetup(const std::string& outputName, std::ofstream& sourceFile)
+{
+    if (!m_isMetaSprite)
+        return;
+
+    sourceFile << "const AnimationSetup const " << outputName << "Setup = \n";
+    sourceFile << "{\n";
+
+    sourceFile << "    DrawUtils_drawMetasprite,\n"; //void (*Draw)(struct game_object* gameObject);
+    sourceFile << "    AnimationUtils_updateMetaSpriteAnimation,\n"; //BOOL (*UpdateAnimation)(struct game_object* gameObject);
+    sourceFile << "    &" << outputName << "Frame0,\n"; //const void* startingAnimationFrame;
+    sourceFile << "    0,\n"; //u8 startAnimationFrameIndex;
+    sourceFile << "    " << m_frames[0].GetFrameDelayTime() << ",\n"; //u8 animationTime;
+
+    sourceFile << "};\n\n";
+}
+
 void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder, 
                                              const std::string& outputName,
                                              const std::string& bank)
@@ -335,6 +357,9 @@ void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder,
 
     // includes
     sourceFile << "#include \"" << outputName << ".h\"\n";
+    sourceFile << "#include \"engine\\draw_utils.h\"\n";
+    sourceFile << "#include \"engine\\animation_types.h\"\n";
+    sourceFile << "#include \"engine\\animation_utils.h\"\n";
 	
     sourceFile << "\n";
     sourceFile << "\n";
@@ -345,6 +370,7 @@ void GGAnimation::WriteGGAnimationSourceFile(const std::string& outputFolder,
     WriteSpritesBatched(outputName, sourceFile);
     WriteFramesBatched(outputName, sourceFile);
 	WriteFrameArrayBatched(outputName, sourceFile);
+    WriteAnimationSetup(outputName, sourceFile);
     WriteAnimationStructBatched(outputName, sourceFile, bank);
 
 
