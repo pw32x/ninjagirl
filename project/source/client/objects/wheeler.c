@@ -149,16 +149,19 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 
 	if (gameObject->health <= 0)
 	{
-		ObjectManager_DestroyObject(gameObject);
+		//ObjectManager_DestroyObject(gameObject);
 
-		CreateInfo createInfo = 
+		EffectCreateInfo effectCreateInfo = 
 		{ 
 			&explosion_template,
 			V2P(gameObject->x), 
-			V2P(gameObject->y)
+			V2P(gameObject->y),
+			0,
+			0,
+			0
 		};
 		
-		ObjectManager_CreateObjectByCreateInfo(&createInfo);
+		ObjectManager_CreateEffect(&effectCreateInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 		/*

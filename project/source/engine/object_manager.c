@@ -78,7 +78,7 @@ void ObjectManager_Update(void)
 	ObjectManager_enemyProjectileSlots[0].Update(&ObjectManager_enemyProjectileSlots[0]);
 	ObjectManager_enemyProjectileSlots[1].Update(&ObjectManager_enemyProjectileSlots[1]);
 	ObjectManager_enemyProjectileSlots[2].Update(&ObjectManager_enemyProjectileSlots[2]);
-
+	*/
 	switch (ObjectManager_numEnemies)
 	{
 	case 8: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[7]);
@@ -90,7 +90,7 @@ void ObjectManager_Update(void)
 	case 2: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[1]);
 	case 1: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[0]);
 	}
-	*/
+
 
 
 	/*

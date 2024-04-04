@@ -76,14 +76,17 @@ void Enemy_HandleCollision(GameObject* gameObject, GameObject* other)
 	{
 		ObjectManager_DestroyObject(gameObject);
 		
-		CreateInfo createInfo = 
+		EffectCreateInfo effectCreateInfo = 
 		{ 
 			&explosion_template,
 			gameObject->x, 
-			gameObject->y
+			gameObject->y,
+			0,
+			0,
+			0
 		};
 		
-		ObjectManager_CreateObjectByCreateInfo(&createInfo);
+		ObjectManager_CreateEffect(&effectCreateInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 	}

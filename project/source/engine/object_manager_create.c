@@ -48,6 +48,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
+	/*
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
@@ -56,6 +57,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
+	*/
 	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_enemyProjectileSlots;
@@ -115,6 +117,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
+	/*
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
@@ -123,6 +126,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
+	*/
 	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_enemyProjectileSlots;
@@ -171,6 +175,30 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
 	gameObjectTemplate->initFunction(gameObject, createInfo);
+
+	return gameObject;
+}
+
+GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
+{
+	// treat effects as a circular list. we overwrite the older effects without waiting
+	// if they're done.
+	SMS_debugPrintf("ObjectManager_numEffects: %d\n", ObjectManager_numEffects);
+	GameObject* gameObject = ObjectManager_effectSlots + ObjectManager_numEffects;
+	ObjectManager_numEffects = (ObjectManager_numEffects + 1) & NUM_EFFECT_SLOTS_MASK;
+
+	const GameObjectTemplate* gameObjectTemplate = effectCreateInfo->gameObjectTemplate;
+
+	gameObject->alive = TRUE;
+	gameObject->objectId = ObjectManager_objectId++;
+
+	memcpy(&gameObject->x, &effectCreateInfo->startX, 4);
+	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
+
+	if (gameObjectTemplate->resourceInfo != NULL)
+		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
+
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)effectCreateInfo);
 
 	return gameObject;
 }

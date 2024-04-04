@@ -24,6 +24,7 @@ void breakable_rock_tileset_TilesetFunction(const Tileset* tileset,
 		B2P(blocky) + 4		
 	};
 
+	/*
 	GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = -15;
 	effect->speedy = -60;
@@ -43,5 +44,6 @@ void breakable_rock_tileset_TilesetFunction(const Tileset* tileset,
 	effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
 	effect->speedx = -10;
 	effect->speedy = -50;
+	*/
 }
 

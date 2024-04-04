@@ -64,15 +64,15 @@ void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target)
 
 	ObjectManager_DestroyObject(gameObject);
 
-	CreateInfo createInfo = 
+	EffectCreateInfo effectCreateInfo = 
 	{ 
 		&impact_template, 
 		gameObject->x, 
-		gameObject->y		
+		gameObject->y,
+		gameObject->speedx >> 2,
+		gameObject->speedy >> 2,
+		0
 	};
 
-	GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-
-	effect->speedx = gameObject->speedx >> 2;
-	effect->speedy = gameObject->speedy >> 2;
+	ObjectManager_CreateEffect(&effectCreateInfo);
 }

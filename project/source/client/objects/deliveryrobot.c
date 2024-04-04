@@ -103,19 +103,30 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 	{
 		ObjectManager_DestroyObject(gameObject);
 
-		CreateInfo createInfo = 
+		EffectCreateInfo effectCreateInfo = 
 		{ 
 			&explosion_template,
 			V2P(gameObject->x), 
-			V2P(gameObject->y)
+			V2P(gameObject->y),
+			0,
+			0,
+			0
 		};
 		
-		ObjectManager_CreateObjectByCreateInfo(&createInfo);
+		ObjectManager_CreateEffect(&effectCreateInfo);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 
 		// drop item
-		createInfo.gameObjectTemplate = &shotgun_item_template;
+		CreateInfo createInfo = 
+		{ 
+			&shotgun_item_template,
+			V2P(gameObject->x), 
+			V2P(gameObject->y),
+			0,
+			0
+		};
+
 		ObjectManager_CreateObjectByCreateInfo(&createInfo);
 
 		// debris 
@@ -124,42 +135,41 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		effectGameTemplate.resourceInfo = gameObject->resourceInfo;
 		effectGameTemplate.initFunction = ParticleEffect_Init;
 
-		/*
+
+		/*asdf
 		createInfo.gameObjectTemplate = &effectGameTemplate;
 		createInfo.startX = V2P(gameObject->x);
 		createInfo.startY = V2P(gameObject->y);
+		createInfo.speedx = 0;
+		createInfo.speedy = -90;
+		createInfo.startFrameIndex = DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX;
 
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
-		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX);
-		effect->speedx = 0;
-		effect->speedy = -90;
+		ObjectManager_CreateObjectByCreateInfo(&createInfo);
+		AnimationUtils_setMetaSpriteAnimationFrame(effect, );
 
 		*/
 
-
-		createInfo.gameObjectTemplate = &effectGameTemplate;
-		createInfo.startX = V2P(gameObject->x);
-		createInfo.startY = V2P(gameObject->y);
-
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
-		GameObject* effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS1_FRAME_INDEX);
-		effect->speedx = 0;
-		effect->speedy = -90;
 
-		createInfo.startY += 8;
-		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
-		effect->speedx = 10;
-		effect->speedy = -70;
+		effectCreateInfo.gameObjectTemplate = &effectGameTemplate;
+		effectCreateInfo.speedX = 0,
+		effectCreateInfo.speedY = -90,
+		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS1_FRAME_INDEX;
 
-		createInfo.startX -= 8;
-		effect = ObjectManager_CreateObjectByCreateInfo(&createInfo);
-		AnimationUtils_setMetaSpriteAnimationFrame(effect, DELIVERYROBOT_PARTS2_FRAME_INDEX);
-		effect->speedx = -10;
-		effect->speedy = -70;
+		ObjectManager_CreateEffect(&effectCreateInfo);
 
+		effectCreateInfo.startY += 8;
+		effectCreateInfo.speedX = 10;
+		effectCreateInfo.speedY = -70;
+		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
+		ObjectManager_CreateEffect(&effectCreateInfo);
+
+		effectCreateInfo.startX -= 8;
+		effectCreateInfo.speedX = -10;
+		effectCreateInfo.speedY = -70;
+		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
+		ObjectManager_CreateEffect(&effectCreateInfo);
 	}
 	else
 	{
