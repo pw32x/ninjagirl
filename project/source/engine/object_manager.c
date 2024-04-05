@@ -1,6 +1,4 @@
 #include "object_manager.h"
-#include <string.h>
-#include "SMSlib.h"
 
 #include "engine/object_manager_create.h"
 #include "engine/object_manager_vdp.h"
@@ -12,13 +10,16 @@
 //#include "engine/object_utils.h"
 //#include "engine/draw_utils.h"
 
+#include <string.h>
+#include "SMSlib.h"
+
 GameObject* objectSlotRunner;
 
 //GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
 //u8 ObjectManager_activeProjectilesCount;
 
 
-//u8 ObjectManager_currentEnemyIndex;
+u8 ObjectManager_currentEnemyIndex;
 
 
 BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject);
@@ -29,10 +30,15 @@ void ObjectManager_Init(void)
 	ObjectManager_InitSlots();
 }
 
+void DrawEffectsAndEnemiesOrder1(void);
+void DrawEffectsAndEnemiesOrder2(void);
+
 u8 drawOrderToggle = FALSE;
 
 void ObjectManager_Update(void)
 {
+
+
 	ObjectManager_numVdpDrawItems = 0;
 
 	//SMS_setBackdropColor(COLOR_RED);
@@ -40,35 +46,6 @@ void ObjectManager_Update(void)
 	ObjectManager_player.Update(&ObjectManager_player);
 	
 	ScrollManager_Update(&ObjectManager_player);
-
-
-	//ObjectManagerUtils_updatePlayerScreenRect();
-
-
-
-	// update objects
-
-	/*
-	GameObject* objectSlotRunner = ObjectManager_projectileSlots;
-	u8 counter = NUM_PROJECTILE_SLOTS;
-
-	ObjectManager_activeProjectilesCount = 0;
-
-	while (counter--)
-	{
-		if (objectSlotRunner->alive)
-		{
-			objectSlotRunner->Update(objectSlotRunner);
-
-			if (objectSlotRunner->alive)
-			{
-				ObjectManager_activeProjectiles[ObjectManager_activeProjectilesCount] = objectSlotRunner;
-				ObjectManager_activeProjectilesCount++;
-			}
-		}
-		objectSlotRunner++;
-	}
-	*/
 
 	ObjectManager_projectileSlots[0].Update(&ObjectManager_projectileSlots[0]);
 	ObjectManager_projectileSlots[1].Update(&ObjectManager_projectileSlots[1]);
@@ -79,38 +56,6 @@ void ObjectManager_Update(void)
 	ObjectManager_enemyProjectileSlots[1].Update(&ObjectManager_enemyProjectileSlots[1]);
 	ObjectManager_enemyProjectileSlots[2].Update(&ObjectManager_enemyProjectileSlots[2]);
 	*/
-	switch (ObjectManager_numEnemies)
-	{
-	case 8: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[7]);
-	case 7: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[6]);
-	case 6: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[5]);
-	case 5: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[4]);
-	case 4: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[3]);
-	case 3: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[2]);
-	case 2: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[1]);
-	case 1: ObjectManagerUtils_doProjectCollisionCheck(&ObjectManager_enemySlots[0]);
-	}
-
-
-
-	/*
-	// perform collisions against projectiles
-	u8 counter = NUM_ENEMY_SLOTS;
-
-	while (counter--)
-	{
-		++ObjectManager_currentEnemyIndex;
-
-		GameObject* enemy = &ObjectManager_enemySlots[ObjectManager_currentEnemyIndex & 7];
-
-		if (!enemy->alive)
-			continue;
-
-		ObjectManagerUtils_doProjectCollisionCheck(enemy);
-
-		break;
-	}
-	*/
 
 	// add new objects and enemies only after we've done the collision checks for the currently 
 	// active ones.
@@ -118,29 +63,47 @@ void ObjectManager_Update(void)
 
 	//SMS_setBackdropColor(COLOR_ORANGE);
 
-	switch (ObjectManager_numEnemies)
+	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: ObjectManager_enemySlots[7].Update(&ObjectManager_enemySlots[7]);
-	case 7: ObjectManager_enemySlots[6].Update(&ObjectManager_enemySlots[6]);
-	case 6: ObjectManager_enemySlots[5].Update(&ObjectManager_enemySlots[5]);
-	case 5: ObjectManager_enemySlots[4].Update(&ObjectManager_enemySlots[4]);
-	case 4: ObjectManager_enemySlots[3].Update(&ObjectManager_enemySlots[3]);
-	case 3: ObjectManager_enemySlots[2].Update(&ObjectManager_enemySlots[2]);
-	case 2: ObjectManager_enemySlots[1].Update(&ObjectManager_enemySlots[1]);
-	case 1: ObjectManager_enemySlots[0].Update(&ObjectManager_enemySlots[0]);
+	case 8: ObjectManager_activeEnemySlots[7]->Update(ObjectManager_activeEnemySlots[7]);
+	case 7: ObjectManager_activeEnemySlots[6]->Update(ObjectManager_activeEnemySlots[6]);
+	case 6: ObjectManager_activeEnemySlots[5]->Update(ObjectManager_activeEnemySlots[5]);
+	case 5: ObjectManager_activeEnemySlots[4]->Update(ObjectManager_activeEnemySlots[4]);
+	case 4: ObjectManager_activeEnemySlots[3]->Update(ObjectManager_activeEnemySlots[3]);
+	case 3: ObjectManager_activeEnemySlots[2]->Update(ObjectManager_activeEnemySlots[2]);
+	case 2: ObjectManager_activeEnemySlots[1]->Update(ObjectManager_activeEnemySlots[1]);
+	case 1: ObjectManager_activeEnemySlots[0]->Update(ObjectManager_activeEnemySlots[0]);
 	}
 
-	switch (ObjectManager_numEffects)
+	ObjectManager_processEnemyDeletes();
+
+
+	// perform collisions against projectiles
+	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: ObjectManager_effectSlots[7].Update(&ObjectManager_effectSlots[7]);
-	case 7: ObjectManager_effectSlots[6].Update(&ObjectManager_effectSlots[6]);
-	case 6: ObjectManager_effectSlots[5].Update(&ObjectManager_effectSlots[5]);
-	case 5: ObjectManager_effectSlots[4].Update(&ObjectManager_effectSlots[4]);
-	case 4: ObjectManager_effectSlots[3].Update(&ObjectManager_effectSlots[3]);
-	case 3: ObjectManager_effectSlots[2].Update(&ObjectManager_effectSlots[2]);
-	case 2: ObjectManager_effectSlots[1].Update(&ObjectManager_effectSlots[1]);
-	case 1: ObjectManager_effectSlots[0].Update(&ObjectManager_effectSlots[0]);
+	case 8: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[7]);
+	case 7: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[6]);
+	case 6: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[5]);
+	case 5: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[4]);
+	case 4: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[3]);
+	case 3: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[2]);
+	case 2: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[1]);
+	case 1: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[0]);
 	}
+
+	switch (ObjectManager_numActiveEffects)
+	{
+	case 8: ObjectManager_activeEffectSlots[7]->Update(ObjectManager_activeEffectSlots[7]);
+	case 7: ObjectManager_activeEffectSlots[6]->Update(ObjectManager_activeEffectSlots[6]);
+	case 6: ObjectManager_activeEffectSlots[5]->Update(ObjectManager_activeEffectSlots[5]);
+	case 5: ObjectManager_activeEffectSlots[4]->Update(ObjectManager_activeEffectSlots[4]);
+	case 4: ObjectManager_activeEffectSlots[3]->Update(ObjectManager_activeEffectSlots[3]);
+	case 3: ObjectManager_activeEffectSlots[2]->Update(ObjectManager_activeEffectSlots[2]);
+	case 2: ObjectManager_activeEffectSlots[1]->Update(ObjectManager_activeEffectSlots[1]);
+	case 1: ObjectManager_activeEffectSlots[0]->Update(ObjectManager_activeEffectSlots[0]);
+	}
+
+	ObjectManager_processEffectDeletes();
 
 	/*
 	ObjectManager_Item.Update(&ObjectManager_Item);
@@ -201,64 +164,82 @@ void ObjectManager_Update(void)
 
 	//SMS_setBackdropColor(COLOR_PINK);
 
-	if (drawOrderToggle & 1)
+	if (drawOrderToggle)
 	{
-		objectSlotRunner = ObjectManager_enemySlots;
-		switch (ObjectManager_numEnemies)
-		{
-		case 8: objectSlotRunner->Draw(objectSlotRunner++);
-		case 7: objectSlotRunner->Draw(objectSlotRunner++);
-		case 6: objectSlotRunner->Draw(objectSlotRunner++);
-		case 5: objectSlotRunner->Draw(objectSlotRunner++);
-		case 4: objectSlotRunner->Draw(objectSlotRunner++);
-		case 3: objectSlotRunner->Draw(objectSlotRunner++);
-		case 2: objectSlotRunner->Draw(objectSlotRunner++);
-		case 1: objectSlotRunner->Draw(objectSlotRunner++);
-		}
-
-		objectSlotRunner =ObjectManager_effectSlots;
-		switch (ObjectManager_numEffects)
-		{
-		case 8: objectSlotRunner->Draw(objectSlotRunner++);
-		case 7: objectSlotRunner->Draw(objectSlotRunner++);
-		case 6: objectSlotRunner->Draw(objectSlotRunner++);
-		case 5: objectSlotRunner->Draw(objectSlotRunner++);
-		case 4: objectSlotRunner->Draw(objectSlotRunner++);
-		case 3: objectSlotRunner->Draw(objectSlotRunner++);
-		case 2: objectSlotRunner->Draw(objectSlotRunner++);
-		case 1: objectSlotRunner->Draw(objectSlotRunner++);
-		}
+		DrawEffectsAndEnemiesOrder1();
 	}
 	else
 	{
-		switch (ObjectManager_numEffects)
-		{
-		case 8: ObjectManager_effectSlots[7].Draw(&ObjectManager_effectSlots[7]); 
-		case 7: ObjectManager_effectSlots[6].Draw(&ObjectManager_effectSlots[6]); 
-		case 6: ObjectManager_effectSlots[5].Draw(&ObjectManager_effectSlots[5]); 
-		case 5: ObjectManager_effectSlots[4].Draw(&ObjectManager_effectSlots[4]); 
-		case 4: ObjectManager_effectSlots[3].Draw(&ObjectManager_effectSlots[3]); 
-		case 3: ObjectManager_effectSlots[2].Draw(&ObjectManager_effectSlots[2]); 
-		case 2: ObjectManager_effectSlots[1].Draw(&ObjectManager_effectSlots[1]); 
-		case 1: ObjectManager_effectSlots[0].Draw(&ObjectManager_effectSlots[0]); 
-		}
-
-		switch (ObjectManager_numEnemies)
-		{
-		case 8: ObjectManager_enemySlots[7].Draw(&ObjectManager_enemySlots[7]);
-		case 7: ObjectManager_enemySlots[6].Draw(&ObjectManager_enemySlots[6]);
-		case 6: ObjectManager_enemySlots[5].Draw(&ObjectManager_enemySlots[5]);
-		case 5: ObjectManager_enemySlots[4].Draw(&ObjectManager_enemySlots[4]);
-		case 4: ObjectManager_enemySlots[3].Draw(&ObjectManager_enemySlots[3]);
-		case 3: ObjectManager_enemySlots[2].Draw(&ObjectManager_enemySlots[2]);
-		case 2: ObjectManager_enemySlots[1].Draw(&ObjectManager_enemySlots[1]);
-		case 1: ObjectManager_enemySlots[0].Draw(&ObjectManager_enemySlots[0]);
-		}
+		DrawEffectsAndEnemiesOrder2();
 	}
 
 	ObjectManager_Item.Draw(&ObjectManager_Item);
 
-	drawOrderToggle++;
+	//drawOrderToggle = !drawOrderToggle;
+
+	// 9856
+	// 7249 without function
+	// 2607
+
+	ObjectManager_processNewObjects();
+}
+
+void DrawEffectsAndEnemiesOrder1(void)
+{
+	GameObject** runner = ObjectManager_activeEnemySlots;
+
+	switch (ObjectManager_numActiveEnemies)
+	{
+	case 8: (*runner)->Draw(*runner); runner++;
+	case 7: (*runner)->Draw(*runner); runner++;
+	case 6: (*runner)->Draw(*runner); runner++;
+	case 5: (*runner)->Draw(*runner); runner++;
+	case 4: (*runner)->Draw(*runner); runner++;
+	case 3: (*runner)->Draw(*runner); runner++;
+	case 2: (*runner)->Draw(*runner); runner++;
+	case 1: (*runner)->Draw(*runner); runner++;
+	}
+
+	switch (ObjectManager_numActiveEffects)
+	{
+	case 8: ObjectManager_activeEffectSlots[7]->Draw(ObjectManager_activeEffectSlots[7]);
+	case 7: ObjectManager_activeEffectSlots[6]->Draw(ObjectManager_activeEffectSlots[6]);
+	case 6: ObjectManager_activeEffectSlots[5]->Draw(ObjectManager_activeEffectSlots[5]);
+	case 5: ObjectManager_activeEffectSlots[4]->Draw(ObjectManager_activeEffectSlots[4]);
+	case 4: ObjectManager_activeEffectSlots[3]->Draw(ObjectManager_activeEffectSlots[3]);
+	case 3: ObjectManager_activeEffectSlots[2]->Draw(ObjectManager_activeEffectSlots[2]);
+	case 2: ObjectManager_activeEffectSlots[1]->Draw(ObjectManager_activeEffectSlots[1]);
+	case 1: ObjectManager_activeEffectSlots[0]->Draw(ObjectManager_activeEffectSlots[0]);
+	}
+}
+
+void DrawEffectsAndEnemiesOrder2(void)
+{
+	GameObject** runner = ObjectManager_activeEffectSlots;
+
+	switch (ObjectManager_numActiveEffects)
+	{
+	case 8: (*runner)->Draw(*runner); runner++;
+	case 7: (*runner)->Draw(*runner); runner++;
+	case 6: (*runner)->Draw(*runner); runner++;
+	case 5: (*runner)->Draw(*runner); runner++;
+	case 4: (*runner)->Draw(*runner); runner++;
+	case 3: (*runner)->Draw(*runner); runner++;
+	case 2: (*runner)->Draw(*runner); runner++;
+	case 1: (*runner)->Draw(*runner); runner++;
+	}
+
+	switch (ObjectManager_numActiveEnemies)
+	{
+	case 8: ObjectManager_activeEnemySlots[7]->Draw(ObjectManager_activeEnemySlots[7]);
+	case 7: ObjectManager_activeEnemySlots[6]->Draw(ObjectManager_activeEnemySlots[6]);
+	case 6: ObjectManager_activeEnemySlots[5]->Draw(ObjectManager_activeEnemySlots[5]);
+	case 5: ObjectManager_activeEnemySlots[4]->Draw(ObjectManager_activeEnemySlots[4]);
+	case 4: ObjectManager_activeEnemySlots[3]->Draw(ObjectManager_activeEnemySlots[3]);
+	case 3: ObjectManager_activeEnemySlots[2]->Draw(ObjectManager_activeEnemySlots[2]);
+	case 2: ObjectManager_activeEnemySlots[1]->Draw(ObjectManager_activeEnemySlots[1]);
+	case 1: ObjectManager_activeEnemySlots[0]->Draw(ObjectManager_activeEnemySlots[0]);
+	}
 }
 
 BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)

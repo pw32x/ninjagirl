@@ -15,4 +15,9 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCcreateInfo
 extern u8 ObjectManager_numEnemies;
 extern u8 ObjectManager_numEffects;
 
+void ObjectManager_processEnemyDeletes(void);
+void ObjectManager_processEffectDeletes(void);
+
+void ObjectManager_processNewObjects(void);
+
 #endif

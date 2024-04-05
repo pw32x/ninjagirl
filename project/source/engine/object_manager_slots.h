@@ -11,7 +11,15 @@
 
 extern GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 extern GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
+
+// enemies
+extern u8 ObjectManager_numActiveEnemies;
+extern GameObject* ObjectManager_activeEnemySlots[NUM_ENEMY_SLOTS];
 extern GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
+
+// effects
+extern u8 ObjectManager_numActiveEffects;
+extern GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
 extern GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
 extern GameObject ObjectManager_player;

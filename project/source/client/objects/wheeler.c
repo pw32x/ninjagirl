@@ -149,7 +149,7 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 
 	if (gameObject->health <= 0)
 	{
-		//ObjectManager_DestroyObject(gameObject);
+		ObjectManager_DestroyObject(gameObject);
 
 		EffectCreateInfo effectCreateInfo = 
 		{ 

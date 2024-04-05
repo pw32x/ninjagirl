@@ -287,6 +287,21 @@ void Player_BuildMetaSprite(GameObject* object)
 
 void Player_FireWeapon(GameObject* object)
 {
+	EffectCreateInfo effectCreateInfo = 
+	{ 
+		&impact_template, 
+		object->x, 
+		object->y,
+		object->speedx >> 2,
+		object->speedy >> 2,
+		0
+	};
+
+	ObjectManager_CreateEffect(&effectCreateInfo);
+
+
+	/*
+
 	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
 
 	if (pointingUp)
@@ -307,6 +322,7 @@ void Player_FireWeapon(GameObject* object)
 								 object->y + offset,
 								 playerFlipped);
 	}
+	*/
 }
 
 void Player_UpdateX(void)

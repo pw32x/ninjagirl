@@ -54,9 +54,208 @@ Todo
 		
 		WHAT export a plain map
 
-	turn on projectiles again
+	DONE turn on projectiles again
 	
-	benchmark projectiles
+	
+		_ObjectManager_CreatePlayerProjectile	2282	2282	1	4594/4594/4594.0
+		
+		_ObjectManager_CreatePlayerProjectile	1612	1612	1	3924/3924/3924.0		
+		_ObjectManager_CreateObjectByCreateInfo	24547	24547	22	1099/4414/3231.4 // worst case
+		
+		
+		_ObjectManager_CreatePlayerProjectile	3218	3218	2	3921/3921/3921.0
+		
+		_ObjectManager_CreatePlayerProjectile	1611	1611	1	3923/3923/3923.0
+		_ObjectManager_CreatePlayerProjectile	30819	30819	23	402/4059/3048.8 // worst case
+		
+		_ObjectManager_CreateObjectByCreateInfo	1468	1468	1	4118/4118/4118.0
+	
+	benchmark projectile spawn
+	
+	make it so that objects don't get updated until the next frame
+	
+		setup new objects, but don't update them
+			don't draw
+				setup animation durnig PendingUpdateFunction?
+			or lightweight update
+				
+				PendingUpdateFunction
+					switches to real update function when run
+					real update function comes from template
+	
+		update effects
+		update enemies
+			can spawn effects
+			can spawn new enemies
+		update projectiles 
+			can spawn effects
+		update enemy projectiles
+			can spawn effects
+			can spawn enemies
+		player
+			can spawn effects
+			can spawn projectiles
+		update command manager
+			can spawn enemies
+			can spawn objects
+			
+		draw
+			enemies
+			projectiles
+			enemy projectiles
+			player
+			pick up
+			effects
+	
+	#define ACTION_REMOVE 	0
+	#define ACTION_ADD 		1
+	
+	typedef struct
+	{
+		u8 index;
+		u8 action;
+	} GameObjectChange;
+	
+	#define MAX_ENEMIES 8
+	GameObject enemies[MAX_ENEMIES];
+	GameObject** activeEnemies[MAX_ENEMIES];
+	u8 enemyDeletes[MAX_ENEMIES]; 
+	GameObject* enemyAdds[MAX_ENEMIES]; 
+	
+	cases 
+	
+		add
+	
+			command runner 
+				spawn enemy
+				
+			enemy
+				spawn child enemy
+
+		remove
+		
+			enemy dies/offscreen
+		
+	object manager update
+	
+		spawnobject
+			find new_location
+				find hole in enemies[] // search from 0 to MAX_ENEMIES - 1 for active == FALSE. 
+					Start at last insertion
+			init enemies[new_location]
+				copy data, etc.
+			add to enemyAdds(&newObject)
+			
+		destroyobject
+			enemies[location]->active = FALSE
+			add to enemyDeletes(location)
+		
+		while (num enemy deletes)
+			update active enemies
+			
+	
+	[... rest of the frame ...]
+	
+		
+	
+	[... rest of the frame ...]
+		
+	while (num enemy ads)
+		update active enemies
+	
+
+
+
+	delete while going through active objects
+		
+		object has index to active object array
+		
+		update objects
+		
+			mark start locatoin
+			go through until end
+				while counter < end
+				
+					if delete
+						copy the pointer at start location to deleted location
+						move start location to next item
+						decrement object count
+
+			set start location to end location
+				invert direction
+				
+			
+					
+			
+		ObjectManager_Delete
+			copy pointer at start point to delete point
+			if going up, move start point up
+			if going down, move start point down
+			direction (1 or -1)
+				start += direction
+				
+	new objects array[8]
+	deleted active index array[8]
+	new counter = 0
+	delete counter = 0
+	search start ptr
+
+	add object
+		find hole (circular search from lsearch start ptr)
+		setup
+		add ptr to obj to new list
+		increment new counter
+		set search start ptr
+
+	delete object
+		add active index to delete list
+		increment delete counter
+		set search start ptr
+		
+
+	if delete counter
+		just go through the object list
+		and rebuild the active list
+
+		
+	[rest of frame]
+	
+	while add counter
+		go through add list
+		add counter--
+		
+	======================
+	
+	for every type...
+	
+		add object
+			find hole (circular search from lsearch start ptr)
+			setup
+			set active flag to pending
+			increment new counter
+			set search start ptr + 1
+			add to new objects
+			increment new object count
+			
+		delete object
+			set active to false
+			set delete flag to true
+			set search start ptr		
+			
+		if delete flag
+			rebuild the active list with active objects
+			
+			
+			
+		while new object count
+			append the new objects
+			set active flag to true
+			new object count--;
+		
+		
+	benchmark project update
+	
+	
 
 	benchmark enemy-projectile collisions
 	
