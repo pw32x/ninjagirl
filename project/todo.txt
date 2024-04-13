@@ -255,6 +255,19 @@ Todo
 		
 	benchmark project update
 	
+	bechmark
+		create bullet
+		create effect
+		create enemy
+		process bullet deletes
+		process effect deletes
+		process enemy deletes
+		update bullet
+		update effect
+		
+		process new objects
+		
+	can I mark no-parameter functions so that they run faster?
 	
 
 	benchmark enemy-projectile collisions

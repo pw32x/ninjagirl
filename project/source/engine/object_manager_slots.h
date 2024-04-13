@@ -22,6 +22,11 @@ extern u8 ObjectManager_numActiveEffects;
 extern GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
 extern GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
+// player projectiles
+extern GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
+extern u8 ObjectManager_numActiveProjectiles;
+extern GameObject* ObjectManager_activeProjectileSlots[NUM_PROJECTILE_SLOTS];
+
 extern GameObject ObjectManager_player;
 extern GameObject ObjectManager_Item;
 

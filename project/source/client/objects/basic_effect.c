@@ -12,9 +12,9 @@ void BasicEffect_Update(GameObject* object);
 
 GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	// 36/36/36.0
+
 	UNUSED(createInfo);
-	object->speedx = 0;
-	object->speedy = 0;
 	object->Update = BasicEffect_Update;
 
 	return object;
@@ -22,6 +22,8 @@ GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
 
 void BasicEffect_Update(GameObject* object)
 {
+	//SMS_setBackdropColor(COLOR_PINK);
+
 	object->x += object->speedx;
 	object->y += object->speedy;
 
@@ -38,4 +40,6 @@ void BasicEffect_Update(GameObject* object)
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
 		ObjectManager_DestroyObject(object);
+
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 }

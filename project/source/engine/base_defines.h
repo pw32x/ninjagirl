@@ -33,4 +33,6 @@
 #define COLOR_YELLOW		14
 #define COLOR_WHITE			15
 
+#define MSG SMS_debugPrintf
+
 #endif

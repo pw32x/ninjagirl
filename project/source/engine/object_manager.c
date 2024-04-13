@@ -37,19 +37,22 @@ u8 drawOrderToggle = FALSE;
 
 void ObjectManager_Update(void)
 {
-
-
 	ObjectManager_numVdpDrawItems = 0;
 
 	//SMS_setBackdropColor(COLOR_RED);
-
+	
 	ObjectManager_player.Update(&ObjectManager_player);
 	
 	ScrollManager_Update(&ObjectManager_player);
+	
+	switch (ObjectManager_numActiveProjectiles)
+	{
+		case 3: ObjectManager_activeProjectileSlots[2]->Update(ObjectManager_activeProjectileSlots[2]);
+		case 2: ObjectManager_activeProjectileSlots[1]->Update(ObjectManager_activeProjectileSlots[1]);
+		case 1: ObjectManager_activeProjectileSlots[0]->Update(ObjectManager_activeProjectileSlots[0]);
+	}
 
-	ObjectManager_projectileSlots[0].Update(&ObjectManager_projectileSlots[0]);
-	ObjectManager_projectileSlots[1].Update(&ObjectManager_projectileSlots[1]);
-	ObjectManager_projectileSlots[2].Update(&ObjectManager_projectileSlots[2]);
+	ObjectManager_processProjectileDeletes();
 
 	/*
 	ObjectManager_enemyProjectileSlots[0].Update(&ObjectManager_enemyProjectileSlots[0]);
@@ -60,7 +63,7 @@ void ObjectManager_Update(void)
 	// add new objects and enemies only after we've done the collision checks for the currently 
 	// active ones.
 	CommandManager_commandRunnerObject.Update(&CommandManager_commandRunnerObject);
-
+	
 	//SMS_setBackdropColor(COLOR_ORANGE);
 
 	switch (ObjectManager_numActiveEnemies)
@@ -74,10 +77,10 @@ void ObjectManager_Update(void)
 	case 2: ObjectManager_activeEnemySlots[1]->Update(ObjectManager_activeEnemySlots[1]);
 	case 1: ObjectManager_activeEnemySlots[0]->Update(ObjectManager_activeEnemySlots[0]);
 	}
-
+	
 	ObjectManager_processEnemyDeletes();
-
-
+	
+	/*
 	// perform collisions against projectiles
 	switch (ObjectManager_numActiveEnemies)
 	{
@@ -90,6 +93,7 @@ void ObjectManager_Update(void)
 	case 2: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[1]);
 	case 1: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[0]);
 	}
+	*/
 
 	switch (ObjectManager_numActiveEffects)
 	{
@@ -102,16 +106,16 @@ void ObjectManager_Update(void)
 	case 2: ObjectManager_activeEffectSlots[1]->Update(ObjectManager_activeEffectSlots[1]);
 	case 1: ObjectManager_activeEffectSlots[0]->Update(ObjectManager_activeEffectSlots[0]);
 	}
-
+	
 	ObjectManager_processEffectDeletes();
-
+	
 	/*
 	ObjectManager_Item.Update(&ObjectManager_Item);
 	*/
 
 	ObjectManager_player.screenx = ObjectManager_player.x - ScrollManager_horizontalScroll;
 	ObjectManager_player.screeny = ObjectManager_player.y;
-
+	
 	/*
 	if (ObjectManager_Item.alive)
 	{
@@ -130,7 +134,7 @@ void ObjectManager_Update(void)
 	}
 	*/
 
-
+	
 
 	//SMS_setBackdropColor(COLOR_YELLOW);
 	SMS_initSprites();
@@ -138,7 +142,7 @@ void ObjectManager_Update(void)
 	//DrawUtils_spritesDrawn = 0;
 
 	ObjectManager_player.Draw(&ObjectManager_player);
-
+	
 	//SMS_setBackdropColor(COLOR_GRAY);
 
 	/*
@@ -151,18 +155,22 @@ void ObjectManager_Update(void)
 	}
 	*/
 
-
-	ObjectManager_projectileSlots[0].Draw(&ObjectManager_projectileSlots[0]);
-	ObjectManager_projectileSlots[1].Draw(&ObjectManager_projectileSlots[1]);
-	ObjectManager_projectileSlots[2].Draw(&ObjectManager_projectileSlots[2]);
+	switch (ObjectManager_numActiveProjectiles)
+	{
+	case 3: ObjectManager_activeProjectileSlots[2]->Draw(ObjectManager_activeProjectileSlots[2]);
+	case 2: ObjectManager_activeProjectileSlots[1]->Draw(ObjectManager_activeProjectileSlots[1]);
+	case 1: ObjectManager_activeProjectileSlots[0]->Draw(ObjectManager_activeProjectileSlots[0]);
+	}
 /*
 	ObjectManager_enemyProjectileSlots[0].Draw(&ObjectManager_enemyProjectileSlots[0]);
 	ObjectManager_enemyProjectileSlots[1].Draw(&ObjectManager_enemyProjectileSlots[1]);
 	ObjectManager_enemyProjectileSlots[2].Draw(&ObjectManager_enemyProjectileSlots[2]);
 	*/
 
-
 	//SMS_setBackdropColor(COLOR_PINK);
+	
+	// put me at the end of the function once you're done optimizing
+	ObjectManager_processNewObjects();
 
 	if (drawOrderToggle)
 	{
@@ -172,16 +180,17 @@ void ObjectManager_Update(void)
 	{
 		DrawEffectsAndEnemiesOrder2();
 	}
-
-	ObjectManager_Item.Draw(&ObjectManager_Item);
+	
+	//ObjectManager_Item.Draw(&ObjectManager_Item);
 
 	//drawOrderToggle = !drawOrderToggle;
 
 	// 9856
 	// 7249 without function
 	// 2607
-
-	ObjectManager_processNewObjects();
+	
+	//ObjectManager_processNewObjects();
+	
 }
 
 void DrawEffectsAndEnemiesOrder1(void)
@@ -244,28 +253,28 @@ void DrawEffectsAndEnemiesOrder2(void)
 
 BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)
 {
-	objectSlotRunner = ObjectManager_projectileSlots;
-	u8 counter = NUM_PROJECTILE_SLOTS;
-
 	s16 left = gameObject->screenx + gameObject->rectLeft;
 	s16 top = gameObject->screeny + gameObject->rectTop;
 	s16 right = gameObject->screenx + gameObject->rectRight;
 	s16 bottom = gameObject->screeny + gameObject->rectBottom;
 
-	while (counter--)
+	GameObject** runner = ObjectManager_activeProjectileSlots;
+	GameObject** runnerEnd = ObjectManager_activeProjectileSlots + ObjectManager_numActiveProjectiles;
+
+	while (runner < runnerEnd)
 	{
-		if (objectSlotRunner->alive &&
-			left < objectSlotRunner->screenx + objectSlotRunner->rectRight &&
-			right > objectSlotRunner->screenx + objectSlotRunner->rectLeft &&
-			top < objectSlotRunner->screeny + objectSlotRunner->rectBottom &&
-			bottom > objectSlotRunner->screeny + objectSlotRunner->rectTop
-			)
+		GameObject* projectile = *runner;
+
+		if (left < projectile->screenx + projectile->rectRight &&
+			right > projectile->screenx + projectile->rectLeft &&
+			top < projectile->screeny + projectile->rectBottom &&
+			bottom > projectile->screeny + projectile->rectTop)
 		{
-			objectSlotRunner->HandleCollision(objectSlotRunner, gameObject);
+			projectile->HandleCollision(projectile, gameObject);
 			return TRUE;
 		}
 
-		objectSlotRunner++;
+		runner++;
 	}
 
 	return FALSE;

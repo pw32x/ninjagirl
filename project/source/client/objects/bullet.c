@@ -26,11 +26,13 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 {
+	// 708/708/708.0
+	// 80/80/80.0  without sound
 	UNUSED(createInfo);
 	object->Update = Bullet_Update;
 	object->HandleCollision = Bullet_HandleCollision;
 
-	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
+	//PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
 }

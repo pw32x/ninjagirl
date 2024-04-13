@@ -16,10 +16,11 @@ u8 ObjectManager_objectId = 0;
 u8 ObjectManager_numNewObjects;
 GameObject* ObjectManager_newObjects[MAX_NEW_OBJECTS];
 
-#define PENDING 2
+#define OBJECTSTATE_PENDING 2
 
 u8 ObjectManager_resetActiveEnemies;
 u8 ObjectManager_resetActiveEffects;
+u8 ObjectManager_resetActiveProjectiles;
 
 
 //GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
@@ -37,11 +38,13 @@ void ObjectManager_InitCreate(void)
 
 	ObjectManager_numActiveEnemies = 0;
 	ObjectManager_numActiveEffects = 0;
+	ObjectManager_numActiveProjectiles = 0;
 
 	//SMS_debugPrintf("createBeginFrame: num new enemies %d\n", ObjectManager_numNewObjects);
 	ObjectManager_numNewObjects = 0;
 	ObjectManager_resetActiveEnemies = FALSE;
 	ObjectManager_resetActiveEffects = FALSE;
+	ObjectManager_resetActiveProjectiles = FALSE;
 }
 
 GameObject* ObjectManager_CreateObject(u8 objectType)
@@ -60,13 +63,12 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		ObjectManager_numEnemies++;
 		return newObject;
 	}
-	else */
+	else
 		if (objectType == OBJECTTYPE_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
-	/*
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
@@ -75,8 +77,10 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
+
+	else 
 	*/
-	else if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
+		if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_enemyProjectileSlots;
 		counter = NUM_ENEMY_PROJECTILE_SLOTS;
@@ -215,18 +219,88 @@ void ObjectManager_processEffectDeletes(void)
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 }
 
+void ObjectManager_processProjectileDeletes(void)
+{
+	// 119/693/119.9 one bullet 
+	// 119/935/120.7 three bullets 
+	if (!ObjectManager_resetActiveProjectiles)
+		return;
+
+	//SMS_setBackdropColor(COLOR_RED);
+	//SMS_debugPrintf("rebulding active particle list\n");
+
+	GameObject** activeProjectilesRunner = ObjectManager_activeProjectileSlots;
+	GameObject** activeProjectilesRunnerEnd = ObjectManager_activeProjectileSlots + ObjectManager_numActiveProjectiles;
+
+	//SMS_debugPrintf("ObjectManager_numActiveProjectiles: %d\n", ObjectManager_numActiveProjectiles);
+
+	// iteration 1
+	// activeProjectilesRunner		->	[alive]
+	//									[dead]
+	// activeProjectilesRunnerEnd	->	[blah]
+	//
+	// iteration 2
+	//									[alive]
+	// activeProjectilesRunner		->	[dead]
+	// activeProjectilesRunnerEnd	->	[blah]
+	//
+	// copy + back up activeProjectilesRunnerEnd
+	//									[alive]
+	// activeProjectilesRunner/End	->	[blah]
+	//									[blah]
+	// iteration 3
+	//									[alive]
+	// activeProjectilesRunnerEnd	->	[blah]
+	// activeProjectilesRunner		->	[blah]
+	//
+	// Done
+
+	// every time we encounter a dead object, copy the pointer to the
+	// last active object to it. Also back up the activeProjectilesRunnerEnd by one.
+	// When activeProjectilesRunner activeProjectilesRunnerEnd cross, then we're done.
+	do
+	{
+		if (!(*activeProjectilesRunner)->alive)
+		{
+			activeProjectilesRunnerEnd--;
+			(*activeProjectilesRunner) = (*activeProjectilesRunnerEnd);
+		}
+
+		activeProjectilesRunner++;
+	} while (activeProjectilesRunner < activeProjectilesRunnerEnd);
+
+	ObjectManager_numActiveProjectiles = activeProjectilesRunnerEnd - ObjectManager_activeProjectileSlots;
+	ObjectManager_resetActiveProjectiles = FALSE;
+
+	//SMS_debugPrintf("ObjectManager_numActiveProjectiles: %d\n", ObjectManager_numActiveProjectiles);
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
+}
+
 void ObjectManager_processNewObjects(void)
 {
-	// append new enemies to active enemies
+	// 185/1493/186.4 three objects
+	// 106/1492/109.2 three objects
+	// 106/1477/109.4 three objects
+	// 106/1435/108.3 three objects
+	// 17/1047/19.6 three objects
+
+	if (!ObjectManager_numNewObjects)
+		return;
 
 	while (ObjectManager_numNewObjects)
 	{
-		//SMS_debugPrintf("Added new enemy to active list\n");
-		GameObject* object = ObjectManager_newObjects[ObjectManager_numNewObjects - 1];
+		//SMS_debugPrintf("Added new object to active list\n");
+		ObjectManager_numNewObjects--;
+		GameObject* object = ObjectManager_newObjects[ObjectManager_numNewObjects];
 		object->alive = TRUE;
 
 		switch (object->objectType)
 		{
+		case OBJECTTYPE_PROJECTILE:
+			//SMS_debugPrintf("appended new projectile\n");
+			ObjectManager_activeProjectileSlots[ObjectManager_numActiveProjectiles] = object;
+			ObjectManager_numActiveProjectiles++;
+			break;
 		case OBJECTTYPE_ENEMY:
 			//SMS_debugPrintf("appended new enemy\n");
 			ObjectManager_activeEnemySlots[ObjectManager_numActiveEnemies] = object;
@@ -238,8 +312,6 @@ void ObjectManager_processNewObjects(void)
 			ObjectManager_numActiveEffects++;
 			break;
 		}
-
-		ObjectManager_numNewObjects--;
 	}
 }
 
@@ -276,7 +348,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 		while (objectSlotRunner->alive)
 			objectSlotRunner++;
 
-		objectSlotRunner->alive = PENDING;
+		objectSlotRunner->alive = OBJECTSTATE_PENDING;
 
 		ObjectManager_newObjects[ObjectManager_numNewObjects] = objectSlotRunner;
 		ObjectManager_numNewObjects++;
@@ -285,12 +357,12 @@ GameObject* FindFreeGameObject(u8 objectType)
 
 		return objectSlotRunner;
 	}
+	/*
 	else if (objectType == OBJECTTYPE_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_projectileSlots;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
-	/*
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
@@ -369,12 +441,10 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 	while (gameObject->alive)
 		gameObject++;
 
-	gameObject->alive = PENDING;
+	gameObject->alive = OBJECTSTATE_PENDING;
 
 	ObjectManager_newObjects[ObjectManager_numNewObjects] = gameObject;
 	ObjectManager_numNewObjects++;
-
-	//gameObject->objectId = ObjectManager_objectId++;
 
 	const GameObjectTemplate* gameObjectTemplate = effectCreateInfo->gameObjectTemplate;
 
@@ -409,27 +479,41 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 	// 2825/2825/2825.0
 	// 532/3041/2114.7
 
-	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
+	// one 2654/2654/2654.0
+	// max 391/2790/1868.2
+
+	// one 2026/2026/2026.0 without sound
+
+	// one 2042/2042/2042.0
+	// max 156/2310/1745.2 without sound
+
+	//SMS_setBackdropColor(COLOR_BLUE);
+
+
+	if (ObjectManager_numActiveProjectiles == NUM_PROJECTILE_SLOTS)
+		return NULL;
 
 	GameObject* gameObject = ObjectManager_projectileSlots;
-
-	if (!gameObject->alive)  goto create; gameObject++;
-	if (!gameObject->alive)  goto create; gameObject++;
-	if (!gameObject->alive)  goto create; 
-	return NULL;
+	while (gameObject->alive)
+		gameObject++;
 
 create:
 
-	gameObject->alive = TRUE;
-	gameObject->objectId = ObjectManager_objectId++;
+	gameObject->alive = OBJECTSTATE_PENDING;
+
+	ObjectManager_newObjects[ObjectManager_numNewObjects] = gameObject;
+	ObjectManager_numNewObjects++;
+
+	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 
 	memcpy(&gameObject->x, &createInfo->startX, 4);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
-	if (gameObjectTemplate->resourceInfo != NULL)
-		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
+	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
 	gameObjectTemplate->initFunction(gameObject, createInfo);
+
+	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 
 	return gameObject;
 }
@@ -442,6 +526,7 @@ void ObjectManager_DestroyObject(GameObject* gameObject)
 	{
 	case OBJECTTYPE_ENEMY: ObjectManager_resetActiveEnemies = TRUE; break;
 	case OBJECTTYPE_EFFECT: ObjectManager_resetActiveEffects = TRUE; break;
+	case OBJECTTYPE_PROJECTILE: ObjectManager_resetActiveProjectiles = TRUE; break;
 	default:
 		gameObject->Update = ObjectUtils_gameObjectDoNothing;
 		gameObject->Draw = DrawUtils_drawNothing;
