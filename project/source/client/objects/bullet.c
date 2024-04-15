@@ -32,7 +32,7 @@ GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 	object->Update = Bullet_Update;
 	object->HandleCollision = Bullet_HandleCollision;
 
-	//PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
+	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
 }
@@ -56,25 +56,37 @@ void EraseTiles(GameObject* object)
 
 void Bullet_Update(GameObject* object)
 {
+	// 1859/1879/1859.4
+	// 2859/2879/2859.4
+	// 2757/2814/2758.2
+	// 2667/2724/2668.2
+
 	object->x += object->speedx;
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	s16 screenX = object->x - ScrollManager_horizontalScroll;
+	s16 screenY = object->y - ScrollManager_verticalScroll;
 
-	if (object->screenx > SCREEN_RIGHT ||
-		object->screeny > SCREEN_BOTTOM ||
-		object->screenx < SCREEN_LEFT ||
-		object->screeny < SCREEN_TOP)
+	if (screenX > SCREEN_RIGHT ||
+		screenY > SCREEN_BOTTOM ||
+		screenX < SCREEN_LEFT ||
+		screenY < SCREEN_TOP)
 	{
 		ObjectManager_DestroyObject(object);
 	}
 
-	s16 blockX = P2B(object->x);
-	s16 blockY = P2B(object->y);
+	object->screenx = screenX;
+	object->screeny = screenY;
 
-	if (GET_TERRAIN(blockX, blockY) == TERRAIN_SOLID &&
+	object->screenRectLeft = screenX + object->rectLeft;
+	object->screenRectTop = screenY + object->rectTop;
+	object->screenRectRight = screenX + object->rectRight;
+	object->screenRectBottom = screenY + object->rectBottom;
+
+	s16 blockX = P2B(object->x);
+
+	if (GET_TERRAIN(blockX, P2B(object->y)) == TERRAIN_SOLID &&
 		// don't get affected by terrain at the edge of the screen if the block isn't
 		// completely visible on screen. otherwise we might hit the terrain of the other
 		// of the screen because of the wrapping.

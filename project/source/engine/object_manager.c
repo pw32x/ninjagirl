@@ -22,7 +22,8 @@ GameObject* objectSlotRunner;
 u8 ObjectManager_currentEnemyIndex;
 
 
-BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject);
+BOOL ObjectManagerUtils_collideAgainstBullets(GameObject* gameObject);
+void ObjectManagerUtils_collideAgainstEnemies(GameObject* gameObject);
 
 void ObjectManager_Init(void)
 {
@@ -32,6 +33,7 @@ void ObjectManager_Init(void)
 
 void DrawEffectsAndEnemiesOrder1(void);
 void DrawEffectsAndEnemiesOrder2(void);
+void ObjectManager_doProjectileCollisions(void);
 
 u8 drawOrderToggle = FALSE;
 
@@ -80,21 +82,6 @@ void ObjectManager_Update(void)
 	
 	ObjectManager_processEnemyDeletes();
 	
-	/*
-	// perform collisions against projectiles
-	switch (ObjectManager_numActiveEnemies)
-	{
-	case 8: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[7]);
-	case 7: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[6]);
-	case 6: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[5]);
-	case 5: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[4]);
-	case 4: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[3]);
-	case 3: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[2]);
-	case 2: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[1]);
-	case 1: ObjectManagerUtils_doProjectCollisionCheck(ObjectManager_activeEnemySlots[0]);
-	}
-	*/
-
 	switch (ObjectManager_numActiveEffects)
 	{
 	case 8: ObjectManager_activeEffectSlots[7]->Update(ObjectManager_activeEffectSlots[7]);
@@ -108,6 +95,24 @@ void ObjectManager_Update(void)
 	}
 	
 	ObjectManager_processEffectDeletes();
+
+	// perform collisions against projectiles
+
+	ObjectManager_doProjectileCollisions();
+
+	/*
+	switch (ObjectManager_numActiveEnemies)
+	{
+	case 8: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[7]);
+	case 7: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[6]);
+	case 6: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[5]);
+	case 5: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[4]);
+	case 4: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[3]);
+	case 3: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[2]);
+	case 2: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[1]);
+	case 1: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[0]);
+	}
+	*/
 	
 	/*
 	ObjectManager_Item.Update(&ObjectManager_Item);
@@ -144,16 +149,6 @@ void ObjectManager_Update(void)
 	ObjectManager_player.Draw(&ObjectManager_player);
 	
 	//SMS_setBackdropColor(COLOR_GRAY);
-
-	/*
-	GameObject** activeObjectRunner = ObjectManager_activeProjectiles;
-	counter = ObjectManager_activeProjectilesCount;
-	while (counter--)
-	{
-	(*activeObjectRunner)->Draw(*activeObjectRunner);
-	activeObjectRunner++;
-	}
-	*/
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
@@ -251,7 +246,56 @@ void DrawEffectsAndEnemiesOrder2(void)
 	}
 }
 
-BOOL ObjectManagerUtils_doProjectCollisionCheck(GameObject* gameObject)
+void ObjectManager_doProjectileCollisions(void)
+{
+	// 71/5974/87.0
+	// 71/2503/204.4
+	// max 71/7072/985.6
+	// 71/2761/302.4
+	// max 71/7358/462.6
+
+	switch (ObjectManager_numActiveProjectiles)
+	{
+	case 3: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[2]);
+	case 2: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[1]);
+	case 1: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[0]);
+	}
+}
+
+
+void ObjectManagerUtils_collideAgainstEnemies(GameObject* gameObject)
+{
+	GameObject** runner = ObjectManager_activeEnemySlots;
+	GameObject** runnerEnd = ObjectManager_activeEnemySlots + ObjectManager_numActiveEnemies;
+
+	while (runner < runnerEnd)
+	{
+		GameObject* enemy = *runner;
+
+		if (!enemy->alive)
+			goto collide_continue;
+
+		if (gameObject->screenRectLeft > enemy->screenRectRight)
+			goto collide_continue;
+
+		if (gameObject->screenRectRight < enemy->screenRectLeft)
+			goto collide_continue;
+
+		if (gameObject->screenRectTop > enemy->screenRectBottom)
+			goto collide_continue;
+
+		if (gameObject->screenRectBottom < enemy->screenRectTop)
+			goto collide_continue;
+
+		gameObject->HandleCollision(gameObject, enemy);
+		return;
+
+collide_continue:
+		runner++;
+	}
+}
+
+BOOL ObjectManagerUtils_collideAgainstBullets(GameObject* gameObject)
 {
 	s16 left = gameObject->screenx + gameObject->rectLeft;
 	s16 top = gameObject->screeny + gameObject->rectTop;

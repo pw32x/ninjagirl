@@ -64,6 +64,9 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 
 void Wheeler_Update(WheelerObjectType* object)
 {
+	// 2696/3477/2728.1
+	// 3579/4360/3615.5 added screenrect computation
+
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	object->UpdateAnimation((GameObject*)object);
 
@@ -78,7 +81,8 @@ void Wheeler_Update(WheelerObjectType* object)
 	//
 
 	// turn around if hit a wall
-	if (GET_TERRAIN(PhysicsVars_GroundBlockX, PhysicsVars_GroundBlockY - 1) != TERRAIN_EMPTY)
+	if (GET_TERRAIN(PhysicsVars_GroundBlockX, 
+					PhysicsVars_GroundBlockY - 1) != TERRAIN_EMPTY)
 	{
 		object->speedx = -object->speedx;
 
@@ -100,16 +104,24 @@ void Wheeler_Update(WheelerObjectType* object)
 	
 
 	// world to screen transformation
-	object->screenx = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;
-	object->screeny = V2P(PhysicsVars_Y) - ScrollManager_verticalScroll;
+	s16 screenX = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;
+	s16 screenY = V2P(PhysicsVars_Y) - ScrollManager_verticalScroll;
+
+	object->screenx = screenX;
+	object->screeny = screenY;
+
+	object->screenRectLeft = screenX + object->rectLeft;
+	object->screenRectTop = screenY + object->rectTop;
+	object->screenRectRight = screenX + object->rectRight;
+	object->screenRectBottom = screenY + object->rectBottom;
 
 	// update position
 	object->x = PhysicsVars_X;
 	object->y = PhysicsVars_Y;
 
 	// destroy if hitting the side edges of the screen
-	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE ||
-		object->screenx + object->rectRight > SCREEN_WIDTH)
+	if (object->screenRectLeft < SCREEN_LEFT_EDGE ||
+		object->screenRectRight > SCREEN_WIDTH)
 	{
 		ObjectManager_DestroyObject((GameObject*)object);
 		return;

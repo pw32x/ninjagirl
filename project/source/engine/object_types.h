@@ -40,6 +40,10 @@
 	s16 y;\
 	s16 screenx;\
 	s16 screeny;\
+	s16 screenRectLeft;\
+	s16 screenRectTop;\
+	s16 screenRectRight;\
+	s16 screenRectBottom;\
 	\
 	s16 speedx;\
 	s16 speedy;\
@@ -60,6 +64,8 @@
 	u8 objectId;\
 	u8 pixelWidth; \
 	u8 pixelHeight
+
+
 
 
 
