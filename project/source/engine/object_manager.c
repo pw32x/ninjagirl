@@ -56,6 +56,15 @@ void ObjectManager_Update(void)
 
 	ObjectManager_processProjectileDeletes();
 
+	switch (ObjectManager_numActiveEnemyProjectiles)
+	{
+	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Update(ObjectManager_activeEnemyProjectileSlots[2]);
+	case 2: ObjectManager_activeEnemyProjectileSlots[1]->Update(ObjectManager_activeEnemyProjectileSlots[1]);
+	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Update(ObjectManager_activeEnemyProjectileSlots[0]);
+	}
+
+	ObjectManager_processEnemyProjectileDeletes();
+
 	/*
 	ObjectManager_enemyProjectileSlots[0].Update(&ObjectManager_enemyProjectileSlots[0]);
 	ObjectManager_enemyProjectileSlots[1].Update(&ObjectManager_enemyProjectileSlots[1]);
@@ -164,8 +173,12 @@ void ObjectManager_Update(void)
 
 	//SMS_setBackdropColor(COLOR_PINK);
 	
-	// put me at the end of the function once you're done optimizing
-	ObjectManager_processNewObjects();
+	switch (ObjectManager_numActiveEnemyProjectiles)
+	{
+	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Draw(ObjectManager_activeEnemyProjectileSlots[2]);
+	case 2: ObjectManager_activeEnemyProjectileSlots[1]->Draw(ObjectManager_activeEnemyProjectileSlots[1]);
+	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Draw(ObjectManager_activeEnemyProjectileSlots[0]);
+	}
 
 	if (drawOrderToggle)
 	{
@@ -184,7 +197,7 @@ void ObjectManager_Update(void)
 	// 7249 without function
 	// 2607
 	
-	//ObjectManager_processNewObjects();
+	ObjectManager_processNewObjects();
 	
 }
 

@@ -28,7 +28,7 @@ void Wheeler_Fall(WheelerObjectType* object);
 
 void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 
-#define SPEEDX 0 //12
+#define SPEEDX 12
 
 // update x
 // update y
@@ -56,7 +56,7 @@ GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo
 	else
 	{
 		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_RIGHT_FRAME_INDEX);
-		object->speedx = 28;
+		object->speedx = SPEEDX;
 	}	
 
 	return (GameObject*)object;

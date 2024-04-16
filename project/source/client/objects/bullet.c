@@ -32,6 +32,12 @@ GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 	object->Update = Bullet_Update;
 	object->HandleCollision = Bullet_HandleCollision;
 
+	//MSG("%d\n", object->speedx);
+	//MSG("%d\n", object->speedy);
+	//
+	//MSG("%d\n", createInfo->speedX);
+	//MSG("%d\n", createInfo->speedY);
+
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
@@ -64,6 +70,9 @@ void Bullet_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
+	//MSG("%d\n", object->speedx);
+	//MSG("%d\n", object->speedy);
+
 	// world to screen transformation
 	s16 screenX = object->x - ScrollManager_horizontalScroll;
 	s16 screenY = object->y - ScrollManager_verticalScroll;
@@ -73,6 +82,20 @@ void Bullet_Update(GameObject* object)
 		screenX < SCREEN_LEFT ||
 		screenY < SCREEN_TOP)
 	{
+		/*
+		EffectCreateInfo effectCreateInfo = 
+		{ 
+			&impact_template, 
+			object->x - 16, 
+			object->y,
+			object->speedx >> 2,
+			object->speedy >> 2,
+			0
+		};
+
+		ObjectManager_CreateEffect(&effectCreateInfo);
+		*/
+
 		ObjectManager_DestroyObject(object);
 	}
 

@@ -9,10 +9,11 @@
 #define OBJECTTYPE_PROJECTILE			0
 #define OBJECTTYPE_ENEMY				1
 #define OBJECTTYPE_EFFECT				2
-#define OBJECTTYPE_PLAYER				3
-#define OBJECTTYPE_COMMANDRUNNER		4
-#define OBJECTTYPE_ITEM					5
-#define OBJECTTYPE_ENEMY_PROJECTILE		6
+#define OBJECTTYPE_ENEMY_PROJECTILE		4
+#define OBJECTTYPE_PLAYER				5
+#define OBJECTTYPE_COMMANDRUNNER		6
+#define OBJECTTYPE_ITEM					7
+
 
 #define GAME_OBJECT_FIELDS \
 	void (*Update)(struct game_object* gameObject);\
@@ -38,15 +39,15 @@
 	\
 	s16 x;\
 	s16 y;\
+	s16 speedx;\
+	s16 speedy;\
+	\
 	s16 screenx;\
 	s16 screeny;\
 	s16 screenRectLeft;\
 	s16 screenRectTop;\
 	s16 screenRectRight;\
 	s16 screenRectBottom;\
-	\
-	s16 speedx;\
-	s16 speedy;\
 	\
 	u8 alive;\
 	u8 flipped;\

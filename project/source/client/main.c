@@ -70,6 +70,7 @@ void main(void)
 		SMS_setBackdropColor(COLOR_LIGHT_GREEN);
 		// VBLANK
 		SMS_waitForVBlank ();
+		SMS_setBackdropColor(COLOR_DARK_GREEN);
 		//SMS_setBackdropColor(COLOR_DARK_BLUE);
 		SMS_copySpritestoSAT(); // UNSAFE_SMS_copySpritestoSAT(); ???
 
