@@ -29,7 +29,7 @@ void AICommandUtils_updateAICommandsRunner(struct game_object* object, AICommand
 			aiCommandsRunner->currentAICommandItem = (const AICommandItem*)data;
 			break;
 		case AI_COMMAND_SET_SPEEDX:
-			object->speedx = (s16)data;
+			object->speedx = (s8)data;
 			aiCommandsRunner->waitTime = 1;
 			return;
 		case AI_COMMAND_SET_SPEEDY:

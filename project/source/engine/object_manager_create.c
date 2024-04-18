@@ -117,7 +117,7 @@ void ObjectManager_processEnemyDeletes(void)
 	if (!ObjectManager_resetActiveEnemies)
 		return;
 
-	//SMS_debugPrintf("rebulding active enemy list\n");
+	//SMS_debugPrintf("rebuilding active enemy list\n");
 
 	GameObject** activeEnemiesRunner = ObjectManager_activeEnemySlots;
 	GameObject** activeEnemiesRunnerEnd = ObjectManager_activeEnemySlots + ObjectManager_numActiveEnemies;
@@ -173,7 +173,7 @@ void ObjectManager_processEffectDeletes(void)
 		return;
 
 	//SMS_setBackdropColor(COLOR_RED);
-	//SMS_debugPrintf("rebulding active effect list\n");
+	//SMS_debugPrintf("rebuilding active effect list\n");
 
 	GameObject** activeEffectsRunner = ObjectManager_activeEffectSlots;
 	GameObject** activeEffectsRunnerEnd = ObjectManager_activeEffectSlots + ObjectManager_numActiveEffects;
@@ -230,7 +230,7 @@ void ObjectManager_processProjectileDeletes(void)
 		return;
 
 	//SMS_setBackdropColor(COLOR_RED);
-	//SMS_debugPrintf("rebulding active particle list\n");
+	//SMS_debugPrintf("rebuilding active particle list\n");
 
 	GameObject** activeProjectilesRunner = ObjectManager_activeProjectileSlots;
 	GameObject** activeProjectilesRunnerEnd = ObjectManager_activeProjectileSlots + ObjectManager_numActiveProjectiles;
@@ -287,7 +287,7 @@ void ObjectManager_processEnemyProjectileDeletes(void)
 		return;
 
 	//SMS_setBackdropColor(COLOR_RED);
-	SMS_debugPrintf("rebulding active enemy projectile list\n");
+	//SMS_debugPrintf("rebuilding active enemy projectile list\n");
 
 	GameObject** activeEnemyProjectilesRunner = ObjectManager_activeEnemyProjectileSlots;
 	GameObject** activeEnemyProjectilesRunnerEnd = ObjectManager_activeEnemyProjectileSlots + ObjectManager_numActiveEnemyProjectiles;

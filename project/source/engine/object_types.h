@@ -39,8 +39,8 @@
 	\
 	s16 x;\
 	s16 y;\
-	s16 speedx;\
-	s16 speedy;\
+	s8 speedx;\
+	s8 speedy;\
 	\
 	s16 screenx;\
 	s16 screeny;\

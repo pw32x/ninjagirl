@@ -9,8 +9,8 @@
 const GameObjectTemplate* gameObjectTemplate;\
 s16 startX;\
 s16 startY;\
-s16 speedX;\
-s16 speedY;
+s8 speedX;\
+s8 speedY;
 
 typedef struct create_info
 {

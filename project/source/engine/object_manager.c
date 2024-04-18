@@ -281,6 +281,9 @@ void ObjectManagerUtils_collideAgainstEnemies(GameObject* gameObject)
 	GameObject** runner = ObjectManager_activeEnemySlots;
 	GameObject** runnerEnd = ObjectManager_activeEnemySlots + ObjectManager_numActiveEnemies;
 
+	s16 screenx = gameObject->screenx;
+	s16 screeny = gameObject->screeny;
+
 	while (runner < runnerEnd)
 	{
 		GameObject* enemy = *runner;
@@ -288,16 +291,16 @@ void ObjectManagerUtils_collideAgainstEnemies(GameObject* gameObject)
 		if (!enemy->alive)
 			goto collide_continue;
 
-		if (gameObject->screenRectLeft > enemy->screenRectRight)
+		if (screenx > enemy->screenRectRight)
 			goto collide_continue;
 
-		if (gameObject->screenRectRight < enemy->screenRectLeft)
+		if (screenx < enemy->screenRectLeft)
 			goto collide_continue;
 
-		if (gameObject->screenRectTop > enemy->screenRectBottom)
+		if (screeny > enemy->screenRectBottom)
 			goto collide_continue;
 
-		if (gameObject->screenRectBottom < enemy->screenRectTop)
+		if (screeny < enemy->screenRectTop)
 			goto collide_continue;
 
 		gameObject->HandleCollision(gameObject, enemy);

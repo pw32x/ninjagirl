@@ -267,6 +267,24 @@ Todo
 		
 		DONE process new objects
 		
+	
+	
+	update AI strategy
+	
+		every frame
+			update speed and animation of everybody
+			screen visibility
+	
+		alternate frames
+	
+			enemies + projectiles update
+			effects + player projectile updates
+	
+	alternate checking of collisions
+		player projectiles + enemies
+		(enemies & enemy projectiles) + player
+		
+		
 	can I mark no-parameter functions so that they run faster?
 	
 

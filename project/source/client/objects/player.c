@@ -39,8 +39,8 @@ u16 playerMetaSpriteFrameIndexes[GUN_GIRL_NUMFRAMES];
 
 s16 playerX;
 s16 playerY;
-s16 playerSpeedX;
-s16 playerSpeedY;
+s8 playerSpeedX;
+s8 playerSpeedY;
 
 s16 playerRectLeftV;
 s16 playerRectRightV;

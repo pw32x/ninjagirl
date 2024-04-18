@@ -58,7 +58,7 @@ namespace BuildMaster
             addFlag("--peep-file " + PeepRules_Path);
 
 
-            //addFlag("--max-allocs-per-node 100000");
+            addFlag("--max-allocs-per-node 10000");
             addFlag("--opt-code-speed");
             //addFlag("--vc");
 
