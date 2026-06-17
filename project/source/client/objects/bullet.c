@@ -29,37 +29,27 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 {
-	// 708/708/708.0
-	// 80/80/80.0  without sound
-	UNUSED(createInfo);
-
 	s8 speedx = createInfo->speedX;
 	s8 speedy = createInfo->speedY;
 
-	u8 speedxNegative = speedx < 0;
-	u8 speedyNegative = speedy < 0;
+	object->speedx = speedx;
+	object->speedy = speedy;
 
-	s8 absSpeedX = speedxNegative ? -speedx : speedx;
-	s8 absSpeedY = speedyNegative ? -speedy : speedy;
+	s8 absSpeedX = speedx < 0 ? -speedx : speedx;
+	s8 absSpeedY = speedy < 0 ? -speedy : speedy;
 
 	if (absSpeedY > absSpeedX)
 	{
-		object->Update = speedyNegative ? Bullet_UpdateUp : Bullet_UpdateDown;
+		object->Update = speedy < 0 ? Bullet_UpdateUp : Bullet_UpdateDown;
 	}
 	else
 	{
-		object->Update = speedxNegative ? Bullet_UpdateLeft : Bullet_UpdateRight;
+		object->Update = speedx < 0 ? Bullet_UpdateLeft : Bullet_UpdateRight;
 	}
 
 	object->HandleCollision = Bullet_HandleCollision;
 
-	//MSG("%d\n", object->speedx);
-	//MSG("%d\n", object->speedy);
-	//
-	//MSG("%d\n", createInfo->speedX);
-	//MSG("%d\n", createInfo->speedY);
-
-	//PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
+	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
 }
@@ -73,10 +63,12 @@ void Bullet_UpdateLeft(GameObject* object)
 	object->screenx = object->x - ScrollManager_horizontalScroll;
 	object->screeny = object->y - ScrollManager_verticalScroll;
 
-	if (object->screenx < SCREEN_LEFT)
+	if (object->screenx < SCREEN_LEFT_EDGE)
 	{
 		ObjectManager_DestroyObject(object);
 	}
+
+	//SMS_debugPrintf("left\n");
 }
 
 void Bullet_UpdateRight(GameObject* object)
@@ -95,6 +87,8 @@ void Bullet_UpdateRight(GameObject* object)
 	{
 		ObjectManager_DestroyObject(object);
 	}
+
+	//SMS_debugPrintf("right\n");
 }
 
 

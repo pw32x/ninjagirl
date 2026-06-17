@@ -7,12 +7,14 @@
 #define WEAPON_SHOTGUN		1
 #define WEAPON_NUM_WEAPONS	2
 
+#define FIRE_UPWARDS	0
+#define FIRE_DOWNWARDS	1
+#define FIRE_LEFT		2
+#define FIRE_RIGHT		3
+
 void WeaponManager_InitGame(void);
-
-typedef void (*WeaponManager_FireFunction)(s16 x, s16 y, u8 flipped);
-
 void WeaponManager_SwitchWeapon(u8 weaponType);
-extern WeaponManager_FireFunction WeaponManager_FireWeapon;
-extern WeaponManager_FireFunction WeaponManager_FireWeaponVertical;
+void WeaponManager_Fire(s16 playerX, s16 playerY, u8 playerFlipped, u8 playerDucking, u8 fireDirection);
+
 
 #endif

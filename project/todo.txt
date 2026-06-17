@@ -1,74 +1,28 @@
-Todo
+	fix shotgun
+	
+	test weapon pickups and switching
+	
+	switch to using GSLib for scrolling
 
+	stop using CreateInfos for spawning in-game
 	
-	DONE add enemy projectile type
-		
-	DONE use Graphics Gale layers for different draw calls
-		complex explosions
-		player ponytail
-		spark effects
-		flying debris
-		smoke trails
-		
-	NAH make the clouds only be on top
-		or, make standalone puffy clouds
-		remove the duplicate tiles that have clouds in them
-		REASON
-			I suck at clouds
-			there wasn't much of a savings
-		
-	DONE re-add some of the elements of the old tile set into the new one
-		
-	DONE fix the collision areas in updated field
+	maybe simplify createInfos only for level spawn data
 	
-	DONE sketch out idea for the level and player intro
-		
-	DONE why am I using two different variables for the player?
-		and two different point spaces?
-		
-	update devkitSMS
+	simplification
 	
-		DONE don't forget to integrate my changes
-		
-		DONE disable zoomed sprites
-		
-		DONE test out the current version
-		
-		DONE remove my versions of the functions
-		
-		DONE try metasprites
 
-	DONE how to reduce self time in DrawUtils_draw?
-		
+	   
+	   lower the number of enemies
+	   
+	   simplify object handling code
+	   
+    alternate collisions?
+	
+	
+******************************************
 
-	optimize updating the scroll column
-	
-		DONE add option to export map as a series of columns
-		DONE without metatile stuff
-		NAH array of bytes, max 256 tiles
-	
-		NAH remove all the metatile stuff
-		
-		DONE don't use multiplication in RightScroll_Update_Strip and TerrainManager_UpdateTerrain_Strip
-			increment when hitting a new column
-		
-		WHAT export a plain map
 
-	DONE turn on projectiles again
-	
-	
-		_ObjectManager_CreatePlayerProjectile	2282	2282	1	4594/4594/4594.0
-		
-		_ObjectManager_CreatePlayerProjectile	1612	1612	1	3924/3924/3924.0		
-		_ObjectManager_CreateObjectByCreateInfo	24547	24547	22	1099/4414/3231.4 // worst case
-		
-		
-		_ObjectManager_CreatePlayerProjectile	3218	3218	2	3921/3921/3921.0
-		
-		_ObjectManager_CreatePlayerProjectile	1611	1611	1	3923/3923/3923.0
-		_ObjectManager_CreatePlayerProjectile	30819	30819	23	402/4059/3048.8 // worst case
-		
-		_ObjectManager_CreateObjectByCreateInfo	1468	1468	1	4118/4118/4118.0
+Old Todo	
 	
 	benchmark projectile spawn
 	

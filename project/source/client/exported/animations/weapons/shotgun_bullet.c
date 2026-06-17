@@ -1,10 +1,10 @@
-#include "shotgun.h"
+#include "shotgun_bullet.h"
 #include "engine\draw_utils.h"
 #include "engine\animation_types.h"
 #include "engine\animation_utils.h"
 
 
-unsigned char const shotgunTileData[256] = // 8tiles x 32 bytes
+unsigned char const shotgun_bulletTileData[256] = // 8tiles x 32 bytes
 {
 // tile: 0
     0x30, 0x00, 0x00, 0x30, 
@@ -80,78 +80,78 @@ unsigned char const shotgunTileData[256] = // 8tiles x 32 bytes
     0xe0, 0x00, 0x00, 0xe0, 
 };
 
-const s8 shotgunFrame0MetaSprites[] = 
+const s8 shotgun_bulletFrame0MetaSprites[] = 
 {
     -3, -3, 0,
     (s8)0x80 // end marker
 };
 
-const s8 shotgunFrame1MetaSprites[] = 
+const s8 shotgun_bulletFrame1MetaSprites[] = 
 {
     -4, -4, 2,
     (s8)0x80 // end marker
 };
 
-const s8 shotgunFrame2MetaSprites[] = 
+const s8 shotgun_bulletFrame2MetaSprites[] = 
 {
     -8, -8, 4,
     0, -8, 6,
     (s8)0x80 // end marker
 };
 
-extern const MetaSpriteAnimationFrame shotgunFrame0;
-extern const MetaSpriteAnimationFrame shotgunFrame1;
-extern const MetaSpriteAnimationFrame shotgunFrame2;
+extern const MetaSpriteAnimationFrame shotgun_bulletFrame0;
+extern const MetaSpriteAnimationFrame shotgun_bulletFrame1;
+extern const MetaSpriteAnimationFrame shotgun_bulletFrame2;
 
 
-const MetaSpriteAnimationFrame shotgunFrame0 = 
+const MetaSpriteAnimationFrame shotgun_bulletFrame0 = 
 {
-    shotgunFrame0MetaSprites,
+    shotgun_bulletFrame0MetaSprites,
     2, // frame time
-    &shotgunFrame1, // next frame
+    &shotgun_bulletFrame1, // next frame
 };
 
-const MetaSpriteAnimationFrame shotgunFrame1 = 
+const MetaSpriteAnimationFrame shotgun_bulletFrame1 = 
 {
-    shotgunFrame1MetaSprites,
+    shotgun_bulletFrame1MetaSprites,
     7, // frame time
-    &shotgunFrame2, // next frame
+    &shotgun_bulletFrame2, // next frame
 };
 
-const MetaSpriteAnimationFrame shotgunFrame2 = 
+const MetaSpriteAnimationFrame shotgun_bulletFrame2 = 
 {
-    shotgunFrame2MetaSprites,
+    shotgun_bulletFrame2MetaSprites,
     2, // frame time
-    &shotgunFrame0, // next frame
+    &shotgun_bulletFrame0, // next frame
 };
-const MetaSpriteAnimationFrame* const shotgunFrames[3] = 
+const MetaSpriteAnimationFrame* const shotgun_bulletFrames[3] = 
 {
-    &shotgunFrame0,
-    &shotgunFrame1,
-    &shotgunFrame2,
+    &shotgun_bulletFrame0,
+    &shotgun_bulletFrame1,
+    &shotgun_bulletFrame2,
 };
 
-const AnimationSetup const shotgunSetup = 
+const AnimationSetup const shotgun_bulletSetup = 
 {
     DrawUtils_drawMetasprite,
     AnimationUtils_updateMetaSpriteAnimation,
-    &shotgunFrame0,
+    &shotgun_bulletFrame0,
     0,
     2,
 };
 
-u8 shotgunVdpLocation;
+u8 shotgun_bulletVdpLocation;
 
-const MetaSpriteAnimation shotgun = 
+const MetaSpriteAnimation shotgun_bullet = 
 {
     METASPRITE_ANIMATION_RESOURCE_TYPE, 
-    &shotgunSetup,
-    (const MetaSpriteAnimationFrame** const)shotgunFrames,
-    (unsigned char* const)shotgunTileData, // start of the sprite data
+    &shotgun_bulletSetup,
+    (const MetaSpriteAnimationFrame** const)shotgun_bulletFrames,
+    (unsigned char* const)shotgun_bulletTileData, // start of the sprite data
     3, // number of frames
     16, // width in pixels
     16, // height in pixels
     8, // the total amount of tiles in animation
     4, // the max amount of sprite tiles in a frame
-    &shotgunVdpLocation,
+    &shotgun_bulletVdpLocation,
 };

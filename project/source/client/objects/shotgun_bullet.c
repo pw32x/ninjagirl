@@ -1,4 +1,4 @@
-#include "shotgun.h"
+#include "shotgun_bullet.h"
 #include "SMSlib.h"
 #include "engine/base_defines.h"
 #include "engine/draw_utils.h"
@@ -24,11 +24,14 @@
 void Shotgun_Update(GameObject* object);
 void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Shotgun_Update;
 	object->HandleCollision = Shotgun_HandleCollision;
+
+	object->speedx = createInfo->speedX;
+	object->speedy = createInfo->speedY;
 
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 

@@ -285,8 +285,12 @@ void Player_BuildMetaSprite(GameObject* object)
 
 }
 
+
+
+
 void Player_FireWeapon(GameObject* object)
 {
+	/*
 	EffectCreateInfo effectCreateInfo = 
 	{ 
 		&impact_template, 
@@ -297,29 +301,26 @@ void Player_FireWeapon(GameObject* object)
 		0
 	};
 
-	//ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&effectCreateInfo);
+	*/
 
-
-	s8 offset = (playerState == PLAYER_STATE_DUCK) ? 3 : -4;
+	u8 fireDirection = FIRE_RIGHT;
+	u8 playerDucking = (playerState == PLAYER_STATE_DUCK);
 
 	if (pointingUp)
 	{
-		WeaponManager_FireWeaponVertical(object->x + (playerFlipped ? -5 : 5), 
-										 object->y - 19,
-										 FALSE);
+		fireDirection = FIRE_UPWARDS;
 	}
 	else if (pointingDown)
 	{
-		WeaponManager_FireWeaponVertical(object->x + (playerFlipped ? -5 : 5), 
-										 object->y + 12,
-										 TRUE);
+		fireDirection = FIRE_DOWNWARDS;
 	}
-	else
+	else if (playerFlipped)
 	{
-		WeaponManager_FireWeapon(object->x + (playerFlipped ? -13 : 13), 
-								 object->y + offset,
-								 playerFlipped);
+		fireDirection = FIRE_LEFT;
 	}
+
+	WeaponManager_Fire(object->x, object->y, playerFlipped, playerDucking, fireDirection);
 }
 
 void Player_UpdateX(void)
@@ -415,10 +416,10 @@ s16 oldBlockY = 0;
 
 void Player_UpdateStand(GameObject* object)
 {
-	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)// || jumpWhenLanding)
+	if ((JoystickManager_buttonsPressed & PORT_A_KEY_2) || jumpWhenLanding)
 	{
-		//setPlayerState(PLAYER_STATE_JUMP);
-
+		setPlayerState(PLAYER_STATE_JUMP);
+		/*
 		EffectCreateInfo effectCreateInfo = 
 		{ 
 			&impact_template, 
@@ -429,6 +430,8 @@ void Player_UpdateStand(GameObject* object)
 			0
 		};
 		ObjectManager_CreateEffect(&effectCreateInfo);
+		*/
+
 		return;
 	}
 

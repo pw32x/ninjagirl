@@ -3,9 +3,9 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Shotgun_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfo* createInfo);
 
-const GameObjectTemplate shotgun_template = 
+const GameObjectTemplate shotgun_bullet_template = 
 {
     0, // health
     2, // damage
@@ -14,7 +14,7 @@ const GameObjectTemplate shotgun_template =
     6, // rect right
     6, // rect bottom
     OBJECTTYPE_PROJECTILE, // object type
-    &shotgunResourceInfo, // resource info
+    &shotgun_bulletResourceInfo, // resource info
     NULL, // extra resource infos
-    Shotgun_Init, // init function
+    Shotgun_Bullet_Init, // init function
 };

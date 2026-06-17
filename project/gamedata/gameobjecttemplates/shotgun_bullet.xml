@@ -1,5 +1,5 @@
 <GameObjectTemplate >
-	<Name value="Bullet"/>
+	<Name value="Shotgun Bullet"/>
 	<GameProperties>
 		<Damage value="2"/>
 		<RectLeft value="-6"/>
@@ -7,7 +7,7 @@
 		<RectRight value="6"/>
 		<RectBottom value="6"/>
 		<GameObjectType value="Projectile" />
-		<ResourceInfo value="shotgunResourceInfo" />		
-		<InitFunction value="Shotgun_Init"/>
+		<ResourceInfo value="shotgun_bulletResourceInfo" />		
+		<InitFunction value="Shotgun_Bullet_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

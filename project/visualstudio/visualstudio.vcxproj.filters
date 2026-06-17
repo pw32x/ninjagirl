@@ -328,7 +328,7 @@
     <ClCompile Include="..\source\client\objects\bullet.c">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\objects\shotgun.c">
+    <ClCompile Include="..\source\client\objects\shotgun_bullet.c">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c">
@@ -417,6 +417,9 @@
     </ClCompile>
     <ClCompile Include="..\source\client\exported\animations\enemies\walker.c">
       <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -582,7 +585,7 @@
     <ClInclude Include="..\source\client\objects\bullet.h">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\objects\shotgun.h">
+    <ClInclude Include="..\source\client\objects\shotgun_bullet.h">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h">

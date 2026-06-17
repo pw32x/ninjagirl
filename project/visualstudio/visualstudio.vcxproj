@@ -183,6 +183,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c" />
@@ -210,7 +211,7 @@
     <ClCompile Include="..\source\client\objects\particle_effect.c" />
     <ClCompile Include="..\source\client\objects\player.c" />
     <ClCompile Include="..\source\client\objects\right_scroller.c" />
-    <ClCompile Include="..\source\client\objects\shotgun.c" />
+    <ClCompile Include="..\source\client\objects\shotgun_bullet.c" />
     <ClCompile Include="..\source\client\objects\shotgun_item.c" />
     <ClCompile Include="..\source\client\objects\threeshotflyer.c" />
     <ClCompile Include="..\source\client\objects\tile_animator.c" />
@@ -284,7 +285,7 @@
     <ClInclude Include="..\source\client\objects\particle_effect.h" />
     <ClInclude Include="..\source\client\objects\player.h" />
     <ClInclude Include="..\source\client\objects\right_scroller.h" />
-    <ClInclude Include="..\source\client\objects\shotgun.h" />
+    <ClInclude Include="..\source\client\objects\shotgun_bullet.h" />
     <ClInclude Include="..\source\client\objects\shotgun_item.h" />
     <ClInclude Include="..\source\client\objects\threeshotflyer.h" />
     <ClInclude Include="..\source\client\objects\tile_animator.h" />
