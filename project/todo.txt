@@ -1,4 +1,8 @@
-	fix shotgun
+	DONE fix the use of build master in the scene master
+	
+	fix shotgun bullet not dying
+	
+	port to a PC version of SMSLib
 	
 	test weapon pickups and switching
 	
