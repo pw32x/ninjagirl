@@ -5,9 +5,9 @@
 
 #define NUM_PROJECTILE_SLOTS 3
 #define NUM_ENEMY_PROJECTILE_SLOTS 3
-#define NUM_ENEMY_SLOTS 8
-#define NUM_EFFECT_SLOTS 8
-#define NUM_EFFECT_SLOTS_MASK 0x7
+#define NUM_ENEMY_SLOTS 4
+#define NUM_EFFECT_SLOTS 4
+#define NUM_EFFECT_SLOTS_MASK 0x3
 
 
 
@@ -24,7 +24,11 @@ extern GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 // player projectiles
 extern GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
 extern u8 ObjectManager_numActiveProjectiles;
-extern GameObject* ObjectManager_activeProjectileSlots[NUM_PROJECTILE_SLOTS];
+extern u8 ObjectManager_numPendingProjectiles;
+extern GameObject* ObjectManager_activeProjectileSlots1[NUM_PROJECTILE_SLOTS];
+extern GameObject* ObjectManager_activeProjectileSlots2[NUM_PROJECTILE_SLOTS];
+extern GameObject** ObjectManager_currentActiveProjectileSlots;
+extern GameObject** ObjectManager_pendingProjectileSlots;
 
 // enemy projectile slots
 extern GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];

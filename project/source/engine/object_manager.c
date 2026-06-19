@@ -49,12 +49,10 @@ void ObjectManager_Update(void)
 	
 	switch (ObjectManager_numActiveProjectiles)
 	{
-		case 3: ObjectManager_activeProjectileSlots[2]->Update(ObjectManager_activeProjectileSlots[2]);
-		case 2: ObjectManager_activeProjectileSlots[1]->Update(ObjectManager_activeProjectileSlots[1]);
-		case 1: ObjectManager_activeProjectileSlots[0]->Update(ObjectManager_activeProjectileSlots[0]);
+		case 3: ObjectManager_currentActiveProjectileSlots[2]->Update(ObjectManager_currentActiveProjectileSlots[2]);
+		case 2: ObjectManager_currentActiveProjectileSlots[1]->Update(ObjectManager_currentActiveProjectileSlots[1]);
+		case 1: ObjectManager_currentActiveProjectileSlots[0]->Update(ObjectManager_currentActiveProjectileSlots[0]);
 	}
-
-	ObjectManager_processProjectileDeletes();
 
 	switch (ObjectManager_numActiveEnemyProjectiles)
 	{
@@ -79,10 +77,6 @@ void ObjectManager_Update(void)
 
 	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: ObjectManager_activeEnemySlots[7]->Update(ObjectManager_activeEnemySlots[7]);
-	case 7: ObjectManager_activeEnemySlots[6]->Update(ObjectManager_activeEnemySlots[6]);
-	case 6: ObjectManager_activeEnemySlots[5]->Update(ObjectManager_activeEnemySlots[5]);
-	case 5: ObjectManager_activeEnemySlots[4]->Update(ObjectManager_activeEnemySlots[4]);
 	case 4: ObjectManager_activeEnemySlots[3]->Update(ObjectManager_activeEnemySlots[3]);
 	case 3: ObjectManager_activeEnemySlots[2]->Update(ObjectManager_activeEnemySlots[2]);
 	case 2: ObjectManager_activeEnemySlots[1]->Update(ObjectManager_activeEnemySlots[1]);
@@ -93,10 +87,6 @@ void ObjectManager_Update(void)
 	
 	switch (ObjectManager_numActiveEffects)
 	{
-	case 8: ObjectManager_activeEffectSlots[7]->Update(ObjectManager_activeEffectSlots[7]);
-	case 7: ObjectManager_activeEffectSlots[6]->Update(ObjectManager_activeEffectSlots[6]);
-	case 6: ObjectManager_activeEffectSlots[5]->Update(ObjectManager_activeEffectSlots[5]);
-	case 5: ObjectManager_activeEffectSlots[4]->Update(ObjectManager_activeEffectSlots[4]);
 	case 4: ObjectManager_activeEffectSlots[3]->Update(ObjectManager_activeEffectSlots[3]);
 	case 3: ObjectManager_activeEffectSlots[2]->Update(ObjectManager_activeEffectSlots[2]);
 	case 2: ObjectManager_activeEffectSlots[1]->Update(ObjectManager_activeEffectSlots[1]);
@@ -112,10 +102,6 @@ void ObjectManager_Update(void)
 	/*
 	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[7]);
-	case 7: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[6]);
-	case 6: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[5]);
-	case 5: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[4]);
 	case 4: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[3]);
 	case 3: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[2]);
 	case 2: ObjectManagerUtils_collideAgainstBullets(ObjectManager_activeEnemySlots[1]);
@@ -161,9 +147,9 @@ void ObjectManager_Update(void)
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
-	case 3: ObjectManager_activeProjectileSlots[2]->Draw(ObjectManager_activeProjectileSlots[2]);
-	case 2: ObjectManager_activeProjectileSlots[1]->Draw(ObjectManager_activeProjectileSlots[1]);
-	case 1: ObjectManager_activeProjectileSlots[0]->Draw(ObjectManager_activeProjectileSlots[0]);
+	case 3: ObjectManager_currentActiveProjectileSlots[2]->Draw(ObjectManager_currentActiveProjectileSlots[2]);
+	case 2: ObjectManager_currentActiveProjectileSlots[1]->Draw(ObjectManager_currentActiveProjectileSlots[1]);
+	case 1: ObjectManager_currentActiveProjectileSlots[0]->Draw(ObjectManager_currentActiveProjectileSlots[0]);
 	}
 /*
 	ObjectManager_enemyProjectileSlots[0].Draw(&ObjectManager_enemyProjectileSlots[0]);
@@ -198,6 +184,7 @@ void ObjectManager_Update(void)
 	// 2607
 	
 	ObjectManager_processNewObjects();
+	ObjectManager_refreshActiveProjectiles();
 	
 }
 
@@ -207,10 +194,6 @@ void DrawEffectsAndEnemiesOrder1(void)
 
 	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: (*runner)->Draw(*runner); runner++;
-	case 7: (*runner)->Draw(*runner); runner++;
-	case 6: (*runner)->Draw(*runner); runner++;
-	case 5: (*runner)->Draw(*runner); runner++;
 	case 4: (*runner)->Draw(*runner); runner++;
 	case 3: (*runner)->Draw(*runner); runner++;
 	case 2: (*runner)->Draw(*runner); runner++;
@@ -219,10 +202,6 @@ void DrawEffectsAndEnemiesOrder1(void)
 
 	switch (ObjectManager_numActiveEffects)
 	{
-	case 8: ObjectManager_activeEffectSlots[7]->Draw(ObjectManager_activeEffectSlots[7]);
-	case 7: ObjectManager_activeEffectSlots[6]->Draw(ObjectManager_activeEffectSlots[6]);
-	case 6: ObjectManager_activeEffectSlots[5]->Draw(ObjectManager_activeEffectSlots[5]);
-	case 5: ObjectManager_activeEffectSlots[4]->Draw(ObjectManager_activeEffectSlots[4]);
 	case 4: ObjectManager_activeEffectSlots[3]->Draw(ObjectManager_activeEffectSlots[3]);
 	case 3: ObjectManager_activeEffectSlots[2]->Draw(ObjectManager_activeEffectSlots[2]);
 	case 2: ObjectManager_activeEffectSlots[1]->Draw(ObjectManager_activeEffectSlots[1]);
@@ -236,10 +215,6 @@ void DrawEffectsAndEnemiesOrder2(void)
 
 	switch (ObjectManager_numActiveEffects)
 	{
-	case 8: (*runner)->Draw(*runner); runner++;
-	case 7: (*runner)->Draw(*runner); runner++;
-	case 6: (*runner)->Draw(*runner); runner++;
-	case 5: (*runner)->Draw(*runner); runner++;
 	case 4: (*runner)->Draw(*runner); runner++;
 	case 3: (*runner)->Draw(*runner); runner++;
 	case 2: (*runner)->Draw(*runner); runner++;
@@ -248,10 +223,6 @@ void DrawEffectsAndEnemiesOrder2(void)
 
 	switch (ObjectManager_numActiveEnemies)
 	{
-	case 8: ObjectManager_activeEnemySlots[7]->Draw(ObjectManager_activeEnemySlots[7]);
-	case 7: ObjectManager_activeEnemySlots[6]->Draw(ObjectManager_activeEnemySlots[6]);
-	case 6: ObjectManager_activeEnemySlots[5]->Draw(ObjectManager_activeEnemySlots[5]);
-	case 5: ObjectManager_activeEnemySlots[4]->Draw(ObjectManager_activeEnemySlots[4]);
 	case 4: ObjectManager_activeEnemySlots[3]->Draw(ObjectManager_activeEnemySlots[3]);
 	case 3: ObjectManager_activeEnemySlots[2]->Draw(ObjectManager_activeEnemySlots[2]);
 	case 2: ObjectManager_activeEnemySlots[1]->Draw(ObjectManager_activeEnemySlots[1]);
@@ -269,9 +240,9 @@ void ObjectManager_doProjectileCollisions(void)
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
-	case 3: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[2]);
-	case 2: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[1]);
-	case 1: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_activeProjectileSlots[0]);
+	case 3: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[2]);
+	case 2: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[1]);
+	case 1: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[0]);
 	}
 }
 
@@ -318,8 +289,8 @@ BOOL ObjectManagerUtils_collideAgainstBullets(GameObject* gameObject)
 	s16 right = gameObject->screenx + gameObject->rectRight;
 	s16 bottom = gameObject->screeny + gameObject->rectBottom;
 
-	GameObject** runner = ObjectManager_activeProjectileSlots;
-	GameObject** runnerEnd = ObjectManager_activeProjectileSlots + ObjectManager_numActiveProjectiles;
+	GameObject** runner = ObjectManager_currentActiveProjectileSlots;
+	GameObject** runnerEnd = ObjectManager_currentActiveProjectileSlots + ObjectManager_numActiveProjectiles;
 
 	while (runner < runnerEnd)
 	{
