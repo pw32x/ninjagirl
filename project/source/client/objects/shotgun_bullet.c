@@ -21,14 +21,14 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
-void Shotgun_Update(GameObject* object);
-void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target);
+void Shotgun_Bullet_Update(GameObject* object);
+void Shotgun_Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->Update = Shotgun_Update;
-	object->HandleCollision = Shotgun_HandleCollision;
+	object->Update = Shotgun_Bullet_Update;
+	object->HandleCollision = Shotgun_Bullet_HandleCollision;
 
 	object->speedx = createInfo->speedX;
 	object->speedy = createInfo->speedY;
@@ -38,7 +38,7 @@ GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfo* createInfo
 	return object;
 }
 
-void Shotgun_Update(GameObject* object)
+void Shotgun_Bullet_Update(GameObject* object)
 {
 	object->x += object->speedx;
 	object->y += object->speedy;
@@ -57,11 +57,13 @@ void Shotgun_Update(GameObject* object)
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (AnimationUtils_updateBatchedAnimation_noLoop(object) == ANIMATION_FINISHED)
+	{
 		ObjectManager_DestroyObject(object);
+	}
 }
 
 
-void Shotgun_HandleCollision(GameObject* gameObject, GameObject* target)
+void Shotgun_Bullet_HandleCollision(GameObject* gameObject, GameObject* target)
 {
 	target->HandleCollision(target, gameObject);
 
