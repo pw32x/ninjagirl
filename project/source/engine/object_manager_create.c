@@ -374,7 +374,7 @@ void ObjectManager_processNewObjects(void)
 
 GameObject* FindFreeGameObject(u8 objectType)
 {
-	//MSG("FindFreeGameObject\n");
+	MSG("FindFreeGameObject\n");
 	// 108/738/481.1
 
 	GameObject* objectSlotRunner;
@@ -522,37 +522,11 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 
 GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 {
-	//MSG("ObjectManager_CreatePlayerProjectile\n");
-
-	// one bullet 3923/3923/3923.0 
-	// max 402/3985/2946.0
-	// one bullet 3849/3849/3849.0
-	// max 402/3985/2946.0
-
-	// one 3748/3748/3748.0
-	// max 516/3960/3075.5
-
-	// one 3016/3016/3016.0
-	// max 532/3232/2397.5
-
-	// 2938/2938/2938.0
-	// max 532/3154/2062.5
-
-	// 2825/2825/2825.0
-	// 532/3041/2114.7
-
-	// one 2654/2654/2654.0
-	// max 391/2790/1868.2
-
-	// one 2026/2026/2026.0 without sound
-
-	// one 2042/2042/2042.0
-	// max 156/2310/1745.2 without sound
-
-	//SMS_setBackdropColor(COLOR_BLUE);
-
-
-	if (ObjectManager_numActiveProjectiles == NUM_PROJECTILE_SLOTS)
+	// Only check for the pending list, not the active list because we don't
+	// know if any of the object in the active list will die between now and
+	// when the pending list will be processed. Be careful not create more objects 
+	// than active slots.
+	if (ObjectManager_numPendingProjectiles == NUM_PROJECTILE_SLOTS)
 		return NULL;
 
 	GameObject* gameObject = ObjectManager_projectileSlots;
