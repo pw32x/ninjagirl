@@ -17,9 +17,14 @@ extern GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
 extern GameObject ObjectManager_enemySlots[MAX_ENEMIES];
 
 // effects
+extern GameObject ObjectManager_effects[MAX_EFFECTS];
 extern u8 ObjectManager_numActiveEffects;
-extern GameObject* ObjectManager_activeEffectSlots[MAX_EFFECTS];
-extern GameObject ObjectManager_effectSlots[MAX_EFFECTS];
+extern u8 ObjectManager_numPendingEffects;
+extern GameObject* ObjectManager_activeEffectsA[MAX_EFFECTS];
+extern GameObject* ObjectManager_activeEffectsB[MAX_EFFECTS];
+extern GameObject** ObjectManager_currentActiveEffects;
+extern GameObject** ObjectManager_pendingEffects;
+
 
 // player projectiles
 extern GameObject ObjectManager_projectiles[MAX_PROJECTILES];

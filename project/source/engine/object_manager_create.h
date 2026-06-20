@@ -15,7 +15,7 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCcreateInfo
 
 
 void ObjectManager_processEnemyDeletes(void);
-void ObjectManager_processEffectDeletes(void);
+void ObjectManager_refreshActiveEffects(void);
 void ObjectManager_refreshActiveProjectiles(void);
 void ObjectManager_refreshActiveEnemyProjectiles(void);
 

@@ -37,14 +37,6 @@ void ObjectManager_InitCreate(void)
 {
 	ObjectManager_objectId = 0;
 
-	ObjectManager_numActiveEnemies = 0;
-	ObjectManager_numActiveEffects = 0;
-	ObjectManager_numActiveProjectiles = 0;
-	ObjectManager_numActiveEnemyProjectiles = 0;
-
-	ObjectManager_numPendingProjectiles = 0;
-	ObjectManager_numPendingEnemyProjectiles = 0;
-
 	//SMS_debugPrintf("createBeginFrame: num new enemies %d\n", ObjectManager_numNewObjects);
 	ObjectManager_numNewObjects = 0;
 	ObjectManager_resetActiveEnemies = FALSE;
@@ -81,7 +73,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
 		// if they're done.
-		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
+		objectSlotRunner = ObjectManager_effects + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
@@ -167,64 +159,45 @@ void ObjectManager_processEnemyDeletes(void)
 	//SMS_debugPrintf("ObjectManager_numActiveEnemies: %d\n", ObjectManager_numActiveEnemies);
 }
 
-void ObjectManager_processEffectDeletes(void)
+void ObjectManager_refreshActiveEffects(void)
 {
-	// 108/2301/109.7
-	// 117/1211/133.6
-	// 119/703/120.5
-	// 119/693/138.5
-
 	if (!ObjectManager_resetActiveEffects)
 		return;
 
-	//SMS_setBackdropColor(COLOR_RED);
-	//SMS_debugPrintf("rebuilding active effect list\n");
+	GameObject** activeEffectsRunner = ObjectManager_currentActiveEffects;
+	GameObject** activeEffectsRunnerEnd = ObjectManager_currentActiveEffects + ObjectManager_numActiveEffects;
 
-	GameObject** activeEffectsRunner = ObjectManager_activeEffectSlots;
-	GameObject** activeEffectsRunnerEnd = ObjectManager_activeEffectSlots + ObjectManager_numActiveEffects;
+	GameObject** ObjectManager_pendingEffectsRunner = ObjectManager_pendingEffects + ObjectManager_numPendingEffects;
 
-	//SMS_debugPrintf("ObjectManager_numActiveEffects: %d\n", activeEffectsRunnerEnd - activeEffectsRunner);
+	// Copy the alive objects to the pending list. Then swap
+	// the pointer to the current and pending lists.
 
-	// iteration 1
-	// activeEffectsRunner		->	[alive]
-	//								[dead]
-	// activeEffectsRunnerEnd	->	[blah]
-	//
-	// iteration 2
-	//								[alive]
-	// activeEffectsRunner		->	[dead]
-	// activeEffectsRunnerEnd	->	[blah]
-	//
-	// copy + back up activeEffectsRunnerEnd
-	//								[alive]
-	// activeEffectsRunner/End	->	[blah]
-	//								[blah]
-	// iteration 3
-	//								[alive]
-	// activeEffectsRunnerEnd	->	[blah]
-	// activeEffectsRunner		->	[blah]
-	//
-	// Done
-
-	// every time we encounter a dead object, copy the pointer to the
-	// last active object to it. Also back up the activeEffectsRunnerEnd by one.
-	// When activeEffectsRunner activeEffectsRunnerEnd cross, then we're done.
-	do
+	while (activeEffectsRunner != activeEffectsRunnerEnd)
 	{
-		if (!(*activeEffectsRunner)->alive)
+		if ((*activeEffectsRunner)->alive)
 		{
-			activeEffectsRunnerEnd--;
-			(*activeEffectsRunner) = (*activeEffectsRunnerEnd);
+			*ObjectManager_pendingEffectsRunner = *activeEffectsRunner;
+			ObjectManager_pendingEffectsRunner++;
 		}
 
 		activeEffectsRunner++;
-	} while (activeEffectsRunner < activeEffectsRunnerEnd);
+	};
 
-	ObjectManager_numActiveEffects = activeEffectsRunnerEnd - ObjectManager_activeEffectSlots;
+	ObjectManager_numActiveEffects = ObjectManager_pendingEffectsRunner - ObjectManager_pendingEffects;
+
 	ObjectManager_resetActiveEffects = FALSE;
+	ObjectManager_numPendingEffects = 0;
 
-	//SMS_debugPrintf("ObjectManager_numActiveEffects: %d\n", ObjectManager_numActiveEffects);
-	//SMS_setBackdropColor(COLOR_DARK_GREEN);
+	if (ObjectManager_currentActiveEffects == ObjectManager_activeEffectsA)
+	{
+		ObjectManager_currentActiveEffects = ObjectManager_activeEffectsB;
+		ObjectManager_pendingEffects = ObjectManager_activeEffectsA;
+	}
+	else
+	{
+		ObjectManager_currentActiveEffects = ObjectManager_activeEffectsA;
+		ObjectManager_pendingEffects = ObjectManager_activeEffectsB;
+	}
 }
 
 void ObjectManager_refreshActiveProjectiles(void)
@@ -345,11 +318,6 @@ void ObjectManager_processNewObjects(void)
 			ObjectManager_activeEnemySlots[ObjectManager_numActiveEnemies] = object;
 			ObjectManager_numActiveEnemies++;
 			break;
-		case OBJECTTYPE_EFFECT:
-			//SMS_debugPrintf("appended new effect\n");
-			ObjectManager_activeEffectSlots[ObjectManager_numActiveEffects] = object;
-			ObjectManager_numActiveEffects++;
-			break;
 		}
 	}
 }
@@ -407,7 +375,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
 		// if they're done.
-		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
+		objectSlotRunner = ObjectManager_effects + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
@@ -469,25 +437,21 @@ GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo)
 
 GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 {
-	// 3354/3354/3354.0
-	// 2199/2333/2251.1
-	// 2090/2224/2116.8
-
-	//SMS_setBackdropColor(COLOR_BLUE);
-
-	if (ObjectManager_numActiveEffects == MAX_EFFECTS)
+	// Be careful not create more objects than active slots.
+	if (ObjectManager_numActiveEffects == MAX_EFFECTS ||
+		ObjectManager_numPendingEffects == MAX_EFFECTS)
+	{
 		return NULL;
+	}
 
-	//SMS_debugPrintf("Added new effect\n");
-
-	GameObject* gameObject = ObjectManager_effectSlots;
+	GameObject* gameObject = ObjectManager_effects;
 	while (gameObject->alive)
 		gameObject++;
 
-	gameObject->alive = OBJECTSTATE_PENDING;
+	gameObject->alive = TRUE;
 
-	ObjectManager_newObjects[ObjectManager_numNewObjects] = gameObject;
-	ObjectManager_numNewObjects++;
+	ObjectManager_pendingEffects[ObjectManager_numPendingEffects] = gameObject;
+	ObjectManager_numPendingEffects++;
 
 	const GameObjectTemplate* gameObjectTemplate = effectCreateInfo->gameObjectTemplate;
 
@@ -496,7 +460,9 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)effectCreateInfo);
+	gameObjectTemplate->initFunction(gameObject, effectCreateInfo);
+
+	ObjectManager_resetActiveEffects = TRUE;
 
 	//SMS_setBackdropColor(COLOR_DARK_GREEN);
 

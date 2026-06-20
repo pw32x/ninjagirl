@@ -87,13 +87,12 @@ void ObjectManager_Update(void)
 	
 	switch (ObjectManager_numActiveEffects)
 	{
-	case 4: ObjectManager_activeEffectSlots[3]->Update(ObjectManager_activeEffectSlots[3]);
-	case 3: ObjectManager_activeEffectSlots[2]->Update(ObjectManager_activeEffectSlots[2]);
-	case 2: ObjectManager_activeEffectSlots[1]->Update(ObjectManager_activeEffectSlots[1]);
-	case 1: ObjectManager_activeEffectSlots[0]->Update(ObjectManager_activeEffectSlots[0]);
+	case 4: ObjectManager_currentActiveEffects[3]->Update(ObjectManager_currentActiveEffects[3]);
+	case 3: ObjectManager_currentActiveEffects[2]->Update(ObjectManager_currentActiveEffects[2]);
+	case 2: ObjectManager_currentActiveEffects[1]->Update(ObjectManager_currentActiveEffects[1]);
+	case 1: ObjectManager_currentActiveEffects[0]->Update(ObjectManager_currentActiveEffects[0]);
 	}
 	
-	ObjectManager_processEffectDeletes();
 
 	// perform collisions against projectiles
 
@@ -186,6 +185,7 @@ void ObjectManager_Update(void)
 	ObjectManager_processNewObjects();
 	ObjectManager_refreshActiveProjectiles();
 	ObjectManager_refreshActiveEnemyProjectiles();	
+	ObjectManager_refreshActiveEffects();
 }
 
 void DrawEffectsAndEnemiesOrder1(void)
@@ -202,16 +202,16 @@ void DrawEffectsAndEnemiesOrder1(void)
 
 	switch (ObjectManager_numActiveEffects)
 	{
-	case 4: ObjectManager_activeEffectSlots[3]->Draw(ObjectManager_activeEffectSlots[3]);
-	case 3: ObjectManager_activeEffectSlots[2]->Draw(ObjectManager_activeEffectSlots[2]);
-	case 2: ObjectManager_activeEffectSlots[1]->Draw(ObjectManager_activeEffectSlots[1]);
-	case 1: ObjectManager_activeEffectSlots[0]->Draw(ObjectManager_activeEffectSlots[0]);
+	case 4: ObjectManager_currentActiveEffects[3]->Draw(ObjectManager_currentActiveEffects[3]);
+	case 3: ObjectManager_currentActiveEffects[2]->Draw(ObjectManager_currentActiveEffects[2]);
+	case 2: ObjectManager_currentActiveEffects[1]->Draw(ObjectManager_currentActiveEffects[1]);
+	case 1: ObjectManager_currentActiveEffects[0]->Draw(ObjectManager_currentActiveEffects[0]);
 	}
 }
 
 void DrawEffectsAndEnemiesOrder2(void)
 {
-	GameObject** runner = ObjectManager_activeEffectSlots;
+	GameObject** runner = ObjectManager_currentActiveEffects;
 
 	switch (ObjectManager_numActiveEffects)
 	{

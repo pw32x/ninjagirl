@@ -10,9 +10,13 @@ u8 ObjectManager_numActiveEnemies;
 GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
 
 // effects
-GameObject ObjectManager_effectSlots[MAX_EFFECTS];
+GameObject ObjectManager_effects[MAX_EFFECTS];
 u8 ObjectManager_numActiveEffects;
-GameObject* ObjectManager_activeEffectSlots[MAX_EFFECTS];
+u8 ObjectManager_numPendingEffects;
+GameObject* ObjectManager_activeEffectsA[MAX_EFFECTS];
+GameObject* ObjectManager_activeEffectsB[MAX_EFFECTS];
+GameObject** ObjectManager_currentActiveEffects = ObjectManager_activeEffectsA;
+GameObject** ObjectManager_pendingEffects = ObjectManager_activeEffectsB;
 
 // player projectiles
 GameObject ObjectManager_projectiles[MAX_PROJECTILES];
@@ -42,4 +46,8 @@ void ObjectManager_InitSlots(void)
 	ObjectManager_numActiveEffects = 0;
 	ObjectManager_numActiveProjectiles = 0;
 	ObjectManager_numActiveEnemyProjectiles = 0;
+
+	ObjectManager_numPendingProjectiles = 0;
+	ObjectManager_numPendingEnemyProjectiles = 0;
+	ObjectManager_numPendingEffects = 0;
 }

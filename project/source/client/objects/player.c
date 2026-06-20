@@ -416,10 +416,9 @@ s16 oldBlockY = 0;
 
 void Player_UpdateStand(GameObject* object)
 {
-	if ((JoystickManager_buttonsPressed & PORT_A_KEY_2) || jumpWhenLanding)
+	/*
+	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
 	{
-		setPlayerState(PLAYER_STATE_JUMP);
-		/*
 		EffectCreateInfo effectCreateInfo = 
 		{ 
 			&impact_template, 
@@ -430,8 +429,23 @@ void Player_UpdateStand(GameObject* object)
 			0
 		};
 		ObjectManager_CreateEffect(&effectCreateInfo);
-		*/
 
+		effectCreateInfo.startY += 10;
+		ObjectManager_CreateEffect(&effectCreateInfo);
+
+		effectCreateInfo.startY += 20;
+		ObjectManager_CreateEffect(&effectCreateInfo);
+
+		effectCreateInfo.startY += 30;
+		ObjectManager_CreateEffect(&effectCreateInfo);
+
+		effectCreateInfo.startY += 40;
+		ObjectManager_CreateEffect(&effectCreateInfo);
+	}*/
+
+	if ((JoystickManager_buttonsPressed & PORT_A_KEY_2) || jumpWhenLanding)
+	{
+		setPlayerState(PLAYER_STATE_JUMP);
 		return;
 	}
 
