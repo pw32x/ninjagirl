@@ -5,21 +5,21 @@
 
 #define MAX_PROJECTILES 3
 #define MAX_ENEMY_PROJECTILES 3
-#define NUM_ENEMY_SLOTS 4
-#define NUM_EFFECT_SLOTS 4
-#define NUM_EFFECT_SLOTS_MASK 0x3
+#define MAX_ENEMIES 4
+#define MAX_EFFECTS 4
+#define MAX_EFFECTS_MASK 0x3
 
 
 
 // enemies
 extern u8 ObjectManager_numActiveEnemies;
-extern GameObject* ObjectManager_activeEnemySlots[NUM_ENEMY_SLOTS];
-extern GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
+extern GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
+extern GameObject ObjectManager_enemySlots[MAX_ENEMIES];
 
 // effects
 extern u8 ObjectManager_numActiveEffects;
-extern GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
-extern GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
+extern GameObject* ObjectManager_activeEffectSlots[MAX_EFFECTS];
+extern GameObject ObjectManager_effectSlots[MAX_EFFECTS];
 
 // player projectiles
 extern GameObject ObjectManager_projectiles[MAX_PROJECTILES];

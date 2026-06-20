@@ -5,14 +5,14 @@
 
 
 // enemies
-GameObject ObjectManager_enemySlots[NUM_ENEMY_SLOTS];
+GameObject ObjectManager_enemySlots[MAX_ENEMIES];
 u8 ObjectManager_numActiveEnemies;
-GameObject* ObjectManager_activeEnemySlots[NUM_ENEMY_SLOTS];
+GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
 
 // effects
-GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
+GameObject ObjectManager_effectSlots[MAX_EFFECTS];
 u8 ObjectManager_numActiveEffects;
-GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
+GameObject* ObjectManager_activeEffectSlots[MAX_EFFECTS];
 
 // player projectiles
 GameObject ObjectManager_projectiles[MAX_PROJECTILES];

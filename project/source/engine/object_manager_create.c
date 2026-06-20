@@ -27,7 +27,7 @@ u8 ObjectManager_resetActiveEnemyProjectiles;
 //GameObject* ObjectManager_activeProjectiles[MAX_PROJECTILES];
 //u8 ObjectManager_activeProjectilesCount;
 
-//GameObject* ObjectManager_activeEnemies[NUM_ENEMY_SLOTS];
+//GameObject* ObjectManager_activeEnemies[MAX_ENEMIES];
 //u8 ObjectManager_activeEnemiesCount;
 
 //u8 ObjectManager_currentEnemyIndex;
@@ -58,12 +58,12 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	//MSG("ObjectManager_CreateObject\n");
 
 	GameObject* objectSlotRunner = ObjectManager_enemySlots;
-	u8 counter = NUM_ENEMY_SLOTS;
+	u8 counter = MAX_ENEMIES;
 
 	/*
 	if (objectType == OBJECTTYPE_ENEMY)
 	{
-		if (ObjectManager_numEnemies == NUM_ENEMY_SLOTS)
+		if (ObjectManager_numEnemies == MAX_ENEMIES)
 			return NULL;
 
 		GameObject* newObject = &ObjectManager_enemySlots[ObjectManager_numEnemies];
@@ -81,7 +81,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
 		// if they're done.
-		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
+		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
@@ -379,7 +379,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 	{
 		//SMS_debugPrintf("Trying to add new enemy\n");
 
-		if (ObjectManager_numActiveEnemies == NUM_ENEMY_SLOTS)
+		if (ObjectManager_numActiveEnemies == MAX_ENEMIES)
 			return NULL;
 
 		//SMS_debugPrintf("Added new enemy\n");
@@ -407,7 +407,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 	{
 		// treat effects as a circular list. we overwrite the older effects without waiting
 		// if they're done.
-		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & NUM_EFFECT_SLOTS_MASK);
+		objectSlotRunner = ObjectManager_effectSlots + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
 		ObjectManager_numEffects++;
 		return objectSlotRunner;
 	}
@@ -475,7 +475,7 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 
 	//SMS_setBackdropColor(COLOR_BLUE);
 
-	if (ObjectManager_numActiveEffects == NUM_EFFECT_SLOTS)
+	if (ObjectManager_numActiveEffects == MAX_EFFECTS)
 		return NULL;
 
 	//SMS_debugPrintf("Added new effect\n");
