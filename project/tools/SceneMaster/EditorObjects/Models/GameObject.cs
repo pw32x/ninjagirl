@@ -53,7 +53,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                 sb.AppendLine(" };");
                 exportedCommandData.ExportedCreateInfo = sb.ToString();
 
-                exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
+                exportedCommandData.CommandToUse = "ObjectManager_CreateCommandRunner";
                 return exportedCommandData;
             }
             else 
@@ -84,7 +84,14 @@ namespace SceneMaster.GameObjectTemplates.Models
                 sb.Append("&" + templateName + ", " + x + ", " + y);
                 sb.AppendLine(" };");
                 exportedCommandData.ExportedCreateInfo = sb.ToString();
-                exportedCommandData.CommandToUse = "ObjectManager_CreateObjectByCreateInfo";
+
+                if (GameObjectTemplate.GameObjectType == GameObjectType.Enemy)
+                    exportedCommandData.CommandToUse = "ObjectManager_CreateEnemy";
+                else if (GameObjectTemplate.GameObjectType == GameObjectType.Player)
+                    exportedCommandData.CommandToUse = "ObjectManager_CreatePlayer";
+                else
+                    exportedCommandData.CommandToUse = "UnknownCreateFunction_FixMe";
+
                 return exportedCommandData;
             }
             /*

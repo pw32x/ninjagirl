@@ -131,7 +131,7 @@ namespace SceneMaster.Export
             sb.AppendLine("{");
 
             // start with bootstrapper
-            sb.AppendLine("    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&" + sceneName + "_createInfoBootstrapper },");
+            sb.AppendLine("    { 0, (CommandFunction)ObjectManager_CreateCommandRunner, (const CreateInfo*)&" + sceneName + "_createInfoBootstrapper },");
 
             ExportResourceCommands(sb, scene, editorObjects);
             ExportSceneCommands(sb, editorObjects, exportedCommandDatas);
