@@ -127,7 +127,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 			0
 		};
 
-		ObjectManager_CreateObjectByCreateInfo(&createInfo);
+		ObjectManager_CreateEnemy(&createInfo);
 
 		// debris 
 		GameObjectTemplate effectGameTemplate;

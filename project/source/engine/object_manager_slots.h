@@ -9,12 +9,14 @@
 #define MAX_EFFECTS 4
 #define MAX_EFFECTS_MASK 0x3
 
-
-
 // enemies
+extern GameObject ObjectManager_enemies[MAX_ENEMIES];
 extern u8 ObjectManager_numActiveEnemies;
-extern GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
-extern GameObject ObjectManager_enemySlots[MAX_ENEMIES];
+extern u8 ObjectManager_numPendingEnemies;
+extern GameObject* ObjectManager_activeEnemiesA[MAX_ENEMIES];
+extern GameObject* ObjectManager_activeEnemiesB[MAX_ENEMIES];
+extern GameObject** ObjectManager_currentActiveEnemies;
+extern GameObject** ObjectManager_pendingEnemies;
 
 // effects
 extern GameObject ObjectManager_effects[MAX_EFFECTS];
@@ -44,6 +46,7 @@ extern GameObject* ObjectManager_activeEnemyProjectilesB[MAX_ENEMY_PROJECTILES];
 extern GameObject** ObjectManager_currentActiveEnemyProjectiles;
 extern GameObject** ObjectManager_pendingEnemyProjectiles;
 
+// special objects
 extern GameObject ObjectManager_player;
 extern GameObject ObjectManager_Item;
 

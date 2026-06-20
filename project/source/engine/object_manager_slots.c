@@ -5,9 +5,13 @@
 
 
 // enemies
-GameObject ObjectManager_enemySlots[MAX_ENEMIES];
+GameObject ObjectManager_enemies[MAX_ENEMIES];
 u8 ObjectManager_numActiveEnemies;
-GameObject* ObjectManager_activeEnemySlots[MAX_ENEMIES];
+u8 ObjectManager_numPendingEnemies;
+GameObject* ObjectManager_activeEnemiesA[MAX_ENEMIES];
+GameObject* ObjectManager_activeEnemiesB[MAX_ENEMIES];
+GameObject** ObjectManager_currentActiveEnemies = ObjectManager_activeEnemiesA;
+GameObject** ObjectManager_pendingEnemies = ObjectManager_activeEnemiesB;
 
 // effects
 GameObject ObjectManager_effects[MAX_EFFECTS];
@@ -36,6 +40,7 @@ GameObject* ObjectManager_activeEnemyProjectilesB[MAX_ENEMY_PROJECTILES];
 GameObject** ObjectManager_currentActiveEnemyProjectiles = ObjectManager_activeEnemyProjectilesA;
 GameObject** ObjectManager_pendingEnemyProjectiles = ObjectManager_activeEnemyProjectilesB;
 
+// special objects
 GameObject ObjectManager_player;
 GameObject ObjectManager_Item;
 
@@ -47,7 +52,17 @@ void ObjectManager_InitSlots(void)
 	ObjectManager_numActiveProjectiles = 0;
 	ObjectManager_numActiveEnemyProjectiles = 0;
 
+	ObjectManager_numPendingEnemies = 0;
 	ObjectManager_numPendingProjectiles = 0;
 	ObjectManager_numPendingEnemyProjectiles = 0;
 	ObjectManager_numPendingEffects = 0;
+
+	ObjectManager_currentActiveEnemies = ObjectManager_activeEnemiesA;
+	ObjectManager_pendingEnemies = ObjectManager_activeEnemiesB;	
+	ObjectManager_currentActiveEffects = ObjectManager_activeEffectsA;
+	ObjectManager_pendingEffects = ObjectManager_activeEffectsB;	
+	ObjectManager_currentActiveProjectiles = ObjectManager_activeProjectilesA;
+	ObjectManager_pendingProjectiles = ObjectManager_activeProjectilesB;	
+	ObjectManager_currentActiveEnemyProjectiles = ObjectManager_activeEnemyProjectilesA;
+	ObjectManager_pendingEnemyProjectiles = ObjectManager_activeEnemyProjectilesB;	
 }
