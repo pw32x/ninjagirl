@@ -526,8 +526,11 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 	// know if any of the object in the active list will die between now and
 	// when the pending list will be processed. Be careful not create more objects 
 	// than active slots.
-	if (ObjectManager_numPendingProjectiles == NUM_PROJECTILE_SLOTS)
+	if (ObjectManager_numActiveProjectiles == NUM_PROJECTILE_SLOTS ||
+		ObjectManager_numPendingProjectiles == NUM_PROJECTILE_SLOTS)
+	{
 		return NULL;
+	}
 
 	GameObject* gameObject = ObjectManager_projectileSlots;
 	while (gameObject->alive)
