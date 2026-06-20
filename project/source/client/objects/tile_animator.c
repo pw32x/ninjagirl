@@ -15,8 +15,10 @@
 
 void TileAnimator_Update(GameObject* object);
 
+
 GameObject* TileAnimator_Init(const ResourceInfo* resourceInfo)
 {
+	/*
 	GameObject* object = ObjectManager_CreateObject(OBJECTTYPE_EFFECT);
 	if (!object)
 		return NULL;
@@ -27,8 +29,11 @@ GameObject* TileAnimator_Init(const ResourceInfo* resourceInfo)
 	ResourceManager_SetupResource(object, resourceInfo);
 
 	return object;
-}
+	*/
 
+	return NULL;
+}
+/*
 void UpdateTiles(GameObject* object)
 {
 	//SMS_setBackdropColor(COLOR_PINK);
@@ -54,3 +59,4 @@ void TileAnimator_Update(GameObject* object)
 		ObjectManager_QueueVDPDraw(object, UpdateTiles);
 	}
 }
+*/

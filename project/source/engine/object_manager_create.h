@@ -5,8 +5,9 @@
 
 void ObjectManager_InitCreate(void);
 
-GameObject* ObjectManager_CreateObject(u8 objectType);
+//GameObject* ObjectManager_CreateObject(u8 objectType);
 GameObject* ObjectManager_CreateObjectByCreateInfo(const CreateInfo* createInfo);
+
 void ObjectManager_DestroyObject(GameObject* gameObject);
 
 GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo);

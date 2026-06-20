@@ -45,6 +45,7 @@ void ObjectManager_InitCreate(void)
 	ObjectManager_resetActiveEnemyProjectiles = FALSE;
 }
 
+/*
 GameObject* ObjectManager_CreateObject(u8 objectType)
 {
 	//MSG("ObjectManager_CreateObject\n");
@@ -52,40 +53,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	GameObject* objectSlotRunner = ObjectManager_enemySlots;
 	u8 counter = MAX_ENEMIES;
 
-	/*
-	if (objectType == OBJECTTYPE_ENEMY)
-	{
-		if (ObjectManager_numEnemies == MAX_ENEMIES)
-			return NULL;
-
-		GameObject* newObject = &ObjectManager_enemySlots[ObjectManager_numEnemies];
-		newObject->alive = TRUE;
-		ObjectManager_numEnemies++;
-		return newObject;
-	}
-	else
-		if (objectType == OBJECTTYPE_PROJECTILE)
-	{
-		objectSlotRunner = ObjectManager_projectiles;
-		counter = MAX_PROJECTILES;	
-	}
-	else if (objectType == OBJECTTYPE_EFFECT)
-	{
-		// treat effects as a circular list. we overwrite the older effects without waiting
-		// if they're done.
-		objectSlotRunner = ObjectManager_effects + (ObjectManager_numEffects & MAX_EFFECTS_MASK);
-		ObjectManager_numEffects++;
-		return objectSlotRunner;
-	}
-
-	else 
-		if (objectType == OBJECTTYPE_ENEMY_PROJECTILE)
-	{
-		objectSlotRunner = ObjectManager_enemyProjectiles;
-		counter = MAX_ENEMY_PROJECTILES;
-	}
-	else 
-	*/if (objectType == OBJECTTYPE_ITEM)
+	if (objectType == OBJECTTYPE_ITEM)
 	{
 		ObjectManager_Item.alive = TRUE;
 		return &ObjectManager_Item;
@@ -104,6 +72,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 
 	return NULL;
 }
+*/
 
 void ObjectManager_processEnemyDeletes(void)
 {
