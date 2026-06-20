@@ -15,7 +15,7 @@
 
 GameObject* objectSlotRunner;
 
-//GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
+//GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILES];
 //u8 ObjectManager_activeProjectilesCount;
 
 

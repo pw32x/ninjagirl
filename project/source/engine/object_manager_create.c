@@ -24,7 +24,7 @@ u8 ObjectManager_resetActiveProjectiles;
 u8 ObjectManager_resetActiveEnemyProjectiles;
 
 
-//GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILE_SLOTS];
+//GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILES];
 //u8 ObjectManager_activeProjectilesCount;
 
 //GameObject* ObjectManager_activeEnemies[NUM_ENEMY_SLOTS];
@@ -75,7 +75,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 		if (objectType == OBJECTTYPE_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_projectiles;
-		counter = NUM_PROJECTILE_SLOTS;	
+		counter = NUM_PROJECTILES;	
 	}
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
@@ -418,7 +418,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 	else if (objectType == OBJECTTYPE_PROJECTILE)
 	{
 		objectSlotRunner = ObjectManager_projectiles;
-		counter = NUM_PROJECTILE_SLOTS;	
+		counter = NUM_PROJECTILES;	
 	}
 	else if (objectType == OBJECTTYPE_EFFECT)
 	{
@@ -526,8 +526,8 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 	// know if any of the object in the active list will die between now and
 	// when the pending list will be processed. Be careful not create more objects 
 	// than active slots.
-	if (ObjectManager_numActiveProjectiles == NUM_PROJECTILE_SLOTS ||
-		ObjectManager_numPendingProjectiles == NUM_PROJECTILE_SLOTS)
+	if (ObjectManager_numActiveProjectiles == NUM_PROJECTILES ||
+		ObjectManager_numPendingProjectiles == NUM_PROJECTILES)
 	{
 		return NULL;
 	}
