@@ -49,9 +49,9 @@ void ObjectManager_Update(void)
 	
 	switch (ObjectManager_numActiveProjectiles)
 	{
-		case 3: ObjectManager_currentActiveProjectileSlots[2]->Update(ObjectManager_currentActiveProjectileSlots[2]);
-		case 2: ObjectManager_currentActiveProjectileSlots[1]->Update(ObjectManager_currentActiveProjectileSlots[1]);
-		case 1: ObjectManager_currentActiveProjectileSlots[0]->Update(ObjectManager_currentActiveProjectileSlots[0]);
+		case 3: ObjectManager_currentActiveProjectiles[2]->Update(ObjectManager_currentActiveProjectiles[2]);
+		case 2: ObjectManager_currentActiveProjectiles[1]->Update(ObjectManager_currentActiveProjectiles[1]);
+		case 1: ObjectManager_currentActiveProjectiles[0]->Update(ObjectManager_currentActiveProjectiles[0]);
 	}
 
 	switch (ObjectManager_numActiveEnemyProjectiles)
@@ -147,9 +147,9 @@ void ObjectManager_Update(void)
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
-	case 3: ObjectManager_currentActiveProjectileSlots[2]->Draw(ObjectManager_currentActiveProjectileSlots[2]);
-	case 2: ObjectManager_currentActiveProjectileSlots[1]->Draw(ObjectManager_currentActiveProjectileSlots[1]);
-	case 1: ObjectManager_currentActiveProjectileSlots[0]->Draw(ObjectManager_currentActiveProjectileSlots[0]);
+	case 3: ObjectManager_currentActiveProjectiles[2]->Draw(ObjectManager_currentActiveProjectiles[2]);
+	case 2: ObjectManager_currentActiveProjectiles[1]->Draw(ObjectManager_currentActiveProjectiles[1]);
+	case 1: ObjectManager_currentActiveProjectiles[0]->Draw(ObjectManager_currentActiveProjectiles[0]);
 	}
 /*
 	ObjectManager_enemyProjectileSlots[0].Draw(&ObjectManager_enemyProjectileSlots[0]);
@@ -240,9 +240,9 @@ void ObjectManager_doProjectileCollisions(void)
 
 	switch (ObjectManager_numActiveProjectiles)
 	{
-	case 3: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[2]);
-	case 2: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[1]);
-	case 1: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectileSlots[0]);
+	case 3: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectiles[2]);
+	case 2: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectiles[1]);
+	case 1: ObjectManagerUtils_collideAgainstEnemies(ObjectManager_currentActiveProjectiles[0]);
 	}
 }
 
@@ -289,8 +289,8 @@ BOOL ObjectManagerUtils_collideAgainstBullets(GameObject* gameObject)
 	s16 right = gameObject->screenx + gameObject->rectRight;
 	s16 bottom = gameObject->screeny + gameObject->rectBottom;
 
-	GameObject** runner = ObjectManager_currentActiveProjectileSlots;
-	GameObject** runnerEnd = ObjectManager_currentActiveProjectileSlots + ObjectManager_numActiveProjectiles;
+	GameObject** runner = ObjectManager_currentActiveProjectiles;
+	GameObject** runnerEnd = ObjectManager_currentActiveProjectiles + ObjectManager_numActiveProjectiles;
 
 	while (runner < runnerEnd)
 	{

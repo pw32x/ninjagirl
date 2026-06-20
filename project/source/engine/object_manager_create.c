@@ -74,7 +74,7 @@ GameObject* ObjectManager_CreateObject(u8 objectType)
 	else
 		if (objectType == OBJECTTYPE_PROJECTILE)
 	{
-		objectSlotRunner = ObjectManager_projectileSlots;
+		objectSlotRunner = ObjectManager_projectiles;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
 	else if (objectType == OBJECTTYPE_EFFECT)
@@ -232,8 +232,8 @@ void ObjectManager_refreshActiveProjectiles(void)
 	if (!ObjectManager_resetActiveProjectiles)
 		return;
 
-	GameObject** activeProjectilesRunner = ObjectManager_currentActiveProjectileSlots;
-	GameObject** activeProjectilesRunnerEnd = ObjectManager_currentActiveProjectileSlots + ObjectManager_numActiveProjectiles;
+	GameObject** activeProjectilesRunner = ObjectManager_currentActiveProjectiles;
+	GameObject** activeProjectilesRunnerEnd = ObjectManager_currentActiveProjectiles + ObjectManager_numActiveProjectiles;
 
 	GameObject** ObjectManager_pendingProjectileSlotsRunner = ObjectManager_pendingProjectileSlots + ObjectManager_numPendingProjectiles;
 
@@ -256,15 +256,15 @@ void ObjectManager_refreshActiveProjectiles(void)
 	ObjectManager_resetActiveProjectiles = FALSE;
 	ObjectManager_numPendingProjectiles = 0;
 
-	if (ObjectManager_currentActiveProjectileSlots == ObjectManager_activeProjectileSlots1)
+	if (ObjectManager_currentActiveProjectiles == ObjectManager_activeProjectilesA)
 	{
-		ObjectManager_currentActiveProjectileSlots = ObjectManager_activeProjectileSlots2;
-		ObjectManager_pendingProjectileSlots = ObjectManager_activeProjectileSlots1;
+		ObjectManager_currentActiveProjectiles = ObjectManager_activeProjectilesB;
+		ObjectManager_pendingProjectileSlots = ObjectManager_activeProjectilesA;
 	}
 	else
 	{
-		ObjectManager_currentActiveProjectileSlots = ObjectManager_activeProjectileSlots1;
-		ObjectManager_pendingProjectileSlots = ObjectManager_activeProjectileSlots2;
+		ObjectManager_currentActiveProjectiles = ObjectManager_activeProjectilesA;
+		ObjectManager_pendingProjectileSlots = ObjectManager_activeProjectilesB;
 	}
 
 	//SMS_debugPrintf("ObjectManager_numActiveProjectiles: %d\n", ObjectManager_numActiveProjectiles);
@@ -417,7 +417,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 	/*
 	else if (objectType == OBJECTTYPE_PROJECTILE)
 	{
-		objectSlotRunner = ObjectManager_projectileSlots;
+		objectSlotRunner = ObjectManager_projectiles;
 		counter = NUM_PROJECTILE_SLOTS;	
 	}
 	else if (objectType == OBJECTTYPE_EFFECT)
@@ -532,7 +532,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 		return NULL;
 	}
 
-	GameObject* gameObject = ObjectManager_projectileSlots;
+	GameObject* gameObject = ObjectManager_projectiles;
 	while (gameObject->alive)
 		gameObject++;
 

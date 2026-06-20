@@ -22,18 +22,29 @@ extern GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
 extern GameObject ObjectManager_effectSlots[NUM_EFFECT_SLOTS];
 
 // player projectiles
-extern GameObject ObjectManager_projectileSlots[NUM_PROJECTILE_SLOTS];
+extern GameObject ObjectManager_projectiles[NUM_PROJECTILE_SLOTS];
 extern u8 ObjectManager_numActiveProjectiles;
 extern u8 ObjectManager_numPendingProjectiles;
-extern GameObject* ObjectManager_activeProjectileSlots1[NUM_PROJECTILE_SLOTS];
-extern GameObject* ObjectManager_activeProjectileSlots2[NUM_PROJECTILE_SLOTS];
-extern GameObject** ObjectManager_currentActiveProjectileSlots;
+extern GameObject* ObjectManager_activeProjectilesA[NUM_PROJECTILE_SLOTS];
+extern GameObject* ObjectManager_activeProjectilesB[NUM_PROJECTILE_SLOTS];
+extern GameObject** ObjectManager_currentActiveProjectiles;
 extern GameObject** ObjectManager_pendingProjectileSlots;
 
 // enemy projectile slots
 extern GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
 extern u8 ObjectManager_numActiveEnemyProjectiles;
 extern GameObject* ObjectManager_activeEnemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
+
+/*
+// enemy projectile slots
+extern GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
+extern u8 ObjectManager_numActiveEnemyProjectiles;
+extern u8 ObjectManager_numPendingEnemyProjectiles;
+extern GameObject* ObjectManager_activeEnemyProjectileSlots1[NUM_PROJECTILE_SLOTS];
+extern GameObject* ObjectManager_activeEnemyProjectileSlots2[NUM_PROJECTILE_SLOTS];
+extern GameObject** ObjectManager_currentActiveEnemyProjectileSlots;
+extern GameObject** ObjectManager_pendingEnemyProjectileSlots;
+*/
 
 extern GameObject ObjectManager_player;
 extern GameObject ObjectManager_Item;
