@@ -421,6 +421,9 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c">
+      <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib.h">

@@ -15,7 +15,7 @@
 
 GameObject* objectSlotRunner;
 
-//GameObject* ObjectManager_activeProjectiles[NUM_PROJECTILES];
+//GameObject* ObjectManager_activeProjectiles[MAX_PROJECTILES];
 //u8 ObjectManager_activeProjectilesCount;
 
 
@@ -56,17 +56,17 @@ void ObjectManager_Update(void)
 
 	switch (ObjectManager_numActiveEnemyProjectiles)
 	{
-	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Update(ObjectManager_activeEnemyProjectileSlots[2]);
-	case 2: ObjectManager_activeEnemyProjectileSlots[1]->Update(ObjectManager_activeEnemyProjectileSlots[1]);
-	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Update(ObjectManager_activeEnemyProjectileSlots[0]);
+	case 3: ObjectManager_currentActiveEnemyProjectiles[2]->Update(ObjectManager_currentActiveEnemyProjectiles[2]);
+	case 2: ObjectManager_currentActiveEnemyProjectiles[1]->Update(ObjectManager_currentActiveEnemyProjectiles[1]);
+	case 1: ObjectManager_currentActiveEnemyProjectiles[0]->Update(ObjectManager_currentActiveEnemyProjectiles[0]);
 	}
 
-	ObjectManager_processEnemyProjectileDeletes();
+
 
 	/*
-	ObjectManager_enemyProjectileSlots[0].Update(&ObjectManager_enemyProjectileSlots[0]);
-	ObjectManager_enemyProjectileSlots[1].Update(&ObjectManager_enemyProjectileSlots[1]);
-	ObjectManager_enemyProjectileSlots[2].Update(&ObjectManager_enemyProjectileSlots[2]);
+	ObjectManager_enemyProjectiles[0].Update(&ObjectManager_enemyProjectiles[0]);
+	ObjectManager_enemyProjectiles[1].Update(&ObjectManager_enemyProjectiles[1]);
+	ObjectManager_enemyProjectiles[2].Update(&ObjectManager_enemyProjectiles[2]);
 	*/
 
 	// add new objects and enemies only after we've done the collision checks for the currently 
@@ -152,18 +152,18 @@ void ObjectManager_Update(void)
 	case 1: ObjectManager_currentActiveProjectiles[0]->Draw(ObjectManager_currentActiveProjectiles[0]);
 	}
 /*
-	ObjectManager_enemyProjectileSlots[0].Draw(&ObjectManager_enemyProjectileSlots[0]);
-	ObjectManager_enemyProjectileSlots[1].Draw(&ObjectManager_enemyProjectileSlots[1]);
-	ObjectManager_enemyProjectileSlots[2].Draw(&ObjectManager_enemyProjectileSlots[2]);
+	ObjectManager_enemyProjectiles[0].Draw(&ObjectManager_enemyProjectiles[0]);
+	ObjectManager_enemyProjectiles[1].Draw(&ObjectManager_enemyProjectiles[1]);
+	ObjectManager_enemyProjectiles[2].Draw(&ObjectManager_enemyProjectiles[2]);
 	*/
 
 	//SMS_setBackdropColor(COLOR_PINK);
 	
 	switch (ObjectManager_numActiveEnemyProjectiles)
 	{
-	case 3: ObjectManager_activeEnemyProjectileSlots[2]->Draw(ObjectManager_activeEnemyProjectileSlots[2]);
-	case 2: ObjectManager_activeEnemyProjectileSlots[1]->Draw(ObjectManager_activeEnemyProjectileSlots[1]);
-	case 1: ObjectManager_activeEnemyProjectileSlots[0]->Draw(ObjectManager_activeEnemyProjectileSlots[0]);
+	case 3: ObjectManager_currentActiveEnemyProjectiles[2]->Draw(ObjectManager_currentActiveEnemyProjectiles[2]);
+	case 2: ObjectManager_currentActiveEnemyProjectiles[1]->Draw(ObjectManager_currentActiveEnemyProjectiles[1]);
+	case 1: ObjectManager_currentActiveEnemyProjectiles[0]->Draw(ObjectManager_currentActiveEnemyProjectiles[0]);
 	}
 
 	if (drawOrderToggle)
@@ -185,7 +185,7 @@ void ObjectManager_Update(void)
 	
 	ObjectManager_processNewObjects();
 	ObjectManager_refreshActiveProjectiles();
-	
+	ObjectManager_refreshActiveEnemyProjectiles();	
 }
 
 void DrawEffectsAndEnemiesOrder1(void)

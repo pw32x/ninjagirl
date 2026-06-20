@@ -175,6 +175,7 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c" />
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />

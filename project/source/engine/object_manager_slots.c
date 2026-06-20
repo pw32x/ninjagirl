@@ -15,18 +15,22 @@ u8 ObjectManager_numActiveEffects;
 GameObject* ObjectManager_activeEffectSlots[NUM_EFFECT_SLOTS];
 
 // player projectiles
-GameObject ObjectManager_projectiles[NUM_PROJECTILES];
+GameObject ObjectManager_projectiles[MAX_PROJECTILES];
 u8 ObjectManager_numActiveProjectiles;
 u8 ObjectManager_numPendingProjectiles;
-GameObject* ObjectManager_activeProjectilesA[NUM_PROJECTILES];
-GameObject* ObjectManager_activeProjectilesB[NUM_PROJECTILES];
+GameObject* ObjectManager_activeProjectilesA[MAX_PROJECTILES];
+GameObject* ObjectManager_activeProjectilesB[MAX_PROJECTILES];
 GameObject** ObjectManager_currentActiveProjectiles = ObjectManager_activeProjectilesA;
-GameObject** ObjectManager_pendingProjectileSlots = ObjectManager_activeProjectilesB;
+GameObject** ObjectManager_pendingProjectiles = ObjectManager_activeProjectilesB;
 
 // enemy projectile slots
-GameObject ObjectManager_enemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
+GameObject ObjectManager_enemyProjectiles[MAX_ENEMY_PROJECTILES];
 u8 ObjectManager_numActiveEnemyProjectiles;
-GameObject* ObjectManager_activeEnemyProjectileSlots[NUM_ENEMY_PROJECTILE_SLOTS];
+u8 ObjectManager_numPendingEnemyProjectiles;
+GameObject* ObjectManager_activeEnemyProjectilesA[MAX_ENEMY_PROJECTILES];
+GameObject* ObjectManager_activeEnemyProjectilesB[MAX_ENEMY_PROJECTILES];
+GameObject** ObjectManager_currentActiveEnemyProjectiles = ObjectManager_activeEnemyProjectilesA;
+GameObject** ObjectManager_pendingEnemyProjectiles = ObjectManager_activeEnemyProjectilesB;
 
 GameObject ObjectManager_player;
 GameObject ObjectManager_Item;
