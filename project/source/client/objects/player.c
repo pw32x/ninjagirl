@@ -291,7 +291,7 @@ void Player_BuildMetaSprite(GameObject* object)
 void Player_FireWeapon(GameObject* object)
 {
 	/*
-	EffectCreateInfo effectCreateInfo = 
+	CreateInfoEx createInfoEx = 
 	{ 
 		&impact_template, 
 		object->x, 
@@ -301,7 +301,7 @@ void Player_FireWeapon(GameObject* object)
 		0
 	};
 
-	ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&createInfoEx);
 	*/
 
 	u8 fireDirection = FIRE_RIGHT;
@@ -419,7 +419,7 @@ void Player_UpdateStand(GameObject* object)
 	/*
 	if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
 	{
-		EffectCreateInfo effectCreateInfo = 
+		CreateInfoEx createInfoEx = 
 		{ 
 			&impact_template, 
 			object->x, 
@@ -428,19 +428,19 @@ void Player_UpdateStand(GameObject* object)
 			object->speedy >> 2,
 			0
 		};
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startY += 10;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startY += 10;
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startY += 20;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startY += 20;
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startY += 30;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startY += 30;
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startY += 40;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startY += 40;
+		ObjectManager_CreateEffect(&createInfoEx);
 	}*/
 
 	if ((JoystickManager_buttonsPressed & PORT_A_KEY_2) || jumpWhenLanding)

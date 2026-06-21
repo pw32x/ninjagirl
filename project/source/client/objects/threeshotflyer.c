@@ -62,7 +62,7 @@ void ThreeShotFlyer_Fall(ThreeShotFlyerObjectType* object);
 
 void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other);
 
-GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo)
+GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfoEx* createInfo)
 {
 	UNUSED(createInfo);
 	object->x = P2V(object->x);
@@ -120,7 +120,7 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 	{
 		ObjectManager_DestroyObject(gameObject);
 
-		EffectCreateInfo effectCreateInfo = 
+		CreateInfoEx createInfoEx = 
 		{ 
 			&explosion_template,
 			V2P(gameObject->x), 
@@ -130,7 +130,7 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 			0
 		};
 		
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		ObjectManager_CreateEffect(&createInfoEx);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 	}
@@ -143,13 +143,11 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
 {
 	//SMS_debugPrintf("Default");
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&enemy_bullet_template, 
 		V2P(object->x),
 		V2P(object->y),
-		0,
-		0
 	};
 
 	switch (whichShot)

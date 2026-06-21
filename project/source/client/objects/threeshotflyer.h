@@ -7,6 +7,6 @@
 #include "client/ai_commands.h"
 #include "client/generated/gameobjecttemplates/threeshotflyer_template.h"
 
-GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo);
+GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfoEx* createInfo);
 
 #endif

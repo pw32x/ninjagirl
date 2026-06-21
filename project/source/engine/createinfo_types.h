@@ -8,14 +8,11 @@
 #define STANDARD_CREATE_INFO \
 const GameObjectTemplate* gameObjectTemplate;\
 s16 startX;\
-s16 startY;\
-s8 speedX;\
-s8 speedY;
+s16 startY;
 
 typedef struct create_info
 {
 	STANDARD_CREATE_INFO
-	u16 extra;
 } CreateInfo;
 
 typedef struct commandrunner_create_info
@@ -24,10 +21,12 @@ typedef struct commandrunner_create_info
 	const Command* commands;
 } CommandRunnerCreateInfo;
 
-typedef struct 
+typedef struct create_info_ex
 {
 	STANDARD_CREATE_INFO
+	s8 speedX;
+	s8 speedY;
 	u8 startFrameNumber;
-} EffectCreateInfo;
+} CreateInfoEx;
 
 #endif

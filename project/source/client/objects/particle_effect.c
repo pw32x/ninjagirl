@@ -14,7 +14,7 @@ void ParticleEffect_Update(GameObject* object);
 
 #define GRAVITY	5
 
-GameObject* ParticleEffect_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* ParticleEffect_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
 	UNUSED(createInfo);
 	object->x = P2V(object->x);

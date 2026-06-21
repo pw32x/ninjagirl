@@ -103,7 +103,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 	{
 		ObjectManager_DestroyObject(gameObject);
 
-		EffectCreateInfo effectCreateInfo = 
+		CreateInfoEx createInfoEx = 
 		{ 
 			&explosion_template,
 			V2P(gameObject->x), 
@@ -113,7 +113,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 			0
 		};
 		
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		ObjectManager_CreateEffect(&createInfoEx);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
 
@@ -122,9 +122,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		{ 
 			&shotgun_item_template,
 			V2P(gameObject->x), 
-			V2P(gameObject->y),
-			0,
-			0
+			V2P(gameObject->y)
 		};
 
 		ObjectManager_CreateEnemy(&createInfo);
@@ -133,7 +131,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		GameObjectTemplate effectGameTemplate;
 		effectGameTemplate.objectType = OBJECTTYPE_EFFECT;
 		effectGameTemplate.resourceInfo = gameObject->resourceInfo;
-		effectGameTemplate.initFunction = ParticleEffect_Init;
+		effectGameTemplate.initFunction = (InitObjectFunctionType)ParticleEffect_Init;
 
 
 		/*asdf
@@ -152,24 +150,24 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 
-		effectCreateInfo.gameObjectTemplate = &effectGameTemplate;
-		effectCreateInfo.speedX = 0,
-		effectCreateInfo.speedY = -90,
-		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS1_FRAME_INDEX;
+		createInfoEx.gameObjectTemplate = &effectGameTemplate;
+		createInfoEx.speedX = 0,
+		createInfoEx.speedY = -90,
+		createInfoEx.startFrameNumber = DELIVERYROBOT_PARTS1_FRAME_INDEX;
 
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startY += 8;
-		effectCreateInfo.speedX = 10;
-		effectCreateInfo.speedY = -70;
-		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startY += 8;
+		createInfoEx.speedX = 10;
+		createInfoEx.speedY = -70;
+		createInfoEx.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
+		ObjectManager_CreateEffect(&createInfoEx);
 
-		effectCreateInfo.startX -= 8;
-		effectCreateInfo.speedX = -10;
-		effectCreateInfo.speedY = -70;
-		effectCreateInfo.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		createInfoEx.startX -= 8;
+		createInfoEx.speedX = -10;
+		createInfoEx.speedY = -70;
+		createInfoEx.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
+		ObjectManager_CreateEffect(&createInfoEx);
 	}
 	else
 	{

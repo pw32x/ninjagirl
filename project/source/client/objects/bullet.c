@@ -27,7 +27,7 @@ void Bullet_UpdateUp(GameObject* object);
 void Bullet_UpdateDown(GameObject* object);
 void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* Bullet_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
 	s8 speedx = createInfo->speedX;
 	s8 speedy = createInfo->speedY;
@@ -128,7 +128,7 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target)
 
 	ObjectManager_DestroyObject(gameObject);
 
-	EffectCreateInfo effectCreateInfo = 
+	CreateInfoEx createInfoEx = 
 	{ 
 		&impact_template, 
 		gameObject->x, 
@@ -138,5 +138,5 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target)
 		0
 	};
 
-	ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&createInfoEx);
 }

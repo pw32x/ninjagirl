@@ -24,7 +24,7 @@
 void Shotgun_Bullet_Update(GameObject* object);
 void Shotgun_Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
-GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
 	UNUSED(createInfo);
 	object->Update = Shotgun_Bullet_Update;
@@ -69,7 +69,7 @@ void Shotgun_Bullet_HandleCollision(GameObject* gameObject, GameObject* target)
 
 	ObjectManager_DestroyObject(gameObject);
 
-	EffectCreateInfo effectCreateInfo = 
+	CreateInfoEx createInfoEx = 
 	{ 
 		&impact_template, 
 		gameObject->x, 
@@ -79,5 +79,5 @@ void Shotgun_Bullet_HandleCollision(GameObject* gameObject, GameObject* target)
 		0
 	};
 
-	ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&createInfoEx);
 }

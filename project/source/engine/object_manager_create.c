@@ -246,7 +246,7 @@ GameObject* FindFreeGameObject(u8 objectType)
 }
 
 
-GameObject* ObjectManager_CreateCommandRunner(const CreateInfo* createInfo)
+GameObject* ObjectManager_CreateCommandRunner(const CommandRunnerCreateInfo* createInfo)
 {
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 	u8 objectType = gameObjectTemplate->objectType;
@@ -261,7 +261,7 @@ GameObject* ObjectManager_CreateCommandRunner(const CreateInfo* createInfo)
 	if (gameObjectTemplate->resourceInfo != NULL)
 		ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, createInfo);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfo);
 
 	return gameObject;
 }
@@ -323,7 +323,7 @@ GameObject* ObjectManager_CreateEnemy(const CreateInfo* createInfo)
 }
 
 
-GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
+GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfoEx* createInfo)
 {
 	// Be careful not create more objects than active slots.
 	if (ObjectManager_numActiveProjectiles == MAX_PROJECTILES ||
@@ -358,7 +358,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo)
 }
 
 
-GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfo* createInfo)
+GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfoEx* createInfo)
 {
 	// Be careful not create more objects than active slots.
 	if (ObjectManager_numActiveEnemyProjectiles == MAX_ENEMY_PROJECTILES ||
@@ -392,7 +392,7 @@ GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfo* createInfo)
 	return gameObject;
 }
 
-GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
+GameObject* ObjectManager_CreateEffect(const CreateInfoEx* createInfoEx)
 {
 	// Be careful not create more objects than active slots.
 	if (ObjectManager_numActiveEffects == MAX_EFFECTS ||
@@ -410,14 +410,14 @@ GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCreateInfo)
 	ObjectManager_pendingEffects[ObjectManager_numPendingEffects] = gameObject;
 	ObjectManager_numPendingEffects++;
 
-	const GameObjectTemplate* gameObjectTemplate = effectCreateInfo->gameObjectTemplate;
+	const GameObjectTemplate* gameObjectTemplate = createInfoEx->gameObjectTemplate;
 
-	memcpy(&gameObject->x, &effectCreateInfo->startX, 4);
+	memcpy(&gameObject->x, &createInfoEx->startX, 4);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, effectCreateInfo);
+	gameObjectTemplate->initFunction(gameObject, createInfoEx);
 
 	ObjectManager_resetActiveEffects = TRUE;
 

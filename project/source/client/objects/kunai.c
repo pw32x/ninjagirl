@@ -75,7 +75,7 @@ void Kunai_Update(GameObject* object)
 		// of the screen because of the wrapping.
 		blockX - (ScrollManager_horizontalScroll >> 4) < TERRAIN_SIDE)
 	{
-		EffectCreateInfo effectCreateInfo = 
+		CreateInfoEx createInfoEx = 
 		{ 
 			&impact_template, 
 			object->x, 
@@ -85,7 +85,7 @@ void Kunai_Update(GameObject* object)
 			0
 		};
 
-		ObjectManager_CreateEffect(&effectCreateInfo);
+		ObjectManager_CreateEffect(&createInfoEx);
 
 		ObjectManager_DestroyObject(object);
 	}
@@ -97,7 +97,7 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 
 	ObjectManager_DestroyObject(gameObject);
 
-	EffectCreateInfo effectCreateInfo = 
+	CreateInfoEx createInfoEx = 
 	{ 
 		&impact_template, 
 		gameObject->x, 
@@ -107,5 +107,5 @@ void Kunai_HandleCollision(GameObject* gameObject, GameObject* target)
 		0,
 	};
 
-	ObjectManager_CreateEffect(&effectCreateInfo);
+	ObjectManager_CreateEffect(&createInfoEx);
 }

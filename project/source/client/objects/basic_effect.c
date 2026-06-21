@@ -10,7 +10,7 @@
 
 void BasicEffect_Update(GameObject* object);
 
-GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo)
+GameObject* BasicEffect_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
 	// 36/36/36.0
 

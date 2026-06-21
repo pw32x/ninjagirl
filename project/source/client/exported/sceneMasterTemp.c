@@ -14,9 +14,8 @@
 const CommandRunnerCreateInfo sceneMasterTemp_createInfoBootstrapper = { &commandrunner_runall_template, 0, 0, NULL };
 const CommandRunnerCreateInfo sceneMasterTemp_createInfo3 = { &commandrunner_rightscroll_template, 0, 3, NULL };
 const CreateInfo sceneMasterTemp_createInfo6 = { &gun_girl_template, 48, 88 };
-const CreateInfo sceneMasterTemp_createInfo7 = { &threeshotflyer_template, 80, 53 };
-const CreateInfo sceneMasterTemp_createInfo8 = { &wheeler_template, 380, 30 };
-const CreateInfo sceneMasterTemp_createInfo9 = { &wheeler_template, 404, 77 };
+const CreateInfo sceneMasterTemp_createInfo7 = { &threeshotflyer_template, 136, 46 };
+const CreateInfo sceneMasterTemp_createInfo8 = { &deliveryrobot_template, 237, 101 };
 
 #include "client/tileset_functions.h"
 const SetTilesetProperties_Params setTilesetPropertiesParams = 
@@ -28,7 +27,7 @@ const SetTilesetProperties_Params setTilesetPropertiesParams =
 
 const Command sceneMasterTemp_commands[] = 
 {
-    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfoBootstrapper },
+    { 0, (CommandFunction)ObjectManager_CreateCommandRunner, &sceneMasterTemp_createInfoBootstrapper },
     { 0, (CommandFunction)ResourceManager_LoadResource, &gun_girlResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &explosionResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &impactResourceInfo },
@@ -36,18 +35,18 @@ const Command sceneMasterTemp_commands[] =
     { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun_bulletResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &threeshotflyerResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &enemy_bulletResourceInfo },
-    { 0, (CommandFunction)ResourceManager_LoadResource, &wheelerResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &deliveryrobotResourceInfo },
+    { 0, (CommandFunction)ResourceManager_LoadResource, &shotgun_itemResourceInfo },
     { 0, (CommandFunction)ResourceManager_LoadResource, &field_mapResourceInfo},
     { 0, (CommandFunction)SetBackgroundVerticalScroll, 4 },
     { 0, (CommandFunction)SetBackgroundPalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)MapManager_SetTilesetProperties_Command, &setTilesetPropertiesParams  },
-    { 0, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, (const CreateInfo*)&sceneMasterTemp_createInfo3 },
+    { 0, (CommandFunction)ObjectManager_CreateCommandRunner, &sceneMasterTemp_createInfo3 },
     { 0, (CommandFunction)SetSpritePalette, &globalPaletteResourceInfo },
     { 0, (CommandFunction)RightScroller_Init, &field_mapResourceInfo },
-    { 51, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo6 },
-    { 92, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo7 },
-    { 384, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo8 },
-    { 408, (CommandFunction)ObjectManager_CreateObjectByCreateInfo, &sceneMasterTemp_createInfo9 },
+    { 51, (CommandFunction)ObjectManager_CreatePlayer, &sceneMasterTemp_createInfo6 },
+    { 148, (CommandFunction)ObjectManager_CreateEnemy, &sceneMasterTemp_createInfo7 },
+    { 249, (CommandFunction)ObjectManager_CreateEnemy, &sceneMasterTemp_createInfo8 },
     { 0, (CommandFunction)NULL, NULL}
 };
 

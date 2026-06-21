@@ -373,9 +373,6 @@
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\standard\explosion.c">
-      <Filter>Source Files\client\objects\effects</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
@@ -423,6 +420,9 @@
     </ClCompile>
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\explosion.c">
+      <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -621,9 +621,6 @@
     <ClInclude Include="..\source\client\objects\wheeler.h">
       <Filter>Source Files\client\objects\enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\standard\explosion.h">
-      <Filter>Source Files\client\objects\effects</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\enemies\wheeler.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
@@ -655,6 +652,9 @@
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\exported\animations\enemies\walker.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\explosion.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>

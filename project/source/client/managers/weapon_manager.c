@@ -92,7 +92,7 @@ void WeaponManager_Fire(s16 playerX,
 
 void WeaponManager_FireDefaultUp(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
@@ -106,7 +106,7 @@ void WeaponManager_FireDefaultUp(void)
 
 void WeaponManager_FireDefaultDown(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
@@ -122,7 +122,7 @@ void WeaponManager_FireDefaultDown(void)
 
 void WeaponManager_FireDefaultLeft(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
 		weaponPlayerX - 13,
@@ -136,7 +136,7 @@ void WeaponManager_FireDefaultLeft(void)
 
 void WeaponManager_FireDefaultRight(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
 		weaponPlayerX + 13,
@@ -152,7 +152,7 @@ void WeaponManager_FireDefaultRight(void)
 
 void WeaponManager_FireShotgunUp(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
@@ -175,7 +175,7 @@ void WeaponManager_FireShotgunUp(void)
 
 void WeaponManager_FireShotgunDown(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
@@ -199,7 +199,7 @@ void WeaponManager_FireShotgunDown(void)
 
 void WeaponManager_FireShotgunLeft(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX - 13,
@@ -221,7 +221,7 @@ void WeaponManager_FireShotgunLeft(void)
 
 void WeaponManager_FireShotgunRight(void)
 {
-	CreateInfo createInfo = 
+	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX + 13,

@@ -7,12 +7,12 @@ void ObjectManager_InitCreate(void);
 
 //GameObject* ObjectManager_CreateObject(u8 objectType);
 
-GameObject* ObjectManager_CreateCommandRunner(const CreateInfo* createInfo);
+GameObject* ObjectManager_CreateCommandRunner(const CommandRunnerCreateInfo* createInfo);
 GameObject* ObjectManager_CreatePlayer(const CreateInfo* createInfo);
 GameObject* ObjectManager_CreateEnemy(const CreateInfo* createInfo);
-GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfo* createInfo);
-GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfo* createInfo);
-GameObject* ObjectManager_CreateEffect(const EffectCreateInfo* effectCcreateInfo);
+GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfoEx* createInfo);
+GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfoEx* createInfo);
+GameObject* ObjectManager_CreateEffect(const CreateInfoEx* effectCcreateInfo);
 GameObject* ObjectManager_CreateItem(const CreateInfo* createInfo);
 
 void ObjectManager_DestroyObject(GameObject* gameObject);

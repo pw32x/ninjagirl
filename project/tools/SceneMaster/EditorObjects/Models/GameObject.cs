@@ -123,10 +123,12 @@ namespace SceneMaster.GameObjectTemplates.Models
             {
                 finalExportedCommandData = "&" + exportedCommandData.CreateInfoTypeName;
 
+                /*
                 if (GameObjectTemplate.GameObjectType == GameObjectType.CommandRunner)
                 {
                     finalExportedCommandData = "(const CreateInfo*)" + finalExportedCommandData;
                 }
+                */
             }
 
             return "{ " + x + ", (CommandFunction)" + exportedCommandData.CommandToUse + ", " + finalExportedCommandData + " },";
