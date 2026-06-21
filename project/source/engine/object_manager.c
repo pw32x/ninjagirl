@@ -131,6 +131,10 @@ void ObjectManager_Update(void)
 	}
 	*/
 
+	ObjectManager_refreshActiveEnemies();
+	ObjectManager_refreshActiveProjectiles();
+	ObjectManager_refreshActiveEnemyProjectiles();	
+	ObjectManager_refreshActiveEffects();
 	
 
 	//SMS_setBackdropColor(COLOR_YELLOW);
@@ -176,14 +180,6 @@ void ObjectManager_Update(void)
 
 	//drawOrderToggle = !drawOrderToggle;
 
-	// 9856
-	// 7249 without function
-	// 2607
-	
-	ObjectManager_refreshActiveEnemies();
-	ObjectManager_refreshActiveProjectiles();
-	ObjectManager_refreshActiveEnemyProjectiles();	
-	ObjectManager_refreshActiveEffects();
 }
 
 void DrawEffectsAndEnemiesOrder1(void)
