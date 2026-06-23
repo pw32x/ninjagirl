@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* ThreeShotFlyer_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* ThreeShotFlyer_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate threeshotflyer_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate threeshotflyer_template =
     OBJECTTYPE_ENEMY, // object type
     &threeshotflyerResourceInfo, // resource info
     NULL, // extra resource infos
-    ThreeShotFlyer_Init, // init function
+    (InitObjectFunctionType)ThreeShotFlyer_Init, // init function
 };

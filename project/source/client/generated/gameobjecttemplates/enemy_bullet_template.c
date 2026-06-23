@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Bullet_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Bullet_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate enemy_bullet_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate enemy_bullet_template =
     OBJECTTYPE_ENEMY_PROJECTILE, // object type
     &enemy_bulletResourceInfo, // resource info
     NULL, // extra resource infos
-    Bullet_Init, // init function
+    (InitObjectFunctionType)Bullet_Init, // init function
 };

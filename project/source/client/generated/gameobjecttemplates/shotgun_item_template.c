@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* ShotgunItem_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* ShotgunItem_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate shotgun_item_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate shotgun_item_template =
     OBJECTTYPE_ITEM, // object type
     &shotgun_itemResourceInfo, // resource info
     NULL, // extra resource infos
-    ShotgunItem_Init, // init function
+    (InitObjectFunctionType)ShotgunItem_Init, // init function
 };

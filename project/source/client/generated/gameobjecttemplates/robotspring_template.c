@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Enemy_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Enemy_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate robotspring_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate robotspring_template =
     OBJECTTYPE_ENEMY, // object type
     &robotspringResourceInfo, // resource info
     NULL, // extra resource infos
-    Enemy_Init, // init function
+    (InitObjectFunctionType)Enemy_Init, // init function
 };

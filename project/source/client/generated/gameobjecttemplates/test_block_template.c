@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Enemy_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* Enemy_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate test_block_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate test_block_template =
     OBJECTTYPE_ENEMY, // object type
     &test_blockResourceInfo, // resource info
     NULL, // extra resource infos
-    Enemy_Init, // init function
+    (InitObjectFunctionType)Enemy_Init, // init function
 };

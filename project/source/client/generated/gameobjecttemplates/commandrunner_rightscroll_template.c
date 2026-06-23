@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* CommandRunner_RightScroll_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* CommandRunner_RightScroll_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate commandrunner_rightscroll_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate commandrunner_rightscroll_template =
     OBJECTTYPE_COMMANDRUNNER, // object type
     NULL, // resource info
     NULL, // extra resource infos
-    CommandRunner_RightScroll_Init, // init function
+    (InitObjectFunctionType)CommandRunner_RightScroll_Init, // init function
 };

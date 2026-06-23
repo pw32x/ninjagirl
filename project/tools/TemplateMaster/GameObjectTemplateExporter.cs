@@ -27,7 +27,7 @@ namespace TemplateMaster
             ExportExtraResourceInfos(gameObjectTemplate, templateName, sb);
 
             // forward declare the init function
-            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(GameObject* object, const CreateInfo* createInfo);");
+            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(/*GameObject* object, const CreateInfo* createInfo*/);");
             sb.AppendLine();
             ExportGameTemplateStruct(gameObjectTemplate, templateName, sb);
 
@@ -100,7 +100,7 @@ namespace TemplateMaster
 
             AppendField(extraResourceInfos, sb, "Error", "extra resource infos");
 
-            AppendField(gameObjectTemplate.InitFunction, sb, "Error", "init function");
+            AppendField("(InitObjectFunctionType)" + gameObjectTemplate.InitFunction, sb, "Error", "init function");
 
             sb.AppendLine("};");
 

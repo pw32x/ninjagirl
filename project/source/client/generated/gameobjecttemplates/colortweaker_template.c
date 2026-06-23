@@ -9,7 +9,7 @@ ResourceInfo* colortweaker_templateExtraResourceInfos[] =
     &globalPaletteResourceInfo,
 };
 
-GameObject* ColorTweaker_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* ColorTweaker_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate colortweaker_template = 
 {
@@ -22,5 +22,5 @@ const GameObjectTemplate colortweaker_template =
     OBJECTTYPE_EFFECT, // object type
     &colorTweakerResourceInfo, // resource info
     colortweaker_templateExtraResourceInfos, // extra resource infos
-    ColorTweaker_Init, // init function
+    (InitObjectFunctionType)ColorTweaker_Init, // init function
 };

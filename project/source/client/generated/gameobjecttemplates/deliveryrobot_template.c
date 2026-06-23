@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* DeliveryRobot_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* DeliveryRobot_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate deliveryrobot_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate deliveryrobot_template =
     OBJECTTYPE_ENEMY, // object type
     &deliveryrobotResourceInfo, // resource info
     NULL, // extra resource infos
-    DeliveryRobot_Init, // init function
+    (InitObjectFunctionType)DeliveryRobot_Init, // init function
 };

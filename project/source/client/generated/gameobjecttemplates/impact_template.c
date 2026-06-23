@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* BasicEffect_Init(GameObject* object, const CreateInfo* createInfo);
+GameObject* BasicEffect_Init(/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate impact_template = 
 {
@@ -16,5 +16,5 @@ const GameObjectTemplate impact_template =
     OBJECTTYPE_EFFECT, // object type
     &impactResourceInfo, // resource info
     NULL, // extra resource infos
-    BasicEffect_Init, // init function
+    (InitObjectFunctionType)BasicEffect_Init, // init function
 };
