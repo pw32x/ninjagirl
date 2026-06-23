@@ -65,8 +65,6 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other);
 GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->x = P2V(object->x);
-	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)ThreeShotFlyer_Update;
 	object->HandleCollision = ThreeShotFlyer_HandleCollision;
 
@@ -123,8 +121,8 @@ void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other)
 		CreateInfoEx createInfoEx = 
 		{ 
 			&explosion_template,
-			V2P(gameObject->x), 
-			V2P(gameObject->y),
+			gameObject->x,
+			gameObject->y,
 			0,
 			0,
 			0
@@ -146,25 +144,27 @@ void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot)
 	CreateInfoEx createInfo = 
 	{ 
 		&enemy_bullet_template, 
-		V2P(object->x),
-		V2P(object->y),
+		object->x,
+		object->y,
 	};
 
 	switch (whichShot)
 	{
 	case 0:
-		createInfo.speedX = -2;
-		createInfo.speedY = 2;
+		createInfo.speedX = P2V(-2);
+		createInfo.speedY = P2V(2);
 		break;
 	case 1:
-		createInfo.speedX = 0;
-		createInfo.speedY = 2;
+		createInfo.speedX = P2V(0);
+		createInfo.speedY = P2V(2);
 		break;
 	case 2:
-		createInfo.speedX = 2;
-		createInfo.speedY = 2;
+		createInfo.speedX = P2V(2);
+		createInfo.speedY = P2V(2);
 		break;
 	}
+
+	//MSG("FIRE\n");
 
 	ObjectManager_CreateEnemyProjectile(&createInfo);
 }

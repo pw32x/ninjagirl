@@ -17,8 +17,6 @@ void ParticleEffect_Update(GameObject* object);
 GameObject* ParticleEffect_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
 	UNUSED(createInfo);
-	object->x = P2V(object->x);
-	object->y = P2V(object->y);
 
 	object->Update = ParticleEffect_Update;
 

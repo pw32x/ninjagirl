@@ -29,6 +29,8 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Bullet_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
+	//SMS_debugPrintf("%d %d\n", V2P(object->x), V2P(object->y));
+
 	s8 speedx = object->speedx;
 	s8 speedy = object->speedy;
 
@@ -57,8 +59,8 @@ void Bullet_UpdateLeft(GameObject* object)
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	if (object->screenx < SCREEN_LEFT_EDGE)
 	{
@@ -77,8 +79,8 @@ void Bullet_UpdateRight(GameObject* object)
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	if (object->screenx > SCREEN_RIGHT)
 	{
@@ -95,8 +97,8 @@ void Bullet_UpdateUp(GameObject* object)
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	if (object->screeny < SCREEN_TOP)
 	{
@@ -110,8 +112,8 @@ void Bullet_UpdateDown(GameObject* object)
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	if (object->screeny > SCREEN_BOTTOM)
 	{

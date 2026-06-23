@@ -28,8 +28,6 @@ void ShotgunItem_HandleCollision(GameObject* gameObject, GameObject* other);
 GameObject* ShotgunItem_Init(ShotgunItemObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->x = P2V(object->x);
-	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)ShotgunItem_Update;
 	object->UpdatePhysics = ShotgunItem_Fall;
 	object->HandleCollision = ShotgunItem_HandleCollision;

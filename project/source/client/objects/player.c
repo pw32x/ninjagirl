@@ -187,8 +187,8 @@ GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 	jumpWhenLanding = FALSE;
 
 	UNUSED(createInfo);
-	playerX = P2V(object->x);
-	playerY = P2V(object->y);
+	playerX = object->x;
+	playerY = object->y;
 
 	object->Update = Player_Update;
 	object->Draw = Player_Draw;
@@ -320,7 +320,7 @@ void Player_FireWeapon(GameObject* object)
 		fireDirection = FIRE_LEFT;
 	}
 
-	WeaponManager_Fire(object->x, object->y, playerFlipped, playerDucking, fireDirection);
+	WeaponManager_Fire(playerX, playerY, playerFlipped, playerDucking, fireDirection);
 }
 
 void Player_UpdateX(void)

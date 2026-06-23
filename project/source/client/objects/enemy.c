@@ -45,8 +45,8 @@ void Enemy_Update(GameObject* object)
 	}
 	*/
 
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	// if offscreen die
 	if (object->screenx + object->rectLeft < SCREEN_LEFT)

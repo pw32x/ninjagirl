@@ -30,6 +30,8 @@ GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfoEx* createIn
 	object->Update = Shotgun_Bullet_Update;
 	object->HandleCollision = Shotgun_Bullet_HandleCollision;
 
+	//SMS_debugPrintf("%d %d\n", V2P(object->x), V2P(object->y));	
+
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;
@@ -41,8 +43,8 @@ void Shotgun_Bullet_Update(GameObject* object)
 	object->y += object->speedy;
 
 	// world to screen transformation
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y - ScrollManager_verticalScroll;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y) - ScrollManager_verticalScroll;
 
 	if (object->screenx > SCREEN_RIGHT ||
 		object->screeny > SCREEN_BOTTOM ||

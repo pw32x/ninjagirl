@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 
+// virtual pixel resolution in-game
 namespace SceneMaster.GameObjectTemplates.Models
 {
     public class GameObject : EditorObject
@@ -36,6 +37,8 @@ namespace SceneMaster.GameObjectTemplates.Models
         internal override ExportedCommandData BuildExportCommandData(string sceneName, 
                                                                      int exportCounter)
         {
+            const int VIRTUAL_SIZE = 4;
+
             if (GameObjectTemplate.GameObjectType == GameObjectType.CommandRunner)
             {
                 string createInfoName = sceneName + "_" + "createInfo" + exportCounter;
@@ -81,7 +84,7 @@ namespace SceneMaster.GameObjectTemplates.Models
                     y += (int)(Y < 0 ? 0 : Y);
                 }
 
-                sb.Append("&" + templateName + ", " + x + ", " + y);
+                sb.Append("&" + templateName + ", " + (x << VIRTUAL_SIZE) + "/*" + x + "*/, " + (y << VIRTUAL_SIZE) + "/*" + y + "/*/");
                 sb.AppendLine(" };");
                 exportedCommandData.ExportedCreateInfo = sb.ToString();
 

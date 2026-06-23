@@ -41,14 +41,12 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other);
 GameObject* Wheeler_Init(WheelerObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->x = P2V(object->x);
-	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)Wheeler_Update;
 	object->UpdatePhysics = Wheeler_Roll;
 	object->HandleCollision = Wheeler_HandleCollision;
 
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
-	if (ObjectManager_player.x < V2P(object->x))
+	if (ObjectManager_player.x < object->x)
 	{
 		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, WHEELER_RUN_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
@@ -166,8 +164,8 @@ void Wheeler_HandleCollision(GameObject* gameObject, GameObject* other)
 		CreateInfoEx createInfoEx = 
 		{ 
 			&explosion_template,
-			V2P(gameObject->x), 
-			V2P(gameObject->y),
+			gameObject->x, 
+			gameObject->y,
 			0,
 			0,
 			0

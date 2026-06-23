@@ -8,10 +8,10 @@
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 
-s8 fireVerticalXOffset[] = { 5, -5 }; // right, left
-s8 fireDuckingYOffset[] = { -4, 3 }; // not ducking, ducking
+s8 fireVerticalXOffset[] = { P2V(5), P2V(-5) }; // right, left
+s8 fireDuckingYOffset[] = { P2V(-4), P2V(3) }; // not ducking, ducking
 
-#define DEFAULT_BULLET_SPEED 4
+#define DEFAULT_BULLET_SPEED P2V(4)
 
 typedef void (*WeaponManager_FireFunction)(void);
 
@@ -82,6 +82,9 @@ void WeaponManager_Fire(s16 playerX,
 {
 	weaponPlayerX = playerX;
 	weaponPlayerY = playerY;
+
+	//SMS_debugPrintf("player: %d %d\n", playerX, playerY);	
+
 	weaponPlayerFlipped = playerFlipped;
 	weaponPlayerDucking = playerDucking;
 
@@ -96,7 +99,7 @@ void WeaponManager_FireDefaultUp(void)
 	{ 
 		&bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
-		weaponPlayerY - 19,
+		weaponPlayerY - P2V(19),
 		0,
 		-DEFAULT_BULLET_SPEED
 	};
@@ -110,7 +113,7 @@ void WeaponManager_FireDefaultDown(void)
 	{ 
 		&bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
-		weaponPlayerY + 12,
+		weaponPlayerY + P2V(12),
 		0,
 		DEFAULT_BULLET_SPEED
 	};
@@ -125,7 +128,7 @@ void WeaponManager_FireDefaultLeft(void)
 	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
-		weaponPlayerX - 13,
+		weaponPlayerX - P2V(13),
 		weaponPlayerY + fireDuckingYOffset[weaponPlayerDucking],
 		-DEFAULT_BULLET_SPEED,
 		0
@@ -139,7 +142,7 @@ void WeaponManager_FireDefaultRight(void)
 	CreateInfoEx createInfo = 
 	{ 
 		&bullet_template, 
-		weaponPlayerX + 13,
+		weaponPlayerX + P2V(13),
 		weaponPlayerY + fireDuckingYOffset[weaponPlayerDucking],
 		DEFAULT_BULLET_SPEED,
 		0
@@ -156,20 +159,20 @@ void WeaponManager_FireShotgunUp(void)
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
-		weaponPlayerY - 19,
+		weaponPlayerY - P2V(19),
 		0,
 		-DEFAULT_BULLET_SPEED
 	};
 
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startX -= 4;
-	createInfo.speedX = -1;
+	createInfo.startX -= P2V(4);
+	createInfo.speedX = P2V(-1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
 
-	createInfo.startX += 8;
-	createInfo.speedX = 1;
+	createInfo.startX += P2V(8);
+	createInfo.speedX = P2V(1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 }
 
@@ -179,19 +182,19 @@ void WeaponManager_FireShotgunDown(void)
 	{ 
 		&shotgun_bullet_template, 
 		weaponPlayerX + fireVerticalXOffset[weaponPlayerFlipped],
-		weaponPlayerY + 12,
+		weaponPlayerY + P2V(12),
 		0,
 		DEFAULT_BULLET_SPEED
 	};
 
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startX -= 4;
-	createInfo.speedX = -1;
+	createInfo.startX -= P2V(4);
+	createInfo.speedX = P2V(-1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startX += 8;
-	createInfo.speedX = 1;
+	createInfo.startX += P2V(8);
+	createInfo.speedX = P2V(1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 }
 
@@ -202,7 +205,7 @@ void WeaponManager_FireShotgunLeft(void)
 	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
-		weaponPlayerX - 13,
+		weaponPlayerX - P2V(13),
 		weaponPlayerY + fireDuckingYOffset[weaponPlayerDucking],
 		-DEFAULT_BULLET_SPEED,
 		0
@@ -210,12 +213,12 @@ void WeaponManager_FireShotgunLeft(void)
 
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startY -= 4;
-	createInfo.speedY = -1;
+	createInfo.startY -= P2V(4);
+	createInfo.speedY = P2V(-1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startY += 8;
-	createInfo.speedY = 1;
+	createInfo.startY += P2V(8);
+	createInfo.speedY = P2V(1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 }
 
@@ -224,7 +227,7 @@ void WeaponManager_FireShotgunRight(void)
 	CreateInfoEx createInfo = 
 	{ 
 		&shotgun_bullet_template, 
-		weaponPlayerX + 13,
+		weaponPlayerX + P2V(13),
 		weaponPlayerY + fireDuckingYOffset[weaponPlayerDucking],
 		DEFAULT_BULLET_SPEED,
 		0
@@ -232,67 +235,11 @@ void WeaponManager_FireShotgunRight(void)
 
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 
-	createInfo.startY -= 4;
-	createInfo.speedY = -1;
+	createInfo.startY -= P2V(4);
+	createInfo.speedY = P2V(-1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 	
-	createInfo.startY += 8;
-	createInfo.speedY = 1;
+	createInfo.startY += P2V(8);
+	createInfo.speedY = P2V(1);
 	ObjectManager_CreatePlayerProjectile(&createInfo);
 }
-
-/*
-void WeaponManager_FireShotgun(s16 x, s16 y, u8 flipped)
-{
-	//SMS_debugPrintf("Shotgun");
-	CreateInfo createInfo = 
-	{ 
-		&shotgun_bullet_template, 
-		x,
-		y
-	};
-
-	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-
-	shotgun->speedX = flipped ? -4 : 4;
-	shotgun->speedY = 0;
-
-	createInfo.startY -= 4;
-	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-	shotgun->speedX = flipped ? -4 : 4;
-	shotgun->speedY = -1;
-
-	createInfo.startY += 8;
-	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-	shotgun->speedX = flipped ? -4 : 4;
-	shotgun->speedY = 1;
-}
-
-
-void WeaponManager_FireShotgunVertical(s16 x, s16 y, u8 flipped)
-{
-	//SMS_debugPrintf("Shotgun");
-	CreateInfo createInfo = 
-	{ 
-		&shotgun_bullet_template, 
-		x,
-		y
-	};
-
-	GameObject* shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-
-	shotgun->speedX = 0;
-	shotgun->speedY = flipped ? 4 : -4;
-
-	createInfo.startX -= 4;
-	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-	shotgun->speedX = -1;
-	shotgun->speedY = flipped ? 4 : -4;
-
-	createInfo.startX += 8;
-	shotgun = ObjectManager_CreatePlayerProjectile(&createInfo);
-	shotgun->speedX = 1;
-	shotgun->speedY = flipped ? 4 : -4;
-}
-
-*/

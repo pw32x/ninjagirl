@@ -27,8 +27,8 @@ void BasicEffect_Update(GameObject* object)
 	object->x += object->speedx;
 	object->y += object->speedy;
 
-	object->screenx = object->x - ScrollManager_horizontalScroll;
-	object->screeny = object->y;
+	object->screenx = V2P(object->x) - ScrollManager_horizontalScroll;
+	object->screeny = V2P(object->y);
 	if (object->screenx > SCREEN_RIGHT ||
 		object->screeny > SCREEN_BOTTOM ||
 		object->screenx < SCREEN_LEFT ||
