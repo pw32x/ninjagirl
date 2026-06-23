@@ -62,7 +62,7 @@ void ThreeShotFlyer_Fall(ThreeShotFlyerObjectType* object);
 
 void ThreeShotFlyer_HandleCollision(GameObject* gameObject, GameObject* other);
 
-GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfoEx* createInfo)
+GameObject* ThreeShotFlyer_Init(ThreeShotFlyerObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
 	object->x = P2V(object->x);
