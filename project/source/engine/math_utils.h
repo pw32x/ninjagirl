@@ -3,9 +3,6 @@
 
 #include "engine/base_types.h"
 
-typedef s32 POSITION;
-typedef s16 POSITION_PIXEL;
-
 #define VIRTUAL_SIZE 4
 
 #define PIXEL_TO_VIRTUAL(value) ((value) << VIRTUAL_SIZE) // 16 virtual pixels per on screen pixel
