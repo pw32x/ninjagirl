@@ -30,9 +30,6 @@ GameObject* Shotgun_Bullet_Init(GameObject* object, const CreateInfoEx* createIn
 	object->Update = Shotgun_Bullet_Update;
 	object->HandleCollision = Shotgun_Bullet_HandleCollision;
 
-	object->speedx = createInfo->speedX;
-	object->speedy = createInfo->speedY;
-
 	PSGSFXPlay(throw_psg, SFX_CHANNELS2AND3);
 
 	return object;

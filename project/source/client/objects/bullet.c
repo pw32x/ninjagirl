@@ -29,11 +29,8 @@ void Bullet_HandleCollision(GameObject* gameObject, GameObject* target);
 
 GameObject* Bullet_Init(GameObject* object, const CreateInfoEx* createInfo)
 {
-	s8 speedx = createInfo->speedX;
-	s8 speedy = createInfo->speedY;
-
-	object->speedx = speedx;
-	object->speedy = speedy;
+	s8 speedx = object->speedx;
+	s8 speedy = object->speedy;
 
 	s8 absSpeedX = speedx < 0 ? -speedx : speedx;
 	s8 absSpeedY = speedy < 0 ? -speedy : speedy;
