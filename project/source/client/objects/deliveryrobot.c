@@ -50,8 +50,6 @@ const MotionSequence deliveryRobotMotionSequence =
 GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo* createInfo)
 {
 	UNUSED(createInfo);
-	object->x = P2V(object->x);
-	object->y = P2V(object->y);
 	object->Update = (ObjectFunctionType)DeliveryRobot_Update;
 	object->HandleCollision = DeliveryRobot_HandleCollision;
 
@@ -106,8 +104,8 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		CreateInfoEx createInfoEx = 
 		{ 
 			&explosion_template,
-			V2P(gameObject->x), 
-			V2P(gameObject->y),
+			gameObject->x, 
+			gameObject->y,
 			0,
 			0,
 			0
@@ -121,8 +119,8 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		CreateInfo createInfo = 
 		{ 
 			&shotgun_item_template,
-			V2P(gameObject->x), 
-			V2P(gameObject->y)
+			gameObject->x, 
+			gameObject->y
 		};
 
 		ObjectManager_CreateEnemy(&createInfo);
@@ -136,8 +134,8 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		/*asdf
 		createInfo.gameObjectTemplate = &effectGameTemplate;
-		createInfo.startX = V2P(gameObject->x);
-		createInfo.startY = V2P(gameObject->y);
+		createInfo.startX = gameObject->x;
+		createInfo.startY = gameObject->y;
 		createInfo.speedx = 0;
 		createInfo.speedy = -90;
 		createInfo.startFrameIndex = DELIVERYROBOT_PARTS_HEAD_FRAME_INDEX;
