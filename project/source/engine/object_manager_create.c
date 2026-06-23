@@ -343,7 +343,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfoEx* createInfo)
 
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 
-	memcpy(&gameObject->x, &createInfo->startX, 4);
+	memcpy(&gameObject->x, &createInfo->startX, 6);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
@@ -378,7 +378,7 @@ GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfoEx* createInfo)
 
 	const GameObjectTemplate* gameObjectTemplate = createInfo->gameObjectTemplate;
 
-	memcpy(&gameObject->x, &createInfo->startX, 4);
+	memcpy(&gameObject->x, &createInfo->startX, 6);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
@@ -412,7 +412,7 @@ GameObject* ObjectManager_CreateEffect(const CreateInfoEx* createInfoEx)
 
 	const GameObjectTemplate* gameObjectTemplate = createInfoEx->gameObjectTemplate;
 
-	memcpy(&gameObject->x, &createInfoEx->startX, 4);
+	memcpy(&gameObject->x, &createInfoEx->startX, 6);
 	memcpy(&gameObject->health, &gameObjectTemplate->startHealth, sizeof(GameObjectTemplate));
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
@@ -428,7 +428,7 @@ GameObject* ObjectManager_CreateEffect(const CreateInfoEx* createInfoEx)
 
 GameObject* ObjectManager_CreateItem(const CreateInfo* createInfo)
 {
-
+	return NULL;
 }
 
 void ObjectManager_DestroyObject(GameObject* gameObject)
