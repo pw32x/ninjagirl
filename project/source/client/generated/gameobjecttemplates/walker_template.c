@@ -14,7 +14,7 @@ const GameObjectTemplate walker_template =
     8, // rect right
     8, // rect bottom
     OBJECTTYPE_ENEMY, // object type
-    &walkerResourceInfo, // resource info
+    &walker_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)Enemy_Init, // init function
 };

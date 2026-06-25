@@ -13,7 +13,7 @@
 
 #include "engine/math_utils.h"
 
-//#include "client/exported/animations/impact.h"
+//#include "client/exported/animations/impact_anim.h"
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
 #include "client/objects/basic_effect.h"
 

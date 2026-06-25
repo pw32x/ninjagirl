@@ -14,7 +14,7 @@
 		<Damage value="1"/>
 		<GameObjectType value="Enemy" />
 		<Health value="3"/>
-		<ResourceInfo value="robotrunnerResourceInfo" />	
+		<ResourceInfo value="robotrunner_animResourceInfo" />	
 		<InitFunction value="Enemy_Init"/>	
 	</GameProperties>
 </GameObjectTemplate>

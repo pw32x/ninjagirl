@@ -14,7 +14,7 @@
 		<Damage value="1"/>
 		<GameObjectType value="Enemy" />
 		<Health value="3"/>
-		<ResourceInfo value="deliveryrobotResourceInfo" />	
+		<ResourceInfo value="deliveryrobot_animResourceInfo" />	
 		<InitFunction value="DeliveryRobot_Init"/>	
 		<CustomData>
 			<Data value="MotionSequenceRunner motionSequenceRunner"/>

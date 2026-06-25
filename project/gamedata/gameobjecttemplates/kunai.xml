@@ -7,7 +7,7 @@
 		<RectRight value="4"/>
 		<RectBottom value="4"/>
 		<GameObjectType value="Projectile" />
-		<ResourceInfo value="kunaiResourceInfo" />		
+		<ResourceInfo value="kunai_animResourceInfo" />		
 		<InitFunction value="Kunai_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

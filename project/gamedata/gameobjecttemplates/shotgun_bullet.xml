@@ -7,7 +7,7 @@
 		<RectRight value="6"/>
 		<RectBottom value="6"/>
 		<GameObjectType value="Projectile" />
-		<ResourceInfo value="shotgun_bulletResourceInfo" />		
+		<ResourceInfo value="shotgun_bullet_animResourceInfo" />		
 		<InitFunction value="Shotgun_Bullet_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

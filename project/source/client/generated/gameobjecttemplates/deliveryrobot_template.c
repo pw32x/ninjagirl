@@ -14,7 +14,7 @@ const GameObjectTemplate deliveryrobot_template =
     12, // rect right
     16, // rect bottom
     OBJECTTYPE_ENEMY, // object type
-    &deliveryrobotResourceInfo, // resource info
+    &deliveryrobot_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)DeliveryRobot_Init, // init function
 };

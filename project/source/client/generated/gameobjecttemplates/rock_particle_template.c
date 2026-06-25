@@ -14,7 +14,7 @@ const GameObjectTemplate rock_particle_template =
     0, // rect right
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
-    &rock_particleResourceInfo, // resource info
+    &rock_particle_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)BasicEffect_Init, // init function
 };

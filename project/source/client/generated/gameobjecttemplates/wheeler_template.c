@@ -14,7 +14,7 @@ const GameObjectTemplate wheeler_template =
     4, // rect right
     16, // rect bottom
     OBJECTTYPE_ENEMY, // object type
-    &wheelerResourceInfo, // resource info
+    &wheeler_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)Wheeler_Init, // init function
 };

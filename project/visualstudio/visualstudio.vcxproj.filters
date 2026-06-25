@@ -331,9 +331,6 @@
     <ClCompile Include="..\source\client\objects\shotgun_bullet.c">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\objects\shotgun_item.c">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClCompile>
@@ -348,9 +345,6 @@
     </ClCompile>
     <ClCompile Include="..\source\client\objects\deliveryrobot.c">
       <Filter>Source Files\client\objects\weapons</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot.c">
-      <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\ai_commands.c">
       <Filter>Source Files</Filter>
@@ -379,17 +373,8 @@
     <ClCompile Include="..\..\..\..\devkitSMS-master\SMSlib\src\SMSlib_metasprite.c">
       <Filter>SMSLib\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\enemies\wheeler.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\exported\sceneMasterTemp.c">
       <Filter>Source Files\client</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\standard\colorTweaker.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor.c">
-      <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\exported\maps\bank4\field.c">
       <Filter>Source Files\client\exported\maps</Filter>
@@ -409,19 +394,73 @@
     <ClCompile Include="..\source\engine\object_manager_slots.c">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\standard\test_block.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\enemies\walker.c">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
     <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\client\exported\animations\standard\explosion.c">
+    <ClCompile Include="..\source\client\exported\animations\enemies\wheeler_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_small_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_big_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\test_block_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_item_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\rock_particle_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotspring_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotrunner_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\kunai_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\impact_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\explosion_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweaker_anim.c">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\bullet_anim.c">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClCompile>
   </ItemGroup>
@@ -591,9 +630,6 @@
     <ClInclude Include="..\source\client\objects\shotgun_bullet.h">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\client\objects\shotgun_item.h">
       <Filter>Source Files\client\objects\weapons</Filter>
     </ClInclude>
@@ -602,9 +638,6 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\deliveryrobot.h">
       <Filter>Source Files\client\objects\weapons</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot.h">
-      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h">
       <Filter>Source Files\client\generated\gameobjecttemplates</Filter>
@@ -620,15 +653,6 @@
     </ClInclude>
     <ClInclude Include="..\source\client\objects\wheeler.h">
       <Filter>Source Files\client\objects\enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\enemies\wheeler.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\standard\colorTweakerCursor.h">
-      <Filter>Source Files\client\exported\animations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker.h">
-      <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\client\exported\maps\bank4\field.h">
       <Filter>Source Files\client\exported\maps</Filter>
@@ -648,13 +672,67 @@
     <ClInclude Include="..\source\engine\object_manager_slots.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\standard\test_block.h">
+    <ClInclude Include="..\source\client\exported\animations\enemies\wheeler_anim.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\enemies\walker.h">
+    <ClInclude Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\client\exported\animations\standard\explosion.h">
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_small_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_big_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\test_block_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_item_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\rock_particle_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotspring_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotrunner_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\kunai_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\impact_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\explosion_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker_anim.h">
+      <Filter>Source Files\client\exported\animations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\bullet_anim.h">
       <Filter>Source Files\client\exported\animations</Filter>
     </ClInclude>
   </ItemGroup>

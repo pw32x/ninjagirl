@@ -2,7 +2,7 @@
 	<Name value="Impact"/>
 	<GameProperties>
 		<GameObjectType value="Effect" />
-		<ResourceInfo value="impactResourceInfo" />		
+		<ResourceInfo value="impact_animResourceInfo" />		
 		<InitFunction value="BasicEffect_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

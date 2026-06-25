@@ -18,7 +18,7 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
-#include "client/exported/animations/enemies/threeshotflyer.h"
+#include "client/exported/animations/enemies/threeshotflyer_anim.h"
 
 void ThreeShotFlyer_Fire(ThreeShotFlyerObjectType* object, u16 whichShot);
 

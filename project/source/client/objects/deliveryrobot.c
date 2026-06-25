@@ -19,7 +19,7 @@
 #include "PSGlib.h"
 #include "client/generated/bank2.h"
 
-#include "client/exported/animations/weapons/deliveryrobot.h"
+#include "client/exported/animations/weapons/deliveryrobot_anim.h"
 
 void DeliveryRobot_Update(DeliveryRobotObjectType* object);
 void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other);
@@ -56,7 +56,7 @@ GameObject* DeliveryRobot_Init(DeliveryRobotObjectType* object, const CreateInfo
 	SMS_mapROMBank(object->resourceInfo->bankNumber);
 	if (ObjectManager_player.x < object->x)
 	{
-		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, DELIVERYROBOT_LEFT_FRAME_INDEX);
+		AnimationUtils_setMetaSpriteAnimationFrame((GameObject*)object, DELIVERYROBOT_ANIM_LEFT_FRAME_INDEX);
 		object->speedx = -SPEEDX;
 	}
 	else

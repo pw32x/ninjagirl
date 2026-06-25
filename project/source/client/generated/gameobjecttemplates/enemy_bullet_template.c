@@ -14,7 +14,7 @@ const GameObjectTemplate enemy_bullet_template =
     4, // rect right
     4, // rect bottom
     OBJECTTYPE_ENEMY_PROJECTILE, // object type
-    &enemy_bulletResourceInfo, // resource info
+    &enemy_bullet_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)Bullet_Init, // init function
 };

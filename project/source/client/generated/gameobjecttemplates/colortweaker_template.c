@@ -5,7 +5,7 @@
 
 ResourceInfo* colortweaker_templateExtraResourceInfos[] = 
 {
-    &colorTweakerCursorResourceInfo,
+    &colorTweakerCursor_animResourceInfo,
     &globalPaletteResourceInfo,
 };
 
@@ -20,7 +20,7 @@ const GameObjectTemplate colortweaker_template =
     0, // rect right
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
-    &colorTweakerResourceInfo, // resource info
+    &colorTweaker_animResourceInfo, // resource info
     colortweaker_templateExtraResourceInfos, // extra resource infos
     (InitObjectFunctionType)ColorTweaker_Init, // init function
 };

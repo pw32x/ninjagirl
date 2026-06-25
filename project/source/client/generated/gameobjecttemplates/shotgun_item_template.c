@@ -14,7 +14,7 @@ const GameObjectTemplate shotgun_item_template =
     8, // rect right
     8, // rect bottom
     OBJECTTYPE_ITEM, // object type
-    &shotgun_itemResourceInfo, // resource info
+    &shotgun_item_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)ShotgunItem_Init, // init function
 };

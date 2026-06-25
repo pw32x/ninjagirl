@@ -14,7 +14,7 @@ const GameObjectTemplate threeshotflyer_template =
     12, // rect right
     6, // rect bottom
     OBJECTTYPE_ENEMY, // object type
-    &threeshotflyerResourceInfo, // resource info
+    &threeshotflyer_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)ThreeShotFlyer_Init, // init function
 };

@@ -2,7 +2,7 @@
 	<Name value="Explosion"/>
 	<GameProperties>
 		<GameObjectType value="Effect" />
-		<ResourceInfo value="explosionResourceInfo" />		
+		<ResourceInfo value="explosion_animResourceInfo" />		
 		<InitFunction value="BasicEffect_Init"/>
 	</GameProperties>
 </GameObjectTemplate>

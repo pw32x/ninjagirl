@@ -14,7 +14,7 @@ const GameObjectTemplate shotgun_bullet_template =
     6, // rect right
     6, // rect bottom
     OBJECTTYPE_PROJECTILE, // object type
-    &shotgun_bulletResourceInfo, // resource info
+    &shotgun_bullet_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)Shotgun_Bullet_Init, // init function
 };

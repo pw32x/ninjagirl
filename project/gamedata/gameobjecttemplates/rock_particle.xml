@@ -2,7 +2,7 @@
 	<Name value="Rock Particle"/>
 	<GameProperties>
 		<GameObjectType value="Effect" />
-		<ResourceInfo value="rock_particleResourceInfo" />		
+		<ResourceInfo value="rock_particle_animResourceInfo" />		
 		<InitFunction value="BasicEffect_Init"/>	
 	</GameProperties>
 </GameObjectTemplate>

@@ -8,9 +8,9 @@
 	<GameProperties>
 		<GameObjectType value="Effect" />
 		<InitFunction value="ColorTweaker_Init"/>		
-		<ResourceInfo value="colorTweakerResourceInfo" />	
+		<ResourceInfo value="colorTweaker_animResourceInfo" />	
 		<ExtraResourceInfos>
-			<ResourceInfo value="colorTweakerCursorResourceInfo" />	
+			<ResourceInfo value="colorTweakerCursor_animResourceInfo" />	
 			<ResourceInfo value="globalPaletteResourceInfo" />	
 		</ExtraResourceInfos>		
 		<CustomData>

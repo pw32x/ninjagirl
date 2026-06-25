@@ -14,7 +14,7 @@ const GameObjectTemplate impact_template =
     0, // rect right
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
-    &impactResourceInfo, // resource info
+    &impact_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)BasicEffect_Init, // init function
 };

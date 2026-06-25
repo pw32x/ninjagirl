@@ -22,7 +22,7 @@
 
 //bullet
 #include "client/objects/bullet.h"
-#include "client/exported/animations/streamed/gun_girl.h"
+#include "client/exported/animations/streamed/gun_girl_anim.h"
 
 
 #include "client/generated/gameobjecttemplates/gameobject_templates.h"
@@ -35,7 +35,7 @@ void Player_FireWeapon(GameObject* object);
 #define PLAYER_METASPRITE_MAX_SIZE 1024
 
 s8 playerMetaSprites[PLAYER_METASPRITE_MAX_SIZE];
-u16 playerMetaSpriteFrameIndexes[GUN_GIRL_NUMFRAMES];
+u16 playerMetaSpriteFrameIndexes[GUN_GIRL_ANIM_NUMFRAMES];
 
 s16 playerX;
 s16 playerY;
@@ -106,46 +106,46 @@ void setPlayerAnimation(void)
 	case PLAYER_STATE_STAND:
 		if (!pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_STAND_LEFT_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_STAND_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_STAND_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_STAND_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_STAND_LEFT_UP_FRAME_INDEX : GUN_GIRL_ANIM_STAND_RIGHT_UP_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_RUN:
 		if (!pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_RUN_LEFT_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_RUN_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_RUN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_RUN_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_RUN_LEFT_UP_FRAME_INDEX : GUN_GIRL_ANIM_RUN_RIGHT_UP_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_FALL:
 		if (pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_FALL_LEFT_UP_FRAME_INDEX : GUN_GIRL_ANIM_FALL_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_FALL_LEFT_FRAME_INDEX : GUN_GIRL_FALL_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_FALL_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_FALL_RIGHT_FRAME_INDEX);
 		break;
 	case PLAYER_STATE_JUMP:
 		if (pointingUp)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_UP_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_JUMP_LEFT_UP_FRAME_INDEX : GUN_GIRL_ANIM_JUMP_RIGHT_UP_FRAME_INDEX);
 		else if (pointingDown)
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_SHOOT_DOWN_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_SHOOT_DOWN_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_SHOOT_DOWN_RIGHT_FRAME_INDEX);
 		else
 			AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-													playerFlipped ? GUN_GIRL_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_JUMP_RIGHT_FRAME_INDEX);
+													playerFlipped ? GUN_GIRL_ANIM_JUMP_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_JUMP_RIGHT_FRAME_INDEX);
 
 		break;
 	case PLAYER_STATE_DUCK:
 		AnimationUtils_setBatchedAnimationFrame(&ObjectManager_player, 
-												playerFlipped ? GUN_GIRL_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_DUCK_RIGHT_FRAME_INDEX);
+												playerFlipped ? GUN_GIRL_ANIM_DUCK_LEFT_FRAME_INDEX : GUN_GIRL_ANIM_DUCK_RIGHT_FRAME_INDEX);
 		break;
 	}
 

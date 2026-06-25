@@ -14,7 +14,7 @@ const GameObjectTemplate explosion_template =
     0, // rect right
     0, // rect bottom
     OBJECTTYPE_EFFECT, // object type
-    &explosionResourceInfo, // resource info
+    &explosion_animResourceInfo, // resource info
     NULL, // extra resource infos
     (InitObjectFunctionType)BasicEffect_Init, // init function
 };

@@ -13,7 +13,7 @@
 		<RectRight value="8"/>
 		<RectBottom value="8"/>
 		<GameObjectType value="Item" />
-		<ResourceInfo value="shotgun_itemResourceInfo" />		
+		<ResourceInfo value="shotgun_item_animResourceInfo" />		
 		<InitFunction value="ShotgunItem_Init"/>
 		<CustomData>
 			<Data value="void (*UpdatePhysics)(struct shotgunitem_object* gameObject)"/>

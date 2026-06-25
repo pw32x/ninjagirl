@@ -14,7 +14,7 @@
 		<RectBottom value="16"/>		
 		<GameObjectType value="Player" />
 		<Health value="2"/>
-		<ResourceInfo value="gun_girlResourceInfo" />		
+		<ResourceInfo value="gun_girl_animResourceInfo" />		
 		<InitFunction value="Player_Init"/>
 	</GameProperties>
 	<References>
