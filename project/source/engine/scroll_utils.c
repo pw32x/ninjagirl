@@ -18,7 +18,7 @@ void ScrollUtils_buildColumn(u8* buffer)
 	// figure out which column of the metatile to get. Metatiles contain two tile columns.
 	u8 metatileOffset = ScrollUtils_mapColumnToBuild & 1;
 
-	u16* columnRunner = buffer;
+	u16* columnRunner = (u16*)buffer;
 
 	const u16* sum;
 	u16 metatile_index;
@@ -61,7 +61,7 @@ void ScrollUtils_InitTilemap(void)
 	{
 		ScrollUtils_mapColumnToBuild = loop;
 
-		ScrollUtils_buildColumn(ScrollManager_columnBuffer);
+		ScrollUtils_buildColumn((u8*)ScrollManager_columnBuffer);
 		SMS_loadTileMapColumn(loop, 0, ScrollManager_columnBuffer, SCROLLMANAGER_COLUMNBUFFER_HEIGHT);
 	}
 
@@ -70,7 +70,7 @@ void ScrollUtils_InitTilemap(void)
 	// boundary when we scroll. At the start, we're already at the boundary.
 	// We won't see it anyway.
 	ScrollUtils_mapColumnToBuild = 32;
-	ScrollUtils_buildColumn(ScrollManager_columnBuffer);
+	ScrollUtils_buildColumn((u8*)ScrollManager_columnBuffer);
 	SMS_loadTileMapColumn(0, 0, ScrollManager_columnBuffer, SCROLLMANAGER_COLUMNBUFFER_HEIGHT);
 
 	SMS_mapROMBank(currentRomBank);

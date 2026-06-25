@@ -1,6 +1,6 @@
 #include "resource_manager.h"
 //#include "resource_types.h"
-
+#include <SMSLib.h>
 #include <string.h>
 
 //#include "engine/base_types.h"

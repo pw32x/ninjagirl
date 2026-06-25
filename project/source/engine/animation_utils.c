@@ -4,6 +4,7 @@
 #include "engine/vdptile_manager.h"
 #include "engine/draw_utils.h"
 #include <string.h>
+#include "SMSlib.h"
 
 void AnimationUtils_updateBatchedAnimation(struct game_object* gameObject)
 {
@@ -216,6 +217,14 @@ u16 Setup_TileAnimationResource(struct game_object* gameObject, const ResourceIn
 
 // streaming
 
+#ifdef WIN32
+void* OUTI32(const void *src);
+void* OUTI64(const void *src);
+void* OUTI128(const void *src);
+void UNSAFE_SMS_VRAMmemcpy192b (unsigned int dst, const void *src) {}
+#else
+
+
 void* OUTI32(const void *src) __z88dk_fastcall;
 void* OUTI64(const void *src) __z88dk_fastcall;
 void* OUTI128(const void *src) __z88dk_fastcall;
@@ -228,6 +237,7 @@ void UNSAFE_SMS_VRAMmemcpy192b (unsigned int dst, const void *src) {
 	SETVDPDATAPORTb;
 	OUTI64(OUTI128(src));
 }
+#endif
 
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)
 {

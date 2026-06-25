@@ -1,7 +1,6 @@
 #ifndef ANIMATION_UTILS_INCLUDE_H
 #define ANIMATION_UTILS_INCLUDE_H
 
-#include "SMSLib.h"
 #include "engine/animation_types.h"
 #include "engine/resource_types.h"
 

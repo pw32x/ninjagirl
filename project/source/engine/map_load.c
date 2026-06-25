@@ -98,6 +98,7 @@ u16 Load_StripMapResource(const ResourceInfo* resourceInfo)
 
 u16 Load_TilesetResource(const ResourceInfo* resourceInfo)
 {
+	/*
 	const Tileset* tileset = (const Tileset*)resourceInfo->resource;
 
 	VDPTileManager_LoadBackgroundTileset(tileset->tiles, 
@@ -116,7 +117,7 @@ u16 Load_TilesetResource(const ResourceInfo* resourceInfo)
 
 	MapManager_tilesetVdpLocations[MapManager_numTilesets] = *tileset->vdpLocation;
 	MapManager_numTilesets++;
-
+	*/
 	return 0;
 }
 
@@ -139,6 +140,7 @@ u16 Load_TilesetResourceSimple(const ResourceInfo* resourceInfo)
 
 u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo)
 {
+	/*
 	const AnimatedTileset* animatedTileset = (const AnimatedTileset*)resourceInfo->resource;
 
 	u16 vdpLocation = (u16)ResourceManager_LoadResource(animatedTileset->tileAnimationResourceInfo);
@@ -156,6 +158,6 @@ u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo)
 
 	MapManager_tilesetVdpLocations[MapManager_numTilesets] = vdpLocation;
 	MapManager_numTilesets++;
-	
+	*/
 	return 0;
 }

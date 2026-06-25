@@ -5,5 +5,5 @@
 
 void SetBackgroundVerticalScroll(s16 value)
 {
-	SMS_setBGScrollY(value);
+	SMS_setBGScrollY((u8)value);
 }

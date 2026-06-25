@@ -60,6 +60,8 @@ void ObjectManager_refreshActiveEnemies(void)
 	if (!ObjectManager_resetActiveEnemies)
 		return;
 
+	MSG("ObjectManager_refreshActiveEnemies\n");
+
 	GameObject** activeEnemiesRunner = ObjectManager_currentActiveEnemies;
 	GameObject** activeEnemiesRunnerEnd = ObjectManager_currentActiveEnemies + ObjectManager_numActiveEnemies;
 
@@ -79,7 +81,9 @@ void ObjectManager_refreshActiveEnemies(void)
 		activeEnemiesRunner++;
 	};
 
-	ObjectManager_numActiveEnemies = ObjectManager_pendingEnemiesRunner - ObjectManager_pendingEnemies;
+
+
+	ObjectManager_numActiveEnemies = (u8)(ObjectManager_pendingEnemiesRunner - ObjectManager_pendingEnemies);
 
 	ObjectManager_resetActiveEnemies = FALSE;
 	ObjectManager_numPendingEnemies = 0;
@@ -94,6 +98,8 @@ void ObjectManager_refreshActiveEnemies(void)
 		ObjectManager_currentActiveEnemies = ObjectManager_activeEnemiesA;
 		ObjectManager_pendingEnemies = ObjectManager_activeEnemiesB;
 	}
+
+	MSG("ObjectManager_refreshActiveEnemies DONE\n");
 }
 
 void ObjectManager_refreshActiveEffects(void)
@@ -120,7 +126,7 @@ void ObjectManager_refreshActiveEffects(void)
 		activeEffectsRunner++;
 	};
 
-	ObjectManager_numActiveEffects = ObjectManager_pendingEffectsRunner - ObjectManager_pendingEffects;
+	ObjectManager_numActiveEffects = (u8)(ObjectManager_pendingEffectsRunner - ObjectManager_pendingEffects);
 
 	ObjectManager_resetActiveEffects = FALSE;
 	ObjectManager_numPendingEffects = 0;
@@ -161,7 +167,7 @@ void ObjectManager_refreshActiveProjectiles(void)
 		activeProjectilesRunner++;
 	};
 
-	ObjectManager_numActiveProjectiles = ObjectManager_pendingProjectilesRunner - ObjectManager_pendingProjectiles;
+	ObjectManager_numActiveProjectiles = (u8)(ObjectManager_pendingProjectilesRunner - ObjectManager_pendingProjectiles);
 
 	ObjectManager_resetActiveProjectiles = FALSE;
 	ObjectManager_numPendingProjectiles = 0;
@@ -206,7 +212,7 @@ void ObjectManager_refreshActiveEnemyProjectiles(void)
 		activeEnemyProjectilesRunner++;
 	};
 
-	ObjectManager_numActiveEnemyProjectiles = ObjectManager_pendingEnemyProjectilesRunner - ObjectManager_pendingEnemyProjectiles;
+	ObjectManager_numActiveEnemyProjectiles = (u8)(ObjectManager_pendingEnemyProjectilesRunner - ObjectManager_pendingEnemyProjectiles);
 
 	ObjectManager_resetActiveEnemyProjectiles = FALSE;
 	ObjectManager_numPendingEnemyProjectiles = 0;
@@ -290,6 +296,8 @@ GameObject* ObjectManager_CreatePlayer(const CreateInfo* createInfo)
 
 GameObject* ObjectManager_CreateEnemy(const CreateInfo* createInfo)
 {
+	MSG("ObjectManager_CreateEnemy\n");
+
 	// Be careful not create more objects than active slots.
 	if (ObjectManager_numActiveEnemies == MAX_ENEMIES ||
 		ObjectManager_numPendingEnemies == MAX_ENEMIES)
@@ -348,7 +356,7 @@ GameObject* ObjectManager_CreatePlayerProjectile(const CreateInfoEx* createInfo)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, createInfo);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfo);
 
 	ObjectManager_resetActiveProjectiles = TRUE;
 
@@ -383,7 +391,7 @@ GameObject* ObjectManager_CreateEnemyProjectile(const CreateInfoEx* createInfo)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, createInfo);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfo);
 
 	ObjectManager_resetActiveEnemyProjectiles = TRUE;
 
@@ -417,7 +425,7 @@ GameObject* ObjectManager_CreateEffect(const CreateInfoEx* createInfoEx)
 
 	ResourceManager_SetupResource(gameObject, gameObjectTemplate->resourceInfo);
 
-	gameObjectTemplate->initFunction(gameObject, createInfoEx);
+	gameObjectTemplate->initFunction(gameObject, (const CreateInfo*)createInfoEx);
 
 	ObjectManager_resetActiveEffects = TRUE;
 
@@ -433,7 +441,7 @@ GameObject* ObjectManager_CreateItem(const CreateInfo* createInfo)
 
 void ObjectManager_DestroyObject(GameObject* gameObject)
 {
-	//MSG("ObjectManager_DestroyObject\n");
+	MSG("ObjectManager_DestroyObject\n");
 
 	gameObject->alive = FALSE;
 	gameObject->Update = ObjectUtils_gameObjectDoNothing;
@@ -446,4 +454,6 @@ void ObjectManager_DestroyObject(GameObject* gameObject)
 	case OBJECTTYPE_PROJECTILE: ObjectManager_resetActiveProjectiles = TRUE; break;
 	case OBJECTTYPE_ENEMY_PROJECTILE: ObjectManager_resetActiveEnemyProjectiles = TRUE; break;
 	}
+
+	MSG("ObjectManager_DestroyObject DONE\n");
 }

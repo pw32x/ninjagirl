@@ -10,7 +10,7 @@ u8 DrawUtils_vdpTileIndex;
 s16 DrawUtils_screenX;
 s16 DrawUtils_screenY;
 
-#define PARAM_COMBINER(x, tile) ((x<<8)|tile)
+#define PARAM_COMBINER(x, tile) (((x)<<8)|tile)
 
 
 
@@ -61,7 +61,9 @@ DrawUtils_DrawBatched_loop:
 #define MAXSPRITES        64
 void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 
 {
-
+#ifndef WIN32
+    UNUSED(y);
+    UNUSED(x_tile);
 
     // Y passed in L
     // X passed in D
@@ -95,6 +97,7 @@ void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __pre
         ld (#_SpriteNextFree),a          ; save SpriteNextFree value
         ret
         __endasm;
+#endif
 }
 
 
@@ -132,8 +135,13 @@ DrawUtils_DrawStreamedBatched_loop:
     goto DrawUtils_DrawStreamedBatched_loop;
 }
 
+#ifdef WIN32
+SFR_AT(0xBF) VDPControlPort2;
+SFR_AT(0xBE) VDPDataPort2;
+#else
 __sfr __at 0xBF VDPControlPort2;
 __sfr __at 0xBE VDPDataPort2;
+#endif
 
 u8 x; 
 u8 y; 
@@ -144,6 +152,7 @@ u16 vdpOffset;
 
 void drawToPlane(void)
 {
+#ifndef WIN32
     u16 address = ((x << 1) + (y << 6)) + 0x3800;
 
     while (bufferHeight--)
@@ -179,6 +188,7 @@ void drawToPlane(void)
 
         address += 64;
     }
+#endif
 }
 
 void DrawUtils_DrawPlaneAnimationFrame(struct game_object* gameObject) 

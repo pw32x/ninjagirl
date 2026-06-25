@@ -32,7 +32,7 @@ u8 VDPTileManager_LoadSpriteTiles(const u8* tileData,
 
 	VDPTileManager_spriteTileLocation += tileCount;
 
-	*vdpLocation = currentSpriteTileLocaton;
+	*vdpLocation = (u8)currentSpriteTileLocaton;
 
 	return *vdpLocation;
 }
@@ -49,7 +49,7 @@ u8 VDPTileManager_ReserveSpriteTilesArea(u8 tileCount,
 
 	VDPTileManager_spriteTileLocation += tileCount;
 
-	*vdpLocation = currentSpriteTileLocaton;
+	*vdpLocation = (u8)currentSpriteTileLocaton;
 
 	return *vdpLocation;
 
