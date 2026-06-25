@@ -82,11 +82,21 @@ void DeliveryRobot_Update(DeliveryRobotObjectType* object)
 	object->x += object->speedx;
 
 	// world to screen transformation
-	object->screenx = V2P(object->x) + object->motionSequenceRunner.currentMotionSequenceNode->x - ScrollManager_horizontalScroll;
-	object->screeny = V2P(object->y) + object->motionSequenceRunner.currentMotionSequenceNode->y - ScrollManager_verticalScroll;
+
+	// world to screen transformation
+	s16 screenX = V2P(object->x) + object->motionSequenceRunner.currentMotionSequenceNode->x - ScrollManager_horizontalScroll;
+	s16 screenY = V2P(object->y) + object->motionSequenceRunner.currentMotionSequenceNode->y - ScrollManager_verticalScroll;
+
+	object->screenx = screenX;
+	object->screeny = screenY;
+	
+	object->screenRectLeft = screenX + object->rectLeft;
+	object->screenRectTop = screenY + object->rectTop;
+	object->screenRectRight = screenX + object->rectRight;
+	object->screenRectBottom = screenY + object->rectBottom;
 
 	// if offscreen destroy
-	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE)
+	if (object->screenRectLeft < SCREEN_LEFT_EDGE)
 	{
 		ObjectManager_DestroyObject((GameObject*)object);
 		return;
@@ -114,7 +124,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		ObjectManager_CreateEffect(&createInfoEx);
 
 		PSGSFXPlay(explosion_psg, SFX_CHANNELS2AND3);
-
+		/*
 		// drop item
 		CreateInfo createInfo = 
 		{ 
@@ -124,13 +134,16 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		};
 
 		ObjectManager_CreateEnemy(&createInfo);
+		*/
 
+
+		/*
 		// debris 
 		GameObjectTemplate effectGameTemplate;
 		effectGameTemplate.objectType = OBJECTTYPE_EFFECT;
 		effectGameTemplate.resourceInfo = gameObject->resourceInfo;
 		effectGameTemplate.initFunction = (InitObjectFunctionType)ParticleEffect_Init;
-
+		*/
 
 		/*asdf
 		createInfo.gameObjectTemplate = &effectGameTemplate;
@@ -146,6 +159,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 
 		*/
 
+		/*
 		SMS_mapROMBank(gameObject->resourceInfo->bankNumber);
 
 		createInfoEx.gameObjectTemplate = &effectGameTemplate;
@@ -166,6 +180,7 @@ void DeliveryRobot_HandleCollision(GameObject* gameObject, GameObject* other)
 		createInfoEx.speedY = -70;
 		createInfoEx.startFrameNumber = DELIVERYROBOT_PARTS2_FRAME_INDEX;
 		ObjectManager_CreateEffect(&createInfoEx);
+		*/
 	}
 	else
 	{

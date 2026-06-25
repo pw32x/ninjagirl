@@ -93,16 +93,24 @@ void ThreeShotFlyer_Update(ThreeShotFlyerObjectType* object)
 	//
 
 	// world to screen transformation
-	object->screenx = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;
-	object->screeny = V2P(PhysicsVars_Y) - ScrollManager_verticalScroll;
+	s16 screenX = V2P(PhysicsVars_X) - ScrollManager_horizontalScroll;
+	s16 screenY = V2P(PhysicsVars_Y) - ScrollManager_verticalScroll;
+
+	object->screenx = screenX;
+	object->screeny = screenY;
 
 	// update position
 	object->x = PhysicsVars_X;
 	object->y = PhysicsVars_Y;
 
+	object->screenRectLeft = screenX + object->rectLeft;
+	object->screenRectTop = screenY + object->rectTop;
+	object->screenRectRight = screenX + object->rectRight;
+	object->screenRectBottom = screenY + object->rectBottom;
+
 	// destroy if hitting the side edges of the screen
-	if (object->screenx + object->rectLeft < SCREEN_LEFT_EDGE ||
-		object->screenx + object->rectRight > SCREEN_WIDTH)
+	if (object->screenRectLeft < SCREEN_LEFT_EDGE ||
+		object->screenRectRight > SCREEN_WIDTH)
 	{
 		ObjectManager_DestroyObject((GameObject*)object);
 		return;

@@ -15,10 +15,10 @@ typedef struct gameobject_template
 	s8 startHealth;
 	s8 damage;
 
-	s8 rectLeft;
-	s8 rectTop;
-	s8 rectRight;
-	s8 rectBottom;
+	s16 rectLeft;
+	s16 rectTop;
+	s16 rectRight;
+	s16 rectBottom;
 
 	u8 objectType;
 	const ResourceInfo* resourceInfo;
