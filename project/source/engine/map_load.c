@@ -98,6 +98,7 @@ u16 Load_StripMapResource(const ResourceInfo* resourceInfo)
 
 u16 Load_TilesetResource(const ResourceInfo* resourceInfo)
 {
+	UNUSED(resourceInfo);
 	/*
 	const Tileset* tileset = (const Tileset*)resourceInfo->resource;
 
@@ -140,6 +141,7 @@ u16 Load_TilesetResourceSimple(const ResourceInfo* resourceInfo)
 
 u16 Load_AnimatedTilesetResource(const ResourceInfo* resourceInfo)
 {
+	UNUSED(resourceInfo);
 	/*
 	const AnimatedTileset* animatedTileset = (const AnimatedTileset*)resourceInfo->resource;
 

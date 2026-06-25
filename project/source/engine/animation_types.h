@@ -28,7 +28,7 @@ typedef struct batched_animation_frame
 {
     const BatchedAnimationSpriteStrip* const spriteStrips;
     u8 frameTime;
-    struct batched_animation_frame* nextFrame;
+    const struct batched_animation_frame* nextFrame;
     u8 frameNumber;
 } BatchedAnimationFrame;
 
@@ -53,7 +53,7 @@ typedef struct metasprite_animation_frame
 {
     const s8* metaSprite;
     u8 frameTime;
-    struct metasprite_animation_frame* nextFrame;
+    const struct metasprite_animation_frame* nextFrame;
 } MetaSpriteAnimationFrame;
 
 
@@ -98,7 +98,7 @@ typedef struct tile_animation_frame
 {
     u8 tileIndex;
     u8 frameTime;
-    struct tile_animation_frame* nextFrame;
+    const struct tile_animation_frame* nextFrame;
 } TileAnimationFrame;
 
 typedef struct

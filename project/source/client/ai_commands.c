@@ -33,7 +33,7 @@ void AICommandUtils_updateAICommandsRunner(struct game_object* object, AICommand
 			aiCommandsRunner->waitTime = 1;
 			return;
 		case AI_COMMAND_SET_SPEEDY:
-			object->speedy = (s16)data;
+			object->speedy = (s8)data;
 			aiCommandsRunner->waitTime = 1;
 			//SMS_debugPrintf("Speed: %d\n", object->speedy);
 			return;

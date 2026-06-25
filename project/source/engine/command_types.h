@@ -9,7 +9,7 @@ typedef struct
 {
 	u16 counter;// counter/timer/scroll pos
 	CommandFunction command;
-	void* data;
+	const void* data;
 } Command;
 
 

@@ -62,6 +62,8 @@ destroy_object:
 
 void ShotgunItem_Sit(ShotgunItemObjectType* object)
 {
+	UNUSED(object);
+
 	/*
 	object->x += object->speedx;
 
@@ -108,6 +110,8 @@ void ShotgunItem_Fall(ShotgunItemObjectType* object)
 
 void ShotgunItem_HandleCollision(GameObject* gameObject, GameObject* other)
 {
+	UNUSED(other);
+
 	ObjectManager_DestroyObject(gameObject);
 
 	WeaponManager_SwitchWeapon(WEAPON_SHOTGUN);
