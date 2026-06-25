@@ -113,8 +113,10 @@ GGAnimation::GGAnimation(const GraphicsGaleObject& ggo,
 
 void GGAnimation::Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank)
 {
-	WriteGGAnimationHeaderFile(outputFolder, outputName, bank);
-	WriteGGAnimationSourceFile(outputFolder, outputName, bank);
+    std::string newOutputName = outputName + "_anim";
+
+	WriteGGAnimationHeaderFile(outputFolder, newOutputName, bank);
+	WriteGGAnimationSourceFile(outputFolder, newOutputName, bank);
 }
 
 

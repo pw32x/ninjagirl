@@ -77,8 +77,10 @@ int GGPlaneAnimation::findSameFrameIndex(const GGPlaneAnimationFrame& frame)
 
 void GGPlaneAnimation::Write(const std::string& outputFolder, const std::string& outputName, const std::string& bank)
 {
-	WriteGGPlaneAnimationHeaderFile(outputFolder, outputName, bank);
-	WriteGGPlaneAnimationSourceFile(outputFolder, outputName, bank);
+	std::string newOutputName = outputName + "_anim";
+
+	WriteGGPlaneAnimationHeaderFile(outputFolder, newOutputName, bank);
+	WriteGGPlaneAnimationSourceFile(outputFolder, newOutputName, bank);
 }
 
 void GGPlaneAnimation::WriteGGPlaneAnimationHeaderFile(const std::string& outputFolder, 

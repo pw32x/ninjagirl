@@ -117,8 +117,10 @@ void GGTileAnimation::Write(const std::string& outputFolder,
                             const std::string& outputName,
                             const std::string& bank)
 {
-	WriteHeaderFile(outputFolder, outputName, bank);
-	WriteSourceFile(outputFolder, outputName, bank);
+    std::string newOutputName = outputName + "_anim";
+
+	WriteHeaderFile(outputFolder, newOutputName, bank);
+	WriteSourceFile(outputFolder, newOutputName, bank);
 }
 
 void GGTileAnimation::WriteHeaderFile(const std::string& outputFolder, 
@@ -215,7 +217,7 @@ void GGTileAnimation:: WriteAnimationStruct(const std::string& outputName,
                                             std::ofstream& sourceFile,
                                             const std::string& bank)
 {
-    sourceFile << "u8 " << outputName << "VdpLocation;\n\n";
+    sourceFile << "u16 " << outputName << "VdpLocation;\n\n";
 
     // final struct
     sourceFile << "RESOURCE(" << bank << ") const TileAnimation " << outputName << " = \n";
