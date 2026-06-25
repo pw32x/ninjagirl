@@ -51,7 +51,8 @@ u8 playerFlipped;
 
 u8 playerState;
 
-u16 jumpPressCounter;
+u8 jumpPressedWhileFalling;
+u16 framesSinceJumpPress;
 u8 jumpWhenLanding;
 u8 canStillJumpFrames;
 u8 pointingUp;
@@ -167,9 +168,11 @@ void setPlayerState(u8 newState)
 		playerSpeedY = 0;
 		break;
 	case PLAYER_STATE_FALL:
+		jumpPressedWhileFalling = FALSE;
 		break;
 	case PLAYER_STATE_JUMP:
 		jumpWhenLanding = FALSE;
+		jumpPressedWhileFalling = FALSE;
 		playerSpeedY -= JUMP_SPEED;
 		break;
 	case PLAYER_STATE_DUCK:
@@ -183,7 +186,8 @@ void setPlayerState(u8 newState)
 
 GameObject* Player_Init(GameObject* object, const CreateInfo* createInfo)
 {
-	jumpPressCounter = 0;
+	framesSinceJumpPress = 0;
+	jumpPressedWhileFalling = FALSE;
 	jumpWhenLanding = FALSE;
 
 	UNUSED(createInfo);
@@ -547,9 +551,13 @@ void Player_UpdateFall(GameObject* object)
 	else
 	{
 		if (JoystickManager_buttonsPressed & PORT_A_KEY_2)
-			jumpPressCounter = 0;
+		{
+			jumpPressedWhileFalling = TRUE;
+			framesSinceJumpPress = 0;
+		}
 
-		jumpPressCounter++;
+		if (jumpPressedWhileFalling);
+			framesSinceJumpPress++;
 	}
 
 	if (JoystickManager_buttonState & PORT_A_KEY_LEFT)
@@ -601,7 +609,8 @@ void Player_UpdateFall(GameObject* object)
 		playerY = B2V(blockY) - playerRectBottomV;
 		playerSpeedY = 0;
 
-		jumpWhenLanding = (jumpPressCounter < NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING);
+		if (jumpPressedWhileFalling)
+			jumpWhenLanding = (framesSinceJumpPress < NUM_FRAMES_JUMP_BUFFER_AFTER_LANDING);
 
 		setPlayerState(PLAYER_STATE_STAND);
 
