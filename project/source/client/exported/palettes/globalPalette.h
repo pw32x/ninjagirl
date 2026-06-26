@@ -5,7 +5,7 @@
 #include "palette_types.h"
 #include "resource_types.h"
 
-RESOURCE() extern const PaletteResource globalPalette;
+RESOURCE(_) extern const PaletteResource globalPalette;
 
 #endif
 
