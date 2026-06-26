@@ -27,7 +27,7 @@ namespace TemplateMaster
             ExportExtraResourceInfos(gameObjectTemplate, templateName, sb);
 
             // forward declare the init function
-            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(/*GameObject* object, const CreateInfo* createInfo*/);");
+            sb.AppendLine("GameObject* " + gameObjectTemplate.InitFunction + "(void/*GameObject* object, const CreateInfo* createInfo*/);");
             sb.AppendLine();
             ExportGameTemplateStruct(gameObjectTemplate, templateName, sb);
 
@@ -119,7 +119,7 @@ namespace TemplateMaster
             if (gameObjectTemplate.ExtraResourceInfos.Count == 0)
                 return;
 
-            sb.AppendLine("ResourceInfo* " + templateName + "ExtraResourceInfos[] = ");
+            sb.AppendLine("const ResourceInfo* " + templateName + "ExtraResourceInfos[] = ");
             sb.AppendLine("{");
 
             foreach (var resourceInfo in gameObjectTemplate.ExtraResourceInfos)
