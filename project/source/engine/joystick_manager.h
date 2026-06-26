@@ -3,8 +3,12 @@
 
 #include "engine/base_types.h"
 
-inline void JoystickManager_Update(void);
+void JoystickManager_Update(void);
 
+#ifdef WIN32
+unsigned int KeysStatus;
+unsigned int PreviousKeysStatus;
+#endif
 
 extern u32 JoystickManager_buttonState;
 extern u32 JoystickManager_buttonsPressed;

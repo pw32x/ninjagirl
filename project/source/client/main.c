@@ -34,7 +34,11 @@ void PSGUpdate(void)
 	PSGSFXFrame();
 }
 
+#ifndef WIN32
 void main(void)
+#else
+void main_game(void)
+#endif
 {
 	SMS_debugPrintf("**********************************\n");
 	SMS_debugPrintf("**********************************\n");

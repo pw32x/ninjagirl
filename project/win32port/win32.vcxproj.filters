@@ -1,0 +1,663 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Win32">
+      <UniqueIdentifier>{7d8487a3-7021-4e19-abd6-761513278cb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win32\PSGLib_win32">
+      <UniqueIdentifier>{f41b5290-bc36-4d1d-ade8-a4084f8e609c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Win32\SMSLib_win32">
+      <UniqueIdentifier>{8dbd51e0-19e1-4a6f-88f5-a15612ed4057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{b44e6731-4449-4485-829f-84df8284cd7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Engine">
+      <UniqueIdentifier>{602cbc74-eacd-430a-a237-4db786073b8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Engine\Commands">
+      <UniqueIdentifier>{74af2bae-f78b-4bcd-99c5-a51a6d65cfee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client">
+      <UniqueIdentifier>{9b0252d7-ee92-483e-9f3a-21afa35710b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Objects">
+      <UniqueIdentifier>{a565dfbf-7ab3-42ed-a56a-bffb5aa1f907}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Managers">
+      <UniqueIdentifier>{5f3b6b73-802a-461a-b712-c1a02a68feea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Generated">
+      <UniqueIdentifier>{8889fc90-fb14-42a0-88f4-b554ce89725e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Generated\GameObjectTemplates">
+      <UniqueIdentifier>{abacc3d0-eea9-4f95-95e8-4f0d1f098d46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Generated\tilesets">
+      <UniqueIdentifier>{c49fd960-c952-4a7c-8fce-0d37284be829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported">
+      <UniqueIdentifier>{f58e55ff-19a9-4b5a-bb29-91d8e7f3fec5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations">
+      <UniqueIdentifier>{4def126e-96f8-460a-979d-4cd82e3cd2ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations\animatedtilesets">
+      <UniqueIdentifier>{8d7fa5d6-00c1-437e-b32d-e5e4d61b14c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations\enemies">
+      <UniqueIdentifier>{e92b6d0a-cefd-41c5-8dc5-9c915bcb6d8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations\standard">
+      <UniqueIdentifier>{bd40031e-71d4-4cfe-9987-5697655d2f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations\streamed">
+      <UniqueIdentifier>{697c7e35-8e7b-4ab4-b49d-a338fd6549e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\animations\weapons">
+      <UniqueIdentifier>{9bef756b-8527-40b0-9ca2-3986eda5c474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\maps">
+      <UniqueIdentifier>{0fa843cd-cd34-4e96-be62-a9fa557503a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\maps\bank4">
+      <UniqueIdentifier>{936fb705-83da-47cc-84a4-0db5bd002df9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\maps\bank8">
+      <UniqueIdentifier>{36e7ab65-bf8f-4759-bd75-fb2a4d531695}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\palettes">
+      <UniqueIdentifier>{5e3126ac-c1b0-4e02-8c02-30d2511d1b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Client\Exported\scenes">
+      <UniqueIdentifier>{a66805ac-b214-4a98-b4b3-f93ceccafee0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\engine\commands\set_palette_commands.c">
+      <Filter>Game\Engine\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\commands\background_commands.c">
+      <Filter>Game\Engine\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_utils.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\resource_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\scene_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\scroll_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\scroll_utils.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\terrain_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\vdptile_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\animation_utils.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\command_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\command_types.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\commandrunner_runall.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\draw_utils.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\joystick_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\map_load.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\map_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\map_types.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_create.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_slots.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\engine\object_manager_vdp.c">
+      <Filter>Game\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="SMSLib_win32\SMSLib.c">
+      <Filter>Win32\SMSLib_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\tileset_functions.c">
+      <Filter>Game\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\ai_commands.c">
+      <Filter>Game\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\main.c">
+      <Filter>Game\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\motion_sequence.c">
+      <Filter>Game\Client</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\deliveryrobot.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\enemy.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\kunai.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\particle_effect.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\player.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\right_scroller.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\shotgun_bullet.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\shotgun_item.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\threeshotflyer.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\tile_animator.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\wheeler.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\basic_effect.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\bird.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\bullet.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\objects\color_tweaker.c">
+      <Filter>Game\Client\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\managers\weapon_manager.c">
+      <Filter>Game\Client\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\managers\physics_manager.c">
+      <Filter>Game\Client\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\resource_infos.c">
+      <Filter>Game\Client\Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\bank2.c">
+      <Filter>Game\Client\Generated</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\wheeler_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\tilesets\breakable_rock_tileset.c">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\generated\tilesets\waterfall_tileset.c">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\sceneMasterTemp.c">
+      <Filter>Game\Client\Exported</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\scenes\scene003.c">
+      <Filter>Game\Client\Exported\scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank4\waterfall.c">
+      <Filter>Game\Client\Exported\maps\bank4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank4\field.c">
+      <Filter>Game\Client\Exported\maps\bank4</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\maps\bank8\level_001.c">
+      <Filter>Game\Client\Exported\maps\bank8</Filter>
+    </ClCompile>
+    <ClCompile Include="PSGLib_win32\PSGLib.c">
+      <Filter>Win32\PSGLib_win32</Filter>
+    </ClCompile>
+    <ClCompile Include="win32.cpp">
+      <Filter>Win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.c">
+      <Filter>Game\Client\Exported\animations\animatedtilesets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_big_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_small_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\wheeler_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotrunner_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotspring_anim.c">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\kunai_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\rock_particle_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\test_block_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweaker_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\explosion_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\standard\impact_anim.c">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl_anim.c">
+      <Filter>Game\Client\Exported\animations\streamed</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_item_anim.c">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\bullet_anim.c">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.c">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.c">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\client\exported\palettes\globalPalette.c">
+      <Filter>Game\Client\Exported\palettes</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\engine\commands\set_palette_commands.h">
+      <Filter>Game\Engine\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\commands\background_commands.h">
+      <Filter>Game\Engine\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_vdp.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_utils.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\palette_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\resource_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\resource_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\scene_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\scene_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\scroll_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\scroll_utils.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\terrain_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\vdptile_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\animation_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\animation_utils.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\base_defines.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\base_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\command_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\command_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\commandrunner_runall.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\createinfo_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\draw_utils.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\gameobject_template_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\joystick_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\map_load.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\map_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\map_types.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\math_utils.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_create.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\engine\object_manager_slots.h">
+      <Filter>Game\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SMSLib_win32\SMSlib.h">
+      <Filter>Win32\SMSLib_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\motion_sequence.h">
+      <Filter>Game\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\tileset_functions.h">
+      <Filter>Game\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\ai_commands.h">
+      <Filter>Game\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\deliveryrobot.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\enemy.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\kunai.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\particle_effect.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\player.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\right_scroller.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\shotgun_bullet.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\shotgun_item.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\threeshotflyer.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\tile_animator.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\wheeler.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\basic_effect.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\bird.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\bullet.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\objects\color_tweaker.h">
+      <Filter>Game\Client\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\managers\weapon_manager.h">
+      <Filter>Game\Client\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\managers\physics_manager.h">
+      <Filter>Game\Client\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\bank2.h">
+      <Filter>Game\Client\Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\resource_infos.h">
+      <Filter>Game\Client\Generated</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h">
+      <Filter>Game\Client\Generated\GameObjectTemplates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h">
+      <Filter>Game\Client\Generated\tilesets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\sceneMasterTemp.h">
+      <Filter>Game\Client\Exported</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\scenes\scene003.h">
+      <Filter>Game\Client\Exported\scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank4\waterfall.h">
+      <Filter>Game\Client\Exported\maps\bank4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank4\field.h">
+      <Filter>Game\Client\Exported\maps\bank4</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\maps\bank8\level_001.h">
+      <Filter>Game\Client\Exported\maps\bank8</Filter>
+    </ClInclude>
+    <ClInclude Include="PSGLib_win32\PSGlib.h">
+      <Filter>Win32\PSGLib_win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.h">
+      <Filter>Game\Client\Exported\animations\animatedtilesets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotspring_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_big_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_small_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\wheeler_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotrunner_anim.h">
+      <Filter>Game\Client\Exported\animations\enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\impact_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\kunai_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\rock_particle_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\test_block_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\standard\explosion_anim.h">
+      <Filter>Game\Client\Exported\animations\standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl_anim.h">
+      <Filter>Game\Client\Exported\animations\streamed</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.h">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_item_anim.h">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\bullet_anim.h">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.h">
+      <Filter>Game\Client\Exported\animations\weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\client\exported\palettes\globalPalette.h">
+      <Filter>Game\Client\Exported\palettes</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

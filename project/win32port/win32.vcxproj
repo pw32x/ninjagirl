@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{e54725a1-b6ff-43c0-9c30-98d62d85db31}</ProjectGuid>
+    <RootNamespace>win32</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\win32port\PSGLib_win32;C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\win32port\SMSLib_win32;C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\;C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\engine;C:\Dropbox\SegaMasterSystem\projects\ninjagirl\project\source\client\generated\tilesets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4114</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\client\ai_commands.c" />
+    <ClCompile Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotrunner_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\robotspring_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_big_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\walker_small_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\enemies\wheeler_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\colorTweaker_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\explosion_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\impact_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\kunai_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\rock_particle_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\standard\test_block_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\streamed\gun_girl_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\weapons\bullet_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.c" />
+    <ClCompile Include="..\source\client\exported\animations\weapons\shotgun_item_anim.c" />
+    <ClCompile Include="..\source\client\exported\maps\bank4\field.c" />
+    <ClCompile Include="..\source\client\exported\maps\bank4\waterfall.c" />
+    <ClCompile Include="..\source\client\exported\maps\bank8\level_001.c" />
+    <ClCompile Include="..\source\client\exported\palettes\globalPalette.c" />
+    <ClCompile Include="..\source\client\exported\sceneMasterTemp.c" />
+    <ClCompile Include="..\source\client\exported\scenes\scene003.c" />
+    <ClCompile Include="..\source\client\generated\bank2.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\bullet_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\commandrunner_rightscroll_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\enemy_bullet_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\explosion_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\gun_girl_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\impact_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\kunai_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotrunner_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\robotspring_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\rock_particle_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_bullet_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\test_block_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_big_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_small_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\walker_template.c" />
+    <ClCompile Include="..\source\client\generated\gameobjecttemplates\wheeler_template.c" />
+    <ClCompile Include="..\source\client\generated\resource_infos.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\breakable_rock_tileset.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\field_tileset.c" />
+    <ClCompile Include="..\source\client\generated\tilesets\waterfall_tileset.c" />
+    <ClCompile Include="..\source\client\main.c" />
+    <ClCompile Include="..\source\client\managers\physics_manager.c" />
+    <ClCompile Include="..\source\client\managers\weapon_manager.c" />
+    <ClCompile Include="..\source\client\motion_sequence.c" />
+    <ClCompile Include="..\source\client\objects\basic_effect.c" />
+    <ClCompile Include="..\source\client\objects\bird.c" />
+    <ClCompile Include="..\source\client\objects\bullet.c" />
+    <ClCompile Include="..\source\client\objects\color_tweaker.c" />
+    <ClCompile Include="..\source\client\objects\commandrunner_rightscroll.c" />
+    <ClCompile Include="..\source\client\objects\deliveryrobot.c" />
+    <ClCompile Include="..\source\client\objects\enemy.c" />
+    <ClCompile Include="..\source\client\objects\kunai.c" />
+    <ClCompile Include="..\source\client\objects\on_resource_loaded_callback.c" />
+    <ClCompile Include="..\source\client\objects\particle_effect.c" />
+    <ClCompile Include="..\source\client\objects\player.c" />
+    <ClCompile Include="..\source\client\objects\right_scroller.c" />
+    <ClCompile Include="..\source\client\objects\shotgun_bullet.c" />
+    <ClCompile Include="..\source\client\objects\shotgun_item.c" />
+    <ClCompile Include="..\source\client\objects\threeshotflyer.c" />
+    <ClCompile Include="..\source\client\objects\tile_animator.c" />
+    <ClCompile Include="..\source\client\objects\wheeler.c" />
+    <ClCompile Include="..\source\client\tileset_functions.c" />
+    <ClCompile Include="..\source\engine\animation_utils.c" />
+    <ClCompile Include="..\source\engine\commandrunner_runall.c" />
+    <ClCompile Include="..\source\engine\commands\background_commands.c" />
+    <ClCompile Include="..\source\engine\commands\set_palette_commands.c" />
+    <ClCompile Include="..\source\engine\command_manager.c" />
+    <ClCompile Include="..\source\engine\command_types.c" />
+    <ClCompile Include="..\source\engine\draw_utils.c" />
+    <ClCompile Include="..\source\engine\joystick_manager.c" />
+    <ClCompile Include="..\source\engine\map_load.c" />
+    <ClCompile Include="..\source\engine\map_manager.c" />
+    <ClCompile Include="..\source\engine\map_types.c" />
+    <ClCompile Include="..\source\engine\object_manager.c" />
+    <ClCompile Include="..\source\engine\object_manager_create.c" />
+    <ClCompile Include="..\source\engine\object_manager_slots.c" />
+    <ClCompile Include="..\source\engine\object_manager_vdp.c" />
+    <ClCompile Include="..\source\engine\object_utils.c" />
+    <ClCompile Include="..\source\engine\resource_manager.c" />
+    <ClCompile Include="..\source\engine\scene_manager.c" />
+    <ClCompile Include="..\source\engine\scroll_manager.c" />
+    <ClCompile Include="..\source\engine\scroll_utils.c" />
+    <ClCompile Include="..\source\engine\terrain_manager.c" />
+    <ClCompile Include="..\source\engine\vdptile_manager.c" />
+    <ClCompile Include="PSGLib_win32\PSGLib.c" />
+    <ClCompile Include="SMSLib_win32\SMSLib.c" />
+    <ClCompile Include="win32.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\client\ai_commands.h" />
+    <ClInclude Include="..\source\client\exported\animations\animatedtilesets\waterfall_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\enemy_bullet_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotrunner_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\robotspring_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\threeshotflyer_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_big_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\walker_small_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\enemies\wheeler_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweakerCursor_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\colorTweaker_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\explosion_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\impact_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\kunai_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\rock_particle_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\standard\test_block_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\streamed\gun_girl_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\weapons\bullet_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\weapons\deliveryrobot_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_bullet_anim.h" />
+    <ClInclude Include="..\source\client\exported\animations\weapons\shotgun_item_anim.h" />
+    <ClInclude Include="..\source\client\exported\maps\bank4\field.h" />
+    <ClInclude Include="..\source\client\exported\maps\bank4\waterfall.h" />
+    <ClInclude Include="..\source\client\exported\maps\bank8\level_001.h" />
+    <ClInclude Include="..\source\client\exported\palettes\globalPalette.h" />
+    <ClInclude Include="..\source\client\exported\sceneMasterTemp.h" />
+    <ClInclude Include="..\source\client\exported\scenes\scene003.h" />
+    <ClInclude Include="..\source\client\generated\bank2.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\colortweaker_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\deliveryrobot_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\gameobject_templates.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\shotgun_item_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\threeshotflyer_template.h" />
+    <ClInclude Include="..\source\client\generated\gameobjecttemplates\wheeler_template.h" />
+    <ClInclude Include="..\source\client\generated\resource_infos.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\breakable_rock_tileset.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\field_tileset.h" />
+    <ClInclude Include="..\source\client\generated\tilesets\waterfall_tileset.h" />
+    <ClInclude Include="..\source\client\managers\physics_manager.h" />
+    <ClInclude Include="..\source\client\managers\weapon_manager.h" />
+    <ClInclude Include="..\source\client\motion_sequence.h" />
+    <ClInclude Include="..\source\client\objects\basic_effect.h" />
+    <ClInclude Include="..\source\client\objects\bird.h" />
+    <ClInclude Include="..\source\client\objects\bullet.h" />
+    <ClInclude Include="..\source\client\objects\color_tweaker.h" />
+    <ClInclude Include="..\source\client\objects\commandrunner_rightscroll.h" />
+    <ClInclude Include="..\source\client\objects\deliveryrobot.h" />
+    <ClInclude Include="..\source\client\objects\enemy.h" />
+    <ClInclude Include="..\source\client\objects\kunai.h" />
+    <ClInclude Include="..\source\client\objects\on_resource_loaded_callback.h" />
+    <ClInclude Include="..\source\client\objects\particle_effect.h" />
+    <ClInclude Include="..\source\client\objects\player.h" />
+    <ClInclude Include="..\source\client\objects\right_scroller.h" />
+    <ClInclude Include="..\source\client\objects\shotgun_bullet.h" />
+    <ClInclude Include="..\source\client\objects\shotgun_item.h" />
+    <ClInclude Include="..\source\client\objects\threeshotflyer.h" />
+    <ClInclude Include="..\source\client\objects\tile_animator.h" />
+    <ClInclude Include="..\source\client\objects\wheeler.h" />
+    <ClInclude Include="..\source\client\tileset_functions.h" />
+    <ClInclude Include="..\source\engine\animation_types.h" />
+    <ClInclude Include="..\source\engine\animation_utils.h" />
+    <ClInclude Include="..\source\engine\base_defines.h" />
+    <ClInclude Include="..\source\engine\base_types.h" />
+    <ClInclude Include="..\source\engine\commandrunner_runall.h" />
+    <ClInclude Include="..\source\engine\commands\background_commands.h" />
+    <ClInclude Include="..\source\engine\commands\set_palette_commands.h" />
+    <ClInclude Include="..\source\engine\command_manager.h" />
+    <ClInclude Include="..\source\engine\command_types.h" />
+    <ClInclude Include="..\source\engine\createinfo_types.h" />
+    <ClInclude Include="..\source\engine\draw_utils.h" />
+    <ClInclude Include="..\source\engine\gameobject_template_types.h" />
+    <ClInclude Include="..\source\engine\joystick_manager.h" />
+    <ClInclude Include="..\source\engine\map_load.h" />
+    <ClInclude Include="..\source\engine\map_manager.h" />
+    <ClInclude Include="..\source\engine\map_types.h" />
+    <ClInclude Include="..\source\engine\math_utils.h" />
+    <ClInclude Include="..\source\engine\object_manager.h" />
+    <ClInclude Include="..\source\engine\object_manager_create.h" />
+    <ClInclude Include="..\source\engine\object_manager_slots.h" />
+    <ClInclude Include="..\source\engine\object_manager_vdp.h" />
+    <ClInclude Include="..\source\engine\object_types.h" />
+    <ClInclude Include="..\source\engine\object_utils.h" />
+    <ClInclude Include="..\source\engine\palette_types.h" />
+    <ClInclude Include="..\source\engine\resource_manager.h" />
+    <ClInclude Include="..\source\engine\resource_types.h" />
+    <ClInclude Include="..\source\engine\scene_manager.h" />
+    <ClInclude Include="..\source\engine\scene_types.h" />
+    <ClInclude Include="..\source\engine\scroll_manager.h" />
+    <ClInclude Include="..\source\engine\scroll_utils.h" />
+    <ClInclude Include="..\source\engine\terrain_manager.h" />
+    <ClInclude Include="..\source\engine\vdptile_manager.h" />
+    <ClInclude Include="PSGLib_win32\PSGlib.h" />
+    <ClInclude Include="SMSLib_win32\SMSlib.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
