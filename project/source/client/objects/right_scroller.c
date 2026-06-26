@@ -18,7 +18,7 @@ void RightScroll_UpdateVDP(void);
 void RightScroll_Update_Strip(GameObject* target);
 void RightScroll_UpdateVDP_Strip(void);
 
-u16 columnToUpdate;
+u8 columnToUpdate;
 
 u8 terrainColumnToUpdate;
 
@@ -127,7 +127,7 @@ void RightScroll_Update(GameObject* target)
 	{
 		// figure out the column to update
 		ScrollUtils_mapColumnToBuild = columnToUpdate + 32; 
-		ScrollUtils_buildColumn(ScrollManager_columnBuffer);
+		ScrollUtils_buildColumn((u8*)ScrollManager_columnBuffer);
 
 		ScrollManager_updateMapVDP = TRUE;
 	}	

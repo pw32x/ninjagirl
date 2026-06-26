@@ -3,7 +3,7 @@
 
 #include "engine/base_types.h"
 
-typedef BOOL (*CommandFunction)(void* data);
+typedef BOOL (*CommandFunction)(const void* data);
 
 typedef struct 
 {
