@@ -1,7 +1,85 @@
 	DONE fix the use of build master in the scene master
+
+	DONE fix shotgun bullet not dying
 	
-	fix shotgun bullet not dying
+	DONE update the rest of the object manager to use the new style
+
+	DONE copy speed from CreateInfoEx
+
+	DONE don't use object fields to setup objects
 	
+	DONE make consistent the use of create_info for position
+	   NO create_info is in pixel space on level load
+	   what about creating at run time? 
+	       virtual space to pixel space and back to virtual space?
+	       have CreateInfoEx work in virtual space?
+	   convert to 
+	
+    DONE make weapon manager use arrays of constants for x/y offsets and x/y speeds
+	
+	DONE reenable collisions
+	
+	DONE fix collisions
+
+	
+	DONE destroying delivery robot is buggy?
+
+	NAH collision rect: world space or pixel space?
+	
+	DONE why doesn't threeshotflyer's bullets go sideways?
+	   FINDINGS
+	       It was set on a simple fire down-only command list.
+	
+	NAH make collision rect in templates world space
+	
+	NAH projectile create info?
+	
+	NAH level-loading create info?
+	
+	DONE re-enable collisions
+	
+	NAH don't copy just portions of the createinfo in _Create<object> functions?
+		
+	NAH maybe simplify createInfos only for level spawn data
+	
+	DONE simplification
+	   
+	   DONE lower the number of enemies
+	   
+	   HOW simplify object handling code
+	   
+    VAGUE alternate collisions?
+	
+	DONE player bounces when appearing
+	
+	DONE compile engine in win32
+	
+	DONE compile game + engine in Win32
+	
+    DONE fix warnings in win32port	
+	
+	compilation errors always fucking freeze the build and there's never any information
+	   BuildMaster sucks
+	
+	too many shots fired by enemies at the same time crashes
+	
+	don't use an if to do the swap of active objects per type	
+	
+	shooting shotgun bullets out of the screen multiple times causes crash
+	
+	fix item
+
+	
+	one rect for player (as point) -> enemies and one for projectiles (as point) -> enemies? 
+	   or, bullets as variable sized rects, enemies as points
+	
+	end-of-frame queue of functions
+	   so to add calls to functions like ObjectManager_refreshActiveEnemies et al
+	
+	
+	update and handle collision functions should be part of the object template
+	   (and the screen visibility, and compute screen coords too)
+
 	port to a PC version of SMSLib
 	
 	test weapon pickups and switching
@@ -9,18 +87,10 @@
 	switch to using GSLib for scrolling
 
 	stop using CreateInfos for spawning in-game
-	
-	maybe simplify createInfos only for level spawn data
-	
-	simplification
+	   use global?
 	
 
 	   
-	   lower the number of enemies
-	   
-	   simplify object handling code
-	   
-    alternate collisions?
 	
 	
 ******************************************
