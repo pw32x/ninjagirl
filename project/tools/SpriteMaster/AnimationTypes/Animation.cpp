@@ -142,10 +142,12 @@ void GGAnimation::WriteGGAnimationHeaderFile(const std::string& outputFolder,
 
 	// exported types
 
+    std::string bankToUse = bank.empty() ? "_" : bank;
+
     if (m_isMetaSprite)
-        headerfile << "RESOURCE(" << bank << ") extern const MetaSpriteAnimation " << outputName << ";\n"; 
+        headerfile << "RESOURCE(" << bankToUse << ") extern const MetaSpriteAnimation " << outputName << ";\n"; 
     else
-        headerfile << "RESOURCE(" << bank << ") extern const BatchedAnimation " << outputName << ";\n"; 
+        headerfile << "RESOURCE(" << bankToUse << ") extern const BatchedAnimation " << outputName << ";\n"; 
 
     headerfile << "\n";
 

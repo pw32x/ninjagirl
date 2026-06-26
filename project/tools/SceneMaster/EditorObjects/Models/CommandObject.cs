@@ -48,7 +48,9 @@ namespace SceneMaster.Commands.Models
             // clamp to 0
             int x = (int)(X < 0 ? 0 : X);
 
-            return "{ " + x + ", (CommandFunction)" + CommandInfo.Name.Replace(" ", "") + ", " + CommandValue + " },";
+            string commandValueToUse = CommandValue.StartsWith("&") ? CommandValue : "(const void*)" + CommandValue;
+
+            return "{ " + x + ", (CommandFunction)" + CommandInfo.Name.Replace(" ", "") + ", " + commandValueToUse + " },";
         }
 
 

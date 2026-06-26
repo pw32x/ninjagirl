@@ -10,7 +10,7 @@ namespace SceneMaster.EditorObjects.Models
 {
     public class ExportedCommandData
     {
-        public string CreateInfoTypeName { get; set; }
+        public string CreateInfoName { get; set; }
         public string ExportedCreateInfo { get; set; }
         public string CommandToUse { get; set; }
     }

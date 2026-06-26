@@ -65,7 +65,8 @@ void GGPalette::WriteGGPaletteHeaderFile(const std::string& outputFolder,
 
 	// exported types
 
-    headerfile << "RESOURCE(" << bank << ") extern const PaletteResource " << outputName << ";\n"; 
+    std::string bankToUse = bank.empty() ? "_" : bank;
+    headerfile << "RESOURCE(" << bankToUse << ") extern const PaletteResource " << outputName << ";\n"; 
     headerfile << "\n";
 
     // end header guard

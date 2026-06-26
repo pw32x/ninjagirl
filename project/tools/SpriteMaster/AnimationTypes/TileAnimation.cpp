@@ -145,7 +145,9 @@ void GGTileAnimation::WriteHeaderFile(const std::string& outputFolder,
 
 	// exported types
 
-    headerfile << "RESOURCE(" << bank << ") extern const TileAnimation " << outputName << ";\n"; 
+    std::string bankToUse = bank.empty() ? "_" : bank;
+
+    headerfile << "RESOURCE(" << bankToUse << ") extern const TileAnimation " << outputName << ";\n"; 
 
     headerfile << "\n";
 

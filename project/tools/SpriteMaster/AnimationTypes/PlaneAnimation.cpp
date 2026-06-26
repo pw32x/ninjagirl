@@ -104,7 +104,8 @@ void GGPlaneAnimation::WriteGGPlaneAnimationHeaderFile(const std::string& output
     headerfile << "\n";
 
 	// exported types
-    headerfile << "RESOURCE(" << bank << ") extern const PlaneAnimation " << outputName << ";\n"; 
+	std::string bankToUse = bank.empty() ? "_" : bank;
+    headerfile << "RESOURCE(" << bankToUse << ") extern const PlaneAnimation " << outputName << ";\n"; 
 
 	headerfile << "\n";
     // end header guard
