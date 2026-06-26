@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Shotgun_Bullet_Init(/*GameObject* object, const CreateInfo* createInfo*/);
+GameObject* Shotgun_Bullet_Init(void/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate shotgun_bullet_template = 
 {

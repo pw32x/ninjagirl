@@ -3,7 +3,7 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-GameObject* Enemy_Init(/*GameObject* object, const CreateInfo* createInfo*/);
+GameObject* Enemy_Init(void/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate walker_small_template = 
 {

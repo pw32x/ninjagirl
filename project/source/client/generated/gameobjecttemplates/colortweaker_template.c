@@ -3,13 +3,13 @@
 #include "engine\createinfo_types.h"
 #include "client\generated\resource_infos.h"
 
-ResourceInfo* colortweaker_templateExtraResourceInfos[] = 
+const ResourceInfo* colortweaker_templateExtraResourceInfos[] = 
 {
     &colorTweakerCursor_animResourceInfo,
     &globalPaletteResourceInfo,
 };
 
-GameObject* ColorTweaker_Init(/*GameObject* object, const CreateInfo* createInfo*/);
+GameObject* ColorTweaker_Init(void/*GameObject* object, const CreateInfo* createInfo*/);
 
 const GameObjectTemplate colortweaker_template = 
 {
