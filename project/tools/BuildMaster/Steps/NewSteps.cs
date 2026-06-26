@@ -44,7 +44,7 @@ namespace BuildMaster
                     var tokens = taggedLine.Split(' ');
 
                     string bank = "0";
-                    if (tokens[0] != "RESOURCE()")
+                    if (tokens[0] != "RESOURCE(_)")
                     {
                         bank = tokens[0].Trim(')');
                         bank = bank.Substring("RESOURCE(BANK".Length);
