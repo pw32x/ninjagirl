@@ -7,13 +7,26 @@ namespace BuildMaster
 {
     class CompilationSettings
     {
-        public CompilationSettings(string devkitSmsPath, string outFolder)
+        public CompilationSettings(string devkitSmsPath, string outFolder, string sdccPath)
         {
             DevkitSmsPath = Utils.NormalizePath(devkitSmsPath);
             OutFolder = Utils.NormalizePath(outFolder);
 
-            //IHX2SMS_Path = DevkitSmsPath + "/ihx2sms/Windows/ihx2sms.exe";
-            IHX2SMS_Path = "ihx2sms.exe";
+            // SDCCPath falls back to "sdcc" resolved via PATH when not configured.
+            if (string.IsNullOrEmpty(sdccPath) || sdccPath == "Not found")
+            {
+                Compiler = "sdcc";
+                SDCCDirectory = "";
+            }
+            else
+            {
+                SDCCDirectory = Utils.NormalizePath(sdccPath);
+
+                string sdccExePath = SDCCDirectory + "sdcc.exe";
+                Compiler = sdccExePath.Contains(' ') ? "\"" + sdccExePath + "\"" : sdccExePath;
+            }
+
+            IHX2SMS_Path = DevkitSmsPath + "/ihx2sms/Windows/ihx2sms.exe";
 
             SmsLib_BasePath = DevkitSmsPath + "/SMSlib";
             SmsLib_IncludePath = SmsLib_BasePath + "/src";
@@ -24,7 +37,7 @@ namespace BuildMaster
 
             PsgLib_BasePath = DevkitSmsPath + "/PSGlib/";
             PsgLib_IncludePath = PsgLib_BasePath + "/src";
-            PsgLib_LibraryPath = PsgLib_BasePath + "/PSGlib.rel";
+            PsgLib_LibraryPath = PsgLib_BasePath + "/PSGlib.lib";
         }
 
         public List<string> Defines { get; } = new();
@@ -44,7 +57,8 @@ namespace BuildMaster
         public string PsgLib_IncludePath { get; }
         public string PsgLib_LibraryPath { get; }
 
-        public string Compiler => "sdcc";
+        public string Compiler { get; }
+        public string SDCCDirectory { get; }
         public string BuildCompilerFlags(IEnumerable<string> includeFolders)
         {
             var sb = new StringBuilder();

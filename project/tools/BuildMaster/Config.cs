@@ -35,7 +35,8 @@ namespace BuildMaster
 
 
             CompilationSettings = new CompilationSettings(GetSetting("devkitSmsPath"),
-                                                            GetSetting("outFolder"));
+                                                            GetSetting("outFolder"),
+                                                            GetSetting("SDCCPath"));
 
             LastConfigFileWriteTime = File.GetLastWriteTime(path);
 

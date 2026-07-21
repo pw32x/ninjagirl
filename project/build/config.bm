@@ -9,8 +9,16 @@
 
 		<Setting name="dailyVersionsFolder" value="..\dailyversions" />
 
-		<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>
+		<!--<Setting name="devkitSmsPath" value="../../../devkitSMS-master"/>-->
+		<Setting name="devkitSmsPath" value="../../../devkitSMS-master_july2026"/>
 		<Setting name="outFolder" value="out"/>
+
+		<!-- SDCCPath is the folder containing sdcc.exe. Absolute or relative (relative to
+		     WorkingDirectory, like the other settings above). Only needed if sdcc isn't on
+		     PATH for the process running BuildMaster (e.g. Visual Studio's NMake build). -->
+		<Setting name="SDCCPath" value="C:\Program Files\SDCC_4.6.0\bin"/>
+		<!-- <Setting name="SDCCPath" value="C:\Program Files\SDCC\bin"/>-->
+
 		<Setting name="UseVisualStudioStylePaths" value="true"/>
 		<Setting name="resourceInfoExportFolder" value="source/client/generated" />
 		<Setting name="CopyToDailyFolder" value="true" />

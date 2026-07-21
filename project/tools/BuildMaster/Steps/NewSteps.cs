@@ -132,57 +132,53 @@ namespace BuildMaster
 
         private static bool BuildProject(IEnumerable<Config.SourceToBuild> sourceFilesToBuild, Config config)
         {
-            Action<StreamWriter> buildProject = (StreamWriter sw) =>
+            // Compile each changed source file as its own command, stopping immediately on the
+            // first one that fails instead of compiling everything and checking afterward.
+            foreach (var sourceFile in sourceFilesToBuild)
             {
-                // Build files
-                foreach (var sourceFile in sourceFilesToBuild)
+                DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
+                DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
+
+                // only build if the source file is newer.
+                // or the config file is newer.
+                if (sourceLastWriteTime > destinationLastWriteTime ||
+                    config.LastConfigFileWriteTime > destinationLastWriteTime ||
+                    config.LastApplicationWriteTime > destinationLastWriteTime)
                 {
-                    DateTime sourceLastWriteTime = File.GetLastWriteTime(sourceFile.Filename);
-                    DateTime destinationLastWriteTime = File.GetLastWriteTime(sourceFile.Destination);
+                    string compileCommand = sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination;
 
-                    // only build if the source file is newer.
-                    // or the config file is newer.
-                    if (sourceLastWriteTime > destinationLastWriteTime ||
-                        config.LastConfigFileWriteTime > destinationLastWriteTime ||
-                        config.LastApplicationWriteTime > destinationLastWriteTime)
-                    {
-                        sw.WriteLine(sourceFile.Flags + " -c " + sourceFile.Filename + " -o " + sourceFile.Destination);
-                    }
-                } 
-            };
+                    Console.WriteLine(compileCommand);
 
-            var outputString = Utils.RunProcess(buildProject);
-
-            bool containsError = ProcessErrorString(outputString, config);
-
-            if (containsError)
-            {
-                return false;
+                    if (Utils.RunSingleCommand(compileCommand, line => PrintOutputLine(line, config), config.CompilationSettings.SDCCDirectory) != 0)
+                        return false;
+                }
             }
 
-            Action<StreamWriter> linkProject = (StreamWriter sw) =>
+            // Run the linker and ihx converter
+            var sb = new StringBuilder();
+            void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+
+            var destinationSourceObjects = sourceFilesToBuild.OrderBy(s => s.BankNumber).Select(s => s.Destination);
+
+            foreach (var destinationSourceObject in destinationSourceObjects)
             {
-                // Run the linker and ihx converter
-                var sb = new StringBuilder();
-                void addFlag(string flag) { sb.Append(flag); sb.Append(" "); };
+                addFlag(destinationSourceObject);
+            }
 
-                var destinationSourceObjects = sourceFilesToBuild.OrderBy(s => s.BankNumber).Select(s => s.Destination);
+            var usedBankNumbers = sourceFilesToBuild.Where(s => s.BankNumber > 1).Select(s => s.BankNumber).Distinct();
 
-                foreach (var destinationSourceObject in destinationSourceObjects)
-                {
-                    addFlag(destinationSourceObject);
-                }
+            string linkCommand = config.BuildLinkCommand(usedBankNumbers) + " " + sb.ToString();
 
-                var usedBankNumbers = sourceFilesToBuild.Where(s => s.BankNumber > 1).Select(s => s.BankNumber).Distinct();
+            Console.WriteLine(linkCommand);
 
-                sw.WriteLine(config.BuildLinkCommand(usedBankNumbers) + " " + sb.ToString());
-                sw.WriteLine(config.BuildIHXToSMSCommand());
-            };
+            if (Utils.RunSingleCommand(linkCommand, line => PrintOutputLine(line, config), config.CompilationSettings.SDCCDirectory) != 0)
+                return false;
 
-            outputString = Utils.RunProcess(linkProject);
-            containsError = ProcessErrorString(outputString, config);
+            string ihxToSmsCommand = config.BuildIHXToSMSCommand();
 
-            return !containsError;
+            Console.WriteLine(ihxToSmsCommand);
+
+            return Utils.RunSingleCommand(ihxToSmsCommand, line => PrintOutputLine(line, config)) == 0;
         }
 
         static (string, int, string) ExtractErrorInfo(string line)
@@ -208,36 +204,19 @@ namespace BuildMaster
             return ("", 0, line);
         }
 
-        private static bool ProcessErrorString(string errorString, Config config)
+        private static void PrintOutputLine(string line, Config config)
         {
-            bool containsError = false;
+            var (filePath, lineNumber, message) = ExtractErrorInfo(line);
 
-            if (!String.IsNullOrEmpty(errorString))
-            {
-                bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
+            if (string.IsNullOrEmpty(message))
+                return;
 
-                string[] lines = errorString.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            bool useVSStylePaths = config.GetSetting("UseVisualStudioStylePaths") == "true";
 
-                foreach (var line in lines)
-                {
-                    var (filePath, lineNumber, message) = ExtractErrorInfo(line);
-
-                    if (string.IsNullOrEmpty(message))
-                        continue;
-
-                    if (!containsError)
-                    {
-                        containsError = message.ToLower().Contains("error");
-                    }
-
-                    if (useVSStylePaths && !string.IsNullOrEmpty(filePath))
-                        Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
-                    else
-                        Console.WriteLine(line);
-                }
-            }
-
-            return containsError;
+            if (useVSStylePaths && !string.IsNullOrEmpty(filePath))
+                Console.WriteLine(Path.GetFullPath(filePath) + "(" + lineNumber + "): " + message);
+            else
+                Console.WriteLine(line);
         }
     }
 }

@@ -57,43 +57,62 @@ namespace BuildMaster
                                     errors);
         }
 
-        public static string RunProcess(Action<StreamWriter> workerFunction)
+        public static int RunSingleCommand(string commandLine, Action<string> onOutputLine, string additionalPathDirectory = null)
         {
-            // Create a new process start info
+            string executablePath;
+            string args;
+
+            if (commandLine.StartsWith("\""))
+            {
+                int closingQuoteIndex = commandLine.IndexOf('"', 1);
+                executablePath = commandLine.Substring(1, closingQuoteIndex - 1);
+                args = commandLine.Substring(closingQuoteIndex + 1).TrimStart();
+            }
+            else
+            {
+                int splitIndex = commandLine.IndexOf(' ');
+                executablePath = splitIndex < 0 ? commandLine : commandLine.Substring(0, splitIndex);
+                args = splitIndex < 0 ? "" : commandLine.Substring(splitIndex + 1);
+            }
+
             ProcessStartInfo psi = new ProcessStartInfo
             {
-                FileName = "cmd.exe", // Use the command prompt
-                RedirectStandardInput = true,
+                FileName = executablePath,
+                Arguments = args,
+                RedirectStandardOutput = true,
                 RedirectStandardError = true,
                 UseShellExecute = false,
-                //CreateNoWindow = !Debugger.IsAttached
+                CreateNoWindow = true,
             };
 
-            // Start the process
+            if (!string.IsNullOrEmpty(additionalPathDirectory))
+            {
+                string existingPath = psi.EnvironmentVariables.ContainsKey("PATH") ? psi.EnvironmentVariables["PATH"] : "";
+                psi.EnvironmentVariables["PATH"] = additionalPathDirectory + ";" + existingPath;
+            }
+
             Process process = new Process { StartInfo = psi };
+
+            void handleLine(object sender, DataReceivedEventArgs e)
+            {
+                if (e.Data != null)
+                {
+                    onOutputLine(e.Data);
+                }
+            }
+
+            process.OutputDataReceived += handleLine;
+            process.ErrorDataReceived += handleLine;
+
             process.Start();
-
-            // Get the process's input stream
-            StreamWriter sw = process.StandardInput;
-            StreamReader errorReader = process.StandardError; 
-
-            workerFunction(sw); 
-
-            // Close the input stream to indicate the end of input
-            sw.Close();
-
-            var errorString = errorReader.ReadToEnd();
-
-            // Wait for the process to complete
+            process.BeginOutputReadLine();
+            process.BeginErrorReadLine();
             process.WaitForExit();
 
-            // Display the exit code
-            //Console.WriteLine("Exit Code: " + process.ExitCode);
-
-            // Close the process
+            int exitCode = process.ExitCode;
             process.Close();
 
-            return errorString;
+            return exitCode;
         }
 
         public static string EnsureTrailingSlash(string path)
