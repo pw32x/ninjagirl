@@ -18,10 +18,6 @@
 project/out/*
 project/raw
 
-# except this file
-!/project/out/NinjaGirl.map
-
-
 
 # Mono auto generated files
 mono_crash.*
@@ -407,5 +403,3 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-
-project/out/NinjaGirl.map
