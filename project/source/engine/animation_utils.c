@@ -237,6 +237,12 @@ void UNSAFE_SMS_VRAMmemcpy192b (unsigned int dst, const void *src) {
 	SETVDPDATAPORTb;
 	OUTI64(OUTI128(src));
 }
+
+void UNSAFE_SMS_VRAMmemcpy256 (unsigned int dst, const void *src) {
+    SMS_setAddr(0x4000|dst);
+    SETVDPDATAPORTb;
+    OUTI128(OUTI128(src));
+}
 #endif
 
 void AnimationUtils_UpdateStreamedBatchedAnimationFrame(GameObject* gameObject)

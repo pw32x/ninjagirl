@@ -58,8 +58,49 @@ DrawUtils_DrawBatched_loop:
     goto DrawUtils_DrawBatched_loop;
 }
 
+
+
 #define MAXSPRITES        64
-void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1) 
+void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1)
+{
+    // Y passed in L
+    // X passed in D
+    // tile passed in E
+    // return value will be in A
+    __asm
+    ld  a,(#_SpriteNextFree)
+        cp  a,#MAXSPRITES
+        ret nc                           ; no sprites left, leave!
+        ld  c,a                          ; save SpriteNextFree value in c
+
+        ld  a,l
+        cp  a,#0xd1
+        ret z                            ; invalid Y, leave!
+
+        ld  hl,#_SpriteTableY
+        ld  b,#0x00
+        add hl,bc                        ; hl+=SpriteNextFree
+        dec a
+        ld (hl),a                        ; write Y (as Y-1)
+
+        ld hl,#_SpriteTableXN
+        ld a,c                           ; save sprite handle to A
+        sla c
+        add hl,bc                        ; hl+=(SpriteNextFree*2)
+        ld (hl),d                        ; write X
+        inc hl
+        ld (hl),e                        ; write tile number
+
+        inc a                            ; increment and
+        ld (#_SpriteNextFree),a          ; save SpriteNextFree value
+        ret
+        __endasm;
+}
+
+
+/* now defined in SMSlib_sprite.c (devkitSMS-master SMSlib) - kept here for reference
+#define MAXSPRITES        64
+void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1)
 {
 #ifndef WIN32
     UNUSED(y);
@@ -99,6 +140,7 @@ void SMS_addSprite_noreturn_f(unsigned int y, unsigned int x_tile) __naked __pre
         __endasm;
 #endif
 }
+*/
 
 
 typedef void (*drawSpriteType) (unsigned int y, unsigned int x_tile) __naked __preserves_regs(d,e,iyh,iyl) __sdcccall(1);
